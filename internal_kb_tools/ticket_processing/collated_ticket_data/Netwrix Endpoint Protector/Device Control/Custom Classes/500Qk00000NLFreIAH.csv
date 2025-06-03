@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NLFreIAH","00439990","Support Ticket","Specific Devices: Bulk List of Devices adding wrong VID and PID numbers","Hello,
+
+Customer name is PrivatBank.
+They need to add 1100 USB flash drives to the Allowed Specific Devices.
+But when customer tried to create a test bulk with 9 USB devices - Device Wizard added the wrong VID and PID and replaced them to ""Genera"" (look on screenshot).
+Customer were using the Bulk enrollment .xls sample from EPP console to add there these 9 USB devices.
+When they added these 9 devices by text (not .xls file) it added correctly.
+Could you please assist with that?
+We also can schedule the remote session to look into it.","","27.03
+- couldn't test during our remote session because their server had an issue with the SSL certificate
+- used a certificate from a backup which fixed the issue
+- resource usage was high, shadows were taking up a lot of space, around 800GBs
+- created an Audit Log Backup to check if it works
+
+
+28.03
+- the Audit Log backup cleared around 3GBs of logs, the oldest log date appeared new
+- CPU usage is very high
+- server freezes when trying to upload XLS file for specific devices
+- looks like Libre Office modifies the XLS file and it doesn't get read correctly by the EPP server
+
+17.04
+- followed up regarding the migration date","look into the CPU usage and Libre Office compatibility
+
+17.04
+- awaiting customer","The customer needs to migrate their server, but they don't have a timeline yet. They will open a ticket when the have the details.","","Botond Biro","Unexpected Behavior","Netwrix Endpoint Protector","Device Control","Custom Classes","","","22.1","Closed - Resolved","Privat Bank","CoreWin Tech","2025-03-26T08:16:14.000Z","2025-04-17T11:29:33.000Z"

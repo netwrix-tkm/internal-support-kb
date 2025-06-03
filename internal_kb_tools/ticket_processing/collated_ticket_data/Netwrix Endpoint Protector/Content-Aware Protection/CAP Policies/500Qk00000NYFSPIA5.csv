@@ -1,0 +1,67 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NYFSPIA5","00440556","Support Ticket","Reg: File Upload is not blocked || BDO Edge || || Implementation ||","Hi Team,
+
+We have configured the Block and Report CAP policy for PDF and other types of files uploading block to any web domain.
+
+But the Policy is not blocked the PDF file uploading to domains like pdf to word coverted and Wetransfer websites.
+
+Please check and resolve the reported issue at the earliest possible.
+
+Regards,
+Vinay","","- RS scheduled on 04.04
+- customer didn't show up
+- asked for their availability in the future
+
+04.04
+- the pc we used for testing: 0051
+- server 5941
+- client 6242
+- issue is happening on most computers
+- other security software: sophos - disabled it but the issue was still present
+- browsers: edge, chrome
+- not blocking PDFs
+- tried to troubleshoot DPI settings
+- they had 2 policies 1 block, 1 report
+- disabled report only
+- file still wasn’t blocked
+- the EPP certificate shows up in the browsers
+- logs show up as Content Threat Detected
+
+
+10.04.2025- Update
+Connected remote to the client to assist with the MS Forms, OneDrive and ManageEngine ticketing system they had.
+
+For MS Forms, they didn't add the DPI Allowlist to the CAP policy. After adding it, they could upload files successfully.
+
+For OneDrive,  I couldn't find any issues as they stated they struggled with opening documents.
+
+Tested with one user and they could open docs from OneDrive( DPI was enabled and inside the CAP policy OneDrive and OneDrive Business were already disabled).
+
+
+For the ManageEngine issue we created a DPI allowlist and it is working as expected(They could use the site's functionality as well as remoting in accordingly).
+
+
+They also had other issues such as external USBs that are not working and the problem with offline devices but we didnt had more time and agreed to call back tomorrow to check up on this.
+
+11.04.2025-Update
+
+Went on and connected remote with Vinay.
+They only had a problem with allowing a Teensy board type device(yealink wireless presentation pod).
+
+Went on and created an exception rule that we first tested on Vinay's machine which was working and then applied it to the global settings to allow it for everyone as he wanted.
+
+Agreed to close the case.","- might be communication issues
+- check in logs report if the computer has received the policies
+- check logs live while in call (the policy threat should be: action: 1)
+- stop old policy
+- create new policy - block only PDF files
+- try without DPI
+- check older client 6.2.4.1
+
+
+
+Next steps :11/04/2025
+
+Remote session to further troubleshoot the issue with USBs and Offline devices
+
+Closing ticket.","Closing ticket as resolved.","","Botond Biro","Error","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","NONE","","10.1","Closed - Resolved","BDO EDGE - BDO India LLP","Rochak Kalal","2025-04-01T06:38:05.000Z","2025-04-11T08:22:23.000Z"

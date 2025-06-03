@@ -1,0 +1,112 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008IeyTIAS","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Priority has been changed to High.","005Qk000001nViAIAU","2024-08-02T09:25:57.000Z","2024-08-02T09:25:57.000Z","false","false"
+"00aQk000008QugIIAS","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: Hi Team, The customer is chasing for updates, do we have any?","005Qk000001nViAIAU","2024-08-09T09:13:51.000Z","2024-08-09T09:13:51.000Z","false","false"
+"00aQk000008RAI2IAO","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: Marius Ghiurcau:
+
+The log files are empty (populated with NULL, whatever). You should get a new set of logs. BUT, if only machine is affected and this happened after you made some procedures there I would recommend reinstalling the EPP client and if you still encounter issues, collect a new set of logs. Make sure you get also options.ini, not only eppclient.log.
+
+[DevOps CommentId:10709924]","0054u000006gtWUAAY","2024-08-09T13:31:57.000Z","2024-08-09T13:31:57.000Z","false","false"
+"00aQk000008bDg1IAE","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-19T05:00:54.000Z","2024-08-19T05:00:54.000Z","false","false"
+"00aQk000008bDg3IAE","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-09 13:31 UTC and the last detected comment from support was 2024-08-09 09:13 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10777675]","0054u000006gtWUAAY","2024-08-19T05:00:55.000Z","2024-08-19T05:00:55.000Z","false","false"
+"00aQk000008bMrNIAU","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViAIAU","2024-08-19T09:21:29.000Z","2024-08-19T09:21:29.000Z","false","false"
+"00aQk000008fhikIAA","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: Hi Marius thank you for the input!
+I have collected a new set of logs upon reinstalling the client, please find the logs ziped folder attached.","005Qk000001nViAIAU","2024-08-22T07:17:44.000Z","2024-08-22T07:17:44.000Z","false","false"
+"00aQk000008whspIAA","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: Hello Team,
+
+Do we have any updtes here?","005Qk000001nViAIAU","2024-09-06T08:38:55.000Z","2024-09-06T08:38:55.000Z","false","false"
+"00aQk000009e8GFIAY","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-14T14:22:51.000Z","2024-10-14T14:22:51.000Z","false","false"
+"00aQk000009e8GHIAY","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: Marius Ghiurcau:
+
+@WaitingOnEngineer 
+
+I checked the logs. The client communicates OK with the EPP server, that is the reason why on the server side it looks like it is online and licensed. Did you try to enforce any DC or CAP policies to test? There is probably only an issue related to signing and Trusted Root Authorities and because of this, the EPP client does not communicate with the EPP notifier. Since you don't have access to other ADO entries, I will copy paste here the answer I left recently to another similar case. You can also contact Adi Draghici, handled that case.
+
+The issue is probably related to some missing certificates in the Certificate Store. Please check these two Jira issues:
+
+
+
+
+https://jira-epp.endpointprotector.com/browse/EPPSUPPORT-194
+
+https://jira-epp.endpointprotector.com/browse/EPPSUPPORT-586
+
+
+
+
+You can find there details related to some Global Sign and DigiCert certificates that are needed so that the EppNotifier has the signature recognized. Side note, not only the EppNotifier fails the signature check, all the other DLLs and EXEs that are installed are failing the signature check (so the customer should have a lot of integrity fail events)
+
+
+
+
+In the Jira threads you will find info about the certificates that need to be installed (if not present in the Windows Certificate Store, you can check there presence like in the printscreen below)
+
+[DevOps CommentId:11056125]","0054u000006gtWUAAY","2024-10-14T14:22:52.000Z","2024-10-14T14:22:52.000Z","false","false"
+"00aQk000009f7WbIAI","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-10-15T06:42:14.000Z","2024-10-15T06:42:14.000Z","false","false"
+"00aQk000009n80rIAA","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-22T05:01:48.000Z","2024-10-22T05:01:48.000Z","false","false"
+"00aQk000009n80tIAA","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-14 14:22 UTC and the last detected comment from support was 2024-09-06 08:38 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11091322]","0054u000006gtWUAAY","2024-10-22T05:01:49.000Z","2024-10-22T05:01:49.000Z","false","false"
+"00aQk000009n9o9IAA","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-10-22T06:14:11.000Z","2024-10-22T06:14:11.000Z","false","false"
+"00aQk000009ur4TIAQ","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-29T05:02:05.000Z","2024-10-29T05:02:05.000Z","false","false"
+"00aQk000009ur4VIAQ","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-14 14:22 UTC and the last detected comment from support was 2024-09-06 08:38 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11123583]","0054u000006gtWUAAY","2024-10-29T05:02:06.000Z","2024-10-29T05:02:06.000Z","false","false"
+"00aQk000009uxWTIAY","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-10-29T08:25:19.000Z","2024-10-29T08:25:19.000Z","false","false"
+"00aQk00000A2XyEIAV","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-05T05:02:12.000Z","2024-11-05T05:02:12.000Z","false","false"
+"00aQk00000A2XyGIAV","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-14 14:22 UTC and the last detected comment from support was 2024-09-06 08:38 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11168434]","0054u000006gtWUAAY","2024-11-05T05:02:13.000Z","2024-11-05T05:02:13.000Z","false","false"
+"00aQk00000A2ezhIAB","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-11-05T07:35:05.000Z","2024-11-05T07:35:05.000Z","false","false"
+"00aQk00000ACUkXIAX","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-13T05:01:59.000Z","2024-11-13T05:01:59.000Z","false","false"
+"00aQk00000ACUkZIAX","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-14 14:22 UTC and the last detected comment from support was 2024-09-06 08:38 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11206042]","0054u000006gtWUAAY","2024-11-13T05:02:00.000Z","2024-11-13T05:02:00.000Z","false","false"
+"00aQk00000ACaZqIAL","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the new comment has been added: please close this case.","005Qk000001nVi3IAE","2024-11-13T07:39:11.000Z","2024-11-13T07:39:11.000Z","false","false"
+"00aQk00000ACa1yIAD","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-11-13T07:39:43.000Z","2024-11-13T07:39:43.000Z","false","false"
+"00aQk00000AJEpWIAX","500Qk00000DnjPWIAZ","On Escalation Ticket # 00416907 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVi3IAE","2024-11-19T08:59:42.000Z","2024-11-19T08:59:42.000Z","false","false"

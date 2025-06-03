@@ -1,0 +1,151 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000AnAq5IAF","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Account ACV has been changed to 29930.48.
+Priority has been changed to High.","005Qk000001nViFIAU","2024-12-17T14:06:32.000Z","2024-12-17T14:06:32.000Z","false","false"
+"00aQk00000An5iMIAR","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Account ACV has been changed to 14965.24.","005Qk000001nViFIAU","2024-12-17T14:06:34.000Z","2024-12-17T14:06:34.000Z","false","false"
+"00aQk00000AoPGoIAN","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: Marius Ghiurcau:
+
+I've read the description of the issue and right now my assumption is that we did not break anything with 5941. But sure, we will try to reproduce this and find out what happens. 
+
+The customer mentions that the issue occurs with the old and the new client as well, so they obviously suspect an issue on the server side. But it might be as well a change in MS Teams that triggers this, we will check. To my knowledge, the only server changes that were made related to the Office apps in general was to add the known msedgewebview2_exe process name under OLK and Teams as well (for Windows, with DPI enabled). In fact, the I am not even sure if the change entered in the end for Teams as well, or only for Outlook. Anyway, the changes should not break anything as long as all exit points are monitored (and the customer mentions this scenario). Moreover, the customer mentions strange behavior(sometimes files are blocked, but later not, without any changes in the policy, sometimes they get reports, but the file goes right away, or other times the files go through without any log/notification). Just mentioning now, there is a case when Teams (and other apps) is not monitored until a restart of the app, if there was a policy change, or DPI was enabled after the app was started. Still, this does not seem to be the case here, at least not in all scenarios mentioned by the customer.
+
+[DevOps CommentId:11428342]","0054u000006gtWUAAY","2024-12-18T11:40:26.000Z","2024-12-18T11:40:26.000Z","false","false"
+"00aQk00000AzvA6IAJ","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: Marius Ghiurcau:
+
+@Cristian-Alexandru Halmajan we will need some help from our QA colleagues on this one.
+
+A few days ago, I managed to reproduce most of what the customer is reporting. Sometimes I was getting blocked reports, but the file transfers were getting through in Teams. And in other cases (most of them), the transfers were allowed and in the client logs I did not see anything, the client did not intercept the transfer. Unfortunately I had to postpone my investigation because there were other escalations with higher priority (such as OTP -> OpenSSL upgrade triggered issue). Today I tried to reproduce again the issue and continue the investigation. For some reason, I am not able to reproduce it anymore, it works fine in all the scenarios I tried. So, I think that right now we need more hands on this one, maybe QA can reproduce the issue (and find a certain pattern?). I tested with 5941 sources and patch. And I made sure MS Teams is restarted after the CAP policy is in place. By the way, @Alin Anca can you double check with the customer and make sure after they set up the policies they restarted MS Teams?
+
+One more comment/note. As mentioned in the previous comment also, I don't think this has anything to do with the changes from 5941. 
+
+[DevOps CommentId:11452499]","0054u000006gtWUAAY","2024-12-31T14:03:49.000Z","2024-12-31T14:03:49.000Z","false","false"
+"00aQk00000BFiiNIAT","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: The customer has performed a follow-up on this ticket.
+Do we have an update here? Did the QA managed to test the scenario?
+I have requested from the customer the confirmation that the Teams app was restarted after setting up the CAP policies.
+
+Thank you","005Qk000001nViFIAU","2025-01-15T14:36:11.000Z","2025-01-15T14:36:11.000Z","false","false"
+"00aQk00000BFw71IAD","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: Levente-Cristian Fangli:
+
+@Cristian-Alexandru Halmajan
+I have reproduced the issue by having created a CAP policy with all graphic file types selected, block and report action defined for Windows
+
+
+	 - 	I could successfully upload image files through Microsoft Teams, while having the mentioned CAP policy enabled. Also I have closed and reopened Teams in order to see if the policies would apply correctly.
+	 - 	Sometimes I would received a notification that the file upload was blocked and reported, however the graphic file in reality was not blocked, but uploaded successfully
+	 - 	I have tried the upload from computer and drag and drop method too see that the files would be blocked, they were not
+	 - 	Uploading to dltpest.endpointprotector.com was blocked successfully
+	 - 	I would like to mention also that when the notification was displayed while trying to upload the image file on Teams, the event was reported correctly in Content Aware Reports.
+	 - 	After restarting the computer and activating DPI, I have tried to upload some image file to Microsoft Teams and then the Block and reports action was working, I was not able to upload images. The strange thing was that some images still could be uploaded
+
+Tested with 5941 server with 6.2.4.1006 client, also verified the issue on 6.2.4.2000 client. 
+
+[DevOps CommentId:11508100]","0054u000006gtWUAAY","2025-01-15T16:07:29.000Z","2025-01-15T16:07:29.000Z","false","false"
+"00aQk00000BGuWAIA1","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: The customer confirmed, please see below:
+
+I can confirm that. I even restarted the whole machine, just to be sure.","005Qk000001nViFIAU","2025-01-16T09:04:06.000Z","2025-01-16T09:04:06.000Z","false","false"
+"00aQk00000BGw89IAD","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-16T10:14:02.000Z","2025-01-16T10:14:02.000Z","false","false"
+"00aQk00000BGw8BIAT","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Alin,
+
+I hope you are well.
+
+The issue has been raised with dev team, pending to be registered by product.
+
+As soon as we have a target release date confirmed for it, I will let you know,
+
+Regards,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11510642]","0054u000006gtWUAAY","2025-01-16T10:14:03.000Z","2025-01-16T10:14:03.000Z","false","false"
+"00aQk00000BHCHlIAP","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2025-01-16T14:47:30.000Z","2025-01-16T14:47:30.000Z","false","false"
+"00aQk00000BPrqnIAD","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-24T05:02:20.000Z","2025-01-24T05:02:20.000Z","false","false"
+"00aQk00000BPrqpIAD","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-01-16 10:14 UTC and the last detected comment from support was 2025-01-16 09:04 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11547341]","0054u000006gtWUAAY","2025-01-24T05:02:21.000Z","2025-01-24T05:02:21.000Z","false","false"
+"00aQk00000BQ7KUIA1","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: Any updates you can share would be appreciated.
+Thank you","005Qk000001nViFIAU","2025-01-24T11:56:30.000Z","2025-01-24T11:56:30.000Z","false","false"
+"00aQk00000BSMIcIAP","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Alin,
+
+This issue has not been registered by product yet.
+
+I will come back to you with an answer as soon as we can.
+
+Regards,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11553209]","0054u000006gtWUAAY","2025-01-27T07:55:38.000Z","2025-01-27T07:55:38.000Z","false","false"
+"00aQk00000BbfAkIAJ","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-01-27 07:55 UTC and the last detected comment from support was 2025-01-24 11:56 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11591710]","0054u000006gtWUAAY","2025-02-04T05:02:23.000Z","2025-02-04T05:02:23.000Z","false","false"
+"00aQk00000BbqxRIAR","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: Thank you very much @Cristian!","005Qk000001nViFIAU","2025-02-04T11:35:57.000Z","2025-02-04T11:35:57.000Z","false","false"
+"00aQk00000BdZSbIAN","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2025-02-05T15:51:29.000Z","2025-02-05T15:51:29.000Z","false","false"
+"00aQk00000C64OfIAJ","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: The customer has checked in on the status of the ticket. Any updates you can share would be appreciated.
+Thank you","005Qk000001nViFIAU","2025-03-03T10:18:49.000Z","2025-03-03T10:18:49.000Z","false","false"
+"00aQk00000CgADmIAN","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: Hello @Cristian,
+The customer has checked in on the status of the ticket. Any updates you can share would be appreciated.
+They are replying the following:
+
+""since you were able to reproduce the issue in January and there is still no fix in sight: Do you have any news?""
+
+Thank you","005Qk000001nViFIAU","2025-04-02T07:18:39.000Z","2025-04-02T07:18:39.000Z","false","false"
+"00aQk00000D7GDXIA3","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-25T10:35:07.000Z","2025-04-25T10:35:07.000Z","false","false"
+"00aQk00000D7GDZIA3","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Alin,
+
+I hope you are well.
+This fix will be available in the 5.9.4.3. release.
+
+Regards,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11976202]","0054u000006gtWUAAY","2025-04-25T10:35:08.000Z","2025-04-25T10:35:08.000Z","false","false"
+"00aQk00000D7OhJIAV","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2025-04-25T12:53:13.000Z","2025-04-25T12:53:13.000Z","false","false"
+"00aQk00000D9zhVIAR","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViFIAU","2025-04-28T13:49:36.000Z","2025-04-28T13:49:36.000Z","false","false"
+"00aQk00000D9zhXIAR","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Account ACV has been changed to 29930.48.","005Qk000001nViFIAU","2025-04-28T13:49:39.000Z","2025-04-28T13:49:39.000Z","false","false"
+"00aQk00000D9zj7IAB","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Account ACV has been changed to 14965.24.","0054u000006gtWUAAY","2025-04-28T13:49:52.000Z","2025-04-28T13:49:52.000Z","false","false"
+"00aQk00000DHSYLIA5","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-05T05:00:59.000Z","2025-05-05T05:00:59.000Z","false","false"
+"00aQk00000DHSYNIA5","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-04-25 10:35 UTC and the last detected comment from support was 2025-04-02 07:18 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:12005193]","0054u000006gtWUAAY","2025-05-05T05:01:00.000Z","2025-05-05T05:01:00.000Z","false","false"
+"00aQk00000DHub0IAD","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViFIAU","2025-05-05T14:28:37.000Z","2025-05-05T14:28:37.000Z","false","false"
+"00aQk00000DHub2IAD","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Account ACV has been changed to 29930.48.","005Qk000001nViFIAU","2025-05-05T14:28:41.000Z","2025-05-05T14:28:41.000Z","false","false"
+"00aQk00000DHrziIAD","500Qk00000JXzJZIA1","On Escalation Ticket # 00430080 the Following Fields have been updated: 
+Account ACV has been changed to 14965.24.","0054u000006gtWUAAY","2025-05-05T14:28:52.000Z","2025-05-05T14:28:52.000Z","false","false"

@@ -1,0 +1,3855 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000B1qmLIAR","500Qk00000BZqyHIAT","2024-06-07T16:54:02.000Z","2024-06-07T16:54:02.000Z","Hi Hemant,
+
+I have assigned this ticket to my colleagues that cover your time zone.
+
+They will get back to you as soon as possible early next week.
+
+Best Regards,
+Flaviu Moldovan | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+ref:!00D70091pB.!500Qk0BZqyH:ref","Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","techsupport@netwrix.com","Netwrix Support","hemant.mistry@mccann.com","adrian.draghici@netwrix.com","flaviu.moldovan@netwrix.com","false","2024-06-07T16:54:01.000Z","true"
+"02sQk00000B7JlxIAF","500Qk00000BZqyHIAT","2024-06-10T14:25:28.000Z","2024-06-10T14:25:28.000Z","Hello,
+
+Thank you for your email.
+I'll list below the stages for completing the migration from the present Endpoint Protector to Azure:
+ 
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector.
+For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector. 
+ 
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"":
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf
+ 
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+ 
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"". 
+ 
+2. Migration of the settings and policies from the on-premise Endpoint Protector implementation to the fresh Azure Endpoint Protector Virtual Machine 
+ 
+As mentioned above, Azure Endpoint Protector Virtual Machine will be made available on version 5.8.1.0.
+For a successful migration the on-premise Endpoint Protector server must have the same version with the version from the new server (if not, they need to be updated in order for the migration to be successful)
+The version of the on-premise Endpoint Protector server is displayed by the web interface, bottom right corner.
+ 
+The migration of policies, settings, configuration and entities from the existing on-premise Endpoint Protector server to the fresh one will be perform via System Maintenance > System Backup v2.
+ 
+The steps for using the are described by chapter ""15.7. System Backup v2"", starting page 183:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+ 
+Please note that logs, Audit Log Backup files or System Backups will NOT be migrated.
+All logs currently stored by the on-premise Endpoint Protector server can be backed up and saved locally via System Maintenance > Audit Log Backup. 
+System Backup V2 will migrate all the settings from the old server, including SSO.
+ 
+Once the backup is imported, refresh the page and log in with your old credentials. Also check the license page to make sure they are there.
+ 
+After the import is complete, you can power off the old VM and change the IP of the new VM to the old one. Please do this from the VM's console. This step is needed so that the EPP clients can communicate with the new server.
+
+Please let me know if this points were helpful in what you are trying to achieve or if further assistance is necessary.
+
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/7/2024 7:54 PM
+To: hemant.mistry@mccann.com
+Cc: adrian.draghici@netwrix.com
+Subject: Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant,
+
+I have assigned this ticket to my colleagues that cover your time zone.
+
+They will get back to you as soon as possible early next week.
+
+Best Regards,
+Flaviu Moldovan | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+ref:!00D70091pB.!500Qk0BZqyH:ref","RE: Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","techsupport@netwrix.com","Netwrix Support","hemant.mistry@mccann.com","","","false","2024-06-10T14:25:27.000Z","true"
+"02sQk00000B7H7TIAV","500Qk00000BZqyHIAT","2024-06-10T15:00:12.000Z","2024-06-10T15:00:12.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi
+We have created the storage where you can upload for the EPP image. Storage account name is eppupload the location to upload the image to is :-
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+the blob container is call “epp”
+
+I will upload the access key to the ticket directly
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Monday, 10 June 2024 at 15:25
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com>
+Subject: RE: Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Thank you for your email. I'll list below the stages for completing the migration from the present Endpoint Protector to Azure: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not
+
+Hello,
+
+Thank you for your email.
+I'll list below the stages for completing the migration from the present Endpoint Protector to Azure:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector.
+For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"":
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!gK_CByaFaKGhuxiwxpSV54ZHvjdaLQ3H7nwsMGCvxPduK_BkURqqtUfPdM3J67qOaBbreQzaBxhZYYF8l_SQm5D8eA$>
+
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+2. Migration of the settings and policies from the on-premise Endpoint Protector implementation to the fresh Azure Endpoint Protector Virtual Machine
+
+As mentioned above, Azure Endpoint Protector Virtual Machine will be made available on version 5.8.1.0.
+For a successful migration the on-premise Endpoint Protector server must have the same version with the version from the new server (if not, they need to be updated in order for the migration to be successful)
+The version of the on-premise Endpoint Protector server is displayed by the web interface, bottom right corner.
+
+The migration of policies, settings, configuration and entities from the existing on-premise Endpoint Protector server to the fresh one will be perform via System Maintenance > System Backup v2.
+
+The steps for using the are described by chapter ""15.7. System Backup v2"", starting page 183:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf<https://urldefense.com/v3/__https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!gK_CByaFaKGhuxiwxpSV54ZHvjdaLQ3H7nwsMGCvxPduK_BkURqqtUfPdM3J67qOaBbreQzaBxhZYYF8l_TasLKtKQ$>
+
+Please note that logs, Audit Log Backup files or System Backups will NOT be migrated.
+All logs currently stored by the on-premise Endpoint Protector server can be backed up and saved locally via System Maintenance > Audit Log Backup.
+System Backup V2 will migrate all the settings from the old server, including SSO.
+
+Once the backup is imported, refresh the page and log in with your old credentials. Also check the license page to make sure they are there.
+
+After the import is complete, you can power off the old VM and change the IP of the new VM to the old one. Please do this from the VM's console. This step is needed so that the EPP clients can communicate with the new server.
+
+Please let me know if this points were helpful in what you are trying to achieve or if further assistance is necessary.
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http://www.endpointprotector.com__;!!N96JrnIq8IfO5w!gK_CByaFaKGhuxiwxpSV54ZHvjdaLQ3H7nwsMGCvxPduK_BkURqqtUfPdM3J67qOaBbreQzaBxhZYYF8l_RPvvojxg$>
+
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/7/2024 7:54 PM
+To: hemant.mistry@mccann.com
+Cc: adrian.draghici@netwrix.com
+Subject: Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant,
+
+I have assigned this ticket to my colleagues that cover your time zone.
+
+They will get back to you as soon as possible early next week.
+
+Best Regards,
+Flaviu Moldovan | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com<https://urldefense.com/v3/__http://www.endpointprotector.com/__;!!N96JrnIq8IfO5w!gK_CByaFaKGhuxiwxpSV54ZHvjdaLQ3H7nwsMGCvxPduK_BkURqqtUfPdM3J67qOaBbreQzaBxhZYYF8l_TVrSZSFw$>[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000ADCLq&from=int]
+
+ref:!00D70091pB.!500Qk0BZqyH:ref[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000AIFhM&from=ext]
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message.  If you have received the message in error, please advise the sender by reply e-mail, and delete the message.  Thank you very much.","Re: Netwrix Support Ticket #411397 - ref:_00D7091pB._500Q000BZqyH:ref - Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","hemant.mistry@interpublic.com","Mistry, Hemant","techsupport@netwrix.com","","","false","2024-06-10T14:59:56.000Z","true"
+"02sQk00000B7HnRIAV","500Qk00000BZqyHIAT","2024-06-10T15:04:16.000Z","2024-06-10T15:04:16.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Access key uXksr4fqBaptO72J9SAq99aLdvp93vvdx/vISoh0ddqJgN0doI9Y3u/rQ1S9JLAzrVSJEnFaYScl+AStGtCx7Q==
+ 
+Data should go into the EPP container","Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure","hemant.mistry@mccann.com","Hemant Mistry","techsupport@netwrix.com","","","false","2024-06-10T15:04:16.000Z","true"
+"02sQk00000B7HlsIAF","500Qk00000BZqyHIAT","2024-06-10T15:06:04.000Z","2024-06-10T15:06:04.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Also my EPP version is 5.9.3.0. will this cause an issue with the your upload?","Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure","hemant.mistry@mccann.com","Hemant Mistry","techsupport@netwrix.com","","","false","2024-06-10T15:06:03.000Z","true"
+"02sQk00000B9zvbIAB","500Qk00000BZqyHIAT","2024-06-11T12:35:49.000Z","2024-06-11T12:35:49.000Z","Hello,
+
+Thank you for your reply.
+That only means that once you perform the steps and have the new image set up in Azure, that you would need to update that server to the same version (5.9.3.0) in order for the migration to be successful.
+
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com]
+Sent: 6/10/2024 6:06 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Also my EPP version is 5.9.3.0. will this cause an issue with the your upload?","RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","techsupport@netwrix.com","Netwrix Support","hemant.mistry@mccann.com","","","false","2024-06-11T12:35:48.000Z","true"
+"02sQk00000BG9YuIAL","500Qk00000BZqyHIAT","2024-06-13T11:43:12.000Z","2024-06-13T11:43:12.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Customer has requested update for the ticket 00411397","Netwrix Support Ticket #411397 - ref:_00D7091pB._500Q000BZqyH:ref - Customer is requesting update","hemant.mistry@mccann.com","Hemant Mistry","techsupport@netwrix.com","","","false","2024-06-13T11:43:11.000Z","true"
+"02sQk00000BGEK5IAP","500Qk00000BZqyHIAT","2024-06-13T11:44:54.000Z","2024-06-13T11:44:54.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?","Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure","hemant.mistry@mccann.com","Hemant Mistry","techsupport@netwrix.com","","","false","2024-06-13T11:44:54.000Z","true"
+"02sQk00000BGUzwIAH","500Qk00000BZqyHIAT","2024-06-13T14:14:11.000Z","2024-06-13T14:14:11.000Z","Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.   
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf  
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.  
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"". 
+
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?","RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","techsupport@netwrix.com","Netwrix Support","hemant.mistry@mccann.com","","","false","2024-06-13T14:14:10.000Z","true"
+"02sQk00000BGv8vIAD","500Qk00000BZqyHIAT","2024-06-13T15:35:09.000Z","2024-06-13T15:35:09.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Does link I have already not work?
+
+Sent from Outlook for iOS<https://aka.ms/o0ukef>
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http://www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000ARLdl&from=ext]
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message.  If you have received the message in error, please advise the sender by reply e-mail, and delete the message.  Thank you very much.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","hemant.mistry@interpublic.com","Mistry, Hemant","hemant.mistry@mccann.com; techsupport@netwrix.com","","","false","2024-06-13T15:34:38.000Z","true"
+"02sQk00000BIvhRIAT","500Qk00000BZqyHIAT","2024-06-14T06:40:24.000Z","2024-06-14T06:40:24.000Z","Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com; techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+
+
+Does link I have already not work?
+
+
+
+ 
+Sent from Outlook for iOS
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ 
+
+
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+ 
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.   
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"":  https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf  
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.  
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"". 
+
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd  www.endpointprotector.com
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+ 
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","techsupport@netwrix.com","Netwrix Support","hemant.mistry@interpublic.com","alexandra.bolfa@netwrix.com","","false","2024-06-14T06:40:23.000Z","true"
+"02sQk00000BJ5X7IAL","500Qk00000BZqyHIAT","2024-06-14T08:52:38.000Z","2024-06-14T08:52:38.000Z","Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com
+Cc: alexandra.bolfa@netwrix.com
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com; techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+
+
+Does link I have already not work?
+
+
+
+ 
+Sent from Outlook for iOS
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ 
+
+
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+ 
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.   
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"":  https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf  
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.  
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"". 
+
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd  www.endpointprotector.com
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+ 
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","techsupport@netwrix.com","Netwrix Support","hemant.mistry@interpublic.com","alexandra.bolfa@netwrix.com","","false","2024-06-14T08:52:37.000Z","true"
+"02sQk00000BJ609IAD","500Qk00000BZqyHIAT","2024-06-14T09:05:09.000Z","2024-06-14T09:05:09.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+the blob container is call “epp”
+
+I will upload the access key to the ticket directly
+
+
+
+Thanks
+
+Hemant
+Hemant Mistry
+UK IT Security and Compliance Manager
+Interpublic GIS (UK) Limited
+135 Bishopsgate,
+London,
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix
+
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com
+Cc: alexandra.bolfa@netwrix.com
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com; techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+
+Does link I have already not work?
+
+Sent from Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+[Image removed by sender.]
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+[Image removed by sender.]
+ [Image removed by sender.]","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","hemant.mistry@interpublic.com","Mistry, Hemant","techsupport@netwrix.com","alexandra.bolfa@netwrix.com","","true","2024-06-14T09:04:36.000Z","true"
+"02sQk00000BJS3uIAH","500Qk00000BZqyHIAT","2024-06-14T12:38:23.000Z","2024-06-14T12:38:23.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi Hemant,
+
+I hope you are well.
+
+Our devops team informed me that the link below is a sensitive storage
+explorer link. We cannot use this link to upload the image.
+
+Please follow the steps described in the below User Manual in order to
+obtain  the Blob SAS URL, starting with page 19,
+""4.2.Create the Storage Account and Container"":
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf
+
+Thank you! Looking forward to your reply,
+Alexandra
+
+On Fri, 14 Jun 2024 at 11:52, Netwrix Support <techsupport@netwrix.com>
+wrote:
+
+> Hello,
+>
+> Unfortunately we have not received any URL in our email conversation.
+> Can you please share it again as a reply to this email?
+>
+> Thank you,
+> Best regards,
+> Alin Anca
+>
+> Technical Support Engineer
+> Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control
+> | Content Aware Protection | eDiscovery | Enforced Encryption
+> CoSoSys Ltd www.endpointprotector.com
+>
+>
+> --------------- Original Message ---------------
+> *From:* Netwrix Support [techsupport@netwrix.com]
+> *Sent:* 6/14/2024 9:40 AM
+> *To:* hemant.mistry@interpublic.com
+> *Cc:* alexandra.bolfa@netwrix.com
+> *Subject:* Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to
+> Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+>
+> Hello,
+>
+> I will add my colleague Alexandra to this thread to assist you with blob
+> URL that is needed.
+> @Alexandra can you please assist Hemant with this so we can proceed with
+> the migration process?
+>
+> Thank you,
+> Best regards,
+> Alin Anca
+>
+> Technical Support Engineer
+> Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control
+> | Content Aware Protection | eDiscovery | Enforced Encryption
+> CoSoSys Ltd www.endpointprotector.com
+>
+>
+> --------------- Original Message ---------------
+> *From:* Mistry, Hemant [hemant.mistry@interpublic.com]
+> *Sent:* 6/13/2024 6:34 PM
+> *To:* hemant.mistry@mccann.com; techsupport@netwrix.com
+> *Subject:* Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to
+> Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+>
+> ref:_00D7091pB._500Q000BZqyH:ref
+>
+> Does link I have already not work?
+>
+> Sent from Outlook for iOS <https://aka.ms/o0ukef>
+> ------------------------------
+> *From:* Netwrix Support <techsupport@netwrix.com>
+> *Sent:* Thursday, June 13, 2024 3:14:12 PM
+> *To:* Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com>
+> *Subject:* RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to
+> Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+>
+> Hello, Thank you for your follow-up. Please share the Blob SAS URL as
+> mentioned in the previous email, I'll attach it again below: 1. Obtain and
+> start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint
+> Protector is not generally
+>
+>
+> Hello,
+>
+> Thank you for your follow-up.
+> Please share the Blob SAS URL as mentioned in the previous email, I'll
+> attach it again below:
+>
+> 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft
+> Azure
+>
+> Endpoint Protector is not generally available in the Azure Marketplace.
+> CoSoSys team will make available the Azure Endpoint Protector Virtual
+> Machine to a blob that your team will specifically created for Endpoint
+> Protector. For this we'll need from you the Blob SAS URL for a blob that
+> was specifically created for Endpoint Protector.
+> The steps for obtaining the Blob SAS URL are presented in a dedicated User
+> Manual, ""4.2.Create the Storage Account and Container"":
+> https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf
+> <https://urldefense.com/v3/__https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+>
+> CoSoSys will make the Azure Endpoint Protector Virtual Machine on version
+> 5.8.1.0. available to the shared blob in 1-2 working days from the moment
+> correct details were received form your team.
+> Once received, you will need to follow the steps presented in chapter
+> ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual
+> Machine"".
+>
+> Best regards,
+> Alin Anca
+>
+> Technical Support Engineer
+> Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control
+> | Content Aware Protection | eDiscovery | Enforced Encryption
+> CoSoSys Ltd www.endpointprotector.com
+> <https://urldefense.com/v3/__http://www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+>
+> --------------- Original Message ---------------
+> From: Hemant Mistry [hemant.mistry@mccann.com]
+> Sent: 6/13/2024 2:44 PM
+> To: techsupport@netwrix.com
+> Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+>
+> ref:_00D7091pB._500Q000BZqyH:ref
+>
+> Hi are you able to upload the EPP server image to Azure?
+>
+>
+> This message contains information which may be confidential and
+> privileged. Unless you are the intended recipient (or authorized to receive
+> this message for the intended recipient), you may not use, copy,
+> disseminate or disclose to anyone the message or any information contained
+> in the message. If you have received the message in error, please advise
+> the sender by reply e-mail, and delete the message. Thank you very much.
+>
+>
+>
+>
+>
+> Confidentiality notice: This message and attachments included are intended
+> only for the addressee (s). The information contained in this message is
+> confidential and may constitute proprietary or non-public information under
+> international, federal, and/or state laws. Unauthorized forwarding,
+> printing, copying, distribution, or use of such information is strictly
+> prohibited and may be unlawful. If you are not the addressee(s), please
+> promptly delete this message and notify the sender of the delivery error by
+> e-mail.
+>","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","alexandra.bolfa@endpointprotector.com","Alexandra Bolfa","hemant.mistry@interpublic.com","techsupport@netwrix.com; alexandra.bolfa@netwrix.com","","false","2024-06-14T12:38:02.000Z","true"
+"02sQk00000BSDlaIAH","500Qk00000BZqyHIAT","2024-06-18T14:26:53.000Z","2024-06-18T14:26:53.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi Hemant,
+
+Thank you for your email.
+
+As mentioned in my previous email, unfortunately the link is a sensitive
+storage explorer and we cannot use this link to upload the image.
+The token needs to be created on the container level, not on the storage
+account.
+
+Please follow the steps provided in the User Manual in order to obtain  the
+Blob SAS URL, starting with page 19,
+""4.2.Create the Storage Account and Container"":
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf
+All the necessary steps and recommendations are detailed there.
+
+Thank you! Looking forward to hearing from you,
+Alexandra
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <
+Hemant.Mistry@interpublic.com> wrote:
+
+> I have checked the ticket and it is in the ticket history. Here it is
+> again and attached the original email I sent:- let me know if this works :-
+>
+>
+> storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%
+> 2Feppupload.blob.core.windows.net
+> %2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+>
+>
+>
+> the blob container is call “epp”
+>
+>
+>
+> I will upload the access key to the ticket directly
+>
+>
+>
+>
+>
+>
+>
+> Thanks
+>
+>
+>
+> Hemant
+>
+>
+> *Hemant Mistry *UK IT Security and Compliance Manager
+>
+> Interpublic GIS (UK) Limited
+>
+> 135 Bishopsgate,
+>
+> London,
+>
+> EC2M 3TP
+> T: +44 (0)207 153 8886 <+442071538886> M: +44 (0)7881 902116
+> <+447881902116>
+>
+>
+>
+>
+>
+> *From: *Netwrix Support <techsupport@netwrix.com>
+> *Date: *Friday, 14 June 2024 at 09:53
+> *To: *Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com>
+> *Cc: *alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+> *Subject: *Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to
+> Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+>
+> Hello, Unfortunately we have not received any URL in our email
+> conversation. Can you please share it again as a reply to this email? Thank
+> you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector
+> by CoSoSys, now part of Netwrix
+>
+> Hello,
+>
+> Unfortunately we have not received any URL in our email conversation.
+> Can you please share it again as a reply to this email?
+>
+> Thank you,
+> Best regards,
+> Alin Anca
+>
+> Technical Support Engineer
+> Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control
+> | Content Aware Protection | eDiscovery | Enforced Encryption
+> CoSoSys Ltd www.endpointprotector.com
+> <https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+>
+>
+> --------------- Original Message ---------------
+> *From:* Netwrix Support [techsupport@netwrix.com]
+> *Sent:* 6/14/2024 9:40 AM
+> *To:* hemant.mistry@interpublic.com
+> *Cc:* alexandra.bolfa@netwrix.com
+> *Subject:* Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to
+> Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+>
+> Hello,
+>
+> I will add my colleague Alexandra to this thread to assist you with blob
+> URL that is needed.
+> @Alexandra can you please assist Hemant with this so we can proceed with
+> the migration process?
+>
+> Thank you,
+> Best regards,
+> Alin Anca
+>
+> Technical Support Engineer
+> Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control
+> | Content Aware Protection | eDiscovery | Enforced Encryption
+> CoSoSys Ltd www.endpointprotector.com
+> <https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+>
+>
+> --------------- Original Message ---------------
+> *From:* Mistry, Hemant [hemant.mistry@interpublic.com]
+> *Sent:* 6/13/2024 6:34 PM
+> *To:* hemant.mistry@mccann.com; techsupport@netwrix.com
+> *Subject:* Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to
+> Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+>
+> ref:_00D7091pB._500Q000BZqyH:ref
+>
+>
+> Does link I have already not work?
+>
+>
+>
+> Sent from Outlook for iOS
+> <https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+> ------------------------------
+>
+> *From:* Netwrix Support <techsupport@netwrix.com>
+> *Sent:* Thursday, June 13, 2024 3:14:12 PM
+> *To:* Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com>
+> *Subject:* RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to
+> Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+>
+>
+>
+> Hello, Thank you for your follow-up. Please share the Blob SAS URL as
+> mentioned in the previous email, I'll attach it again below: 1. Obtain and
+> start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint
+> Protector is not generally
+>
+>
+>
+> Hello,
+>
+> Thank you for your follow-up.
+> Please share the Blob SAS URL as mentioned in the previous email, I'll
+> attach it again below:
+>
+> 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft
+> Azure
+>
+> Endpoint Protector is not generally available in the Azure Marketplace.
+> CoSoSys team will make available the Azure Endpoint Protector Virtual
+> Machine to a blob that your team will specifically created for Endpoint
+> Protector. For this we'll need from you the Blob SAS URL for a blob that
+> was specifically created for Endpoint Protector.
+> The steps for obtaining the Blob SAS URL are presented in a dedicated User
+> Manual, ""4.2.Create the Storage Account and Container"":
+> https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf
+> <https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+>
+> CoSoSys will make the Azure Endpoint Protector Virtual Machine on version
+> 5.8.1.0. available to the shared blob in 1-2 working days from the moment
+> correct details were received form your team.
+> Once received, you will need to follow the steps presented in chapter
+> ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual
+> Machine"".
+>
+> Best regards,
+> Alin Anca
+>
+> Technical Support Engineer
+> Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control
+> | Content Aware Protection | eDiscovery | Enforced Encryption
+> CoSoSys Ltd www.endpointprotector.com
+> <https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+>
+> --------------- Original Message ---------------
+> From: Hemant Mistry [hemant.mistry@mccann.com]
+> Sent: 6/13/2024 2:44 PM
+> To: techsupport@netwrix.com
+> Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+>
+> ref:_00D7091pB._500Q000BZqyH:ref
+>
+> Hi are you able to upload the EPP server image to Azure?
+>
+> [image: Image removed by sender.]
+>
+>
+> This message contains information which may be confidential and
+> privileged. Unless you are the intended recipient (or authorized to receive
+> this message for the intended recipient), you may not use, copy,
+> disseminate or disclose to anyone the message or any information contained
+> in the message. If you have received the message in error, please advise
+> the sender by reply e-mail, and delete the message. Thank you very much.
+>
+> [image: Image removed by sender.]
+>  [image: Image removed by sender.]
+>
+>
+> Confidentiality notice: This message and attachments included are intended
+> only for the addressee (s). The information contained in this message is
+> confidential and may constitute proprietary or non-public information under
+> international, federal, and/or state laws. Unauthorized forwarding,
+> printing, copying, distribution, or use of such information is strictly
+> prohibited and may be unlawful. If you are not the addressee(s), please
+> promptly delete this message and notify the sender of the delivery error by
+> e-mail.
+>","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","alexandra.bolfa@endpointprotector.com","Alexandra Bolfa","hemant.mistry@interpublic.com","techsupport@netwrix.com; alexandra.bolfa@netwrix.com","","false","2024-06-18T14:26:31.000Z","true"
+"02sQk00000C0pBjIAJ","500Qk00000BZqyHIAT","2024-07-01T12:27:22.000Z","2024-07-01T12:27:22.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi
+Sorry for the delay. Please try below?
+
+sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+blob sas url
+https://eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+Thanks
+
+Hemant
+Hemant Mistry
+UK IT Security and Compliance Manager
+Interpublic GIS (UK) Limited
+135 Bishopsgate,
+London,
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+From: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Date: Tuesday, 18 June 2024 at 15:27
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+Hi Hemant, Thank you for your email. As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image. The token needs to be created on the container level, not on the
+
+Hi Hemant,
+
+Thank you for your email.
+
+As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image.
+The token needs to be created on the container level, not on the storage account.
+
+Please follow the steps provided in the User Manual in order to obtain  the Blob SAS URL, starting with page 19,
+""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNUF4fXoyQ$>
+All the necessary steps and recommendations are detailed there.
+
+Thank you! Looking forward to hearing from you,
+Alexandra
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com<mailto:Hemant.Mistry@interpublic.com>> wrote:
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net<https://urldefense.com/v3/__http:/2Feppupload.blob.core.windows.net__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNVQ8coJdQ$>%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+the blob container is call “epp”
+
+I will upload the access key to the ticket directly
+
+
+
+Thanks
+
+Hemant
+Hemant Mistry
+UK IT Security and Compliance Manager
+Interpublic GIS (UK) Limited
+135 Bishopsgate,
+London,
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com> <alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com<mailto:techsupport@netwrix.com>]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Does link I have already not work?
+
+Sent from Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+Error! Filename not specified.
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+Error! Filename not specified.
+ Error! Filename not specified.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","hemant.mistry@interpublic.com","Mistry, Hemant","alexandra.bolfa@endpointprotector.com","techsupport@netwrix.com; alexandra.bolfa@netwrix.com","","false","2024-07-01T12:27:01.000Z","true"
+"02sQk00000C0sRKIAZ","500Qk00000BZqyHIAT","2024-07-01T12:31:02.000Z","2024-07-01T12:31:02.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi Oana
+As Alexandra is away, are you able to look at this ticket? Or get some else to look at this ticket?
+
+Thanks
+
+Hemant
+Hemant Mistry
+UK IT Security and Compliance Manager
+Interpublic GIS (UK) Limited
+135 Bishopsgate,
+London,
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Date: Monday, 1 July 2024 at 13:27
+To: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+Hi
+Sorry for the delay. Please try below?
+
+sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+blob sas url
+https://eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+Thanks
+
+Hemant
+Hemant Mistry
+UK IT Security and Compliance Manager
+Interpublic GIS (UK) Limited
+135 Bishopsgate,
+London,
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+From: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Date: Tuesday, 18 June 2024 at 15:27
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+Hi Hemant, Thank you for your email. As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image. The token needs to be created on the container level, not on the
+
+Hi Hemant,
+
+Thank you for your email.
+
+As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image.
+The token needs to be created on the container level, not on the storage account.
+
+Please follow the steps provided in the User Manual in order to obtain  the Blob SAS URL, starting with page 19,
+""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNUF4fXoyQ$>
+All the necessary steps and recommendations are detailed there.
+
+Thank you! Looking forward to hearing from you,
+Alexandra
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com<mailto:Hemant.Mistry@interpublic.com>> wrote:
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net<https://urldefense.com/v3/__http:/2Feppupload.blob.core.windows.net__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNVQ8coJdQ$>%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+the blob container is call “epp”
+
+I will upload the access key to the ticket directly
+
+
+
+Thanks
+
+Hemant
+Hemant Mistry
+UK IT Security and Compliance Manager
+Interpublic GIS (UK) Limited
+135 Bishopsgate,
+London,
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com> <alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com<mailto:techsupport@netwrix.com>]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+Does link I have already not work?
+
+Sent from Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+Error! Filename not specified.
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+Error! Filename not specified.
+ Error! Filename not specified.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","FW: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","hemant.mistry@interpublic.com","Mistry, Hemant","oana.nemes@netwrix.com; techsupport@netwrix.com","","","false","2024-07-01T12:30:45.000Z","true"
+"02sQk00000C0tSEIAZ","500Qk00000BZqyHIAT","2024-07-01T13:13:45.000Z","2024-07-01T13:13:45.000Z","FYI
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com]
+Sent: 7/1/2024 3:30 PM
+To: oana.nemes@netwrix.com; techsupport@netwrix.com
+Subject: FW: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+
+
+Hi Oana
+
+As Alexandra is away, are you able to look at this ticket? Or get some else to look at this ticket?
+
+ 
+
+
+Thanks
+
+ 
+
+Hemant
+
+
+	
+		
+			
+			Hemant Mistry
+			UK IT Security and Compliance Manager
+
+			Interpublic GIS (UK) Limited
+
+			135 Bishopsgate,
+
+			London,
+
+			EC2M 3TP
+			T: +44 (0)207 153 8886 M: +44 (0)7881 902116
+			
+		
+	
+
+
+
+ 
+
+ 
+
+
+
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Date: Monday, 1 July 2024 at 13:27
+To: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hi 
+
+Sorry for the delay. Please try below?
+
+ 
+
+sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+ 
+
+blob sas url
+
+https://eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+ 
+
+ 
+
+ 
+
+
+Thanks
+
+ 
+
+Hemant
+
+
+	
+		
+			
+			Hemant Mistry
+			UK IT Security and Compliance Manager
+
+			Interpublic GIS (UK) Limited
+
+			135 Bishopsgate,
+
+			London,
+
+			EC2M 3TP
+			T: +44 (0)207 153 8886 M: +44 (0)7881 902116
+			
+		
+	
+
+
+
+ 
+
+ 
+
+
+
+
+From: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Date: Tuesday, 18 June 2024 at 15:27
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hi Hemant, Thank you for your email. As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image. The token needs to be created on the container level, not on the 
+
+
+
+ 
+
+
+
+Hi Hemant, 
+
+
+ 
+
+
+
+Thank you for your email. 
+
+
+
+ 
+
+
+
+As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image.
+
+
+
+The token needs to be created on the container level, not on the storage account. 
+
+
+
+ 
+
+
+
+Please follow the steps provided in the User Manual in order to obtain  the Blob SAS URL, starting with page 19,
+
+
+""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf
+
+
+All the necessary steps and recommendations are detailed there. 
+
+
+
+ 
+
+
+
+Thank you! Looking forward to hearing from you,
+
+
+
+Alexandra
+
+
+
+ 
+
+
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com> wrote:
+
+
+
+
+
+
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+ 
+
+the blob container is call “epp”
+
+ 
+
+I will upload the access key to the ticket directly
+
+ 
+
+ 
+
+ 
+
+
+Thanks
+
+ 
+
+Hemant
+
+
+	
+		
+			
+			Hemant Mistry
+			UK IT Security and Compliance Manager
+
+			Interpublic GIS (UK) Limited
+
+			135 Bishopsgate,
+
+			London,
+
+			EC2M 3TP
+			T: +44 (0)207 153 8886 M: +44 (0)7881 902116
+			
+		
+	
+
+
+
+ 
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix 
+
+
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd  www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com
+Cc: alexandra.bolfa@netwrix.com
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd  www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com; techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+
+
+Does link I have already not work?
+
+
+
+
+
+ 
+
+
+Sent from  Outlook for iOS
+
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+ 
+
+
+
+
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+
+ 
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.   
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"":  https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf  
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.  
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"". 
+
+Best regards,
+Alin Anca
+ 
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd  www.endpointprotector.com
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+Error! Filename not specified.
+ 
+
+
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+
+
+Error! Filename not specified.
+ Error! Filename not specified.
+
+
+
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: FW: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure    [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","techsupport@netwrix.com","Netwrix Support","oana.nemes@netwrix.com","","","false","2024-07-01T13:13:44.000Z","true"
+"02sQk00000C9EZbIAN","500Qk00000BZqyHIAT","2024-07-03T20:02:11.000Z","2024-07-03T20:02:11.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi Hemant,
+
+Thank you for reaching out to me. I'll take care of this right away.
+
+Best regards,
+
+
+Oana Nemes | Team Lead, Customer Success
+
+Endpoint Protector by CoSoSys, now part of Netwrix
+
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+
+www.endpointprotector.com <http://www.endpointprotector.com/>
+
+(+40) 264-593 110
+
+
+[https://ci6.googleusercontent.com/proxy/fp6Snk96hJXFpECV0VZKvROjIwKQp4ZLO6G7xDxOZMsOqEoejBS20b-f3DV3-ZfNQQfN0C7IF7hG_z9ywjWRae4gNQPPBsBxgKM2AtXrHLbj1FW5XeeQ3Yvv9Xba0B2_cyg4Clf_KiJjNcnyItMv3grP=s0-d-e1-ft#https://www.endpointprotector.com/images/img/email_resources/email_signature_epp_logo_small.png]<https://www.endpointprotector.com/>
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+________________________________
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Monday, July 1, 2024 3:30 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>; techsupport <techsupport@netwrix.com>
+Subject: FW: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+You don't often get email from hemant.mistry@interpublic.com. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+
+Hi Oana
+
+As Alexandra is away, are you able to look at this ticket? Or get some else to look at this ticket?
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Date: Monday, 1 July 2024 at 13:27
+To: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi
+
+Sorry for the delay. Please try below?
+
+
+
+sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+blob sas url
+
+https://eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Date: Tuesday, 18 June 2024 at 15:27
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Thank you for your email. As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image. The token needs to be created on the container level, not on the
+
+Hi Hemant,
+
+
+
+Thank you for your email.
+
+
+
+As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image.
+
+The token needs to be created on the container level, not on the storage account.
+
+
+
+Please follow the steps provided in the User Manual in order to obtain  the Blob SAS URL, starting with page 19,
+
+""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNUF4fXoyQ$>
+
+All the necessary steps and recommendations are detailed there.
+
+
+
+Thank you! Looking forward to hearing from you,
+
+Alexandra
+
+
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com<mailto:Hemant.Mistry@interpublic.com>> wrote:
+
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net<https://urldefense.com/v3/__http:/2Feppupload.blob.core.windows.net__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNVQ8coJdQ$>%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+
+
+the blob container is call “epp”
+
+
+
+I will upload the access key to the ticket directly
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com> <alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix
+
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com<mailto:techsupport@netwrix.com>]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Does link I have already not work?
+
+
+
+Sent from Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+
+________________________________
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+Error! Filename not specified.
+
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+
+Error! Filename not specified.
+ Error! Filename not specified.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","oana.nemes@netwrix.com","Oana Nemes","hemant.mistry@interpublic.com","techsupport@netwrix.com; alexandra.bolfa@endpointprotector.com; alexandra.bolfa@netwrix.com","","false","2024-07-03T20:02:02.000Z","true"
+"02sQk00000CAVhyIAH","500Qk00000BZqyHIAT","2024-07-04T08:07:08.000Z","2024-07-04T08:07:08.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi Hemant,
+
+Our team shared the Endpoint Protector Virtual Machine to the specified blob.
+Please follow the steps described in below documentation to start using it:
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.3/page/Content/EndpointProtector/Configuration/Azure/Azure.htm
+
+Let us know if we can help with other details.
+
+Best regards,
+Oana
+________________________________
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Sent: Wednesday, July 3, 2024 11:02 PM
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>; alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>; Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant,
+
+Thank you for reaching out to me. I'll take care of this right away.
+
+Best regards,
+
+
+Oana Nemes | Team Lead, Customer Success
+
+Endpoint Protector by CoSoSys, now part of Netwrix
+
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+
+www.endpointprotector.com <http://www.endpointprotector.com/>
+
+(+40) 264-593 110
+
+
+[https://ci6.googleusercontent.com/proxy/fp6Snk96hJXFpECV0VZKvROjIwKQp4ZLO6G7xDxOZMsOqEoejBS20b-f3DV3-ZfNQQfN0C7IF7hG_z9ywjWRae4gNQPPBsBxgKM2AtXrHLbj1FW5XeeQ3Yvv9Xba0B2_cyg4Clf_KiJjNcnyItMv3grP=s0-d-e1-ft#https://www.endpointprotector.com/images/img/email_resources/email_signature_epp_logo_small.png]<https://www.endpointprotector.com/>
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+________________________________
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Monday, July 1, 2024 3:30 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>; techsupport <techsupport@netwrix.com>
+Subject: FW: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+You don't often get email from hemant.mistry@interpublic.com. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+
+Hi Oana
+
+As Alexandra is away, are you able to look at this ticket? Or get some else to look at this ticket?
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Date: Monday, 1 July 2024 at 13:27
+To: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi
+
+Sorry for the delay. Please try below?
+
+
+
+sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+blob sas url
+
+https://eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Date: Tuesday, 18 June 2024 at 15:27
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Thank you for your email. As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image. The token needs to be created on the container level, not on the
+
+Hi Hemant,
+
+
+
+Thank you for your email.
+
+
+
+As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image.
+
+The token needs to be created on the container level, not on the storage account.
+
+
+
+Please follow the steps provided in the User Manual in order to obtain  the Blob SAS URL, starting with page 19,
+
+""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNUF4fXoyQ$>
+
+All the necessary steps and recommendations are detailed there.
+
+
+
+Thank you! Looking forward to hearing from you,
+
+Alexandra
+
+
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com<mailto:Hemant.Mistry@interpublic.com>> wrote:
+
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net<https://urldefense.com/v3/__http:/2Feppupload.blob.core.windows.net__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNVQ8coJdQ$>%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+
+
+the blob container is call “epp”
+
+
+
+I will upload the access key to the ticket directly
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com> <alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix
+
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com<mailto:techsupport@netwrix.com>]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Does link I have already not work?
+
+
+
+Sent from Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+
+________________________________
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+Error! Filename not specified.
+
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+
+Error! Filename not specified.
+ Error! Filename not specified.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","oana.nemes@netwrix.com","Oana Nemes","hemant.mistry@interpublic.com","techsupport@netwrix.com; alexandra.bolfa@endpointprotector.com; alexandra.bolfa@netwrix.com","","false","2024-07-04T08:06:51.000Z","true"
+"02sQk00000CAuDJIA1","500Qk00000BZqyHIAT","2024-07-04T12:20:52.000Z","2024-07-04T12:20:52.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi Oana
+I and my colleague have checked the storage and we can’t see where you have uploaded an image of the EPP server. Please can you let me know what we should be looking for?
+
+Thanks
+
+Hemant
+Hemant Mistry
+UK IT Security and Compliance Manager
+Interpublic GIS (UK) Limited
+135 Bishopsgate,
+London,
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Date: Thursday, 4 July 2024 at 09:08
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>, alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>, Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+Hi Hemant, Our team shared the Endpoint Protector Virtual Machine to the specified blob. Please follow the steps described in below documentation to start using it: https: //helpcenter. netwrix. com/bundle/EndpointProtector_5. 9. 3/page/Content/EndpointProtector/Configuration/Azure/Azure. htm
+
+Hi Hemant,
+
+Our team shared the Endpoint Protector Virtual Machine to the specified blob.
+Please follow the steps described in below documentation to start using it:
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.3/page/Content/EndpointProtector/Configuration/Azure/Azure.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EndpointProtector_5.9.3/page/Content/EndpointProtector/Configuration/Azure/Azure.htm__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6BhyTKg6$>
+
+Let us know if we can help with other details.
+
+Best regards,
+Oana
+________________________________
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Sent: Wednesday, July 3, 2024 11:02 PM
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>; alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>; Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant,
+
+Thank you for reaching out to me. I'll take care of this right away.
+
+Best regards,
+
+
+Oana Nemes | Team Lead, Customer Success
+
+Endpoint Protector by CoSoSys, now part of Netwrix
+
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+
+www.endpointprotector.com <https://urldefense.com/v3/__http:/www.endpointprotector.com/__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6Lvpazke$>
+
+(+40) 264-593 110
+
+
+[Image removed by sender.]<https://urldefense.com/v3/__https:/www.endpointprotector.com/__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6NIfpwLe$>
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+________________________________
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Monday, July 1, 2024 3:30 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>; techsupport <techsupport@netwrix.com>
+Subject: FW: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+You don't often get email from hemant.mistry@interpublic.com. Learn why this is important<https://urldefense.com/v3/__https:/aka.ms/LearnAboutSenderIdentification__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6GDvCOKt$>
+
+Hi Oana
+
+As Alexandra is away, are you able to look at this ticket? Or get some else to look at this ticket?
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Date: Monday, 1 July 2024 at 13:27
+To: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi
+
+Sorry for the delay. Please try below?
+
+
+
+sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+blob sas url
+
+https://eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D<https://urldefense.com/v3/__https:/eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f*2BmPgLvXwMsSLhGdadK9z0hnFEL6*2FsZ0*3D__;JSUl!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6JBpzQOb$>
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Date: Tuesday, 18 June 2024 at 15:27
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Thank you for your email. As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image. The token needs to be created on the container level, not on the
+
+Hi Hemant,
+
+
+
+Thank you for your email.
+
+
+
+As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image.
+
+The token needs to be created on the container level, not on the storage account.
+
+
+
+Please follow the steps provided in the User Manual in order to obtain  the Blob SAS URL, starting with page 19,
+
+""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNUF4fXoyQ$>
+
+All the necessary steps and recommendations are detailed there.
+
+
+
+Thank you! Looking forward to hearing from you,
+
+Alexandra
+
+
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com<mailto:Hemant.Mistry@interpublic.com>> wrote:
+
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net<https://urldefense.com/v3/__http:/2Feppupload.blob.core.windows.net__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNVQ8coJdQ$>%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+
+
+the blob container is call “epp”
+
+
+
+I will upload the access key to the ticket directly
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com> <alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix
+
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com<mailto:techsupport@netwrix.com>]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Does link I have already not work?
+
+
+
+Sent from Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+
+________________________________
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+Error! Filename not specified.
+
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+
+Error! Filename not specified.
+ Error! Filename not specified.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","hemant.mistry@interpublic.com","Mistry, Hemant","oana.nemes@netwrix.com","techsupport@netwrix.com; alexandra.bolfa@netwrix.com; alexandra.bolfa@endpointprotector.com; barrie.tabern@interpublic.com","","false","2024-07-04T12:20:33.000Z","true"
+"02sQk00000CBD6HIAX","500Qk00000BZqyHIAT","2024-07-04T15:24:35.000Z","2024-07-04T15:24:35.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi Hemant,
+
+Thank you for notifying me on this. Can you please recheck now?
+
+Thank you & Looking forward to hearing from you,
+Oana
+________________________________
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Thursday, July 4, 2024 3:20 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>
+Cc: techsupport <techsupport@netwrix.com>; alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>; Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>; Tabern, Barrie (MAN-IT) <Barrie.Tabern@interpublic.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+Hi Oana
+
+I and my colleague have checked the storage and we can’t see where you have uploaded an image of the EPP server. Please can you let me know what we should be looking for?
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Date: Thursday, 4 July 2024 at 09:08
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>, alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>, Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Our team shared the Endpoint Protector Virtual Machine to the specified blob. Please follow the steps described in below documentation to start using it: https: //helpcenter. netwrix. com/bundle/EndpointProtector_5. 9. 3/page/Content/EndpointProtector/Configuration/Azure/Azure. htm
+
+Hi Hemant,
+
+Our team shared the Endpoint Protector Virtual Machine to the specified blob.
+Please follow the steps described in below documentation to start using it:
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.3/page/Content/EndpointProtector/Configuration/Azure/Azure.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EndpointProtector_5.9.3/page/Content/EndpointProtector/Configuration/Azure/Azure.htm__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6BhyTKg6$>
+
+Let us know if we can help with other details.
+
+Best regards,
+
+Oana
+
+________________________________
+
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Sent: Wednesday, July 3, 2024 11:02 PM
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>; alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>; Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hi Hemant,
+
+Thank you for reaching out to me. I'll take care of this right away.
+
+Best regards,
+
+
+
+Oana Nemes | Team Lead, Customer Success
+
+Endpoint Protector by CoSoSys, now part of Netwrix
+
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+
+www.endpointprotector.com <https://urldefense.com/v3/__http:/www.endpointprotector.com/__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6Lvpazke$>
+
+(+40) 264-593 110
+
+
+
+[Image removed by sender.]<https://urldefense.com/v3/__https:/www.endpointprotector.com/__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6NIfpwLe$>
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+
+________________________________
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Monday, July 1, 2024 3:30 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>; techsupport <techsupport@netwrix.com>
+Subject: FW: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+You don't often get email from hemant.mistry@interpublic.com. Learn why this is important<https://urldefense.com/v3/__https:/aka.ms/LearnAboutSenderIdentification__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6GDvCOKt$>
+
+Hi Oana
+
+As Alexandra is away, are you able to look at this ticket? Or get some else to look at this ticket?
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Date: Monday, 1 July 2024 at 13:27
+To: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi
+
+Sorry for the delay. Please try below?
+
+
+
+sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+blob sas url
+
+https://eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D<https://urldefense.com/v3/__https:/eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f*2BmPgLvXwMsSLhGdadK9z0hnFEL6*2FsZ0*3D__;JSUl!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6JBpzQOb$>
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Date: Tuesday, 18 June 2024 at 15:27
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Thank you for your email. As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image. The token needs to be created on the container level, not on the
+
+Hi Hemant,
+
+
+
+Thank you for your email.
+
+
+
+As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image.
+
+The token needs to be created on the container level, not on the storage account.
+
+
+
+Please follow the steps provided in the User Manual in order to obtain  the Blob SAS URL, starting with page 19,
+
+""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNUF4fXoyQ$>
+
+All the necessary steps and recommendations are detailed there.
+
+
+
+Thank you! Looking forward to hearing from you,
+
+Alexandra
+
+
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com<mailto:Hemant.Mistry@interpublic.com>> wrote:
+
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net<https://urldefense.com/v3/__http:/2Feppupload.blob.core.windows.net__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNVQ8coJdQ$>%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+
+
+the blob container is call “epp”
+
+
+
+I will upload the access key to the ticket directly
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com> <alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix
+
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com<mailto:techsupport@netwrix.com>]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Does link I have already not work?
+
+
+
+Sent from Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+
+________________________________
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+Error! Filename not specified.
+
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+
+Error! Filename not specified.
+ Error! Filename not specified.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","oana.nemes@netwrix.com","Oana Nemes","hemant.mistry@interpublic.com","techsupport@netwrix.com; alexandra.bolfa@netwrix.com; alexandra.bolfa@endpointprotector.com; barrie.tabern@interpublic.com","","false","2024-07-04T15:24:27.000Z","true"
+"02sQk00000CB7AZIA1","500Qk00000BZqyHIAT","2024-07-04T15:26:29.000Z","2024-07-04T15:26:29.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Yes the VHD is there now. thanks
+
+Thanks
+
+Hemant
+Hemant Mistry
+UK IT Security and Compliance Manager
+Interpublic GIS (UK) Limited
+135 Bishopsgate,
+London,
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Date: Thursday, 4 July 2024 at 16:25
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>, alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>, Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>, Tabern, Barrie (MAN-IT) <Barrie.Tabern@interpublic.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+Hi Hemant, Thank you for notifying me on this. Can you please recheck now? Thank you & Looking forward to hearing from you, Oana From: Mistry, Hemant (LDN-IT) <Hemant. Mistry@ interpublic. com> Sent: Thursday, July 4, 2024 3: 20 PM To: 
+
+Hi Hemant,
+
+Thank you for notifying me on this. Can you please recheck now?
+
+Thank you & Looking forward to hearing from you,
+Oana
+________________________________
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Thursday, July 4, 2024 3:20 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>
+Cc: techsupport <techsupport@netwrix.com>; alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>; Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>; Tabern, Barrie (MAN-IT) <Barrie.Tabern@interpublic.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+Hi Oana
+
+I and my colleague have checked the storage and we can’t see where you have uploaded an image of the EPP server. Please can you let me know what we should be looking for?
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Date: Thursday, 4 July 2024 at 09:08
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>, alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>, Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Our team shared the Endpoint Protector Virtual Machine to the specified blob. Please follow the steps described in below documentation to start using it: https: //helpcenter. netwrix. com/bundle/EndpointProtector_5. 9. 3/page/Content/EndpointProtector/Configuration/Azure/Azure. htm
+
+Hi Hemant,
+
+Our team shared the Endpoint Protector Virtual Machine to the specified blob.
+Please follow the steps described in below documentation to start using it:
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.3/page/Content/EndpointProtector/Configuration/Azure/Azure.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EndpointProtector_5.9.3/page/Content/EndpointProtector/Configuration/Azure/Azure.htm__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6BhyTKg6$>
+
+Let us know if we can help with other details.
+
+Best regards,
+
+Oana
+
+________________________________
+
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Sent: Wednesday, July 3, 2024 11:02 PM
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>; alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>; Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hi Hemant,
+
+Thank you for reaching out to me. I'll take care of this right away.
+
+Best regards,
+
+
+
+Oana Nemes | Team Lead, Customer Success
+
+Endpoint Protector by CoSoSys, now part of Netwrix
+
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+
+www.endpointprotector.com <https://urldefense.com/v3/__http:/www.endpointprotector.com/__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6Lvpazke$>
+
+(+40) 264-593 110
+
+
+
+[Image removed by sender.]<https://urldefense.com/v3/__https:/www.endpointprotector.com/__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6NIfpwLe$>
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+
+________________________________
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Monday, July 1, 2024 3:30 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>; techsupport <techsupport@netwrix.com>
+Subject: FW: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+You don't often get email from hemant.mistry@interpublic.com. Learn why this is important<https://urldefense.com/v3/__https:/aka.ms/LearnAboutSenderIdentification__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6GDvCOKt$>
+
+Hi Oana
+
+As Alexandra is away, are you able to look at this ticket? Or get some else to look at this ticket?
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Date: Monday, 1 July 2024 at 13:27
+To: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi
+
+Sorry for the delay. Please try below?
+
+
+
+sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+blob sas url
+
+https://eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D<https://urldefense.com/v3/__https:/eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f*2BmPgLvXwMsSLhGdadK9z0hnFEL6*2FsZ0*3D__;JSUl!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6JBpzQOb$>
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Date: Tuesday, 18 June 2024 at 15:27
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Thank you for your email. As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image. The token needs to be created on the container level, not on the
+
+Hi Hemant,
+
+
+
+Thank you for your email.
+
+
+
+As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image.
+
+The token needs to be created on the container level, not on the storage account.
+
+
+
+Please follow the steps provided in the User Manual in order to obtain  the Blob SAS URL, starting with page 19,
+
+""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNUF4fXoyQ$>
+
+All the necessary steps and recommendations are detailed there.
+
+
+
+Thank you! Looking forward to hearing from you,
+
+Alexandra
+
+
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com<mailto:Hemant.Mistry@interpublic.com>> wrote:
+
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net<https://urldefense.com/v3/__http:/2Feppupload.blob.core.windows.net__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNVQ8coJdQ$>%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+
+
+the blob container is call “epp”
+
+
+
+I will upload the access key to the ticket directly
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com> <alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix
+
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com<mailto:techsupport@netwrix.com>]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Does link I have already not work?
+
+
+
+Sent from Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+
+________________________________
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+Error! Filename not specified.
+
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+
+Error! Filename not specified.
+ Error! Filename not specified.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","hemant.mistry@interpublic.com","Mistry, Hemant","oana.nemes@netwrix.com","techsupport@netwrix.com; alexandra.bolfa@netwrix.com; alexandra.bolfa@endpointprotector.com; barrie.tabern@interpublic.com","","false","2024-07-04T15:26:10.000Z","true"
+"02sQk00000CB4ZIIA1","500Qk00000BZqyHIAT","2024-07-04T15:32:30.000Z","2024-07-04T15:32:30.000Z","ref:_00D7091pB._500Q000BZqyH:ref
+
+Thank you for your confirmation!
+
+Best regards,
+Oana
+________________________________
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Thursday, July 4, 2024 6:26 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>
+Cc: techsupport <techsupport@netwrix.com>; alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>; Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>; Tabern, Barrie (MAN-IT) <Barrie.Tabern@interpublic.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+Yes the VHD is there now. thanks
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Date: Thursday, 4 July 2024 at 16:25
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>, alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>, Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>, Tabern, Barrie (MAN-IT) <Barrie.Tabern@interpublic.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Thank you for notifying me on this. Can you please recheck now? Thank you & Looking forward to hearing from you, Oana From: Mistry, Hemant (LDN-IT) <Hemant. Mistry@ interpublic. com> Sent: Thursday, July 4, 2024 3: 20 PM To: 
+
+Hi Hemant,
+
+Thank you for notifying me on this. Can you please recheck now?
+
+Thank you & Looking forward to hearing from you,
+
+Oana
+
+________________________________
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Thursday, July 4, 2024 3:20 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>
+Cc: techsupport <techsupport@netwrix.com>; alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>; Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>; Tabern, Barrie (MAN-IT) <Barrie.Tabern@interpublic.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hi Oana
+
+I and my colleague have checked the storage and we can’t see where you have uploaded an image of the EPP server. Please can you let me know what we should be looking for?
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Date: Thursday, 4 July 2024 at 09:08
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>, alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>, Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Our team shared the Endpoint Protector Virtual Machine to the specified blob. Please follow the steps described in below documentation to start using it: https: //helpcenter. netwrix. com/bundle/EndpointProtector_5. 9. 3/page/Content/EndpointProtector/Configuration/Azure/Azure. htm
+
+Hi Hemant,
+
+Our team shared the Endpoint Protector Virtual Machine to the specified blob.
+Please follow the steps described in below documentation to start using it:
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.3/page/Content/EndpointProtector/Configuration/Azure/Azure.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EndpointProtector_5.9.3/page/Content/EndpointProtector/Configuration/Azure/Azure.htm__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6BhyTKg6$>
+
+Let us know if we can help with other details.
+
+Best regards,
+
+Oana
+
+________________________________
+
+From: Oana Nemes <Oana.Nemes@netwrix.com>
+Sent: Wednesday, July 3, 2024 11:02 PM
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: techsupport <techsupport@netwrix.com>; alexandra.bolfa@endpointprotector.com <alexandra.bolfa@endpointprotector.com>; Alexandra-Diana Bolfa <Alexandra.Bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hi Hemant,
+
+Thank you for reaching out to me. I'll take care of this right away.
+
+Best regards,
+
+
+
+Oana Nemes | Team Lead, Customer Success
+
+Endpoint Protector by CoSoSys, now part of Netwrix
+
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+
+www.endpointprotector.com <https://urldefense.com/v3/__http:/www.endpointprotector.com/__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6Lvpazke$>
+
+(+40) 264-593 110
+
+
+
+[Image removed by sender.]<https://urldefense.com/v3/__https:/www.endpointprotector.com/__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6NIfpwLe$>
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+
+________________________________
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Sent: Monday, July 1, 2024 3:30 PM
+To: Oana Nemes <Oana.Nemes@netwrix.com>; techsupport <techsupport@netwrix.com>
+Subject: FW: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+You don't often get email from hemant.mistry@interpublic.com. Learn why this is important<https://urldefense.com/v3/__https:/aka.ms/LearnAboutSenderIdentification__;!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6GDvCOKt$>
+
+Hi Oana
+
+As Alexandra is away, are you able to look at this ticket? Or get some else to look at this ticket?
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Date: Monday, 1 July 2024 at 13:27
+To: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi
+
+Sorry for the delay. Please try below?
+
+
+
+sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D
+
+
+
+blob sas url
+
+https://eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f%2BmPgLvXwMsSLhGdadK9z0hnFEL6%2FsZ0%3D<https://urldefense.com/v3/__https:/eppipg.blob.core.windows.net/eppipg?sp=acw&st=2024-07-01T12:22:49Z&se=2024-07-05T20:22:49Z&spr=https&sv=2022-11-02&sr=c&sig=hnYvKRRsQ29f*2BmPgLvXwMsSLhGdadK9z0hnFEL6*2FsZ0*3D__;JSUl!!N96JrnIq8IfO5w!nhHt-I0RbN5yEI6T5EJuw9X7SHcg-qslTTdRcdrK4bpPELrM4onCa3CQdOVGaQrPQ93EIUJI63JiFuxlMbXc6JBpzQOb$>
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Alexandra Bolfa <alexandra.bolfa@endpointprotector.com>
+Date: Tuesday, 18 June 2024 at 15:27
+To: Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com>
+Cc: Netwrix Support <techsupport@netwrix.com>, alexandra.bolfa@netwrix.com <alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hi Hemant, Thank you for your email. As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image. The token needs to be created on the container level, not on the
+
+Hi Hemant,
+
+
+
+Thank you for your email.
+
+
+
+As mentioned in my previous email, unfortunately the link is a sensitive storage explorer and we cannot use this link to upload the image.
+
+The token needs to be created on the container level, not on the storage account.
+
+
+
+Please follow the steps provided in the User Manual in order to obtain  the Blob SAS URL, starting with page 19,
+
+""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNUF4fXoyQ$>
+
+All the necessary steps and recommendations are detailed there.
+
+
+
+Thank you! Looking forward to hearing from you,
+
+Alexandra
+
+
+
+On Tue, 18 Jun 2024 at 11:53, Mistry, Hemant (LDN-IT) <Hemant.Mistry@interpublic.com<mailto:Hemant.Mistry@interpublic.com>> wrote:
+
+I have checked the ticket and it is in the ticket history. Here it is again and attached the original email I sent:- let me know if this works :-
+
+storageexplorer://?v=2&tenantId=d026e4c1-5892-497a-b9da-ee493c9f0364&container=epp&type=blobContainer&serviceEndpoint=https%3A%2F%2Feppupload.blob.core.windows.net<https://urldefense.com/v3/__http:/2Feppupload.blob.core.windows.net__;!!N96JrnIq8IfO5w!im2xkX_m_yZX1gNxglAO8c96UMav-XyIy9bn4zmabgG5jKJkFSMWkd-mAmWVfEMBIC-FsaN09VRAg3Ug-DuoYF_7wjacs6L_BNVQ8coJdQ$>%2F&subscriptionId=456b8867-6c7d-48a3-b998-8335831697ef&storageAccountId=%2Fsubscriptions%2F456b8867-6c7d-48a3-b998-8335831697ef%2FresourceGroups%2FMRM-LDN-SVR%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Feppupload
+
+
+
+the blob container is call “epp”
+
+
+
+I will upload the access key to the ticket directly
+
+
+
+
+
+
+
+Thanks
+
+
+
+Hemant
+
+Hemant Mistry
+UK IT Security and Compliance Manager
+
+Interpublic GIS (UK) Limited
+
+135 Bishopsgate,
+
+London,
+
+EC2M 3TP
+T: +44 (0)207 153 8886<tel:+442071538886> M: +44 (0)7881 902116<tel:+447881902116>
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Date: Friday, 14 June 2024 at 09:53
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com> <alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello, Unfortunately we have not received any URL in our email conversation. Can you please share it again as a reply to this email? Thank you, Best regards, Alin Anca Technical Support Engineer Endpoint Protector by CoSoSys, now part of Netwrix
+
+Hello,
+
+Unfortunately we have not received any URL in our email conversation.
+Can you please share it again as a reply to this email?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com<mailto:techsupport@netwrix.com>]
+Sent: 6/14/2024 9:40 AM
+To: hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>
+Cc: alexandra.bolfa@netwrix.com<mailto:alexandra.bolfa@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+Hello,
+
+I will add my colleague Alexandra to this thread to assist you with blob URL that is needed.
+@Alexandra can you please assist Hemant with this so we can proceed with the migration process?
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7t72ZF6Q$>
+
+
+--------------- Original Message ---------------
+From: Mistry, Hemant [hemant.mistry@interpublic.com<mailto:hemant.mistry@interpublic.com>]
+Sent: 6/13/2024 6:34 PM
+To: hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Does link I have already not work?
+
+
+
+Sent from Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!N96JrnIq8IfO5w!k1f8kbEKazq8byseHPeHtfvh4MAOGm5eMtkB6IYPf9LTCfjBfUL7XrVhRshXO6BjMOOt8OmdsHMZM6N7ZlwIMz7SQ8vg2w$>
+
+________________________________
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 13, 2024 3:14:12 PM
+To: Mistry, Hemant (LDN-IT) <hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>>
+Subject: RE: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]
+
+
+
+Hello, Thank you for your follow-up. Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below: 1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure Endpoint Protector is not generally
+
+
+
+Hello,
+
+Thank you for your follow-up.
+Please share the Blob SAS URL as mentioned in the previous email, I'll attach it again below:
+
+1. Obtain and start the Endpoint Protector Virtual Machine in Microsoft Azure
+
+Endpoint Protector is not generally available in the Azure Marketplace. CoSoSys team will make available the Azure Endpoint Protector Virtual Machine to a blob that your team will specifically created for Endpoint Protector. For this we'll need from you the Blob SAS URL for a blob that was specifically created for Endpoint Protector.
+The steps for obtaining the Blob SAS URL are presented in a dedicated User Manual, ""4.2.Create the Storage Account and Container"": https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf<https://urldefense.com/v3/__https:/www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_Cloud_Service_User_Manual_EN.pdf__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEcDlDkNiQ$>
+CoSoSys will make the Azure Endpoint Protector Virtual Machine on version 5.8.1.0. available to the shared blob in 1-2 working days from the moment correct details were received form your team.
+Once received, you will need to follow the steps presented in chapter ""4.3.Create the disk""  followed by chapter ""4.4.Create the Virtual Machine"".
+
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com<https://urldefense.com/v3/__http:/www.endpointprotector.com__;!!N96JrnIq8IfO5w!ng95Ireup73Pwp4q_dP9R1yqrqBNIBayyiNQSC8IG50mzS9UQr2hCiBNTx8JFje654zUKB7kg6LAuw1syEerwUZE6g$>
+
+--------------- Original Message ---------------
+From: Hemant Mistry [hemant.mistry@mccann.com<mailto:hemant.mistry@mccann.com>]
+Sent: 6/13/2024 2:44 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure
+
+ref:_00D7091pB._500Q000BZqyH:ref
+
+Hi are you able to upload the EPP server image to Azure?
+
+Error! Filename not specified.
+
+
+This message contains information which may be confidential and privileged. Unless you are the intended recipient (or authorized to receive this message for the intended recipient), you may not use, copy, disseminate or disclose to anyone the message or any information contained in the message. If you have received the message in error, please advise the sender by reply e-mail, and delete the message. Thank you very much.
+
+Error! Filename not specified.
+ Error! Filename not specified.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","Re: Netwrix Support Ticket #411397 - Migrate EPP appliance to Azure [ ref:!00D70091pB.!500Qk0BZqyH:ref ]","oana.nemes@netwrix.com","Oana Nemes","hemant.mistry@interpublic.com","techsupport@netwrix.com; alexandra.bolfa@netwrix.com; alexandra.bolfa@endpointprotector.com; barrie.tabern@interpublic.com","","false","2024-07-04T15:32:05.000Z","true"

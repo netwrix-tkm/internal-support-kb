@@ -1,0 +1,3845 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MhCR8IAN","500Qk00000N1RFUIA3","2025-03-17T17:04:18.000Z","2025-03-17T17:04:18.000Z","@keyframes lpop-blinking {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes lpop-pulsating {
+  0% {
+    box-shadow: 0 0 0 0 var(--lpop-hovered-caret-color);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+/**
+ 	Adds background image to the lpop circle element
+ */
+/**
+Adds background image to the lpop circle element for gdocs
+*/
+html [data-lpop-hide-native-caret] {
+  caret-color: transparent !important;
+}
+html [data-lpop-hide-native-caret] * {
+  caret-color: transparent !important;
+}
+
+html [data-lpop-hide-gdocs-caret] {
+  visibility: hidden !important;
+}
+
+lpop-container {
+  box-sizing: content-box !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  z-index: 2147483647 !important;
+  display: block !important;
+  height: 20px !important;
+  width: 1px !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  background-color: var(--lpop-original-caret-color) !important;
+  transition: background-color 0.2s !important;
+  border: 0 !important;
+  border-left: 2px solid transparent !important;
+  border-right: 2px solid transparent !important;
+  border-bottom: 4px solid transparent !important;
+  background-clip: padding-box !important;
+  font-size: 16px !important;
+  margin: 0 0 0 -2.5px !important;
+}
+lpop-container[data-lpop-blinking] {
+  animation: lpop-blinking 1.1s linear infinite !important;
+  animation-delay: 0.5s !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] {
+  animation: unset !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  animation: lpop-pulsating 2s infinite !important;
+  animation-delay: 0.5s !important;
+  transition: border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection], lpop-container[data-lpop-blinking][data-lpop-hovered], lpop-container[data-lpop-blinking][data-lpop-clicked], lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] {
+  animation: none !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] lpop-circle {
+  animation: none !important;
+}
+lpop-container[data-lpop-os=Linux] {
+  animation-delay: 1s !important;
+  animation-duration: 2.2s !important;
+}
+lpop-container[data-lpop-hoverable] lpop-circle {
+  transition: top 0.2s, left 0.2s, height 0.2s, width 0.2s, border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  pointer-events: all !important;
+  cursor: pointer !important;
+}
+lpop-container[data-lpop-extended-selection], lpop-container[data-lpop-clicked], lpop-container[data-lpop-hovered], lpop-container[data-lpop-pulsating] {
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-pulsating] lpop-circle {
+  border-color: var(--lpop-hovered-caret-color-dark) !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-mousedown] lpop-tooltip, lpop-container[data-lpop-clicked] lpop-tooltip {
+  display: none !important;
+}
+lpop-container[data-lpop-size=small] {
+  border-left: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  border-bottom: 2px solid transparent !important;
+  margin-left: -1.5px !important;
+}
+lpop-container[data-lpop-size=small] lpop-circle {
+  height: 3px !important;
+  width: 3px !important;
+  left: -1px !important;
+}
+lpop-container[data-lpop-size=large] {
+  border-left: 3px solid transparent !important;
+  border-right: 3px solid transparent !important;
+  border-bottom: 5px solid transparent !important;
+  margin-left: -3.5px !important;
+}
+lpop-container[data-lpop-size=large] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle {
+  top: -2px !important;
+  transform-origin: center calc(100% - 1px) !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle::after {
+  top: -4px !important;
+  bottom: 0 !important;
+}
+lpop-container[data-lpop-circle-position=top][data-lpop-size=large] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-circle-position=top] lpop-circle {
+  top: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 5px !important;
+  width: 5px !important;
+  left: -2px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small][data-lpop-circle-position=top] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  top: calc(100% - 4px) !important;
+  height: 9px !important;
+  width: 9px !important;
+  left: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large][data-lpop-circle-position=top] lpop-circle {
+  top: -5px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-circle-position=top] lpop-circle {
+  top: -15px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-size=large] lpop-circle {
+  left: -9px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-hovered] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-circle-position=top] lpop-circle {
+  top: -15px !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-size=large] lpop-circle {
+  left: -9px !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle {
+  background-color: inherit !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle::before {
+  content: """" !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  border-radius: 50% !important;
+  background-color: var(--lpop-hovered-caret-color-dark) !important;
+}
+
+lpop-circle {
+  position: absolute !important;
+  top: calc(100% - 2px) !important;
+  left: -2px !important;
+  height: 5px !important;
+  width: 5px !important;
+  box-sizing: border-box !important;
+  visibility: visible !important;
+  border-radius: 50% !important;
+  border: 1px solid var(--lpop-original-caret-color) !important;
+  background: #fff !important;
+  transform-origin: center 1px !important;
+  pointer-events: none !important;
+  outline: 1px solid transparent !important;
+  anchor-name: --anchor-lpop !important;
+}
+lpop-circle::before {
+  border-radius: 50% !important;
+  content: """" !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+  transition: opacity 0s !important;
+}
+lpop-circle::after {
+  content: """" !important;
+  position: absolute !important;
+  left: -5px !important;
+  right: -5px !important;
+  bottom: -4px !important;
+  top: 0px !important;
+}
+
+lpop-container[data-lpop-adapter-name=googledocs] {
+  width: 2px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking] {
+  animation-duration: 1s !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=small] lpop-circle {
+  width: 4px !important;
+  height: 4px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=large] lpop-circle {
+  width: 8px !important;
+  height: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection] lpop-circle {
+  height: 8px !important;
+  width: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  height: 10px !important;
+  width: 10px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-image: var(--lpop-circle-image-gdocs) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle:where(::before), lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle:where(::before) {
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] {
+  animation: unset !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-image: var(--lpop-circle-image-gdocs) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle:where(::before) {
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-image: var(--lpop-circle-image-gdocs) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle:where(::before), lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle:where(::before) {
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+
+lpop-tooltip {
+  all: initial !important;
+  font-family: Helvetica, Arial sans-serif !important;
+  font-size: 12px !important;
+  pointer-events: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  position: fixed !important;
+  color: white !important;
+  border-radius: 6px !important;
+  background-color: rgba(29, 30, 32, 0.9) !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+  max-width: 220px !important;
+  line-height: 16px !important;
+  padding: 3px 6px !important;
+  border: none !important;
+  white-space: nowrap !important;
+  position-anchor: --anchor-lpop !important;
+  inset: auto !important;
+  left: calc(anchor(right) + 8px) !important;
+  align-self: anchor-center !important;
+  position-try-options: flip-inline !important;
+  position-try-fallbacks: flip-inline !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: opacity 0.5s, display 0.5s !important;
+}
+lpop-tooltip:popover-open {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+@starting-style {
+  lpop-tooltip:popover-open {
+    opacity: 0 !important;
+  }
+}
+
+@media print {
+  lpop-tooltip,
+  lpop-container {
+    display: none !important;
+  }
+}
+	
+
+Hi Kevin,
+
+Can you please check the VM configuration and make sure you have two bridged network adapters?
+We need two NICs configured.
+Let me know the outcome.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+Open Toolbox (quickly press CTRL twice)
+ref:!00D70091pB.!500Qk0N1RFU:ref","Migrating to new network    [ ref:!00D70091pB.!500Qk0N1RFU:ref ]","techsupport@netwrix.com","Netwrix Support","kevin.tung@fpscorp.ca","","eduard.nut@netwrix.com","false","2025-03-17T17:04:16.000Z","true"
+"02sQk00000Mmed2IAB","500Qk00000N1RFUIA3","2025-03-19T17:15:56.000Z","2025-03-19T17:27:45.000Z","ref:_00D7091pB._500Q000N1RFU:ref
+
+Hi Eduard,
+
+Thank you for your advice; the issue has been resolved. We renewed the license yesterday via online credit card payment, but we have not yet received the new license key. Could you assist with this?
+
+Best regards,
+
+
+Kevin Tung
+Director, Global Information Technology
+
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca<mailto:kevin.tung@fpscorp.ca>
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 10:08 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+You don't often get email from techsupport@netwrix.com. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+EXTERNAL SENDER
+Hello Kevin,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0N1RFU:ref","Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network","kevin.tung@fpscorp.ca","Kevin Tung","techsupport@netwrix.com","","","false","2025-03-19T17:15:43.000Z","true"
+"02sQk00000MmtlnIAB","500Qk00000N1RFUIA3","2025-03-19T17:43:38.000Z","2025-03-19T17:43:38.000Z","@keyframes lpop-blinking {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes lpop-pulsating {
+  0% {
+    box-shadow: 0 0 0 0 var(--lpop-hovered-caret-color);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+/**
+ * Adds background image to the lpop circle element
+ */
+/**
+ * Adds background image to the lpop circle element for gdocs
+ */
+html [data-lpop-hide-native-caret] {
+  caret-color: transparent !important;
+}
+html [data-lpop-hide-native-caret] * {
+  caret-color: transparent !important;
+}
+
+html [data-lpop-hide-gdocs-caret] {
+  visibility: hidden !important;
+}
+
+lpop-container {
+  box-sizing: content-box !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  z-index: 2147483647 !important;
+  display: block !important;
+  height: 20px !important;
+  width: 1px !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  background-color: var(--lpop-original-caret-color) !important;
+  transition: background-color 0.2s !important;
+  border: 0 !important;
+  border-left: 2px solid transparent !important;
+  border-right: 2px solid transparent !important;
+  border-bottom: 4px solid transparent !important;
+  background-clip: padding-box !important;
+  font-size: 16px !important;
+  margin: 0 0 0 -2.5px !important;
+}
+lpop-container[data-lpop-blinking] {
+  animation: lpop-blinking 1.1s linear infinite !important;
+  animation-delay: 0.5s !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] {
+  animation: unset !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  animation: lpop-pulsating 2s infinite !important;
+  animation-delay: 0.5s !important;
+  transition: border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection], lpop-container[data-lpop-blinking][data-lpop-hovered], lpop-container[data-lpop-blinking][data-lpop-clicked], lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] {
+  animation: none !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] lpop-circle {
+  animation: none !important;
+}
+lpop-container[data-lpop-os=Linux] {
+  animation-delay: 1s !important;
+  animation-duration: 2.2s !important;
+}
+lpop-container[data-lpop-hoverable] lpop-circle {
+  transition: top 0.2s, left 0.2s, height 0.2s, width 0.2s, border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  pointer-events: all !important;
+  cursor: pointer !important;
+}
+lpop-container[data-lpop-extended-selection], lpop-container[data-lpop-clicked], lpop-container[data-lpop-hovered], lpop-container[data-lpop-pulsating] {
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-pulsating] lpop-circle {
+  border-color: var(--lpop-hovered-caret-color-dark) !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-mousedown] lpop-tooltip, lpop-container[data-lpop-clicked] lpop-tooltip {
+  display: none !important;
+}
+lpop-container[data-lpop-size=small] {
+  border-left: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  border-bottom: 2px solid transparent !important;
+  margin-left: -1.5px !important;
+}
+lpop-container[data-lpop-size=small] lpop-circle {
+  height: 3px !important;
+  width: 3px !important;
+  left: -1px !important;
+}
+lpop-container[data-lpop-size=large] {
+  border-left: 3px solid transparent !important;
+  border-right: 3px solid transparent !important;
+  border-bottom: 5px solid transparent !important;
+  margin-left: -3.5px !important;
+}
+lpop-container[data-lpop-size=large] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle {
+  top: -2px !important;
+  transform-origin: center calc(100% - 1px) !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle::after {
+  top: -4px !important;
+  bottom: 0 !important;
+}
+lpop-container[data-lpop-circle-position=top][data-lpop-size=large] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-circle-position=top] lpop-circle {
+  top: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 5px !important;
+  width: 5px !important;
+  left: -2px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small][data-lpop-circle-position=top] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  top: calc(100% - 4px) !important;
+  height: 9px !important;
+  width: 9px !important;
+  left: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large][data-lpop-circle-position=top] lpop-circle {
+  top: -5px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-circle-position=top] lpop-circle {
+  top: -15px !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-size=large] lpop-circle {
+  left: -9px !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle {
+  background-color: inherit !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle::before {
+  content: """" !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  border-radius: 50% !important;
+  background-color: var(--lpop-hovered-caret-color-dark) !important;
+}
+
+lpop-circle {
+  position: absolute !important;
+  top: calc(100% - 2px) !important;
+  left: -2px !important;
+  height: 5px !important;
+  width: 5px !important;
+  box-sizing: border-box !important;
+  visibility: visible !important;
+  border-radius: 50% !important;
+  border: 1px solid var(--lpop-original-caret-color) !important;
+  background: #fff !important;
+  transform-origin: center 1px !important;
+  pointer-events: none !important;
+  outline: 1px solid transparent !important;
+  anchor-name: --anchor-lpop !important;
+}
+lpop-circle::before {
+  border-radius: 50% !important;
+  content: """" !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+  transition: opacity 0s !important;
+}
+lpop-circle::after {
+  content: """" !important;
+  position: absolute !important;
+  left: -5px !important;
+  right: -5px !important;
+  bottom: -4px !important;
+  top: 0px !important;
+}
+
+lpop-container[data-lpop-adapter-name=googledocs] {
+  width: 2px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking] {
+  animation-duration: 1s !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=small] lpop-circle {
+  width: 4px !important;
+  height: 4px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=large] lpop-circle {
+  width: 8px !important;
+  height: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection] lpop-circle {
+  height: 8px !important;
+  width: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  height: 10px !important;
+  width: 10px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+
+lpop-tooltip {
+  all: initial !important;
+  font-family: Helvetica, Arial sans-serif !important;
+  font-size: 12px !important;
+  pointer-events: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  position: fixed !important;
+  color: white !important;
+  border-radius: 6px !important;
+  background-color: rgba(29, 30, 32, 0.9) !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+  max-width: 220px !important;
+  line-height: 16px !important;
+  padding: 3px 6px !important;
+  border: none !important;
+  white-space: nowrap !important;
+  position-anchor: --anchor-lpop !important;
+  inset: auto !important;
+  left: calc(anchor(right) + 8px) !important;
+  align-self: anchor-center !important;
+  position-try-options: flip-inline !important;
+  position-try-fallbacks: flip-inline !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: opacity 0.5s, display 0.5s !important;
+}
+lpop-tooltip:popover-open {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+@starting-style {
+  lpop-tooltip:popover-open {
+    opacity: 0 !important;
+  }
+}
+
+@media print {
+  lpop-tooltip,
+  lpop-container {
+    display: none !important;
+  }
+}
+	
+
+Hi Kevin,
+
+I have reached out to the proper department that handles these situations, and once I have a reply, I will let you know.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/19/2025 7:15 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network
+
+ref:_00D7091pB._500Q000N1RFU:ref
+
+
+Hi Eduard,
+
+ 
+
+Thank you for your advice; the issue has been resolved. We renewed the license yesterday via online credit card payment, but we have not yet received the new license key. Could you assist with this?
+
+ 
+
+Best regards,
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 10:08 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+ 
+
+
+
+
+	
+		
+			 
+			
+			You don't often get email from techsupport@netwrix.com.  Learn why this is important
+			
+			 
+		
+	
+
+
+EXTERNAL SENDER 
+
+Hello Kevin,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N1RFU:ref
+
+
+
+Open Toolbox (quickly press CTRL twice)","Re: Netwrix Support Ticket #439017 -  - 00439017 - Migrating to new network    [ ref:!00D70091pB.!500Qk0N1RFU:ref ]","techsupport@netwrix.com","Netwrix Support","kevin.tung@fpscorp.ca","","eduard.nut@netwrix.com","false","2025-03-19T17:43:37.000Z","true"
+"02sQk00000MoxgDIAR","500Qk00000N1RFUIA3","2025-03-20T14:31:58.000Z","2025-03-20T14:31:58.000Z","@keyframes lpop-blinking {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes lpop-pulsating {
+  0% {
+    box-shadow: 0 0 0 0 var(--lpop-hovered-caret-color);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+/**
+ * Adds background image to the lpop circle element
+ */
+/**
+ * Adds background image to the lpop circle element for gdocs
+ */
+html [data-lpop-hide-native-caret] {
+  caret-color: transparent !important;
+}
+html [data-lpop-hide-native-caret] * {
+  caret-color: transparent !important;
+}
+
+html [data-lpop-hide-gdocs-caret] {
+  visibility: hidden !important;
+}
+
+lpop-container {
+  box-sizing: content-box !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  z-index: 2147483647 !important;
+  display: block !important;
+  height: 20px !important;
+  width: 1px !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  background-color: var(--lpop-original-caret-color) !important;
+  transition: background-color 0.2s !important;
+  border: 0 !important;
+  border-left: 2px solid transparent !important;
+  border-right: 2px solid transparent !important;
+  border-bottom: 4px solid transparent !important;
+  background-clip: padding-box !important;
+  font-size: 16px !important;
+  margin: 0 0 0 -2.5px !important;
+}
+lpop-container[data-lpop-blinking] {
+  animation: lpop-blinking 1.1s linear infinite !important;
+  animation-delay: 0.5s !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] {
+  animation: unset !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  animation: lpop-pulsating 2s infinite !important;
+  animation-delay: 0.5s !important;
+  transition: border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection], lpop-container[data-lpop-blinking][data-lpop-hovered], lpop-container[data-lpop-blinking][data-lpop-clicked], lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] {
+  animation: none !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] lpop-circle {
+  animation: none !important;
+}
+lpop-container[data-lpop-os=Linux] {
+  animation-delay: 1s !important;
+  animation-duration: 2.2s !important;
+}
+lpop-container[data-lpop-hoverable] lpop-circle {
+  transition: top 0.2s, left 0.2s, height 0.2s, width 0.2s, border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  pointer-events: all !important;
+  cursor: pointer !important;
+}
+lpop-container[data-lpop-extended-selection], lpop-container[data-lpop-clicked], lpop-container[data-lpop-hovered], lpop-container[data-lpop-pulsating] {
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-pulsating] lpop-circle {
+  border-color: var(--lpop-hovered-caret-color-dark) !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-mousedown] lpop-tooltip, lpop-container[data-lpop-clicked] lpop-tooltip {
+  display: none !important;
+}
+lpop-container[data-lpop-size=small] {
+  border-left: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  border-bottom: 2px solid transparent !important;
+  margin-left: -1.5px !important;
+}
+lpop-container[data-lpop-size=small] lpop-circle {
+  height: 3px !important;
+  width: 3px !important;
+  left: -1px !important;
+}
+lpop-container[data-lpop-size=large] {
+  border-left: 3px solid transparent !important;
+  border-right: 3px solid transparent !important;
+  border-bottom: 5px solid transparent !important;
+  margin-left: -3.5px !important;
+}
+lpop-container[data-lpop-size=large] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle {
+  top: -2px !important;
+  transform-origin: center calc(100% - 1px) !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle::after {
+  top: -4px !important;
+  bottom: 0 !important;
+}
+lpop-container[data-lpop-circle-position=top][data-lpop-size=large] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-circle-position=top] lpop-circle {
+  top: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 5px !important;
+  width: 5px !important;
+  left: -2px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small][data-lpop-circle-position=top] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  top: calc(100% - 4px) !important;
+  height: 9px !important;
+  width: 9px !important;
+  left: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large][data-lpop-circle-position=top] lpop-circle {
+  top: -5px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-circle-position=top] lpop-circle {
+  top: -15px !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-size=large] lpop-circle {
+  left: -9px !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle {
+  background-color: inherit !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle::before {
+  content: """" !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  border-radius: 50% !important;
+  background-color: var(--lpop-hovered-caret-color-dark) !important;
+}
+
+lpop-circle {
+  position: absolute !important;
+  top: calc(100% - 2px) !important;
+  left: -2px !important;
+  height: 5px !important;
+  width: 5px !important;
+  box-sizing: border-box !important;
+  visibility: visible !important;
+  border-radius: 50% !important;
+  border: 1px solid var(--lpop-original-caret-color) !important;
+  background: #fff !important;
+  transform-origin: center 1px !important;
+  pointer-events: none !important;
+  outline: 1px solid transparent !important;
+  anchor-name: --anchor-lpop !important;
+}
+lpop-circle::before {
+  border-radius: 50% !important;
+  content: """" !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+  transition: opacity 0s !important;
+}
+lpop-circle::after {
+  content: """" !important;
+  position: absolute !important;
+  left: -5px !important;
+  right: -5px !important;
+  bottom: -4px !important;
+  top: 0px !important;
+}
+
+lpop-container[data-lpop-adapter-name=googledocs] {
+  width: 2px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking] {
+  animation-duration: 1s !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=small] lpop-circle {
+  width: 4px !important;
+  height: 4px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=large] lpop-circle {
+  width: 8px !important;
+  height: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection] lpop-circle {
+  height: 8px !important;
+  width: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  height: 10px !important;
+  width: 10px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+
+lpop-tooltip {
+  all: initial !important;
+  font-family: Helvetica, Arial sans-serif !important;
+  font-size: 12px !important;
+  pointer-events: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  position: fixed !important;
+  color: white !important;
+  border-radius: 6px !important;
+  background-color: rgba(29, 30, 32, 0.9) !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+  max-width: 220px !important;
+  line-height: 16px !important;
+  padding: 3px 6px !important;
+  border: none !important;
+  white-space: nowrap !important;
+  position-anchor: --anchor-lpop !important;
+  inset: auto !important;
+  left: calc(anchor(right) + 8px) !important;
+  align-self: anchor-center !important;
+  position-try-options: flip-inline !important;
+  position-try-fallbacks: flip-inline !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: opacity 0.5s, display 0.5s !important;
+}
+lpop-tooltip:popover-open {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+@starting-style {
+  lpop-tooltip:popover-open {
+    opacity: 0 !important;
+  }
+}
+
+@media print {
+  lpop-tooltip,
+  lpop-container {
+    display: none !important;
+  }
+}
+	
+
+Hi Kevin,
+
+I received an answer from our internal department stating that the license file was sent to you in January along with the invoice, that is why you did not receive it now.
+I have attached it to this email, so please download it, and please make sure you do not open it at all since it will get corrupted and importing will not work.
+You will then import it by logging into the console and navigate to System Configuration -> System Licensing -> Import
+Let me know if you need assistance and if it worked if I can close this ticket.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/19/2025 7:43 PM
+To: kevin.tung@fpscorp.ca
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+Hi Kevin,
+
+I have reached out to the proper department that handles these situations, and once I have a reply, I will let you know.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/19/2025 7:15 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network
+
+ref:_00D7091pB._500Q000N1RFU:ref
+
+
+Hi Eduard,
+
+ 
+
+Thank you for your advice; the issue has been resolved. We renewed the license yesterday via online credit card payment, but we have not yet received the new license key. Could you assist with this?
+
+ 
+
+Best regards,
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 10:08 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+ 
+
+
+
+
+	
+		
+			 
+			
+			You don't often get email from techsupport@netwrix.com.  Learn why this is important
+			
+			 
+		
+	
+
+
+EXTERNAL SENDER 
+
+Hello Kevin,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N1RFU:ref
+
+
+
+
+Open Toolbox (quickly press CTRL twice)","Re: Netwrix Support Ticket #439017 -  - 00439017 - Migrating to new network    [ ref:!00D70091pB.!500Qk0N1RFU:ref ]","techsupport@netwrix.com","Netwrix Support","kevin.tung@fpscorp.ca","","eduard.nut@netwrix.com","true","2025-03-20T14:31:57.000Z","true"
+"02sQk00000MpLH4IAN","500Qk00000N1RFUIA3","2025-03-20T15:48:44.000Z","2025-03-20T15:55:40.000Z","ref:_00D7091pB._500Q000N1RFU:ref
+
+I have successfully applied the license. Thank you!
+
+I have one more question: ever since the IP address changed on the server, it has lost communication with all the client computers, which are now showing offline. Is there a quick fix?
+
+
+Kevin Tung
+Director, Global Information Technology
+
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca<mailto:kevin.tung@fpscorp.ca>
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 20, 2025 7:31 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+You don't often get email from techsupport@netwrix.com. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+EXTERNAL SENDER
+Hi Kevin,
+
+I received an answer from our internal department stating that the license file was sent to you in January along with the invoice, that is why you did not receive it now.
+I have attached it to this email, so please download it, and please make sure you do not open it at all since it will get corrupted and importing will not work.
+You will then import it by logging into the console and navigate to System Configuration -> System Licensing -> Import
+Let me know if you need assistance and if it worked if I can close this ticket.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/19/2025 7:43 PM
+To: kevin.tung@fpscorp.ca
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+Hi Kevin,
+
+I have reached out to the proper department that handles these situations, and once I have a reply, I will let you know.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/19/2025 7:15 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network
+
+ref:_00D7091pB._500Q000N1RFU:ref
+
+Hi Eduard,
+
+Thank you for your advice; the issue has been resolved. We renewed the license yesterday via online credit card payment, but we have not yet received the new license key. Could you assist with this?
+
+Best regards,
+
+
+Kevin Tung
+Director, Global Information Technology
+
+
+
+
+
+
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca<mailto:kevin.tung@fpscorp.ca>
+
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 10:08 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+
+You don't often get email from techsupport@netwrix.com. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+
+EXTERNAL SENDER
+Hello Kevin,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0N1RFU:ref
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KMRck&from=int]
+
+Open Toolbox (quickly press CTRL twice)[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KOSSh&from=ext]","Re: Netwrix Support Ticket #439017 -  - 00439017 - Migrating to new network    [ ref:!00D70091pB.!500Qk0N1RFU:ref ]","kevin.tung@fpscorp.ca","Kevin Tung","techsupport@netwrix.com","","","false","2025-03-20T15:48:27.000Z","true"
+"02sQk00000MpNfTIAV","500Qk00000N1RFUIA3","2025-03-20T16:07:49.000Z","2025-03-20T16:07:49.000Z","@keyframes lpop-blinking {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes lpop-pulsating {
+  0% {
+    box-shadow: 0 0 0 0 var(--lpop-hovered-caret-color);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+/**
+ * Adds background image to the lpop circle element
+ */
+/**
+ * Adds background image to the lpop circle element for gdocs
+ */
+html [data-lpop-hide-native-caret] {
+  caret-color: transparent !important;
+}
+html [data-lpop-hide-native-caret] * {
+  caret-color: transparent !important;
+}
+
+html [data-lpop-hide-gdocs-caret] {
+  visibility: hidden !important;
+}
+
+lpop-container {
+  box-sizing: content-box !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  z-index: 2147483647 !important;
+  display: block !important;
+  height: 20px !important;
+  width: 1px !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  background-color: var(--lpop-original-caret-color) !important;
+  transition: background-color 0.2s !important;
+  border: 0 !important;
+  border-left: 2px solid transparent !important;
+  border-right: 2px solid transparent !important;
+  border-bottom: 4px solid transparent !important;
+  background-clip: padding-box !important;
+  font-size: 16px !important;
+  margin: 0 0 0 -2.5px !important;
+}
+lpop-container[data-lpop-blinking] {
+  animation: lpop-blinking 1.1s linear infinite !important;
+  animation-delay: 0.5s !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] {
+  animation: unset !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  animation: lpop-pulsating 2s infinite !important;
+  animation-delay: 0.5s !important;
+  transition: border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection], lpop-container[data-lpop-blinking][data-lpop-hovered], lpop-container[data-lpop-blinking][data-lpop-clicked], lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] {
+  animation: none !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] lpop-circle {
+  animation: none !important;
+}
+lpop-container[data-lpop-os=Linux] {
+  animation-delay: 1s !important;
+  animation-duration: 2.2s !important;
+}
+lpop-container[data-lpop-hoverable] lpop-circle {
+  transition: top 0.2s, left 0.2s, height 0.2s, width 0.2s, border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  pointer-events: all !important;
+  cursor: pointer !important;
+}
+lpop-container[data-lpop-extended-selection], lpop-container[data-lpop-clicked], lpop-container[data-lpop-hovered], lpop-container[data-lpop-pulsating] {
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-pulsating] lpop-circle {
+  border-color: var(--lpop-hovered-caret-color-dark) !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-mousedown] lpop-tooltip, lpop-container[data-lpop-clicked] lpop-tooltip {
+  display: none !important;
+}
+lpop-container[data-lpop-size=small] {
+  border-left: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  border-bottom: 2px solid transparent !important;
+  margin-left: -1.5px !important;
+}
+lpop-container[data-lpop-size=small] lpop-circle {
+  height: 3px !important;
+  width: 3px !important;
+  left: -1px !important;
+}
+lpop-container[data-lpop-size=large] {
+  border-left: 3px solid transparent !important;
+  border-right: 3px solid transparent !important;
+  border-bottom: 5px solid transparent !important;
+  margin-left: -3.5px !important;
+}
+lpop-container[data-lpop-size=large] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle {
+  top: -2px !important;
+  transform-origin: center calc(100% - 1px) !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle::after {
+  top: -4px !important;
+  bottom: 0 !important;
+}
+lpop-container[data-lpop-circle-position=top][data-lpop-size=large] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-circle-position=top] lpop-circle {
+  top: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 5px !important;
+  width: 5px !important;
+  left: -2px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small][data-lpop-circle-position=top] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  top: calc(100% - 4px) !important;
+  height: 9px !important;
+  width: 9px !important;
+  left: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large][data-lpop-circle-position=top] lpop-circle {
+  top: -5px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-circle-position=top] lpop-circle {
+  top: -15px !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-size=large] lpop-circle {
+  left: -9px !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle {
+  background-color: inherit !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle::before {
+  content: """" !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  border-radius: 50% !important;
+  background-color: var(--lpop-hovered-caret-color-dark) !important;
+}
+
+lpop-circle {
+  position: absolute !important;
+  top: calc(100% - 2px) !important;
+  left: -2px !important;
+  height: 5px !important;
+  width: 5px !important;
+  box-sizing: border-box !important;
+  visibility: visible !important;
+  border-radius: 50% !important;
+  border: 1px solid var(--lpop-original-caret-color) !important;
+  background: #fff !important;
+  transform-origin: center 1px !important;
+  pointer-events: none !important;
+  outline: 1px solid transparent !important;
+  anchor-name: --anchor-lpop !important;
+}
+lpop-circle::before {
+  border-radius: 50% !important;
+  content: """" !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+  transition: opacity 0s !important;
+}
+lpop-circle::after {
+  content: """" !important;
+  position: absolute !important;
+  left: -5px !important;
+  right: -5px !important;
+  bottom: -4px !important;
+  top: 0px !important;
+}
+
+lpop-container[data-lpop-adapter-name=googledocs] {
+  width: 2px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking] {
+  animation-duration: 1s !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=small] lpop-circle {
+  width: 4px !important;
+  height: 4px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=large] lpop-circle {
+  width: 8px !important;
+  height: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection] lpop-circle {
+  height: 8px !important;
+  width: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  height: 10px !important;
+  width: 10px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+
+lpop-tooltip {
+  all: initial !important;
+  font-family: Helvetica, Arial sans-serif !important;
+  font-size: 12px !important;
+  pointer-events: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  position: fixed !important;
+  color: white !important;
+  border-radius: 6px !important;
+  background-color: rgba(29, 30, 32, 0.9) !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+  max-width: 220px !important;
+  line-height: 16px !important;
+  padding: 3px 6px !important;
+  border: none !important;
+  white-space: nowrap !important;
+  position-anchor: --anchor-lpop !important;
+  inset: auto !important;
+  left: calc(anchor(right) + 8px) !important;
+  align-self: anchor-center !important;
+  position-try-options: flip-inline !important;
+  position-try-fallbacks: flip-inline !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: opacity 0.5s, display 0.5s !important;
+}
+lpop-tooltip:popover-open {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+@starting-style {
+  lpop-tooltip:popover-open {
+    opacity: 0 !important;
+  }
+}
+
+@media print {
+  lpop-tooltip,
+  lpop-container {
+    display: none !important;
+  }
+}
+	
+
+Hi Kevin,
+
+Unfortunately, there is no quick fix. The easiest option is to use an MDM tool to push the agent with the new IP/DNS.
+Then there is the manual option of installing the agent with the new configuration.
+For Mac we have a script that can be sent and change the IP with the one set in the script.
+For Windows, we also have a tool to change the IP, but it has to be manually run on the computer.
+You might need to also add the new certificate in the keychain in MacOS.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/20/2025 5:48 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ref:_00D7091pB._500Q000N1RFU:ref
+
+
+I have successfully applied the license. Thank you!
+
+ 
+
+I have one more question: ever since the IP address changed on the server, it has lost communication with all the client computers, which are now showing offline. Is there a quick fix?
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 20, 2025 7:31 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ 
+
+
+
+
+	
+		
+			 
+			
+			You don't often get email from techsupport@netwrix.com.  Learn why this is important
+			
+			 
+		
+	
+
+
+EXTERNAL SENDER 
+
+Hi Kevin,
+
+I received an answer from our internal department stating that the license file was sent to you in January along with the invoice, that is why you did not receive it now.
+I have attached it to this email, so please download it, and please make sure you do not open it at all since it will get corrupted and importing will not work.
+You will then import it by logging into the console and navigate to System Configuration -> System Licensing -> Import
+Let me know if you need assistance and if it worked if I can close this ticket.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/19/2025 7:43 PM
+To: kevin.tung@fpscorp.ca
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+Hi Kevin,
+
+I have reached out to the proper department that handles these situations, and once I have a reply, I will let you know.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/19/2025 7:15 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network
+
+ref:_00D7091pB._500Q000N1RFU:ref
+ 
+
+
+
+
+Hi Eduard,
+
+ 
+
+Thank you for your advice; the issue has been resolved. We renewed the license yesterday via online credit card payment, but we have not yet received the new license key. Could you assist with this?
+
+ 
+
+Best regards,
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 10:08 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+ 
+
+
+
+
+	
+		
+			 
+			
+			You don't often get email from techsupport@netwrix.com.  Learn why this is important
+			
+			 
+		
+	
+
+
+EXTERNAL SENDER 
+
+Hello Kevin,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N1RFU:ref
+
+
+
+
+Open Toolbox (quickly press CTRL twice)
+ 
+Open Toolbox (quickly press CTRL twice)","Re: Netwrix Support Ticket #439017 -  - 00439017 - Migrating to new network    [ ref:!00D70091pB.!500Qk0N1RFU:ref ]","techsupport@netwrix.com","Netwrix Support","kevin.tung@fpscorp.ca","","eduard.nut@netwrix.com","false","2025-03-20T16:07:47.000Z","true"
+"02sQk00000MpcwDIAR","500Qk00000N1RFUIA3","2025-03-20T17:21:12.000Z","2025-03-20T17:36:15.000Z","ref:_00D7091pB._500Q000N1RFU:ref
+
+I wanted to update the product before pushing the client software to the computers, but the download has been stuck at 37.5% for over an hour. Would it be possible to download the file from another computer and use the ""Offline Patch Uploader"" feature to apply the update?
+
+[cid:7bf2386b-d200-4e8e-a28a-0af916d00b4b]
+
+Thanks,
+
+
+Kevin Tung
+Director, Global Information Technology
+
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca<mailto:kevin.tung@fpscorp.ca>
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 20, 2025 9:07 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+EXTERNAL SENDER
+Hi Kevin,
+
+Unfortunately, there is no quick fix. The easiest option is to use an MDM tool to push the agent with the new IP/DNS.
+Then there is the manual option of installing the agent with the new configuration.
+For Mac we have a script that can be sent and change the IP with the one set in the script.
+For Windows, we also have a tool to change the IP, but it has to be manually run on the computer.
+You might need to also add the new certificate in the keychain in MacOS.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/20/2025 5:48 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ref:_00D7091pB._500Q000N1RFU:ref
+
+I have successfully applied the license. Thank you!
+
+I have one more question: ever since the IP address changed on the server, it has lost communication with all the client computers, which are now showing offline. Is there a quick fix?
+
+
+Kevin Tung
+Director, Global Information Technology
+
+
+
+
+
+
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca<mailto:kevin.tung@fpscorp.ca>
+
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 20, 2025 7:31 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+
+You don't often get email from techsupport@netwrix.com. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+
+EXTERNAL SENDER
+Hi Kevin,
+
+I received an answer from our internal department stating that the license file was sent to you in January along with the invoice, that is why you did not receive it now.
+I have attached it to this email, so please download it, and please make sure you do not open it at all since it will get corrupted and importing will not work.
+You will then import it by logging into the console and navigate to System Configuration -> System Licensing -> Import
+Let me know if you need assistance and if it worked if I can close this ticket.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/19/2025 7:43 PM
+To: kevin.tung@fpscorp.ca
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+Hi Kevin,
+
+I have reached out to the proper department that handles these situations, and once I have a reply, I will let you know.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/19/2025 7:15 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network
+
+ref:_00D7091pB._500Q000N1RFU:ref
+
+Hi Eduard,
+
+Thank you for your advice; the issue has been resolved. We renewed the license yesterday via online credit card payment, but we have not yet received the new license key. Could you assist with this?
+
+Best regards,
+
+
+Kevin Tung
+Director, Global Information Technology
+
+
+
+
+
+
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca<mailto:kevin.tung@fpscorp.ca>
+
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 10:08 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+
+You don't often get email from techsupport@netwrix.com. Learn why this is important<https://aka.ms/LearnAboutSenderIdentification>
+
+EXTERNAL SENDER
+Hello Kevin,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0N1RFU:ref
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KMRck&from=int]
+
+Open Toolbox (quickly press CTRL twice)[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KOSSh&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KOltY&from=ext]
+
+Open Toolbox (quickly press CTRL twice)","Re: Netwrix Support Ticket #439017 -  - 00439017 - Migrating to new network    [ ref:!00D70091pB.!500Qk0N1RFU:ref ]","kevin.tung@fpscorp.ca","Kevin Tung","techsupport@netwrix.com","","","true","2025-03-20T17:20:56.000Z","true"
+"02sQk00000MpeuoIAB","500Qk00000N1RFUIA3","2025-03-20T17:38:10.000Z","2025-03-20T17:38:10.000Z","@keyframes lpop-blinking {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes lpop-pulsating {
+  0% {
+    box-shadow: 0 0 0 0 var(--lpop-hovered-caret-color);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+/**
+ * Adds background image to the lpop circle element
+ */
+/**
+ * Adds background image to the lpop circle element for gdocs
+ */
+html [data-lpop-hide-native-caret] {
+  caret-color: transparent !important;
+}
+html [data-lpop-hide-native-caret] * {
+  caret-color: transparent !important;
+}
+
+html [data-lpop-hide-gdocs-caret] {
+  visibility: hidden !important;
+}
+
+lpop-container {
+  box-sizing: content-box !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  z-index: 2147483647 !important;
+  display: block !important;
+  height: 20px !important;
+  width: 1px !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  background-color: var(--lpop-original-caret-color) !important;
+  transition: background-color 0.2s !important;
+  border: 0 !important;
+  border-left: 2px solid transparent !important;
+  border-right: 2px solid transparent !important;
+  border-bottom: 4px solid transparent !important;
+  background-clip: padding-box !important;
+  font-size: 16px !important;
+  margin: 0 0 0 -2.5px !important;
+}
+lpop-container[data-lpop-blinking] {
+  animation: lpop-blinking 1.1s linear infinite !important;
+  animation-delay: 0.5s !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] {
+  animation: unset !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  animation: lpop-pulsating 2s infinite !important;
+  animation-delay: 0.5s !important;
+  transition: border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection], lpop-container[data-lpop-blinking][data-lpop-hovered], lpop-container[data-lpop-blinking][data-lpop-clicked], lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] {
+  animation: none !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] lpop-circle {
+  animation: none !important;
+}
+lpop-container[data-lpop-os=Linux] {
+  animation-delay: 1s !important;
+  animation-duration: 2.2s !important;
+}
+lpop-container[data-lpop-hoverable] lpop-circle {
+  transition: top 0.2s, left 0.2s, height 0.2s, width 0.2s, border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  pointer-events: all !important;
+  cursor: pointer !important;
+}
+lpop-container[data-lpop-extended-selection], lpop-container[data-lpop-clicked], lpop-container[data-lpop-hovered], lpop-container[data-lpop-pulsating] {
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-pulsating] lpop-circle {
+  border-color: var(--lpop-hovered-caret-color-dark) !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-mousedown] lpop-tooltip, lpop-container[data-lpop-clicked] lpop-tooltip {
+  display: none !important;
+}
+lpop-container[data-lpop-size=small] {
+  border-left: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  border-bottom: 2px solid transparent !important;
+  margin-left: -1.5px !important;
+}
+lpop-container[data-lpop-size=small] lpop-circle {
+  height: 3px !important;
+  width: 3px !important;
+  left: -1px !important;
+}
+lpop-container[data-lpop-size=large] {
+  border-left: 3px solid transparent !important;
+  border-right: 3px solid transparent !important;
+  border-bottom: 5px solid transparent !important;
+  margin-left: -3.5px !important;
+}
+lpop-container[data-lpop-size=large] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle {
+  top: -2px !important;
+  transform-origin: center calc(100% - 1px) !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle::after {
+  top: -4px !important;
+  bottom: 0 !important;
+}
+lpop-container[data-lpop-circle-position=top][data-lpop-size=large] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-circle-position=top] lpop-circle {
+  top: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 5px !important;
+  width: 5px !important;
+  left: -2px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small][data-lpop-circle-position=top] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  top: calc(100% - 4px) !important;
+  height: 9px !important;
+  width: 9px !important;
+  left: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large][data-lpop-circle-position=top] lpop-circle {
+  top: -5px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-circle-position=top] lpop-circle {
+  top: -15px !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-size=large] lpop-circle {
+  left: -9px !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle {
+  background-color: inherit !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle::before {
+  content: """" !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  border-radius: 50% !important;
+  background-color: var(--lpop-hovered-caret-color-dark) !important;
+}
+
+lpop-circle {
+  position: absolute !important;
+  top: calc(100% - 2px) !important;
+  left: -2px !important;
+  height: 5px !important;
+  width: 5px !important;
+  box-sizing: border-box !important;
+  visibility: visible !important;
+  border-radius: 50% !important;
+  border: 1px solid var(--lpop-original-caret-color) !important;
+  background: #fff !important;
+  transform-origin: center 1px !important;
+  pointer-events: none !important;
+  outline: 1px solid transparent !important;
+  anchor-name: --anchor-lpop !important;
+}
+lpop-circle::before {
+  border-radius: 50% !important;
+  content: """" !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+  transition: opacity 0s !important;
+}
+lpop-circle::after {
+  content: """" !important;
+  position: absolute !important;
+  left: -5px !important;
+  right: -5px !important;
+  bottom: -4px !important;
+  top: 0px !important;
+}
+
+lpop-container[data-lpop-adapter-name=googledocs] {
+  width: 2px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking] {
+  animation-duration: 1s !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=small] lpop-circle {
+  width: 4px !important;
+  height: 4px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=large] lpop-circle {
+  width: 8px !important;
+  height: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection] lpop-circle {
+  height: 8px !important;
+  width: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  height: 10px !important;
+  width: 10px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+
+lpop-tooltip {
+  all: initial !important;
+  font-family: Helvetica, Arial sans-serif !important;
+  font-size: 12px !important;
+  pointer-events: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  position: fixed !important;
+  color: white !important;
+  border-radius: 6px !important;
+  background-color: rgba(29, 30, 32, 0.9) !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+  max-width: 220px !important;
+  line-height: 16px !important;
+  padding: 3px 6px !important;
+  border: none !important;
+  white-space: nowrap !important;
+  position-anchor: --anchor-lpop !important;
+  inset: auto !important;
+  left: calc(anchor(right) + 8px) !important;
+  align-self: anchor-center !important;
+  position-try-options: flip-inline !important;
+  position-try-fallbacks: flip-inline !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: opacity 0.5s, display 0.5s !important;
+}
+lpop-tooltip:popover-open {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+@starting-style {
+  lpop-tooltip:popover-open {
+    opacity: 0 !important;
+  }
+}
+
+@media print {
+  lpop-tooltip,
+  lpop-container {
+    display: none !important;
+  }
+}
+	
+
+Hey Kevin,
+
+I would wait until it is done. If by tomorrow it is not done, let me know and will see how we handle it, since I might need to have ssh access to it to remove the upgrade process started.
+To use the offline option, you have to request the patches from support, and we can send all available upgrades.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/20/2025 7:20 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ref:_00D7091pB._500Q000N1RFU:ref
+
+
+I wanted to update the product before pushing the client software to the computers, but the download has been stuck at 37.5% for over an hour. Would it be possible to download the file from another computer and use the ""Offline Patch Uploader"" feature to apply the update?
+
+ 
+
+
+
+ 
+
+Thanks,
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 20, 2025 9:07 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ 
+
+
+EXTERNAL SENDER 
+
+Hi Kevin,
+
+Unfortunately, there is no quick fix. The easiest option is to use an MDM tool to push the agent with the new IP/DNS.
+Then there is the manual option of installing the agent with the new configuration.
+For Mac we have a script that can be sent and change the IP with the one set in the script.
+For Windows, we also have a tool to change the IP, but it has to be manually run on the computer.
+You might need to also add the new certificate in the keychain in MacOS.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/20/2025 5:48 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ref:_00D7091pB._500Q000N1RFU:ref
+ 
+
+
+
+I have successfully applied the license. Thank you!
+
+ 
+
+I have one more question: ever since the IP address changed on the server, it has lost communication with all the client computers, which are now showing offline. Is there a quick fix?
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 20, 2025 7:31 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ 
+
+
+
+
+	
+		
+			 
+			
+			You don't often get email from techsupport@netwrix.com.  Learn why this is important
+			
+			 
+		
+	
+
+
+EXTERNAL SENDER 
+
+Hi Kevin,
+
+I received an answer from our internal department stating that the license file was sent to you in January along with the invoice, that is why you did not receive it now.
+I have attached it to this email, so please download it, and please make sure you do not open it at all since it will get corrupted and importing will not work.
+You will then import it by logging into the console and navigate to System Configuration -> System Licensing -> Import
+Let me know if you need assistance and if it worked if I can close this ticket.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/19/2025 7:43 PM
+To: kevin.tung@fpscorp.ca
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+Hi Kevin,
+
+I have reached out to the proper department that handles these situations, and once I have a reply, I will let you know.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/19/2025 7:15 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network
+
+ref:_00D7091pB._500Q000N1RFU:ref
+ 
+
+
+
+
+Hi Eduard,
+
+ 
+
+Thank you for your advice; the issue has been resolved. We renewed the license yesterday via online credit card payment, but we have not yet received the new license key. Could you assist with this?
+
+ 
+
+Best regards,
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 10:08 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+ 
+
+
+
+
+	
+		
+			 
+			
+			You don't often get email from techsupport@netwrix.com.  Learn why this is important
+			
+			 
+		
+	
+
+
+EXTERNAL SENDER 
+
+Hello Kevin,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N1RFU:ref
+
+
+
+
+Open Toolbox (quickly press CTRL twice)
+ 
+
+Open Toolbox (quickly press CTRL twice)
+Open Toolbox (quickly press CTRL twice)","Re: Netwrix Support Ticket #439017 -  - 00439017 - Migrating to new network    [ ref:!00D70091pB.!500Qk0N1RFU:ref ]","techsupport@netwrix.com","Netwrix Support","kevin.tung@fpscorp.ca","","eduard.nut@netwrix.com","true","2025-03-20T17:38:08.000Z","true"
+"02sQk00000NToE1IAL","500Qk00000N1RFUIA3","2025-04-07T20:42:04.000Z","2025-04-07T20:42:04.000Z","@keyframes lpop-blinking {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes lpop-pulsating {
+  0% {
+    box-shadow: 0 0 0 0 var(--lpop-hovered-caret-color);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+/**
+ * Adds background image to the lpop circle element
+ */
+/**
+ * Adds background image to the lpop circle element for gdocs
+ */
+html [data-lpop-hide-native-caret] {
+  caret-color: transparent !important;
+}
+html [data-lpop-hide-native-caret] * {
+  caret-color: transparent !important;
+}
+
+html [data-lpop-hide-gdocs-caret] {
+  visibility: hidden !important;
+}
+
+lpop-container {
+  box-sizing: content-box !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  z-index: 2147483647 !important;
+  display: block !important;
+  height: 20px !important;
+  width: 1px !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  background-color: var(--lpop-original-caret-color) !important;
+  transition: background-color 0.2s !important;
+  border: 0 !important;
+  border-left: 2px solid transparent !important;
+  border-right: 2px solid transparent !important;
+  border-bottom: 4px solid transparent !important;
+  background-clip: padding-box !important;
+  font-size: 16px !important;
+  margin: 0 0 0 -2.5px !important;
+}
+lpop-container[data-lpop-blinking] {
+  animation: lpop-blinking 1.1s linear infinite !important;
+  animation-delay: 0.5s !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] {
+  animation: unset !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  animation: lpop-pulsating 2s infinite !important;
+  animation-delay: 0.5s !important;
+  transition: border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection], lpop-container[data-lpop-blinking][data-lpop-hovered], lpop-container[data-lpop-blinking][data-lpop-clicked], lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] {
+  animation: none !important;
+}
+lpop-container[data-lpop-blinking][data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-blinking][data-lpop-pulsating][data-lpop-clicked] lpop-circle {
+  animation: none !important;
+}
+lpop-container[data-lpop-os=Linux] {
+  animation-delay: 1s !important;
+  animation-duration: 2.2s !important;
+}
+lpop-container[data-lpop-hoverable] lpop-circle {
+  transition: top 0.2s, left 0.2s, height 0.2s, width 0.2s, border-color 0.2s, background-color 0.2s !important;
+  transition-delay: 0.1s !important;
+  pointer-events: all !important;
+  cursor: pointer !important;
+}
+lpop-container[data-lpop-extended-selection], lpop-container[data-lpop-clicked], lpop-container[data-lpop-hovered], lpop-container[data-lpop-pulsating] {
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle, lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-pulsating] lpop-circle {
+  border-color: var(--lpop-hovered-caret-color-dark) !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+}
+lpop-container[data-lpop-mousedown] lpop-tooltip, lpop-container[data-lpop-clicked] lpop-tooltip {
+  display: none !important;
+}
+lpop-container[data-lpop-size=small] {
+  border-left: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  border-bottom: 2px solid transparent !important;
+  margin-left: -1.5px !important;
+}
+lpop-container[data-lpop-size=small] lpop-circle {
+  height: 3px !important;
+  width: 3px !important;
+  left: -1px !important;
+}
+lpop-container[data-lpop-size=large] {
+  border-left: 3px solid transparent !important;
+  border-right: 3px solid transparent !important;
+  border-bottom: 5px solid transparent !important;
+  margin-left: -3.5px !important;
+}
+lpop-container[data-lpop-size=large] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle {
+  top: -2px !important;
+  transform-origin: center calc(100% - 1px) !important;
+}
+lpop-container[data-lpop-circle-position=top] lpop-circle::after {
+  top: -4px !important;
+  bottom: 0 !important;
+}
+lpop-container[data-lpop-circle-position=top][data-lpop-size=large] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection] lpop-circle {
+  top: calc(100% - 3px) !important;
+  height: 7px !important;
+  width: 7px !important;
+  left: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-circle-position=top] lpop-circle {
+  top: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 5px !important;
+  width: 5px !important;
+  left: -2px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=small][data-lpop-circle-position=top] lpop-circle {
+  top: -3px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  top: calc(100% - 4px) !important;
+  height: 9px !important;
+  width: 9px !important;
+  left: -4px !important;
+}
+lpop-container[data-lpop-extended-selection][data-lpop-size=large][data-lpop-circle-position=top] lpop-circle {
+  top: -5px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle, lpop-container[data-lpop-hovered] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 19px !important;
+  width: 19px !important;
+}
+lpop-container[data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  opacity: 1 !important;
+  transition: opacity 0.2s !important;
+  transition-delay: 0.2s !important;
+  background-color: var(--lpop-hovered-caret-color) !important;
+  background-image: var(--lpop-circle-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-circle-position=top] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-circle-position=top] lpop-circle {
+  top: -15px !important;
+}
+lpop-container[data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-hovered][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-clicked][data-lpop-size=large] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-hovered][data-lpop-size=large] lpop-circle {
+  left: -9px !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle {
+  background-color: inherit !important;
+}
+lpop-container[data-lpop-mousedown] lpop-circle::before, lpop-container[data-lpop-extended-selection][data-lpop-mousedown] lpop-circle::before {
+  content: """" !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  border-radius: 50% !important;
+  background-color: var(--lpop-hovered-caret-color-dark) !important;
+}
+
+lpop-circle {
+  position: absolute !important;
+  top: calc(100% - 2px) !important;
+  left: -2px !important;
+  height: 5px !important;
+  width: 5px !important;
+  box-sizing: border-box !important;
+  visibility: visible !important;
+  border-radius: 50% !important;
+  border: 1px solid var(--lpop-original-caret-color) !important;
+  background: #fff !important;
+  transform-origin: center 1px !important;
+  pointer-events: none !important;
+  outline: 1px solid transparent !important;
+  anchor-name: --anchor-lpop !important;
+}
+lpop-circle::before {
+  border-radius: 50% !important;
+  content: """" !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+  transition: opacity 0s !important;
+}
+lpop-circle::after {
+  content: """" !important;
+  position: absolute !important;
+  left: -5px !important;
+  right: -5px !important;
+  bottom: -4px !important;
+  top: 0px !important;
+}
+
+lpop-container[data-lpop-adapter-name=googledocs] {
+  width: 2px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking] {
+  animation-duration: 1s !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=small] lpop-circle {
+  width: 4px !important;
+  height: 4px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-size=large] lpop-circle {
+  width: 8px !important;
+  height: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection] lpop-circle {
+  height: 8px !important;
+  width: 8px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=small] lpop-circle {
+  height: 6px !important;
+  width: 6px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-size=large] lpop-circle {
+  height: 10px !important;
+  width: 10px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-blinking][data-lpop-pulsating] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle {
+  left: -9px !important;
+  height: 20px !important;
+  width: 20px !important;
+}
+lpop-container[data-lpop-adapter-name=googledocs][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-hovered] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-clicked] lpop-circle::before, lpop-container[data-lpop-adapter-name=googledocs][data-lpop-extended-selection][data-lpop-hovered] lpop-circle::before {
+  background-image: var(--lpop-circle-image-gdocs) !important;
+}
+
+lpop-tooltip {
+  all: initial !important;
+  font-family: Helvetica, Arial sans-serif !important;
+  font-size: 12px !important;
+  pointer-events: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  position: fixed !important;
+  color: white !important;
+  border-radius: 6px !important;
+  background-color: rgba(29, 30, 32, 0.9) !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+  max-width: 220px !important;
+  line-height: 16px !important;
+  padding: 3px 6px !important;
+  border: none !important;
+  white-space: nowrap !important;
+  position-anchor: --anchor-lpop !important;
+  inset: auto !important;
+  left: calc(anchor(right) + 8px) !important;
+  align-self: anchor-center !important;
+  position-try-options: flip-inline !important;
+  position-try-fallbacks: flip-inline !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: opacity 0.5s, display 0.5s !important;
+}
+lpop-tooltip:popover-open {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+@starting-style {
+  lpop-tooltip:popover-open {
+    opacity: 0 !important;
+  }
+}
+
+@media print {
+  lpop-tooltip,
+  lpop-container {
+    display: none !important;
+  }
+}
+	
+
+Hi Kevin,
+
+I haven't heard from you in a while, are you still having issues with the upgrade?
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/20/2025 7:38 PM
+To: kevin.tung@fpscorp.ca
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+Hey Kevin,
+
+I would wait until it is done. If by tomorrow it is not done, let me know and will see how we handle it, since I might need to have ssh access to it to remove the upgrade process started.
+To use the offline option, you have to request the patches from support, and we can send all available upgrades.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/20/2025 7:20 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ref:_00D7091pB._500Q000N1RFU:ref
+
+
+I wanted to update the product before pushing the client software to the computers, but the download has been stuck at 37.5% for over an hour. Would it be possible to download the file from another computer and use the ""Offline Patch Uploader"" feature to apply the update?
+
+ 
+
+
+
+ 
+
+Thanks,
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 20, 2025 9:07 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ 
+
+
+EXTERNAL SENDER 
+
+Hi Kevin,
+
+Unfortunately, there is no quick fix. The easiest option is to use an MDM tool to push the agent with the new IP/DNS.
+Then there is the manual option of installing the agent with the new configuration.
+For Mac we have a script that can be sent and change the IP with the one set in the script.
+For Windows, we also have a tool to change the IP, but it has to be manually run on the computer.
+You might need to also add the new certificate in the keychain in MacOS.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/20/2025 5:48 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ref:_00D7091pB._500Q000N1RFU:ref
+ 
+
+
+
+I have successfully applied the license. Thank you!
+
+ 
+
+I have one more question: ever since the IP address changed on the server, it has lost communication with all the client computers, which are now showing offline. Is there a quick fix?
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 20, 2025 7:31 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+ 
+
+
+
+
+	
+		
+			 
+			
+			You don't often get email from techsupport@netwrix.com.  Learn why this is important
+			
+			 
+		
+	
+
+
+EXTERNAL SENDER 
+
+Hi Kevin,
+
+I received an answer from our internal department stating that the license file was sent to you in January along with the invoice, that is why you did not receive it now.
+I have attached it to this email, so please download it, and please make sure you do not open it at all since it will get corrupted and importing will not work.
+You will then import it by logging into the console and navigate to System Configuration -> System Licensing -> Import
+Let me know if you need assistance and if it worked if I can close this ticket.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/19/2025 7:43 PM
+To: kevin.tung@fpscorp.ca
+Subject: Re: Netwrix Support Ticket #439017 - - 00439017 - Migrating to new network [ ref:!00D70091pB.!500Qk0N1RFU:ref ]
+
+Hi Kevin,
+
+I have reached out to the proper department that handles these situations, and once I have a reply, I will let you know.
+
+Thank you,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 3/19/2025 7:15 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network
+
+ref:_00D7091pB._500Q000N1RFU:ref
+ 
+
+
+
+
+Hi Eduard,
+
+ 
+
+Thank you for your advice; the issue has been resolved. We renewed the license yesterday via online credit card payment, but we have not yet received the new license key. Could you assist with this?
+
+ 
+
+Best regards,
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 10:08 AM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+ 
+
+
+
+
+	
+		
+			 
+			
+			You don't often get email from techsupport@netwrix.com.  Learn why this is important
+			
+			 
+		
+	
+
+
+EXTERNAL SENDER 
+
+Hello Kevin,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N1RFU:ref
+
+
+
+
+Open Toolbox (quickly press CTRL twice)
+ 
+
+Open Toolbox (quickly press CTRL twice)
+
+Open Toolbox (quickly press CTRL twice)
+Open Toolbox (quickly press CTRL twice)","Re: Netwrix Support Ticket #439017 -  - 00439017 - Migrating to new network    [ ref:!00D70091pB.!500Qk0N1RFU:ref ]","techsupport@netwrix.com","Netwrix Support","kevin.tung@fpscorp.ca","","eduard.nut@netwrix.com","true","2025-04-07T20:42:03.000Z","true"
+"02sQk00000NZYL2IAP","500Qk00000N1RFUIA3","2025-04-09T21:00:02.000Z","2025-04-09T21:00:02.000Z","ref:_00D7091pB._500Q000N1RFU:ref
+
+Hi Eduard,
+
+We no longer encounter the problem. Thanks for the follow up.
+
+
+Kevin Tung
+Director, Global Information Technology
+
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca<mailto:kevin.tung@fpscorp.ca>
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 9, 2025 1:53 PM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+EXTERNAL SENDER
+Hello Kevin,
+
+I wanted to check in regarding your support ticket 00439017. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0N1RFU:ref","Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network","kevin.tung@fpscorp.ca","Kevin Tung","techsupport@netwrix.com","","","false","2025-04-09T20:59:44.000Z","true"
+"02sQk00000NasnrIAB","500Qk00000N1RFUIA3","2025-04-10T13:02:18.000Z","2025-04-10T13:02:18.000Z","Hi Kevin,
+
+Thank you for letting me know. In that case, I will go ahead and close the ticket, and if you have any other issues, feel free to reach out to support and we will assist you.
+
+Kind regards,
+Eduard Nut
+Technical Support Engineer
+
+Endpoint Protector now part of Netwrix
+DLP | Device Control | Content Aware Protection
+eDiscovery | Enforced Encryption
+CoSoSys Ltd
+www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Kevin Tung [kevin.tung@fpscorp.ca]
+Sent: 4/9/2025 11:59 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #439017 - ref:_00D7091pB._500Q000N1RFU:ref - 00439017 - Migrating to new network
+
+ref:_00D7091pB._500Q000N1RFU:ref
+
+
+Hi Eduard,
+
+ 
+
+We no longer encounter the problem. Thanks for the follow up. 
+
+ 
+
+
+
+	
+		
+			
+			Kevin Tung
+			Director, Global Information Technology
+			
+			 
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+FPS Food Process Solutions Corp
+
+T: 604-232-4145 Ext 1173 | E: kevin.tung@fpscorp.ca
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 9, 2025 1:53 PM
+To: Kevin Tung <kevin.tung@fpscorp.ca>
+Subject: RE: 00439017 - Migrating to new network
+
+ 
+
+
+EXTERNAL SENDER 
+
+Hello Kevin,
+
+I wanted to check in regarding your support ticket 00439017. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00439017
+Ticket Subject: Migrating to new network
+Ticket Details: After moving the server to a new location and different subnet, and successfully assigned a static IP address in the new subnet. The server is not responding to ping or http or https.
+
+Thank you!
+
+Eduard Nut
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N1RFU:ref","Re: Netwrix Support Ticket #439017 -  - 00439017 - Migrating to new network    [ ref:!00D70091pB.!500Qk0N1RFU:ref ]","techsupport@netwrix.com","Netwrix Support","kevin.tung@fpscorp.ca","","eduard.nut@netwrix.com","false","2025-04-10T13:02:16.000Z","true"

@@ -1,0 +1,80 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000PSiXZIA1","00445956","Support Ticket","Personal Gmail access but its prohibited on orgnization","In mac device personal gmail accessed please help on priority","","22/05/2025
+Quazi contacted us stating that the personal gmail access is prohibited o organization and is asking for support
+
+
+22/05/2025
+Connected remote with Qazi to take a look at the issue.
+The problem is for about 32 MAC devices where the GMAIL business accounts functionality is not working properly.
+He added helo.ai and it works only for Windows but for MAC OS he can login with the personal gmail account on every browser.
+What we did was to go on the computer settings-> enable intercept VPN and also made sure the Repeat VPN notification was selected.
+Also, checked the full disk, accessibility and bluetooth access and everything was allowed for the EPP along with the network extension.
+
+We did a reinstall + restart but that didn't do any help.
+Also the certificate was enabled and trusted.
+
+We collected the debug logs and agreed to get back as soon as possible because this is a critical issue for them.
+
+Waited about 30 minutes for the client in the remote session  but they did not show up.
+
+Received the logs and will investigate further.
+
+
+Checked the logs and somehow the netext is showing the following:
+
+https://nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00445956/Screenshot%202025-05-22%20170623.png?csf=1&web=1&e=kYLQEg
+
+netext: activation request needs user approval
+
+
+Regarding the DPI:
+
+			""block_only_policies"" : 0,
+			""block_unsecure_transfers"" : 0,
+			""bypass_on_error"" : ""websockets,invalid_peer_cert"",
+			""disable_peer_cert_validation"" : ""hostname"",
+			""enable_dpi_bypass_event_logging"" : 1,
+			""enable_dpi_bypass_notifications"" : 0,
+			""enable_netdlp_cache_logs"" : 0,
+			""intercept_vpn_traffic"" : 1,
+			""vpn_traffic_fallback_method"" : 0
+
+Will ask the client to check again the EPP Network extension settings.
+
+
+23/05/2025
+
+Connected to Qazi along with Andre to take a look at the issue.
+Seems like most of the things I checked were in place except for the fact that the client did not had the device assigned to any CAP policy.
+The DPI will not work if there are no CAP policies assigned to the device.
+
+Assigned a policy to the device, and updated the policy. As soon as we updated the Network extension pop up came up accordingly.
+
+After enabling it, we tested and the GMAIL personal account could be blocked accordingly.
+
+Did the same test on 2 other devices and it was working as expected.
+Agreed to keep the ticket opened until the client checks with the other devices.
+
+
+03/06/2025
+Connected remote with the client to assist with a MAC OS where they had the same issue.
+This time, this MAC OS had the Monterey version, which was pretty old.
+We had to allow third party apps 'EndpointProtector' to make changes from privacy and security.
+After enabling that, the network extension came up and we tested again and it was working as expected.
+
+Client asked if it's possible to have a solution from preventing users that have admin credentials to disable the network extension.
+
+Informed that it is out of our scope in regards of that as this is something they need to handle on an organizational level.
+
+Agreed to close the case.","22/05/2025
+Sent note with remote session details.
+
+
+Sent note asking for availability.
+
+Will ask the client to check again the EPP Network extension settings.","Issue was on the client's  side as follows:
+Did not had any policies applied for the issued devices.(if no CAP policy is assigned, the DPI for GMAIL business accounts will not be activated).
+Network extension was not enabled within the MAC OS settings.
+Also, intercept VPN was not enabled for some of the affected devices.
+
+After checking on all of them, the devices are blocking @gmail.com addresses accordingly through google mail.","Incorrect configuration: Netwrix product","Marian Ilies","Unexpected Behavior","Netwrix Endpoint Protector","Client","EPP Client - Other","","","12.0","Closed - Resolved","Helo.ai","Qazi Amir","2025-05-22T09:14:46.000Z","2025-06-03T09:32:20.000Z"

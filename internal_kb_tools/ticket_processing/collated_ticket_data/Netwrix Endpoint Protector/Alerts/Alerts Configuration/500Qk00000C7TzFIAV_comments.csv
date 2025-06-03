@@ -1,0 +1,131 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007ZE2UIAW","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the Following Fields have been updated: 
+Account ACV has been changed to 760.20.
+Priority has been changed to Critical.","005Qk000001nViCIAU","2024-06-26T12:11:36.000Z","2024-06-26T12:11:36.000Z","false","false"
+"00aQk000007ZFmYIAW","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the Following Fields have been updated: 
+Account ACV has been changed to 380.10.","005Qk000001nViCIAU","2024-06-26T12:11:37.000Z","2024-06-26T12:11:37.000Z","false","false"
+"00aQk000007ZDVRIA4","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the Following Fields have been updated: 
+Product Version has been changed to NONE.","005Qk000001nViCIAU","2024-06-26T12:13:40.000Z","2024-06-26T12:13:40.000Z","false","false"
+"00aQk000007iVP3IAM","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the Following Fields have been updated: 
+Account ACV has been changed to 31976.83.","005Qk000001nViCIAU","2024-07-03T12:23:14.000Z","2024-07-03T12:23:14.000Z","false","false"
+"00aQk00000878sKIAQ","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-24T05:01:10.000Z","2024-07-24T05:01:10.000Z","false","false"
+"00aQk00000878sVIAQ","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the new comment has been added: Andre Wayne Le Roux:
+
+Thank you @Alexandra-Alina Pascalau appreciate the quick response.
+
+[DevOps CommentId:10536562]","0054u000006gtWUAAY","2024-07-24T05:01:11.000Z","2024-07-24T05:01:11.000Z","false","false"
+"00aQk00000878sSIAQ","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi @Andre Wayne Le Roux ,
+
+
+
+Can you please check the following:
+
+
+
+1.if these fields exist on cf_log table
+
+    vid`
+  `pid`
+  `serialno`
+  `field_1`
+  `field_2`
+  `field_3`
+  `field_4`
+  `field_5`
+  `field_6`
+  `field_7`
+  `field_8`
+  `field_9`
+  `field_10`
+  `field_11`
+  `field_12`
+  `field_13`
+  `field_14`
+  `field_15`
+
+
+
+
+--- CODE ---
+SHOW CREATE TABLE cf_log;
+--- CODE ---
+
+2. the value of these flags show_cflog_vpsn, begin_updating_cflogs_vpsn
+
+
+--- CODE ---
+SELECT * FROM sysinfo WHERE name = ""show_cflog_vpsn"";
+
+SELECT * FROM sysinfo WHERE name = ""begin_updating_cflogs_vpsn"";
+
+--- CODE ---
+
+3. if there is an audit running:
+
+
+
+--- CODE ---
+SELECT count(*) as running_audit FROM audit_backup_status WHERE ((type = 'onetime' AND (status = 1 OR started = 1)) OR (type = 'scheduled' and started = 1));
+--- CODE ---
+
+
+4. please provide the results of:
+
+--- CODE ---
+
+SHOW CREATE TABLE cf_log;
+SELECT count(*) from cf_log partition(last);
+--- CODE ---
+
+5. Do you know if they ever received the File Shadows or are they just now trying to set it up.
+
+
+Thanks
+
+[DevOps CommentId:10511241]","0054u000006gtWUAAY","2024-07-24T05:01:11.000Z","2024-07-24T05:01:11.000Z","false","false"
+"00aQk00000878sUIAQ","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the new comment has been added: Alexandra-Alina Pascalau:
+
+Please run these queries:
+
+--- CODE ---
+UPDATE `sysinfo` set `value` = 1 WHERE `name` = ""show_cflog_vpsn"";
+DELETE FROM sysinfo WHERE name = 'begin_updating_cflogs_vpsn';
+--- CODE ---
+
+After running these queries, the option ""Enable Reporting V2"" will not be greyed out anymore. You can enable it and File Shadows will be available.
+
+
+Please advice the customer to run an Audit log and remove some of the logs as I see they have  70 partitions of CAP logs.
+
+[DevOps CommentId:10534359]","0054u000006gtWUAAY","2024-07-24T05:01:11.000Z","2024-07-24T05:01:11.000Z","false","false"
+"00aQk00000878sTIAQ","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the new comment has been added: Andre Wayne Le Roux:
+
+Hi @Alexandra-Alina Pascalau , @Cristian-Alexandru Halmajan Customer asked that this case be placed on high priority.
+I ran the command listed below.  Please see the results in the attached video recording and screenshots.
+
+[DevOps CommentId:10529081]","0054u000006gtWUAAY","2024-07-24T05:01:11.000Z","2024-07-24T05:01:11.000Z","false","false"
+"00aQk00000878sRIAQ","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the new comment has been added: Andre Wayne Le Roux:
+
+Hi @Cristian-Alexandru Halmajan Customer mentioned that this is a high priority for them and that they need to have file shadows working as soon as possible.
+
+[DevOps CommentId:10498681]","0054u000006gtWUAAY","2024-07-24T05:01:11.000Z","2024-07-24T05:01:11.000Z","false","false"
+"00aQk00000878sWIAQ","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-07-05 09:08 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10612562]","0054u000006gtWUAAY","2024-07-24T05:01:11.000Z","2024-07-24T05:01:11.000Z","false","false"
+"00aQk0000087IA5IAM","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-07-24T08:45:00.000Z","2024-07-24T08:45:00.000Z","false","false"
+"00aQk0000087JNtIAM","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2024-07-24T09:12:02.000Z","2024-07-24T09:12:02.000Z","false","false"
+"00aQk000008QpS5IAK","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the Following Fields have been updated: 
+Account ACV has been changed to 57607.82.","0054u000006gtWUAAY","2024-08-09T06:49:11.000Z","2024-08-09T06:49:11.000Z","false","false"
+"00aQk00000BoKA5IAN","500Qk00000C7TzFIAV","On Escalation Ticket # 00413079 the Following Fields have been updated: 
+Account ACV has been changed to 43994.21.","0054u000006gtWUAAY","2025-02-14T11:44:23.000Z","2025-02-14T11:44:23.000Z","false","false"

@@ -1,0 +1,36 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000O6gMyIAJ","00442237","Support Ticket","Client won't Update to newest Verion","I encounter a problem that no client updates the client version via the ""Client Software Upgrade"" Process. The last Client Upgrade was on 13.12.24, 3 of 6 Clients did the Upgrade successful. Two days ago i tried the rollout to all other clients. But the successfully rate keeps stuck at 0 devices. 
+
+Policy transfer to the clients works fine i believe. In the time between december 24 until now, I chanced the server to a higher ubunto version and we uninstalled the ""XZ Utils"" component because of the CVE.","","16.04
+- the customer is having issues with client upgrades from the console
+- asked them to delete the old jobs and try again. I also let them know they can download a report of the upgrade jobs if they need it
+- if the jobs fail again, we will schedule a RS to look into the issue
+
+- the customer replied they're still facing the issue even after deleting the old jobs
+- asked for availability for a remote session
+
+17.04
+During the RS we did the following
+- checked if the client is communicating:  yes
+- client installed on virtual machine - windows 11
+- old client is 6.2.3.1
+- server version: 5.9.4.1
+- client recently migrated to a new server, could that be the issue?
+- collected logs while the upgrade job was running
+- upgraded the client manually
+- event viewer doesn’t show any updates regarding the EPP installation
+- forced uninstall attempt shows up in the logs - it wasn’t uninstalled
+- we received the following error when trying to install it manually: installer cannot be opened because it’s not a valid installer packed
+- the installer doesn’t get correctly downloaded, it has 0KBs
+- uploaded the offline patch for OTP issue: http://download.endpointprotector.com/offline_agent_patches/MP-HWA-EPP4-U0066-M0001.tar.gz
+- client installer could be downloaded afterwards correctly
+- we created another upgrade job, this time it was successful
+- asked the customer to create one more, just to make sure there are no issues, and let me know
+
+- the customer confirmed the upgrade jobs work correctly","16.04
+- waiting on the customer to retry the upgrade job after deleting the old ones
+
+- waiting on RS
+
+17.04
+- waiting on the customer for confirmation that the upgrade job was successful","the issue was fixed by applying the following offline patch: MP-HWA-EPP4-U0066-M0001.tar.gz","","Botond Biro","Unexpected Behavior","Netwrix Endpoint Protector","Client","Client Upgrade","","","1.1","Closed - Resolved","Management Services Helwig Schmitt GmbH","Jonas Görtelmeyer","2025-04-16T08:42:18.000Z","2025-04-17T11:27:55.000Z"

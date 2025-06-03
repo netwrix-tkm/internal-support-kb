@@ -1,0 +1,23 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000cr5c9KAA","500Qk00000OWfS7IAL","TextPost","0054u000008ARZjAAO","2025-04-28T09:41:36.000Z","Description: Hello!
+
+
+We need to set up a CAP policy to block file transfer to the RDP connections and the virtual machines' clipboard (VBox for example).
+Could you please let us know me how to configure a policy properly to block file transfers via RDP and to virtual machines?
+We would be appreciated for the best practice.
+Also, we have already tried to use the ""Thin Client"" option in the CAP policy but it did not work - we are still able to transfer files to the RDP connection and files is not blocking.
+I'm attaching a screenshot.","","","","0054u000008ARZjAAO","2025-04-28T09:41:36.000Z"
+"0D5Qk00000dP112KAC","500Qk00000OWfS7IAL","TextPost","005Qk000001nViFIAU","2025-05-05T11:37:03.000Z","What We've Learned Updated: 30 April
+
+- The ""Thin Client"" option in CAP policies does not reliably block file transfers via RDP clipboard or drive redirection.
+- There is a specific ""Remote Desktop Connection"" exit point in CAP policies that should be selected to monitor and block RDP file transfers.
+- For virtual machine environments (such as VirtualBox, VMware, Hyper-V), there are no dedicated exit points in the CAP policy settings.
+- CAP can only block file transfers to virtualization platforms if those platforms are explicitly listed as exit points; otherwise, file transfers may not be blocked.
+- Blocking file transfers to virtual machines via clipboard or shared folders is not currently supported unless the virtualization platform is recognized as an exit point by Endpoint Protector.","","","","005Qk000001nViFIAU","2025-05-05T11:37:03.000Z"
+"0D5Qk00000dP5XXKA0","500Qk00000OWfS7IAL","TextPost","005Qk000001nViFIAU","2025-05-05T11:40:39.000Z","Next Steps Updated: 30 April
+
+1. Ensure the ""Remote Desktop Connection"" exit point is selected in the CAP policy to block file transfers via RDP.
+2. Test file transfers over RDP after applying the updated policy to confirm blocking is effective.
+3. For virtual machine environments, monitor Netwrix Endpoint Protector release notes and documentation for future support of additional virtualization exit points.
+4. If blocking file transfers to virtual machines is a critical requirement, consider submitting a feature request to Netwrix for enhanced virtualization platform support.
+5. Continue to use other available CAP policy options to restrict file transfers through supported exit points.","","","","005Qk000001nViFIAU","2025-05-05T11:40:39.000Z"

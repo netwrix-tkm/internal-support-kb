@@ -1,0 +1,50 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Lt3kMIAR","00435873","Support Ticket","EPP does not block URL upload to Slack","Hello,
+
+Customer name is RubyPlay.
+They've observed the behavior when Lightshot's screenshot URL is not blocking when sending to the Slack by instant messaging.
+Example of the URL: <a href='https://prnt.sc/YsO3xGTe2ID9' target='_blank'>https://prnt.sc/YsO3xGTe2ID9</a>
+We have added next items into the Denylist:
+<a href='//prnt.sc/' target='_blank'>//prnt.sc/</a>
+<a href='https://prnt.sc/' target='_blank'>https://prnt.sc/</a>
+<a href='prnt.sc' target='_blank'>prnt.sc</a>
+сonfidential
+These URLs successfully blocking if transferred to <a href='https://DLPTest.com' target='_blank'>DLPTest.com</a>, but if thy to send it to Slack it goes through.
+We recreated the scenario in our environment, so you should be able too.
+I will attach logs and screenshots.
+Please look into this behavior, if you have any clarification question, please let us know.","","14.02
+- EPP is not detecting sensitive content via Slack when uploading a screenshot from Lightshot
+- We were able to reproduce the issue internally.
+- Logs we're collected and a recording was also made
+
+19.02
+- opened R&D escalation
+
+26.03
+- issue is still being investigated
+- after asking the customer, I let the R&D team know the issue is present on the latest build as well
+
+02.04
+- test build provided to customer
+- they tested it and the block is successful, but the last connection is shown as ""Unknown"" and there is no notification Pop-up appear after the block
+- forwarded the feedback and the logs to the R&D team
+
+17.04
+- received feedback from R&D that the bug is going to be fixed in the next client
+- asked them if they can provide a test build
+
+19.05
+- I was told on the R&D ticket that the fix will be implemented in 5943
+- forwarded this info to the customer and asked if I can close the ticket","19.02
+- waiting on R&D
+
+26.03
+- waiting on customer to tell us if the latest build is also problematic
+
+20.04
+- waiting on the customer to test the test build
+- as the test build was somewhat functional, feedback was sent to R&D - waiting on them
+
+19.05
+- waiting on the customer","- the test build worked almost correctly
+- the issue will be fixed in the upcoming server release","Product defect","Botond Biro","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","Upload Not Blocked","","","93.9","Closed - Resolved","Rubyplay Limited","Danylo Didenko","2025-02-14T12:00:08.000Z","2025-05-19T10:21:20.000Z"

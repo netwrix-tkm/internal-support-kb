@@ -1,0 +1,44 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000VkyoBKAR","500Qk00000LEp51IAD","TextPost","0054u000008ARZjAAO","2025-01-29T22:15:03.000Z","Description: NOTE : Please assigned this Eduard 
+
+We were notified by Slack that a number of our users are experiencing crashes within the SLACK application.  The issue seems to coincide with the enabling of the setting for print logging.
+ 
+We were given a few user names but they do not seem to notice the issue at this time.  We have a policy in place for monitoring certain PII type data in Slack.
+ 
+We were provided the below by the Slack team:
+
+This is the crash we're seeing. We were able to determine it's caused by Endpoint Protector due to <a href='https://csprnthk.dll' target='_blank'>csprnthk.dll</a> which is part of its program.
+Plain Text
+OS Version: Windows 10.0.19045 (5371)
+Report Version: 104
+
+Crashed Thread: 28408
+
+Application Specific Information:
+Fatal Error: EXCEPTION_ACCESS_VIOLATION_READ / 0x0
+
+Thread 28408 Crashed:
+0   <a href='https://csprnthk.dll' target='_blank'>csprnthk.dll</a>                    0x7ffacac1c226      
+1   <a href='https://csprnthk.dll' target='_blank'>csprnthk.dll</a>                    0x7ffacac504d0      
+2   <a href='https://csprnthk.dll' target='_blank'>csprnthk.dll</a>                    0x7ffacac50688      
+3   <a href='https://csprnthk.dll' target='_blank'>csprnthk.dll</a>                    0x7ffacac23200      
+4   <a href='https://ffmpeg.dll' target='_blank'>ffmpeg.dll</a>                      0x7ffa93815c7c      [inlined] try_get_proc_address_from_first_available_module (<a href='https://winapi_downlevel.cpp' target='_blank'>winapi_downlevel.cpp</a>:182)
+5   <a href='https://ffmpeg.dll' target='_blank'>ffmpeg.dll</a>                      0x7ffa93815c7c      try_get_function (<a href='https://winapi_downlevel.cpp' target='_blank'>winapi_downlevel.cpp</a>:211)
+6   <a href='https://csprnthk.dll' target='_blank'>csprnthk.dll</a>                    0x7ffacac1c4d4      
+7   <a href='https://ntdll.dll' target='_blank'>ntdll.dll</a>                       0x7ffae0fe47ed      RtlpFlsFree
+8   <a href='https://KERNELBASE.dll' target='_blank'>KERNELBASE.dll</a>                  0x7ffade68196a      FlsFree
+9   <a href='https://ffmpeg.dll' target='_blank'>ffmpeg.dll</a>                      0x7ffa93801dc3      __vcrt_uninitialize_ptd (<a href='https://per_thread_data.cpp' target='_blank'>per_thread_data.cpp</a>:84)
+10  <a href='https://ffmpeg.dll' target='_blank'>ffmpeg.dll</a>                      0x7ffa937ea8b4      __vcrt_uninitialize_critical (<a href='https://initialization.cpp' target='_blank'>initialization.cpp</a>:94)
+11  <a href='https://ntdll.dll' target='_blank'>ntdll.dll</a>                       0x7ffae0f89876      RtlDeactivateActivationContextUnsafeFast
+12  <a href='https://ntdll.dll' target='_blank'>ntdll.dll</a>                       0x7ffae0fcf1c9      LdrShutdownProcess
+13  <a href='https://ntdll.dll' target='_blank'>ntdll.dll</a>                       0x7ffae0fcef7c      RtlExitUserProcess
+14  <a href='https://KERNEL32.DLL' target='_blank'>KERNEL32.DLL</a>                    0x7ffae063e3ea      FatalExit
+15  <a href='https://slack.exe' target='_blank'>slack.exe</a>                       0x7ff6d5ac9608      exit_or_terminate_process (<a href='https://exit.cpp' target='_blank'>exit.cpp</a>:137)
+16  <a href='https://slack.exe' target='_blank'>slack.exe</a>                       0x7ff6d5ac96cf      common_exit (<a href='https://exit.cpp' target='_blank'>exit.cpp</a>:274)
+17  <a href='https://slack.exe' target='_blank'>slack.exe</a>                       0x7ff6d5ab4be3      __scrt_common_main_seh (<a href='https://exe_common.inl' target='_blank'>exe_common.inl</a>:295)
+18  <a href='https://KERNEL32.DLL' target='_blank'>KERNEL32.DLL</a>                    0x7ffae0637373      BaseThreadInitThunk
+19  <a href='https://ntdll.dll' target='_blank'>ntdll.dll</a>                       0x7ffae0fbcc90      RtlUserThreadStart","","","","0054u000008ARZjAAO","2025-01-29T22:15:03.000Z"
+"0D5Qk00000VshTSKAZ","500Qk00000LEp51IAD","TextPost","005Qk000001nViBIAU","2025-01-31T16:09:30.000Z","What We've Learned Updated: our injected dll was causing Slack app to crash. 
+Robert confirmed this for me in a Teams PM.
+I proposed the app Slack be added to the exception list.","","","","005Qk000001nViBIAU","2025-01-31T16:09:30.000Z"
+"0D5Qk00000Vso4ZKAR","500Qk00000LEp51IAD","TextPost","005Qk000001nViBIAU","2025-01-31T16:09:51.000Z","Next Steps Updated: waiting for the customer to add the exception and get back with the outcome.","","","","005Qk000001nViBIAU","2025-01-31T16:09:51.000Z"

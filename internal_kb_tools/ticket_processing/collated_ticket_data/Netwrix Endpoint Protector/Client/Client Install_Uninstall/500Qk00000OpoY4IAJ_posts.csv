@@ -1,0 +1,84 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000dSaqxKAC","500Qk00000OpoY4IAJ","TextPost","005Qk000001nVddIAE","2025-05-06T10:18:49.000Z","Description: Liebe Frau Kurbjuhn,
+
+ 
+
+ich hoffe es geht Ihnen gut.
+
+ 
+
+Wir haben ein Problem mit EPP und Macs in Verbindung mit einem System-Proxy festgestellt.
+
+ 
+
+Zu unserem Setup:
+
+Der Mac (Studio M2, macOS Sonoma 14.7.5) und der EPP Server (Version 5.9.4.1) befinden sich im gleichen Subnetz. Im Mac ist systemweit einen HTTPS-Proxy eingestellt.
+
+Das Subnetz, in dem sich der Mac und EPP Server befinden, ist vom Proxy als Ausnahme hinterlegt.
+
+Die Download-Seite (http) und Konfigurationsseite (https) vom EPP sind beide über den Browser erreichbar.
+
+Wenn ich an diesem Mac den EPP Client installiere (aktuelle Version 3.0.4.1006), kann dieser keine Verbindung zu unserem EPP Server herstellen. Bei den EPP Proxy Einstellungen habe ich „Use System Settings“ gewählt und keinen Proxy hinterlegt. Die Einstellung „Increased Communication Security“ ist abgewählt.
+
+Die Installation klappt zwar ohne Fehlermeldung, aber der Client zeigt bei den „Einstellungen“ fast überall N/A an, und die „Letzte Server-Anmeldung“ ist leer.
+
+Der Client hat sich also noch nie mit dem Server verbinden können.
+
+Sobald ich aber im System den HTTPS Proxy deaktiviere und den EPP Client neu installiere, funktioniert die Verbindung.
+
+ 
+
+Der Fehler lässt sich auf mehreren Mac Studios mit macOS Sonoma reproduzieren.
+
+ 
+
+Ich konnte den Fehler insofern umgehen, indem ich den Systemproxy deaktiviere, dann denn EPP Client installiere und dann den Proxy wieder aktiviere.
+
+So funktioniert auch danach noch die Verbindung zum EPP Server.
+
+ 
+
+Trotzdem wollte ich den Fehler gerne an Sie melden.
+
+ 
+
+Besten Dank und viele Grüße,
+
+Robert Ludemann
+
+ 
+
+Robert Ludemann | Technical Department
+
+
+
+Address: Poccistraße 3, 80336 München
+Phone: +498976708432
+
+
+
+Registergericht AG München B43115
+GF Sebastian Heinzelmann von Hallberg, Alberto Abisso, Alexandre Taieb
+Informationen zum Datenschutz","","","","005Qk000001nVddIAE","2025-05-06T10:18:49.000Z"
+"0D5Qk00000dgTk8KAE","500Qk00000OpoY4IAJ","TextPost","005Qk000001nViFIAU","2025-05-09T11:49:59.000Z","What We've Learned Updated: 9 May
+
+- The EPP client fails to connect to the EPP server when installed while a system-wide HTTPS proxy is active, even if the local subnet is excluded from proxying.
+- The issue is not related to network reachability, as the EPP server is accessible via browser from the affected Mac.
+- The problem is reproducible across multiple Mac Studio devices running macOS Sonoma.
+- The EPP client installation completes without error, but the client never establishes a connection to the server and displays ""N/A"" for most settings.
+- Disabling the system proxy before installation allows the client to connect; re-enabling the proxy afterward does not break the connection.
+- The workaround is to temporarily disable the system proxy during installation, then re-enable it after the client has connected.
+- The issue appears to be specific to the installation process in the presence of a system proxy, not ongoing client-server communication.
+- Support suggested using a fake proxy configuration during installation as an alternative workaround.","","","","005Qk000001nViFIAU","2025-05-09T11:49:59.000Z"
+"0D5Qk00000dgWdFKAU","500Qk00000OpoY4IAJ","TextPost","005Qk000001nViFIAU","2025-05-09T11:50:10.000Z","Next Steps Updated: 9 May
+
+1. Customer to use the documented workaround: disable the system proxy before installing the EPP client, then re-enable it after installation.
+2. Support to escalate the issue to the product and development teams for further investigation and potential bug fix, as the behavior is reproducible and impacts deployment in proxy environments.
+3. Customer to provide feedback if the issue persists or if additional problems arise with future installations.
+4. Support to update internal documentation and knowledge base to reflect this known issue and workaround for other customers.","","","","005Qk000001nViFIAU","2025-05-09T11:50:10.000Z"
+"0D5Qk00000dgbhSKAQ","500Qk00000OpoY4IAJ","TextPost","005Qk000001nViFIAU","2025-05-09T11:50:33.000Z","Next Steps Updated: 9 May
+
+1. Customer to use the documented workaround: disable the system proxy before installing the EPP client, then re-enable it after installation.
+2. Support to escalate the issue to the product and development teams for further investigation and potential bug fix, as the behavior is reproducible and impacts deployment in proxy environments.
+3. Customer to provide feedback if the issue persists or if additional problems arise with future installations.","","","","005Qk000001nViFIAU","2025-05-09T11:50:33.000Z"

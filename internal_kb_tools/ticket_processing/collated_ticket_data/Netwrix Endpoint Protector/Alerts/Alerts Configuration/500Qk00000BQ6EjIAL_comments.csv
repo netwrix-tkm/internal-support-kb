@@ -1,0 +1,34 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008QnbaIAC","500Qk00000BQ6EjIAL","On Escalation Ticket # 00411953 the new comment has been added: Augustina Sidor:
+
+@Daniel Anton, please restore the ""log_alerts_enabled"" flag to the original state otherwise the System Alerts will be affected. 
+
+
+
+	 - 	Alert received by multiple users: 
+
+	 - 	Are these users displayed on the System Configuration->System Administrators pages or were they registered in the system in the past? Please check them into DB:
+ 
+	 - 	
+
+--- CODE ---SELECT sf_guard_user.id, sf_guard_user_profile.email, sf_guard_user.is_super_admin, sf_guard_user.deleted
+
+            FROM sf_guard_user
+            INNER JOIN sf_guard_user_profile ON sf_guard_user_profile.user_id = sf_guard_user.id
+            WHERE sf_guard_user_profile.email <> '' AND sf_guard_user.is_super_admin = 1;
+--- CODE ---
+ 
+ 	 - 	 Setup the ""Transfer Limit"" alert:  
+
+	 - 	Does the customer receive the ""Transfer Limit"" alert for all the machines or only for a particular one?
+ 
+	 - 	Please check the machine settings if the alert is received only for a particular machine. (it is possible that the alert to be set directly on the machine or to be set on a group to which the machine belongs)
+
+[DevOps CommentId:10452856]","0054u000006gtWUAAY","2024-08-09T05:43:51.000Z","2024-08-09T05:43:51.000Z","false","false"
+"00aQk000008R5YUIA0","500Qk00000BQ6EjIAL","On Escalation Ticket # 00411953 the new comment has been added: Hello, 
+
+The case can be closed, the steps have been performed and the issue is now fixed.
+
+Thank you!","005Qk000001nVi3IAE","2024-08-09T12:17:13.000Z","2024-08-09T12:17:13.000Z","false","false"
+"00aQk000008R5i9IAC","500Qk00000BQ6EjIAL","On Escalation Ticket # 00411953 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVi3IAE","2024-08-09T12:20:31.000Z","2024-08-09T12:20:31.000Z","false","false"

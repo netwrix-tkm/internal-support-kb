@@ -1,0 +1,147 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000P43dkIAB","00444806","Support Ticket","Software fallando","Software no está funcionando correctamente y no me esta mostrando estadísticas","","5/21/2025
+
+- Joined remote session with customer
+- Verified that the EPP Appliance has a recent snapshot
+- Reviewed System Settings
+- Server Certificate Stack - selected Regenerate
+- Allowed 5 minutes to test connection from test client machine to EPP Appliance;
+Success
+- Customer could not log into EPP Console after regenerating the server certificate stack
+- Requested the customer use private mode on browser to access EPP Console.
+- Configured the Server PEM/KEY Certificate under Appliance > Server Maintenance > Server Certificate
+- Waited 5 more minutes and closed browser
+- Restarted browser and customer able to log into the EPP console and verified that all computers communicating with EPP Appliance
+- Customer has requested to close case 
+
+5/20/2025
+
+- Joined remote session
+- Assisted customer in configuring AzureAD on EPP Appliance
+- Rebooted EPP Appliance
+- Customer uninstalled EPP client and attempted to connect to EPP Appliance; Failed
+- Customer working on setting up a local computer not on Azure network to see if he can connect and update policies. 
+- Customer will email us to set up another remote session towards trouble shooting issue. 
+- Screen shots located here: 
+
+https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00444806
+
+- Ended remote session
+
+5/19/2025
+
+- All users reporting connectivity issue show no azure AD settings set to there user accounts in EPP console.
+- Checked the List of users and found select users that could communicate with the EPP server were under domain AzureAD, while those who could not report ably connect did not have anything under Domain. (See List of users screenshot attached to case. 
+
+- List of users shows AzureAD users have not connected since March 2025.
+- Provided the customer with the link to configure SSO using AzureAD
+- Scheduling remote session with customer to assist in configuring SSO on EPP console on 5/20/2025 at 0900 CST.
+
+
+
+5/16/2025
+
+- Sent customer email requesting screen shot of the licensing page on EPP console to verify that the customer has enough licenses to allow additional computers
+
+- Started remote session to continue troubelshooting
+
+- Provided a status update on the issue with case 00444806 - Software was malfunctioning to tech lead and tier 2 support.
+
+- Noted that the customer had a security solution monitoring SSL and traffic data; the configuration was consistent across all clients. FortiCloud // See screen shot
+
+No violations were reported for EPP for the specific client in question. // See screen shot
+
+- Requested the customer to demonstrate a known good EPP client; observed that even though the client displayed as connected, it was not operating as expected—the policy update icon did not blink.
+
+- Enabled debug mode on the known good computer and initiated log collection.
+
+- Was awaiting confirmation from the customer on whether the logs were successfully created.
+
+- Planned to compare logs from the malfunctioning and known good clients to identify differences.
+
+- Relayed the customer's contingency plan to restore from the EPP environment backup if the issue was not identified.
+
+- Ended remote session
+
+5/15/2025
+
+- Customer responded to email with answer to questions:
+
+How do you communicate with the server: via VPN or public IP?
+Public IP
+ 
+How many computers do you have in total?
+49 Laptops
+ 
+How many computers in total are affected?
+5 computers, which are the last ones to have the application installed.
+ 
+Are the computers that can communicate with the server and those that cannot on the same network? If so, what are the differences between them?
+Computers operating normally: Inside the internal network and outside the internal network
+Computers not operating: Inside the internal network and outside the internal network.
+ 
+Are there any specific network settings we should be aware of?
+No network configuration, but you should know that the SSL certificate of the domain cetus.com.co has been changed.
+ 
+What other security software could they be using?
+Forticlient.
+ 
+Is there any difference in the installation? Maybe some use the IP and others the FQDN.
+I installed them all with the installer downloaded from the administration console.
+ 
+Do you have a proxy?
+No
+ 
+Do you use Cloudflare or other similar security solutions?
+No.
+ 
+Finally, if you disconnect from the corporate network and connect to a mobile hotspot wifi, can you still connect to the EPP server?
+I uninstalled the client and installed it connected to a mobile hotspot wifi and the problem is the same.
+
+5/14/2025
+1.	Connection Issues:
+Between 40 to 60 computers are unable to connect from the client software to the EPP Server, although they appear connected from the appliance.
+
+2.	Troubleshooting Steps Taken:
+• Attempted to ping the EPP Appliance IP which failed.
+• Rebooted the EPP Appliance and one of the affected client computers.
+• Reinstalled the EPP Client on a client machine.
+• Verified the absence of firewall restrictions on the network.
+• Inspected the /etc/nginx/sites-enabled/epp.nginx.conf file to verify TLS 1.2 and TLS 1.3 configurations.
+• Compared network settings between a known good client and a problematic one.
+• Downloaded and installed the latest client software on an affected machine.
+• Ran the EPP server change IP program.
+• Created logs and customer sent to me via email
+• Uploaded the logs to case.
+
+Log Location:
+https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00444806
+
+3.	Findings:
+•	Consistent inability to connect client software to the EPP server.
+•	Error logs indicate a failure to obtain a server certificate: Could NOT obtain a server certificate for client.
+
+
+5/13/2025
+
+- Joined remote session
+- Currently, over 40 to 60 computers are not connecting to the EPP server.
+- Accessed the EPP backend and confirmed uptime of 10 minutes following a reboot.
+- The EPP server was rebooted, but the issue persists.
+- Attempts to remove the client software and reinstall EPP software have not resolved the connection problem.
+- Ping to the (EPP Appliance)IP address 132.145.168.177 was unsuccessful.
+- Additionally, pinging other computers also resulted in unsuccessful attempts.
+- Seeking confirmation regarding whether port separation was implemented.
+- Unable to collect logs
+- Scheduled second remote session to investigate further","Closing case","- Assisted customer configure SSO log in for the EPP Console
+- Verified that the EPP Appliance has a recent snapshot
+- Reviewed System Settings
+- Server Certificate Stack - selected Regenerate
+- Allowed 5 minutes to test connection from test client machine to EPP Appliance;
+Success
+- Customer could not log into EPP Console after regenerating the server certificate stack
+- Requested the customer use private mode on browser to access EPP Console.
+- Configured the Server PEM/KEY Certificate under Appliance > Server Maintenance > Server Certificate
+- Waited 5 more minutes and closed browser
+- Restarted browser and customer able to log into the EPP console and verified that all computers communicating with EPP Appliance
+- Customer has requested to close case","Incorrect Configuration - Netwrix Product/System","Ramon Torres","Performance","Netwrix Endpoint Protector","Server","EPP Server - Other","","5941","9.2","Closed - Resolved","CETUS TECHNOLOGY","Robinson Montoya","2025-05-12T15:26:34.000Z","2025-05-21T19:50:48.000Z"

@@ -1,0 +1,612 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000NN1SpIAL","500Qk00000NgXS9IAN","2025-04-04T09:48:03.000Z","2025-04-04T09:48:03.000Z","ref:_00D7091pB._500Q000NgXS9:ref
+
+Also, regarding the DPI, we noticed a big performance degradation while testing the DPI. 
+Is there any configuration/s we could apply that does not have a massive impact on the machine performance?","Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.","plataformas.suporte@sibs.com","Gestão de Plataformas SIBS","techsupport@netwrix.com","","","false","2025-04-04T09:48:03.000Z","true"
+"02sQk00000NNAG1IAP","500Qk00000NgXS9IAN","2025-04-04T10:54:54.000Z","2025-04-04T10:54:54.000Z","Hello,
+
+Thanks for reaching out!
+By cards, do you mean credit cards?
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Gestão de Plataformas SIBS [plataformas.suporte@sibs.com]
+Sent: 4/4/2025 12:48 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.
+
+ref:_00D7091pB._500Q000NgXS9:ref
+
+Also, regarding the DPI, we noticed a big performance degradation while testing the DPI.
+Is there any configuration/s we could apply that does not have a massive impact on the machine performance?","RE: Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.    [ ref:!00D70091pB.!500Qk0NgXS9:ref ]","techsupport@netwrix.com","Netwrix Support","plataformas.suporte@sibs.com","","","false","2025-04-04T10:54:53.000Z","true"
+"02sQk00000NNVZ2IAP","500Qk00000NgXS9IAN","2025-04-04T14:25:27.000Z","2025-04-04T14:54:53.000Z","ref:_00D7091pB._500Q000NgXS9:ref
+
+Hello,
+
+Yes that's right, credit cards.
+
+Raul Pop","Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.","plataformas.suporte@sibs.com","Gestão de Plataformas SIBS","techsupport@netwrix.com","","","false","2025-04-04T14:25:27.000Z","true"
+"02sQk00000NNcnSIAT","500Qk00000NgXS9IAN","2025-04-04T15:13:30.000Z","2025-04-04T15:13:30.000Z","Hi Raul,
+
+Thanks for clarifying!
+We will check this internally and we will let you know as soon as we have the details.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Gestão de Plataformas SIBS [plataformas.suporte@sibs.com]
+Sent: 4/4/2025 5:25 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.
+
+ref:_00D7091pB._500Q000NgXS9:ref
+
+Hello,
+
+Yes that's right, credit cards.
+
+Raul Pop","RE: Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.    [ ref:!00D70091pB.!500Qk0NgXS9:ref ]","techsupport@netwrix.com","Netwrix Support","plataformas.suporte@sibs.com","","","false","2025-04-04T15:13:29.000Z","true"
+"02sQk00000NNyXmIAL","500Qk00000NgXS9IAN","2025-04-04T16:48:44.000Z","2025-04-07T07:30:15.000Z","ref:_00D7091pB._500Q000NgXS9:ref
+
+Hi Botond,
+
+Thank you!
+Have a nice weekend.
+
+Best Regards,
+Raul Pop","Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.","plataformas.suporte@sibs.com","Gestão de Plataformas SIBS","techsupport@netwrix.com","","","false","2025-04-04T16:48:43.000Z","true"
+"02sQk00000NSip2IAD","500Qk00000NgXS9IAN","2025-04-07T15:02:41.000Z","2025-04-07T15:02:41.000Z","Hello,
+
+I hope you are well.
+Regarding the way credit cards are identified, please see the process below:
+
+when a digit character follows a non-digit character, we look for a payment card IIN (Issuer Identification Number) 
+if a known IIN is matched, based on the matched issuer (Visa, MasterCard, Diners, etc.) we know that we should check for a required number of digits (e.g. 16 digits for MasterCard, 13, 16 or 19 digits for Visa, etc.) 
+we allow for certain delimiters (like space, dash, etc.) between digit groups 
+finally we validate that the last matched digit (the check digit) verifies Luhn's algorithm 
+if all of the above rules match, we report a payment card number. 
+So we follow verification of specific pattern's + checksum.
+
+Having this information, please compare this with the scenarios that you are testing and let us know if you encounter any issues.
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+--------------- Original Message ---------------
+From: Gestão de Plataformas SIBS [plataformas.suporte@sibs.com]
+Sent: 4/4/2025 7:48 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.
+
+ref:_00D7091pB._500Q000NgXS9:ref
+
+Hi Botond,
+
+Thank you!
+Have a nice weekend.
+
+Best Regards,
+Raul Pop","RE: Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.    [ ref:!00D70091pB.!500Qk0NgXS9:ref ]","techsupport@netwrix.com","Netwrix Support","plataformas.suporte@sibs.com","","","false","2025-04-07T15:02:40.000Z","true"
+"02sQk00000NSnmxIAD","500Qk00000NgXS9IAN","2025-04-07T15:03:09.000Z","2025-04-07T15:03:09.000Z","Hello,
+
+I hope you are well.
+Regarding the way credit cards are identified, please see the process below:
+
+when a digit character follows a non-digit character, we look for a payment card IIN (Issuer Identification Number) 
+if a known IIN is matched, based on the matched issuer (Visa, MasterCard, Diners, etc.) we know that we should check for a required number of digits (e.g. 16 digits for MasterCard, 13, 16 or 19 digits for Visa, etc.) 
+we allow for certain delimiters (like space, dash, etc.) between digit groups 
+finally we validate that the last matched digit (the check digit) verifies Luhn's algorithm 
+if all of the above rules match, we report a payment card number. 
+So we follow verification of specific pattern's + checksum.
+
+Having this information, please compare this with the scenarios that you are testing and let us know if you encounter any issues.
+
+Thank you,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 6:02 PM
+To: plataformas.suporte@sibs.com
+Subject: RE: Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data. [ ref:!00D70091pB.!500Qk0NgXS9:ref ]","RE: Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.    [ ref:!00D70091pB.!500Qk0NgXS9:ref ]","techsupport@netwrix.com","Netwrix Support","plataformas.suporte@sibs.com","","","false","2025-04-07T15:03:07.000Z","true"
+"02sQk00000NSzpkIAD","500Qk00000NgXS9IAN","2025-04-07T15:37:05.000Z","2025-04-08T07:20:40.000Z","ref:_00D7091pB._500Q000NgXS9:ref
+
+Hi Alin,
+
+Thank you for the quick response.
+I will deliver this information to the CS department and wait for their answer.
+
+I will let you know of any issues asap.
+
+Best regards,
+Raul Pop","Netwrix Support Ticket #440965 - DLP strategies and effectiveness towards detecting card data.","plataformas.suporte@sibs.com","Gestão de Plataformas SIBS","techsupport@netwrix.com","","","false","2025-04-07T15:37:04.000Z","true"
+"02sQk00000No7voIAB","500Qk00000NgXS9IAN","2025-04-16T14:51:54.000Z","2025-04-17T11:01:03.000Z","ref:_00D7091pB._500Q000NgXS9:ref
+
+Hi Alin,
+
+We are still discussing this topic internally and doing some tests.
+
+If it’s possible could you keep this ticket open until day 25/04 in case we have any other questions ?
+
+Thanks for your support!
+
+Best regards,
+Com os melhores cumprimentos,
+
+[cid:image001.png@01DBAECD.97DC2F80]
+
+
+Raul Pop
+
+
+Departamento de Operações e Infraestruturas
+DOSCC – Núcleio de Sistemas Corporativos
+
+
+
+
+e. raul.pop@sibs.com<mailto:raul.pop@sibs.>
+
+
+
+
+
+Estr. Casal do Canas,
+2720-092 Amadora
+
+
+
+www.sibs.pt<https://www.sibs.pt/>
+
+
+
+Helpdesk Alfragide: 7100/214 169 310 (Seg. a Sex. 8h-18h30h)
+Helpdesk Sede: 4059 (Seg. a Sex. 9h-18h)
+Registe o seu pedido em:
+https://suporte.sibs.corp/
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 16 de abril de 2025 10:08
+To: Gestão de Plataformas (Suporte) <Plataformas.Suporte@sibs.com>
+Subject: RE: 00440965 - DLP strategies and effectiveness towards detecting card data.
+
+Hello Gestão de Plataformas,
+
+I wanted to check in regarding your support ticket 00440965. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00440965
+Ticket Subject: DLP strategies and effectiveness towards detecting card data.
+Ticket Details: Hi,
+As per request of our CS Department, I'm opening this ticket to ask for your help to better understand DLP strategies and effectiveness towards detecting card data.
+
+Could you detail how the card detection method works, and also could you indicate which scenario from the anexed document is detected ?
+
+Thank you!
+
+Alin Anca
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0NgXS9:ref
+
+________________________________
+
+AVISO. A mensagem e eventuais anexos são susceptíveis de conter informação sujeita a sigilo profissional, ao regime legal de protecção de dados pessoais, de direitos de autor ou outro, pelo que a sua divulgação depende de autorização do remetente. As opiniões emitidas não vinculam necessariamente a SIBS. No caso desta mensagem ser recebida com erro ou por destinatários indevidos, solicita-se a sua destruição e subsequente aviso para postmaster@sibs.pt. A mensagem foi filtrada por um detector de vírus, pelo que o remetente e a empresa não se responsabilizam por danos provocados por terceiros no sistema de informação do destinatário.
+
+WARNING. The message or attachments, if any, may be subject to professional confidentiality, personal data protection, copyright or other legal disclosure restrictions, and, therefore, access by anyone else is subject to the senders’ authorization. Any views expressed do not necessarily reflect those of SIBS. If you are not the intended addressee or have received this e-mail in error, please delete it and notify postmaster@sibs.pt. A virus checker sweeps outgoing e-mail. Therefore, neither the sender nor the company accept any responsibility or liability whatsoever for any adverse effects on your systems or data arising from intercepted, corrupted or virus-infected e-mail.","RE: Netwrix Support Ticket #440965 - ref:_00D7091pB._500Q000NgXS9:ref - 00440965 - DLP strategies and effectiveness towards detecting card data.","plataformas.suporte@sibs.com","Gestão de Plataformas","techsupport@netwrix.com","","","true","2025-04-16T14:51:42.000Z","true"
+"02sQk00000NqRjfIAF","500Qk00000NgXS9IAN","2025-04-17T12:40:54.000Z","2025-04-17T12:40:54.000Z","Hello,
+
+Thank you for your email.
+Sure, I will leave it open until then.
+
+Have a nice day,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Gestão de Plataformas [plataformas.suporte@sibs.com]
+Sent: 4/16/2025 5:51 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #440965 - ref:_00D7091pB._500Q000NgXS9:ref - 00440965 - DLP strategies and effectiveness towards detecting card data.
+
+ref:_00D7091pB._500Q000NgXS9:ref
+
+
+
+Hi Alin,
+
+ 
+
+We are still discussing this topic internally and doing some tests.
+
+ 
+
+If it’s possible could you keep this ticket open until day 25/04 in case we have any other questions ?
+
+ 
+
+Thanks for your support!
+
+ 
+
+Best regards,
+
+Com os melhores cumprimentos,
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+
+			
+				
+					
+						
+						Raul Pop
+						
+					
+					
+						 
+					
+					
+						
+						Departamento de Operações e Infraestruturas
+
+						DOSCC – Núcleio de Sistemas Corporativos
+						
+					
+					
+						 
+					
+					
+						
+						
+							
+								
+									 
+								
+								
+									 
+								
+								
+									
+									e. raul.pop@sibs.com
+									
+								
+							
+						
+						
+					
+					
+						 
+					
+					
+						
+						 
+						
+					
+					
+						
+						Estr. Casal do Canas,
+
+						2720-092 Amadora
+						
+					
+					
+						
+						 
+						
+					
+					
+						
+						www.sibs.pt
+						
+					
+				
+			
+			
+		
+	
+
+
+ 
+
+Helpdesk Alfragide: 7100/214 169 310 (Seg. a Sex. 8h-18h30h)
+
+Helpdesk Sede: 4059 (Seg. a Sex. 9h-18h)
+
+Registe o seu pedido em:
+
+https://suporte.sibs.corp/
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 16 de abril de 2025 10:08
+To: Gestão de Plataformas (Suporte) <Plataformas.Suporte@sibs.com>
+Subject: RE: 00440965 - DLP strategies and effectiveness towards detecting card data.
+
+
+ 
+
+Hello Gestão de Plataformas,
+
+I wanted to check in regarding your support ticket 00440965. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00440965
+Ticket Subject: DLP strategies and effectiveness towards detecting card data.
+Ticket Details: Hi,
+As per request of our CS Department, I'm opening this ticket to ask for your help to better understand DLP strategies and effectiveness towards detecting card data.
+
+Could you detail how the card detection method works, and also could you indicate which scenario from the anexed document is detected ?
+
+Thank you!
+
+Alin Anca
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0NgXS9:ref
+
+ 
+
+
+AVISO. A mensagem e eventuais anexos são susceptíveis de conter informação sujeita a sigilo profissional, ao regime legal de protecção de dados pessoais, de direitos de autor ou outro, pelo que a sua divulgação depende de autorização do remetente. As opiniões emitidas não vinculam necessariamente a SIBS. No caso desta mensagem ser recebida com erro ou por destinatários indevidos, solicita-se a sua destruição e subsequente aviso para postmaster@sibs.pt. A mensagem foi filtrada por um detector de vírus, pelo que o remetente e a empresa não se responsabilizam por danos provocados por terceiros no sistema de informação do destinatário.
+
+WARNING. The message or attachments, if any, may be subject to professional confidentiality, personal data protection, copyright or other legal disclosure restrictions, and, therefore, access by anyone else is subject to the senders’ authorization. Any views expressed do not necessarily reflect those of SIBS. If you are not the intended addressee or have received this e-mail in error, please delete it and notify postmaster@sibs.pt. A virus checker sweeps outgoing e-mail. Therefore, neither the sender nor the company accept any responsibility or liability whatsoever for any adverse effects on your systems or data arising from intercepted, corrupted or virus-infected e-mail.","RE: Netwrix Support Ticket #440965 -  - 00440965 - DLP strategies and effectiveness towards detecting card data.    [ ref:!00D70091pB.!500Qk0NgXS9:ref ]","techsupport@netwrix.com","Netwrix Support","plataformas.suporte@sibs.com","","","true","2025-04-17T12:40:52.000Z","true"
+"02sQk00000O5x9hIAB","500Qk00000NgXS9IAN","2025-04-24T12:10:04.000Z","2025-04-24T12:10:04.000Z","Hello,
+ 
+I hope you are well.
+This email is to inform you that we are closing the present ticket.
+As we have not received a response from you since a while, we understand that you may have resolved the issue or are no longer experiencing it.
+If you are still experiencing the problem or have any further questions, please reply to this email or create a new ticket, and we will be happy to assist you.
+ 
+Thank you for your understanding,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/17/2025 3:40 PM
+To: plataformas.suporte@sibs.com
+Subject: RE: Netwrix Support Ticket #440965 - - 00440965 - DLP strategies and effectiveness towards detecting card data. [ ref:!00D70091pB.!500Qk0NgXS9:ref ]
+
+Hello,
+
+Thank you for your email.
+Sure, I will leave it open until then.
+
+Have a nice day,
+Best regards,
+Alin Anca
+
+Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix - DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+CoSoSys Ltd www.endpointprotector.com
+
+
+--------------- Original Message ---------------
+From: Gestão de Plataformas [plataformas.suporte@sibs.com]
+Sent: 4/16/2025 5:51 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #440965 - ref:_00D7091pB._500Q000NgXS9:ref - 00440965 - DLP strategies and effectiveness towards detecting card data.
+
+ref:_00D7091pB._500Q000NgXS9:ref
+
+
+
+Hi Alin,
+
+ 
+
+We are still discussing this topic internally and doing some tests.
+
+ 
+
+If it’s possible could you keep this ticket open until day 25/04 in case we have any other questions ?
+
+ 
+
+Thanks for your support!
+
+ 
+
+Best regards,
+
+Com os melhores cumprimentos,
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+
+			
+				
+					
+						
+						Raul Pop
+						
+					
+					
+						 
+					
+					
+						
+						Departamento de Operações e Infraestruturas
+
+						DOSCC – Núcleio de Sistemas Corporativos
+						
+					
+					
+						 
+					
+					
+						
+						
+							
+								
+									 
+								
+								
+									 
+								
+								
+									
+									e. raul.pop@sibs.com
+									
+								
+							
+						
+						
+					
+					
+						 
+					
+					
+						
+						 
+						
+					
+					
+						
+						Estr. Casal do Canas,
+
+						2720-092 Amadora
+						
+					
+					
+						
+						 
+						
+					
+					
+						
+						www.sibs.pt
+						
+					
+				
+			
+			
+		
+	
+
+
+ 
+
+Helpdesk Alfragide: 7100/214 169 310 (Seg. a Sex. 8h-18h30h)
+
+Helpdesk Sede: 4059 (Seg. a Sex. 9h-18h)
+
+Registe o seu pedido em:
+
+https://suporte.sibs.corp/
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 16 de abril de 2025 10:08
+To: Gestão de Plataformas (Suporte) <Plataformas.Suporte@sibs.com>
+Subject: RE: 00440965 - DLP strategies and effectiveness towards detecting card data.
+
+
+ 
+
+Hello Gestão de Plataformas,
+
+I wanted to check in regarding your support ticket 00440965. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00440965
+Ticket Subject: DLP strategies and effectiveness towards detecting card data.
+Ticket Details: Hi,
+As per request of our CS Department, I'm opening this ticket to ask for your help to better understand DLP strategies and effectiveness towards detecting card data.
+
+Could you detail how the card detection method works, and also could you indicate which scenario from the anexed document is detected ?
+
+Thank you!
+
+Alin Anca
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0NgXS9:ref
+
+ 
+
+
+AVISO. A mensagem e eventuais anexos são susceptíveis de conter informação sujeita a sigilo profissional, ao regime legal de protecção de dados pessoais, de direitos de autor ou outro, pelo que a sua divulgação depende de autorização do remetente. As opiniões emitidas não vinculam necessariamente a SIBS. No caso desta mensagem ser recebida com erro ou por destinatários indevidos, solicita-se a sua destruição e subsequente aviso para postmaster@sibs.pt. A mensagem foi filtrada por um detector de vírus, pelo que o remetente e a empresa não se responsabilizam por danos provocados por terceiros no sistema de informação do destinatário.
+
+WARNING. The message or attachments, if any, may be subject to professional confidentiality, personal data protection, copyright or other legal disclosure restrictions, and, therefore, access by anyone else is subject to the senders’ authorization. Any views expressed do not necessarily reflect those of SIBS. If you are not the intended addressee or have received this e-mail in error, please delete it and notify postmaster@sibs.pt. A virus checker sweeps outgoing e-mail. Therefore, neither the sender nor the company accept any responsibility or liability whatsoever for any adverse effects on your systems or data arising from intercepted, corrupted or virus-infected e-mail.","RE: Netwrix Support Ticket #440965 -  - 00440965 - DLP strategies and effectiveness towards detecting card data.    [ ref:!00D70091pB.!500Qk0NgXS9:ref ]","techsupport@netwrix.com","Netwrix Support","plataformas.suporte@sibs.com","","","true","2025-04-24T12:10:03.000Z","true"

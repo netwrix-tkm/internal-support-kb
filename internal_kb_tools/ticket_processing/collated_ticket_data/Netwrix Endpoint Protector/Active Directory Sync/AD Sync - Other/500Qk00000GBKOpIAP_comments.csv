@@ -1,0 +1,66 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009PbyTIAS","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the Following Fields have been updated: 
+Account ACV has been changed to 13595.119999999999590.
+Priority has been changed to Medium.","005Qk000001nViDIAU","2024-10-01T12:47:43.000Z","2024-10-01T12:47:43.000Z","false","false"
+"00aQk000009Pc05IAC","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the Following Fields have been updated: 
+Account ACV has been changed to 6797.559999999999795.","005Qk000001nViDIAU","2024-10-01T12:47:44.000Z","2024-10-01T12:47:44.000Z","false","false"
+"00aQk000009lpzaIAA","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the new comment has been added: Hi, the customer did a follow up on this ticket as there is no reply for more then 2 weeks,","005Qk000001nViDIAU","2024-10-21T07:30:18.000Z","2024-10-21T07:30:18.000Z","false","false"
+"00aQk000009nNKrIAM","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-22T10:31:12.000Z","2024-10-22T10:31:12.000Z","false","false"
+"00aQk000009nNKtIAM","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the new comment has been added: Augustina Sidor:
+
+Please confirm if, after each UI modification, the changes were saved and then synced.
+
+For example, if the Active Directory Administrators Group was modified in the UI, you need to click Save, and then perform Sync AD Administrators; otherwise, the new group will not be considered, and the sync will continue to use the data from the database.
+
+Therefore, for any modification of the fields in AD via the UI, you must click Save and then perform Sync.
+
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11093806]","0054u000006gtWUAAY","2024-10-22T10:31:13.000Z","2024-10-22T10:31:13.000Z","false","false"
+"00aQk000009nIQ4IAM","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the new comment has been added: Hi @Augustina, I confirm that I always used the Save button after each modification on the UI and only then we tried the Import,","005Qk000001nViDIAU","2024-10-22T11:00:40.000Z","2024-10-22T11:00:40.000Z","false","false"
+"00aQk000009omM1IAI","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViDIAU","2024-10-23T11:15:07.000Z","2024-10-23T11:15:07.000Z","false","false"
+"00aQk000009p2dhIAA","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-23T14:50:10.000Z","2024-10-23T14:50:10.000Z","false","false"
+"00aQk000009p2djIAA","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the new comment has been added: Levente-Cristian Fangli:
+
+I have verified the issue on our test domain server and below you will find the preconditions and the scenarios tested:
+Preconditions:
+
+	 - 	 Created a security group called GSADF1P_0000iqa_CoSoSysEPP-NPASuperAdmins_P in our AD test server  to be able to simulate the customers issue
+	 - 	Created a user called NPF1A0000o67EPPSyncP and added to the GSADF1P_0000iqa_CoSoSysEPP-NPASuperAdmins_P  group
+
+1st Scenario: test on a server updated to 5940 the AD setup
+
+After entering the correct information (without typos) for the AD setup and saving the changes, the Connection Test was successful, Sync AD administrator after connection test was also successful. Login with the domain user to EPP was successful
+
+2nd Scenario: test on the 5940 server clean image The AD Setup
+The same setup as in the first Scenario. The outcome was the same. Test Connection: Successful, Sync AD successful. Login with the domain user successful
+
+3rd scenario: modify on the Domain server the user logon name, change it on the EPP server too
+After changing user logon name (not the Pre Win 2000 logon name) on the Domain server, update the config on EPP and save the changes. Outcome: For Connection Test: success, for Sync AD: Success, Login with the modified AD credentials: failure. For the second time in the EPP server when testing the Connection, the connection failed. 
+
+4th scenario: introduce a typo in the Domain Name field on the EPP server
+I have modified the separator from the Domain Name field. Example: from DC=qaepp,DC=Com to
+DC=qaepp.DC=com and saved the changes: Result: Test Connection: Successful, Sync AD: ""Group not found or no users present in group!"" error message! Login with AD credentials: failure
+
+5th scenario: change the value in the Domain name field from the EPP Server:
+Example: Change the DC=qaepp,DC=com to DC=qaepp,DC=net
+Result: Test Connection: Successful, Sync AD: ""Group not found or no users present in group!"" error message! Login with AD credentials: failure. The issue is similar to the customers issue
+
+Conclusions: Connection successful was displayed in many of the cases, even if the domain name was changed. 
+The  ""Group not found or no users present in group!"" error message was displayed only when there was an incorrect domain name or wrong separator. In all of the cases the changes were saved before using the Test Connection and Sync AD buttons. 
+
+FYI: @WaitingOnEngineer
+
+[DevOps CommentId:11103077]","0054u000006gtWUAAY","2024-10-23T14:50:11.000Z","2024-10-23T14:50:11.000Z","false","false"
+"00aQk000009pwRNIAY","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViDIAU","2024-10-24T07:37:31.000Z","2024-10-24T07:37:31.000Z","false","false"
+"00aQk000009rKWTIA2","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViDIAU","2024-10-25T09:30:03.000Z","2024-10-25T09:30:03.000Z","false","false"
+"00aQk000009rKWVIA2","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the Following Fields have been updated: 
+Account ACV has been changed to 13595.119999999999590.","005Qk000001nViDIAU","2024-10-25T09:30:07.000Z","2024-10-25T09:30:07.000Z","false","false"
+"00aQk000009rIOEIA2","500Qk00000GBKOpIAP","On Escalation Ticket # 00422548 the Following Fields have been updated: 
+Account ACV has been changed to 6797.559999999999795.","005Qk000001nViDIAU","2024-10-25T09:30:09.000Z","2024-10-25T09:30:09.000Z","false","false"

@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MN2PTIA1","00437221","Support Ticket","Upgrading the agent from the console will revert department to defdep","Hi team,
+i just received a question from the sales team on behalf of a prospect which is:
+TK automotive systems GmbH, amount: EUR 47.000, size: 1000 endpoints
+
+The usecase is:
+they estimate that they will have about 10 departments within EPP.
+they want to be able to upgrade the agents by using our upgrade feature from the EPP console but make sure that the department of the machines do not change during the upgrade.
+
+I have tested this on my machine several times to make sure and as it stands right now, by upgrading the agent from the EPP console, the agent will revert to defdep after being upgraded.
+This is also the case when upgrading manually using the installation package. If the dep code isnt specifically mentioned in the title of the msi, it will revert to defdep.
+
+Please open a bug/enhancement request to hopefully have this addressed.
+
+Regards,
+
+Andreas","","Andreas reported a case where a prospect is complaining about the EPP client installation where the client would revert back to the default department instead of the one that they configured it for.
+
+Now Andreas tested manually with the command msiexec.exe /i pathtotheeppclientmsi/EPPClientSetup.5.8.0.1_x86_64.msi /qn and also by upgrading from the EPP server and each time, the department reverted to defdep.
+
+The only time it did work was when the department was mentioned in the title of the MSI package
+
+On our side we did the classic installation of the package manually(double click as an admin and then next next next but we did not encountered that).","Will wait for further details from the RD team.","Andreas confirmed that the test built is working as expected with the departments.","","Marian Ilies","Unexpected Behavior","Netwrix Endpoint Protector","Client","Client Upgrade","","","24.8","Closed - Resolved","Netwrix","Andreas Ster","2025-02-27T12:58:10.000Z","2025-03-24T08:33:15.000Z"

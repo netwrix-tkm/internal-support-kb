@@ -1,0 +1,46 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Cp7YSIAZ","00414429","Support Ticket","Please check out the different periods of scheduled audit logs between DC and CAP (or eDiscovery).","Hi Support team,
+
+
+This isssue is from Cyberlogitec and Musina payments. You can find the admin-emails of these customers below:
+- <a href='https://djjeon@cyberlogitec.com' target='_blank'>djjeon@cyberlogitec.com</a>
+- <a href='https://seungha.lee@musinsapayments.com' target='_blank'>seungha.lee@musinsapayments.com</a>
+
+
+They use the schedule backup in the 'System Maintence > Audit Log Backup' section. It is attached the setting for it. Both of them do not use SIEM. Their EPP version is 5.9.3.0. It briefly describes like below: 
+- the frecuency for the backup: Every month
+- what logs to backup: Older than 1 month
+- Average number of logs in one pack: 1,000,000
+
+
+[Issue]
+The DC backup logs include one month's logs per pack, whereas the CAP (or eDiscovery) backup logs include two months' logs per pack. The difference in the log periods included per pack is causing confusion for the customers.
+
+
+[Question]
+Is the difference in the log periods included per pack a normal design or an issue?
+
+
+[Detailed info]
+
+#1. scheduled_audit_logs_2024-04_02-03_20_01 (April 2, 2024 Backup)
+- olog (DC logs): Feb 01, 2024 - March 01, 2024
+- cflog (CAP logs): Feb 01, 2024 - April 02, 2024
+
+#2. scheduled_audit_logs_2024_05_02-03_20_01 (May 2, 2024 Backup)
+- olog (DC logs): March 02, 2024 - April 01, 2024
+- cflog (CAP logs): March 02, 2024 - May 02, 2024
+
+#3. scheduled_audit_logs_2024_06_01-03_20-01 (June 01, 2024 Backup)
+- olog (DC logs): April 01, 2024 - May 01, 2024
+- cflog (CAP logs): April 01, 2024 - June 01, 2024
+
+Please kindly check it out.
+
+Have a nice day!
+Thank you for your support.
+
+
+
+Best Regards,
+Jack Jung","","","","No further updates received since 23 July 2024 - Case Closed.","","Andre Le Roux","","Netwrix Endpoint Protector","EPP Other","Other","NONE","","85.2","Closed - Resolved","CoSoSys Korea","Support Netwrix","2024-07-09T08:50:36.000Z","2024-10-02T13:30:08.000Z"

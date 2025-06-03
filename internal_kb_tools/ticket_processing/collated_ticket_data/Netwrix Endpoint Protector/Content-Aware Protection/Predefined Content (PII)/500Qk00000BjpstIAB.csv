@@ -1,0 +1,38 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000BjpstIAB","00411679","Support Ticket","Email Alerts","After the created the WhatsApp blocking policy for PII documents it can't  be blocking When upload the file and text , Even we upgrading the server also same issue as come. And another one Lark  software we created policy for blocking in PII document, file was blocking when upload .But when send as text as PII related it won't be blocked. Last issue was Smtp mail server was not working .","","Customer have email alerts issues.
+
+The EPP server send the alert with the root@server , which is not a real user and cannot be checked by the mail server. 
+
+They also use an relay.","Waiting update from R&D
+
+Provided the R&D response to the customer to check their server FQDN on the mail server settings.
+
+We had a new session with the customer where we have checked and received the test email, but the endpoint didn't have connection with the server so we can test. 
+
+After performing an uninstall and reinstall we could communicate with the server.
+
+We have also create a device control alert, which hasn't been received. 
+
+We will reschedule the session for the next week to check if the alert will be sent.
+
+In the meeting we have changed the ownership of the Mailer folder, who is responsible with the alerts, from root to www-data . 
+
+Once we perform this step, the alerts started to be received by your email address.
+
+We have agreed with the customer to monitor the alerts, and if they will encounter issues they will let us know. 
+
+Customer is in the testing phase and will let us know if the case can be closed.
+
+15-04
+In the meeting we have performed the following steps:
+- we have removed the pending emails from the database
+- restarted the mailer alerts
+- verifying the mail.log that shows that the emails are being sent.
+
+After we have re-added the Email Server Settings on the EPP console and sent the test email, the alerts started to be received by your inbox. 
+
+We have also tested with Siva' devices for 3 times and all the email alerts were sent and visible in your inbox.
+
+A new test was performed with an additional user, which was also successful.
+
+17-04 we performed a follow up to the customer to check if we can proceed with the closure of this case.","fixed","Incorrect configuration: Netwrix product","Daniel Anton","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","Predefined Content (PII)","","","314.2","Closed - Resolved","Shakta Technologies Pvt Ltd","Lokesh N","2024-06-12T05:31:20.000Z","2025-04-22T10:32:45.000Z"

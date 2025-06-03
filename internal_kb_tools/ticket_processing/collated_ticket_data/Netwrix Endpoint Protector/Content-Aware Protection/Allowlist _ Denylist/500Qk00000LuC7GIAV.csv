@@ -1,0 +1,101 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LuC7GIAV","00435959","Support Ticket","Blocklist - specific URL to be blocked","Hi,
+I need to block an specific URL (<a href='https://dropbox.com/login' target='_blank'>dropbox.com/login</a>), and allow the general URL (<a href='https://dropbox.com' target='_blank'>dropbox.com</a>). Can you help me understand how to do it, please?","","5/1/2025
+
+- Sent customer follow up email - third attempt
+
+4/28/2025
+
+- Sent customer follow up email - second attempt
+
+4/23/2025
+- Sent customer follow up email
+
+4/15/2025
+- Devops team updated ticket with response that currently Our product blocks access using only the domain (www.dropbox.com), and not the URL path (/login).
+
+However, if there is a need for this to be implemented, the customer can submit a feature request regarding this. 
+
+- Sent email to customer informing him that it is not currently possible to implement and that he can open a feature request.
+
+3/12/2025
+- Requested update on escalation ticket
+
+3/4/2025
+
+Updated escalation ticket 00436501
+
+2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+- Updated Ticket Number # 00436501 
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","Awaiting customer's response","Customer has submitted a New Feature request through the channel and has requested to close case","Deployment/Installation","Ramon Torres","Question","Netwrix Endpoint Protector","Content-Aware Protection","Allowlist / Denylist","","","89.1","Closed - Resolved","Trustly","Rodrigo Monteiro","2025-02-14T19:10:04.000Z","2025-05-14T21:56:17.000Z"

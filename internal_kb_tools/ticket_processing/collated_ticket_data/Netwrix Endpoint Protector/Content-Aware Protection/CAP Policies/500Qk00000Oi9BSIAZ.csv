@@ -1,0 +1,38 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Oi9BSIAZ","00443896","Support Ticket","[Prodia] EPP Client Behaviour on Blocking File Upload in Zoom Meeting Chat","Hi Support, 
+
+We are experiencing an issue with the Windows Endpoint Protector Client (6.2.4.2 ) that is impacting our users' ability to share files through Zoom meeting chat.
+
+Specifically, the Endpoint Protector Client seems to be automatically blocking file uploads and displaying a notification as soon as a user attempts to open the file explorer window within the Zoom chat to select a file. This blocking and notification occur even before any file has been selected or uploaded.
+
+We have attempted a few troubleshooting steps on the user's machine. We changed the view option in the file upload explorer from ""details"" to ""list"" and also disabled the preview pane. While this seemed to resolve the issue temporarily, the problem reappears whenever the user rejoins the meeting and tries to open the file upload explorer in the Zoom chat again.
+
+We would like to understand if this is the expected behavior of the Endpoint Protector Client in conjunction with Zoom. If so, could you please provide a more detailed explanation of why this is occurring?
+
+I have attached a video recording demonstrating the behavior. I will also be sharing the relevant logs from the affected computer as soon as they are retrieved.
+
+Thank you for your time and assistance.
+
+Regards,","","02/05/2025
+Halodata reported an issue with a client that's having difficulties with uploading files through Zoom.
+
+06/05/2025
+
+Connected remote through the client's device to take a look at the issue.
+
+Seems like the actual problem they have is that, for Zoom, whenever they attempt to upload something, there's a pop up that comes up directly which tells them an MP3 file was blocked even though they did not tried to upload it( the mp3 is in the same folder as the file they want to upload).
+
+Their problem seems that this pop up comes random whenever they just browse for files.
+
+Checked the CAP Reports and the policy from which it comes from and saw they had MP3 selected as filetype. Also the testing machine had DPI enabled.
+
+Client refused to test without DPI enabled and also refused to check on other folders to see if this issue comes up motivating that given this happens with multiple machines from multiple folders, it would be useless.
+
+We already have logs from two machines they provided along with a recording. Nothing was changed from that moment to now, everything is the same.","02/05/2025
+Will have to get this internally and get back to the client.
+
+06/05/2025
+Will have to get this internally and get back to the client.","This behavior is due to the fact that DPI does not work with Zoom.
+By simply browsing through a directory to chose a file, the EPP simply reports to make sure they are scanned so we can have them reported(this ensures a comprehensive security measure).
+
+In simple terms, this is an expected behavior and not a bug.","Other","Marian Ilies","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","NONE","","28.1","Closed - Resolved","Halodata International Pte Ltd","Denni Prima Putra Roli Sembiring","2025-05-02T12:27:22.000Z","2025-05-30T15:05:32.000Z"

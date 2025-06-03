@@ -1,0 +1,29 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LSu84IAD","00434625","Support Ticket","EPP error","Hello again, 
+
+I just received the new license file for our renewal. I was going to apply it, but I am running into this issue, which is why I think martin reached out originally. 
+Let me know if you have some availability tomorrow or Thursday, or if it’s a simple fix, just send it over and I’ll try it. 
+I believe our license expires on the 9th of this month. 
+
+Thanks, 
+
+Dominic","","CIPHER SSL error is no longer present, but we got ERR_CONNECTION_RESET, but only on the EPP UI page, other webpages were accessible. Tried the below:
+
+- different browsers
+- http - client download page is accessible
+- ifconfig looks okay
+- services are running(nginx, php, mysql)
+- rebooted the EPP server 2 times
+- added in epp.nginx.conf file TLSv1.3(already had 1 and 1.2 added)
+- checked epp.nginx.conf file - looked okay. Also added port 8443 instead of 443, but UI was still giving the same error.
+- customer said that the ports were not blocked and that there is no firewall between the computer we tested on and the VM where the EPP server is hosted.
+
+---
+CIPHER SSL error","05Feb: Raised R&D escalation. 
+
+04Feb: Scheduling RS.","Resolved by editing epp.nginx.conf file and removing TLSv1 . TLSv1.3 - UI was accessible, but EPP clients did not communicate. Added TLSv1.2 and then both UI and EPP clients worked/communicated.
+
+Also:
+- cleared system disk space from 77% occupied to around 50%
+- optimized the resources - this should help with UI performance/speed
+- applied all backend security upgrades","","Flaviu Moldovan","Error","Netwrix Endpoint Protector","Server","Server Access Error","","","6.0","Closed - Resolved","Viskase Companies","Martin Polaszewski","2025-02-04T19:58:21.000Z","2025-02-10T20:57:42.000Z"

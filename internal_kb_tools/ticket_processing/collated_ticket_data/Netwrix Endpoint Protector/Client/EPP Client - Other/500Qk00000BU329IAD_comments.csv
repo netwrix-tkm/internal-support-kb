@@ -1,0 +1,289 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007kJmoIAE","500Qk00000BU329IAD","screenshots and info were provided to R&D","005Qk000001nViBIAU","2024-07-04T21:14:45.000Z","2024-07-04T21:14:45.000Z","false","false"
+"00aQk000007z2s5IAA","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Account ACV has been changed to 81709.50.","0054u000006gtWUAAY","2024-07-17T14:54:11.000Z","2024-07-17T14:54:11.000Z","false","false"
+"00aQk000007z2sKIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Oana-Cristina Rus:
+
+The customer has set an automatic license release schedule for computers that have not been active in the last 60 days.
+
+In the backend, we have a cron job that runs every day.
+For each computer from the database, we delete the certificate, release the license, and set the reregister flag.
+The reason why the computers reappear in the computer list is because of the reregister flag.
+
+I would appreciate it if you could check the last seen column for a computer that has reappeared in the list and is not from AD and share with us all the details.
+I'm wondering why the client didn't remove the agents for these computers since most of them have been decommissioned.
+
+[DevOps CommentId:10511693]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2sJIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Eduard-Alexandru Nut:
+
+They did not uninstall the agent, but they have been offline for more than 6 months as the last seen dates are from 2023 so they did not connect to the server. Most of them have been decommissioned.
+
+[DevOps CommentId:10502999]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2sIIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Oana-Cristina Rus:
+
+Can you confirm if the customer uninstalled the agent for the deleted computers or if the computers were only removed from the computer list?
+
+[DevOps CommentId:10499177]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2sHIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi @Eduard-Alexandru Nut,
+I do not have any update at the moment.
+
+I will try to assign this ticket as soon as possible.
+
+Regards,
+Cristi
+
+[DevOps CommentId:10486210]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2sGIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Eduard-Alexandru Nut:
+
+@Cristian-Alexandru Halmajan The customer is requesting an update. Can you help me provide one?
+
+[DevOps CommentId:10484149]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2sPIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Michael Paye:
+
+[Force comment sync]
+
+[DevOps CommentId:10587420]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2sOIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Oana-Cristina Rus:
+
+We need to reregister all the computers:
+
+DELETE FROM certificate;
+UPDATE license set assigned_to = NULL;
+UPDATE clientmachine  set reregister = 1, trialversion = null WHERE deleted = 0;
+
+After that, when the agent communicates with the server, the computer is licensed and online. Else, it remains as unlicensed.
+
+[DevOps CommentId:10566483]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2sNIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Eduard-Alexandru Nut:
+
+@Oana-Cristina Rus The computers are not returning after the hotfix was applied so that issue is fixed for them.
+They do have a question, how can we make sure that the computers that do not have a license but show up as licensed are synced to normal status? Without deleting of course.
+
+[DevOps CommentId:10564910]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2sMIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Oana-Cristina Rus:
+
+@Eduard-Alexandru Nut, Please set up a remote connection with the client and also include Augustina in the call.
+
+[DevOps CommentId:10540465]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2sLIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Eduard-Alexandru Nut:
+
+@Oana-Cristina Rus I attached the screenshots.
+the customer has a different team decommissioning and he doesn't know if or why the agent was not uninstalled.
+also released licenses from the backend older that two days, and they are still there as seen in one of the screenshots
+
+Please let me know the fix or next steps
+
+[DevOps CommentId:10532902]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk00000878XJIAY","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-24T05:00:50.000Z","2024-07-24T05:00:50.000Z","false","false"
+"00aQk00000878XLIAY","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-07-12 08:58 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10612553]","0054u000006gtWUAAY","2024-07-24T05:00:51.000Z","2024-07-24T05:00:51.000Z","false","false"
+"00aQk0000088QgfIAE","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViKIAU","2024-07-24T22:08:16.000Z","2024-07-24T22:08:16.000Z","false","false"
+"00aQk000008H6ArIAK","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-01T05:00:39.000Z","2024-08-01T05:00:39.000Z","false","false"
+"00aQk000008H6AtIAK","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-07-12 08:58 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10657047]","0054u000006gtWUAAY","2024-08-01T05:00:39.000Z","2024-08-01T05:00:39.000Z","false","false"
+"00aQk000008IIEnIAO","500Qk00000BU329IAD","Can you please provide an update on this ticket? It has been open for a while and I want to give an update to the customer","005Qk000001nViBIAU","2024-08-01T21:47:28.000Z","2024-08-01T21:47:28.000Z","false","false"
+"00aQk000008PKF4IAO","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-07-12 08:58 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10699402]","0054u000006gtWUAAY","2024-08-08T05:00:39.000Z","2024-08-08T05:00:39.000Z","false","false"
+"00aQk000008Pm9jIAC","500Qk00000BU329IAD","I see the ticket is in waiting for support status, but I have not received an update regarding this ticket.
+Can you please check and make sure the status is correct, and also assign an engineer to provide some updates?","005Qk000001nViBIAU","2024-08-08T14:18:18.000Z","2024-08-08T14:18:18.000Z","false","false"
+"00aQk000008TA2cIAG","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-07-12 08:58 UTC and no response has been detected.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10719084]","0054u000006gtWUAAY","2024-08-12T05:00:39.000Z","2024-08-12T05:00:39.000Z","false","false"
+"00aQk000008TAAgIAO","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-07-12 08:58 UTC and no response has been detected.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10719084]","0054u000006gtWUAAY","2024-08-12T05:00:41.000Z","2024-08-12T05:00:41.000Z","false","false"
+"00aQk000008eBhhIAE","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Account ACV has been changed to 107878.756.","0054u000006gtWUAAY","2024-08-21T05:00:39.000Z","2024-08-21T05:00:39.000Z","false","false"
+"00aQk000008eBhjIAE","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-13 06:27 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10791998]","0054u000006gtWUAAY","2024-08-21T05:00:40.000Z","2024-08-21T05:00:40.000Z","false","false"
+"00aQk000008ecLJIAY","500Qk00000BU329IAD","@Cristian Halmajan, can you please provide an update?","005Qk000001nViBIAU","2024-08-21T14:13:05.000Z","2024-08-21T14:13:05.000Z","false","false"
+"00aQk000008mE2UIAU","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-13 06:27 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10839555]","0054u000006gtWUAAY","2024-08-28T05:00:49.000Z","2024-08-28T05:00:49.000Z","false","false"
+"00aQk000008mnoDIAQ","500Qk00000BU329IAD","@Cristian Halmajan, can you please help provide an update to the customer?","005Qk000001nViBIAU","2024-08-28T15:01:14.000Z","2024-08-28T15:01:14.000Z","false","false"
+"00aQk000008tocIIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-13 06:27 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10870451]","0054u000006gtWUAAY","2024-09-04T05:01:38.000Z","2024-09-04T05:01:38.000Z","false","false"
+"00aQk000008uGv8IAE","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViBIAU","2024-09-04T14:52:24.000Z","2024-09-04T14:52:24.000Z","false","false"
+"00aQk000008uLd3IAE","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-04T14:52:31.000Z","2024-09-04T14:52:31.000Z","false","false"
+"00aQk000008uJkxIAE","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViBIAU","2024-09-04T14:52:53.000Z","2024-09-04T14:52:53.000Z","false","false"
+"00aQk000009268zIAA","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-11T05:01:36.000Z","2024-09-11T05:01:36.000Z","false","false"
+"00aQk0000092691IAA","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-13 06:27 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10906629]","0054u000006gtWUAAY","2024-09-11T05:01:37.000Z","2024-09-11T05:01:37.000Z","false","false"
+"00aQk0000092q29IAA","500Qk00000BU329IAD","Are there any updates that I could provide to the customer?","005Qk000001nViBIAU","2024-09-11T17:09:06.000Z","2024-09-11T17:09:06.000Z","false","false"
+"00aQk0000092q5NIAQ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViBIAU","2024-09-11T17:09:29.000Z","2024-09-11T17:09:29.000Z","false","false"
+"00aQk0000094xNhIAI","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-13T05:01:42.000Z","2024-09-13T05:01:42.000Z","false","false"
+"00aQk0000094xNjIAI","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-13 06:27 UTC and no response has been detected.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10920014]","0054u000006gtWUAAY","2024-09-13T05:01:43.000Z","2024-09-13T05:01:43.000Z","false","false"
+"00aQk0000095TYrIAM","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViBIAU","2024-09-13T14:47:37.000Z","2024-09-13T14:47:37.000Z","false","false"
+"00aQk000009DHsIIAW","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-20T10:12:05.000Z","2024-09-20T10:12:05.000Z","false","false"
+"00aQk000009cP3SIAU","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Could anyone please provide an update for the customer?","005Qk000001nViBIAU","2024-10-11T21:00:17.000Z","2024-10-11T21:00:17.000Z","false","false"
+"00aQk000009cKgUIAU","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViBIAU","2024-10-11T21:01:07.000Z","2024-10-11T21:01:07.000Z","false","false"
+"00aQk000009ykCUIAY","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Can someone please update me on this item?","005Qk000001nViBIAU","2024-10-31T23:26:38.000Z","2024-10-31T23:26:38.000Z","false","false"
+"00aQk00000A25KPIAZ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-04T19:18:12.000Z","2024-11-04T19:18:12.000Z","false","false"
+"00aQk00000A25KRIAZ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Oana-Cristina Rus:
+
+Computers appear again on the computer list in the following situation:
+1. The agent is not uninstalled, and at a certain time when communication between the computer and the agent is established, the computer will appear in the UI.
+2. When they have an AD sync, every time it finds a change in one of those groups, if the computer is present, it will be brought back to the interface.
+
+What can you do in this situation?
+1. Delete the AD Sync.
+2. Uninstall all computers from the UI.
+3. Delete the computers from the UI after a few days.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11167974]","0054u000006gtWUAAY","2024-11-04T19:18:13.000Z","2024-11-04T19:18:13.000Z","false","false"
+"00aQk00000A2OeoIAF","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Hi Oana, what you mentioned in the first two points is something we know and always check for.
+In the meeting with the customer that led to this R&D escalation, what happened here is that the computers were deleted from the web console, and the message that they were deleted appears. We refresh the page, and the computers are still there. Both times, before deleting and after, the last seen was more than two months ago, so if they had communicated again, the last seen should have been updated. An AD sync does not occur so fast. They are set for every six hours, and they reappear after a page refresh.
+Your suggestions to uninstall agents and delete all computers are not viable as they have production servers that cannot have a deny right on devices for even a second, which happens on installation before the first policy update.
+If you only meant the computers that need to be removed, most of them are decommissioned already and they no longer communicate with the server to receive the uninstall command.
+Please let me know what information I could provide or gather from the customer to help in your investigation.","005Qk000001nViBIAU","2024-11-04T23:13:43.000Z","2024-11-04T23:13:43.000Z","false","false"
+"00aQk00000A2OgPIAV","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViBIAU","2024-11-04T23:14:00.000Z","2024-11-04T23:14:00.000Z","false","false"
+"00aQk00000A2uEtIAJ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+""In the meeting with the customer that led to this R&D escalation, what happened here is that the computers were deleted from the web console, and the message that they were deleted appears. We refresh the page, and the computers are still there.""
+
+This is the first time the issues is described like this in the ticket. Can you prepare a short recording with this scenario for us to review? Please also include in the video the ""Development Tools"" logs from the browser, to check for any Javascript errors that may happen.
+
+""Both times, before deleting and after, the last seen was more than two months ago, so if they had communicated again, the last seen should have been updated. An AD sync does not occur so fast. They are set for every six hours, and they reappear after a page refresh.""
+
+This is incorrect. In case the computers communicate erroneously, they will apear in the UI and the last seen attibute may not be updated. This is not enough to make the conclusion that the clients are not communicating. In order to do this, you need to open the nginx and webservice logs and check for requests from those computers.
+
+""Your suggestions to uninstall agents and delete all computers are not viable as they have production servers that cannot have a deny right on devices for even a second, which happens on installation before the first policy update.
+If you only meant the computers that need to be removed, most of them are decommissioned already and they no longer communicate with the server to receive the uninstall command.""
+
+Of course, only uninstall the agents from the affected computers, not all the deployment. What does decomission mean in this case? you mentioned in a previous post that the computers were decomissioned but the agent was not un-installed. As long as the agent is  installed, theere is ALWAYS the posibility that they communicate and appear in the UI, even if they no longer have a license assigned or the connection is erroneous.
+
+""Please let me know what information I could provide or gather from the customer to help in your investigation.""
+
+Please try to reach a conclusion in regards to the requests above, and in case no conclusion can be reached after the checks, schedule a remote connection as we requested back in July. 
+
+Thanks!
+
+[DevOps CommentId:11171836]","0054u000006gtWUAAY","2024-11-05T12:17:35.000Z","2024-11-05T12:17:35.000Z","false","false"
+"00aQk00000A2uErIAJ","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-05T12:17:35.000Z","2024-11-05T12:17:35.000Z","false","false"
+"00aQk00000A3DW1IAN","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViBIAU","2024-11-05T16:32:50.000Z","2024-11-05T16:32:50.000Z","false","false"
+"00aQk00000AAUofIAH","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViBIAU","2024-11-11T18:22:56.000Z","2024-11-11T18:22:56.000Z","false","false"
+"00aQk00000ACSAsIAP","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-13T05:01:34.000Z","2024-11-13T05:01:34.000Z","false","false"
+"00aQk00000ACSAuIAP","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-11-05 12:17 UTC and the last detected comment from support was 2024-11-04 23:13 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11206040]","0054u000006gtWUAAY","2024-11-13T05:01:35.000Z","2024-11-13T05:01:35.000Z","false","false"
+"00aQk00000AD07jIAD","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: this item can be closed. issue is resolved.","005Qk000001nViBIAU","2024-11-13T15:14:57.000Z","2024-11-13T15:14:57.000Z","false","false"
+"00aQk00000AD4CvIAL","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViBIAU","2024-11-13T15:15:07.000Z","2024-11-13T15:15:07.000Z","false","false"
+"00aQk00000AD4MbIAL","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViBIAU","2024-11-13T15:15:34.000Z","2024-11-13T15:15:34.000Z","false","false"
+"00aQk00000AD4MdIAL","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Account ACV has been changed to 215757.512.","005Qk000001nViBIAU","2024-11-13T15:15:37.000Z","2024-11-13T15:15:37.000Z","false","false"
+"00aQk00000AD4PpIAL","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Account ACV has been changed to 107878.756.","005Qk000001nViBIAU","2024-11-13T15:15:43.000Z","2024-11-13T15:15:43.000Z","false","false"
+"00aQk00000AD7E2IAL","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Oana-Cristina Rus:
+
+Mark as 'Done' based on the comments below.
+
+[DevOps CommentId:11211334]","0054u000006gtWUAAY","2024-11-13T15:42:42.000Z","2024-11-13T15:42:42.000Z","false","false"
+"00aQk00000AD1VDIA1","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the new comment has been added: Oana-Cristina Rus:
+
+Mark as 'Done' based on the comments below.
+
+[DevOps CommentId:11211334]","0054u000006gtWUAAY","2024-11-13T15:42:43.000Z","2024-11-13T15:42:43.000Z","false","false"
+"00aQk00000ADATfIAP","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Account ACV has been changed to 215757.512.","005Qk000001nViBIAU","2024-11-13T16:28:34.000Z","2024-11-13T16:28:34.000Z","false","false"
+"00aQk00000ADC7FIAX","500Qk00000BU329IAD","On Escalation Ticket # 00412272 the Following Fields have been updated: 
+Account ACV has been changed to 107878.756.","0054u000006gtWUAAY","2024-11-13T16:28:46.000Z","2024-11-13T16:28:46.000Z","false","false"

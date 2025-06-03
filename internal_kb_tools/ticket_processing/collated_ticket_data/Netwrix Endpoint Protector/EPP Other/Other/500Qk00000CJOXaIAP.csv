@@ -1,0 +1,8 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CJOXaIAP","00413054","Support Ticket","MacOS Stealth Mode not working as expected","Hello guys, we had discovered that the MacOS Stealth Mode which is a built-in firewall feature is not working with the EPP client deployed on endpoints. Basically with Stealth Mode turned ON the machine cannot be reacheable to any pings even from a private network. With EPP client deployed the request ping is responding like Stealth Mode is turned OFF. I've removed the EPP agent for testing purposes and it looks like the Stealth Mode is working as expected without agent. Could you please advice on this? Thanks!","","","","After further analysis we have determined that this probably happens because you have enabled DPI on that MacOS machine without enabling also ""Intercept VPN traffic"" option.
+Both of this approaches should resolve the issue :
+1. DPI enabled + ""Intercept VPN traffic"" enabled
+or
+2. DPI disabled
+
+Afterwards you may need to disable and enable again MacOS Stealth Mode in order for the change to take effect.","","Alin Decean","","Netwrix Endpoint Protector","EPP Other","Other","","","13.3","Closed - Resolved","The Stars Group Interactive Services / Flutter International","Alexandru Hojda","2024-06-26T08:56:37.000Z","2024-07-09T15:01:15.000Z"

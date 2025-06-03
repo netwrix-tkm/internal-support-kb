@@ -1,0 +1,97 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BkWUqIAN","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the new comment has been added: Hello,
+
+We managed to stop the flood of messages by doing the following:
+
+1. service nginx stop
+2. Edit /etc/systemd/journald.conf
+3. Find this line:
+   #ForwardToWall=yes
+   and change it to
+   ForwardToWall=no
+4. systemctl restart systemd-journald
+5. service nginx start
+
+The messages stopped, and the logs continued to be generated.
+
+Follow-up question, is there a way to test the connection to their SIEM server if they configured it with a UDP protocol?
+
+Thanks,
+Boti","005Qk000001nVi2IAE","2025-02-11T18:30:28.000Z","2025-02-11T18:30:28.000Z","false","false"
+"00aQk00000BoUUQIA3","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-14T15:56:14.000Z","2025-02-14T15:56:14.000Z","false","false"
+"00aQk00000BoUUSIA3","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the new comment has been added: Oana-Cristina Rus:
+
+Hi,
+
+Please check the following:
+
+--- CODE ---telnet IP_SIEM PORT
+--- CODE ---
+
+If telnet IP_SIEM PORT returns an error, it usually means one of the following issues:
+      1. The SIEM server is not listening on the specified port.
+
+      2. A firewall is blocking the connection.
+
+      3. The service on that port is down or misconfigured.
+
+--- CODE ---
+ping IP_SERVER
+--- CODE ---
+
+Share with us the syslog errors.
+
+--- CODE ---
+ls -al /etc/syslog-ng/conf.d/
+--- CODE ---
+
+
+--- CODE ---
+tcpdump -vv port <PORT>
+--- CODE ---
+
+Captures both TCP and UDP traffic on the specified port
+
+
+--- CODE ---
+tcpdump -n udp port <PORT>
+--- CODE ---
+
+Captures only UDP packets on the specified port
+
+You can test the connection to a SIEM server configured with a UDP protocol
+
+--- CODE ---tcpdump -i any -n udp port <PORT>
+--- CODE ---
+
+
+If you have some other relevant information please share with us.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11653369]","0054u000006gtWUAAY","2025-02-14T15:56:15.000Z","2025-02-14T15:56:15.000Z","false","false"
+"00aQk00000BolS2IAJ","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViHIAU","2025-02-14T18:30:56.000Z","2025-02-14T18:30:56.000Z","false","false"
+"00aQk00000CBU3uIAH","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-07T05:05:02.000Z","2025-03-07T05:05:02.000Z","false","false"
+"00aQk00000CBU3wIAH","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-02-14 15:56 UTC and the last detected comment from support was 2025-02-11 18:30 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11750020]","0054u000006gtWUAAY","2025-03-07T05:05:03.000Z","2025-03-07T05:05:03.000Z","false","false"
+"00aQk00000CBtK1IAL","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViKIAU","2025-03-07T13:44:58.000Z","2025-03-07T13:44:58.000Z","false","false"
+"00aQk00000CBtLdIAL","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-07T13:45:08.000Z","2025-03-07T13:45:08.000Z","false","false"
+"00aQk00000CBtOrIAL","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViKIAU","2025-03-07T13:45:34.000Z","2025-03-07T13:45:34.000Z","false","false"
+"00aQk00000CFt3iIAD","500Qk00000LJZsQIAX","On Escalation Ticket # 00435470 the new comment has been added: Oana-Cristina Rus:
+
+Based on the below comment, the ticket will be marked as closed.
+
+[DevOps CommentId:11764010]","0054u000006gtWUAAY","2025-03-11T09:59:46.000Z","2025-03-11T09:59:46.000Z","false","false"

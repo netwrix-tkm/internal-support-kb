@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KdqEcIAJ","00432222","Support Ticket","Slowness","Dear Netwrix Support,
+
+We are discovering issue when the applications like outlook is selected in order to open a hyperlink it is taking ages. Apart from that there were instances were a hyperlink was opened but another link was actually opening.
+
+This is crucial for us as for instances i had to create anther policy and removed the applications in the policy exists points.","Try to access from Outlook a link while having DPI enabled for the computer","- The customer reports slowness/performance issues when trying to open a hyperlink inside Outlook.
+This is reproducible every time.
+
+- The link that they access during the scenario is https://helpdesk.identita.gov.mt/.... (in order to find the issue related in the log files)
+
+The issue is present with the latest WindowsOS client version 6.2.4.1
+
+- The customer has also reported that the affected user tries to access a hyperlink with which it should approve a process, but when clicking the hyperlink instead of that page, another page was opening as to create a new ticket in their environment. This scenario does not reproduce all the time - randomly.
+
+- No 3rd party security app is used
+
+- The EPP Addin is enabled [screenshot atatched]
+
+-After disabling the policy IT - report only - exit points selected for Browsers and Email, and enabling another policy that has block and report - no exit point selected - the slowness disappeared.
+
+-Logs gathered  + DPI extended logs + DPI configuration screenshot + video recording of the reproduced scenario","Exclude .ost and .pst archive file from the scanning
+Gather logs
+check if the EPP Addin is enabled
+Verify in Task Manager to see the resources","Customer confirmed that the ticket can be closed.","Root Cause Unknown","Alin Anca","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","CAP Exitpoints / Applications","","","72.0","Closed - Resolved","Government (Malta)","Identita Malta","2025-01-15T13:17:07.000Z","2025-03-28T13:45:45.000Z"

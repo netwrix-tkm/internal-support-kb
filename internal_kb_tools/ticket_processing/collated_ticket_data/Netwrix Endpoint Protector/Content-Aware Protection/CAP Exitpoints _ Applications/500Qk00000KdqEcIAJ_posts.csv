@@ -1,0 +1,74 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000UsKiHKAV","500Qk00000KdqEcIAJ","TextPost","0054u000008ARZjAAO","2025-01-15T13:17:08.000Z","Description: Dear Netwrix Support,
+
+We are discovering issue when the applications like outlook is selected in order to open a hyperlink it is taking ages. Apart from that there were instances were a hyperlink was opened but another link was actually opening.
+
+This is crucial for us as for instances i had to create anther policy and removed the applications in the policy exists points.","","","","0054u000008ARZjAAO","2025-01-15T13:17:08.000Z"
+"0D5Qk00000Uwp8xKAB","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-16T13:17:30.000Z","Next Steps Updated: Exclude .ost and .pst archive file from the scanning
+Gather logs
+check if the EPP Addin is enabled
+Verify in Task Manager to see the resources","","","","005Qk000001nViFIAU","2025-01-16T13:17:30.000Z"
+"0D5Qk00000VCXJVKA5","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-21T11:37:12.000Z","Invitation updated. Attendees: Alin Anca","","","","005Qk000001nViFIAU","2025-01-21T11:37:12.000Z"
+"0D5Qk00000VCXJUKA5","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-21T11:37:12.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000001nViFIAU","2025-01-21T11:37:12.000Z"
+"0D5Qk00000VCXJWKA5","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-21T11:37:13.000Z","Invitation updated. Attendees: Alin Anca, Identita Malta","","","","005Qk000001nViFIAU","2025-01-21T11:37:13.000Z"
+"0D5Qk00000VIureKAD","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-22T15:56:19.000Z","Steps to Reproduce Updated: Try to access from Outlook a link while having DPI enabled for the computer","","","","005Qk000001nViFIAU","2025-01-22T15:56:19.000Z"
+"0D5Qk00000VIgM3KAL","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-22T16:02:45.000Z","What We've Learned Updated: - The slowness happens every time
+
+- Windows OS
+
+- The affected user tries to access a hyperlink with which it should approve a process, but when clicking the hyperlink instead of that page, another page was opening as to create a new ticket in their environment. This scenario does not reproduce all the time - randomly.
+
+- No 3rd party security app is used
+
+- The EPP Addin is enabled
+
+- issue is still present even with the latest client 6.2.4.1
+
+-After disabling the policy IT - report only - exit points selected for Browsers and Email, and enabling another policy that has block and report - no exit point selected - the slowness disappeared.
+
+-Logs gathered","","","","005Qk000001nViFIAU","2025-01-22T16:02:45.000Z"
+"0D5Qk00000VJ2NsKAL","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-22T16:15:32.000Z","<p>Found the reproduced event in the log file:</p><p> </p><p>01-22 12:54:10.482 8092 ERROR Could not open file&#39;C:Usersbilog005OneDrive - Malta Information Technology AgencyWhiteboardsAnnotationsAnnotations - Dvisa Setup.whiteboard&#39;, errno: 22, last error: &#39;395&#39; [epp::getFileMd5Hash FileHash.cpp:104]</p><p>01-22 12:54:10.482 8092 DEBUG The file: &#39;C:Usersbilog005OneDrive - Malta Information Technology AgencyWhiteboardsAnnotationsAnnotations - Dvisa Setup.whiteboard&#39; does not exist, errno: 22 [scan_persist::PersistentScanCache::serviceThread PersistentScanCache.cpp:1001]</p><p>01-22 12:54:10.485 38204 INFO  scanning location: &#39;C:PST&#39; [scan_persist::PersistentScanCache::backgroundScan PersistentScanCache.cpp:886]</p><p>01-22 12:54:10.496 38204 INFO  OCR background scan finishing [scan_persist::PersistentScanCache::backgroundScan PersistentScanCache.cpp:891]</p><p>01-22 12:54:11.040 23852 INFO  scan app data request type: 14,x0001, from 3964, size: 8284 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:11.041 23852 INFO  ignoring request to: &#39;outlook.office365.com/mapi/emsmdb/?MailboxId=857ef5f5-a7e4-45ae-8bee-fa5290e90625@gov.mt&#39;, content: &#39;application/mapi-http&#39;, encoding: &#39;&#39;, length: 8252, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:55308 -&gt; 52.98.243.146:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:11.605 23852 INFO  scan app data request type: 14,x0001, from 3964, size: 8289 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:11.605 23852 INFO  ignoring request to: &#39;outlook.office365.com/mapi/emsmdb/?MailboxId=857ef5f5-a7e4-45ae-8bee-fa5290e90625@gov.mt&#39;, content: &#39;application/mapi-http&#39;, encoding: &#39;&#39;, length: 8257, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:54992 -&gt; 52.97.201.242:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:12.172 23852 INFO  scan app data request type: 14,x0001, from 3964, size: 8284 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:12.173 23852 INFO  ignoring request to: &#39;outlook.office365.com/mapi/emsmdb/?MailboxId=857ef5f5-a7e4-45ae-8bee-fa5290e90625@gov.mt&#39;, content: &#39;application/mapi-http&#39;, encoding: &#39;&#39;, length: 8252, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:55103 -&gt; 52.97.201.242:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:12.344 4916 INFO  scan app data request type: 14,x0001, from 3964, size: 28912 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:12.344 4916 INFO  ignoring request to: &#39;roaming-eu.officeapps.live.com/rs/RoamingSoapService.svc&#39;, content: &#39;text/xml; charset=utf-8&#39;, encoding: &#39;&#39;, length: 28880, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:55411 -&gt; 52.109.76.243:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:12.741 4916 INFO  scan app data request type: 14,x0001, from 3964, size: 8289 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:12.741 4916 INFO  ignoring request to: &#39;outlook.office365.com/mapi/emsmdb/?MailboxId=857ef5f5-a7e4-45ae-8bee-fa5290e90625@gov.mt&#39;, content: &#39;application/mapi-http&#39;, encoding: &#39;&#39;, length: 8257, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:55308 -&gt; 52.98.243.146:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:13.308 4916 INFO  scan app data request type: 14,x0001, from 3964, size: 8284 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:13.308 4916 INFO  ignoring request to: &#39;outlook.office365.com/mapi/emsmdb/?MailboxId=857ef5f5-a7e4-45ae-8bee-fa5290e90625@gov.mt&#39;, content: &#39;application/mapi-http&#39;, encoding: &#39;&#39;, length: 8252, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:54992 -&gt; 52.97.201.242:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:13.425 4916 INFO  scan app data request type: 14,x0001, from 3964, size: 11327 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:13.425 4916 INFO  ignoring request to: &#39;roaming-eu.officeapps.live.com/rs/RoamingSoapService.svc&#39;, content: &#39;text/xml; charset=utf-8&#39;, encoding: &#39;&#39;, length: 11295, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:55411 -&gt; 52.109.76.243:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:13.875 4916 INFO  scan app data request type: 14,x0001, from 3964, size: 8289 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:13.876 4916 INFO  ignoring request to: &#39;outlook.office365.com/mapi/emsmdb/?MailboxId=857ef5f5-a7e4-45ae-8bee-fa5290e90625@gov.mt&#39;, content: &#39;application/mapi-http&#39;, encoding: &#39;&#39;, length: 8257, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:55103 -&gt; 52.97.201.242:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:14.453 4916 INFO  scan app data request type: 14,x0001, from 3964, size: 8284 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:14.454 4916 INFO  ignoring request to: &#39;outlook.office365.com/mapi/emsmdb/?MailboxId=857ef5f5-a7e4-45ae-8bee-fa5290e90625@gov.mt&#39;, content: &#39;application/mapi-http&#39;, encoding: &#39;&#39;, length: 8252, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:55308 -&gt; 52.98.243.146:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:15.028 4916 INFO  scan app data request type: 14,x0001, from 3964, size: 8289 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:15.029 4916 INFO  ignoring request to: &#39;outlook.office365.com/mapi/emsmdb/?MailboxId=857ef5f5-a7e4-45ae-8bee-fa5290e90625@gov.mt&#39;, content: &#39;application/mapi-http&#39;, encoding: &#39;&#39;, length: 8257, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:54992 -&gt; 52.97.201.242:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:15.605 4916 INFO  scan app data request type: 14,x0001, from 3964, size: 8284 [cf::DlpMain::scanAppData DlpMain.cpp:2683]</p><p>01-22 12:54:15.605 4916 INFO  ignoring request to: &#39;outlook.office365.com/mapi/emsmdb/?MailboxId=857ef5f5-a7e4-45ae-8bee-fa5290e90625@gov.mt&#39;, content: &#39;application/mapi-http&#39;, encoding: &#39;&#39;, length: 8252, proc: &#39;Outlook&#39;, conn: &#39;10.131.150.78:55103 -&gt; 52.97.201.242:443&#39; [epp::netdlpCommand NetDlpRequestHandler.cpp:1284]</p><p>01-22 12:54:15.772 12576 DEBUG process created: 40932/27504, &#39;msedge_exe&#39;, image: &#39;C:Program Files (x86)MicrosoftEdgeApplicationmsedge.exe&#39; packageName: &#39;&#39; total: 395 replaced: no [cf::ProcessMonitor::processCreated ProcessMonitor.cpp:169]</p><p>01-22 12:54:15.772 12576 INFO  proc cmd: &#39;&quot;C:Program Files (x86)MicrosoftEdgeApplicationmsedge.exe&quot; --single-argument microsoft-edge:///?url=https%3A%2F%2Feur01.safelinks.protection.outlook.com%2F%3Furl%3Dhttps%253A%252F%252Fhelpdesk.identita.gov.mt%252Fpublic%252Ftickets%252F0fe57451622f38dde668a96a3cf1616509f4dfd45cd6efbe7da6405da0e009e0%26data%3D05%257C02%257Cglenn.bilocca.1%2540gov.mt%257Ca87c29b624ca42a3ff3c08dd3aa8d6af%257C34cdd9f55db849bcacba01f65cca680d%257C0%257C0%257C638731219014879000%257CUnknown%257CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%253D%253D%257C0%257C%257C%257C%26sdata%3DhPRqF8uU6T0YYlKIVvT85ib5Mf8EjNvwzWJ8v1LR06w%253D%26reserved%3D0&amp;source=outlook&amp;treatment=1819&amp;qpc=6899706229470&amp;oid=5f298226-9c1d-4cd2-bce3-25cb3509e556&amp;hubappid=8682d0fa-50b3-4ece-aa5b-e0b33f9919e2&amp;hubappsubpath=%2Fmail%2FAQMmAHs3QjU1ATk1Qi0zQUU5LTREMkYtQkIBQy1DMkJDM0Q2RDc3AEM4fQAuAAADw8srnOTTckiU%252FV4Dq0uBRgEAxXpK0Jzb2Uygjf83khFlkgAAAgEMAAAA%2Fid%2FAAQmAHs3QjU1NTk1Qi0zQUU5LTREMkYtQkJCQy1DMkJDM0Q2RDc3Qzh9ABAAFxo6U3pwoUS%252BpYlU4Z6Ukw%253D%253D%2FitemId%2FAAMmAHs3QjU1NTk1Qi0zQUU5LTREMkYtQkJCQy1DMkJDM0Q2RDc3Qzh9AEYAAAAAAMPLK5zk03JIlP1eA6tLgUYHAMV6StCc29lMoI3%252FN5IRZZIAAAAAAQwAAMV6StCc29lMoI3%252FN5IRZZIABL6tcSAAAA%253D%253D&#39; [cf::ProcessMonitor::processCreated ProcessMonitor.cpp:172]</p><p>01-22 12:54:15.886 7852 DEBUG process created: 33932/7528, &#39;msedge_exe&#39;, image: &#39;C:Program Files (x86)MicrosoftEdgeApplicationmsedge.exe&#39; packageName: &#39;&#39; total: 395 replaced: no [cf::ProcessMonitor::processCreated ProcessMonitor.cpp:169]</p>","","","","005Qk000001nViFIAU","2025-01-22T16:15:32.000Z"
+"0D5Qk00000VS4GeKAL","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-24T09:54:10.000Z","What We've Learned Updated: - The customer reports slowness/performance issues when trying to open a hyperlink inside Outlook.
+This is reproducible every time.
+
+The issue is present with the latest WindowsOS client version 6.2.4.1
+
+- The customer has also reported that the affected user tries to access a hyperlink with which it should approve a process, but when clicking the hyperlink instead of that page, another page was opening as to create a new ticket in their environment. This scenario does not reproduce all the time - randomly.
+
+- No 3rd party security app is used
+
+- The EPP Addin is enabled [screenshot atatched]
+
+-After disabling the policy IT - report only - exit points selected for Browsers and Email, and enabling another policy that has block and report - no exit point selected - the slowness disappeared.
+
+-Logs gathered","","","","005Qk000001nViFIAU","2025-01-24T09:54:10.000Z"
+"0D5Qk00000VS5anKAD","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-24T09:55:17.000Z","What We've Learned Updated: - The customer reports slowness/performance issues when trying to open a hyperlink inside Outlook.
+This is reproducible every time.
+
+The issue is present with the latest WindowsOS client version 6.2.4.1
+
+- The customer has also reported that the affected user tries to access a hyperlink with which it should approve a process, but when clicking the hyperlink instead of that page, another page was opening as to create a new ticket in their environment. This scenario does not reproduce all the time - randomly.
+
+- No 3rd party security app is used
+
+- The EPP Addin is enabled [screenshot atatched]
+
+-After disabling the policy IT - report only - exit points selected for Browsers and Email, and enabling another policy that has block and report - no exit point selected - the slowness disappeared.
+
+-Logs gathered  + DPI extended logs + DPI configuration screenshot + video recording of the reproduced scenario","","","","005Qk000001nViFIAU","2025-01-24T09:55:17.000Z"
+"0D5Qk00000VS9ORKA1","500Qk00000KdqEcIAJ","TextPost","005Qk000001nViFIAU","2025-01-24T11:21:19.000Z","What We've Learned Updated: - The customer reports slowness/performance issues when trying to open a hyperlink inside Outlook.
+This is reproducible every time.
+
+- The link that they access during the scenario is https://helpdesk.identita.gov.mt/.... (in order to find the issue related in the log files)
+
+The issue is present with the latest WindowsOS client version 6.2.4.1
+
+- The customer has also reported that the affected user tries to access a hyperlink with which it should approve a process, but when clicking the hyperlink instead of that page, another page was opening as to create a new ticket in their environment. This scenario does not reproduce all the time - randomly.
+
+- No 3rd party security app is used
+
+- The EPP Addin is enabled [screenshot atatched]
+
+-After disabling the policy IT - report only - exit points selected for Browsers and Email, and enabling another policy that has block and report - no exit point selected - the slowness disappeared.
+
+-Logs gathered  + DPI extended logs + DPI configuration screenshot + video recording of the reproduced scenario","","","","005Qk000001nViFIAU","2025-01-24T11:21:19.000Z"

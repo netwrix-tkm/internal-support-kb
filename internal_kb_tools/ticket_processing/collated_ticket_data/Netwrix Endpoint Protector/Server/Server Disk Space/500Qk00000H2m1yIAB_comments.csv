@@ -1,0 +1,128 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009gdW1IAI","500Qk00000H2m1yIAB","The low disk space is due to the size(168Gb) of the database. (olog file contains 9mil logs)
+Recommended audit or siem.
+The customer wants to keep at least 30 day logs.","005Qk000001nViEIAU","2024-10-16T09:29:08.000Z","2024-10-16T09:33:27.000Z","false","false"
+"00aQk00000AwgynIAB","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the Following Fields have been updated: 
+Account ACV has been changed to 63549.82.
+Priority has been changed to Critical.","005Qk000001nViEIAU","2024-12-27T12:21:22.000Z","2024-12-27T12:21:22.000Z","false","false"
+"00aQk00000Awh0PIAR","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the Following Fields have been updated: 
+Account ACV has been changed to 31774.91.","005Qk000001nViEIAU","2024-12-27T12:21:23.000Z","2024-12-27T12:21:23.000Z","false","false"
+"00aQk00000AzjnFIAR","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-31T09:30:43.000Z","2024-12-31T09:30:43.000Z","false","false"
+"00aQk00000AzjnHIAR","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the new comment has been added: Augustina Sidor:
+
+Hi Andrei,
+
+Please provide the following information:
+
+
+	 - 	Disk space
+	 - 	Number of iNodes
+	 - 	Number of CPUs
+	 - 	RAM memory
+
+
+Check if partitions were done for the logs table.
+
+	 - 	show create table ofiletrace;
+	 - 	show create table olog;
+	 - 	show create table cf_log;
+
+
+Check the number of logs for each log table:
+
+	 - 	select count(1) from cf_log;
+	 - 	select count(1) from olog;
+	 - 	select count(1) from ofiletrace;
+
+
+If partitions were created, please advise the customer to run an audit log backup and remove the logs.
+
+
+Regards,
+Augustina
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11451963]","0054u000006gtWUAAY","2024-12-31T09:30:44.000Z","2024-12-31T09:30:44.000Z","false","false"
+"00aQk00000Azk9qIAB","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the new comment has been added: Hello,
+
+Please find the information below:
+
+Disk Space: 
+p4 19% occupied
+p5 27% occupied
+(Disk space.png)
+
+Inodes
+p4 5%
+p5 1%
+(inodes.png)
+
+CPU: 4
+RAM: 8Gb (3.77 in swap)
+CPU and RAM.png
+
+partitions:
+
+table ofiletrace; - partition present (p01672)
+table olog; - partition present (p00033)
+table cf_log; -partition present (one partition)
+
+Check the number of logs for each log table:
+
+- select count(1) from cf_log; - 153331
+- select count(1) from olog; - 3230713
+- select count(1) from ofiletrace; - 262960854
+(log number.png)
+
+If needed we have access to the server in the environment hosted by Epp.","005Qk000001nViEIAU","2024-12-31T09:56:44.000Z","2024-12-31T09:56:44.000Z","false","false"
+"00aQk00000B1GysIAF","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the new comment has been added: Augustina Sidor:
+
+Hi Andrei, 
+
+
+
+Based on the information provided, there doesn't appear to be an issue with disk space.
+
+However, the large volume of logs in the database is causing the System Information page to hang, as it calculates the number of logs in real-time—a resource-intensive operation for the server.
+
+We recommend advising the customer to:
+
+	 - 	Configure an Audit Log backup to reduce the number of logs.
+	 - 	Adjust the File Tracing settings to capture only the necessary information.
+
+Regards,
+Augustina
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11454085]","0054u000006gtWUAAY","2025-01-02T10:27:51.000Z","2025-01-02T10:27:51.000Z","false","false"
+"00aQk00000B5Aq1IAF","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2025-01-06T15:09:58.000Z","2025-01-06T15:09:58.000Z","false","false"
+"00aQk00000B55TnIAJ","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the new comment has been added: Hi @Augustina Sidor:
+Thank you for the feedback, I have relayed it to our customer and partner.","005Qk000001nViCIAU","2025-01-06T15:11:42.000Z","2025-01-06T15:11:42.000Z","false","false"
+"00aQk00000BINW5IAP","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the Following Fields have been updated: 
+Status has been changed to No Response.","005Qk000001nViCIAU","2025-01-17T11:10:46.000Z","2025-01-17T11:10:46.000Z","false","false"
+"00aQk00000BeajBIAR","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-06T09:26:39.000Z","2025-02-06T09:26:39.000Z","false","false"
+"00aQk00000BeajDIAR","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Andre,
+
+Please confirm if the info provided by Augustina was enough and we can close the ticket or not.
+Thank you,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11607159]","0054u000006gtWUAAY","2025-02-06T09:26:40.000Z","2025-02-06T09:26:40.000Z","false","false"
+"00aQk00000BemHKIAZ","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the new comment has been added: Hi Cristian-Alexandru Halmajan, yes thank you. The information provided by Augustina is exactly the case with the customer.  We advised the customer to refine their file tracing by excluding file extensions that are repetitive creating millions of event logs.
+
+This case can be closed.  Thank you @Augustina for your help on this case.","005Qk000001nViCIAU","2025-02-06T13:12:36.000Z","2025-02-06T13:12:36.000Z","false","false"
+"00aQk00000BemKXIAZ","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2025-02-06T13:13:05.000Z","2025-02-06T13:13:05.000Z","false","false"
+"00aQk00000Bg00UIAR","500Qk00000H2m1yIAB","On Escalation Ticket # 00430819 the new comment has been added: Augustina Sidor:
+
+Set the issue's state to DONE in accordance with the latest comment.
+
+[DevOps CommentId:11614161]","0054u000006gtWUAAY","2025-02-07T10:32:10.000Z","2025-02-07T10:32:10.000Z","false","false"

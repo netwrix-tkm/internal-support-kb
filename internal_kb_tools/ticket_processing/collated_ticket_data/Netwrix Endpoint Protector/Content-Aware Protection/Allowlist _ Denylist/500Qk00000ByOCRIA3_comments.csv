@@ -1,0 +1,67 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007ZcWEIA0","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the Following Fields have been updated: 
+Priority has been changed to Medium.","005Qk000001nViCIAU","2024-06-26T17:19:08.000Z","2024-06-26T17:19:08.000Z","false","false"
+"00aQk000007j17BIAQ","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the Following Fields have been updated: 
+Account ACV has been changed to 166346.25.","005Qk000001nViCIAU","2024-07-03T17:23:25.000Z","2024-07-03T17:23:25.000Z","false","false"
+"00aQk0000088vNuIAI","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the new comment has been added: We found that the customer had another tool installed which was interfering with ours (Netskope One Client -  a SASE client), when we disabled it EPP resumed to work as expected.  This case I will close now as it is solved.","005Qk000001nViCIAU","2024-07-25T10:44:49.000Z","2024-07-25T10:44:49.000Z","false","false"
+"00aQk0000088v6FIAQ","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the new comment has been added: Alex Puskas:
+
+Please OPEN the log files and check the followings:
+(all the informations enumerated here can be found in 3 searches)
+
+	 - 	search for scan event (where the file was scanned)
+
+06-26 09:01:31.736 7580 DEBUG  Scan: 'C:Usersabhishek.cpDownloadsGmail Login.mp4', op: 0, pid: 16724 [cf::scanFileByPath Scanner.cpp:68]
+06-26 09:01:31.752 7580 INFO   threat: file-type 'video/mp4', pol: 'Unapproved desktop app block policy(windows)', op: 0, action: 1, C:Usersabhishek.cpDownloadsGmail Login.mp4 [cf::threatDetected ScanContext.cpp:707]
+
+
+	 - 	2 important things:
+
+	 - 	the pid is 16724 -> search for this pid
+
+06-26 01:32:58.483 7572 DEBUG  process created: 16724/1344, 'WhatsApp.exe', image: 'C:Program FilesWindowsApps5319275A.WhatsAppDesktop_2.2424.6.0_x64__cv1g1gvanyjgmWhatsApp.exe' packageName: 'WhatsApp' total: 693 replaced: yes [cf::ProcessMonitor::processCreated ProcessMonitor.cpp:160]
+
+
+	 - 	the policy name -> search for policy name
+-- The policy was loaded 46 times
+-- Multiple apps were loaded when the mentioned policy was loaded (58 apps and probably also the whatsapp app)
+
+06-26 04:36:10.932 7264 DEBUG  Loaded 58 apps from the apps list. (channels: x1) [cf::ScannerConfig::loadAppList ScannerConfig.cpp:2664]
+
+When the logs where collected with support tool the mentioned policy was not loaded. (only 2 policies were loaded):
+
+	 - 	Personal Data Exception
+	 - 	Anaconda Block-Windows
+
+[DevOps CommentId:10498683]","0054u000006gtWUAAY","2024-07-25T10:44:57.000Z","2024-07-25T10:44:57.000Z","false","false"
+"00aQk0000088v6GIAQ","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the new comment has been added: Andre Wayne Le Roux:
+
+Hi @Alex Puskas
+Thank you for the feedback.  I had another remote session with the customer today and we made sure that there are no CAP policies active, uploads via WhatsApp app were still blocked.  Please see the attached video recording demonstrating the behavior and also the epp client logs collected in today's remote session.
+
+[DevOps CommentId:10507206]","0054u000006gtWUAAY","2024-07-25T10:44:57.000Z","2024-07-25T10:44:57.000Z","false","false"
+"00aQk0000088v6HIAQ","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the new comment has been added: Alex Puskas:
+
+@Andre Wayne Le Roux, please schedule a remote connection to see live what is happening.
+
+[DevOps CommentId:10512218]","0054u000006gtWUAAY","2024-07-25T10:44:57.000Z","2024-07-25T10:44:57.000Z","false","false"
+"00aQk0000088v6IIAQ","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the new comment has been added: Alex Puskas:
+
+After remote session, we concluded this was NOT a problem/bug from Epp agent.
+
+It is seems to be related to Netskope, when the netskope is enabled.
+
+This issue can be closed.
+
+[DevOps CommentId:10518346]","0054u000006gtWUAAY","2024-07-25T10:44:57.000Z","2024-07-25T10:44:57.000Z","false","false"
+"00aQk0000088v6JIAQ","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the new comment has been added: Andre Wayne Le Roux:
+
+Thank you @Alex Puskas this case can be closed.
+
+[DevOps CommentId:10520519]","0054u000006gtWUAAY","2024-07-25T10:44:57.000Z","2024-07-25T10:44:57.000Z","false","false"
+"00aQk0000088v2wIAA","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2024-07-25T10:45:36.000Z","2024-07-25T10:45:36.000Z","false","false"
+"00aQk0000088vR7IAI","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the Following Fields have been updated: 
+Product Version has been changed to NONE.","005Qk000001nViCIAU","2024-07-25T10:46:02.000Z","2024-07-25T10:46:02.000Z","false","false"
+"00aQk00000BoKBhIAN","500Qk00000ByOCRIA3","On Escalation Ticket # 00413143 the Following Fields have been updated: 
+Account ACV has been changed to 238907.69.","0054u000006gtWUAAY","2025-02-14T11:44:24.000Z","2025-02-14T11:44:24.000Z","false","false"

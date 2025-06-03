@@ -1,0 +1,211 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009K8FZIA0","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Account ACV has been changed to 332692.50.
+Priority has been changed to Critical.","005Qk000001nViCIAU","2024-09-26T09:29:53.000Z","2024-09-26T09:29:53.000Z","false","false"
+"00aQk000009K62UIAS","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Account ACV has been changed to 166346.25.","005Qk000001nViCIAU","2024-09-26T09:29:54.000Z","2024-09-26T09:29:54.000Z","false","false"
+"00aQk000009PO6oIAG","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: Hi Team,
+
+Could you please give us an update on this? The customer is chasing.","005Qk000001nViCIAU","2024-10-01T08:52:46.000Z","2024-10-01T08:52:46.000Z","false","false"
+"00aQk000009PMpsIAG","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-01T09:06:07.000Z","2024-10-01T09:06:08.000Z","false","false"
+"00aQk000009PMpuIAG","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: Oana-Cristina Rus:
+
+@WaitingOnEngineer 
+
+
+
+--- CODE ---
+UPDATE clientmachine set deleted = 1 where lastseen < '2024-06-01' and lastseen IS NOT NULL AND (trialversion < 1 OR trialversion IS NULL) LIMIT 1000;
+--- CODE ---
+
+For performance reasons, we will use the limit to set the deleted flag to 1.
+The flag ""deleted"" indicates that this computer has been removed and will not appear on the Computers page.
+If you have 10,000 computers, you will need to run this query 10 times.
+I have included '2024-06-01' in the SQL query, but please note that the date can be changed.
+
+[DevOps CommentId:10997593]","0054u000006gtWUAAY","2024-10-01T09:06:08.000Z","2024-10-01T09:06:08.000Z","false","false"
+"00aQk000009PP4UIAW","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-01T10:16:11.000Z","2024-10-01T10:16:11.000Z","false","false"
+"00aQk000009SDA3IAO","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: Hi @Oana-Cristina Rus:
+
+We had a remote session with the customer today and ran the command which was give but it did not give the expected results.  According to the SQL result only 57 computers were deleted.  According to the computer count on the dashboard there were only 55 deleted.  Before there was a computer count of 15,842 and after we ran the command the count is 15,787
+
+There are +10,000 computers that are ""unlicensed"" and ""Offline"" with last dates older than 1st December 2022.  You can see in the screenshot the filter which we applied and arranged by last seen date from the oldest to the latest, the latest being on the bottom of page 20.
+
+We ran the following command:
+
+--- CODE ---
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL AND (trialversion < 1 OR trialversion IS NULL) LIMIT 1000;
+--- CODE ---
+
+Could you please look at the screenshots of today with ""2024.10.03"" in the title and advise on how we should adjust the command to get the desired result of deleting computers that are ""Unlicensed"" and ""Offline"" with last seen date older than x amount of days?","005Qk000001nViCIAU","2024-10-03T10:38:27.000Z","2024-10-03T10:38:27.000Z","false","false"
+"00aQk000009SFrlIAG","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-10-03T10:46:06.000Z","2024-10-03T10:46:06.000Z","false","false"
+"00aQk000009SGmEIAW","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-03T11:00:47.000Z","2024-10-03T11:00:47.000Z","false","false"
+"00aQk000009SGmGIAW","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: Oana-Cristina Rus:
+
+Hi @WaitingOnEngineer,
+
+Please try the following SQL command:
+
+--- CODE ---
+SELECT count(id) from clientmachine where where lastseen < '2022-12-01'; 
+--- CODE ---
+
+
+--- CODE ---
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 1000;
+--- CODE ---
+
+[DevOps CommentId:11010075]","0054u000006gtWUAAY","2024-10-03T11:00:48.000Z","2024-10-03T11:00:48.000Z","false","false"
+"00aQk000009SIODIA4","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-03T11:14:46.000Z","2024-10-03T11:14:46.000Z","false","false"
+"00aQk000009TmLqIAK","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: Hi @Oana-Cristina Rus:
+
+I had a remote session with the customer today to run the SQL commands given.
+
+The count on dashboard is 18,124 but when I ran --- CODE ---
+SELECT count(id) from clientmachine where lastseen < '2022-12-01';
+--- CODE ---
+the count on live database showed 23,210
+
+After I ran the update command --- CODE ---
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 1000;
+--- CODE --
+
+the result returned with only 13 rows affected.
+
+Please see the screenshots uploaded to attachments folder.
+
+It will look bad if we have a 3rd remote session with the customer without a resolution.  
+Can we request the intervention by a developer for the next remote session please? 
+
+@Oana-Cristina Rus kindly confirm if you would be available to join in for short call wit the customer so that we may meet customer's requirements on call?","005Qk000001nViCIAU","2024-10-04T12:47:22.000Z","2024-10-04T12:47:22.000Z","false","false"
+"00aQk000009TmNRIA0","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-10-04T12:47:30.000Z","2024-10-04T12:47:30.000Z","false","false"
+"00aQk000009Vz21IAC","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-07T08:59:27.000Z","2024-10-07T08:59:27.000Z","false","false"
+"00aQk000009Vz23IAC","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: Oana-Cristina Rus:
+
+After we reviewed all the informations that you provided us, it would be helpful for us if you could check the following:
+
+
+--- CODE ---
+select count(1) from clientmachine where deleted = 0 and lastseen < '2022-12-01' and lastseen IS NOT NULL;
+
+--- CODE ---
+
+It will count all computers that have not been deleted and have last been seen before 2022-12-01.
+
+After that, please run the following command:
+
+--- CODE ---
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 1000;
+--- CODE ---
+
+You must run the previous command x times.
+x is being calculated in the following manner:
+The number of client machines that are not deleted and have last seen older than 2022-12-01 (step 1) / 1000.
+E.g. If you have 18k => 18000/1000 => 18
+Please notice that if you run this SQL more than 18 times is not a problem.
+
+--- CODE ---
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 1000;
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 2000;
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 3000;
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 4000;
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 5000;
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 6000;
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 7000;
+....
+UPDATE clientmachine set deleted = 1 where lastseen < '2022-12-01' and lastseen IS NOT NULL LIMIT 18000;
+
+--- CODE ---
+
+
+In case the above method doesn't work, please provide us with any additional information about the computers that were supposed to be deleted but haven't been.
+
+@WaitingOnEngineer 
+
+[DevOps CommentId:11020117]","0054u000006gtWUAAY","2024-10-07T08:59:28.000Z","2024-10-07T08:59:28.000Z","false","false"
+"00aQk000009XZUtIAO","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: Hi @Oana-Cristina Rus:
+
+Thank you for the feedback however since we already had three emote sessions with the customer, two of which the SQL commands did not work can we please request that dev resource to be on standby in the next remote session with the customer?
+
+It will look bad if we scheduled a fourth session with them and are still not able to resolve the case in the call.","005Qk000001nViCIAU","2024-10-08T12:41:36.000Z","2024-10-08T12:41:36.000Z","false","false"
+"00aQk000009XbZtIAK","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-10-08T12:50:11.000Z","2024-10-08T12:50:11.000Z","false","false"
+"00aQk000009bTKPIA2","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-11T07:30:36.000Z","2024-10-11T07:30:36.000Z","false","false"
+"00aQk000009bTKRIA2","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: Oana-Cristina Rus:
+
+Please schedule a remote connection for next week and add Augustina Sidor to the call. Thank you!
+
+@WaitingOnEngineer 
+
+[DevOps CommentId:11046008]","0054u000006gtWUAAY","2024-10-11T07:30:37.000Z","2024-10-11T07:30:37.000Z","false","false"
+"00aQk000009dosbIAA","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-14T08:24:08.000Z","2024-10-14T08:24:08.000Z","false","false"
+"00aQk000009llfpIAA","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-21T05:02:18.000Z","2024-10-21T05:02:18.000Z","false","false"
+"00aQk000009llfrIAA","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-11 07:30 UTC and the last detected comment from support was 2024-10-08 12:41 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11084674]","0054u000006gtWUAAY","2024-10-21T05:02:18.000Z","2024-10-21T05:02:19.000Z","false","false"
+"00aQk000009lpY9IAI","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-21T07:20:01.000Z","2024-10-21T07:20:01.000Z","false","false"
+"00aQk000009tTYrIAM","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-28T05:02:50.000Z","2024-10-28T05:02:50.000Z","false","false"
+"00aQk000009tTYtIAM","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-11 07:30 UTC and the last detected comment from support was 2024-10-08 12:41 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11115568]","0054u000006gtWUAAY","2024-10-28T05:02:51.000Z","2024-10-28T05:02:51.000Z","false","false"
+"00aQk000009tiCwIAI","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-28T10:39:02.000Z","2024-10-28T10:39:02.000Z","false","false"
+"00aQk00000A17OHIAZ","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-04T05:03:00.000Z","2024-11-04T05:03:00.000Z","false","false"
+"00aQk00000A17OJIAZ","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-11 07:30 UTC and the last detected comment from support was 2024-10-08 12:41 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11162313]","0054u000006gtWUAAY","2024-11-04T05:03:01.000Z","2024-11-04T05:03:01.000Z","false","false"
+"00aQk00000A1C9TIAV","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-04T07:56:06.000Z","2024-11-04T07:56:06.000Z","false","false"
+"00aQk00000A9judIAB","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-11 07:30 UTC and the last detected comment from support was 2024-10-08 12:41 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11194768]","0054u000006gtWUAAY","2024-11-11T05:02:48.000Z","2024-11-11T05:02:48.000Z","false","false"
+"00aQk00000A9jubIAB","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-11T05:02:48.000Z","2024-11-11T05:02:48.000Z","false","false"
+"00aQk00000A9r49IAB","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-11T09:31:52.000Z","2024-11-11T09:31:52.000Z","false","false"
+"00aQk00000ASLBpIAP","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2024-11-27T09:08:58.000Z","2024-11-27T09:08:58.000Z","false","false"
+"00aQk00000Bd6teIAB","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the new comment has been added: Oana-Cristina Rus:
+
+Based on the last comment, the ticket will be marked as 'Done.'
+
+[DevOps CommentId:11599262]","0054u000006gtWUAAY","2025-02-05T07:24:43.000Z","2025-02-05T07:24:43.000Z","false","false"
+"00aQk00000BoFn9IAF","500Qk00000G7RqHIAV","On Escalation Ticket # 00422170 the Following Fields have been updated: 
+Account ACV has been changed to 238907.69.","0054u000006gtWUAAY","2025-02-14T11:44:37.000Z","2025-02-14T11:44:37.000Z","false","false"

@@ -1,0 +1,145 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk0000081e3dIAA","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the Following Fields have been updated: 
+Priority has been changed to Low.","005Qk000001nViAIAU","2024-07-19T12:00:29.000Z","2024-07-19T12:00:29.000Z","false","false"
+"00aQk0000086E3jIAE","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Oana-Cristina Rus:
+
+1. Verify the Group Name:
+
+Ensure that the group name is correctly specified in the application or service configuration. It should only be the group name without the DN structure.
+2. Verify User Access and Group Membership:
+Ensure the user has the necessary access and is a member of the specified group.
+3. Avoid Using Primary Groups:
+Check if the group is set as the primary group for the user. Primary groups do not allow member extraction
+4. Create a Separate Security Group:
+To avoid issues with primary groups, create a separate security group specifically for your requirements.
+
+[DevOps CommentId:10611375]","0054u000006gtWUAAY","2024-07-23T15:02:09.000Z","2024-07-23T15:02:09.000Z","false","false"
+"00aQk0000087DX0IAM","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Hi Oana, thank you.
+The customer already replied here. I have attached 2 screenshots with reply one and two.
+The other two, are below
+""3.It is not a primary group for anyone, it is a new group created specifically for the EP and synchronize the admins from AD.
+4.Same as 3, it is a dedicated Group explicitly created for this purpose, sync the EP admins from AD.
+ 
+
+Anyway, if it can help to investigate, the group “EndPointProtectorAdmins” it is not into the root of AD, or into the canonical Ous (Builtin or Users), but it is into a custom AD OU (ssi.local/SSI/Utenti/Utenti di servizio/EndPointProtectorAdmins)""","005Qk000001nViAIAU","2024-07-24T06:51:53.000Z","2024-07-24T06:51:53.000Z","false","false"
+"00aQk0000088gf0IAA","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Oana-Cristina Rus:
+
+Hi,
+
+
+
+The customer may try another group, other login details, another domain controller if they have more, another user, etc.
+Just to ensure the customer has no problem with the AD configuration.
+
+[DevOps CommentId:10619790]","0054u000006gtWUAAY","2024-07-25T07:08:55.000Z","2024-07-25T07:08:55.000Z","false","false"
+"00aQk0000088mneIAA","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: H Oana,
+
+Thank you for your reply, I fw over to the customer.
+They replied that it did not work
+
+""I already tried with other groups, and did not work, same behavior.
+With another DC the behavior is the same. Our AD is working fine, there are no errors anywhere; and we have other active solutions that are using sync with AD, for example AzureAD Sync, Cisco DUO, or Netwrix Privilege Secure, for example.""","005Qk000001nViAIAU","2024-07-25T08:41:03.000Z","2024-07-25T08:41:03.000Z","false","false"
+"00aQk000008vPgEIAU","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Hi Team,
+
+Do we have any updates here?","005Qk000001nViAIAU","2024-09-05T10:31:07.000Z","2024-09-05T10:31:07.000Z","false","false"
+"00aQk00000AI9YZIA1","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Hello,
+
+Customer would like to know if there is any updates regarding this case.
+
+Thank you!","005Qk000001nVi3IAE","2024-11-18T14:33:47.000Z","2024-11-18T14:33:47.000Z","false","false"
+"00aQk00000BWrpGIAT","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Hello,
+
+Customer would like to know if there is any updates regarding this case.
+
+Thank you!","005Qk000001nVi3IAE","2025-01-30T14:45:09.000Z","2025-01-30T14:45:09.000Z","false","false"
+"00aQk00000BWs3lIAD","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the Following Fields have been updated: 
+Account has been changed to SSI Sviluppo Sistemi Informativi srl - Dis.","005Qk000001nVi3IAE","2025-01-30T14:48:25.000Z","2025-01-30T14:48:25.000Z","false","false"
+"00aQk00000BdCcTIAV","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-05T10:43:59.000Z","2025-02-05T10:43:59.000Z","false","false"
+"00aQk00000BdCcVIAV","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Oana-Cristina Rus:
+
+Hi @WaitingOnEngineer,
+
+Please confirm if, after each UI modification, the changes were saved and then synced.
+
+If the Active Directory Administrators Group was modified in the UI, you need to click Save, and then perform Sync AD Administrators; otherwise, the new group will not be considered, and the sync will continue to use the data from the database.
+
+We reproduced this on our end in the following situations:
+
+1. Introduce a typo in the Domain Name field on the EPP server
+
+
+I have modified the separator from the Domain Name field and saved the changes.
+Result: Test Connection: Successful, Sync AD: ""Group not found or no users present in group!"" error message! Login with AD credentials: failure.
+ 
+2. Change the value in the Domain name field from the EPP Server.
+
+Result: Test Connection: Successful, Sync AD: ""Group not found or no users present in group!"" error message! Login with AD credentials: failure. The issue is similar to the customer issue.
+
+The  ""Group not found or no users present in group!"" error message was displayed only when there was an incorrect domain name or wrong separator. In all of the cases, the changes were saved before using the Test Connection and Sync AD buttons.
+
+[DevOps CommentId:11601394]","0054u000006gtWUAAY","2025-02-05T10:44:00.000Z","2025-02-05T10:44:00.000Z","false","false"
+"00aQk00000BdN1dIAF","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2025-02-05T13:24:30.000Z","2025-02-05T13:24:30.000Z","false","false"
+"00aQk00000BemqrIAB","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Hello, 
+
+We have discussed with the customer, who performed the steps one more time and reply to us the following details.
+
+For example, I changed the DC name, then saved and then Sync. It fails.
+
+If I press the test connectivity button it works, but the Sync still fails with this message: “Group not found or no users present in group!”","005Qk000001nVi3IAE","2025-02-06T13:19:28.000Z","2025-02-06T13:19:28.000Z","false","false"
+"00aQk00000BefZEIAZ","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nVi3IAE","2025-02-06T13:19:36.000Z","2025-02-06T13:19:36.000Z","false","false"
+"00aQk00000BirNFIAZ","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-10T15:59:16.000Z","2025-02-10T15:59:16.000Z","false","false"
+"00aQk00000BirNHIAZ","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Oana-Cristina Rus:
+
+Hi @WaitingOnEngineer,
+
+
+
+I will return with the same answer here. This problem is caused because the domain name in Active Directory authentication is not set correctly.
+
+The tooltip mentions the following:
+Provide the domain controller base name (DN). Eg: DC=netwrix,DC=com
+
+I observed that the customer did not set the domain name correctly in our case.
+He added ""ssi.local"" but in our project, it is required to add the Domain Name like DC=ssi, DC=local.
+
+It is important to save all the settings in the database first and then Sync AD authentication.
+
+Also, the customer must share with us what changes were made to the UI. You mention also that:
+
+""He  tried different groups, also the built-in Domain Admins just as a test, with the same result.
+Also, he tried different syntax (eg. using the pure group name, the Canonical Name, the DistinguishedName, but the result it is the same, with the error above.""
+This information is not relevant without an example provided.
+
+
+I also share some extra information about AD Authentication from the documentation.
+
+To import an Active Directory group of administrators, follow these steps:
+
+Step 1 – Fill in the ﬁelds with the required information, considering:
+
+    In some cases, you need to add the domain in front of the username (domainusername)
+
+    Active Directory Administrators Group can be synchronized with any other groups of users except for ""primary groups"" which is limited from this action by Microsoft
+
+Step 2 – Scroll to the bottom of the page and save the changes. You will view a successful message at the top of the page.
+
+Step 3 – Return to the Active Directory Authentication section and click Test Connection to conﬁrm the process was successful.
+
+Step 4 – Click Sync AD Administrators.
+
+CAUTION: Once the Active Directory Administrators Group has been deﬁned, only users that are part of this AD group will be synced and imported as Super Administrators for Endpoint Protector.
+Any additional administrators (with different access control levels) can be created manually from the System Administrators section.
+
+[DevOps CommentId:11624339]","0054u000006gtWUAAY","2025-02-10T15:59:17.000Z","2025-02-10T15:59:17.000Z","false","false"
+"00aQk00000BjmRyIAJ","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViEIAU","2025-02-11T07:06:49.000Z","2025-02-11T07:06:49.000Z","false","false"
+"00aQk00000BlOmwIAF","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the new comment has been added: Hello,
+
+Following the steps you mentioned the AD Auth now works.","005Qk000001nViEIAU","2025-02-12T10:09:35.000Z","2025-02-12T10:09:35.000Z","false","false"
+"00aQk00000BlKRaIAN","500Qk00000DElduIAD","On Escalation Ticket # 00415502 the Following Fields have been updated: 
+Product Version has been changed to NONE.
+Status has been changed to Closed - Resolved.","005Qk000001nViEIAU","2025-02-12T10:10:00.000Z","2025-02-12T10:10:00.000Z","false","false"

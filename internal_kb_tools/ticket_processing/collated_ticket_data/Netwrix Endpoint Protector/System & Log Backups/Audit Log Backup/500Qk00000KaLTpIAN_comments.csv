@@ -1,0 +1,130 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BFY6HIAX","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the Following Fields have been updated: 
+Account ACV has been changed to 31851.44.","005Qk000001nVi3IAE","2025-01-15T09:44:42.000Z","2025-01-15T09:44:42.000Z","false","false"
+"00aQk00000BFVwQIAX","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the Following Fields have been updated: 
+Account ACV has been changed to 15925.72.","005Qk000001nVi3IAE","2025-01-15T09:44:43.000Z","2025-01-15T09:44:43.000Z","false","false"
+"00aQk00000BVNmoIAH","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the Following Fields have been updated: 
+Account ACV has been changed to 15560.83.","0054u000006gtWUAAY","2025-01-29T13:34:01.000Z","2025-01-29T13:34:01.000Z","false","false"
+"00aQk00000BbsMUIAZ","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+Please follow these steps:
+
+1. Check shadow files
+
+--- CODE ---
+     cd /var/eppfiles/shadows/
+     ls -la
+--- CODE ---
+
+     - a list of directories with 2 letter names (eg. 05, 2a, b7 ..) should be present here
+     - browse these directories and check if they are empty or if a shadow file exists
+      - provide some printscreens with this structure
+      - provide a printscreen with the permissions of /var/eppfiles/shadows/
+
+
+--- CODE ---
+             cd /var/eppfiles/
+             ls -la
+--- CODE ---
+
+2. Collect client logs
+
+       - set Global Settings - Shadow Interval (min) to 0 for a computer
+       - generate a log with file shadow on that computer
+       - wait a couple of minutes for the shadow to be sent or restart the epp client in order for the shadow to be forced sent
+       - make sure that this event is captured in the epp client logs
+       - revert the Global Settings - Shadow Interval (min) to it's original value
+
+3. Check the filehash of the log
+
+
+- access the Content-Aware Report page;
+- enable 'File Hash' from the 'Show/Hide Columns' button;
+- search for the log that has been created in the test;
+- based on the hash of the file, search on the server if the file exists
+
+
+    cd /var/eppfiles/first_two_chars_from_hash/second_two_chars_from_hash/
+
+    on the above location, check if there is a file  with name the hash of the file
+    e.q.: hash = 8c15c075210595afd704771da7b45b99;
+    cd /var/eppfiles/8c/15 - at this location, search for a file named 8c15c075210595afd704771da7b45b99.ext
+
+    
+4. Run this query:
+
+
+--- CODE ---
+select * from cf_log partition(last) where filehash = ""FILEHASH""G
+--- CODE ---
+
+ - replace FILEHASH with the filehash from the test log
+
+Please attach printscreens with all these steps and with the client log for more investigation.
+
+Thank you,
+Alina
+   
+     
+
+[DevOps CommentId:11594628]","0054u000006gtWUAAY","2025-02-04T11:05:46.000Z","2025-02-04T11:05:46.000Z","false","false"
+"00aQk00000Bbsj3IAB","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-04T11:06:49.000Z","2025-02-04T11:06:49.000Z","false","false"
+"00aQk00000BbtaIIAR","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2025-02-04T11:57:14.000Z","2025-02-04T11:57:14.000Z","false","false"
+"00aQk00000BdPcwIAF","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the new comment has been added: Hello,
+
+We have performed the steps provided and gathered a new set of logs along with the requested screenshots. 
+
+While we tested no shadow file was generated in the server, but when we searched after the file hash in the database we could find it.","005Qk000001nVi3IAE","2025-02-05T14:05:42.000Z","2025-02-05T14:05:42.000Z","false","false"
+"00aQk00000BdPg9IAF","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nVi3IAE","2025-02-05T14:05:46.000Z","2025-02-05T14:05:46.000Z","false","false"
+"00aQk00000Bld62IAB","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-12T15:08:24.000Z","2025-02-12T15:08:24.000Z","false","false"
+"00aQk00000Bld64IAB","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+The File upload moment is not captured in the client logs.
+
+I did notice that the shadow directory owner is root and not www-data. This could be the reason why the shadow files are not uploaded on server.
+
+Please run this command to change the owner:
+
+
+--- CODE ---
+chown www-data:www-data /var/eppfiles/shadows/
+--- CODE ---
+
+
+The Shadow File is not uploaded to the server instantly. Instead, there is a waiting period during which the server waits for the file to upload.
+
+During this time, the message ""File not found. File shadow upload is in progress. Please retry later."" is displayed. This message is not considered an error or issue.
+
+The duration of this waiting period is determined by various settings and typically exceeds 30 minutes since the log was created.
+If the message ""File not found"" is displayed after this period has passed, it is then considered an error. (I did notice this message in the recording)
+
+Please take this into consideration when testing. You will need to wait until that waiting period has passed and the message ""File not found. File shadow upload is in progress. Please retry later."" is no longer displayed in order to evaluate the situation. And also, only logs that have been created after the ownership change should be monitored.
+
+If you have any other questions please let me know.
+
+@WaitingOnEngineer
+
+
+
+
+
+
+
+
+ 
+
+[DevOps CommentId:11638830]","0054u000006gtWUAAY","2025-02-12T15:08:25.000Z","2025-02-12T15:08:25.000Z","false","false"
+"00aQk00000Bmjm5IAB","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViEIAU","2025-02-13T06:27:08.000Z","2025-02-13T06:27:08.000Z","false","false"
+"00aQk00000Bmi24IAB","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the new comment has been added: Thank you for the reply.
+We will run the command and check if the shadow is uploaded.","005Qk000001nViEIAU","2025-02-13T06:28:08.000Z","2025-02-13T06:28:08.000Z","false","false"
+"00aQk00000C2ZkMIAV","500Qk00000KaLTpIAN","On Escalation Ticket # 00432193 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVi3IAE","2025-02-27T15:23:13.000Z","2025-02-27T15:23:13.000Z","false","false"

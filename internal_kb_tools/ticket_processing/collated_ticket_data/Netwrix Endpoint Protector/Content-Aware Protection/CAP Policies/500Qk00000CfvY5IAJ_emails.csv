@@ -1,0 +1,1973 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000CBaPSIA1","500Qk00000CfvY5IAJ","2024-07-04T20:10:43.000Z","2024-07-04T20:10:43.000Z","Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+ref:!00D70091pB.!500Qk0CfvY5:ref","ESACALE - CAP configuration    [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","techsupport@netwrix.com","Netwrix Support","tiago@securegate.com.br","natalia.ticu@netwrix.com","","false","2024-07-04T20:10:42.000Z","true"
+"02sQk00000CCT2YIAX","500Qk00000CfvY5IAJ","2024-07-05T10:55:31.000Z","2024-07-05T10:55:31.000Z","ref:_00D7091pB._500Q000CfvY5:ref
+
+Hi Tiago,
+
+I did some testing of this setting using Escale’s email signature, and this is how I managed to get it to work --
+
+Under System Configuration -> System Parameters -> click Add -> configure it as per below screenshot.
+The “email signature” is a Custom Content denylist dictionary that includes the word “acidental” from the signature. You can add it under Denylists and Allowlists -> Denylists -> Custom Content -> Add. Please make sure you have this dictionary created already prior to creating this Contextual Detection Rule.
+
+
+[cid:image001.png@01DACEE1.BBAEA7C0]
+
+After the rule is configured and saved, please click the “Generate” button. Then, please scroll up the page and enable Contextual Detection, as per below:
+
+[cid:image002.png@01DACEE2.4B9F1AE0]
+
+What this means is that if a file or an email body contains the word “CONFIDENCIAL”, but in the proximity of 3000 characters it also has the word “acidental”, it will not trigger the policy.
+
+Please make sure there are no Content Aware Policies in place that use individual Context Detection rules, as this global configuration won’t work if that’s the case.
+
+Please let us know if it worked.
+
+Thanks,
+Natalie
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 4 July 2024 at 23:10
+To: tiago@securegate.com.br <tiago@securegate.com.br>
+Cc: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Subject: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0CfvY5:ref","Re: Netwrix Support Ticket #414104 - ref:_00D7091pB._500Q000CfvY5:ref - ESACALE - CAP configuration    [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","natalia.ticu@netwrix.com","Natalia Ticu","tiago@securegate.com.br; techsupport@netwrix.com","","","true","2024-07-05T10:55:23.000Z","true"
+"02sQk00000CCXsYIAX","500Qk00000CfvY5IAJ","2024-07-05T11:21:43.000Z","2024-07-05T11:21:43.000Z","ref:_00D7091pB._500Q000CfvY5:ref
+
+Thanks for reply!
+
+From the first option OK, I plan to make this, just to confirm.
+
+However, in the second option, I had already done this, and it had no effect or improvements, it continues to insist insistently and annoyingly alert you when the document is open with each new ""auto-save"" as you work on the document throughout the day, more details below:
+
+      2. Google Drive: When working on a file for a long time, the tool prompts you for the justification screen.
+      What is the best way and definitive alternative for COSOSYS for this situation?
+     Explanation: In this case, when we use Google Drive and the Google platform's online office tools to edit documents through the platform's office applications, the DLP application records continuous hits of upload violations throughout the document editing, either for some minutes or throughout the working day.
+
+We would like to avoid this insistent and constant identification in our documents that are hosted on our Google platform, or a better way to improve the user interface/interaction.
+
+
+Atenciosamente,
+
+
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+
+
+
+________________________________
+De: Netwrix Support <techsupport@netwrix.com>
+Enviado: quinta-feira, 4 de julho de 2024 17:10
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>
+Cc: natalia.ticu@netwrix.com <natalia.ticu@netwrix.com>
+Assunto: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BKnvu&from=ext]
+
+ref:!00D70091pB.!500Qk0CfvY5:ref","RE: Netwrix Support Ticket #414104 - ref:_00D7091pB._500Q000CfvY5:ref - ESACALE - CAP configuration    [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","tiago@securegate.com.br","Tiago Guerra | SECURE GATE","techsupport@netwrix.com","natalia.ticu@netwrix.com","","false","2024-07-05T11:21:29.000Z","true"
+"02sQk00000CDhl0IAD","500Qk00000CfvY5IAJ","2024-07-05T18:45:05.000Z","2024-07-05T18:45:05.000Z","ref:_00D7091pB._500Q000CfvY5:ref
+
+Hi team,
+
+I make changes....
+
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+
+The default email signature is:
+
+[CONFIDENCIAL]
+As informações deste e-mail são estritamente confidenciais e destinadas apenas ao destinatário. Em caso de recebimento acidental não divulgue notifique o remetente salve ou faça cópias do e-mail ou anexos.
+
+
+
+  1.
+Create a Rule
+[cid:0eba8ac8-392d-4cd9-84c8-abe7a78830fc]
+
+
+  1.
+[cid:75f4076d-b2cf-4ae4-ba53-b46b05d31840]
+
+Its correct?? This is all??? Only this???
+
+
+
+
+Update for second suggestion...
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+This configuration had already been done in the past, for all machines it is already in this configuration in the global rule.
+
+[cid:00b3f824-a0b3-4671-89be-fed02edb07f2]
+
+
+
+
+
+
+Atenciosamente,
+
+
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+
+
+[cid:f7f2a6b3-8e63-4081-9ea1-254c1a87fca7]
+
+
+
+
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br<http://www.securegate.com.br/>.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br<http://www.securegate.com.br/>
+
+
+
+________________________________
+De: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 07:55
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>; techsupport <techsupport@netwrix.com>
+Assunto: Re: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+
+Hi Tiago,
+
+
+
+I did some testing of this setting using Escale’s email signature, and this is how I managed to get it to work --
+
+
+
+Under System Configuration -> System Parameters -> click Add -> configure it as per below screenshot.
+
+The “email signature” is a Custom Content denylist dictionary that includes the word “acidental” from the signature. You can add it under Denylists and Allowlists -> Denylists -> Custom Content -> Add. Please make sure you have this dictionary created already prior to creating this Contextual Detection Rule.
+
+
+
+
+
+[cid:image001.png@01DACEE1.BBAEA7C0]
+
+
+
+After the rule is configured and saved, please click the “Generate” button. Then, please scroll up the page and enable Contextual Detection, as per below:
+
+
+
+[cid:image002.png@01DACEE2.4B9F1AE0]
+
+
+
+What this means is that if a file or an email body contains the word “CONFIDENCIAL”, but in the proximity of 3000 characters it also has the word “acidental”, it will not trigger the policy.
+
+
+
+Please make sure there are no Content Aware Policies in place that use individual Context Detection rules, as this global configuration won’t work if that’s the case.
+
+
+
+Please let us know if it worked.
+
+
+
+Thanks,
+
+Natalie
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 4 July 2024 at 23:10
+To: tiago@securegate.com.br <tiago@securegate.com.br>
+Cc: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Subject: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0CfvY5:ref
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #414104 - ref:_00D7091pB._500Q000CfvY5:ref - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","tiago@securegate.com.br","Tiago Guerra | SECURE GATE","techsupport@netwrix.com; natalia.ticu@netwrix.com","","","true","2024-07-05T18:44:42.000Z","true"
+"02sQk00000CE7NiIAL","500Qk00000CfvY5IAJ","2024-07-05T22:04:07.000Z","2024-07-05T22:04:07.000Z","Hi Tiago,
+
+1. That is correctly set up.
+
+2. For this, you could set up an Allowed Google Business account, but by doing this, google documents will not be scanned
+
+
+Alternatively, you can create a DPI allowlist, but again, the documents will not be scanned.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/5/2024 9:44 PM
+To: techsupport@netwrix.com; natalia.ticu@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - ref:_00D7091pB._500Q000CfvY5:ref - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+
+
+Hi team, 
+
+ 
+
+I make changes.... 
+
+ 
+
+ 
+
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+
+
+ 
+
+The default email signature is:
+
+ 
+
+[CONFIDENCIAL]
+
+As informações deste e-mail são estritamente confidenciais e destinadas apenas ao destinatário. Em caso de recebimento acidental não divulgue notifique o remetente salve ou faça cópias do e-mail ou anexos.
+
+ 
+
+ 
+
+
+	
+	Create a Rule
+
+	
+	
+
+
+ 
+
+
+	
+	
+	
+
+
+ 
+
+Its correct?? This is all??? Only this???
+
+ 
+
+ 
+
+ 
+
+ 
+
+Update for second suggestion...
+
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+
+This configuration had already been done in the past, for all machines it is already in this configuration in the global rule.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+Atenciosamente,
+
+ 
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+ 
+
+
+
+ 
+
+ 
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br
+
+ 
+
+
+ 
+
+ 
+
+
+De: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 07:55
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>; techsupport <techsupport@netwrix.com>
+Assunto: Re: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ 
+
+
+Hi Tiago,
+
+ 
+
+I did some testing of this setting using Escale’s email signature, and this is how I managed to get it to work --
+
+ 
+
+Under System Configuration -> System Parameters -> click Add -> configure it as per below screenshot.
+
+The “email signature” is a Custom Content denylist dictionary that includes the word “acidental” from the signature. You can add it under Denylists and Allowlists -> Denylists -> Custom Content -> Add. Please make sure you have this dictionary created already prior to creating this Contextual Detection Rule.
+
+ 
+
+ 
+
+
+
+ 
+
+After the rule is configured and saved, please click the “Generate” button. Then, please scroll up the page and enable Contextual Detection, as per below:
+
+ 
+
+
+
+ 
+
+What this means is that if a file or an email body contains the word “CONFIDENCIAL”, but in the proximity of 3000 characters it also has the word “acidental”, it will not trigger the policy.
+
+ 
+
+Please make sure there are no Content Aware Policies in place that use individual Context Detection rules, as this global configuration won’t work if that’s the case.
+
+ 
+
+Please let us know if it worked.
+
+ 
+
+Thanks,
+
+Natalie
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 4 July 2024 at 23:10
+To: tiago@securegate.com.br <tiago@securegate.com.br>
+Cc: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Subject: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+
+Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+ref:!00D70091pB.!500Qk0CfvY5:ref
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #414104 -  - ESACALE - CAP configuration    [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","techsupport@netwrix.com","Netwrix Support","tiago@securegate.com.br","","botond.biro@netwrix.com","true","2024-07-05T22:04:06.000Z","true"
+"02sQk00000CW5aMIAT","500Qk00000CfvY5IAJ","2024-07-12T12:53:27.000Z","2024-07-12T12:53:27.000Z","ref:_00D7091pB._500Q000CfvY5:ref
+
+How can I create or best praticts to DPI allowlist for Google domains (Drive, Gmail, Docs...)?
+
+Can share with me, how can i make this?
+
+
+Atenciosamente,
+
+
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+
+
+[cid:3a07cfb4-07d5-48e3-b840-9b82d70cc7a5]
+
+
+
+
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br<http://www.securegate.com.br/>.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br<http://www.securegate.com.br/>
+
+
+
+________________________________
+De: Netwrix Support <techsupport@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 19:04
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>
+Assunto: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+1. That is correctly set up.
+
+2. For this, you could set up an Allowed Google Business account, but by doing this, google documents will not be scanned
+[Image_2024-07-06_01-01-31.png]
+
+Alternatively, you can create a DPI allowlist, but again, the documents will not be scanned.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/5/2024 9:44 PM
+To: techsupport@netwrix.com; natalia.ticu@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - ref:_00D7091pB._500Q000CfvY5:ref - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+
+Hi team,
+
+I make changes....
+
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+
+The default email signature is:
+
+[CONFIDENCIAL]
+As informações deste e-mail são estritamente confidenciais e destinadas apenas ao destinatário. Em caso de recebimento acidental não divulgue notifique o remetente salve ou faça cópias do e-mail ou anexos.
+
+
+
+  1.
+Create a Rule
+[cid:0dd77b0e-c3d3-4e7f-928c-e18024cbec61@Image_1_]
+
+
+
+  1.
+[cid:21a4c0cc-6a26-4d44-a1bc-c417af13033a@Image_2_]
+
+
+Its correct?? This is all??? Only this???
+
+
+
+
+Update for second suggestion...
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+This configuration had already been done in the past, for all machines it is already in this configuration in the global rule.
+
+[cid:9307cd35-b10f-41ff-96c1-98df74df5dca@Image_3_]
+
+
+
+
+
+
+Atenciosamente,
+
+
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+
+
+[cid:e8e707ab-925f-4ce7-99ab-b4ed24a55065@Image_4_]
+
+
+
+
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br<http://www.securegate.com.br/>.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br<http://www.securegate.com.br/>
+
+
+
+
+
+________________________________
+De: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 07:55
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>; techsupport <techsupport@netwrix.com>
+Assunto: Re: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+
+Hi Tiago,
+
+
+
+I did some testing of this setting using Escale’s email signature, and this is how I managed to get it to work --
+
+
+
+Under System Configuration -> System Parameters -> click Add -> configure it as per below screenshot.
+
+The “email signature” is a Custom Content denylist dictionary that includes the word “acidental” from the signature. You can add it under Denylists and Allowlists -> Denylists -> Custom Content -> Add. Please make sure you have this dictionary created already prior to creating this Contextual Detection Rule.
+
+
+
+
+
+[cid:904a2891-82be-4a71-8a0e-d3d9be192d8c@Image_5_]
+
+
+
+After the rule is configured and saved, please click the “Generate” button. Then, please scroll up the page and enable Contextual Detection, as per below:
+
+
+
+[cid:1d34f638-2803-401e-93c6-009945499227@Image_6_]
+
+
+
+What this means is that if a file or an email body contains the word “CONFIDENCIAL”, but in the proximity of 3000 characters it also has the word “acidental”, it will not trigger the policy.
+
+
+
+Please make sure there are no Content Aware Policies in place that use individual Context Detection rules, as this global configuration won’t work if that’s the case.
+
+
+
+Please let us know if it worked.
+
+
+
+Thanks,
+
+Natalie
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 4 July 2024 at 23:10
+To: tiago@securegate.com.br <tiago@securegate.com.br>
+Cc: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Subject: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+ref:!00D70091pB.!500Qk0CfvY5:ref
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BNbGf&from=ext]","RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration  [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","tiago@securegate.com.br","Tiago Guerra | SECURE GATE","techsupport@netwrix.com","","","true","2024-07-12T12:53:07.000Z","true"
+"02sQk00000CXDCTIA5","500Qk00000CfvY5IAJ","2024-07-12T17:23:55.000Z","2024-07-12T17:23:55.000Z","Hi Tiago,
+
+If you want, we can schedule a remote session for next week to take a look and set it up together.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/12/2024 3:53 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+
+
+How can I create or best praticts to DPI allowlist for Google domains (Drive, Gmail, Docs...)?
+
+ 
+
+Can share with me, how can i make this?
+
+ 
+
+
+Atenciosamente,
+
+ 
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+ 
+
+
+
+ 
+
+ 
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br
+
+ 
+
+
+ 
+
+ 
+
+
+De: Netwrix Support <techsupport@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 19:04
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>
+Assunto: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ 
+
+
+Hi Tiago,
+
+1. That is correctly set up.
+
+2. For this, you could set up an Allowed Google Business account, but by doing this, google documents will not be scanned
+
+
+Alternatively, you can create a DPI allowlist, but again, the documents will not be scanned.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/5/2024 9:44 PM
+To: techsupport@netwrix.com; natalia.ticu@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - ref:_00D7091pB._500Q000CfvY5:ref - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+ 
+
+Hi team, 
+
+ 
+
+I make changes.... 
+
+ 
+
+ 
+
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+
+
+ 
+
+The default email signature is:
+
+ 
+
+[CONFIDENCIAL]
+
+As informações deste e-mail são estritamente confidenciais e destinadas apenas ao destinatário. Em caso de recebimento acidental não divulgue notifique o remetente salve ou faça cópias do e-mail ou anexos.
+
+ 
+
+ 
+
+
+	
+	Create a Rule
+
+	
+	
+
+
+ 
+
+
+	
+	
+	
+
+
+ 
+
+Its correct?? This is all??? Only this???
+
+ 
+
+ 
+
+ 
+
+ 
+
+Update for second suggestion...
+
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+
+This configuration had already been done in the past, for all machines it is already in this configuration in the global rule.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+Atenciosamente,
+
+ 
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+ 
+
+
+
+ 
+
+ 
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br
+
+ 
+
+
+ 
+
+ 
+
+
+De: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 07:55
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>; techsupport <techsupport@netwrix.com>
+Assunto: Re: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ 
+
+
+Hi Tiago,
+
+ 
+
+I did some testing of this setting using Escale’s email signature, and this is how I managed to get it to work --
+
+ 
+
+Under System Configuration -> System Parameters -> click Add -> configure it as per below screenshot.
+
+The “email signature” is a Custom Content denylist dictionary that includes the word “acidental” from the signature. You can add it under Denylists and Allowlists -> Denylists -> Custom Content -> Add. Please make sure you have this dictionary created already prior to creating this Contextual Detection Rule.
+
+ 
+
+ 
+
+
+
+ 
+
+After the rule is configured and saved, please click the “Generate” button. Then, please scroll up the page and enable Contextual Detection, as per below:
+
+ 
+
+
+
+ 
+
+What this means is that if a file or an email body contains the word “CONFIDENCIAL”, but in the proximity of 3000 characters it also has the word “acidental”, it will not trigger the policy.
+
+ 
+
+Please make sure there are no Content Aware Policies in place that use individual Context Detection rules, as this global configuration won’t work if that’s the case.
+
+ 
+
+Please let us know if it worked.
+
+ 
+
+Thanks,
+
+Natalie
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 4 July 2024 at 23:10
+To: tiago@securegate.com.br <tiago@securegate.com.br>
+Cc: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Subject: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+
+Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+ref:!00D70091pB.!500Qk0CfvY5:ref
+
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration    [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","techsupport@netwrix.com","Netwrix Support","tiago@securegate.com.br","","","true","2024-07-12T17:23:53.000Z","true"
+"02sQk00000CgZXQIA3","500Qk00000CfvY5IAJ","2024-07-16T18:33:27.000Z","2024-07-16T18:33:27.000Z","Hi Tiago,
+
+Please share your timezone and availability for the next week for a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/12/2024 8:23 PM
+To: tiago@securegate.com.br
+Subject: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+If you want, we can schedule a remote session for next week to take a look and set it up together.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/12/2024 3:53 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+
+
+How can I create or best praticts to DPI allowlist for Google domains (Drive, Gmail, Docs...)?
+
+ 
+
+Can share with me, how can i make this?
+
+ 
+
+
+Atenciosamente,
+
+ 
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+ 
+
+
+
+ 
+
+ 
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br
+
+ 
+
+
+ 
+
+ 
+
+
+De: Netwrix Support <techsupport@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 19:04
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>
+Assunto: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ 
+
+
+Hi Tiago,
+
+1. That is correctly set up.
+
+2. For this, you could set up an Allowed Google Business account, but by doing this, google documents will not be scanned
+
+
+Alternatively, you can create a DPI allowlist, but again, the documents will not be scanned.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/5/2024 9:44 PM
+To: techsupport@netwrix.com; natalia.ticu@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - ref:_00D7091pB._500Q000CfvY5:ref - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+ 
+
+Hi team, 
+
+ 
+
+I make changes.... 
+
+ 
+
+ 
+
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+
+
+ 
+
+The default email signature is:
+
+ 
+
+[CONFIDENCIAL]
+
+As informações deste e-mail são estritamente confidenciais e destinadas apenas ao destinatário. Em caso de recebimento acidental não divulgue notifique o remetente salve ou faça cópias do e-mail ou anexos.
+
+ 
+
+ 
+
+
+	
+	Create a Rule
+
+	
+	
+
+
+ 
+
+
+	
+	
+	
+
+
+ 
+
+Its correct?? This is all??? Only this???
+
+ 
+
+ 
+
+ 
+
+ 
+
+Update for second suggestion...
+
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+
+This configuration had already been done in the past, for all machines it is already in this configuration in the global rule.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+Atenciosamente,
+
+ 
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+ 
+
+
+
+ 
+
+ 
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br
+
+ 
+
+
+ 
+
+ 
+
+
+De: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 07:55
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>; techsupport <techsupport@netwrix.com>
+Assunto: Re: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ 
+
+
+Hi Tiago,
+
+ 
+
+I did some testing of this setting using Escale’s email signature, and this is how I managed to get it to work --
+
+ 
+
+Under System Configuration -> System Parameters -> click Add -> configure it as per below screenshot.
+
+The “email signature” is a Custom Content denylist dictionary that includes the word “acidental” from the signature. You can add it under Denylists and Allowlists -> Denylists -> Custom Content -> Add. Please make sure you have this dictionary created already prior to creating this Contextual Detection Rule.
+
+ 
+
+ 
+
+
+
+ 
+
+After the rule is configured and saved, please click the “Generate” button. Then, please scroll up the page and enable Contextual Detection, as per below:
+
+ 
+
+
+
+ 
+
+What this means is that if a file or an email body contains the word “CONFIDENCIAL”, but in the proximity of 3000 characters it also has the word “acidental”, it will not trigger the policy.
+
+ 
+
+Please make sure there are no Content Aware Policies in place that use individual Context Detection rules, as this global configuration won’t work if that’s the case.
+
+ 
+
+Please let us know if it worked.
+
+ 
+
+Thanks,
+
+Natalie
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 4 July 2024 at 23:10
+To: tiago@securegate.com.br <tiago@securegate.com.br>
+Cc: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Subject: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+
+Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+ref:!00D70091pB.!500Qk0CfvY5:ref
+
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration    [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","techsupport@netwrix.com","Netwrix Support","tiago@securegate.com.br","","botond.biro@netwrix.com","true","2024-07-16T18:33:26.000Z","true"
+"02sQk00000ChU5ZIAV","500Qk00000CfvY5IAJ","2024-07-16T21:07:38.000Z","2024-07-16T21:07:38.000Z","ref:_00D7091pB._500Q000CfvY5:ref
+
+Hi,
+
+My Timezone is GMT -3.
+
+I free in all monday for you.
+
+
+Atenciosamente,
+
+
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+
+
+
+
+
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br<http://www.securegate.com.br/>.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br<http://www.securegate.com.br/>
+
+
+
+________________________________
+De: Netwrix Support <techsupport@netwrix.com>
+Enviado: terça-feira, 16 de julho de 2024 15:33
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>
+Assunto: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+Please share your timezone and availability for the next week for a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/12/2024 8:23 PM
+To: tiago@securegate.com.br
+Subject: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+If you want, we can schedule a remote session for next week to take a look and set it up together.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/12/2024 3:53 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+
+How can I create or best praticts to DPI allowlist for Google domains (Drive, Gmail, Docs...)?
+
+Can share with me, how can i make this?
+
+
+Atenciosamente,
+
+
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+
+
+
+
+
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br<http://www.securegate.com.br/>.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br<http://www.securegate.com.br/>
+
+
+
+
+
+________________________________
+De: Netwrix Support <techsupport@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 19:04
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>
+Assunto: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+1. That is correctly set up.
+
+2. For this, you could set up an Allowed Google Business account, but by doing this, google documents will not be scanned
+
+
+Alternatively, you can create a DPI allowlist, but again, the documents will not be scanned.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/5/2024 9:44 PM
+To: techsupport@netwrix.com; natalia.ticu@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - ref:_00D7091pB._500Q000CfvY5:ref - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+
+Hi team,
+
+I make changes....
+
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+
+The default email signature is:
+
+[CONFIDENCIAL]
+As informações deste e-mail são estritamente confidenciais e destinadas apenas ao destinatário. Em caso de recebimento acidental não divulgue notifique o remetente salve ou faça cópias do e-mail ou anexos.
+
+
+
+  1.
+Create a Rule
+
+
+
+Its correct?? This is all??? Only this???
+
+
+
+
+Update for second suggestion...
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+This configuration had already been done in the past, for all machines it is already in this configuration in the global rule.
+
+
+
+
+
+
+
+Atenciosamente,
+
+
+
+Tiago Guerra
+
+BR: +55 41 3148-6956
+
+BR: +55 41 99288-4065
+
+
+
+
+
+
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br<http://www.securegate.com.br/>.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br<http://www.securegate.com.br/>
+
+
+
+
+
+________________________________
+De: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 07:55
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>; techsupport <techsupport@netwrix.com>
+Assunto: Re: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+
+Hi Tiago,
+
+
+
+I did some testing of this setting using Escale’s email signature, and this is how I managed to get it to work --
+
+
+
+Under System Configuration -> System Parameters -> click Add -> configure it as per below screenshot.
+
+The “email signature” is a Custom Content denylist dictionary that includes the word “acidental” from the signature. You can add it under Denylists and Allowlists -> Denylists -> Custom Content -> Add. Please make sure you have this dictionary created already prior to creating this Contextual Detection Rule.
+
+
+
+
+
+
+
+After the rule is configured and saved, please click the “Generate” button. Then, please scroll up the page and enable Contextual Detection, as per below:
+
+
+
+
+
+What this means is that if a file or an email body contains the word “CONFIDENCIAL”, but in the proximity of 3000 characters it also has the word “acidental”, it will not trigger the policy.
+
+
+
+Please make sure there are no Content Aware Policies in place that use individual Context Detection rules, as this global configuration won’t work if that’s the case.
+
+
+
+Please let us know if it worked.
+
+
+
+Thanks,
+
+Natalie
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 4 July 2024 at 23:10
+To: tiago@securegate.com.br <tiago@securegate.com.br>
+Cc: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Subject: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+ref:!00D70091pB.!500Qk0CfvY5:ref
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BNbGf&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BfSzh&from=ext]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Bn0zs&from=ext]","RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration  [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","tiago@securegate.com.br","Tiago Guerra | SECURE GATE","techsupport@netwrix.com","","","false","2024-07-16T21:07:26.000Z","true"
+"02sQk00000ChJTZIA3","500Qk00000CfvY5IAJ","2024-07-16T21:10:09.000Z","2024-07-16T21:10:09.000Z","Hi Tiago,
+
+I scheduled the remote session from 14:00 and sent you an invite.
+You can also join via the following link:
+https://endpointprotector.zoom.us/j/83233313367
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/17/2024 12:07 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+
+
+Hi, 
+
+ 
+
+My Timezone is GMT -3.
+
+ 
+
+I free in all monday for you.
+
+ 
+
+
+Atenciosamente,
+
+ 
+
+Tiago Guerra
+
+BR: +55 41  3148-6956
+
+BR: +55 41  99288-4065
+
+ 
+
+ 
+
+ 
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br
+
+ 
+
+
+ 
+
+ 
+
+
+De: Netwrix Support <techsupport@netwrix.com>
+Enviado: terça-feira, 16 de julho de 2024 15:33
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>
+Assunto: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ 
+
+
+Hi Tiago,
+
+Please share your timezone and availability for the next week for a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/12/2024 8:23 PM
+To: tiago@securegate.com.br
+Subject: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+Hi Tiago,
+
+If you want, we can schedule a remote session for next week to take a look and set it up together.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/12/2024 3:53 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+ 
+
+How can I create or best praticts to DPI allowlist for Google domains (Drive, Gmail, Docs...)?
+
+ 
+
+Can share with me, how can i make this?
+
+ 
+
+
+Atenciosamente,
+
+ 
+
+Tiago Guerra
+
+BR: +55 41  3148-6956
+
+BR: +55 41  99288-4065
+
+ 
+
+ 
+
+ 
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br
+
+ 
+
+
+ 
+
+ 
+
+
+De: Netwrix Support <techsupport@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 19:04
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>
+Assunto: RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ 
+
+
+Hi Tiago,
+
+1. That is correctly set up.
+
+2. For this, you could set up an Allowed Google Business account, but by doing this, google documents will not be scanned
+
+
+Alternatively, you can create a DPI allowlist, but again, the documents will not be scanned.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Tiago Guerra | SECURE GATE [tiago@securegate.com.br]
+Sent: 7/5/2024 9:44 PM
+To: techsupport@netwrix.com; natalia.ticu@netwrix.com
+Subject: RE: Netwrix Support Ticket #414104 - ref:_00D7091pB._500Q000CfvY5:ref - ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ref:_00D7091pB._500Q000CfvY5:ref
+ 
+
+Hi team, 
+
+ 
+
+I make changes.... 
+
+ 
+
+ 
+
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+
+
+ 
+
+The default email signature is:
+
+ 
+
+[CONFIDENCIAL]
+
+As informações deste e-mail são estritamente confidenciais e destinadas apenas ao destinatário. Em caso de recebimento acidental não divulgue notifique o remetente salve ou faça cópias do e-mail ou anexos.
+
+ 
+
+ 
+
+
+	
+	Create a Rule
+	
+
+
+ 
+
+ 
+
+Its correct?? This is all??? Only this???
+
+ 
+
+ 
+
+ 
+
+ 
+
+Update for second suggestion...
+
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+
+This configuration had already been done in the past, for all machines it is already in this configuration in the global rule.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+Atenciosamente,
+
+ 
+
+Tiago Guerra
+
+BR: +55 41  3148-6956
+
+BR: +55 41  99288-4065
+
+ 
+
+ 
+
+ 
+
+AVISO: A informação contida neste e-mail, bem como em qualquer de seus anexos, é CONFIDENCIAL e destinada ao uso exclusivo do(s) destinatário(s) acima referido(s), podendo conter informações sigilosas e/ou legalmente protegidas. Caso você não seja o destinatário desta mensagem, informamos que qualquer divulgação, distribuição ou cópia deste e-mail e/ou de qualquer de seus anexos é absolutamente proibida. Solicitamos que o remetente seja comunicado imediatamente, respondendo esta mensagem, e que o original desta mensagem e de seus anexos, bem como toda e qualquer cópia e/ou impressão realizada a partir destes, sejam permanentemente apagados e/ou destruídos. Informações adicionais sobre nossa empresa podem ser obtidas no site http://www.securegate.com.br.
+
+NOTICE: The information contained in this e-mail and any attachments thereto is CONFIDENTIAL and is intended only for use by the recipient named herein and may contain legally privileged and/or secret information.
+If you are not the e-mail´s intended recipient, you are hereby notified that any dissemination, distribution or copy of this e-mail, and/or any attachments thereto, is strictly prohibited. Please immediately notify the sender replying to the above mentioned e-mail address, and permanently delete and/or destroy the original and any copy of this e-mail and/or its attachments, as well as any printout thereof. Additional information about our company may be obtained through the site http://www.securegate.com.br
+
+ 
+
+
+ 
+
+ 
+
+
+De: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Enviado: sexta-feira, 5 de julho de 2024 07:55
+Para: Tiago Guerra | SECURE GATE <tiago@securegate.com.br>; techsupport <techsupport@netwrix.com>
+Assunto: Re: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+ 
+
+
+Hi Tiago,
+
+ 
+
+I did some testing of this setting using Escale’s email signature, and this is how I managed to get it to work --
+
+ 
+
+Under System Configuration -> System Parameters -> click Add -> configure it as per below screenshot.
+
+The “email signature” is a Custom Content denylist dictionary that includes the word “acidental” from the signature. You can add it under Denylists and Allowlists -> Denylists -> Custom Content -> Add. Please make sure you have this dictionary created already prior to creating this Contextual Detection Rule.
+
+ 
+
+ 
+
+ 
+
+After the rule is configured and saved, please click the “Generate” button. Then, please scroll up the page and enable Contextual Detection, as per below:
+
+ 
+
+ 
+
+What this means is that if a file or an email body contains the word “CONFIDENCIAL”, but in the proximity of 3000 characters it also has the word “acidental”, it will not trigger the policy.
+
+ 
+
+Please make sure there are no Content Aware Policies in place that use individual Context Detection rules, as this global configuration won’t work if that’s the case.
+
+ 
+
+Please let us know if it worked.
+
+ 
+
+Thanks,
+
+Natalie
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 4 July 2024 at 23:10
+To: tiago@securegate.com.br <tiago@securegate.com.br>
+Cc: Natalia Ticu <Natalia.Ticu@netwrix.com>
+Subject: ESACALE - CAP configuration [ ref:!00D70091pB.!500Qk0CfvY5:ref ]
+
+
+Hi Tiago,
+
+For the first topic, we suggest creating a contextual detection to ignore the word ""confidential"" if it's in the proximity of words like ""best regards"" or ""best wishes"".
+You can read more about this in the manual, in chapter 17.2:
+https://www.endpointprotector.com/support/pdf/manual/Endpoint_Protector_5_User_Manual_EN.pdf
+
+Regarding the second topic, please try to enable Stealthy DPI for Windows, or Intercept VPN Traffic on Mac, for a few computers to see if this helps with the issue, from Device Control -> Computers, and select the computers on which you can test this out.
+
+If you need more help, please let me know and we can schedule a remote session.
+
+Best regards,
+Botond Biro | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+ref:!00D70091pB.!500Qk0CfvY5:ref
+
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #414104 - - ESACALE - CAP configuration    [ ref:!00D70091pB.!500Qk0CfvY5:ref ]","techsupport@netwrix.com","Netwrix Support","tiago@securegate.com.br","","","false","2024-07-16T21:10:07.000Z","true"

@@ -1,0 +1,142 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007lQCjIAM","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the Following Fields have been updated: 
+Priority has been changed to High.","005Qk000001nVi2IAE","2024-07-05T19:57:27.000Z","2024-07-05T19:57:27.000Z","false","false"
+"00aQk000007z3TMIAY","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Michael Paye:
+
+[Force comment sync]
+
+[DevOps CommentId:10587440]","0054u000006gtWUAAY","2024-07-17T14:54:20.000Z","2024-07-17T14:54:20.000Z","false","false"
+"00aQk000007z3THIAY","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Botond-Robert Biro:
+
+Hi @Cristian-Alexandru Halmajan ,
+The customer is very impatient and followed up already, can you please assign this ticket to someone if possible?
+Thanks,
+Boti
+
+[DevOps CommentId:10543535]","0054u000006gtWUAAY","2024-07-17T14:54:20.000Z","2024-07-17T14:54:20.000Z","false","false"
+"00aQk000007z3TIIAY","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Alex Puskas:
+
+What the development can do without logs?
+
+After you will receive the logs please try to found the problem in logs or please try to search after some keywords to see where can be the problem.
+
+[DevOps CommentId:10546078]","0054u000006gtWUAAY","2024-07-17T14:54:20.000Z","2024-07-17T14:54:20.000Z","false","false"
+"00aQk000007z3TJIAY","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Botond-Robert Biro:
+
+Hi @Alex Puskas ,
+I uploaded them to the escalated case in Salesforce, apparently they don't get transferred to ADO...
+I uploaded them here as well.
+Thanks,
+Boti
+
+[DevOps CommentId:10557902]","0054u000006gtWUAAY","2024-07-17T14:54:20.000Z","2024-07-17T14:54:20.000Z","false","false"
+"00aQk000007z3TKIAY","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Alex Puskas:
+
+@Botond-Robert Biro the logs were uploaded.
+
+What you found in logs?
+
+[DevOps CommentId:10559256]","0054u000006gtWUAAY","2024-07-17T14:54:20.000Z","2024-07-17T14:54:20.000Z","false","false"
+"00aQk000007z3TLIAY","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Botond-Robert Biro:
+
+hi @Alex Puskas 
+We collected the logs, the end user could only join via phone call so I activated debugging from the server.
+The eppsplitlog is not empty this time, but please let me know if it captured everything.
+Thanks,
+Boti
+
+[DevOps CommentId:10581624]","0054u000006gtWUAAY","2024-07-17T14:54:20.000Z","2024-07-17T14:54:20.000Z","false","false"
+"00aQk0000081RuQIAU","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Alex Puskas:
+
+If you will open the mentioned eppsslsplit.log file (which is NOT empty) and you will search for:
+-> 'error' -> NO found
+-> 'fail' -> 203 founds (all the found entries in logs are:
+
+Certificate verification failed, code: x80092013 (2148081683) (WinCrypt)
+
+
+Certificate validation failed is happening when:
+
+	 - 	other software is installed in computer (I hope you asked the customer about VPN, other DLP solutions, proxies?)
+	 - 	something is bad in our code (if something is wrong in our code, probably all customers should have the same problem) - it is not the case
+
+
+In 593 A LOT of cases were reported with certificate validation problem (the setting send from server side was wrong). A workaround for 593 patch was described in which you must to CHECK all the checkboxes and enable certificate validation
+
+(please see the attached image)
+
+
+This WORKAROUND was NOT applied. Why?
+From received logs if you will open the netdlp_setting.json file and you will search for disable_peer_cert_validation, you will observe ONLY
+""ignore Hostname"" was checked.
+
+""disable_peer_cert_validation"" : ""hostname""
+
+
+
+Please try to check all the checkboxes to DISABLE the certificate validation (mentioned image), because probably the epp agent cannot verify the fortinet client certificate (or other third party solution used by the customer).
+
+[DevOps CommentId:10595689]","0054u000006gtWUAAY","2024-07-19T08:32:52.000Z","2024-07-19T08:32:52.000Z","false","false"
+"00aQk0000086cE6IAI","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Hi Alex,
+Thank you, this fixed their issue.
+Regards,
+Boti","005Qk000001nVi2IAE","2024-07-23T18:24:45.000Z","2024-07-23T18:24:45.000Z","false","false"
+"00aQk0000086cXRIAY","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVi2IAE","2024-07-23T18:26:58.000Z","2024-07-23T18:26:58.000Z","false","false"
+"00aQk000008RpLCIA0","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Hi Alex,
+The customer is experiencing the issue again, and on the following websites, images do not load:
+Mestra Certificações e Treinamentos (blocosbusiness.com.br)
+The customer collected 3 sets of logs and I uploaded them to gdrive:
+https://drive.google.com/drive/folders/1Os7OztPXRRnFUi3ykHQU349bEzwmdbIo
+Thanks,
+Boti","005Qk000001nVi2IAE","2024-08-09T20:28:05.000Z","2024-08-09T20:28:05.000Z","false","false"
+"00aQk000008TF3uIAG","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Alex Puskas:
+
+Can you please try to install the latest agent from patch 594 and collect again logs?
+
+This is happening only on few URLs or the customer had problems with entire browser?
+
+After the mentioned fix, you mentioned the problem was solved? What they changed?
+
+[DevOps CommentId:10719982]","0054u000006gtWUAAY","2024-08-12T07:45:54.000Z","2024-08-12T07:45:54.000Z","false","false"
+"00aQk000008TF5VIAW","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-12T07:46:06.000Z","2024-08-12T07:46:06.000Z","false","false"
+"00aQk000008ToXtIAK","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2024-08-12T16:06:42.000Z","2024-08-12T16:06:42.000Z","false","false"
+"00aQk000008ZvutIAC","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Hello,
+The customer installed the latest client and they're having the same issue.
+They said the didn't change anything, the EPP client just started blocking again, this time the following website:
+blocosbusiness.com.br
+I uploaded the logs to the same gdrive folder, as epp_logs_new_client:
+https://drive.google.com/drive/folders/1Os7OztPXRRnFUi3ykHQU349bEzwmdbIo
+Thanks,
+Boti","005Qk000001nVi2IAE","2024-08-16T21:20:01.000Z","2024-08-16T21:20:01.000Z","false","false"
+"00aQk000008h98HIAQ","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-23T08:26:45.000Z","2024-08-23T08:26:45.000Z","false","false"
+"00aQk000008h98JIAQ","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Alex Puskas:
+
+@WaitingOnEngineer
+
+I don’t see anything wrong in logs.
+
+Last time I put some questions related to this ticket:
+1. this is happening only on the mentioned website (you tried to allowlist/whitelist?)
+2. if they upgraded the server to 594, please be aware to “uncheck” the certificate validation
+(as I mentioned before the problem was reported on server 593, in patch 594 it was fixed so the workaround should be back ported)
+3. the epp client receives data from other applications and seems to work as expected
+
+They uses any other third party solution? (vpn/proxy/antivirus: Kasperski...)
+Please try to disable the applications (if there are) to see if will work as expected.
+
+[DevOps CommentId:10823714]","0054u000006gtWUAAY","2024-08-23T08:26:46.000Z","2024-08-23T08:26:46.000Z","false","false"
+"00aQk000008hbm6IAA","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2024-08-23T17:03:34.000Z","2024-08-23T17:03:34.000Z","false","false"
+"00aQk000008lhjGIAQ","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Customer was okay with resolving the issue with Allowlist -> DPI. It worked and instructed them on how to add it in the future for other websites as well.
+Cert validation was already disabled.
+We are closing this ticket.","005Qk000001nViKIAU","2024-08-27T18:47:53.000Z","2024-08-27T18:47:53.000Z","false","false"
+"00aQk000008lhksIAA","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the new comment has been added: Asked customer to open separate ticket in case they have users with custom certificates that have issues. This customer did not have custom certificates.","005Qk000001nViKIAU","2024-08-27T18:48:57.000Z","2024-08-27T18:48:57.000Z","false","false"
+"00aQk000008liVdIAI","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the Following Fields have been updated: 
+Escalating Engineer Name has been changed to User: Flaviu Moldovan.
+Product Version has been changed to NONE.","005Qk000001nViKIAU","2024-08-27T18:57:22.000Z","2024-08-27T18:57:22.000Z","false","false"
+"00aQk000008liDuIAI","500Qk00000CgIcjIAF","On Escalation Ticket # 00414222 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViKIAU","2024-08-27T18:58:03.000Z","2024-08-27T18:58:03.000Z","false","false"

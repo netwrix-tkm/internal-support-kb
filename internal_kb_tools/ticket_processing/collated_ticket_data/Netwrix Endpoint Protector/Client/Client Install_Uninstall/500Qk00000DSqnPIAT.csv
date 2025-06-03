@@ -1,0 +1,42 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DSqnPIAT","00415852","Support Ticket","EPP Jamf Script not working","Have updated to push out the EPP client v3.0.2.1007.  The script push out in Jamf has not changed since we starting using EPP.  The issue we are seeing now is when push out the EPP client and run the script from Jamf.  The client gets installed but the doesn’t set the server address on the Mac.  When doing a manual install of the 3.0.2 client the server address is added to the client on the Mac.  Using the below script does not add the address.
+
+Below is the script that we’re using.
+#!/bin/bash
+
+### Edit this script and set the EPP server parameters in this section ###
+EPP_SERVER_ADDRESS=""<a href='https://epp.umc.edu' target='_blank'>epp.umc.edu</a>""
+EPP_SERVER_PORT=""443""
+EPP_DEPARTMENT_CODE=""defdep""
+
+
+# do NOT modify the script below this line
+
+if [ ${EPP_SERVER_ADDRESS} == ""127.0.0.1"" ]; then
+    /bin/echo ""You have to set the EPP server address before running this script!""
+    exit 1
+fi
+
+/bin/echo ""Setting the EPP server address ...""
+
+if [ -e /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist ]; then
+                /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist 2>/dev/null
+fi
+
+/bin/sleep 4
+
+# export EPP_INSTALL_CONFIG=""<a href='https:///private/etc/epp/options.ini' target='_blank'>/private/etc/epp/options.ini</a>""
+export EPP_INSTALL_CONFIG=""/tmp/epp-srv201f0dd30""
+/bin/mkdir -p /private/etc/epp
+/bin/echo ""ws_server=${EPP_SERVER_ADDRESS}""       >> ${EPP_INSTALL_CONFIG}
+/bin/echo ""ws_port=${EPP_SERVER_PORT}""            >> ${EPP_INSTALL_CONFIG}
+/bin/echo ""DepartmentCode=${EPP_DEPARTMENT_CODE}"" >> ${EPP_INSTALL_CONFIG}
+/bin/rm /private/etc/epp/cert.* 2>/dev/null
+
+if [ -e /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist ]; then
+                /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist 2>/dev/null
+fi
+/bin/echo ""Done.""
+
+
+--","","","","provided the customer with the latest JAMF IP change script, and in combination with the latest client, 3.0.3.1, it worked correctly","","Botond Biro","","Netwrix Endpoint Protector","Client","Client Install/Uninstall","","","100.8","Closed - Resolved","University of Mississippi Medical Center","Jack S","2024-07-23T22:35:50.000Z","2024-11-01T17:42:18.000Z"

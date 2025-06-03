@@ -1,0 +1,67 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000O1XdeIAF","00441862","Support Ticket","EPP Uninstall über eigene Softwareverteilung","Wann immer wir den Endpoint Protector auf den Clients über den Server updaten lassen haben wir ein relativ hohe Fehlerquote, sodass das Update bei den Clients nicht durchgeführt werden konnte.
+Um dies zukünftig vorzubeugen und sicherzustellen, dass alle Clients immer denselben Softwarestand haben, möchten wir die Updates zukünftig über unsere eigene Softwareverteilung gestalten.
+
+Hierbei stoßen wir natürlich über die Problematik, dass es ein uninstall password gibt.
+Daher die Frage, ob es eine Möglichkeit gibt, dass man bei der .msi einen Parameter mitgeben kann, um die Deinstallation mit dem Passwort silent durchzuführen, um direkt im Nachgang die neue Version zu installieren.
+Oder alternativ eine Möglichkeit mit der sich unmittelbar vor der Deinstallation die Notwendigkeit des Passworts auf dem Client deaktivieren lässt.
+
+Ggf. hatten anderen Kunden bereits selbige Anfrage oder Sie können die Frage intern weiterleiten.
+
+Vielen Dank im Voraus
+
+Beste Grüße / Best regards
+
+ 
+
+Andre Knittel
+IT-Systemadministrator
+
+Server and Central Services
+
+ 
+
+Tel. +49 7402 74-7362
+
+Mobil +49 162 13 57 356
+Andre.Knittel@sw-machines.com
+
+ 
+
+-----------------------------------
+
+
+
+www.sw-machines.com
+
+    
+
+
+
+-----------------------------------
+
+Schwäbische Werkzeugmaschinen GmbH
+Seedorfer Straße 91
+78713 Schramberg-Waldmössingen
+Deutschland / Germany
+
+www.sw-machines.com
+
+Zertifiziert nach: ISO 9001/ VDA 6.4 / ISO 14001 Sitz der Gesellschaft: Schramberg - Waldmössingen, Fed. Rep. of Germany
+Geschäftsführer: Kai Pieronczyk, Dr. Daniel Rieser, Stefan Weber
+Registergericht: Amtsgericht Stuttgart / HRB 480839
+USt.Id.Nr.: DE 811 805 718
+SCHWEIZ: UID: CHE- 231.952.340 / MWST-Nr.: CHE- 231.952.340 MWST","","15 April 2025
+- provided the customer with the password uninstall parameters as seen below:
+
+For Windows
+msiexec.exe /x <PATH to MSI file> ADMIN_PASSWORD_0=""ADD_UNINSTALL_PASSWORD_HERE"" /qn REBOOT=ReallySuppress
+
+For Mac
+/Applications/EndpointProtectorClient.app/Contents/Applications/EppNotifier.app/Contents/MacOS/remove-epp ADD_PASSWORD_HERE","15 April 2025: offer guidance to the customer","provided the customer with the password uninstall parameters as seen below:
+
+For Windows
+msiexec.exe /x <PATH to MSI file> ADMIN_PASSWORD_0=""ADD_UNINSTALL_PASSWORD_HERE"" /qn REBOOT=ReallySuppress
+
+For Mac
+/Applications/EndpointProtectorClient.app/Contents/Applications/EppNotifier.app/Contents/MacOS/remove-epp ADD_PASSWORD_HERE","Guidance","Alin Anca","Question","Netwrix Endpoint Protector","Client","Client Deployment","","","2.2","Closed - Resolved","Schwäbische Werkzeugmaschinen GmbH","Andre Knittel","2025-04-14T08:18:58.000Z","2025-04-16T12:05:43.000Z"

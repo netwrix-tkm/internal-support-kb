@@ -1,0 +1,44 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000M9PsCIAV","00436603","Support Ticket","API Filter don't work","Hallo Support,
+
+if i try to get events via API with filters i get the following errors/results
+
+&filter_by[event_id]=20
+--> Invoke-RestMethod : The remote server returned an error: (400) Bad Request.
+See <a href='https://01_Eventid.png' target='_blank'>01_Eventid.png</a>
+
+&filter_by[event_name]=Blocked
+--> i get events, but the events also contains items with event_name = Unblocked
+see <a href='https://02_event_name.png' target='_blank'>02_event_name.png</a>
+
+&filter_by[device_type]=Webcam
+--> Invoke-RestMethod : The remote server returned an error: (400) Bad Request.
+see <a href='https://03_device_type.png' target='_blank'>03_device_type.png</a>
+
+&filter_by[vid]=0&filter_by[pid]=0
+--> The results contains items where vid and pid are not 0
+see <a href='https://04_vid_pid.png' target='_blank'>04_vid_pid.png</a>
+
+Please check and provide feedback if the error is in the query or if it is an error in the API.
+
+Regards
+
+Anatoli","","- a ticket was raised to QA so that we can provide an explanation to the customer regarding their request.
+- The explanation was:
+The result returned by API is correct, given the fact that the items used for filtering accept multiple selections.
+For the query to work the request needs to be like : 
+
+
+--- CODE ---/api/logs/device-control?limit=10&page=1&direction=DESC&filter_by[device_type_id][]=1,
+--- CODE ---
+
+ Meaning for parameters that accept multiple selections before, ""="" ""[ ]"" is needed, also the correct parameter for device_type is device_type_id.
+
+For this specific query the parameters that accept multiple selections are: 
+
+- event_id, 
+- machine_name, 
+- device_name, 
+- client_name and 
+- device_type_id.","- check with QA
+- check if the explanation is satisfactory with the customer","The explanation is satisfactory with the customer and the customer closed the ticket from their side","Guidance","Alin Anca","Unexpected Behavior","Netwrix Endpoint Protector","Server","EPP Server - Other","","","17.1","Closed - Resolved","BMW Group AG","Anatoli Lorenz","2025-02-21T14:21:18.000Z","2025-03-10T15:52:30.000Z"

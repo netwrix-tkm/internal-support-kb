@@ -1,0 +1,147 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BOGDNIA5","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Account ACV has been changed to 98890.80316742081416.","005Qk000002Fjy9IAC","2025-01-22T21:41:44.000Z","2025-01-22T21:41:44.000Z","false","false"
+"00aQk00000BOGEzIAP","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Account ACV has been changed to 49445.40158371040708.","005Qk000002Fjy9IAC","2025-01-22T21:41:45.000Z","2025-01-22T21:41:45.000Z","false","false"
+"00aQk00000BVAkkIAH","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-29T10:25:58.000Z","2025-01-29T10:25:58.000Z","false","false"
+"00aQk00000BVAkmIAH","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the new comment has been added: Robert Zavalczki:
+
+If the attached log was collected after running the ""Change IP"" script, then this is not a problem of that script, but rather a problem with the new server: ""bm5zph4.hosted.endpointprotector.com"".
+
+The logs contain some HTTP 500 internal server error codes as well as some HTTP 401 Unauthorized codes.
+
+The first error could indicate a problem on the server (e.g. such as no disk space) and the later could be caused by a server error or by a load balancer in the customer's network that strips the client certificate. Either way someone from the server team should take a look.
+
+FYI: @WaitingOnEngineer
+
+[DevOps CommentId:11568236]","0054u000006gtWUAAY","2025-01-29T10:25:59.000Z","2025-01-29T10:25:59.000Z","false","false"
+"00aQk00000BWbz0IAD","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the new comment has been added: Augustina Sidor:
+
+Hi,
+
+Please verify with the customer that no additional certificate types are enabled, such as the Client Registration Certificate or Increased Communication Security. These settings can be reviewed on the Appliance → Server Maintenance page.
+
+
+Please try to follow the steps below:
+
+
+
+	 - 	Verify the integrity of the configuration file at  /var/www/EPPServer/sieratool/apps/ratool/config/epp.yml to ensure it is not corrupted. Refer to the backend procedure for the expected file structure.
+	 - 	Determine whether the customer is using a custom Nginx configuration or a non-standard port.
+	 - 	 Regenerate the full-stack certificates by executing:
+
+	 - 	
+
+--- CODE ---bash /opt/functions.sh run regenerateCertsV2Callable 3502--- CODE ---
+
+	 - 	Then, restart the Nginx service:
+
+	 - 	service nginx restart  
+	 - 	Confirm with the customer that ports 443 and 80 are open. If a custom port is in use, verify its accessibility as well.
+
+
+Validate communication after performing these steps.
+
+
+If the previous steps did not resolve the issue, enable registration logs on the server by following these steps:
+
+
+
+
+	 - 	Edit the web service PHP file using:
+
+
+	 - 	vim /EPPServer/sieratool/webservicefree/webservice.php
+
+	 - 	Set the following parameters:
+
+
+	 - 	define('DEBUG_VERBOSITY', 1011);
+	 - 	   
+define('DEBUG', true);
+
+	 - 	Force the registration of a specific machine by executing the following SQL commands:
+
+	 - 	Retrieve the machine ID:
+
+
+	 - 	
+
+--- CODE ---SELECT id FROM clientmachine WHERE name = 'machine_name';
+--- CODE ---
+
+
+	 - 	(Replace 'machine_name' with the actual machine name.)
+	 - 	
+
+--- CODE ---DELETE FROM certificate WHERE assigned_to = machine_id;
+
+UPDATE license SET assigned_to = machine_id;
+UPDATE clientmachine SET reregister = 1, trialversion = NULL WHERE id = machine_id;
+--- CODE ---
+
+
+	 - 	(Replace machine_id with the ID obtained from the first query.)
+
+	 - 	Update policy.
+	 - 	❗Revert the changes from step 2 by setting DEBUG to false and DEBUG_VERBOSITY to 1007.
+	 - 	Provide the logs collected into: /EPPServer/sieratool/log/WebServiceFree.log 
+
+
+
+Regards,
+Augustina
+
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11575052]","0054u000006gtWUAAY","2025-01-30T10:55:33.000Z","2025-01-30T10:55:33.000Z","false","false"
+"00aQk00000BYALCIA5","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002Fjy9IAC","2025-01-31T14:42:18.000Z","2025-01-31T14:42:18.000Z","false","false"
+"00aQk00000BfqnWIAR","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-07T05:02:49.000Z","2025-02-07T05:02:49.000Z","false","false"
+"00aQk00000BfqnYIAR","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-01-30 10:55 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11611978]","0054u000006gtWUAAY","2025-02-07T05:02:50.000Z","2025-02-07T05:02:50.000Z","false","false"
+"00aQk00000Bk67KIAR","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the new comment has been added: Hello Augustina,
+
+ Regenerating the full-stack certificates resolved the issue for them. It seems like there is something in their on-prem DB that we are importing that was causing the issue. This was noted after resolving the issue, then capturing a new DB dump from the on-prem server and importing that into the SaaS environment, the same issue occurred. Running the command to regenerate the cert stack resolved the issue again.","005Qk000002Fjy9IAC","2025-02-11T13:34:54.000Z","2025-02-11T13:34:54.000Z","false","false"
+"00aQk00000Bk6FNIAZ","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002Fjy9IAC","2025-02-11T13:36:52.000Z","2025-02-11T13:36:52.000Z","false","false"
+"00aQk00000Bk6X8IAJ","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Account ACV has been changed to 98890.80316742081416.","005Qk000002Fjy9IAC","2025-02-11T13:38:08.000Z","2025-02-11T13:38:08.000Z","false","false"
+"00aQk00000Bk3pPIAR","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Account ACV has been changed to 49445.40158371040708.","005Qk000002Fjy9IAC","2025-02-11T13:38:14.000Z","2025-02-11T13:38:14.000Z","false","false"
+"00aQk00000BoCm3IAF","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the new comment has been added: Augustina Sidor:
+
+Hi Zachary,
+
+Could you please confirm if the issue can be closed, as the provided steps have resolved the problem?
+
+Thanks, 
+Augustina
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11650017]","0054u000006gtWUAAY","2025-02-14T10:40:27.000Z","2025-02-14T10:40:27.000Z","false","false"
+"00aQk00000BoCm1IAF","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-14T10:40:27.000Z","2025-02-14T10:40:27.000Z","false","false"
+"00aQk00000BovcgIAB","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the new comment has been added: Hello Augustina,
+
+Yes, regenerating the server cert stack per your instructions resolved the issue. This can be closed.
+
+Thank you,
+Zachary Roy","005Qk000002Fjy9IAC","2025-02-14T19:42:36.000Z","2025-02-14T19:42:36.000Z","false","false"
+"00aQk00000BoveHIAR","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002Fjy9IAC","2025-02-14T19:43:09.000Z","2025-02-14T19:43:09.000Z","false","false"
+"00aQk00000Bos0VIAR","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Account ACV has been changed to 98890.80316742081416.","005Qk000002Fjy9IAC","2025-02-14T19:43:36.000Z","2025-02-14T19:43:36.000Z","false","false"
+"00aQk00000BovhVIAR","500Qk00000Kx7gNIAR","On Escalation Ticket # 00433241 the Following Fields have been updated: 
+Account ACV has been changed to 49445.40158371040708.","0054u000006gtWUAAY","2025-02-14T19:43:47.000Z","2025-02-14T19:43:47.000Z","false","false"

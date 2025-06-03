@@ -1,0 +1,42 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LWshAIAT","00434805","Support Ticket","Unable to test SMB access to external network storage","Attempting to configure External Storage Settings using specified mount point but receiving error message.
+""Could not connect to network share. Please check the credentials and server settings.""
+
+2/11/2025
+
+Customer can connect to SMB external storage on one EPP server using username, credentials, mount point, folder, while unable to connect to same SMB external storage on another EPP server that is using same username, password , mount point and folder
+
+Customer manually entered in username and password and mount point and copy paste with connection refused check credentials message reported
+
+Customer IT verified that path to SMB share open
+
+From EPP server backend, unable to telnet to external storage, attached screenshot under attachments
+
+Verified that samba and CIFS installed on backend server
+
+Customer unable to connect after repeated attempts
+
+Sent customer follow up questions relating to which SMB version they are using and if the ACL is correctly configured since same username/password and mount point works on one network and not other","","EPP server recently migrated and rebuilt on a new network with new configuration and connection not successful
+
+All troubleshooting have been done via the EPP dashboard console
+SMB Path given by customer:
+//storage.mando.studio.disney.com/tsedata/EPP/KLSSY6YPfiles
+
+- Sent customer email requesting to verify SMB path and requested times to schedule a remote session
+- Scheduled a remote session for Friday 2/7/2025 at 1 PM PST to look further into SMB path issue
+
+2/7/2-25
+
+Customer unable to get the external storage to mount from the EPP server
+
+Attempted using host name and IP address and still unable to connect to network share
+
+Accessed old EPP server to check for settings and mount point format
+
+Customer requests NFS as external storage type for future release 
+
+Customer's IT working on setting up Samba/ Network share
+
+Customer wants to reconvene on Monday 2/10/2025 at 1 PM PST
+
+https://netwrix.zoom.us/j/88213891687?pwd=AqyWjFkNoUPZLya4sOBoTea88EAqqw.1","Sent customer email requesting to close case","The customer resolved the connection issue after additional troubleshooting and testing different configurations. They successfully connected to the console screen by changing the Authentication security setting from NTLM to NTLMSSP, after verifying that the same parameters and credentials were used on the new network. No further action is requested at this time, as the connection to the storage system is now successful.","Advanced Configuration Change","Ramon Torres","Unexpected Behavior","Netwrix Endpoint Protector","Server","EPP Server - Other","","","15.9","Closed - Resolved","Walt Disney Pictures","Guill Espinosa","2025-02-06T00:39:28.000Z","2025-02-21T22:55:57.000Z"

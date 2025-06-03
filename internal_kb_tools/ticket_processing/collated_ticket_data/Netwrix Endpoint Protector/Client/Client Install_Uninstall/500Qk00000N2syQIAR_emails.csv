@@ -1,0 +1,146 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MjBHBIA3","500Qk00000N2syQIAR","2025-03-18T11:30:10.000Z","2025-03-18T11:30:10.000Z","Hello Juan,
+
+Thank you for contacting us.
+
+To respond to your questions:
+
+1) GPO, is there any kind of reference in the manual?
+
+For this type of deployment, we, along with our QA team,  came up with a set of instructions which you can perform from Windows Server->Active Directory:
+1. Go to the Users and create a new group which has Group scope and Group Type as Security.
+2.In the Members, click on ADD and select the Object Type and then tick on ''Computers''.
+3.In the object name field, type in the Computer Name and click on Check Names (it should find the machine or a list of them, make sure you select the desired one).
+4.Click on and the newly created Users group should come up.
+5.Download the the EPP .msi to a folder.
+6.Right click on the folder and go to Sharing->Advanced Sharing and click on permissions, where you will add the Authenticated Users which will have full rights.
+7.After doing the 6th step, you should be able to see the network path of the folder. Try to copy and paste it somewhere as you will need it for later.
+8. Try to open the Group Policy Management.
+9.Right click on qaepp.com(on the domain) and select the first option Create a GPO in this domain.
+10. Give it a name for the GroupPolicyObject, then after it's being created, right click on it and select Edit.
+11.Expand the Computer Configuration->Policies->Software Settings and click on Software Installation.
+12. Right click and select New->Package
+13.When the window will show up, on the top, please paste the network path mentioned in the 7th step then enter, then if the EPP installer comes up, you select and then open it.
+14.Close the Group policy editor andd then remote from Security Filtering Authenticated Users and then press on Add where you type in the name of the of the created group from Users.
+15.Do not add anything to WMI filtering. We should be done with the server side now.
+16.On the device where you whish to deploy the EPP,open up CMD and type in the following command:
+gpupdate /force (this will force update the group policies)
+
+Also, there could be cases where you can't restart automatically, so you will have to perform a manual restart and try again the command. While the command is running, a restart should come up. Try to restart, log back into the machine and the EPP notifier should come up.
+
+More details can be found here as well as this is was the primary references:
+
+https://www.youtube.com/watch?v=tDpGM8SQYP4
+
+Let me know if it works.
+
+2) Third party application, are there any parameter settings we need to do?
+Regarding third party deployments, please use the below references for Intune and JAMF:
+
+Windows Deployment
+
+Creating the Configuration Profile
+
+To respond to your last inquiry regarding uninstallation, we recommend to do it from the server through System Configuration->Client uninstall but you can also do it by using the following command locally:
+
+msiexec.exe /x <PATH to MSI file> REBOOT=ReallySuppress 
+
+
+Looking forward to your response.
+
+
+Best Regards,
+Marian Ilies | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.netwrix.com
+ref:!00D70091pB.!500Qk0N2syQ:ref","Client Installation    [ ref:!00D70091pB.!500Qk0N2syQ:ref ]","techsupport@netwrix.com","Netwrix Support","buzonsti@gdaservicios.es","","marian.ilies@netwrix.com","false","2025-03-18T11:30:09.000Z","true"
+"02sQk00000MjFavIAF","500Qk00000N2syQIAR","2025-03-18T12:15:31.000Z","2025-03-18T12:15:31.000Z","Dear Juan,
+
+Thank you for contacting Netwrix Support.
+
+We have the below articles (deployment guides), this is only available for Microsoft Intune and JamFPro.
+
+Client Software:
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Admin/SystemConfiguration/Overview.htm
+
+Information on client uninstall is also provided in the above article.
+
+Microsoft Intune:
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Install/Agent/Intune/Overview.htm
+
+Jamf:
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Install/Agent/JAMF/Overview.htm
+
+I hope this information helps, if you have any follow up questions then please do let us know.
+
+Kind regards
+__________________
+André Le Roux | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+*************************************************************************************************************************************************
+ref:!00D70091pB.!500Qk0N2syQ:ref","Client Installation    [ ref:!00D70091pB.!500Qk0N2syQ:ref ]","techsupport@netwrix.com","Netwrix Support","buzonsti@gdaservicios.es","","andre.leroux@netwrix.com","true","2025-03-18T12:15:30.000Z","true"
+"02sQk00000MvpCPIAZ","500Qk00000N2syQIAR","2025-03-24T07:48:47.000Z","2025-03-24T07:49:44.000Z","ref:_00D7091pB._500Q000N2syQ:ref
+
+Deployment has been successful on several computers, you can close ticket
+
+ 
+
+ 
+
+  _____  
+
+
+
+David Moreno Díaz
+Reponsable Departamento IT        www.gdaempresas.com
+* 2031/638171095  * dmorenod@gdaservicios.es <mailto:jgarciav@gdaservicios.es> 
+Calle Abogado Federico Orellana Toledano, 14, 29002 Málaga
+
+ 
+
+ 
+
+ 
+
+De: Netwrix Support <techsupport@netwrix.com> 
+Enviado el: jueves, 20 de marzo de 2025 13:23
+Para: buzonsti@gdaservicios.es
+Asunto: RE: 00439093 - Client Installation
+
+ 
+
+Hello Juan,
+
+I wanted to check in regarding your support ticket 00439093. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00439093
+Ticket Subject: Client Installation
+Ticket Details: What are the best practices for deploying the client on equipment?
+
+We know that there are two alternatives, both by GPO and by third party application. 
+
+1) GPO, is there any kind of reference in the manual?
+2) Third party application, are there any parameter settings we need to do?
+
+Also, if we would like to proceed to the uninstallation from the client itself, how do we do it?
+
+Thank you!
+
+Marian Ilies
+Technical Support Engineer
+____________________ _________ 
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+ <https://www.netwrix.com> www.netwrix.com 
+
+ref:!00D70091pB.!500Qk0N2syQ:ref","RE: Netwrix Support Ticket #439093 - ref:_00D7091pB._500Q000N2syQ:ref - 00439093 - Client Installation","buzonsti@gdaservicios.es","","techsupport@netwrix.com","","","true","2025-03-24T07:48:34.000Z","true"

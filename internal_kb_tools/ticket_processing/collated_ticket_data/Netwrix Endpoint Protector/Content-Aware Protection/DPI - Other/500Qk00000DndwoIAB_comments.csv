@@ -1,0 +1,112 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008FrFWIA0","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Account ACV has been changed to 580320.00.
+Priority has been changed to High.","005Qk000001nViHIAU","2024-07-31T11:54:14.000Z","2024-07-31T11:54:14.000Z","false","false"
+"00aQk000008FsrVIAS","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Account ACV has been changed to 290160.00.","005Qk000001nViHIAU","2024-07-31T11:54:15.000Z","2024-07-31T11:54:15.000Z","false","false"
+"00aQk000008LDyZIAW","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the new comment has been added: Hi!
+Do we have an update for this issue?
+
+Thank you,","005Qk000001nViHIAU","2024-08-05T12:03:35.000Z","2024-08-05T12:03:35.000Z","false","false"
+"00aQk000008MpC9IAK","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-06T12:50:54.000Z","2024-08-06T12:50:54.000Z","false","false"
+"00aQk000008MpCBIA0","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the new comment has been added: Marius Ghiurcau:
+
+@WaitingOnEngineer 
+
+The issue does not reproduce on our side, I checked in Chrome and Edge also. I see in the logs that kayak.pl is not working because of an untrusted certificate. It is really strange that, according to the settings, this should be bypassed and it should work. Anyway, I see that the website had the certificate changed recently, so can we ask the customer to test one more time? And get a new set of logs if the issue still reproduces. 
+
+At the same time, as a workaround if it still doesn't work, the customer can try two different approaches. One is to whitelist entirely kayak.pl. Or to have Peer certificate validation enabled, but to check also the ""Ignore Trust"" option. Either way I expect this to work. 
+
+If new logs are collected, please make sure they collect them without the above workarounds in place. Thanks!
+
+[DevOps CommentId:10691414]","0054u000006gtWUAAY","2024-08-06T12:50:55.000Z","2024-08-06T12:50:55.000Z","false","false"
+"00aQk000008W2tKIAS","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-06 12:51 UTC and the last detected comment from support was 2024-08-05 12:03 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10745134]","0054u000006gtWUAAY","2024-08-14T05:00:51.000Z","2024-08-14T05:00:51.000Z","false","false"
+"00aQk000008WJ9NIAW","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViHIAU","2024-08-14T11:11:19.000Z","2024-08-14T11:11:19.000Z","false","false"
+"00aQk000008eBubIAE","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-21T05:00:52.000Z","2024-08-21T05:00:52.000Z","false","false"
+"00aQk000008eBudIAE","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-06 12:51 UTC and the last detected comment from support was 2024-08-05 12:03 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10792007]","0054u000006gtWUAAY","2024-08-21T05:00:53.000Z","2024-08-21T05:00:53.000Z","false","false"
+"00aQk000008fp8RIAQ","500Qk00000DndwoIAB","Hello,
+
+The customer got back to me and asked the following :
+""The recommended workaround (""Ignore Trust"" option) will decrease the security of the user and trust chain in the TLS.
+Is this issue considered as a bug that you are going to address in the lates releases?""
+What should I tell to the customer, as this might not be an actual issue.
+
+Thank you,","005Qk000001nViHIAU","2024-08-22T11:42:43.000Z","2024-08-22T11:42:43.000Z","false","false"
+"00aQk000008fqMGIAY","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the new comment has been added: Robert Zavalczki:
+
+@WaitingOnEngineer as response to their feedback:
+
+
+
+""The recommended workaround (""Ignore Trust"" option) will decrease the security of the user and trust chain in the TLS. Is this issue considered as a bug that you are going to address in the latest releases?""
+
+
+
+we should tell them that:
+
+
+They are correct and indeed they should not check ""Ignore Trust"" in the ""Peer Certificate Validation"" settings. 
+
+
+The ERR_CONNECTION_RESET error they received for the kayak.pl website was because briefly (for a few days) the certificate of that website was expired. This is a known and expected behavior when Stealthy DPI is used. The connection is dropped when encountering a certificate validation error.
+
+
+Alternatively, if they don't care about scanning network traffic to websites with invalid certificates they can use the ""DPI Bypass"" option with the ""Bypass Invalid Peer Certificates"" checked. In this case their browser's policy will take care of handling the invalid certificate. They will also get reports in Endpoint Protector about the bypassed websites.
+
+[DevOps CommentId:10819918]","0054u000006gtWUAAY","2024-08-22T11:57:15.000Z","2024-08-22T11:57:15.000Z","false","false"
+"00aQk000008nj7SIAQ","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-06 12:51 UTC and the last detected comment from support was 2024-08-05 12:03 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10847114]","0054u000006gtWUAAY","2024-08-29T05:02:16.000Z","2024-08-29T05:02:16.000Z","false","false"
+"00aQk000008pRZRIA2","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViHIAU","2024-08-30T10:40:44.000Z","2024-08-30T10:40:44.000Z","false","false"
+"00aQk000008wcjRIAQ","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-06T05:01:51.000Z","2024-09-06T05:01:51.000Z","false","false"
+"00aQk000008wcjTIAQ","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-06 12:51 UTC and the last detected comment from support was 2024-08-05 12:03 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10884741]","0054u000006gtWUAAY","2024-09-06T05:01:52.000Z","2024-09-06T05:01:52.000Z","false","false"
+"00aQk000008wcefIAA","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-06 12:51 UTC and the last detected comment from support was 2024-08-05 12:03 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10884741]","0054u000006gtWUAAY","2024-09-06T05:01:54.000Z","2024-09-06T05:01:54.000Z","false","false"
+"00aQk000008wtKTIAY","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViHIAU","2024-09-06T11:32:27.000Z","2024-09-06T11:32:27.000Z","false","false"
+"00aQk00000BoJltIAF","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Account ACV has been changed to 615139.20.","0054u000006gtWUAAY","2025-02-14T11:44:15.000Z","2025-02-14T11:44:15.000Z","false","false"
+"00aQk00000CV7SvIAL","500Qk00000DndwoIAB","On Escalation Ticket # 00416637 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViHIAU","2025-03-24T10:49:25.000Z","2025-03-24T10:49:25.000Z","false","false"

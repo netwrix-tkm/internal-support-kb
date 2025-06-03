@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000JMNkcIAH","00429511","Support Ticket","DPI blocking Chatgpt URL","Hello,
+
+Customer name is Privat Bank.
+They reported that EPP client is blocking Chatgpt URL.
+After they added  *<a href='https://chatgpt.com' target='_blank'>chatgpt.com</a>* to the DPI Allowlist issue is gone.
+But they cannot hold it fully allowed for DPI due to security measure.
+Could you please review the logs and suggest how they could fix the issue with Chatgpt availability, but not to allow it fully?","","- EPP client is blocking Chatgpt URL.
+- After they added *<a href='https://chatgpt.com' target='_blank'>chatgpt.com</a>* to the DPI Allowlist issue is gone.
+- they cannot hold it fully allowed for DPI due to security measure.
+- logs were collected and a recording was made
+-The exact behavior is that the user cannot pass the Cloudflare ""humanity"" check, and as a result, ChatGPT does not load.
+- If DPI is disabled, the user successfully passes the Cloudflare checks and ChatGPT works well.
+- Also, there are no CAP events in the reports because this URL is not blocking with CAP, but the Cloudflare check cannot be passed because of the DPI.
+- opened R&D escalation
+
+25.03
+- The R&D team provided a test build for this issue, please only install it on 1 or 2 machines, as this is not fully functional:
+https://download.endpointprotector.com/custom_agent/Epp24032025/EppClient_v6.2.5.0004.zip
+- DPI does not block or inspect content with this build, it just decrypts the content. There is still a lot of work for us to be able to inspect and control HTTP/2 content.","waiting on R&D","Customer confirmed that adding *.logr-ingest.com to allowlist helped","","Botond Biro","Error","Netwrix Endpoint Protector","Content-Aware Protection","DPI Blocking URL","","","124.1","Closed - Resolved","Privat Bank","Danylo Didenko","2024-12-11T09:57:26.000Z","2025-04-14T12:46:14.000Z"

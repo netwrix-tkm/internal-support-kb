@@ -1,0 +1,41 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MUSDWIA5","00437481","Support Ticket","Missing USB Storage Device in List of Devices","Initial situation:
+A USB storage device was whitelisted locally on a computer.
+However, whitelisting is not functional.
+
+Workaround implemented:
+The USB storage device was deleted from the device list.
+Delete time: Monday morning, February 24, 2025.
+Whitelisting was done manually via Adding New Device (VID, PID, Serial Number) and is now functional!
+--> see screenshot ""MMUC1050156_USB Storage <a href='https://Device_whitelisted.jpg' target='_blank'>Device_whitelisted.jpg</a>"".
+Whitelisting time: Tuesday morning, February 25, 2025.
+
+Issue:
+Since then, the deleted USB storage device no longer appears in the device list!
+The USB storage device is, however, displayed in the Logs Report.
+--> see logfiles ""<a href='https://EP_Reporting_and_Administration_Tool_USB_Storage_Device_20D11E8010C1.xlsx' target='_blank'>EP_Reporting_and_Administration_Tool_USB_Storage_Device_20D11E8010C1.xlsx</a>"".
+
+Question:
+Do devices that have been deleted from the list generally no longer appear in the device list?
+
+Expectation:
+Please check why the USB storage device is not listed in the device list.
+Please make sure that deleted devices are listed again.
+
+Thank you for your support.","","Found device 10EC | 5261 | 00000001004CE00000  has a right assigned before 6th or March.
+---
+Found the device was not connected to a computer after fixing the issue.
+--------------
+- issue could not be reproduced by QA
+- Dev intervention required to clear the database tables (possible solution)","Asked the customer to remove the rights from the 10EC | 5261 | 00000001004CE00000  device then reasigne them only if the last see time is more that 6th March 
+------
+Asked the customer to connect the device and confirm if the device is visible.
+-------------
+- schedule troubleshooting session with the designated developer for this issue","The customer confirmed the devices ar now visible.
+And that they are ok to close this ticket.
+""""
+To MMUC1050156 and USB Storage Device “ASMedia Technology Inc. / USB Attached SCSI (UAS) Mass Storage Device”
+After reconnecting and updating the policies, the device is listed again in the device list!
+
+To LPTP2043748 and Teensy Board “Samsung Electronics Co., Ltd / Galaxy series, misc. (MTP mode)“ and Windows Portable Device (Media Transfer Protocol) „Samsung Electronics Co., Ltd / SM-S911B”
+Both devices are listed in the device list again.","","Alin Anca","Unexpected Behavior","Netwrix Endpoint Protector","Device Control","Device not recognized","NONE","","11.1","Closed - Resolved","BMW Group AG","Christian Spies","2025-03-03T10:40:41.000Z","2025-03-14T12:14:34.000Z"

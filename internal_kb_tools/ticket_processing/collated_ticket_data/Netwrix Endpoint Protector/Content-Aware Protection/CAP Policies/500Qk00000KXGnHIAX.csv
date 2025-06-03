@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KXGnHIAX","00431821","Support Ticket","Issue with EPP Policies and Cloudflare Services on macOS","Hello Team,
+
+We’ve observed that on macOS, enabling ""Cloudflare Services"" causes EPP policies to stop functioning. Both Cloudflare Services and our EPP install certificates in the browser, which seems to create a conflict.
+
+Could you please suggest a workaround to ensure both services can operate simultaneously?
+
+Best regards,","The CAP policies that we tested were configured simple with:
+- block & report
+- exit points selected for the browsers
+- some file types selected in the denylist (we had excel, powerpoint, pdf)
+- the computer selected in the policy
+
+Cloudflare solution is enabled.","We could identify that the CAP policies are working as expected when the Cloudflare solution is disabled, but when it is enabled, the policies are not working.
+We tested this both on MacOS and also on UbuntuOS, just with these is the issue present.
+The CAP policies that we tested were configured simple with:
+- block & report
+- exit points selected for the browsers
+- some file types selected in the denylist (we had excel, powerpoint, pdf)
+- the computer selected in the policy
+
+We have collected logs from each separate OS and also extended DPI logs.
+I will also attach some screenshots with the DPI configuration and the Cloudflare solution that they are using.","Investigation regarding the networking configuration that the customer has and how this affects our ability to scan the uploaded items","Upon follow-up with customer, they mentioned that the ticket can be closed.","Root Cause Unknown","Alin Anca","Question","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","","","99.1","Closed - Resolved","Bright Life Care Limited","Bhavishya Arya","2025-01-13T10:29:53.000Z","2025-04-22T12:50:14.000Z"

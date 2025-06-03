@@ -1,0 +1,99 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008sn8nIAA","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Account ACV has been changed to 336930.72.
+Priority has been changed to Critical.","005Qk000001nVi3IAE","2024-09-03T13:49:49.000Z","2024-09-03T13:49:49.000Z","false","false"
+"00aQk000008snAPIAY","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Account ACV has been changed to 168465.36.","005Qk000001nVi3IAE","2024-09-03T13:49:50.000Z","2024-09-03T13:49:50.000Z","false","false"
+"00aQk0000090zj5IAA","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the new comment has been added: Hello,
+
+Customer would like to know if there are any updates regarding this case.
+
+Thank you!","005Qk000001nVi3IAE","2024-09-10T12:48:13.000Z","2024-09-10T12:48:13.000Z","false","false"
+"00aQk000009RCmIIAW","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the new comment has been added: Robert Zavalczki:
+
+@Cristian-Alexandru Halmajan this is most probably a server issue. I also saw some 500 internal server errors in the logs, other than that, the EPP server does not recognize the cient certificates it sends to its clients.
+
+[DevOps CommentId:11006393]","0054u000006gtWUAAY","2024-10-02T15:11:58.000Z","2024-10-02T15:11:58.000Z","false","false"
+"00aQk000009Xff7IAC","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-08T13:40:44.000Z","2024-10-08T13:40:44.000Z","false","false"
+"00aQk000009Xff9IAC","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the new comment has been added: Augustina Sidor:
+
+Please do the following:
+
+
+ 1. Check if the config file is not corrupted: /var/www/EPPServer/sieratool/apps/ratool/config/epp.yml (In the backend procedure you can find how this file should look;)
+
+2. check if the customer is using a custom nginx config. (or a custom port? )
+
+3. Check if any custom certificate is used.
+
+!!! NOTE:  Changes to certificates usually require updates to the Nginx configuration file.
+If the customer is using a custom port, these updates should be handled by the support team so as not to overwrite the custom Nginx config file.
+3.1 Check if Increased Communication Security is enabled, and disable it. (Appliance -> Server Maintenance page, Increased Communication Security section.)
+After the UI setting was disabled, please also check the epp.nginx.config and make sure the wsf entry looks like this:
+
+--- CODE ---
+
+
+  location ~ ^/wsf/(.+.php)$ {
+
+        #if ($ssl_client_verify != SUCCESS) {
+        #       return 401;
+        #}
+
+        alias   /var/www/EPPServer/sieratool/webservicefree/$1;
+        include fastcgi_epp_params;
+    }
+
+--- CODE ---
+
+         
+3.2 If the comunication isn't established:
+
+3.3 Regenerate the Server Certificate Stack.
+
+If comunication is established, and the customer uses a UI certificate, please advise him to upload the UI certificate again.
+
+
+
+
+FYI @WaitingOnEngineer 
+
+[DevOps CommentId:11029465]","0054u000006gtWUAAY","2024-10-08T13:40:45.000Z","2024-10-08T13:40:45.000Z","false","false"
+"00aQk000009Xh94IAC","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-10-08T14:28:00.000Z","2024-10-08T14:28:00.000Z","false","false"
+"00aQk000009gV3pIAE","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-16T05:02:02.000Z","2024-10-16T05:02:02.000Z","false","false"
+"00aQk000009gV3rIAE","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-08 13:40 UTC and the last detected comment from support was 2024-09-10 12:48 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11065143]","0054u000006gtWUAAY","2024-10-16T05:02:02.000Z","2024-10-16T05:02:02.000Z","false","false"
+"00aQk000009gfEWIAY","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-10-16T10:13:30.000Z","2024-10-16T10:13:30.000Z","false","false"
+"00aQk000009psFhIAI","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-24T05:01:57.000Z","2024-10-24T05:01:57.000Z","false","false"
+"00aQk000009psFjIAI","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-08 13:40 UTC and the last detected comment from support was 2024-09-10 12:48 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11104456]","0054u000006gtWUAAY","2024-10-24T05:01:58.000Z","2024-10-24T05:01:58.000Z","false","false"
+"00aQk000009puFtIAI","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-10-24T06:17:57.000Z","2024-10-24T06:17:57.000Z","false","false"
+"00aQk000009wPDmIAM","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the new comment has been added: Hello,
+
+Please close this case.","005Qk000001nVi3IAE","2024-10-30T09:45:19.000Z","2024-10-30T09:45:19.000Z","false","false"
+"00aQk000009wPKDIA2","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVi3IAE","2024-10-30T09:45:51.000Z","2024-10-30T09:45:51.000Z","false","false"
+"00aQk000009wPKFIA2","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Account ACV has been changed to 336930.72.","005Qk000001nVi3IAE","2024-10-30T09:45:53.000Z","2024-10-30T09:45:53.000Z","false","false"
+"00aQk000009wOBGIA2","500Qk00000F7yV3IAJ","On Escalation Ticket # 00419850 the Following Fields have been updated: 
+Account ACV has been changed to 168465.36.","005Qk000001nVi3IAE","2024-10-30T09:45:58.000Z","2024-10-30T09:45:59.000Z","false","false"

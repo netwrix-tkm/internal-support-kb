@@ -1,0 +1,31 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MrxDOIAZ","00438632","Support Ticket","Question about EasyLock use","Team,
+
+Our users are reporting that the default functionality of EPP is restricting the work. 
+
+When a USB recipient opens the EPP encrypted USB, they are only able to open 1 document at a time.  If they try to open another file from the EPP container - they get a warning message that please close the previous file.
+
+Is there something we can do to avoid this behavior? This way, users will not have to copy everything to work on different documents at same time.
+
+Regards,
+Karan","","","Waiting on R&D.
+---
+testing internally to see if issue reproduces itself.","The behavior that happens with the PDF files is the way that Easylock works. Easylock allows only one file to be opened at a time.
+
+Please find below the detailed explanation of the behavior:
+ - each file is decrypted into a temporary location
+ - the file can be modified or left unchanged by the end user
+ - when the end user presses the OK button on the pop-up, the file is re-encrypted to save any modifications(if the file was modified; message box:
+press ok after you made the modifications and close the file)
+
+What we did:
+ - open the file
+ - press the OK button – this means the file is re-encrypted at this moment, even if no modifications were made
+
+
+What happens with Notepad and why it doesn't work with Adobe Reader (for PDF files)?
+Answer: Notepad opens the file with shared mode -> this allows the file to be opened by other processes at the same time.
+
+Adobe Reader, on the other hand, opens the file without shared mode. This prevents other processes from interacting with the file -> as a result, when the file is opened by Adobe Reader, it cannot be modified or re-encrypted by Easylock because Adobe Reader locks the file, preventing other processes from manipulating it.
+
+This is why Easylock cannot re-encrypt the file when it's opened by Adobe Reader(and a message appears). When the end user closes the PDF file from Adobe and the user click on ""retry"" button the pop-up will disappear.","Best Practices Question","Flaviu Moldovan","Question","Netwrix Endpoint Protector","EasyLock / Enforced Ecryption","EasyLock - Other","","","54.7","Closed - Resolved","Bennett Jones Services Limited","Karan Bhagat","2025-03-12T21:43:20.000Z","2025-05-06T15:10:48.000Z"

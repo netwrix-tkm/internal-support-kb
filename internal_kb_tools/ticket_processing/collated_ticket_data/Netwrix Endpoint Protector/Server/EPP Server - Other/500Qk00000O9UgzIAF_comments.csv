@@ -1,0 +1,72 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000D3DalIAF","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the new comment has been added: Hello @Cristi,
+Please provide some update on this ticket as BMW China will finish PoC at the end of this week and we need a resolution.
+Thank you","005Qk000001nViFIAU","2025-04-22T10:32:58.000Z","2025-04-22T10:32:58.000Z","false","false"
+"00aQk00000D3NBtIAN","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-22T13:03:06.000Z","2025-04-22T13:03:06.000Z","false","false"
+"00aQk00000D3NBvIAN","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the new comment has been added: Augustina Sidor:
+
+Hi Alin,
+
+
+
+Please check the history logs of the AD sync job by right-clicking the sync job and selecting “View History Logs"".
+
+Make sure the LDAP user account has read access to the relevant parts of Active Directory.
+
+Please ask the customer to review their firewall configuration, even if the connection to port 389 is successful. The firewall may still block the retrieval of entities.
+
+
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11959078]","0054u000006gtWUAAY","2025-04-22T13:03:07.000Z","2025-04-22T13:03:07.000Z","false","false"
+"00aQk00000D3NobIAF","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2025-04-22T13:14:40.000Z","2025-04-22T13:14:40.000Z","false","false"
+"00aQk00000D4eSQIAZ","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the new comment has been added: Hello @Augustina,
+Please see the feedback from BMW. Their response below:
+
+ 
+
+ Please check the history logs of the AD sync job by right-clicking the sync job and selecting “View History Logs"".  Send us a screenshot please
+
+SEE SCREENSHOT ""AD history logs - 23 April.png""
+
+- Make sure the LDAP user account has read access to the relevant parts of Active Directory.
+
+   Customer: The AD server and sync job is managed by AG ADGPO team. Please provide a specific time range to check it during a session.
+
+(Andreas mentioned that he saw when they logged in with that user and it worked)
+
+
+- Please ask the customer to review their firewall configuration, even if the connection to port 389 is successful. The firewall may still block the retrieval of entities.
+
+  Customer: Local network team do not have permission for firewall rules. Since AD server is hap3cnb02.sfchina.bmw.corp and port is 389, can we test connection directly from EPP server? Besides, we checked EPP sync status and seems it could connect to AD. Can we assume firewall is OK? 
+
+Please advise further.
+Thank you","005Qk000001nViFIAU","2025-04-23T11:09:54.000Z","2025-04-23T11:09:54.000Z","false","false"
+"00aQk00000D5qksIAB","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-24T08:50:01.000Z","2025-04-24T08:50:01.000Z","false","false"
+"00aQk00000D5qkuIAB","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+From the screenshots provided i notice they want to setup a sync for a speciffic OU (ML_laptops) that probably contains computers. Is this correct?
+If that is so, they have defined the sync search patch to point exactly to that OU, in whch case, we try to list entries from that OU . On the ""Directory Browser"" section on the UI, we do not load individual computers or user, we only list Groups or other OUs. As such, if that OU contains only computers and/or users, there is nothing to list, and it works as intended.
+
+What they need to do to sync the contents of that OU, is go one level above when defining the search path (that means, remove OU=ML_Laptops, from the base search path), relist the OUs and select ML_Laptops OU from that list and add that to the sync. Once they add it, they need to check down the page that the OU=ML_Laptops full path is listed in the sync list (on the same page).
+
+After that, they need to wait for the sync interval to complete or for a new sync at next interval.
+
+[DevOps CommentId:11969356]","0054u000006gtWUAAY","2025-04-24T08:50:02.000Z","2025-04-24T08:50:02.000Z","false","false"
+"00aQk00000D5uRtIAJ","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2025-04-24T09:03:51.000Z","2025-04-24T09:03:51.000Z","false","false"
+"00aQk00000D6GSQIA3","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the new comment has been added: Hello @Cristi @Flaviu,
+Andreas got back to us with the reply below:
+
+The entries you see in the below screenshots are just a fraction of what me and the customer have tried. As you can see there are multiple users we tried with, multiple base search paths and that’s just a part of what we tried together. They are aware of how AD sync works as I have explained it to them and the tests were done to cover all possible angles.  Nothing yielded any results.
+In conclusion, adjust the base search path in any way will not show any results. No entity at all has appeared as part of the sync.
+
+Please advise further.","005Qk000001nViFIAU","2025-04-24T14:27:14.000Z","2025-04-24T14:27:14.000Z","false","false"
+"00aQk00000DCRUnIAP","500Qk00000O9UgzIAF","On Escalation Ticket # 00442414 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViEIAU","2025-04-30T08:44:03.000Z","2025-04-30T08:44:03.000Z","false","false"

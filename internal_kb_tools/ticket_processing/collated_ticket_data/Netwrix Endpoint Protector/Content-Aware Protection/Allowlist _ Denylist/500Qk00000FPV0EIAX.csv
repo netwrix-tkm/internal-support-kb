@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000FPV0EIAX","00420257","Support Ticket","Allowed File in CAP Policy","Wir haben eine Präsentationslösung, welche mit USB Dongles arbeitet. Auf diesem USB Dongle ist eine .exe Datei drauf, die von den Kollegen ausgeführt werden muss, damit sich das Endgerät mit der Präsentationslösung verbindet.
+Um zu gewährleisten, dass die Kollegen auch wirklich nur diese bestimmte .exe Datei ausführen, die bei Auslieferung auf dem Dongle drauf war, und nicht durch irgendjemanden durch eine gleichnamige, verseuchte/infizierte, Datei ausgetauscht wurde, habe ich die .exe-Datei in die File-Allowlist hinzugefügt. Dort zeigt er ja genau den Hash-Wert der Datei an und würde die ja nicht mehr erlauben, wenn sich der Hash-Wert der Datei auf dem USB Dongle ändert, korrekt?
+
+Diese File-Allowlist habe ich in der greifenden CAP Policy hinterlegt.
+Bei uns ist definiert, dass durch die CAP Policy nur .jpg und .png Dateien auf USB-Storage-Devices erlaubt sind. .exe Dateien sind durch die CAP Policy nicht erlaubt.
+
+Dadurch, dass ich aber die File-Allowlist in dieser CAP Policy hinterlegt habe, bin ich jetzt eigentlich davon ausgegangen, dass die CAP Policy bei dem USB Stick ganz normal greift; außer eben bei dieser einen Datei. Die müsste er doch einfach zulassen, obwohl ja in der CAP Policy eigentlich .exe Dateien verboten sind. 
+In der CAP Policy steht bei dem Punkt ""Policy Allowlists"" ja folgendes: The files listed below will be automatically excluded from any restrictions"". Das bedeutet doch, dass er also diese eine Datei trotz der CAP Policy zulassen müsste, oder nicht?
+Es geht aber auf jeden Fall nicht. Es wird, wenn ich versuche die .exe Datei auszuführen, auch im ""Content Aware Report"" ein entsprechender Eintrag geschrieben. Es scheint also wirklich die CAP Policy zu greifen, obwohl ich doch die Allow-List Ausnahme erstellt habe:
+Policy NamePolicy TypeItems TypeMatched TypeMatched ItemsCount
+Grafik ZulassenStandardFile Typeexe, sys, dllapplication/x-dosexec1
+
+Ist das so gewollt? Gibt es evtl. noch eine andere Möglichkeit gezielt nur eine bestimmte Datei auf einem USB Stick zu erlauben und sollte die Datei mal verändert werden, dass sie nicht mehr erlaubt ist? Kann man evtl. einstellen, dass Dateien, die mit einem bestimmten Zertifikat signiert sind, erlaubt sind?
+
+Liebe Grüße
+Jannick Teichmann","","","","Works after selecting the file in the allowlist.","","Andrei Pop","","Netwrix Endpoint Protector","Content-Aware Protection","Allowlist / Denylist","NONE","","17.8","Closed - Resolved","Landkreis Lüchow-Dannenberg","Jannick Teichmann","2024-09-06T09:39:06.000Z","2024-09-24T03:45:23.000Z"

@@ -1,0 +1,270 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007QwluIAC","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Account ACV has been changed to 181360.00.
+Priority has been changed to High.","005Qk000001nViBIAU","2024-06-19T18:49:43.000Z","2024-06-19T18:49:43.000Z","false","false"
+"00aQk000007R1gjIAC","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Account ACV has been changed to 90680.00.","005Qk000001nViBIAU","2024-06-19T18:49:45.000Z","2024-06-19T18:49:45.000Z","false","false"
+"00aQk000007WQPyIAO","500Qk00000BXMHyIAP","During the remote session, the computer was unassigned for all policies but the one we tested on.
+removed the contextual detection for SSNs as they use global contextual detection.
+since the issue was still reproduced, I gathered a new set of logs and updated the ADO","005Qk000001nViBIAU","2024-06-24T16:45:32.000Z","2024-06-24T16:45:32.000Z","false","false"
+"00aQk000007cmduIAA","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Subject has been changed to Files are not scanned for threats on MacOS.","005Qk000001nViBIAU","2024-06-28T15:29:25.000Z","2024-06-28T15:29:25.000Z","false","false"
+"00aQk000007tbNtIAI","500Qk00000BXMHyIAP","- during the meeting yesterday, we installed the agent Marius provided, since it is set to gather more information in the log files. we made sure the certificate is all set and allowed.
+- the 3 tests were done exactly the same, opened dlptest.com, pasted text in the input field, and uploaded a text file that does not have any headers that would trigger any contextual detection.
+- for tests with DPI off, and URL categories ON - DPI on, there were no logs present in the console. When testing with DPI on - URL categories off, we did see some logs but names strangely.
+- for each scenario, I gathered separate logs and provided them to the escalated ticket.
+
+waiting for engineering to examine the logs.
+customer is pushing hard for a resolution.","005Qk000001nViBIAU","2024-07-12T15:25:31.000Z","2024-07-12T15:25:31.000Z","false","false"
+"00aQk000007z2xNIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Michael Paye:
+
+[Force comment sync]
+
+[DevOps CommentId:10587421]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xMIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+@Eduard-Alexandru Nut 
+Looks like we are getting back where we started this. 
+
+	 - 	No DPI: the file scanned, threats are found, but there is no match for the context. So the file is not blocked. If you get also the test file, we can double check on that one. But I suppose there was no context around (SSN related dictionary) 
+	 - 	For DPI on, URL categ OFF, the situation is pretty similar to the noDPI test. Several threats are found, but there is no context match. Still I see something found and reported, but that looks more like a false positive. 
+	 - 	For DPI ON, URL categ ON, I can't say too much. It seems that there was something wrong with the network extension, it did not start. But it looks like this was fixed, because a few minutes later you collected the logs with URL category OFF and it was working fine at that time
+
+[DevOps CommentId:10576092]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xLIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Eduard-Alexandru Nut:
+
+@Marius Ghiurcau I just uploaded 3 new sets with the description of how they were performed.
+as a side note, with URL categories off and DPI enabled with intercept VPN traffic, we did see some logs (logs in console.png) but I do not know what item_meta[21] is referring to. for all tests, we copy-paste a sample text into the input field and then upload a file.
+I also uploaded a file with the URL list, maybe you can see what is not correct there.
+
+[DevOps CommentId:10564903]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xKIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+@Eduard-Alexandru Nut As I mentioned, according to the EPP client logs, I am expecting to see some reports in the EPP server also. I will explain again in mode detail.
+
+The initial tests were made with URL category enabled. I see that the EPP agent is aware of the file transfer, scans it, but reaches to the conclusion that the current transfer does not apply to the policies. I can't say 100% sure, but I am pretty confident that this is happening because of the URL categories. I don't have the db with the policies at that time, because later URL categories were disabled and the logs/dbs were collected after this. 
+
+After disabling URL categories, the EPP agent scans the transfers, finds threats and generates events. I also see logs that are sent to the EPP server. I don't see what is sent, but again, I am pretty confident that what is being sent to the server are logs related to these CAP events. If you don't have CAP events in the EPP server, you need to get in touch with the server team, to handle this part. Is it possible that the customer is affected to the recent issues we had related to vulnerabilities and logs?
+
+With DPI disabled I can't say too much, because I don't have this in the logs. But as I said earlier also, I expect this to work fine. By the way, does the customer have other CAP events in the server? How many machines are affected? We started this as a DPI issue but now you report also noDPI issues.
+
+First you need to figure out why the logs that are generated are not getting in the server. Or are not displayed there. And after that, we can figure out the URL categories also. If you want me to investigate more, please collect different sets of logs, for each case. So enable URL categories, reproduce, collect logs. Disable URL categories, reproduce, collect logs. Disable DPI, reproduce, collect logs. In the last case, URL categories has no effect anymore, since it is a feature available only for DPI.
+
+[DevOps CommentId:10559189]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xJIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Eduard-Alexandru Nut:
+
+@Marius Ghiurcau The same outcome as in the ticket's description, which is that no threats were reported to the console.
+So to sum up, with or without DPI there were no reports present in the server. The same with or without URL categories.
+If there is a configuration error, which is possible, I just cannot pinpoint the misconfiguration. Could you advise me in this regard?
+
+[DevOps CommentId:10557335]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xIIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+@Eduard-Alexandru Nut you didn't mention what was the outcome of your tests. Just that it was the same outcome. Can you detail this a bit?
+
+According to the logs, with URL categories enabled, the transfers were not reported (most probably because of the URL categories). It is either an issue or a misconfiguration, but I can't say exactly because the logs were collected after the URL categories were removed, so I can't see what was added in URL categories. I will do some more tests on my side anyway.
+
+With URL categories disabled, the EPP client reports the transfers, at least this is what I can see in the logs. While for the"" no DPI"" scenario, I don't have that one in the logs, so that I can tell anything. But honestly I am expecting that one to work.
+
+[DevOps CommentId:10551883]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xHIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Stacy Petruzzi:
+
+@Cristian-Alexandru Halmajan - Eduard Nut is meeting with this customer tomorrow (10July) and is specifically seeking an update on this ADO ticket. Any assistance you can offer is greatly appreciated.
+
+[DevOps CommentId:10550715]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xGIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Eduard-Alexandru Nut:
+
+@Marius Ghiurcau the customer is pushing for an update. Can you help me provide one?
+
+[DevOps CommentId:10550576]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xFIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Eduard-Alexandru Nut:
+
+@Marius Ghiurcau I uploaded the new set of logs. I tested with URL categories and then without any so they should both be contained in the logs.
+Testing without DPI yields the same outcome.
+
+[DevOps CommentId:10514671]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xEIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+@Eduard-Alexandru Nut  sorry, my bad, here's the location for the build: \192.168.14.5Publicgroups_daily_buildsCoSoSys2024-builds2024_06_27EppMac_v3.0.3.0019
+
+[DevOps CommentId:10503573]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xDIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Eduard-Alexandru Nut:
+
+@Marius Ghiurcau Thank you for the quick answer, the only issue is that the provided agent build is for Windows and this is a Mac issue so I cannot gather new logs. Can you please provide the correct link?
+
+FYI... @Stacy Petruzzi @Sara Hall 
+
+[DevOps CommentId:10502969]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xCIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+@Eduard-Alexandru Nut it doesn't matter what contextual rules are they using, per policy or global. As I mentioned, in the initial logs, DPI was obviously working, files were being detected and scanned, threats found, just that because of the contextual rules, the files were not blocked. Based on the above, and the previous comment also, I think the description and/or the title should be modified accordingly. By the way, when you conclude that DPI is not working, you should have a simple test without DPI also. Update the same file, without DPI, to see if in that case the EPP client detects it or not. For the first set of logs that I received, I can assure you it would not work even if DPI is disabled. 
+
+Going further, in this new set of logs, the issue seems to be different. I don't see in the logs that the files were scanned. So, we don't even get that far as in the initial tests. I see some dlptest.com requests, but the EPP client doesn't detect any threats (maybe the actual transfer is not caught, or might have something to do with the URL categories they are using). Anyway, please send this build to the customer: \192.168.14.5Publicgroups_daily_buildsCoSoSys2024-builds2024_06_27EPPClient_v6.2.3.0041
+
+It has some extra logs enabled, might help us debug further. Collect new logs with this build please. And when you use dlptest.com for tests, make sure you restart the browser, or at least open a new TAB for dlptest.com. In order to exclude an issue related to URL categories or a misconfiguration related to those, the customer could try to disable them, for testing purposes only.
+
+[DevOps CommentId:10500713]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xBIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Eduard-Alexandru Nut:
+
+@Marius Ghiurcau I just had a remote session where the computer was unassigned from all policies but the one we tested and also removed the contextual detection for SSNs. They are using global contextual detection not per policy.
+We created a new file with 5 or 6 SSNs taken from the sample file on dlptest.com.
+The issue was still reproduced, so there are no logs regarding the upload.
+New logs have been attached.
+
+[DevOps CommentId:10484656]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2xAIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+According to the logs DPI is working very well. Requests are intercepted and scanned. Not blocked though because the files are not matching entirely the policy. It looks like there are some contextual rules in place and those rules are not matched. If the customer wants to use contextual rules, the files used for testing should be adjusted accordingly. If you don’t manage to figure this out with the customer, please ask for the test files so we can take a look. I am not excluding entirely an issue on the client side, but at the moment I am inclined to believe that this is just a misconfiguration issue.
+
+[DevOps CommentId:10475352]","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk000007z2wvIAA","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Account ACV has been changed to 239680.00.","0054u000006gtWUAAY","2024-07-17T14:54:12.000Z","2024-07-17T14:54:12.000Z","false","false"
+"00aQk00000878nRIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-24T05:00:59.000Z","2024-07-24T05:00:59.000Z","false","false"
+"00aQk00000878nTIAQ","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-07-16 05:44 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10612554]","0054u000006gtWUAAY","2024-07-24T05:00:59.000Z","2024-07-24T05:00:59.000Z","false","false"
+"00aQk0000088AC6IAM","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Hi Team,
+We had another remote session with the customer.
+We did 3 tests:
+1. With ONLY Contextual Detection turned ON -> Got reported
+- screenshots: oneMain -test 1 only contextual detection, oneMain -test 1 only contextual detection - report
+2. With Contextual Detection + URL Monitored DPI -> Did not get reported
+- screenshots: oneMain -test 1 only contextual detection - report, oneMain - URL monitored + contextual test - no report
+3. Retested with Only Contextual Detection and without URL Monitor -> Got reported again
+- screenshot: retested with contextual detection - no url monitor
+
+Attaching logs + screenshots: https://wetransfer.com/downloads/f3c62c091bf0f0ff435de7988e96bd6a20240724184710/140defa71e383fc330eb1965f7b88f6120240724184719/6821e4
+
+Customer would like this to work with Monitor URL Categories as well as Contextual detection. They do not want all webpages to be monitored. 
+
+Thank you!
+Flaviu","005Qk000001nViKIAU","2024-07-24T18:54:42.000Z","2024-07-24T18:54:42.000Z","false","false"
+"00aQk00000887MIIAY","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViKIAU","2024-07-24T18:56:46.000Z","2024-07-24T18:56:46.000Z","false","false"
+"00aQk0000088AdVIAU","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViKIAU","2024-07-24T18:57:21.000Z","2024-07-24T18:57:21.000Z","false","false"
+"00aQk000008DLmpIAG","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: The customer has performed some tests on another Mac and the results are as follows:
+- enabled the URL category for just Notion and also DPI Enabled on the computer. uploaded sensitive information to the Notion Web application on Chrome and got nothing in the Report and Analysis section
+- disabling the URL category and DPI disabled on the computer, after uploading sensitive information to the Notion Web application on Chrome. the policy triggers and logs are seen in the Reports and Analysis section.
+
+Please provide the next steps as the customer is getting restless.","005Qk000001nViBIAU","2024-07-29T17:59:07.000Z","2024-07-29T17:59:07.000Z","false","false"
+"00aQk000008F1buIAC","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: @Cristian Halmajan, the customer is available on Wednesday 31st, 10:30 am to 11:00 am, 11:30 am until 12:00 pm, and 12:30 pm until 1:00 pm EST
+on Thursday 1st, 12:00 pm to 12:30 pm EST
+Please let me know asap if Wednesday is possible so a meeting can be set.","005Qk000001nViBIAU","2024-07-30T20:03:59.000Z","2024-07-30T20:03:59.000Z","false","false"
+"00aQk000008FgARIA0","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+@WaitingOnEngineer tagging this here, and I will move this in Waiting on Support, hopefully the message will get through.
+
+I understand that the customer is getting impatient, but please note that we had a lot of back and forth because of the scenarios and tests that were made. In most of the cases, there were issues because of the contextual rules that were set, so we did not have the proper tests in place. 
+
+Schedule the session for today from 12:30 their time and please send me an invite link. I will try to go through all the latest info and revisit also the initial threads. 
+
+[DevOps CommentId:10652574]","0054u000006gtWUAAY","2024-07-31T08:19:50.000Z","2024-07-31T08:19:50.000Z","false","false"
+"00aQk000008FgAPIA0","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-31T08:19:50.000Z","2024-07-31T08:19:50.000Z","false","false"
+"00aQk000008FgvCIAS","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+The latest info that was added on wetransfer is not available for download anymore. Were there only screenshots or also some logs? Honestly screenshots are not really helpful, ideally I need logs from the test/debug build that I prepared. 
+
+[DevOps CommentId:10652732]","0054u000006gtWUAAY","2024-07-31T08:33:23.000Z","2024-07-31T08:33:23.000Z","false","false"
+"00aQk000008FsbQIAS","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+@WaitingOnEngineer http://192.168.14.5/Public/groups/_daily_builds/CoSoSys/2024-builds/2024_07_31/EppMac_v3.0.3.0020
+
+I've prepared a debug build for the remote session today. I did not get the latest logs to check them, but I will go with the assumption that this is an UrL category issue, at least this suggests the latest feedback. So I added some extra log info to debug this. 
+
+[DevOps CommentId:10654838]","0054u000006gtWUAAY","2024-07-31T12:31:15.000Z","2024-07-31T12:31:15.000Z","false","false"
+"00aQk000008FtSdIAK","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+https://download.endpointprotector.com/custom_agent/Epp31072024/EPPMac3.0.3.0020.Notarized.tar
+
+[DevOps CommentId:10654986]","0054u000006gtWUAAY","2024-07-31T12:48:45.000Z","2024-07-31T12:48:45.000Z","false","false"
+"00aQk000008G6T3IAK","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViBIAU","2024-07-31T14:30:16.000Z","2024-07-31T14:30:16.000Z","false","false"
+"00aQk000008HHMSIA4","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: Marius Ghiurcau:
+
+@WaitingOnEngineer I've managed to figure out what is the issue here. At least in the tests we've made yesterday in the remote session. The URL category list defined in the EPP server contains a space character at the end, in the name. So the name is like this: 'DLP Test Website '. Because of a BUG on the server side, this name is sent in two ways to the EPP client, like this: 'DLP Test Website ' and like this: 'DLP Test Website'. So it looks like the server is stripping the name of the URL category in one of the places. I will open an ADO entry so that this gets fix. Until this happens, please ask the customer to revisit the name of the category and remove the trailing space character. Hopefully it will work after this. They should test first with DLP Test and after that revisit the other categories as well. They should make sure the wildcards are removed and also to check the actual destinations for the transfers, before setting the URL categories. 
+
+[DevOps CommentId:10659691]","0054u000006gtWUAAY","2024-08-01T09:41:20.000Z","2024-08-01T09:41:20.000Z","false","false"
+"00aQk000008HHMQIA4","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-01T09:41:20.000Z","2024-08-01T09:41:20.000Z","false","false"
+"00aQk000008Hcp3IAC","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViBIAU","2024-08-01T14:32:45.000Z","2024-08-01T14:32:45.000Z","false","false"
+"00aQk000008IDS1IAO","500Qk00000BXMHyIAP","@Marius, After removing the space at the end of both DLP and Notion URL category names, it seems that everything is working. They still have two more, Asana and Slab and for them, I want your input. Would a regular policy blocking file types help us find the actual URL we need in the logs, or do you suggest something else?","005Qk000001nViBIAU","2024-08-01T20:42:30.000Z","2024-08-01T20:42:30.000Z","false","false"
+"00aQk000008QmArIAK","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-09T05:00:44.000Z","2024-08-09T05:00:44.000Z","false","false"
+"00aQk000008QmAtIAK","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-01 09:41 UTC and the last detected comment from support was 2024-07-30 20:04 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10706263]","0054u000006gtWUAAY","2024-08-09T05:00:45.000Z","2024-08-09T05:00:45.000Z","false","false"
+"00aQk000008RCi1IAG","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViBIAU","2024-08-09T13:57:16.000Z","2024-08-09T13:57:16.000Z","false","false"
+"00aQk000008bDBOIA2","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-19T05:01:09.000Z","2024-08-19T05:01:09.000Z","false","false"
+"00aQk000008bDBQIA2","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-01 09:41 UTC and the last detected comment from support was 2024-07-30 20:04 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10777653]","0054u000006gtWUAAY","2024-08-19T05:01:09.000Z","2024-08-19T05:01:09.000Z","false","false"
+"00aQk000008bmM1IAI","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViBIAU","2024-08-19T15:03:24.000Z","2024-08-19T15:03:24.000Z","false","false"
+"00aQk000008jMKkIAM","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-26T05:00:44.000Z","2024-08-26T05:00:44.000Z","false","false"
+"00aQk000008jMKmIAM","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-01 09:41 UTC and the last detected comment from support was 2024-07-30 20:04 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10827955]","0054u000006gtWUAAY","2024-08-26T05:00:45.000Z","2024-08-26T05:00:45.000Z","false","false"
+"00aQk000008kVPCIA2","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViBIAU","2024-08-26T21:10:03.000Z","2024-08-26T21:10:03.000Z","false","false"
+"00aQk000008rZflIAE","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-02T05:01:37.000Z","2024-09-02T05:01:37.000Z","false","false"
+"00aQk000008rZfnIAE","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-01 09:41 UTC and the last detected comment from support was 2024-07-30 20:04 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10858088]","0054u000006gtWUAAY","2024-09-02T05:01:38.000Z","2024-09-02T05:01:38.000Z","false","false"
+"00aQk000008rZpSIAU","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-01 09:41 UTC and the last detected comment from support was 2024-07-30 20:04 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10858088]","0054u000006gtWUAAY","2024-09-02T05:01:40.000Z","2024-09-02T05:01:40.000Z","false","false"
+"00aQk000008s3KTIAY","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViBIAU","2024-09-02T16:42:32.000Z","2024-09-02T16:42:32.000Z","false","false"
+"00aQk00000AEo5eIAD","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the new comment has been added: this issue can be closed as it was resolved","005Qk000001nViBIAU","2024-11-14T17:40:07.000Z","2024-11-14T17:40:07.000Z","false","false"
+"00aQk00000AEoFJIA1","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViBIAU","2024-11-14T17:41:20.000Z","2024-11-14T17:41:20.000Z","false","false"
+"00aQk00000AEoFLIA1","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Account ACV has been changed to 479360.00.","005Qk000001nViBIAU","2024-11-14T17:41:23.000Z","2024-11-14T17:41:23.000Z","false","false"
+"00aQk00000AEoGvIAL","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Account ACV has been changed to 239680.00.","0054u000006gtWUAAY","2024-11-14T17:41:34.000Z","2024-11-14T17:41:34.000Z","false","false"
+"00aQk00000BoJynIAF","500Qk00000BXMHyIAP","On Escalation Ticket # 00412372 the Following Fields have been updated: 
+Account ACV has been changed to 403621.79999999999985.","0054u000006gtWUAAY","2025-02-14T11:44:20.000Z","2025-02-14T11:44:20.000Z","false","false"

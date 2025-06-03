@@ -1,0 +1,304 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009zVjFIAU","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Account ACV has been changed to 774574.50.
+Priority has been changed to Medium.","005Qk000001nViCIAU","2024-11-01T17:05:31.000Z","2024-11-01T17:05:31.000Z","false","false"
+"00aQk000009zVkrIAE","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Account ACV has been changed to 387287.25.","005Qk000001nViCIAU","2024-11-01T17:05:33.000Z","2024-11-01T17:05:33.000Z","false","false"
+"00aQk000009zVsvIAE","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Priority has been changed to High.","005Qk000001nViCIAU","2024-11-01T17:06:45.000Z","2024-11-01T17:06:45.000Z","false","false"
+"00aQk00000A6k41IAB","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-08T09:36:45.000Z","2024-11-08T09:36:45.000Z","false","false"
+"00aQk00000A6k43IAB","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Alexandra-Alina Pascalau:
+
+@WaitingOnEngineer
+Hi,
+
+Please try the following steps:
+
+
+	 - 	Restart services
+
+
+--- CODE ---
+               service mysql restart
+               service php-fpm restart
+               service nginx restart
+
+--- CODE ---
+
+     2. Delete all scheduled exports (they will need to be recreated later)
+
+     3. Enable the debug log for the export script:
+
+
+--- CODE ---
+              touch /tmp/export_entities.debug
+              touch /var/log/epp/export_entities.log
+              chmod 777 /var/log/epp/export_entities.log
+--- CODE ---
+
+      4. Run a one time users export : Device Control-Users->Choose action->Export List of Users
+
+      5. If the export still does not show in the List of Exports:
+                               please provide us with the log file /var/log/epp/export_entities.log
+                               and also check the total number of entities:
+
+--- CODE ---
+                                 select count(*) from clientuser where deleted = 0;
+                                select count(*) from clientmachine where deleted = 0;
+                                select count(*) from clientdevice where deleted = 0;
+--- CODE ---
+
+      6. Delete the log files:
+
+--- CODE ---
+                rm /tmp/export_entities.debug
+                rm /var/log/epp/export_entities.log
+--- CODE ---
+
+      7. Recreate the scheduled exports
+
+Thanks
+
+             
+
+[DevOps CommentId:11190941]","0054u000006gtWUAAY","2024-11-08T09:36:45.000Z","2024-11-08T09:36:45.000Z","false","false"
+"00aQk00000A6kX4IAJ","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-08T09:56:47.000Z","2024-11-08T09:56:47.000Z","false","false"
+"00aQk00000A6lcnIAB","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-08T09:56:57.000Z","2024-11-08T09:56:57.000Z","false","false"
+"00aQk00000A6gtIIAR","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-08T10:46:21.000Z","2024-11-08T10:46:21.000Z","false","false"
+"00aQk00000AA6hWIAT","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Hi @Alexandra-Alina Pascalau:
+
+We had a remote session today and ran the commands which you provided.
+The issue seems to occur only when the list of computers are exported.  When we restart the EPP appliance and export the list of users then it works fine, but the moment we export the list of computers then it seems to become unresponsive and also it seems that it is also causing a blockage for other exports that follow. 
+
+Today the EPP appliance was shut down and after it powered up we ran the commands to activate the export entities debug log, we then exported the list of users and the export was available immediately.  When we ran an export of list of computers then the exports stopped showing under ""Exported Entities""
+
+I ran the process check list and also did a count on users, devices, computers.
+
+Please see the screenshots in the attachments folder with today's date in file names and also see the 'export_entities.log' that was taken from the EPP Server.
+
+Kindly advise on the next steps.","005Qk000001nViCIAU","2024-11-11T14:01:51.000Z","2024-11-11T14:01:51.000Z","false","false"
+"00aQk00000AA5n5IAD","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Hi @Alexandra-Alina Pascalau:
+Also to state that the daily export of computers (The scheduled export) seems to run okay and it shows the lists of exports made on a daily basis.  The issue occurs only for the one time ""List of Computers"" exports.  Please see the attached screenshot.","005Qk000001nViCIAU","2024-11-11T14:08:06.000Z","2024-11-11T14:08:06.000Z","false","false"
+"00aQk00000AA75hIAD","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-11-11T14:08:14.000Z","2024-11-11T14:08:14.000Z","false","false"
+"00aQk00000ACfo1IAD","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-13T09:55:52.000Z","2024-11-13T09:55:52.000Z","false","false"
+"00aQk00000ACfo3IAD","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+
+
+Thank you for the info.
+
+Please provide some screenshots with the mysql config file   /etc/mysql/mysql.conf.d/mysqld.cnf
+
+We would also like to check the mysql log file:
+To enable the mysql error log:
+
+     - edit /etc/mysql/mysql.conf.d/mysqld.cnf
+
+
+
+     - change log-error-verbosity to 3
+
+     - add this line under log-error-verbosity
+
+              log_error = /var/log/mysql/error.log
+
+     - restart service:
+
+             service mysql restart
+
+     - run a Computer one time export and wait a few minutes
+
+     - !! disable the mysql error log and provide  the log file
+
+
+   Can you ask the customer if there was a server upgrade or an AD sync or any event happening around 29/30 Oct (when the daily exports stopped working)?
+
+    Did they have this number of computers prior to 29/30 Oct? Can you check a few export files and see the number of entities that were exported? Maybe compare them with the current numbers?
+
+   For the moment , we recommend that the exports are scheduled at night (or during a time when there is low traffic) and spread them half an hour apart, so that they don't start at the same time.
+
+
+Thanks
+
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11207914]","0054u000006gtWUAAY","2024-11-13T09:55:53.000Z","2024-11-13T09:55:53.000Z","false","false"
+"00aQk00000ACzrZIAT","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-13T14:36:36.000Z","2024-11-13T14:36:36.000Z","false","false"
+"00aQk00000AEUeqIAH","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Augustina Sidor:
+
+During today’s remote session, we observed an increase in the number of machines on the server. The total number of machines in the system that have not been deleted is 74,022, up from 71,512 at the beginning of October.
+
+The customer confirmed that they are upgrading their operating system and that the machines are also undergoing name changes. 
+
+They will try to identify and delete any machines that are no longer in use.
+
+ Additionally, we suggested scheduling the export in the evening when the server load is lower.
+
+
+FIY @WaitingOnEngineer
+
+[DevOps CommentId:11217612]","0054u000006gtWUAAY","2024-11-14T14:36:14.000Z","2024-11-14T14:36:14.000Z","false","false"
+"00aQk00000AEUeoIAH","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-14T14:36:14.000Z","2024-11-14T14:36:14.000Z","false","false"
+"00aQk00000AEpCzIAL","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-14T17:52:38.000Z","2024-11-14T17:52:38.000Z","false","false"
+"00aQk00000AFYusIAH","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Hi @Augustina Sidor:
+Thank you for being present on the call with the customer and also thank you for the comment added to the case.  The case is now on ""Awaiting Client"" status.  The customer will provide us with an update on this case after they managed to identify and delete the computer entries that are no longer in use.","005Qk000001nViCIAU","2024-11-15T08:03:43.000Z","2024-11-15T08:03:43.000Z","false","false"
+"00aQk00000AHnHvIAL","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Hi @Augustina Sidor:
+
+The customer sent us this update this morning:
+
+
+""We checked the CoSoSys/Netwrix endpoint protector reporting task this weekend and none of the reports Clint created are appearing under exported entities. The last report showing is the user’s report from the 11th Nov 2024.
+Does not seem like deleting all those systems made a difference.
+Please take this update back to your dev team and advise us on the way forward towards resolving this issue.""
+
+
+
+They sent us this update on the 15th November (last week Friday):
+
+""Thank you for your support thus far on this case.
+We have gone through the task on our end of deleting stale entries of machines under Device Control- computers section in the console.
+We are currently sitting at around 54400 endpoints.
+We’ve set the Computer export to run at 10pm tonight as suggested by your team.
+We’ll provide further feedback on Monday.""","005Qk000001nViCIAU","2024-11-18T07:05:57.000Z","2024-11-18T07:05:57.000Z","false","false"
+"00aQk00000AHpUzIAL","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-11-18T07:06:05.000Z","2024-11-18T07:06:05.000Z","false","false"
+"00aQk00000AHu4rIAD","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-18T09:44:09.000Z","2024-11-18T09:44:09.000Z","false","false"
+"00aQk00000AHu4tIAD","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Augustina Sidor:
+
+Hi Andre,
+
+Please schedule another remote session. 
+The next step will be to clean up the clientmachine table. There are approximately 130,000 machines. We will attempt to remove them from the database (currently, deleted machines are only marked with a 'delete' status). 
+
+ !!! A backup or snapshot should be created before starting the machine deletion process.
+
+Please ask the customer if it’s possible to use Zoom for the remote connection.
+
+Thanks,
+Augustina
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11226746]","0054u000006gtWUAAY","2024-11-18T09:44:10.000Z","2024-11-18T09:44:10.000Z","false","false"
+"00aQk00000AJUFxIAP","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-19T13:46:21.000Z","2024-11-19T13:46:21.000Z","false","false"
+"00aQk00000AKjODIA1","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-20T11:47:53.000Z","2024-11-20T11:47:53.000Z","false","false"
+"00aQk00000AKjOFIA1","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Augustina Sidor:
+
+During today's remote session, we completed the following tasks:
+
+  >> Backed up the database.
+  >>  Cleaned up the clientmachine table (currently containing 55,693 machines).
+  >>  Removed the deleted groups.
+  >> Verified the number of users: 89,300.
+
+We also manually executed the SQL command to export the machines. After removing the LEFT JOIN with the clientuser table, the SQL ran without issues.
+
+
+The next steps:
+
+	 - 	 Create an environment on our side that mirrors the customer's setup to replicate the problem.
+	 - 	 Optimize the SQL command to ensure it runs smoothly without errors.
+
+FYI @WaitingOnEngineer
+
+
+
+CC. @Cristian-Alexandru Halmajan
+
+[DevOps CommentId:11241495]","0054u000006gtWUAAY","2024-11-20T11:47:54.000Z","2024-11-20T11:47:54.000Z","false","false"
+"00aQk00000AKjcjIAD","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-11-20T11:55:04.000Z","2024-11-20T11:55:04.000Z","false","false"
+"00aQk00000AKjJOIA1","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-20T11:55:14.000Z","2024-11-20T11:55:14.000Z","false","false"
+"00aQk00000APhjxIAD","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-25T09:03:52.000Z","2024-11-25T09:03:52.000Z","false","false"
+"00aQk00000APjnOIAT","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Hi @Augustina Sidor
+
+On Friday 22nd November the customer gave the below update on the support ticket:
+
+""Just an update from our end with regards to deleting stale user entries from the application.
+We managed to delete a lot from the application – From 90k we brought the figure down 48500 user entries.
+Let us know when you would like us to set up a Webex session for next week to delete the flagged data in the backend.""","005Qk000001nViCIAU","2024-11-25T10:20:28.000Z","2024-11-25T10:20:28.000Z","false","false"
+"00aQk00000APjozIAD","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-11-25T10:20:38.000Z","2024-11-25T10:20:38.000Z","false","false"
+"00aQk00000APrMlIAL","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Mihai Popa:
+
+I have set up a test env that has the same number of entities,and is now under investigation from Augustina.
+
+[DevOps CommentId:11269697]","0054u000006gtWUAAY","2024-11-25T11:59:11.000Z","2024-11-25T11:59:11.000Z","false","false"
+"00aQk00000Aa7wVIAR","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Augustina Sidor:
+
+Hi Andre,
+
+Please schedule another remote session.
+
+In this remote session, we will try to clean up the clientuser table.
+We have also prepared an improvement for the export entities cron. If the customer agrees, we can apply this improvement to version 5940. Additionally, the improvement will be included in the 5941 release.
+
+Regards, 
+Augustina
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11339903]","0054u000006gtWUAAY","2024-12-05T10:03:56.000Z","2024-12-05T10:03:56.000Z","false","false"
+"00aQk00000Aa7wTIAR","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-05T10:03:56.000Z","2024-12-05T10:03:56.000Z","false","false"
+"00aQk00000Aa8J4IAJ","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Hi @Augustina Sidor
+Thank you for the update, can we have a remote session with the customer tomorrow at 3 PM RO time?","005Qk000001nViCIAU","2024-12-05T10:16:55.000Z","2024-12-05T10:16:55.000Z","false","false"
+"00aQk00000Aa8MHIAZ","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-12-05T10:17:03.000Z","2024-12-05T10:17:03.000Z","false","false"
+"00aQk00000AaQfmIAF","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Update:
+The customer will wait until the release of 5941 and will confirm if the issue is resolved after the 5941 patch was applied.","005Qk000001nViCIAU","2024-12-05T15:03:18.000Z","2024-12-05T15:03:18.000Z","false","false"
+"00aQk00000BiYNpIAN","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-10T11:19:20.000Z","2025-02-10T11:19:20.000Z","false","false"
+"00aQk00000BiYNrIAN","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Andre,
+
+Could you please confirm if upgrading to 5.9.4.1 fixed this issue?
+
+Thank you,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11621371]","0054u000006gtWUAAY","2025-02-10T11:19:21.000Z","2025-02-10T11:19:21.000Z","false","false"
+"00aQk00000BiacXIAR","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViEIAU","2025-02-10T12:42:55.000Z","2025-02-10T12:42:55.000Z","false","false"
+"00aQk00000BqVJ9IAN","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: Hello,
+
+The customer confirmed the update resolved the issue and they were able to generate the report.
+They will keep monitoring until the 29th then they will get back to us.","005Qk000001nViEIAU","2025-02-17T06:32:06.000Z","2025-02-17T06:32:06.000Z","false","false"
+"00aQk00000BzWJBIA3","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-25T05:05:15.000Z","2025-02-25T05:05:15.000Z","false","false"
+"00aQk00000BzWJDIA3","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-02-17 10:41 UTC and the last detected comment from support was 2025-02-17 06:32 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11695377]","0054u000006gtWUAAY","2025-02-25T05:05:16.000Z","2025-02-25T05:05:16.000Z","false","false"
+"00aQk00000C67EPIAZ","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViDIAU","2025-03-03T09:16:28.000Z","2025-03-03T09:16:28.000Z","false","false"
+"00aQk00000C6K1xIAF","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViDIAU","2025-03-03T13:30:53.000Z","2025-03-03T13:30:53.000Z","false","false"
+"00aQk00000C6K1zIAF","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Account ACV has been changed to 774574.50.","005Qk000001nViDIAU","2025-03-03T13:30:57.000Z","2025-03-03T13:30:57.000Z","false","false"
+"00aQk00000C6K5BIAV","500Qk00000Hi9nQIAR","On Escalation Ticket # 00425823 the Following Fields have been updated: 
+Account ACV has been changed to 387287.25.","0054u000006gtWUAAY","2025-03-03T13:31:19.000Z","2025-03-03T13:31:19.000Z","false","false"

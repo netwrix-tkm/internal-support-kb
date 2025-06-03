@@ -1,0 +1,55 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000PcBdaIAF","00446276","Support Ticket","Daily Authentication Failures Between On-Prem FTP and AWS EPP Server","We had configured shadow file server in on premise network and EPP server on AWS Cloud. We had stored credentials on On-premise FTP server and We are getting multiple authentication failure logs from On-premise FTP server to AWS EPP server on daily basis.
+The daily Auth failure log count is more than 1200+.","","27 May
+
+- The EPP server is successfully receiving shadow files from the on-premise FTP server, indicating that the main configuration is functional.
+- Despite successful file transfers, the FTP server logs a large number of authentication failures daily.
+- The customer has confirmed that the File Shadowing configuration is correct and provided screenshots and logs for review.
+- Support identified that the File Shadows Repository configuration was not displaying expected indicators (green font for IP/Folder Path, password confirmation), suggesting a possible misconfiguration.
+- The customer insists the setup is working, but authentication failures persist, indicating a possible background process or repeated connection attempts with incorrect credentials.
+- The exact source of the failed authentication attempts is unclear and requires further investigation.
+- A remote session has been proposed and scheduled to analyze the issue in real time.
+
+29 May
+
+- New information indicates that the customer has a SIEM integration configured, and authentication failures may be originating from the SIEM server rather than the shadow repository.
+- There is now a need to distinguish whether the authentication failures are related to the File Shadow Repository, SIEM integration, or another external storage/service.
+- Additional troubleshooting steps have been suggested, including network connectivity tests (telnet, tcpdump) and log reviews (/var/eppfiles/syslog) to pinpoint the source of the failed authentication attempts.
+- New session has been scheduled for 30 May at 10:00 RO time
+
+30 May
+
+- The main file shadowing configuration is functional; shadow files are successfully transferred from the EPP server to the on-premise FTP server.
+- Despite successful transfers, the FTP server logs a large number of authentication failures, suggesting repeated connection attempts with incorrect credentials.
+- Initial review of the File Shadow Repository configuration revealed it was not displaying expected indicators (such as green font for IP/Folder Path and password confirmation), hinting at a possible misconfiguration.
+- The customer confirmed the setup was working but authentication failures persisted, indicating a possible background process or integration issue.
+- Further investigation revealed the customer also had a SIEM integration, which could be responsible for the failed authentication attempts.
+- Support recommended disabling SIEM integration, External Storage, and File Shadow Repository one at a time to isolate the source of the failures.
+- Network diagnostic tools (telnet, tcpdump) and log reviews (/var/eppfiles/syslog) were suggested to pinpoint the source of the failed authentication attempts.
+- After configuration changes and troubleshooting, the customer confirmed that authentication failure logs were no longer being generated.","27 May
+
+1. Support and customer to conduct a remote session at the agreed time to review the FTP server logs, EPP configuration, and authentication processes in detail.
+2. During the session, identify which process or account is generating the failed authentication attempts.
+3. Verify that all credentials stored and used by the EPP server are correct and up to date.
+4. Check for any automated tasks, scripts, or legacy configurations that might be attempting to authenticate with outdated or incorrect credentials.
+5. After identifying the source, update or remove any misconfigured connections to eliminate the authentication failures.
+6. Support to follow up with a summary of findings and recommendations after the remote session.
+
+29 May
+
+1. During the next remote session, review both the File Shadow Repository and SIEM integration configurations to determine which service is generating the authentication failures.
+2. Use network diagnostic tools (such as telnet and tcpdump) to test connectivity and monitor authentication attempts from the relevant servers (FTP, SIEM, EPP).
+3. Examine the /var/eppfiles/syslog and other relevant logs for connection errors or failed authentication events, focusing on the IP addresses and services involved.
+4. Temporarily disable SIEM integration, External Storage, and File Shadow Repository one at a time, monitoring the FTP server logs after each change to identify which component is responsible for the failures.
+5. Once the source is identified, review and update the credentials or configuration for the problematic integration to resolve the authentication failures.
+6. After implementing changes, re-enable all integrations and confirm that authentication failures no longer occur.
+7. Support to document findings and provide a summary with recommendations following the troubleshooting session.
+
+30 May
+
+1. Customer and support to conduct a remote session to review FTP server logs, EPP configuration, and authentication processes in detail.
+2. During the session, identify which process or integration (File Shadow Repository, SIEM, or External Storage) is generating the failed authentication attempts.
+3. Use network diagnostic tools and log analysis to confirm the source of the failures.
+4. Update or correct the configuration and credentials for the identified integration.
+5. Re-enable all integrations and confirm that authentication failures no longer occur.
+6. Support to provide a summary of findings and recommendations after the session.","The issue was resolved by reviewing and updating the configuration of the relevant integrations (File Shadow Repository, SIEM, and External Storage) in the EPP console. After making the necessary changes, the customer confirmed that authentication failure logs were no longer being generated on the FTP server. The root cause was traced to a misconfiguration or outdated credentials in one of the integrations, which was corrected during the troubleshooting process. The customer requested closure of the ticket after confirming the resolution.","Authentication Issue","Alin Anca","Error","Netwrix Endpoint Protector","System & Log Backups","External Storage - FTP/Samba","","","3.4","Closed - Resolved","LDS Infotech Pvt. Ltd","Jitendra Gupta","2025-05-27T06:49:49.000Z","2025-05-30T16:40:37.000Z"

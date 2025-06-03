@@ -1,0 +1,39 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NtwvlIAB","00441563","Support Ticket","CAP Policy doesn't work","Hello! The case is for Daniel Anton and Marian Ilies.
+A customer   - Augstākā tiesa (Supreme Court of the Republic of Latvia). 
+We are unable to activate the CAP  policy for a specific user, and the reason is unclear.
+Please help us collect the necessary logs so we can continue the investigation.
+Thank you!","","Connected remote with Elena in regards of this issue and it seems like she had a CAP policy which was not applied correctly as inside the COMPUTER settings, she had Working hours enabled.
+
+After agreeing to disable that( it was due to a group the device was part of), and trying again, the policy was working.
+
+The policy itself needed some fine tuning as she wants to have this block only for specific websites and I advised on how to use the DPI monitored categories.
+
+Also, for Latvian ID's seems like it didn't work as it might not be recognized accordingly.
+
+The latvian id looks like this : 101188-13124 but its only recognized when used like this  10118813124, therefore I advised the client to use a regexp such as ^d{6}-d{5}$ and let me know how it goes.
+
+Will keep the ticket opened and follow up with her on Thursday.
+
+UPDATE 17/04/2025
+
+Elena adjusted the CAP policy to include monitored DPI categories along the regex and she said for some of her computers, there are no logs on generated.
+
+UPDATE 22/04/2025
+Went on a remote session with Elena to check and see why the CAP Policy ''Eu resources'' -> DPI Monitored URL categories is not working.
+
+Did some tests on a machine by applying only the above policy and it works as expected.
+
+Turns out she has another policy in place made by someone else where they have whitelisted the URL for the eu resources so Elena has to review and check with her seniors first to edit the whitelisted DPI allowlists websites because that is the root cause of the issue.
+
+She will check later and will get back to me.","Will sent note to follow up.
+
+
+UPDATE 17/04/2025
+Scheduled a remote session for next Tuesday.
+
+UPDATE 22/04/2025
+
+Will sent note to follow up.","Issue sorted after adjusting the EU Resources policy and after removing the EU websites from the DPI allowedlists.
+Now the EU Resources blocks only the documents uploaded to the EU site that Elena wanted, everything works as expected.
+Closing ticket as resolved.","Incorrect configuration: Netwrix product","Marian Ilies","Question","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","","","13.2","Closed - Resolved","IPRO","Elena Revzina","2025-04-10T10:17:30.000Z","2025-04-23T14:04:39.000Z"

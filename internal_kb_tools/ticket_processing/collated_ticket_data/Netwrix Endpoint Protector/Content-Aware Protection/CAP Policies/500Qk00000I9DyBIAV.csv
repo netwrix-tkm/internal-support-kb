@@ -1,0 +1,15 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000I9DyBIAV","00426630","Support Ticket","Content Aware Policies not working as intended","Hello, 
+
+We have attempted to configure some Content Aware Policies, and have puposely excluded OneDrive, because there was too many false positives showing up. 
+Firstly, OneDrive is still showing up as being detected in the logs. 
+Secondly, is there a way to configure the policy so we do not have to exclude anything (so not to risk missing anything important), but with less false positives. 
+
+Happy to have a call if it will be easier.","","Our customer 'Andaria Financial Services'
+reported that they are getting multiple event log entries for the same files at the exact same time stamps. The customer wants to have a single event log entry to show for each incident on the same file with the same time.
+
+
+Endpoint Protector is designed to report multiple event logs for confidential data found in files. 
+Here is a brief explanation, let's suppose there is a ZIP archive, with several files in it. If the EPP client finds threats in different archive members, it us useful to have them reported separately. So that the Endpoint Protector administrator knows where exactly the threat was found.  Now considering that XLSX files are archive as well and it contains several files, most of them xml files.  If the xlsx file have 20 sheets, there will be 20 different xml files, for each sheet and other xmls there as well (such as sharedstrings.xml).  All of these will be scanned and reported separately if threats are found in them.","Customer can use our features ""Contextual Detection"" and ""Regular Expression"" to help minimize the false positives.","After having several discussions with the R&D team we concluded that for now there is nothing more that we can do for this particular situation, however we as a team we are constantly working into improving the false positives for our product.  We recommend that you always keep both your Endpoint Protector Server and Clients up to date with the latest versions that we continue to release.
+ 
+I hope this information helps, if you have any follow up questions then please do let us know.","","Andre Le Roux","","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","NONE","","85.8","Closed - Resolved","Andaria Financial Services","Nirav Patel","2024-11-11T11:26:45.000Z","2025-02-05T06:25:53.000Z"

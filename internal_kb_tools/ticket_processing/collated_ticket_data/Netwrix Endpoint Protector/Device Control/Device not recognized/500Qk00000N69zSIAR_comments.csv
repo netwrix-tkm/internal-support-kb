@@ -1,0 +1,227 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000CapBZIAZ","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Account ACV has been changed to 774574.50.
+Priority has been changed to Medium.","005Qk000001nVi3IAE","2025-03-28T09:04:16.000Z","2025-03-28T09:04:16.000Z","false","false"
+"00aQk00000CapDBIAZ","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Account ACV has been changed to 387287.25.","005Qk000001nVi3IAE","2025-03-28T09:04:28.000Z","2025-03-28T09:04:28.000Z","false","false"
+"00aQk00000CbEzaIAF","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: We had a new meeting today with the customer and we have run the reregistration steps one more time and observe if the situation persist. It does.
+
+They are installing an image of Windows 11 (not a golden image or VDI ) having the EPP client 6.2.3.1 version included.
+
+This problem (as the customer presented seems to be happening for image installation which were made starting with February, and are already to the RMB.CO.ZA domain .
+
+However due to a large amount of endpoints that the customer is having, they cannot say for sure that this is also encounter in the FNB.CO.ZA domain.
+
+We have checked if with the latest client(6.2.4.2) the issue is still the same with curl error 35 and yes we still receive it.
+
+!!!!!! The user interface is accessible from the browser, while the ping is not working and the telnet is connecting.
+
+We run also the following commands to check the TLS version and to check if the curl command returns the same error
+
+curl --version
+curl https://10.5.8.170
+curl --tlsv1.2 https://10.5.8.170
+curl --tlsv1.1 https://10.5.8.170
+curl --tlsv1.3 https://10.5.8.170
+openssl s_client -connect 10.5.8.170:443 -tls1_2
+openssl --version
+curl -k -vvvvvvvvv https://10.5.8.170
+
+
+Some of the commands provide us the same error as the one we find in the EPP logs:
+ERROR Register request failed. cURL error is: 35, schannel: next InitializeSecurityContext failed: SEC_E_ILLEGAL_MESSAGE (0x80090326) - This error usually occurs when a fatal SSL/TLS alert is received (e.g. handshake failed). More detail may be available in the Windows System event log., proxy: false
+
+
+They are using Proxy PAC, and we observed that the users have different proxy addresses : http://fnbproxypac.fnb.co.za/vpn_pac_base.pac (this was use for FNB domain, on a endpoint that is communicating with the server )
+
+http://proxy.rmb.co.za/proxy.pac ( this was observed on the affected system) 
+
+Please analyse carefully all our screenshots that the reflect all the details from the commands that we run, as well the logs attached.","005Qk000001nVi3IAE","2025-03-28T15:05:06.000Z","2025-03-28T15:05:06.000Z","false","false"
+"00aQk00000CenazIAB","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Priority has been changed to Critical.","005Qk000001nVi3IAE","2025-04-01T07:54:37.000Z","2025-04-01T07:54:37.000Z","false","false"
+"00aQk00000CezSUIAZ","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi @WaitingOnDevOps,
+Could you please assist with this issue?
+
+Thank you,
+Cristi
+
+[DevOps CommentId:11873701]","0054u000006gtWUAAY","2025-04-01T12:10:07.000Z","2025-04-01T12:10:07.000Z","false","false"
+"00aQk00000CezU6IAJ","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: -- DevOps Automation Assistant --
+Escalation ticket 380470 raised with the DevOps team
+
+[DevOps CommentId:11873704]","0054u000006gtWUAAY","2025-04-01T12:10:26.000Z","2025-04-01T12:10:26.000Z","false","false"
+"00aQk00000CfJ4dIAF","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Bogdan-Cosmin Melinte:
+
+@Cristian-Alexandru Halmajan Will pick this up with Adrian as based on the description this seems to be an Agent <> Client communication issue, but it seems that on some computers it is working and on some it is not.
+
+[DevOps CommentId:11875521]","0054u000006gtWUAAY","2025-04-01T15:52:33.000Z","2025-04-01T15:52:33.000Z","false","false"
+"00aQk00000CgA7LIAV","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Hello,
+
+We had a new session with the customer where we added webservice, webservicefree access.log and error.log from nginx .
+
+Computers and IPs where this is happening are the following:
+ 
+Minesh's 10.7.96.226
+ 
+Koketjo's 10.7.101.195
+ 
+These are the IP's of the systems that are not communicating - leaving them here with the mention that we could not find them in the access.log from nginx .","005Qk000001nVi3IAE","2025-04-02T09:24:19.000Z","2025-04-02T09:24:19.000Z","false","false"
+"00aQk00000CgchuIAB","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Hello,
+
+Today we had a new session with the customer where we have checked the following: 
+
+- activated Wireshark logs and set filters for their epp like ""host 10.5.8.170""
+- tried to update policies and restart service  - same curl 35 error received on the test system;
+- switched the client to communicate to their staging server - 10.5.8.149  -same curl 35 error received on the test system; 
+- checked chipers version after seeing the following error in the Schannel logs A fatal alert was received from the remote endpoint. The TLS protocol defined fatal alert code is 40. The SSPI client process is EPPservice (PID: 11396). 
+- We checked that TLS1.2 is enabled in registries for that test system  - result -  Enabled
+- Checked curl command for Forcepoint IP -adding a screenshot for comparison  - the 10.5.8.170 and 10.5.8.149 are EPP while the 10.5.8.178 is Forcepoint one - The epp ones receiving curl 35 while Forecpoint is connected receives curl 60 
+
+The wireshark logs and screenshots have also attached.","005Qk000001nVi3IAE","2025-04-02T14:53:23.000Z","2025-04-02T14:53:23.000Z","false","false"
+"00aQk00000Cle9fIAB","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Hello, @Cristi Halmajan , @Bogdan Melinte, 
+
+Customer returned with the following comments: 
+"" We had a look at the Wireshark logs again on our end, please have a look at snip below where we have highlighted in Yellow – it seems like the server has responded, meaning traffic is reaching the server: file attached on the Sharepoint.
+
+Is there a log on server, where we can see why the server does not like what the client is presenting it with? """"","005Qk000001nVi3IAE","2025-04-07T11:41:21.000Z","2025-04-07T11:41:21.000Z","false","false"
+"00aQk00000CnHaHIAV","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-08T13:54:35.000Z","2025-04-08T13:54:35.000Z","false","false"
+"00aQk00000CnHaJIAV","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Robert Zavalczki:
+
+It appears that the server (or another device or software in the network) is responding with a TLS ""Handshake Failure"" alert as a response to the TLS1.2 ""Client Hello"" message received from the EPP client as part of the TLS handshake.
+
+I don't know what the server does not like about the ""Client Hello"" message. It has common cypher-suites, one thing that is uncommon is that the ""Client Hello"" message doesn't have a Server Name Indication extension, but other agents that do communicate with the server don't have this extension either.
+
+One explanation could be that the server lacks resources to properly process all the requests, as evidenced by the server's ""error.log"". Does the communication error persist after re-booting the EPP server?
+It would be also interesting to get a Wireshark capture from a different computer that does communicate with the server: 10.5.8.170. If the ""Client Hello"" packet captured on the computer that communicates with the server is the same as the one from the computer that does not, then the culprit is the server or a device in the network such as a proxy, load balancer etc.
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11905853]","0054u000006gtWUAAY","2025-04-08T13:54:36.000Z","2025-04-08T13:54:36.000Z","false","false"
+"00aQk00000CnNKjIAN","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2025-04-08T14:48:18.000Z","2025-04-08T14:48:18.000Z","false","false"
+"00aQk00000CpsaYIAR","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Catalin-Emanuel Stoian:
+
+I have found many lines like these in nginx's error.log file, which file Robert also mentioned below.
+
+
+
+--- CODE ---2025/04/01 15:21:19 [crit] 4236#4236: accept4() failed (24: Too many open files)
+
+2025/04/01 15:21:19 [crit] 4234#4234: accept4() failed (24: Too many open files)
+2025/04/01 15:21:19 [crit] 4233#4233: accept4() failed (24: Too many open files)
+2025/04/01 15:21:19 [alert] 4233#4233: *1290202 socket() failed (24: Too many open files) while connecting to upstream, client: 10.183.64.240, server: endpointprotector, request: ""POST /ws/webservice.php HTTP/1.1"", upstream: ""fastcgi://127.0.0.1:9000"", host: ""10.5.8.170""
+2025/04/01 15:21:19 [crit] 4236#4236: accept4() failed (24: Too many open files)
+2025/04/01 15:21:20 [alert] 4234#4234: *1290692 socket() failed (24: Too many open files) while connecting to upstream, client: 10.7.120.243, server: endpointprotector, request: ""POST /ws/webservice.php HTTP/1.1"", upstream: ""fastcgi://127.0.0.1:9000"", host: ""10.5.8.170""
+2025/04/01 15:21:20 [crit] 4234#4234: accept4() failed (24: Too many open files)
+2025/04/01 15:21:20 [crit] 4236#4236: accept4() failed (24: Too many open files)
+2025/04/01 15:21:20 [crit] 4234#4234: accept4() failed (24: Too many open files)
+2025/04/01 15:21:20 [crit] 4236#4236: accept4() failed (24: Too many open files)
+--- CODE ---
+
+
+
+Not sure these have anything to do with the actual issue, but an attempt to raise the ulimit will, I think, be the solution to these ""Too many open files"" messages; I understood from Bogdan that this was also done for another customer in the past.
+
+[DevOps CommentId:11914850]","0054u000006gtWUAAY","2025-04-10T08:27:18.000Z","2025-04-10T08:27:18.000Z","false","false"
+"00aQk00000Cpsc9IAB","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-10T08:27:38.000Z","2025-04-10T08:27:38.000Z","false","false"
+"00aQk00000Cq0l3IAB","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Daniel,
+
+Please schedule a remote connection with the customer and include Robert Zavalczki, Bogdan Melinte and Catalin Stoian.
+
+Please try and schedule it either tomorrow the earliest or on Monday.
+
+Thank you,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11916373]","0054u000006gtWUAAY","2025-04-10T10:30:02.000Z","2025-04-10T10:30:02.000Z","false","false"
+"00aQk00000Cq9xxIAB","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2025-04-10T13:08:50.000Z","2025-04-10T13:08:50.000Z","false","false"
+"00aQk00000Cy77mIAB","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Hello, 
+
+FNB expressed their concern related to any possible change in the ciphers during the server upgrade they did back in December, as per this we tested in house with a Ubuntu 18 appliance and we observed the following:
+
+- from EPP server version 5.9.0.0 to 5.9.4.0 the Ciphers are the same and the ""epp.nginx.conf "" file is not changed. 
+- when we updated to the 5.9.4.1 the Ciphers changed and also the ""epp.nginx.conf"" file.
+- in the Sharepoint we have created a new folder (NewScreenshots) where we have added the screenshots with the cyphers found after each update.
+
+Does this change of ciphers can affect the communication between server and client ? 
+During our previous meeting we have found in the error.log file the following error : ""no shared cipher"" (see attached screenshot for the entire line)","005Qk000001nVi3IAE","2025-04-17T07:15:54.000Z","2025-04-17T07:15:54.000Z","false","false"
+"00aQk00000Cy7AzIAJ","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nVi3IAE","2025-04-17T07:16:05.000Z","2025-04-17T07:16:05.000Z","false","false"
+"00aQk00000D32CKIAZ","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Hello,
+
+We mentioned to FNB due to the severity of the issue that we will revert to them last week. 
+Can you please provide us an answer regarding the ciphers today?","005Qk000001nVi3IAE","2025-04-22T06:49:38.000Z","2025-04-22T06:49:38.000Z","false","false"
+"00aQk00000D4R3mIAF","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Hello,
+
+Are there any updates regarding the ciphers question ?","005Qk000001nVi3IAE","2025-04-23T06:43:04.000Z","2025-04-23T06:43:04.000Z","false","false"
+"00aQk00000D5n8gIAB","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Flaviu-Dorin Costras:
+
+To check:
+
+Is the epp.yml file corrupted? File is located at: sieratoolappsratoolconfigepp.yml and must contain all relevant certificate paths.
+Are the server logs enabled or disabled? Make sure they are disabled after any remote session.
+
+5942 and 5941 ciphers are:
+
+ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305;
+
+5940 cyphers are:
+AES256-SHA256:AES128-SHA256:AES128-SHA:AES256-SHA:AES256+EECDH:AES256+EDH:ECDH-ECDSA-AES128-SHA:ECDH-ECDSA-AES256-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DHE-DSS-AES256-SHA:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4;
+
+If there was no issue in the past, before applying 5941, you can also try with the older cypher suite and see if it makes any difference. Be sure to make a backup of the current epp.nginx.conf file before proceeding with this change.
+
+Can you explain in more detail what was actually tried with the curl commands in the screenshot? The address used points to the webui endpoint, not the agent endpoint.
+Apart from the open file issue described by Catalin, the server logs attached, they seem ok with a couple of client registrations. Access log does not indicate any 4xx errors, related to certificates used. Did the fix from Catalin improve the situation?
+
+[DevOps CommentId:11968033]","0054u000006gtWUAAY","2025-04-24T05:28:36.000Z","2025-04-24T05:28:36.000Z","false","false"
+"00aQk00000D5mkUIAR","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-24T05:29:06.000Z","2025-04-24T05:29:06.000Z","false","false"
+"00aQk00000D688HIAR","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2025-04-24T13:08:12.000Z","2025-04-24T13:08:12.000Z","false","false"
+"00aQk00000DF3XZIA1","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-02T05:01:08.000Z","2025-05-02T05:01:08.000Z","false","false"
+"00aQk00000DF3XbIAL","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-04-24 07:18 UTC and the last detected comment from support was 2025-04-23 06:43 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:12000998]","0054u000006gtWUAAY","2025-05-02T05:01:10.000Z","2025-05-02T05:01:10.000Z","false","false"
+"00aQk00000DFEUbIAP","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2025-05-02T10:15:03.000Z","2025-05-02T10:15:03.000Z","false","false"
+"00aQk00000DPS86IAH","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-12T05:01:02.000Z","2025-05-12T05:01:02.000Z","false","false"
+"00aQk00000DPS88IAH","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-04-24 07:18 UTC and the last detected comment from support was 2025-04-23 06:43 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:12037771]","0054u000006gtWUAAY","2025-05-12T05:01:03.000Z","2025-05-12T05:01:03.000Z","false","false"
+"00aQk00000DPlNdIAL","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2025-05-12T11:27:07.000Z","2025-05-12T11:27:07.000Z","false","false"
+"00aQk00000DU48NIAT","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the new comment has been added: Hello,
+
+Customer confirmed that they fix the issue after we added 4 more ciphers to the nginx.conf .
+AES256-SHA256
+AES128-SHA256
+AES256-SHA
+AES128-SHA
+
+Case can be closed.","005Qk000001nVi3IAE","2025-05-15T12:10:47.000Z","2025-05-15T12:10:47.000Z","false","false"
+"00aQk00000DU4ptIAD","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nVi3IAE","2025-05-15T12:10:56.000Z","2025-05-15T12:10:56.000Z","false","false"
+"00aQk00000DXwIfIAL","500Qk00000N69zSIAR","On Escalation Ticket # 00440305 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVi3IAE","2025-05-19T12:51:33.000Z","2025-05-19T12:51:33.000Z","false","false"

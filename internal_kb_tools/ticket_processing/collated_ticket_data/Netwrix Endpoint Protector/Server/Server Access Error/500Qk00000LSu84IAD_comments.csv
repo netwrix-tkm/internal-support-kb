@@ -1,0 +1,90 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BeKUjIAN","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the Following Fields have been updated: 
+Account ACV has been changed to 148883.00.
+Priority has been changed to Medium.","005Qk000001nViKIAU","2025-02-06T00:08:24.000Z","2025-02-06T00:08:24.000Z","false","false"
+"00aQk00000BeKWLIA3","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the Following Fields have been updated: 
+Account ACV has been changed to 74441.50.","005Qk000001nViKIAU","2025-02-06T00:08:26.000Z","2025-02-06T00:08:26.000Z","false","false"
+"00aQk00000BetInIAJ","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the Following Fields have been updated: 
+Priority has been changed to Critical.
+Product Version has been changed to NONE.","005Qk000001nViKIAU","2025-02-06T14:44:24.000Z","2025-02-06T14:44:24.000Z","false","false"
+"00aQk00000BfRFdIAN","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViKIAU","2025-02-06T20:20:54.000Z","2025-02-06T20:20:54.000Z","false","false"
+"00aQk00000Bg70LIAR","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-07T12:11:37.000Z","2025-02-07T12:11:37.000Z","false","false"
+"00aQk00000Bg70NIAR","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the new comment has been added: Oana-Cristina Rus:
+
+Hi @WaitingOnEngineer,
+
+Related to ""CSR certificate and then the customer generated a new certificate based on it, but after applying it in the backend nginx failed""
+
+I saw that you followed procedure 26, importing an EPP certificate. What I noticed is that you didn't follow step 2 correctly, which can cause the Nginx error.
+FROM
+
+--- CODE ---
+sudo cp -p /var/www/EPPServer/CA/private/server.key /var/www/EPPServer/CA/private/server.key.old
+--- CODE ---
+
+TO
+
+--- CODE ---
+sudo cp -p /var/www/EPPServer/CA/server.key /var/www/EPPServer/CA/server.key.old
+--- CODE ---
+
+Please follow the procedure again in the right way.
+
+
+Related to ""checked epp.nginx.conf file - looked okay. Also added port 8443 instead of 443, but UI was still giving the same error.""
+You change the port but the server listening port may be incorrect.
+
+Check the server listening port, and replace the epp.nginx.conf
+
+1. Check if the server is listening on the correct port
+
+Run:
+
+--- CODE ---
+netstat -tulnp | grep 8443
+--- CODE ---
+
+If you don’t see a line with LISTEN, it means the server is not running on port 8443.
+
+--- CODE ---
+netstat -tulnp | grep 443
+--- CODE ---
+
+If you don’t see a line with LISTEN, it means the server is not running on port 443.
+Also, you can find the server listening port by running:
+
+--- CODE ---
+netstat -tulnp
+--- CODE ---
+
+ If the server is NOT listening on port 8443 → Check your Nginx configuration and restart it:
+
+--- CODE ---
+ sudo service nginx restart
+--- CODE ---
+
+2. Check the firewall
+
+3. Check if the server is accessible from the network
+
+Ping again the server: ping IP
+If the server does not respond, check DNS settings and network configurations.
+Test connection port: telnet IP
+If the port is not reachable, it might be blocked by a firewall or network rules.
+
+5. Check Nginx error logs for issues
+
+
+--- CODE ---sudo tail -f /var/log/nginx/error.log
+--- CODE ---
+
+[DevOps CommentId:11615135]","0054u000006gtWUAAY","2025-02-07T12:11:37.000Z","2025-02-07T12:11:37.000Z","false","false"
+"00aQk00000BgHVyIAN","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the new comment has been added: Ticket has been closed yesterday.","005Qk000001nViKIAU","2025-02-07T15:03:59.000Z","2025-02-07T15:03:59.000Z","false","false"
+"00aQk00000BgG24IAF","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViKIAU","2025-02-07T15:04:20.000Z","2025-02-07T15:04:20.000Z","false","false"
+"00aQk00000BgDdfIAF","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the Following Fields have been updated: 
+Account ACV has been changed to 148883.00.","005Qk000001nViKIAU","2025-02-07T15:07:44.000Z","2025-02-07T15:07:44.000Z","false","false"
+"00aQk00000BgHpJIAV","500Qk00000LSu84IAD","On Escalation Ticket # 00434802 the Following Fields have been updated: 
+Account ACV has been changed to 74441.50.","005Qk000001nViKIAU","2025-02-07T15:07:51.000Z","2025-02-07T15:07:51.000Z","false","false"

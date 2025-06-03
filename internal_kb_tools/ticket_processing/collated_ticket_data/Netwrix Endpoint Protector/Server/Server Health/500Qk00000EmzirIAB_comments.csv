@@ -1,0 +1,56 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008pEfRIAU","500Qk00000EmzirIAB","On Escalation Ticket # 00419613 the Following Fields have been updated: 
+Account ACV has been changed to 85495.50.","005Qk000001nViCIAU","2024-08-30T07:20:48.000Z","2024-08-30T07:20:48.000Z","false","false"
+"00aQk000008pEh3IAE","500Qk00000EmzirIAB","On Escalation Ticket # 00419613 the Following Fields have been updated: 
+Account ACV has been changed to 42747.75.","005Qk000001nViCIAU","2024-08-30T07:20:49.000Z","2024-08-30T07:20:49.000Z","false","false"
+"00aQk000008rtJVIAY","500Qk00000EmzirIAB","On Escalation Ticket # 00419613 the Following Fields have been updated: 
+Priority has been changed to Critical.","005Qk000001nViCIAU","2024-09-02T12:26:21.000Z","2024-09-02T12:26:21.000Z","false","false"
+"00aQk0000098pUnIAI","500Qk00000EmzirIAB","On Escalation Ticket # 00419613 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-17T07:30:04.000Z","2024-09-17T07:30:04.000Z","false","false"
+"00aQk0000098pUpIAI","500Qk00000EmzirIAB","On Escalation Ticket # 00419613 the new comment has been added: Augustina Sidor:
+
+Please provide the following information: 
+
+	 - 	MySQL version
+
+	 - 	mysql -V
+	 - 	check if partition are activated (partitions_activated flag is not enough ) 
+
+	 - 	show create table cf_log;
+	 - 	show create table olog;
+
+Note: at the end of the table inforation the following info should be displayed:
+
+| cf_log | CREATE TABLE `cf_log` (
+
+.....
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+/*!50100 PARTITION BY RANGE (timestamp)
+
+(PARTITION `last` VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */ |
+
+
+          3. review the log paths for each version to identify which patch the issue occurred in.
+
+
+	 - 	vim /var/log/epp/update_HWA-EPP4-U00XX.txt (replace XX with the corresponding partition patch code.);
+
+As a solution, if the customer has a snapshot available, revert the server to version 5.5.0.0. Afterward, apply each patch one at a time, checking the logs and UI after each application to ensure everything is functioning properly.
+
+The upgrade is 
+
+Depending on the MySQL version, it may not be possible to activate the partition. One possible solution is to use a new image. 
+
+Or, to avoid all the above steps, try to convince the customer to use a new image.
+
+FYI @WaitingOnEngineer 
+
+[DevOps CommentId:10932187]","0054u000006gtWUAAY","2024-09-17T07:30:05.000Z","2024-09-17T07:30:05.000Z","false","false"
+"00aQk0000098rOYIAY","500Qk00000EmzirIAB","On Escalation Ticket # 00419613 the new comment has been added: Hi Augustina, thank you for the feedback.
+We supplied the customer with new AMI images and they deployed them.  This case can be closed. Thank you for your help on this.","005Qk000001nViCIAU","2024-09-17T08:22:16.000Z","2024-09-17T08:22:16.000Z","false","false"
+"00aQk0000098rRlIAI","500Qk00000EmzirIAB","On Escalation Ticket # 00419613 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2024-09-17T08:23:04.000Z","2024-09-17T08:23:04.000Z","false","false"
+"00aQk00000BoK6rIAF","500Qk00000EmzirIAB","On Escalation Ticket # 00419613 the Following Fields have been updated: 
+Account ACV has been changed to 95944.95.","0054u000006gtWUAAY","2025-02-14T11:44:23.000Z","2025-02-14T11:44:23.000Z","false","false"

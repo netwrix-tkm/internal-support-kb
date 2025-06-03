@@ -1,0 +1,94 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MTSB8IAP","500Qk00000DaZpPIAV","2025-03-11T15:48:54.000Z","2025-03-11T15:48:54.000Z","Hello Serhat, Hello Henrique,
+
+Based on Netwrix support policy, tickets that have a fix included in released versions, I'm reaching out to you on current ticket that has a fix in 5.9.4.1. We'll get current ticket closed. Please do reopen the ticket in case related issues are observed.
+
+Best regards,
+
+Adrian Draghici |Technical Support Team Lead (EMEA/Asia/Aus)
+
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.netwrix.com
+
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 9/9/2024 3:19 PM
+To: henrique.praxedes@booking.com; serhat.demir@booking.com
+Subject: RE: Netwrix Support Ticket #416233 - EPP writes every ~10 seconds a 0 byte .tpm file in temp directory [ ref:!00D70091pB.!500Qk0DaZpP:ref ]
+
+Hello Serhat,
+
+I received a cumulative test build for the following issues:
+00416233 - EPP writes every ~10 seconds a 0 byte .tpm file in temp directory
+00416109 - ERR_connection_closed error while accessing websites
+00416619 - ERR_CONNECTION_RESET error while accessing websites
+00415365 - Browsing issue when DPI is enabled 00414948 - Client DPI Enables support for deprecated TLS versions and weak cipher suites
+
+Here are the download links for the agents (Windows+Mac):
+Windows: https://download.endpointprotector.com/custom_agent/Epp09092024/EPPClient_v6.2.3.0057.zip
+Mac: https://download.endpointprotector.com/custom_agent/Epp09092024/EPPMac3.0.3.0024.Notarized.tar
+Please let me know if any of the issues can be still reproduced on your environment using the latest test build.
+
+Thank you and Best regards,
+Emil
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 9/9/2024 2:06 PM
+To: henrique.praxedes@booking.com; serhat.demir@booking.com
+Subject: RE: Netwrix Support Ticket #416233 - EPP writes every ~10 seconds a 0 byte .tpm file in temp directory [ ref:!00D70091pB.!500Qk0DaZpP:ref ]
+
+
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 8/22/2024 2:26 PM
+To: serhat.demir@booking.com; henrique.praxedes@booking.com
+Subject: RE: Netwrix Support Ticket #416233 - EPP writes every ~10 seconds a 0 byte .tpm file in temp directory [ ref:!00D70091pB.!500Qk0DaZpP:ref ]
+
+Hello Serhat,
+
+Here is a download link for a test build which addresses this issue:
+https://download.endpointprotector.com/custom_agent/Epp19082024/EPPClient_v6.2.3.0052.zip
+
+The issue was caused by the third-party library libevent that we were using in our Deep Packet Inspection module. It was creating the temporary files that were never cleaned up.We determined the problem was in code that uses the Windows 10 feature for Unix domain sockets. Our fix involved recompiling the libevent library without support for Unix domain sockets for Windows.
+
+Best regards,
+Emil
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/26/2024 5:09 PM
+To: serhat.demir@booking.com
+Subject: RE: Netwrix Support Ticket #416233 - EPP writes every ~10 seconds a 0 byte .tpm file in temp directory [ ref:!00D70091pB.!500Qk0DaZpP:ref ]
+
+Hello Serhat,
+
+Thank you for the files, I can confirm that I received them.
+I asked for the logs to be reviewed and I will get back to you once I have an update. 
+
+Best regards,
+Emil
+
+
+--------------- Original Message ---------------
+From: Serhat Demir [serhat.demir@booking.com]
+Sent: 7/26/2024 4:59 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #416233 - EPP writes every ~10 seconds a 0 byte .tpm file in temp directory
+
+ref:_00D7091pB._500Q000DaZpP:ref
+
+Hi Emil,
+
+This issue was reported by the same user with the Err_connection_closed issue. I am uploading the diagnostics from that machine with the same screenshot for the file names.","RE: Netwrix Support Ticket #416233 - EPP writes every ~10 seconds a 0 byte .tpm file in temp directory    [ ref:!00D70091pB.!500Qk0DaZpP:ref ]","techsupport@netwrix.com","Netwrix Support","henrique.praxedes@booking.com; serhat.demir@booking.com","oana.nemes@netwrix.com","adrian.draghici@netwrix.com","false","2025-03-11T15:48:53.000Z","true"

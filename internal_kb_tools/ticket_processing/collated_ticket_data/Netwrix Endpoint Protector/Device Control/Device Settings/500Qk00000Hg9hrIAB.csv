@@ -1,0 +1,43 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Hg9hrIAB","00425563","Support Ticket","Whitelisting device type ""Bluetooth other"" does not work.","Issue:
+There are an increasing number of Bluetooth devices that do not work even though they have been whitelisted.
+These are mainly devices that are recognized as device type ""Bluetooth other"".
+
+Analysis:
+- If a device is paired with the computer, an error message appears after pairing, which, depending on the device, is:
+""The connected device was blocked.""
+- After the VIP, PID and SN have been determined from the log files, with VID and PID usually having zero, the device is whitelisted locally accordingly. However, it is still not functional after pairing.
+
+Workaround:
+If the corresponding device type “Bluetooth other” is set to “Allow Access”, the device has worked in the meantime. At the moment, this workaround no longer works either.
+
+Result:
+The affected external devices cannot be used because neither the device whitelisting nor the workaround work.
+
+Examples:
+1. Jabra Evolve2 65 Headset
+EM: see screenhsot ""<a href='https://EM_device_LPTP2071835.jpg' target='_blank'>EM_device_LPTP2071835.jpg</a>"" attached.
+Clientname: LPTP2071835
+Special feature:
+In this case, the headset is not mentioned in the error message, but an unknown device: Microsoft Bluetooth Device
+Result:
+Despite the release of the headset and the Microsoft device, no functionality could be established.
+Hint:
+- Device is only displayed in the EPP client as long as the error message does not appear.
+- Server logs are generally not available at the moment.
+- SN was determined from the log files.
+
+2. PT-E560BT_HARY/Microsoft Bluetooth printer
+Clientname: B2011617
+
+3. Bluetooth speaker
+EM: see screenhsot ""<a href='https://EM_device_LPTP2054172.jpg' target='_blank'>EM_device_LPTP2054172.jpg</a>"" attached.
+Clientname: LPTP2054172
+Result:
+Despite the release of the speaker, no functionality could be established.
+Hint:
+- Device is only displayed in the EPP client as long as the error message does not appear.
+- Server logs are generally not available at the moment.
+- SN was determined from the log files.
+
+Logfiles to investigate have been attached.","","","","closed as per customer reply","","Alin Anca","","Netwrix Endpoint Protector","Device Control","Device Settings","","","37.0","Closed - Resolved","BMW Group AG","Christian Spies","2024-10-30T17:07:29.000Z","2024-12-06T16:14:04.000Z"

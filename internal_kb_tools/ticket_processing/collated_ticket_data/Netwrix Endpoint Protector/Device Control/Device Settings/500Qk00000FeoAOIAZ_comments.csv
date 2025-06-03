@@ -1,0 +1,168 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk0000093xeIIAQ","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Priority has been changed to High.","005Qk000001nViFIAU","2024-09-12T13:44:18.000Z","2024-09-12T13:44:18.000Z","false","false"
+"00aQk0000099GunIAE","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-17T14:24:56.000Z","2024-09-17T14:24:56.000Z","false","false"
+"00aQk0000099GupIAE","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the new comment has been added: Alex Puskas:
+
+@WaitingOnEngineer
+iPhone Charging
+
+If the “deny” right is selected on server side, the agent will control the iPhone device controlling the USB port. (deny the usb port to be used)
+
+If the special right “Deny but Allow charging” is selected on server side, the agent will control the iPhone synchronisation with the PC (this means the usb port will be allowed, but synchronisation of iPhone with the pc will be denied).
+
+
+
+Wi-Fi Blocking
+(from received logs the special right was selected for Wi-Fi devices)
+
+If the special right “Block Wi-Fi if wired network connection is present” is used for Wi-Fi device, the Wi-Fi will be blocked if ethernet connection will be detected (when the EPP agent detects the ethernet connection).
+
+If the rights was not applied, probably the bug is with ethernet/cable connection which was not detected.
+
+To debug this case please collect some supplementary information running the following commands:
+
+1. sudo ifconfig
+2. sudo /usr/sbin/networksetup -listnetworkserviceorder
+
+
+!!! Please save the output of the commands and share with us.
+!!! Please also mention witch entry/interface (enX) is the ethernet/cable connection.
+
+
+
+USB Modem
+(from received logs “deny” right was selected for modem devices)
+
+If the deny right is selected for modem, the wifi right is not important, all the time the modem should be blocked. To debug this case please collect the previsions specified informations on WiFi devices (the mentioned 2 commands) and please specify which entry/interface (enX) is the modem connection.
+
+
+!!! What Enthernet Modem was used?
+ 
+
+[DevOps CommentId:10937412]","0054u000006gtWUAAY","2024-09-17T14:24:56.000Z","2024-09-17T14:24:56.000Z","false","false"
+"00aQk000009AFjlIAG","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-09-18T06:31:58.000Z","2024-09-18T06:31:58.000Z","false","false"
+"00aQk000009BhPSIA0","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the new comment has been added: The customer has replied as below:
+
+Is it correct that the iPhone can still charge even when the ""deny"" right is selected?
+
+Also, the USB modem name is 'AX88772D,' and the Ethernet is 'en6.'
+
+The Wi-Fi is still not blocked, and the USB modem is also not blocked.
+
+I have attached the terminal output results as a file.","005Qk000001nViFIAU","2024-09-19T07:53:13.000Z","2024-09-19T07:53:13.000Z","false","false"
+"00aQk000009DGctIAG","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-20T10:21:56.000Z","2024-09-20T10:21:56.000Z","false","false"
+"00aQk000009DGcvIAG","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the new comment has been added: Alex Puskas:
+
+@WaitingOnEngineer
+
+I prepared a possible fix for the mentioned scenario, and using this build the mentioned ""adapter"", AX88772D, should be detected like Ethernet cable connected to the MacOS and this means the special right for Wi-Fi should work (deny Wi-Fi is Ethernet connetion is available).
+
+The TEST build can be downloaded from:
+
+ https://download.endpointprotector.com/custom_agent/Epp20092024/EPPMac3.0.4.0007.Notarized.tar
+
+!!DULY NOTE this is just a test build, please not install in mass.
+
+
+If the bug can be replicate with this test build, please collect:
+
+	 - 	eppclient.log
+	 - 	terminal output from the mentioned command from the last comment
+
+[DevOps CommentId:10953748]","0054u000006gtWUAAY","2024-09-20T10:21:57.000Z","2024-09-20T10:21:57.000Z","false","false"
+"00aQk000009DOXBIA4","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-09-20T11:22:04.000Z","2024-09-20T11:22:04.000Z","false","false"
+"00aQk000009HCMAIA4","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the new comment has been added: The customer has replied that the Wi-Fi topic is resolved with the test build.
+She also added that:
+
+""I tried again, and it seems that the iPhone can be blocked. However, whether I select ""deny access"" or ""deny access but allow charging,"" the charging continues regardless. Shouldn't ""deny access"" also block charging? Am I misunderstanding something? If charging still occurs with ""deny access,"" I think the ""deny access but allow charging"" feature is unnecessary.
+
+As for the USB modem, it still works even when ""deny access"" is selected. This is because when I connect the wired LAN to the USB modem, the internet works very well.""
+
+Please advise, thank you.","005Qk000001nViFIAU","2024-09-24T07:29:17.000Z","2024-09-24T07:29:17.000Z","false","false"
+"00aQk000009HEhJIAW","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-24T08:38:18.000Z","2024-09-24T08:38:18.000Z","false","false"
+"00aQk000009HEhLIAW","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the new comment has been added: Alex Puskas:
+
+@WaitingOnEngineer
+!!! What the customer really wants?
+We fix the Wi-Fi right to work as expected, and we receive a lot of other questions.
+
+Wi-Fi - Modem
+The sent build (version 3.0.4.0007) was related to ethernet cable, to detect the mentioned connection like ethernet connection, realated to the Wi-Fi right.
+
+Just to clarify the difference between the ethernet cable and modem.
+
+What the epp client will blocks when the modem is blocked:
+
+	 - 	Hotspot
+
+	 - 	USB internet devices
+
+-> NOT BLOCK internet cable connected through an adapter
+
+
+!! As you mentioned the Wi-Fi rights works as expected in the latest sent build.
+
+
+However, whether I select ""deny access"" or ""deny access but allow 
+charging,"" the charging continues regardless. Shouldn't ""deny access"" 
+also block charging? Shouldn't ""deny access"" also block charging? Am I misunderstanding 
+something?
+
+We cannot guarantee the the iPhone will charging or not.
+
+When you connect the iPhone to the laptop, on deny right as i mentioned the agent tries to control the usb port (to block the usb port), but sometimes other softwares/drivers are connected faster to the phone then the epp agent which will causes the iPhone to charge.
+
+If charging still occurs with ""deny access,"" I think the 
+""deny access but allow charging"" feature is unnecessary.
+
+
+I explained the difference in my last comment, please read it again.
+
+
+""If the “deny” right is selected on server side, the agent will control the iPhone device controlling the USB port. (deny the usb port to be used)
+
+
+
+If
+ the special right “Deny but Allow charging” is selected on server side,
+ the agent will control the iPhone synchronisation with the PC (this means the usb port will be allowed, but synchronisation of iPhone with the pc will be denied).""
+
+This means the ""Deny but Allow charging"" will never block the charging, but the for ""Deny"" right it is no guarantee.
+
+[DevOps CommentId:10965283]","0054u000006gtWUAAY","2024-09-24T08:38:19.000Z","2024-09-24T08:38:19.000Z","false","false"
+"00aQk000009IdVZIA0","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-09-25T08:17:23.000Z","2024-09-25T08:17:23.000Z","false","false"
+"00aQk000009QeJBIA0","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-02T05:02:00.000Z","2024-10-02T05:02:00.000Z","false","false"
+"00aQk000009QeJDIA0","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-24 08:38 UTC and the last detected comment from support was 2024-09-24 07:29 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11001927]","0054u000006gtWUAAY","2024-10-02T05:02:01.000Z","2024-10-02T05:02:01.000Z","false","false"
+"00aQk000009R9bVIAS","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-10-02T14:38:13.000Z","2024-10-02T14:38:13.000Z","false","false"
+"00aQk000009Yg7hIAC","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-09T05:02:08.000Z","2024-10-09T05:02:08.000Z","false","false"
+"00aQk000009Yg7jIAC","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-24 08:38 UTC and the last detected comment from support was 2024-09-24 07:29 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11031418]","0054u000006gtWUAAY","2024-10-09T05:02:09.000Z","2024-10-09T05:02:09.000Z","false","false"
+"00aQk000009Yoq1IAC","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-10-09T09:19:24.000Z","2024-10-09T09:19:24.000Z","false","false"
+"00aQk000009dlQ5IAI","500Qk00000FeoAOIAZ","On Escalation Ticket # 00420830 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViFIAU","2024-10-14T06:27:25.000Z","2024-10-14T06:27:25.000Z","false","false"

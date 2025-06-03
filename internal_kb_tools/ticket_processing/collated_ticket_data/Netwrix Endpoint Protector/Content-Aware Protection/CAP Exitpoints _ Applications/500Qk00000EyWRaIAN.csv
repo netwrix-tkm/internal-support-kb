@@ -1,0 +1,18 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EyWRaIAN","00419200","Support Ticket","[HMBD] Application section in CAP Policy Denylist not working for WhatsApp.exe","Hi Support,  
+
+HMBD is using application section of EPP Policy Denylist to block unsanctioned application like telegram, whats app, etc. 
+
+They are facing issue with blocking WhatsApp Desktop from being accessed. They are adding the below command in the denylist. 
+<a href='https://WhatsApp.exe' target='_blank'>WhatsApp.exe</a>
+<a href='https://whatsapp.exe' target='_blank'>whatsapp.exe</a>
+
+Some applications are being blocked from access, using this method, BUT some applications are not. Here, the issue is with WhatsApp desktop. Customer wants to block it from being accessed. 
+
+I tried to replicate the same scenario on my site but wasn't able to achieve it. My findings in this matter are that, applications installed using Microsoft Store is installed/saved in WindowsApps folder(hidden) and have Windows Security policies applied to it, due to which, EPP is not able to access its data and unable to stop execution of the command <a href='https://WhatsApp.exe' target='_blank'>WhatsApp.exe</a> . I also tried performing the same activity for other applications stored in ""WindowsApps"" directory and the result was same. BUT Telegram is being blocked by this method. 
+
+Please assist. 
+
+Thanks, 
+Milan Singh","","","","Issue resolved after adding * in parameters section of the denylist for Applications.
+Case Closed.","","Andre Le Roux","","Netwrix Endpoint Protector","Content-Aware Protection","CAP Exitpoints / Applications","NONE","","21.0","Closed - Resolved","Halodata International Pte Ltd","Halodata Support Tech","2024-08-27T05:53:10.000Z","2024-09-17T06:20:15.000Z"

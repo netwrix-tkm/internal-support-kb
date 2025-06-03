@@ -1,0 +1,124 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009R3MQIA0","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Account ACV has been changed to 31532.059999999998.
+Priority has been changed to High.","005Qk000001nViFIAU","2024-10-02T15:09:18.000Z","2024-10-02T15:09:18.000Z","false","false"
+"00aQk000009RAsYIAW","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Account ACV has been changed to 15766.029999999999.","005Qk000001nViFIAU","2024-10-02T15:09:24.000Z","2024-10-02T15:09:24.000Z","false","false"
+"00aQk000009Xi0IIAS","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the new comment has been added: Hello, please provide us with an update on this case; the customer has followed-up on this topic.
+Thank you!","005Qk000001nViFIAU","2024-10-08T14:06:03.000Z","2024-10-08T14:06:03.000Z","false","false"
+"00aQk000009bXhPIAU","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the new comment has been added: Hello, please provide us with an update on this case; the customer has followed-up on this topic.
+Thank you!","005Qk000001nViFIAU","2024-10-11T09:58:07.000Z","2024-10-11T09:58:07.000Z","false","false"
+"00aQk000009fQvpIAE","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-15T12:51:33.000Z","2024-10-15T12:51:33.000Z","false","false"
+"00aQk000009fQvrIAE","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the new comment has been added: Alex Puskas:
+
+@WaitingOnEngineer 
+
+The first question is: why this issue was not solved into remote connection live session or after just analysing the logs?
+
+
+(in remote connection with live logs, just most to see which process crashes, “WerFault.exe” is called and just must to add a new process into detour allowlist, NOT WerFault.exe)
+
+
+The second question is: how/why these processes were added?
+run.exe
+cmd
+wmic.exe
+*infor*
+rundll32.exe
+SearchIndexer.exe
+
+
+I am wondering how these processes were selected to be whitelisted?
+
+
+In the received logs I searched for the followings:
+
+- search after: “C:WINDOWSsystem32WerFault.exe -pss -s” (155 de found was made). You can iterate through all the 155 items (maximum 10 minutes and you can add all the found processes in detour list)
+
+- search after “C:WINDOWSSysWOW64WerFault.exe -pss -s” (98 founds)
+
+Example 1:
+10-01 10:59:09.996 25448 INFO   proc cmd: ‘C:WINDOWSsystem32WerFault.exe -pss -s 728 -p 6620 -ip 6620’ [cf::ProcessMonitor::processCreated ProcessMonitor.cpp:172]
+-> please see what process has process id = 6620
+
+In logs is a little bit above:
+10-01 10:59:09.917 25448 DEBUG  process created: 6620/15636, 
+‘UserAwarenessHelper.exe’, image: 
+‘C:WindowsSystem32DriverStoreFileRepositoryicss_extension.inf_amd64_e2b0f9b638a5f3bfUserAwarenessHelper.exe’
+ packageName: ‘’ total: 343 replaced: no 
+[cf::ProcessMonitor::processCreated ProcessMonitor.cpp:167]
+
+=> this means we should add “UserAwarenessHelper.exe” process
+
+
+Example 2:
+10-01 11:08:42.596 25448 INFO   proc cmd: ‘C:WINDOWSSysWOW64WerFault.exe -pss -s 640 -p 25140 -ip 25140’ [cf::ProcessMonitor::processCreated ProcessMonitor.cpp:172]
+
+please see what process has process id = 6620
+
+In logs is a little bit above:
+10-01 11:08:42.494 25448 DEBUG  process created: 25140/17308, 'GVClient.Classifier.Windows.exe', image: 'C:Program Files (x86)GVClientapp-4.1.5GVClient.Classifier.Windows.exe' packageName: '' total: 492 replaced: no [cf::ProcessMonitor::processCreated ProcessMonitor.cpp:167]
+
+=> this means we should add “GVClient.Classifier.Windows.exe” process
+
+The whitelisted processes should be the followings:
+
+	 - 	GVClient.Classifier.Windows.exe
+	 - 	WinStudio.exe
+	 - 	OSProfileCollector.exe
+	 - 	UserAwarenessHelper.exe
+
+[DevOps CommentId:11062633]","0054u000006gtWUAAY","2024-10-15T12:51:34.000Z","2024-10-15T12:51:34.000Z","false","false"
+"00aQk000009grU9IAI","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-10-16T13:16:28.000Z","2024-10-16T13:16:28.000Z","false","false"
+"00aQk000009grVlIAI","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-16T13:16:38.000Z","2024-10-16T13:16:38.000Z","false","false"
+"00aQk000009m1MQIAY","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the new comment has been added: Hello, the customer tried it out but still it’s the same, the previous mentioned applications aren’t working and the search option on the task bar is not working.","005Qk000001nViFIAU","2024-10-21T10:25:51.000Z","2024-10-21T10:25:51.000Z","false","false"
+"00aQk000009lvYlIAI","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-10-21T10:29:44.000Z","2024-10-21T10:29:44.000Z","false","false"
+"00aQk000009nBYDIA2","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-22T07:08:24.000Z","2024-10-22T07:08:24.000Z","false","false"
+"00aQk000009nBYFIA2","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the new comment has been added: Alex Puskas:
+
+@WaitingOnEngineer
+From the received logs I extracted the processes which crashes, for the mentioned app should work as expected.
+
+I explained how you can extract the processes (please connect remote to the customer and extract the processes and be aware all of them will be added @Alin Anca).
+
+[DevOps CommentId:11091749]","0054u000006gtWUAAY","2024-10-22T07:08:25.000Z","2024-10-22T07:08:25.000Z","false","false"
+"00aQk000009nWJJIA2","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-10-22T13:32:37.000Z","2024-10-22T13:32:37.000Z","false","false"
+"00aQk000009wGaHIAU","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-30T05:02:39.000Z","2024-10-30T05:02:39.000Z","false","false"
+"00aQk000009wGaJIAU","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-22 07:08 UTC and the last detected comment from support was 2024-10-21 10:25 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11132041]","0054u000006gtWUAAY","2024-10-30T05:02:40.000Z","2024-10-30T05:02:40.000Z","false","false"
+"00aQk000009wm77IAA","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-10-30T15:04:37.000Z","2024-10-30T15:04:37.000Z","false","false"
+"00aQk00000A3wzNIAR","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-06T05:02:50.000Z","2024-11-06T05:02:50.000Z","false","false"
+"00aQk00000A3wzPIAR","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-22 07:08 UTC and the last detected comment from support was 2024-10-21 10:25 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11175095]","0054u000006gtWUAAY","2024-11-06T05:02:51.000Z","2024-11-06T05:02:51.000Z","false","false"
+"00aQk00000A3zafIAB","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-11-06T06:42:00.000Z","2024-11-06T06:42:00.000Z","false","false"
+"00aQk00000A9o9WIAR","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the new comment has been added: This ticket can be closed from the R&D side. Thank you!","005Qk000001nViFIAU","2024-11-11T07:43:37.000Z","2024-11-11T07:43:37.000Z","false","false"
+"00aQk00000A9oHZIAZ","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViFIAU","2024-11-11T07:45:06.000Z","2024-11-11T07:45:06.000Z","false","false"
+"00aQk00000A9oHbIAJ","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Account ACV has been changed to 31532.059999999998.","005Qk000001nViFIAU","2024-11-11T07:45:09.000Z","2024-11-11T07:45:09.000Z","false","false"
+"00aQk00000A9oKnIAJ","500Qk00000GKyoPIAT","On Escalation Ticket # 00422713 the Following Fields have been updated: 
+Account ACV has been changed to 15766.029999999999.","005Qk000001nViFIAU","2024-11-11T07:45:15.000Z","2024-11-11T07:45:15.000Z","false","false"

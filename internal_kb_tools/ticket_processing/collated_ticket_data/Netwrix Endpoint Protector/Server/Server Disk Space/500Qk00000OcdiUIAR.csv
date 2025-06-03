@@ -1,0 +1,61 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OcdiUIAR","00443652","Support Ticket","Disk usage","The customer wants to free up space on the disk.","","30.04:
+We opened a new ticket for the customer's request from #00443186.
+We asked him how he wants us to guide him:
+-helping him in ssh to clean up the space occupied - in a remote session;
+-free up the space using Audit Log Backup/File Maintenance and also check in System Maintenance -> Audit Log Backup and System Backup to see if there is any list that could be downloaded and then deleted from the server - on his own/using the KB article:
+-configure External Storage (System Maintenance -> External Storage) - on his own/using the KB article.
+
+01.05:
+In the remote session that we had with the client, we noticed that his database disk space has ~ 190G.
+We deleted some system backups.
+We also verified the date of the last Audit Log Backup and rescheduled a new one (for logs older than 6 months).
+It remains that the customer checks the disk space (in the UI) after the backup is done.
+We also mentioned him to take into consideration to configure External Storage and to enable Limit Reporting Content Aware Protection.
+
+09.05:
+Customer sent screenshot with ""550 Internal Server Error"".
+We asked him what he was doing when the error occurred.
+---
+The customer got back to us saying that this happens when he is logging in.
+---
+We scheduled a remote session with the customer to check the issue.
+
+12.05:
+In the remote session, we checked the space on the disk and we saw that there was no available space (huge mysql - 149 GB).
+We deleted some internal backups and then we advised the customer to download and delete some old backups from Audit Log Backup and then to schedule another backup for logs older than 1 month.
+Also, we pushed the upgrade of the Client for some computers, but we told him to keep an eye on that giving the fact that those computers had a really old client version.
+
+14.05:
+We did a follow up on the ticket to check with the customer to see if the instructions provided helped him resolve the issues.
+
+15.05:
+The customer wants to increase the space on the disk.
+We advised him to increase the resources on the virtualization environment and then to have the remote session.
+
+16.05:
+We decided with the customer that increasing the space on the disk in no longer necessary, so we can close this ticket.","30.04:
+Awaiting customer's reply.
+
+01.05:
+After the remote session that we had with the customer, we are waiting for his reply regarding the disk space occupied after the Audit Log Backup is done and also if he decides to configure External Storage and/or to enable Limit Reporting Content Aware Protection.
+
+09.05:
+Awaiting customer's reply on what he was doing when the error ""550 Internal Server Error"" occurred.
+---
+Awaiting customer's reply after asking him when he is available for a remote session.
+---
+Waiting for remote session.
+
+12.05:
+Awaiting customer's feedback after the last remote session and see if we can close the ticket.
+
+14.05:
+Awaiting customer's reply after asking him if the instructions were helpful in solving the issues.
+
+15.05:
+Awaiting customer's reply regarding the remote session.
+
+16.05:
+Closing this case after receiving the customer's confirmation.","We deleted some internal backups and then we advised the customer to download and delete some old backups from Audit Log Backup and then to schedule another backup for logs older than 1 month /3 months.
+Also, we successfully pushed the upgrade of the Client for some computers.","Insufficient hardware resources","Oana Sutoiu","Error","Netwrix Endpoint Protector","Server","Server Disk Space","","5.9.4.2","15.9","Closed - Resolved","Denave India Pvt Ltd","Amit Tomar","2025-04-30T12:39:47.000Z","2025-05-16T09:13:17.000Z"

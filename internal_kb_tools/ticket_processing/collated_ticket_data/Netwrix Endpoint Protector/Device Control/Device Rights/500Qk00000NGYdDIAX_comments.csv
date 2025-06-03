@@ -1,0 +1,123 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000CWMrKIAX","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Account ACV has been changed to 4815946.56.
+Priority has been changed to Low.","005Qk000001nViFIAU","2025-03-25T07:53:37.000Z","2025-03-25T07:53:37.000Z","false","false"
+"00aQk00000CWOoIIAX","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Account ACV has been changed to 2407973.28.","005Qk000001nViFIAU","2025-03-25T07:53:38.000Z","2025-03-25T07:53:38.000Z","false","false"
+"00aQk00000CWYcMIAX","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: Laura-Dana Gyorgy:
+
+Hello
+Based on the client logs provided the right for bluetooth other (device type id 43) is set to allow.
+
+Make sure that the right for bluetooth is set to deny access based on their right priority setup. If right is set to deny but the EPP client is still allowing the device, we need to have a look in their database.
+
+Checked locally with a few different bluetooth devices and could not reproduce this specific scenario.
+
+
+
+
+
+CC @Cecilia-Maria Iepure, @Ioana-Adina Padurean
+
+[DevOps CommentId:11839045]","0054u000006gtWUAAY","2025-03-25T11:08:34.000Z","2025-03-25T11:08:34.000Z","false","false"
+"00aQk00000CWmM0IAL","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: Hello @Cecilia
+Please let us know if we can investigate tomorrow with Mihaela this issue.
+Thank you","005Qk000001nViFIAU","2025-03-25T15:33:56.000Z","2025-03-25T15:33:56.000Z","false","false"
+"00aQk00000CYS6EIAX","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: Mihaela-Cristina Benta:
+
+We investigated and found out that one node had different right that the one saved on the unify console. We modified it and now it should work ok.
+
+@Alin Anca @Cecilia-Maria Iepure @Ionut-Alexandru Urean
+
+[DevOps CommentId:11849420]","0054u000006gtWUAAY","2025-03-26T16:05:51.000Z","2025-03-26T16:05:51.000Z","false","false"
+"00aQk00000CZemsIAD","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: The customer has checked on his side and replied as seen below:
+
+According to the customer, Bluetooth other device types are blocked again as expected due to the global rights setting.
+
+More specifically asked:
+
+- How can you prevent that one node had different right that the one saved on the Unify console?
+- How could something like this even happen?","005Qk000001nViFIAU","2025-03-27T13:26:12.000Z","2025-03-27T13:26:12.000Z","false","false"
+"00aQk00000CdcJRIAZ","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Account ACV has been changed to 1695173.28.","0054u000006gtWUAAY","2025-03-31T13:09:39.000Z","2025-03-31T13:09:39.000Z","false","false"
+"00aQk00000CdcJTIAZ","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: Cecilia-Maria Iepure:
+
+Root Cause:
+
+The discrepancy arose due to an inconsistency between the global rights set on the Unify console and the device-level settings. While the global rights were correctly configured to ""Deny Access,"" the settings on the affected node permitted access, which caused the unintended behavior.
+
+ 
+
+Resolution:
+
+Our team has realigned the node settings with the Unify console to ensure consistent application of the Bluetooth device blocking policies. We have also advised our technical team to enhance monitoring processes to detect and prevent similar inconsistencies in the future.
+
+ 
+
+To ensure sustained functionality, we recommend the following:
+
+ 
+
+Periodic Validation: Regularly review and validate global rights settings and ensure they are effectively propagated across all nodes and devices.
+
+Updated Procedures: In case of any future discrepancies, trying a reset by toggling the settings off and on, or removing and re-adding specific devices that seem affected, can help in re-establishing intended configurations.
+
+[DevOps CommentId:11866681]","0054u000006gtWUAAY","2025-03-31T13:09:41.000Z","2025-03-31T13:09:41.000Z","false","false"
+"00aQk00000ClVB9IAN","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: @Cecilia, the customer has additional questions to Periodic validation:
+
+- How can it be reviewed and ensured from the operational side that global rights settings are effectively propagated to all nodes and devices?
+- Which steps must be carried out?","005Qk000001nViFIAU","2025-04-07T08:44:46.000Z","2025-04-07T08:44:46.000Z","false","false"
+"00aQk00000CyF6wIAF","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Account ACV has been changed to 1697413.28.
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-17T10:52:58.000Z","2025-04-17T10:52:58.000Z","false","false"
+"00aQk00000CyF6yIAF","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: Mihai Rosca:
+
+@WaitingOnEngineer @Cecilia-Maria Iepure We have reviewed the behavior internally and for our future releases we believe this behavior will not happen again. The next release, 7.3.0 contains a full upgrade of PHP, MySQL and Symphony framework. Along with these upgrades, we have made improvements regarding communication between components  (as a mandatory operation part of the upgrade) and we do not expect this issue to resurface.
+
+[DevOps CommentId:11946930]","0054u000006gtWUAAY","2025-04-17T10:52:59.000Z","2025-04-17T10:52:59.000Z","false","false"
+"00aQk00000CyQqLIAV","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2025-04-17T13:25:45.000Z","2025-04-17T13:25:45.000Z","false","false"
+"00aQk00000D76nZIAR","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Account ACV has been changed to 1697189.28.
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-25T05:01:32.000Z","2025-04-25T05:01:32.000Z","false","false"
+"00aQk00000D76nbIAB","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-04-17 11:01 UTC and the last detected comment from support was 2025-04-07 08:44 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11974196]","0054u000006gtWUAAY","2025-04-25T05:01:32.000Z","2025-04-25T05:01:32.000Z","false","false"
+"00aQk00000D7UzaIAF","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViBIAU","2025-04-25T13:39:19.000Z","2025-04-25T13:39:19.000Z","false","false"
+"00aQk00000DF3fdIAD","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-02T05:01:34.000Z","2025-05-02T05:01:34.000Z","false","false"
+"00aQk00000DF3ffIAD","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-04-17 11:01 UTC and the last detected comment from support was 2025-04-07 08:44 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:12001001]","0054u000006gtWUAAY","2025-05-02T05:01:36.000Z","2025-05-02T05:01:36.000Z","false","false"
+"00aQk00000DF7CzIAL","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2025-05-02T07:10:44.000Z","2025-05-02T07:10:44.000Z","false","false"
+"00aQk00000DPVXNIA5","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-12T05:01:32.000Z","2025-05-12T05:01:32.000Z","false","false"
+"00aQk00000DPVXPIA5","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-04-17 11:01 UTC and the last detected comment from support was 2025-04-07 08:44 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:12037774]","0054u000006gtWUAAY","2025-05-12T05:01:33.000Z","2025-05-12T05:01:33.000Z","false","false"
+"00aQk00000DQeojIAD","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViBIAU","2025-05-12T22:23:01.000Z","2025-05-12T22:23:01.000Z","false","false"
+"00aQk00000DQeolIAD","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Account ACV has been changed to 3394378.56.","005Qk000001nViBIAU","2025-05-12T22:23:04.000Z","2025-05-12T22:23:04.000Z","false","false"
+"00aQk00000DQdW6IAL","500Qk00000NGYdDIAX","On Escalation Ticket # 00439869 the Following Fields have been updated: 
+Account ACV has been changed to 1697189.28.","005Qk000001nViBIAU","2025-05-12T22:23:09.000Z","2025-05-12T22:23:10.000Z","false","false"

@@ -1,0 +1,233 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008ZUmbIAG","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Account ACV has been changed to 36475.98.","005Qk000001nViCIAU","2024-08-16T16:16:59.000Z","2024-08-16T16:16:59.000Z","false","false"
+"00aQk000008ZUoDIAW","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Account ACV has been changed to 18237.99.","005Qk000001nViCIAU","2024-08-16T16:17:00.000Z","2024-08-16T16:17:00.000Z","false","false"
+"00aQk000008bGXSIA2","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi @Bogdan Melinte, @Cătălin Stoian,
+
+Could you please have a look?
+
+Support team was not able to apply the backend procedure for corrupt database due to the fact that they do not have the backups.
+
+Thank you,
+Cristi
+
+[DevOps CommentId:10777977]","0054u000006gtWUAAY","2024-08-19T06:36:49.000Z","2024-08-19T06:36:49.000Z","false","false"
+"00aQk000008crmgIAA","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Hi Team,  this case is a P0 with server down for 5 days. The customer sent an email today asking us for help asap","005Qk000001nViCIAU","2024-08-20T09:12:00.000Z","2024-08-20T09:12:00.000Z","false","false"
+"00aQk000008d17jIAA","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Cătălin Stoian:
+
+@WaitingOnEngineer 
+
+Hi Andre,
+(i) You may want to try removing ib_logfile* from /var/eppfiles/mysql dir and afterwards start MySQL
+(ii) You may want to try all the options for innodb_force_recovery, from 1 to 6, in case they were not already tried, and if and when MySQL successfully starts, try to run mysqldump on the eppdatabase.
+(iii) You may still be able to recover the eppdatabase + /var/www/EPPServer from a backup in /var/eppfiles/backup/patches that should have been made if eventually EPPServer was updated to newer version via LiveUpdate in the past.
+
+If none of these works, they should import a fresh machine to continue their trial.
+
+[DevOps CommentId:10789082]","0054u000006gtWUAAY","2024-08-20T11:30:14.000Z","2024-08-20T11:30:14.000Z","false","false"
+"00aQk000008d17hIAA","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-20T11:30:14.000Z","2024-08-20T11:30:14.000Z","false","false"
+"00aQk000008d6deIAA","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Hi Catalin,
+
+Thank you for the feedback.  Can I please ask for the 6 sql recovery steps? it is not listed in the backend procedures.","005Qk000001nViCIAU","2024-08-20T13:04:52.000Z","2024-08-20T13:04:52.000Z","false","false"
+"00aQk000008dC7yIAE","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-08-20T14:06:32.000Z","2024-08-20T14:06:32.000Z","false","false"
+"00aQk000008frBpIAI","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-22T10:30:18.000Z","2024-08-22T10:30:18.000Z","false","false"
+"00aQk000008frBrIAI","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Cătălin Stoian:
+
+@WaitingOnEngineer 
+
+[DevOps CommentId:10819146]","0054u000006gtWUAAY","2024-08-22T10:30:18.000Z","2024-08-22T10:30:18.000Z","false","false"
+"00aQk000008fkvBIAQ","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Cătălin Stoian:
+
+@WaitingOnEngineer 
+
+[DevOps CommentId:10819146]","0054u000006gtWUAAY","2024-08-22T10:30:20.000Z","2024-08-22T10:30:20.000Z","false","false"
+"00aQk000008fo16IAA","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-08-22T10:38:08.000Z","2024-08-22T10:38:08.000Z","false","false"
+"00aQk000008hv3HIAQ","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Hi Team,
+We had a remote session with the customer today and managed to partially recover the corrupted database.  We ran the mysql service in forced recovery mode ""innodb_force_recovery = 2""
+and then the only command which could complete the mysql dump was
+
+""mysqldump -uroot -p --routines --single-transaction=TRUE --ignore-table=eppdatabase.cf_ilog --ignore-table=eppdatabase.cf_log --ignore-table=eppdatabase.log --ignore-table=eppdatabase.ofiletrace eppdatabase > /var/eppfiles/eppmysqldump.sql""
+
+We excluded the following tables from the SQL Dump:
+1. ""eppdatabase.cf_ilog""
+2. ""table=eppdatabase.cf_log""
+3. ""eppdatabase.log""
+4. ""eppdatabase.ofiletrace""
+
+*We then made a backup of directory ""/var/eppfiles/mysql"" to ""/var/eppfiles/mysql2""
+*We then removed the mysql folder and recreated the MySQL directory.
+*We imported the dump back into mysql
+
+
+After the above steps the customer was able to access the UI again all pages loads except for 
+* ""Reports and Analysis"" > ""File Tracing""
+
+These 4 tables still needs to be recreated:
+ofiletrace
+cf_log
+log
+cf_ilog
+
+Customer is on 5940 server version.
+We could even see logs under Log Reports from today but we tried to overwrite the eppdatabase folder from the backup that we created but  no luck with those 4 tables were missing
+
+Can we please have Dev assistance for table recreation?","005Qk000001nViCIAU","2024-08-23T19:33:41.000Z","2024-08-23T19:33:41.000Z","false","false"
+"00aQk000008hxEjIAI","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-08-23T19:33:55.000Z","2024-08-23T19:33:55.000Z","false","false"
+"00aQk000008jTAvIAM","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-26T08:05:09.000Z","2024-08-26T08:05:09.000Z","false","false"
+"00aQk000008jTAxIAM","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Cătălin Stoian:
+
+@WaitingOnEngineer 
+
+Dev involvement requested here. Removing myself as ower of ticket.
+
+[DevOps CommentId:10828826]","0054u000006gtWUAAY","2024-08-26T08:05:10.000Z","2024-08-26T08:05:10.000Z","false","false"
+"00aQk000008jTNpIAM","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-08-26T08:08:36.000Z","2024-08-26T08:08:36.000Z","false","false"
+"00aQk000008jTinIAE","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-26T08:21:21.000Z","2024-08-26T08:21:21.000Z","false","false"
+"00aQk000008jWX2IAM","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Oana-Cristina Rus:
+
+Hi @WaitingOnEngineer,
+
+Please find below the SQL commands that must be run to create the ofiletrace, cf_log tables, and log, cf_ilog views.
+
+--- CODE ---CREATE TABLE `ofiletrace` (
+
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `loclogid` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `olog_id` int(11) DEFAULT NULL,
+  `filename` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filesize` bigint(20) DEFAULT NULL,
+  `eventtimelocal` datetime DEFAULT NULL,
+  `shadow_id` int(11) DEFAULT NULL,
+  `filehash` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filetype_extension` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `serialno` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `timestamp` int(11) NOT NULL DEFAULT '0',
+  `loclogid_crc32` int(10) unsigned DEFAULT '0',
+  `department_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`,`timestamp`),
+  KEY `ofiletrace_FI_1` (`olog_id`),
+  KEY `ofiletrace_FI_3` (`shadow_id`),
+  KEY `ofiletrace_FI_4` (`loclogid`),
+  KEY `idx_id` (`id`),
+  KEY `loclogid_crc32` (`loclogid_crc32`),
+  KEY `ofiletrace_depid` (`department_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+--- CODE ---
+
+
+
+[DevOps CommentId:10829561][1/3]","0054u000006gtWUAAY","2024-08-26T09:42:51.000Z","2024-08-26T09:42:51.000Z","false","false"
+"00aQk000008jWX3IAM","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: --- CODE ---
+CREATE TABLE `cf_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `loclogid` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `event_id` int(11) DEFAULT NULL,
+  `machine_id` int(11) DEFAULT NULL,
+  `machine_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ip` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `domain` varchar(512) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `client_id` int(11) DEFAULT NULL,
+  `client_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `destination_type` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `destination` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filename` varchar(512) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_policy` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content_policy_type` int(11) DEFAULT '1',
+  `item_type` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `matched_item` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `item_details` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `eventtime` datetime DEFAULT NULL,
+  `eventtimelocal` datetime DEFAULT NULL,
+  `alert_flag` int(11) DEFAULT '0',
+  `filesize` bigint(20) DEFAULT NULL,
+  `nr_reports` int(11) DEFAULT '1',
+  `loghash` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `loghasht` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `loghasht_id1` bigint(8) unsigned DEFAULT NULL,
+  `loghasht_id2` bigint(8) unsigned DEFAULT NULL,
+  `shadow_id` int(11) DEFAULT NULL,
+  `filehash` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `os_type` int(11) DEFAULT '1',
+  `sent_at` datetime DEFAULT NULL,
+  `timestamp` int(11) NOT NULL DEFAULT '0',
+  `loclogid_crc32` int(10) unsigned DEFAULT '0',
+  `department_id` int(11) DEFAULT NULL,
+  `justification` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `vid` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pid` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `serialno` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_3` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_4` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_5` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_6` int(11) DEFAULT NULL,
+  `field_7` int(11) DEFAULT NULL,
+  `field_8` int(11) DEFAULT NULL,
+  `field_9` int(11) DEFAULT NULL,
+  `field_10` int(11) DEFAULT NULL,
+  `field_11` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_12` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_13` text COLLATE utf8_unicode_ci,
+  `field_14` bigint(8) unsigned DEFAULT NULL,
+  `field_15` bigint(8) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`,`timestamp`),
+  KEY `cf_log_FI_1` (`event_id`),
+  KEY `cf_log_FI_2` (`machine_id`),
+  KEY `cf_log_FI_3` (`client_id`),
+  KEY `cf_log_FI_4` (`shadow_id`),
+  KEY `cf_log_FI_5` (`loclogid`),
+  KEY `cf_log_FI_6` (`loghasht`),
+  KEY `cf_log_loghasht_idx` (`loghasht_id1`,`loghasht_id2`),
+  KEY `olog_FI_5` (`alert_flag`),
+  KEY `idx_id` (`id`),
+  KEY `loclogid_crc32` (`loclogid_crc32`),
+  KEY `cf_log_depid` (`department_id`),
+  KEY `field_8` (`field_8`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+--- CODE ---
+
+
+
+--- CODE ---
+DROP VIEW IF EXISTS log;
+--- CODE ---
+
+[DevOps CommentId:10829561][2/3]","0054u000006gtWUAAY","2024-08-26T09:42:51.000Z","2024-08-26T09:42:51.000Z","false","false"
+"00aQk000008jWX4IAM","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: --- CODE ---
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `log` AS (select `olog`.`id` AS `id`,`olog`.`id` AS `ologid`,`ofiletrace`.`id` AS `ofiletraceid`,`oshadow`.`id` AS `oshadowid`,`olog`.`machine_id` AS `machine_id`,`olog`.`client_id` AS `client_id`,`olog`.`device_type_id` AS `device_type_id`,`olog`.`device_id` AS `device_id`,`olog`.`event_id` AS `event_id`,`olog`.`eventtime` AS `eventtime`,`olog`.`eventtimelocal` AS `eventtimelocal`,`ofiletrace`.`filename` AS `filename`,`ofiletrace`.`filesize` AS `filesize`,`ofiletrace`.`filetype_extension` AS `filetype_extension`,`oshadow`.`filenameduplicate` AS `filenameduplicate`,`olog`.`created_at` AS `created_at`,`olog`.`created_by` AS `created_by`,`olog`.`filename` AS `logfilename`,`olog`.`filetype` AS `logfiletype`,`ofiletrace`.`filehash` AS `filehash` from ((`olog` left join `ofiletrace` on((`ofiletrace`.`olog_id` = `olog`.`id`))) left join `oshadow` on((`ofiletrace`.`shadow_id` = `oshadow`.`id`))));
+--- CODE ---
+
+
+--- CODE ---
+DROP VIEW IF EXISTS cf_ilog;
+--- CODE ---
+
+
+--- CODE ---
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `cf_ilog` AS (select `cf_log`.`id` AS `id`,`event`.`name` AS `eventname`,`clientmachine`.`name` AS `machine`,`clientmachine`.`ip` AS `machineip`,`clientuser`.`username` AS `clientuser`,`cf_log`.`destination_type` AS `destination_type`,`cf_log`.`destination` AS `destination`,`cf_log`.`filename` AS `filename`,`cf_log`.`filesize` AS `filesize`,`cf_log`.`content_policy` AS `content_policy`,(case `cf_log`.`content_policy_type` when 1 then 'Standard' when 2 then 'HIPPA' else `cf_log`.`content_policy_type` end) AS `content_policy_type`,`cf_log`.`item_type` AS `item_type`,`cf_log`.`matched_item` AS `matched_item`,`cf_log`.`item_details` AS `item_details`,`cf_log`.`eventtime` AS `eventtime`,`cf_log`.`eventtimelocal` AS `eventtimelocal`,`cf_log`.`nr_reports` AS `nr_reports`,`cf_log`.`shadow_id` AS `shadow_id`,`clientmachine`.`appversion` AS `os_type`,`cf_log`.`filehash` AS `filehash` from (((`cf_log` FORCE INDEX (PRIMARY) left join `event` on((`cf_log`.`event_id` = `event`.`id`))) left join `clientmachine` on((`cf_log`.`machine_id` = `clientmachine`.`id`))) left join `clientuser` on((`cf_log`.`client_id` = `clientuser`.`id`))));
+--- CODE ---
+
+[DevOps CommentId:10829561][3/3]","0054u000006gtWUAAY","2024-08-26T09:42:51.000Z","2024-08-26T09:42:51.000Z","false","false"
+"00aQk000008jfSDIAY","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-08-26T11:54:50.000Z","2024-08-26T11:54:50.000Z","false","false"
+"00aQk000008lATyIAM","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the new comment has been added: Thank you @Oana-Cristina Rus
+We ran these commands in a remote session and the tables were restored, event logs are now working as expected.
+Thank you @Catalin-Emanuel Stoian for your help on this.
+
+This case can be closed.","005Qk000001nViCIAU","2024-08-27T13:47:41.000Z","2024-08-27T13:47:41.000Z","false","false"
+"00aQk000008lQ2TIAU","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2024-08-27T16:07:05.000Z","2024-08-27T16:07:05.000Z","false","false"
+"00aQk00000BoKejIAF","500Qk00000EVy9WIAT","On Escalation Ticket # 00418359 the Following Fields have been updated: 
+Account ACV has been changed to 16579.48.","0054u000006gtWUAAY","2025-02-14T11:44:35.000Z","2025-02-14T11:44:35.000Z","false","false"

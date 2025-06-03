@@ -1,0 +1,40 @@
+# Netwrix Support KB Generator Configuration
+
+# Input/Output Directories
+input_dir: internal_kb_tools/ticket_data
+output_dir: internal_kb_tools/ticket_processing/collated_ticket_data
+summaries_dir: internal_kb_tools/ticket_processing/ticket_summaries
+kb_articles_dir: internal_kb_articles
+
+# Input Files
+ticket_file: sfdc_tickets_export.csv
+email_files:
+  - sfdc_email_export_1.csv
+  - sfdc_email_export_2.csv
+  - sfdc_email_export_3.csv
+posts_file: sfdc_posts_export.csv
+comments_file: sfdc_comments_export.csv
+
+# Stage 1 Configuration (Case Summarization)
+stage1_model: gpt-4o-mini-support
+stage1_prompt_template: internal_kb_tools/templates/stage1_prompt.txt
+stage1_batch_size: 10
+stage1_max_retries: 3
+stage1_retry_delay: 5
+
+# Stage 2 Configuration (KB Generation)
+stage2_model: gpt-4o-support
+stage2_prompt_template: internal_kb_tools/templates/stage2_prompt.txt
+stage2_batch_size: 50
+stage2_max_retries: 3
+stage2_retry_delay: 10
+
+# Logging
+logging_level: INFO
+
+# Ticket Filtering
+target_statuses:
+  - "Closed - Resolved"
+  - "Closed - Resolved on first contact"
+ticket_record_type: "Support Ticket" 
+# Note: Additional date filter is applied in the code to only include tickets created on or after June 1, 2024 

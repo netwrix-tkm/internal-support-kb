@@ -1,0 +1,128 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007nXBhIAM","500Qk00000CmXaiIAF","customer did not leave a phone number","005Qk000001nVi2IAE","2024-07-08T15:26:27.000Z","2024-07-08T15:26:27.000Z","false","false"
+"00aQk000007pxRpIAI","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the Following Fields have been updated: 
+Account ACV has been changed to 1179911.66.","005Qk000001nViHIAU","2024-07-10T07:06:22.000Z","2024-07-10T07:06:22.000Z","false","false"
+"00aQk000007pxTRIAY","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the Following Fields have been updated: 
+Account ACV has been changed to 589955.83.","005Qk000001nViHIAU","2024-07-10T07:06:23.000Z","2024-07-10T07:06:23.000Z","false","false"
+"00aQk000007pxlDIAQ","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: I forgot to mention that the customers did not apply the Vulnerability patch, so the issue is not caused by the broken update.
+The customers tried to update their SSL Certificate, they did not succeed and they rebooted the server. After the reboot they had to set the EPP Server's IP again. After this reboot the computers were not able to communicate with the server anymore.","005Qk000001nViHIAU","2024-07-10T07:16:52.000Z","2024-07-10T07:16:52.000Z","false","false"
+"00aQk000007t8YoIAI","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: The issue was solved by modifying the epp.nginx.conf. For some reason even if they had an nginx config file which had a different port for UI and a different port for client-server communication, a new ""listen"" code line a new line appeared with the server IP and the port 443. 
+The customer asked if we can give them the root cause for this issue. They asked why the epp.nginx.conf file could modify if they tried to import the ssl certificate and to reboot the EPP Server. (Worth to mention that after the server was rebooted they had to set the server's IP again).
+Could the server reboot modify the nginx config? If so, they would like to know why.
+
+Thank you!","005Qk000001nViHIAU","2024-07-12T09:20:08.000Z","2024-07-12T09:20:08.000Z","false","false"
+"00aQk000007z3Q2IAI","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: Michael Paye:
+
+[Force comment sync]
+
+[DevOps CommentId:10587450]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007z3Q1IAI","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: Augustina Sidor:
+
+Changes to certificates usually require updates to the Nginx configuration file.
+
+If the customer is using a custom port, these updates should be handled by the support team so as not to overwrite the custom Nginx config file.
+
+[DevOps CommentId:10572208]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007z3Q0IAI","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: Augustina Sidor:
+
+@Emil-Ionut Podar, please do the following:
+
+1. Check if the config file is not corrupted: /var/www/EPPServer/sieratool/apps/ratool/config/epp.yml (In the backend procedure you can find how this file should look;)
+
+2. Check if Increased Communication Security is enabled, and disable it. (Appliance -> Server Maintenance page, Increased Communication Security section.)
+After the UI setting was disabled, please also check the epp.nginx.config and make sure the wsf entry looks like this:
+
+vim /etc/nginx/sites-enabled/epp.nginx.conf
+
+--- CODE ---
+ 
+    location ~ ^/wsf/(.+.php)$ {
+
+        #if ($ssl_client_verify != SUCCESS) {
+        #       return 401;
+        #}
+
+        alias   /var/www/EPPServer/sieratool/webservicefree/$1;
+        include fastcgi_epp_params;
+    }
+--- CODE ---
+
+If the comunication isn't established:
+
+3. Regenerate the Server Certificate Stack.
+
+If comunication is established, and the customer uses a UI certificate, please advise him to upload the UI certificate again.
+
+[DevOps CommentId:10555929]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000008QpwjIAC","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-09T07:04:25.000Z","2024-08-09T07:04:25.000Z","false","false"
+"00aQk000008QpwlIAC","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi @WaitingOnEngineer,
+
+Latest update from dev team is: 
+""Changes to certificates usually require updates to the Nginx configuration file.
+
+If the customer is using a custom port, these updates should be handled by the support team so as not to overwrite the custom Nginx config file.""
+
+
+Regards,
+Cristi
+
+[DevOps CommentId:10706603]","0054u000006gtWUAAY","2024-08-09T07:04:26.000Z","2024-08-09T07:04:26.000Z","false","false"
+"00aQk000008Rn85IAC","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViHIAU","2024-08-09T19:55:59.000Z","2024-08-09T19:55:59.000Z","false","false"
+"00aQk000008bDrJIAU","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-19T05:01:07.000Z","2024-08-19T05:01:07.000Z","false","false"
+"00aQk000008bDrLIAU","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-09 07:04 UTC and the last detected comment from support was 2024-07-12 09:20 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10777665]","0054u000006gtWUAAY","2024-08-19T05:01:08.000Z","2024-08-19T05:01:08.000Z","false","false"
+"00aQk000008jMkbIAE","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-09 07:04 UTC and the last detected comment from support was 2024-07-12 09:20 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10827965]","0054u000006gtWUAAY","2024-08-26T05:00:59.000Z","2024-08-26T05:00:59.000Z","false","false"
+"00aQk000008rZMSIA2","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-09 07:04 UTC and the last detected comment from support was 2024-07-12 09:20 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10858096]","0054u000006gtWUAAY","2024-09-02T05:01:44.000Z","2024-09-02T05:01:44.000Z","false","false"
+"00aQk000008rZMQIA2","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the Following Fields have been updated: 
+Account ACV has been changed to 593084.23.","0054u000006gtWUAAY","2024-09-02T05:01:44.000Z","2024-09-02T05:01:44.000Z","false","false"
+"00aQk000008z7T0IAI","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-09 07:04 UTC and the last detected comment from support was 2024-07-12 09:20 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10890441]","0054u000006gtWUAAY","2024-09-09T05:01:46.000Z","2024-09-09T05:01:46.000Z","false","false"
+"00aQk000008z7UcIAI","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-09 07:04 UTC and the last detected comment from support was 2024-07-12 09:20 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10890441]","0054u000006gtWUAAY","2024-09-09T05:01:47.000Z","2024-09-09T05:01:47.000Z","false","false"
+"00aQk000009FvqRIAS","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViHIAU","2024-09-23T11:34:35.000Z","2024-09-23T11:34:35.000Z","false","false"
+"00aQk00000AAV81IAH","500Qk00000CmXaiIAF","On Escalation Ticket # 00414579 the Following Fields have been updated: 
+Account ACV has been changed to 593075.83.
+Status has been changed to Closed - Resolved.","005Qk000001nViHIAU","2024-11-11T18:26:24.000Z","2024-11-11T18:26:24.000Z","false","false"

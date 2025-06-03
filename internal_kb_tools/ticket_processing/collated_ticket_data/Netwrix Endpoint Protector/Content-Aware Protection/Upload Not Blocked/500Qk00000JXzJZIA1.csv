@@ -1,0 +1,36 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000JXzJZIA1","00429950","Support Ticket","MS-Teams CAP Compatibility Messed Up","Hello together,
+
+first I want to mention that we are on server version 5.9.4.1. I am not 100% sure if the problem is here since the update to 5.9.4.1, but I believe so. We have this problem with the new client version 6.2.4.1006 and also with the older 6.2.3.1010. Therefore I believe it has to do with some internal changes to the server and its config.
+It looks like the implementation with EPP and MS-Teams is messed up at the moment. Sometimes the upload of file to MS-Teams gets blocked, sometime not, sometimes we get the ""blocked"" message but the file is uploaded nethertheless - really weird and annoying behaviour as Teams is the most important Exit Point to us.
+
+I reproduced the issue on 2 different clients and captured the logs. I set up a policy which should block the transfer of all filetypes to all exit points.
+1. Test: I tried to upload the files to wetransfer and they got rightfully blocked. Afterwards I tried to upload them to MS-Teams and they get uploaded. The weird part here is that you don't see any CAP-Log of these uploaded files on the EPP server. 
+2. test: I tried to upload the files to Teams and they get wrongfully uploaded. Then I tried to upload the files to ""<a href='https://dlptest.endpointprotector.com/' target='_blank'>https://dlptest.endpointprotector.com/</a>"" via the browser and they got ritghtfully blocked. For the .png and the .jpg files we got the ""block"" message-popup in MS-Teams, but despite that they got sent nethertheless (Pic1_Recipient). For those 2 ""blocked"" files we get an log entry on the server, but for all the other uploaded files to MS-Teams we don't see ANY log(Pic2). It nearly looks like there are some important paths of MS-Teams in a general SSL-WhiteList - but we don't have any DPI WhiteList configured for these users.
+
+Another issue that occured today: An upload of a file to MS-Teams got rightfully blocked - but the user tried the upload again a few minutes afterwards and then the upload went through - also without a log entry and without any changes between these 2 tries from our side.
+
+All in all EPP is behaving really really strange with MS-Teams and we need help to fix this issues soon.
+Please focus on the 2 test and therefore logs I am sending you.
+
+Thank you in advance!","","QA has reproduced the issue by having created a CAP policy with all graphic file types selected, block and report action defined for Windows
+
+- I could successfully upload image files through Microsoft Teams, while having the mentioned CAP policy enabled. Also I have closed and reopened Teams in order to see if the policies would apply correctly.
+- Sometimes I would received a notification that the file upload was blocked and reported, however the graphic file in reality was not blocked, but uploaded successfully
+- I have tried the upload from computer and drag and drop method too see that the files would be blocked, they were not
+- Uploading to dltpest.endpointprotector.com was blocked successfully
+- I would like to mention also that when the notification was displayed while trying to upload the image file on Teams, the event was reported correctly in Content Aware Reports.
+- After restarting the computer and activating DPI, I have tried to upload some image file to Microsoft Teams and then the Block and reports action was working, I was not able to upload images. The strange thing was that some images still could be uploaded
+
+Tested with 5941 server with 6.2.4.1006 client, also verified the issue on 6.2.4.2000 client. 
+
+
+The issue has been raised with dev team, pending to be registered by product.
+
+25 April
+
+This fix will be available in the 5.9.4.3. release","- check if the issue is reproducible on our side
+- as the issue is reproducible, wait for Product to include a fix in the next release
+
+25 April
+Fix will be included in the 5.9.4.3 server release, customer confirms that the ticket can be closed","Fix will be included in the 5.9.4.3 server release, customer confirms that the ticket can be closed","Product defect","Alin Anca","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","Upload Not Blocked","","","140.0","Closed - Resolved","Geislinger GmbH","Panagiotis Dragatis","2024-12-16T14:31:26.000Z","2025-05-05T14:28:37.000Z"

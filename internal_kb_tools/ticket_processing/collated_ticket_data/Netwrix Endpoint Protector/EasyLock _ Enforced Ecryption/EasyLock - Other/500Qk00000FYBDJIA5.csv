@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000FYBDJIA5","00420484","Support Ticket","[Issue] EasyLock allows login even if no password is entered.","Hi Support Team,
+
+
+Good day! It is an urgent issue.
+
+We are currently using the image <a href='https://epp5810-64-mainline.iso' target='_blank'>epp5810-64-mainline.iso</a> (MD5 8c9a951db7be341b9bfac27a50d384f3) for the shipped product. It starts with EPP5810 and uses Ubuntu 22.04.2 LTS. You can download this image here: <a href='https://drive.google.com/drive/folders/1M76QcO8R1qUsupcsGIy92G9mjMnitDVf?usp=sharing' target='_blank'>https://drive.google.com/drive/folders/1M76QcO8R1qUsupcsGIy92G9mjMnitDVf?usp=sharing</a>
+
+On the EPP server built with this image, when EasyLock is deployed on a USB flash and a password is set, EasyLock allows login even if no password is entered. In other words, EasyLock allows login when nothing is entered, as well as when the set password is entered. When logging into EasyLock without entering any password, the ‘type’ column is displayed as ‘Master Password Login Success’ in ‘Enforced Encryption > EasyLock > Clients list > Action History’. You can also find the video clip for it: <a href='https://drive.google.com/open?id=19Cj2TwmU3pEo9d99Icij22-COA7xABCo&usp=drive_fs' target='_blank'>https://drive.google.com/open?id=19Cj2TwmU3pEo9d99Icij22-COA7xABCo&usp=drive_fs</a>
+
+This EasyLock issue occurs depending on the EPP image with Ubuntu 22.04.2 LTS used when currently building the EPP server. Under this image this issue occurs from EPP5810 to EPP5940. There are older VM images that are not currently in use. For example, the EPP server built with an older image starting with EPP5208 and using Ubuntu 18.04.4 LTS does not exhibit the EasyLock issue.
+
+Could you provide the latest image on your side as an ISO file, similar to the one we are using now, if such an issue does not occur with the image? If possible, please take the following into consideration.
+   - The license type of the ISO image should be set to Legacy.
+   - The qemu guest agent should be installed using “apt-get install qemu-guest-agent”. This is because we are currently using the Proxmox hypervisor.  ESXi is hard to use due to licensing issues.
+   - It would be preferable if the ISO image starts with EPP5930, and it would be ideal if it is EPP5940.
+
+The ISO image allows specifying the hard disk size during deployment, making it possible to cover every appliance from M100 to M10000. To resolve the hotfix issue, many clients have migrated to the image where the issue occurs. Therefore, we would like to receive a new ISO image without the issue as soon as possible.
+
+Have a good day!
+Thank you for your support.
+
+
+Best Regards,
+Jack Jung","","our Korean partner 'CoSoSys Korea' reported am issue where EasyLock opens without a password.
+This issue occurs with the EPP installation image (""epp5810-64-mainline.iso"" ISO Image) that we supplied to our Korean Partner for distribution to Korean end customers.","Request was made to our R&D team to build a new ISO install image which will contain the fix.","Our R&D team have prepared the exclusive EPP 5.9.4.0 ISO install image for our Korean customers.","","Andre Le Roux","","Netwrix Endpoint Protector","EasyLock / Enforced Ecryption","EasyLock - Other","NONE","","162.5","Closed - Resolved","CoSoSys Korea","Support Netwrix","2024-09-10T02:12:29.000Z","2025-02-19T13:16:52.000Z"

@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NQkMvIAL","00440299","Support Ticket","Messages sent in teams chat being detected as html files hence getting blocked - ||ZENSOFT||","Messages sent in teams chat being detected as html files hence getting blocked","","02.04
+- waiting on further details from the customer, RS might be needed
+
+02.04
+- some classic outlook replies get blocked
+- outlook new emails get sent
+- disabled OCR, but still didn’t send
+- one email gets blocked for containing Haskell, but it doesn’t contain any
+- customer uses Crowdstrike - he couldn't turn it off during the remote
+- Teams replies get blocked as well - only the replies, new messages can be sent
+- the blocked messages show up as HTML in the logs report
+- tried multiple DPI settings, but without success
+- DPI was turned on and off for Teams during testing
+- 1st log for email (Log.zip)
+- 2nd log for teams (log-1.zip)
+
+After checking the logs we found out that issues were caused as follows:
+1. Outlook blocked email
+- the email was blocked because of the long subject, the text between the brackets - [Request ID :##62346##] |RE: [Request ID :=#62346##] |RE: [Request ID :##62346##] |RE: [Request ID:##623469*] |RE: [Request ID :##62346##] - is similar to a Haskell string.
+- It is also the reason this was the only email that was blocked.
+2. Teams replies
+- Teams replies are formatted as HTML and that is why the EPP client picked it up as HTML code.
+- We recommend removing HTML completely from the policy, because most applications use if for communication, and it will cause a lot of false positives; it only needs to be used if you're writing HTML code.
+
+- sent this to the customer","04.02
+- waiting on customer","Customer confirmed that we can close this ticket from our side.","","Botond Biro","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","NONE","5941","23.9","Closed - Resolved","Zensoft Services","Prasanth Ganesan","2025-03-28T08:19:11.000Z","2025-04-21T07:05:29.000Z"

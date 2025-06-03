@@ -1,0 +1,258 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk0000094LBxIAM","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Priority has been changed to Critical.","005Qk000001nViCIAU","2024-09-12T17:22:44.000Z","2024-09-12T17:22:44.000Z","false","false"
+"00aQk0000098nfvIAA","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Hi Team,
+Can we have an update on this case please? The customer is asking for an update.","005Qk000001nViCIAU","2024-09-17T06:29:11.000Z","2024-09-17T06:29:11.000Z","false","false"
+"00aQk000009Ih69IAC","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-25T09:48:28.000Z","2024-09-25T09:48:28.000Z","false","false"
+"00aQk000009Ih6BIAS","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Marius-Viorel Iacob:
+
+@WaitingOnEngineer 
+Hello,
+We've noticed from the logs that the system has a Kaspersky product installed and it has some sort of DPI feature active.
+EPP is not compatible with other DPI-like products.
+Please suggest to the customer to disable the Kaspersky DPI feature (traffic scanner/analyzer) or uninstall Kaspersky and try again.
+
+[DevOps CommentId:10973771]","0054u000006gtWUAAY","2024-09-25T09:48:29.000Z","2024-09-25T09:48:29.000Z","false","false"
+"00aQk000009ItbyIAC","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-09-25T13:46:56.000Z","2024-09-25T13:46:56.000Z","false","false"
+"00aQk000009IvCMIA0","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-25T13:47:09.000Z","2024-09-25T13:47:09.000Z","false","false"
+"00aQk000009IyYQIA0","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Hi @Marius-Viorel Iacob
+Thank you for the feedback, it was relayed to the customer.","005Qk000001nViCIAU","2024-09-25T13:47:29.000Z","2024-09-25T13:47:29.000Z","false","false"
+"00aQk000009IybdIAC","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-09-25T13:47:46.000Z","2024-09-25T13:47:46.000Z","false","false"
+"00aQk000009K3ZGIA0","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Hi @Marius-Viorel Iacob
+
+Please see the below response from the customer:
+
+""Dear Andre,
+
+ 
+
+We are not enabled DPI in Kaspersky but still we are facing the same issue, but we are not experiencing this issue on all Linux machines, just on some. We were facing the same issue 8 months ago, but your team provided a new build, which resolved the problem. Please prioritize this issue.""","005Qk000001nViCIAU","2024-09-26T07:25:34.000Z","2024-09-26T07:25:34.000Z","false","false"
+"00aQk000009K3arIAC","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-09-26T07:25:45.000Z","2024-09-26T07:25:45.000Z","false","false"
+"00aQk000009QiJZIA0","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-02T07:26:11.000Z","2024-10-02T07:26:11.000Z","false","false"
+"00aQk000009QiJbIAK","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Marius-Viorel Iacob:
+
+@WaitingOnEngineer 
+We couldn't find any reference to a previous fix 8 months ago, if the customer can provide any additional information that could help, we would appreciate it.
+Also, on the logs provided we can see a Kaspersky service that redirects traffic to itself, it is visible in the firewall rules and in open ports of the ""ksel"" running executable.
+
+[DevOps CommentId:11002403]","0054u000006gtWUAAY","2024-10-02T07:26:12.000Z","2024-10-02T07:26:12.000Z","false","false"
+"00aQk000009QiZiIAK","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Hi @Marius-Viorel Iacob:
+That is right yes, yesterday I sent the partner and customer the email below.  There is an old Support case and jira which I found.  Jira link below.
+
+The email I sent to them:
+
+""Hi Sai, Amir, 
+
+Thank you for the reference.  The previous case ID is: 00025680
+I have looked at the internal case with our Dev team and don't see that a test build EPP client was provided.  The last correspondence from my colleague was on 17th January with the message below.
+
+""Hi Sattar,
+
+I do have an update for the CAP policy disabling the connection issue.
+
+We've managed to reproduce the issue.
+It seems to be an incompatibility in the interaction with KESL (Kaspersky Endpoint Security for Linux).
+KESL has at least a module (Web Threat Protection - WTP) that uses a local proxy to intercept web traffic, a solution similar to EPP DPI.
+Unfortunately these WTP and DPI are not compatible.
+We are still investigating if we can make them work together, although this might impact functionality.
+An option to make DPI work would be to disable KESL WTP. This worked on a standard installation of KESL 12.0.0-6672
+
+As suggested, please try to disable KESL/WTP functionality and let us know how it goes.
+As for the DPI/WTP working together, I will revert with updates once there are any recorded.
+
+Best Regards,
+
+Adrian Stanca""
+
+After the above message we have not received any further feedback / updates on whether disabling KESL/WTP functionality helped to solve the issue.""
+
+Jira: https://jira-epp.endpointprotector.com/browse/EPPSUPPORT-3593","005Qk000001nViCIAU","2024-10-02T07:32:21.000Z","2024-10-02T07:32:21.000Z","false","false"
+"00aQk000009QicvIAC","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-10-02T07:33:27.000Z","2024-10-02T07:33:27.000Z","false","false"
+"00aQk000009Qig9IAC","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-02T07:33:33.000Z","2024-10-02T07:33:33.000Z","false","false"
+"00aQk000009QjIrIAK","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-02T07:53:40.000Z","2024-10-02T07:53:40.000Z","false","false"
+"00aQk000009QjItIAK","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Marius-Viorel Iacob:
+
+@WaitingOnEngineer 
+Ok, so no build was provided, but we provided a workaround, disabling KESL WTP.
+Let us know if they provide any other feedback.
+
+[DevOps CommentId:11002615]","0054u000006gtWUAAY","2024-10-02T07:53:41.000Z","2024-10-02T07:53:41.000Z","false","false"
+"00aQk000009QjM6IAK","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Marius-Viorel Iacob:
+
+@WaitingOnEngineer 
+Ok, so no build was provided, but we provided a workaround, disabling KESL WTP.
+Let us know if they provide any other feedback.
+
+[DevOps CommentId:11002615]","0054u000006gtWUAAY","2024-10-02T07:53:42.000Z","2024-10-02T07:53:42.000Z","false","false"
+"00aQk000009Qj7aIAC","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-02T08:43:20.000Z","2024-10-02T08:43:20.000Z","false","false"
+"00aQk000009SbkHIAS","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Hi @Marius-Viorel Iacob:
+
+The customer came back with the below feedback and provided us with a screenshot which I uploaded to the attachments folder.
+
+""WTP is already disabled find the below screenshot.
+Please update the status.
+They have disabled the Kaspersky WTP and DPI after that also they are facing same issue, can you please check with your internal team and fix it asap.""
+
+I have asked for a new set of logs taken while WTP is disabled.","005Qk000001nViCIAU","2024-10-03T15:48:20.000Z","2024-10-03T15:48:20.000Z","false","false"
+"00aQk000009TjFtIAK","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-04T11:48:48.000Z","2024-10-04T11:48:48.000Z","false","false"
+"00aQk000009TjFvIAK","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Marius-Viorel Iacob:
+
+@WaitingOnEngineer 
+Maybe there is another feature of KESL that needs to proxy traffic through it's process. I see from the screenshot that there is also ""Network Traffic Protection"". The only sure thing I can say is that KESL is acting as a proxy for the traffic, and this is the reason EPP DPI and KESL can not be compatible.
+Did the customer try EPP DPI without KESL installed, so we can rule out any problem with EPP?
+
+[DevOps CommentId:11016235]","0054u000006gtWUAAY","2024-10-04T11:48:49.000Z","2024-10-04T11:48:49.000Z","false","false"
+"00aQk000009U8PZIA0","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-04T16:32:03.000Z","2024-10-04T16:32:03.000Z","false","false"
+"00aQk000009Yzn5IAC","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Hi @Marius-Viorel Iacob:
+
+The customer claims that there are other Linux machines where the issue does not produce even when Network Threat Protection is enabled concurrently with EPP DPI enabled.  They also say that they are not using Web Threat Protection but only Network Threat Protection.  Considering this claim I asked of them to provide us with logs taken from the Linux machines where there are no issues and to take new logs from the Linux machines where the issue produces.  We tried to take this in a remote session yetster4dy but the customer was not prepared.  The Linux machine where the issue does not produce had an older EPP client installed. v2.2.0.60000.  I told the customer that everything needs to be identical between the two Linux machines, the configurations, KESL settings, EPP settings and client versions.
+
+Anyway, they have now submitted logs from one of the affected Linux machines and logs from one of the non-affected machines where the issue does not produce. They claim that both EPP DPI and KESL NTP is enabled on the Linux machine with v2.2.0.6000 installed.
+
+Could it be that the incompatibility between EPP DPI and KESL NTP only started occurring after some changes were implemented in the EPP clients since v2.2.0.60000?
+
+Would it be worthwhile to review these logs and see the possible cause?
+
+I have attached the logs submitted today, they are labeled:
+* 2024.10.09 - Affected - Issue Produces.zip
+* 2024.10.09 - Not Affected - Issue does not Produce.zip
+
+Please give us your advice regarding this, would it be possible to fix this and make EPP DPI work concurrently with KESL NTP?
+
+
+This was my email to them yesterday:
+
+Hi Amir,
+
+In the previous case it was stated that WTP was enabled.  Regardless, both WTP and NTP functions the same as both of these features proxy traffic through it's process.  Please follow the steps by collecting logs from the Ubuntu machine that is not producing the issue and from the Ubuntu machine that is producing the issue both of them having EPP DPI enabled and KESL NTP enabled.
+
+This is the last feedback given from our Dev team regarding this matter.
+
+""We can confirm that KESL is acting as a proxy for the traffic, and this is the reason EPP DPI and KESL can not be compatible.  Did the customer try EPP DPI without KESL installed, so we can rule out any problem with EPP?""
+
+""We've managed to reproduce the issue.  It seems to be an incompatibility in the interaction with KESL (Kaspersky Endpoint Security for Linux).   KESL has at least a module (Web Threat Protection - WTP) that uses a local proxy to intercept web traffic, a solution similar to EPP DPI.   Unfortunately these WTP and DPI are not compatible.   We are still investigating if we can make them work together, although this might impact functionality.   An option to make DPI work would be to disable KESL WTP. This worked on a standard installation of KESL 12.0.0-6672.  As suggested, please try to disable KESL/WTP functionality and let us know how it goes.""
+
+According to the feedback received from our Dev team, Endpoint Protector Deep Packet Inspection is not compatible with Kaspersky Endpoint Security for Linux (KESL) when WTP and NTP is enabled.","005Qk000001nViCIAU","2024-10-09T12:30:11.000Z","2024-10-09T12:30:11.000Z","false","false"
+"00aQk000009Z2jJIAS","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-10-09T13:10:20.000Z","2024-10-09T13:10:20.000Z","false","false"
+"00aQk000009a8DBIAY","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-10T08:13:16.000Z","2024-10-10T08:13:16.000Z","false","false"
+"00aQk000009a8DDIAY","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Marius-Viorel Iacob:
+
+@WaitingOnEngineer 
+These logs are not very helpful.
+It would be much more helpful to collect the logs using the Troubleshooting tab of the EPP Notifier. It collects more information about the system.
+It would help to compare these extended logs both for the affected and the unaffected machine.
+
+[DevOps CommentId:11039162]","0054u000006gtWUAAY","2024-10-10T08:13:17.000Z","2024-10-10T08:13:17.000Z","false","false"
+"00aQk000009a8TKIAY","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Hi @Marius-Viorel Iacob:
+
+Thank you for the feedback.  I will work with the customer to get these.","005Qk000001nViCIAU","2024-10-10T08:17:03.000Z","2024-10-10T08:17:03.000Z","false","false"
+"00aQk000009a8UvIAI","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-10T08:17:30.000Z","2024-10-10T08:17:30.000Z","false","false"
+"00aQk000009aIu9IAE","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Hi @Marius-Viorel Iacob:
+
+The customer sent us the artifacts downloaded from the EPP Appliance.
+
+* unaffected-system-epp_logs.zip
+* Affected system-epp_logs.zip","005Qk000001nViCIAU","2024-10-10T11:48:36.000Z","2024-10-10T11:48:36.000Z","false","false"
+"00aQk000009aKmDIAU","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-10-10T11:48:54.000Z","2024-10-10T11:48:54.000Z","false","false"
+"00aQk000009ocHqIAI","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-23T09:51:09.000Z","2024-10-23T09:51:09.000Z","false","false"
+"00aQk000009ocHsIAI","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Marius-Viorel Iacob:
+
+@WaitingOnEngineer
+
+The issue seems to be due to an incompatibility between Kaspersky (some feature(s) that activate a proxy service) and Endpoint Protector's ""Deep Packet Inspection"" feature (that is also based on a proxy service).
+
+There are differences between the unaffected and affected systems. The affected machine has a newer version of Kaspersky installed (12.0), the unaffected machine had (11.3).
+
+We noticed that the Kaspersky product changed its firewall rules between versions, having a dynamically changing products causes a challenge for interoperability also for Endpoint Protector as it can't always keep up with all the changes in conflicting products.
+
+As a workaround we suggest turning off the incompatible features in Kaspersky. We also suggest reaching out to Kaspersky to get their stance on the issue.
+
+We also suggest testing Endpoint Protector without Kaspersky installed, to rule out a problem on our side.
+
+We will continue to try to find a solution on this issue, but we can not guarantee a solution is available from our side.
+
+[DevOps CommentId:11099670]","0054u000006gtWUAAY","2024-10-23T09:51:10.000Z","2024-10-23T09:51:10.000Z","false","false"
+"00aQk000009pzYvIAI","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViDIAU","2024-10-24T09:10:30.000Z","2024-10-24T09:10:30.000Z","false","false"
+"00aQk000009pzaYIAQ","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Hi @Marius thank you for your input on this case! I transmitted this to our customer and will get back with the feedback that we received at our proposals.","005Qk000001nViDIAU","2024-10-24T09:11:56.000Z","2024-10-24T09:11:56.000Z","false","false"
+"00aQk00000A17zOIAR","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Feedback.","005Qk000001nViCIAU","2024-11-04T05:50:32.000Z","2024-11-04T05:50:32.000Z","false","false"
+"00aQk00000A2ZiHIAV","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-05T05:02:42.000Z","2024-11-05T05:02:42.000Z","false","false"
+"00aQk00000A2ZiJIAV","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-28 07:28 UTC and the last detected comment from support was 2024-10-24 09:11 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11168437]","0054u000006gtWUAAY","2024-11-05T05:02:43.000Z","2024-11-05T05:02:43.000Z","false","false"
+"00aQk00000A2ddpIAB","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-05T07:07:27.000Z","2024-11-05T07:07:27.000Z","false","false"
+"00aQk00000A4DgrIAF","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Closed - Unable to Resolve.","005Qk000001nViCIAU","2024-11-06T11:13:39.000Z","2024-11-06T11:13:39.000Z","false","false"
+"00aQk00000ACUHYIA5","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-28 07:28 UTC and the last detected comment from support was 2024-10-24 09:11 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11206047]","0054u000006gtWUAAY","2024-11-13T05:02:19.000Z","2024-11-13T05:02:19.000Z","false","false"
+"00aQk00000ACUHWIA5","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-13T05:02:19.000Z","2024-11-13T05:02:19.000Z","false","false"
+"00aQk00000ACVofIAH","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Feedback.","005Qk000001nViCIAU","2024-11-13T05:36:50.000Z","2024-11-13T05:36:50.000Z","false","false"
+"00aQk00000ACVrtIAH","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-13T05:37:03.000Z","2024-11-13T05:37:03.000Z","false","false"
+"00aQk00000ACVtVIAX","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Feedback.","005Qk000001nViCIAU","2024-11-13T05:37:10.000Z","2024-11-13T05:37:10.000Z","false","false"
+"00aQk00000ALl7pIAD","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-21T05:02:21.000Z","2024-11-21T05:02:21.000Z","false","false"
+"00aQk00000ALl7rIAD","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-28 07:28 UTC and the last detected comment from support was 2024-10-24 09:11 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11245359]","0054u000006gtWUAAY","2024-11-21T05:02:22.000Z","2024-11-21T05:02:22.000Z","false","false"
+"00aQk00000ALnO9IAL","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Feedback.","005Qk000001nViCIAU","2024-11-21T05:58:14.000Z","2024-11-21T05:58:14.000Z","false","false"
+"00aQk00000ATNTJIA5","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-28T05:01:48.000Z","2024-11-28T05:01:48.000Z","false","false"
+"00aQk00000ATNTLIA5","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-28 07:28 UTC and the last detected comment from support was 2024-10-24 09:11 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11286952]","0054u000006gtWUAAY","2024-11-28T05:01:50.000Z","2024-11-28T05:01:50.000Z","false","false"
+"00aQk00000ATPIDIA5","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2024-11-28T06:08:12.000Z","2024-11-28T06:08:12.000Z","false","false"
+"00aQk00000ATPJqIAP","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Due to non-renewal this ticket has been closed.","005Qk000001nViCIAU","2024-11-28T06:08:28.000Z","2024-11-28T06:08:28.000Z","false","false"
+"00aQk00000ATPLSIA5","500Qk00000Ff23dIAB","On Escalation Ticket # 00420880 the new comment has been added: Due to non-renewal this ticket has been closed.
+
+[DevOps CommentId:11287344]","0054u000006gtWUAAY","2024-11-28T06:08:33.000Z","2024-11-28T06:08:33.000Z","false","false"

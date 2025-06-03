@@ -1,0 +1,33 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000P8oHOIAZ","00445036","Support Ticket","Inquiry about the Transfer Limit feature in Endpoint Protector","Hello, my name is Donghyun.
+
+While using Endpoint Protector, I tested the Transfer Limit feature and have two questions related to it, so I’m submitting this ticket.
+
+OS: macOS 15 (Sequoia)
+Server Version: 5.9.4.1
+Client Version: 3.0.4.1
+
+1. 
+As I understand it, the Transfer Limit feature blocks file uploads once the limit is exceeded.
+
+However, as shown in the first attached image, after setting the transfer limit and exceeding it, I noticed that if the applied CAP policy is set to “Report Only,” file uploads are not blocked. On the other hand, if the CAP policy is set to “Block and Report,” file uploads are properly blocked.
+
+I would like to know if this behavior—where the result of the transfer limit action depends on the applied CAP policy—is intended.
+
+2. 
+In the attached image, there is an option called “Transfer Limit Reached Report” in the transfer limit settings, with three selectable intervals: Daily, Weekly, and Monthly.
+
+I understood this feature as one that generates a report related to transfer limits on a regular basis. Could you please confirm what this feature does exactly, and if my understanding is correct, where are these reports generated or stored?
+
+Thank you.","","14 May
+
+- The Transfer Limit feature's enforcement depends on the CAP policy setting:
+    - ""Report Only"" logs and reports violations but does not block uploads, even if the transfer limit is exceeded.
+    - ""Block and Report"" both blocks uploads and generates a report when the transfer limit is exceeded.
+- This behavior is by design, allowing administrators to choose between monitoring and enforcement.
+- The ""Transfer Limit Reached Report"" option controls how often Endpoint Protector generates a summary report of users or endpoints that have reached their transfer limits.
+- These reports are available in the Endpoint Protector administrative dashboard under “Reports and Analysis” > “Logs report.”","14 May
+
+1. Customer to review the “Reports and Analysis” > “Logs report” section in the Endpoint Protector dashboard to access transfer limit reports.
+2. If further clarification or assistance is needed regarding report customization or export, customer should specify their requirements.
+3. Support to await customer confirmation that their questions are fully answered before closing the ticket.","The customer’s questions about the Transfer Limit feature and reporting were answered. The behavior where enforcement depends on the CAP policy setting is intended, and transfer limit reports can be found in the “Reports and Analysis” > “Logs report” section of the dashboard. The customer confirmed the problem is solved and requested ticket closure.","Best Practices Question","Alin Anca","Unexpected Behavior","Netwrix Endpoint Protector","EPP Other","Feature Request","","","1.2","Closed - Resolved","VicCnS Co.,Ltd.","Donghyun Kim","2025-05-14T05:57:13.000Z","2025-05-15T10:26:14.000Z"

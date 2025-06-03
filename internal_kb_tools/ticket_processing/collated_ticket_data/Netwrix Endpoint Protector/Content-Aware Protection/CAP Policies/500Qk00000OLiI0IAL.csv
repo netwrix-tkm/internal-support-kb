@@ -1,0 +1,48 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OLiI0IAL","00442850","Support Ticket","Outlook Desktop Not Blocking File Transfers Despite Content Aware Policy Configuration","Hi, I'm testing Endpoint Protector with predefined Content Aware Protection rules including PCI DSS (credit card data and PII). I created a policy to block sensitive data—like Visa, Mastercard, Amex, JCB, email addresses, and Malaysian IDs—from being sent via apps. It successfully blocks file transfers on WhatsApp, but when using Outlook Desktop with the same file attached (PDF or Word), the transfer goes through without being blocked, and no incident is logged. Outlook is selected as an exit point and the policy action is set to ""Block."" Why is this happening? Is there something I’m missing in the configuration?","","23.04:
+We asked if the issue is happening for all the computers.
+We also want to know the client and server version.
+
+24.04:
+We had a remote session with the customer where we have installed the latest versions for the server and the client.
+We also provided him with a test build to test if the files are blocked accordingly for the new Outlook.
+We explained him the difference between DPI enabled/disabled (seeing the Destination Details/seeing just that the upload has been done on the browser) and also informed him that he should use the dedicated apps to open the PDF documents if he wants to block all the browsers in the specific policy.
+---
+The test build works for the new Outlook.
+We informed the customer about the fact that we could include this fix in our future releases.
+---
+The customer retested the test build and it seems that it's not working anymore.
+We will schedule another remote session with him to check the issue.
+
+25.05:
+The customer came back with the PDF upload issue and also with the new Outlook one.
+We scheduled another remote session.
+
+28.04:
+After checking multiple times the policies and also installing the add-in (manifest_netwrix 1 (1).xml), we saw that the customer didn't installed the test build, so we performed the steps with him.
+After successfully installed the test build version of the client, the issues with the new Outlook file blocking and with the PDF files containing sensitive data being accessible via any browser were resolved.
+
+05.05:
+The customer reached out to us and said that everything works as expected now WITH the Outlook add-in installed.
+He confirmed that we can close the ticket now.","23.04:
+We await the customer's feedback.
+
+24.04:
+Waiting for the customer to install the test build and see if the upload is blocked accordingly for the new Outlook.
+---
+Awaiting the customer's feedback regarding the inclusion of the fix (for new Outlook upload blockage) in one of our next releases.
+---
+Feedback provided: the customer just wants to be informed when new releases will be in place.
+---
+We wait for the customer's confirmation regarding the remote session scheduling.
+
+25.04:
+Waiting for the remote session.
+
+28.04:
+We await the customer's feedback to see if there are any changes (if he notices something different than the expected behaviour).
+
+05.05:
+Closing the ticket after customer's confirmation.","The test build provided works for the new Outlook.
+We informed the customer about the fact that we could include this fix in our future releases.
+We also noted that the issues with the new Outlook file blocking and with the PDF files containing sensitive data being accessible via any browser were resolved (using the test build client version) only if the Outlook add-in is installed.","Best Practices Question","Oana Sutoiu","Question","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","","5.9.4.2","12.2","Closed - Resolved","Netwitz Sdn Bhd","Nurul Batrisyia","2025-04-23T03:24:44.000Z","2025-05-05T08:02:24.000Z"

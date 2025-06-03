@@ -1,0 +1,32 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OGQyPIAX","00442576","Support Ticket","Intune Failed to Install and Deploy","Dear team, hello.
+We tried to deploy EPP via Intune, it fails on 3 different machines with different configuration and we use your knowledge center as well.
+Do you have any alternative or maybe you are aware about this issue? Cannot deploy on machines via Intune.
+<a href='https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Install/Agent/Intune/WindowsDeployment.htm' target='_blank'>https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Install/Agent/Intune/WindowsDeployment.htm</a>","","Customer tried to deploy EPP via Intune, it fails on 3 different machines with different configuration .","21-04 We have informed them that they can use the following command to deploy a machine and check if the situation persist.
+
+They want to use only Intune.
+
+22-04 We have schedule a remote session to check the installation errors.
+
+23-04 In the meeting we have installed the EPP client manually and when we tried it from the Intune solution we received the following error :
+""Product: Endpoint Protector -- Error 1904. Module C:Program FilesCoSoSysEndpoint Protectori386EPPMailChecker.dll failed to register.  HRESULT -1073741819.  Contact your support personnel.""
+
+We have asked them to install the client using the below line
+msiexec.exe /i ""EPPClientSetup.5.6.1.1_x86_64.msi"" /qn /l*v ""c:tempEPP_inst.log"" WSIP=ip WSPORT=443
+
+and to share the EPP_inst.log file once the install is finished.
+
+24-04 We have analysed the logs and we couldn't find any errors, so we will schedule a new remote session where we will perform the following steps: 
+-uninstall the client and perform a new deploy
+-try to deploy the client with an older version
+- add the /l*v ""c:tempEPP_inst.log"" as a parameter
+
+28-04 In the meeting we have uninstalled the client and install an old version for which we received the error 1603. We have saved the install.log and repeat the step to install the latest client 6.2.4.2 .
+
+Provided the following steps to the customer:
+-uninstall the EPP using the attached zap tool, 
+-restart the endpoint
+-then please add the below expression as a parameter for the new install
+
+msiexec.exe /i ""C:EPPClientSetup.5.7.0.3_x86_64.msi"" WSIP=""192.168.7.108"" WSPORT=""443"" DEPARTMENT_CODE=""defdep""  INSTALL_NOTES_EXT=""0"" INSTALL_OUTLOOK_EXT=""0"" /q REBOOT=ReallySuppress","Solved after added the below line to the Intune: 
+WSIP=""Server_IP"" WSPORT=""443"" DEPARTMENT_CODE=""defdef"" INSTALL_NOTES_EXT=""0"" INSTALL_OUTLOOK_EXT=""0"" /q REBOOT=ReallySuppress","Corrupt/Invalid Data","Daniel Anton","Unexpected Behavior","Netwrix Endpoint Protector","EPP Other","Other","","","8.1","Closed - Resolved","White Rock","Evgeny Zinchenko","2025-04-21T07:23:14.000Z","2025-04-29T09:23:49.000Z"

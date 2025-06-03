@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NYOU6IAP","00440568","Support Ticket","Bluetooth prompt","Hello,
+
+On the latest major version of macOS (15) we are getting a prompt for each user that logs in that Endpoint Protector would like to access ‘Bluetooth’. This is not something I’ve seen on our previous version of macOS (13). We are in a MDM environment utilising Jamf Pro, but Apple don’t appear to allow us to manage this with a PPPC profile. We can’t see any further information on this in your Jamf deployment guide (<a href='https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Install/Agent/JAMF/Overview.htm' target='_blank'>https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Install/Agent/JAMF/Overview.htm</a>).
+
+Could I please clarify the impact if the user hits ‘No’ or ‘Yes’ to this message? Will the application function correctly?
+
+Thanks","","Issue is known by us: https://dev.azure.com/NetwrixCorporation/CoSoSys-EPP/_workitems/edit/360646
+
+Alex Puskas:
+
+@WaitingOnEngineer
+I managed to replicate the problem.
+
+The Bluetooth pop-up is displayed because the agent doesn’t have full disk access property enabled. The most of our customers install the agent using third party solutions (MDM solutions and from this solution the full disk access is granted).
+
+The problem here appears when the agent try to register for bluetooth notifications: the bluetooth pop-up right cannot be manipulated by the daemon => when the agent tries to register notifications the pop-up is displayed.
+
+
+What the customer wants? (to NOT display the pop-up at all?)
+
+!!! If we will change the behaviour the pop-up will be never displayed -> admin can check in logs (server logs) if the bluetooth control was granted (this is the wanted behaviour?)
+
+- sent to the customer a test build: https://download.endpointprotector.com/custom_agent/Epp22112024/EPPMac3.0.4.0017.Notarized.tar","- Provided the customer with the test build - waiting on feedback","This fix will be included in the server version 5.9.4.3, but as we mentioned in the previous email, there is no ETA for it at this moment, please follow the Netwrix newsletter for when the release will be announced.","Product defect","Alin Anca","Question","Netwrix Endpoint Protector","Client","Client Deployment","","","13.1","Closed - Resolved","Pinewood Shepperton","John Chase","2025-04-01T09:29:00.000Z","2025-04-14T11:19:01.000Z"

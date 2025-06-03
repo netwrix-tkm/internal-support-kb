@@ -1,0 +1,30 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000PcUczIAF","00446290","Support Ticket","appliance is running low on disk space","We get an Info, that the appliance is running low on disk space and should backup Audit Log Files.
+We already configured the Audit Log Files Backup, but there is no change in the Disk Space Usage.
+Is it possible to expand the disk at Hypervisor level and assign it to the appliance?","","27 May
+
+- The appliance continues to report low disk space even after Audit Log Files Backup is configured and presumably executed.
+- Backing up Audit Log Files may not automatically remove or archive the original log files from the appliance, resulting in no change in disk usage.
+- The customer is considering expanding the virtual disk via the hypervisor as a potential solution.
+- Additional information is needed regarding the appliance’s environment, OS version, hosting platform, and the specific impact on business operations.
+- Screenshots and further details have been requested by support to better understand the situation and provide targeted guidance.
+
+2 June
+
+- connected to the server backend and saw that the root partition was used at 86% with only 7GB Available
+- investigation which was the culprit (du -sh /*) revealed that the php log was 27 GB large (du -sh /usr/local/logs/*)
+-I echo-ed the file, and also vacuumed the Journal (/var/log/journal had 4 GB) - with the command:
+
+journalctl --vacuum-size=500M
+
+- after all the above, the used disk space on the root partition was 20% with 38 GB Available","27 May
+
+1. Customer to provide details on the business impact, client/server/OS version, and hosting platform (on-prem, AWS, Azure, etc.).
+2. Customer to supply screenshots of the disk space warning and any relevant error messages.
+3. Support engineer to review the provided information and confirm whether expanding the disk at the hypervisor level is supported and, if so, provide step-by-step instructions.
+4. Support engineer to clarify whether additional steps are needed to reclaim disk space after backing up Audit Log Files (e.g., manual deletion or log rotation).
+5. Support to follow up with the customer after receiving the requested information to ensure the issue is resolved or to provide further assistance.
+
+2 June
+
+- closing the ticket","The issue was resolved by identifying and manually clearing large log files (php logs and system journal) on the appliance, which significantly reduced disk usage. The root cause was excessive log file growth. After cleanup, the appliance had sufficient free space and the disk space warning was cleared.","Server/Infrastructure Issue - Customer-Managed System","Alin Anca","Error","Netwrix Endpoint Protector","Server","Server Disk Space","","","6.2","Closed - Resolved","EMSLAND-STÄRKE GMBH","Eike Arends","2025-05-27T08:57:48.000Z","2025-06-02T14:36:55.000Z"

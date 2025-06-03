@@ -1,0 +1,97 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk0000088MJhIAM","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Account ACV has been changed to 22863.78.
+Priority has been changed to High.","005Qk000001nVi2IAE","2024-07-24T21:03:30.000Z","2024-07-24T21:03:30.000Z","false","false"
+"00aQk0000088MLJIA2","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Account ACV has been changed to 11431.89.","005Qk000001nVi2IAE","2024-07-24T21:03:32.000Z","2024-07-24T21:03:32.000Z","false","false"
+"00aQk0000088xBBIAY","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-25T11:35:37.000Z","2024-07-25T11:35:37.000Z","false","false"
+"00aQk0000088xBDIAY","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the new comment has been added: Augustina Sidor:
+
+⚠ Please check if the SMTP config is set and if it's working properly.  Please confirm if the customer is receiving the test email.
+
+If the above statements are confirmed, please regenerate the alert cache, following the next steps:
+
+
+	 - 	Stop the cron service: 
+
+	 - 	service cron stop
+	 - 	clear the mailer folder: 
+
+	 - 	rm /var/eppfiles/mailer/*
+	 - 	login to MySQL and empty the mailer table
+
+	 - 	delete from mailer;
+	 - 	Regenerate the alerts cache:
+
+	 - 	delete the existing cache
+
+	 - 	rm -rf /run/shm/mcache/cf_alerts/
+	 - 	rm -rf /run/shm/mcache/dc_alerts/
+	 - 	login to MySQL and delete the following tables (it's safe to delete them. They will be recreated once the rebuild alert cache cron runs)
+
+	 - 	drop table old_alert;
+	 - 	drop table old_cf_alert; 
+	 - 	run the cron to regenerate the alert cache:
+
+	 - 	php /opt/eppworker/build_alerts_cache.php
+	 - 	check if the alerts cache was recreated:
+
+	 - 	ls -la /run/shm/mcache/cf_alerts/
+	 - 	ls -la  /run/shm/mcache/dc_alerts/
+	 - 	start the corn service:
+
+	 - 	service cron start
+
+
+After all these steps are done, please generate an event to see if the email alert will be received.
+
+If not, please provide us with more details, like:
+
+	 - 	the size and the content of the mailer folder
+
+	 - 	du -sh /var/eppfiles/mailer/
+	 - 	ls -la /var/eppfiles/mailer/
+	 - 	a print screen with the alerts cache
+
+	 - 	ls -la /run/shm/mcache/cf_alerts/
+	 - 	ls -la  /run/shm/mcache/dc_alerts/
+	 - 	a printscreen with the content from the mailer table
+
+	 - 	SELECT * FROM mailer;
+
+Thanks,
+Augustina
+
+
+FYI: @WaitingOnEngineer 
+
+[DevOps CommentId:10622608]","0054u000006gtWUAAY","2024-07-25T11:35:38.000Z","2024-07-25T11:35:38.000Z","false","false"
+"00aQk0000089G4AIAU","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2024-07-25T15:42:25.000Z","2024-07-25T15:42:25.000Z","false","false"
+"00aQk0000089HEjIAM","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-25T15:42:40.000Z","2024-07-25T15:42:40.000Z","false","false"
+"00aQk000008A8hGIAS","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the new comment has been added: Augustina Sidor:
+
+FYI @WaitingOnEngineer 
+
+[DevOps CommentId:10635218]","0054u000006gtWUAAY","2024-07-26T07:35:36.000Z","2024-07-26T07:35:36.000Z","false","false"
+"00aQk000008A8isIAC","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the new comment has been added: Augustina Sidor:
+
+FYI @WaitingOnEngineer 
+
+[DevOps CommentId:10635218]","0054u000006gtWUAAY","2024-07-26T07:35:38.000Z","2024-07-26T07:35:38.000Z","false","false"
+"00aQk000008AoVBIA0","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2024-07-26T17:08:55.000Z","2024-07-26T17:08:55.000Z","false","false"
+"00aQk000008GFg3IAG","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the new comment has been added: Hello,
+Re-creating the alerts cache fixed the alerting, the case can be closed.
+Thanks,
+Boti","005Qk000001nVi2IAE","2024-07-31T16:04:20.000Z","2024-07-31T16:04:20.000Z","false","false"
+"00aQk000008GGllIAG","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVi2IAE","2024-07-31T16:05:05.000Z","2024-07-31T16:05:05.000Z","false","false"
+"00aQk000008GGlnIAG","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Account ACV has been changed to 22863.78.","005Qk000001nVi2IAE","2024-07-31T16:05:08.000Z","2024-07-31T16:05:08.000Z","false","false"
+"00aQk000008GGnNIAW","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Account ACV has been changed to 11431.89.","005Qk000001nVi2IAE","2024-07-31T16:05:09.000Z","2024-07-31T16:05:09.000Z","false","false"
+"00aQk00000BoJvZIAV","500Qk00000DRXuvIAH","On Escalation Ticket # 00416015 the Following Fields have been updated: 
+Account ACV has been changed to 11711.07.","0054u000006gtWUAAY","2025-02-14T11:44:20.000Z","2025-02-14T11:44:20.000Z","false","false"

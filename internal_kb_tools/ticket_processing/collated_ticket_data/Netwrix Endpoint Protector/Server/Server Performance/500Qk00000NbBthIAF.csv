@@ -1,0 +1,14 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NbBthIAF","00440695","Support Ticket","High CPU usage following migration to new server / SIEM issue","One of our migrated servers is experiencing about 70% CPU usage throughout the working day, this seems to be at odds with other servers which hover around 30% after an initial morning burst (presumably due to users turning computers on and the agent checking in).
+
+This didn't happen prior to the migration and I have done all the backend updates, along with server reboots etc. Might be worth a quick check?
+
+
+Some of my colleagues have also noticed that since the migrations, our SIEM is not receiving logs from any server. I have checked the SIEM settings and they were moved across and still correct. This is the info I've been given:
+""Since Cososys/Netwrix upgrade no logs are being received in Logpoint SIEM. The IP addresses are correct in Logpoint, the SIEM Integration details are correct in Cososys. From Logpoint we ran a tcpdump from one of the cososys hosts and didn't receive anything.""
+
+Thanks,
+Pete","","The logs are not being forwarded to siem after the server migration","A remote session was set in order to investigate this.
+The issue is caused by the syslogng which is not enabled on the new servers.
+A remote session was scheduled with the customer in order to enable syslogng on the new servers","Before the server migration, the old server was using rsyslog, but the new server is using syslog-ng.
+After enabling Syslog-ng from the database the logs started to be sent to siem","Other","Emil Podar","Unexpected Behavior","Netwrix Endpoint Protector","Server","Server Performance","","","35.2","Closed - Resolved","NHS South, Central and West Commissioning Support Unit","Pete Taylor","2025-04-02T09:50:08.000Z","2025-05-07T13:32:37.000Z"

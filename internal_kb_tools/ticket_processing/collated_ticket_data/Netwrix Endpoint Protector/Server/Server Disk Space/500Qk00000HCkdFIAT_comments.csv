@@ -1,0 +1,169 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009v7sPIAQ","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Account ACV has been changed to 501287.28.","005Qk000001nViHIAU","2024-10-29T11:14:16.000Z","2024-10-29T11:14:16.000Z","false","false"
+"00aQk000009v7u1IAA","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Account ACV has been changed to 250643.64.","005Qk000001nViHIAU","2024-10-29T11:14:17.000Z","2024-10-29T11:14:17.000Z","false","false"
+"00aQk00000A58laIAB","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: HI Team! Can we get an update on this? Customer is chasing for an update.","005Qk000001nViGIAU","2024-11-06T23:23:50.000Z","2024-11-06T23:23:50.000Z","false","false"
+"00aQk00000A5MTZIA3","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-07T07:23:58.000Z","2024-11-07T07:23:58.000Z","false","false"
+"00aQk00000A5MTbIAN","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Cristian, @WaitingOnEngineer,
+
+Unfortunately, there is no update at the moment.
+I will try to assign this as soon as possible.
+
+Regards,
+Cristi
+
+[DevOps CommentId:11181776]","0054u000006gtWUAAY","2024-11-07T07:23:59.000Z","2024-11-07T07:23:59.000Z","false","false"
+"00aQk00000A6NU1IAN","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViBIAU","2024-11-07T22:30:13.000Z","2024-11-07T22:30:13.000Z","false","false"
+"00aQk00000A9rwzIAB","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-11T09:51:22.000Z","2024-11-11T09:51:22.000Z","false","false"
+"00aQk00000ABNy3IAH","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+In case of a large number of shadows it is possible that the server cannot handle deleting the directory.
+
+Please try a more granular approach: click on the File Name and delete the directories inside one by one.
+
+An alternative to remove the shadows is to make an Audit Log Backup. If options from Keep or delete logs from server when creating the backup are not checked the Audit will delete the shadows associated to the logs.
+
+If this does not work for the customer then please send us a printscreen with :
+
+--- CODE ---
+show create table cf_log;
+show create table ofiletrace;
+--- CODE ---
+
+Enable errors for the UI:
+
+--- CODE ---
+               vim /EPPServer/sieratool/web/index.php
+--- CODE ---
+
+        - search for line :
+
+--- CODE ---
+               define('SF_DEBUG',        false);
+--- CODE ---
+
+
+	 - 	edit it and set it to true (it should look like this :  define('SF_DEBUG',        true);)
+
+
+	 - 	go to the UI and try to delete a shadow 
+
+
+	 - 	make a printscreen of the error that shows in the UI
+
+
+	 - 	!! go back to
+
+--- CODE ---vim /EPPServer/sieratool/web/index.php--- CODE ---
+    -> define('SF_DEBUG',        false);  and set the value back to false;
+
+Thanks
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11203027]","0054u000006gtWUAAY","2024-11-12T12:29:00.000Z","2024-11-12T12:29:00.000Z","false","false"
+"00aQk00000ABgatIAD","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViHIAU","2024-11-12T15:57:13.000Z","2024-11-12T15:57:13.000Z","false","false"
+"00aQk00000AIHRHIA5","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: Hello,
+
+I attached the requested info.
+Let me know if it helps.
+
+Thank you","005Qk000001nViHIAU","2024-11-18T15:35:54.000Z","2024-11-18T15:35:54.000Z","false","false"
+"00aQk00000AIHvtIAH","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Product Version has been changed to NONE.
+Status has been changed to Awaiting R&D.","005Qk000001nViHIAU","2024-11-18T15:37:54.000Z","2024-11-18T15:37:54.000Z","false","false"
+"00aQk00000APhyWIAT","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+
+I created a task with an improvement for this issue.
+
+As a workaround , please advice the customer to start an Audit Content Aware Log to remove some of the old CAP logs.
+
+When the CAP log number gets under 2 partitions (2 million logs) a cron script will  add some fields to cf_log table. The cron starts automatically at 23:00 (there is no need for user intervention to start it). 
+
+
+
+After the cron script runs, there will be no more errors on the File Maintenance delete action.
+
+
+If you have any questions please let me know.
+
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11267745]","0054u000006gtWUAAY","2024-11-25T09:32:45.000Z","2024-11-25T09:32:45.000Z","false","false"
+"00aQk00000APhyUIAT","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-25T09:32:45.000Z","2024-11-25T09:32:45.000Z","false","false"
+"00aQk00000APijGIAT","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi @WaitingOnEngineer,
+
+Please also confirm ACV and customer size.
+
+Thank you,
+Cristi
+
+[DevOps CommentId:11267827]","0054u000006gtWUAAY","2024-11-25T09:40:51.000Z","2024-11-25T09:40:51.000Z","false","false"
+"00aQk00000AQbPaIAL","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: Hello,
+
+The ACV is 93000 and the amount of licenses is 2500.
+
+Thank you","005Qk000001nViHIAU","2024-11-25T21:16:11.000Z","2024-11-25T21:16:11.000Z","false","false"
+"00aQk00000AQbRBIA1","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViHIAU","2024-11-25T21:16:21.000Z","2024-11-25T21:16:21.000Z","false","false"
+"00aQk00000AdgMcIAJ","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-09T05:02:48.000Z","2024-12-09T05:02:48.000Z","false","false"
+"00aQk00000AdgMeIAJ","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-11-29 08:38 UTC and the last detected comment from support was 2024-11-25 21:16 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11379909]","0054u000006gtWUAAY","2024-12-09T05:02:49.000Z","2024-12-09T05:02:49.000Z","false","false"
+"00aQk00000Ads2nIAB","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViHIAU","2024-12-09T11:05:36.000Z","2024-12-09T11:05:36.000Z","false","false"
+"00aQk00000AhK8zIAF","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViHIAU","2024-12-11T18:48:39.000Z","2024-12-11T18:48:39.000Z","false","false"
+"00aQk00000AhK91IAF","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Account ACV has been changed to 501287.28.","005Qk000001nViHIAU","2024-12-11T18:48:43.000Z","2024-12-11T18:48:43.000Z","false","false"
+"00aQk00000AhKCDIA3","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Account ACV has been changed to 250643.64.","0054u000006gtWUAAY","2024-12-11T18:48:54.000Z","2024-12-11T18:48:54.000Z","false","false"
+"00aQk00000AmmhKIAR","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-17T05:02:33.000Z","2024-12-17T05:02:33.000Z","false","false"
+"00aQk00000AmmhMIAR","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-11-29 08:38 UTC and the last detected comment from support was 2024-11-25 21:16 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11417325]","0054u000006gtWUAAY","2024-12-17T05:02:33.000Z","2024-12-17T05:02:33.000Z","false","false"
+"00aQk00000An7YsIAJ","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the new comment has been added: Hello,
+
+This ticket can be closed.
+
+Thank you","005Qk000001nViHIAU","2024-12-17T13:13:05.000Z","2024-12-17T13:13:05.000Z","false","false"
+"00aQk00000An7aTIAR","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViHIAU","2024-12-17T13:13:15.000Z","2024-12-17T13:13:15.000Z","false","false"
+"00aQk00000An7c5IAB","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViHIAU","2024-12-17T13:13:38.000Z","2024-12-17T13:13:38.000Z","false","false"
+"00aQk00000An7c7IAB","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Account ACV has been changed to 501287.28.","005Qk000001nViHIAU","2024-12-17T13:13:41.000Z","2024-12-17T13:13:41.000Z","false","false"
+"00aQk00000An7dhIAB","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Account ACV has been changed to 250643.64.","005Qk000001nViHIAU","2024-12-17T13:13:49.000Z","2024-12-17T13:13:49.000Z","false","false"
+"00aQk00000BLyfZIAT","500Qk00000HCkdFIAT","On Escalation Ticket # 00425353 the Following Fields have been updated: 
+Account ACV has been changed to 355074.30.","0054u000006gtWUAAY","2025-01-21T11:02:30.000Z","2025-01-21T11:02:30.000Z","false","false"

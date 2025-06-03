@@ -1,0 +1,957 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000X2xNhKAJ","500Qk00000LuC7GIAV","TextPost","0054u000008ARZjAAO","2025-02-14T19:10:05.000Z","Description: Hi,
+I need to block an specific URL (<a href='https://dropbox.com/login' target='_blank'>dropbox.com/login</a>), and allow the general URL (<a href='https://dropbox.com' target='_blank'>dropbox.com</a>). Can you help me understand how to do it, please?","","","","0054u000008ARZjAAO","2025-02-14T19:10:05.000Z"
+"0D5Qk00000XIFhTKAX","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-19T14:12:55.000Z","What We've Learned Updated: Customer seeks to block certain URL while allowing main URL to be allowed","","","","005Qk000002lX5pIAE","2025-02-19T14:12:55.000Z"
+"0D5Qk00000XIFhUKAX","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-19T14:12:56.000Z","Next Steps Updated: Scheduled meeting with customer on Thursday, February 20th at 1500 Brazil time. 1200 CST","","","","005Qk000002lX5pIAE","2025-02-19T14:12:56.000Z"
+"0D5Qk00000XOJf5KAH","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-20T19:28:28.000Z","What We've Learned Updated: Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuratin, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-02-20T19:28:28.000Z"
+"0D5Qk00000XOJf6KAH","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-20T19:28:28.000Z","Next Steps Updated: Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*","","","","005Qk000002lX5pIAE","2025-02-20T19:28:28.000Z"
+"0D5Qk00000XOFLjKAP","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-20T19:28:58.000Z","What We've Learned Updated: Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-02-20T19:28:58.000Z"
+"0D5Qk00000XfTpqKAF","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-24T19:25:53.000Z","What We've Learned Updated: 2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-02-24T19:25:53.000Z"
+"0D5Qk00000XfTprKAF","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-24T19:25:53.000Z","Next Steps Updated: Awaiting meeting to look further into how to allow specific url access while login page not accessible","","","","005Qk000002lX5pIAE","2025-02-24T19:25:53.000Z"
+"0D5Qk00000XnibPKAR","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-26T18:20:30.000Z","What We've Learned Updated: 2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-02-26T18:20:30.000Z"
+"0D5Qk00000XnZwpKAF","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-26T18:23:19.000Z","What We've Learned Updated: 2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+- Updated Ticket Number # 00436501 
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-02-26T18:23:19.000Z"
+"0D5Qk00000XnUW8KAN","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-02-26T18:29:24.000Z","Next Steps Updated: 2/26/2025
+Updated escalation ticket 00436501 
+Awaiting response from engineering","","","","005Qk000002lX5pIAE","2025-02-26T18:29:24.000Z"
+"0D5Qk00000YGCDoKAP","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-03-04T20:35:40.000Z","What We've Learned Updated: 3/4/2025
+
+Updated escalation ticket 00436501
+
+2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+- Updated Ticket Number # 00436501 
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-03-04T20:35:40.000Z"
+"0D5Qk00000YGCDpKAP","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-03-04T20:35:40.000Z","Next Steps Updated: Awaiting R&D","","","","005Qk000002lX5pIAE","2025-03-04T20:35:40.000Z"
+"0D5Qk00000Z50GpKAJ","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-03-12T18:44:13.000Z","What We've Learned Updated: 3/12/2025
+- Requested update on escalation ticket
+
+3/4/2025
+
+Updated escalation ticket 00436501
+
+2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+- Updated Ticket Number # 00436501 
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-03-12T18:44:13.000Z"
+"0D5Qk00000btA8JKAU","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-04-15T15:45:19.000Z","What We've Learned Updated: 4/15/2025
+- Devops team updated ticket with response that currently Our product blocks access using only the domain (www.dropbox.com), and not the URL path (/login).
+
+However, if there is a need for this to be implemented, the customer can submit a feature request regarding this. 
+
+- Sent email to customer informing him that it is not currently possible to implement and that he can open a feature request.
+
+3/12/2025
+- Requested update on escalation ticket
+
+3/4/2025
+
+Updated escalation ticket 00436501
+
+2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+- Updated Ticket Number # 00436501 
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-04-15T15:45:19.000Z"
+"0D5Qk00000btA8KKAU","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-04-15T15:45:19.000Z","Next Steps Updated: Awaiting customer","","","","005Qk000002lX5pIAE","2025-04-15T15:45:19.000Z"
+"0D5Qk00000cUfs3KAC","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-04-23T21:27:27.000Z","Next Steps Updated: Awaiting customer's response","","","","005Qk000002lX5pIAE","2025-04-23T21:27:27.000Z"
+"0D5Qk00000cUiL4KAK","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-04-23T21:27:57.000Z","What We've Learned Updated: 4/23/2025
+- Sent customer follow up email
+
+4/15/2025
+- Devops team updated ticket with response that currently Our product blocks access using only the domain (www.dropbox.com), and not the URL path (/login).
+
+However, if there is a need for this to be implemented, the customer can submit a feature request regarding this. 
+
+- Sent email to customer informing him that it is not currently possible to implement and that he can open a feature request.
+
+3/12/2025
+- Requested update on escalation ticket
+
+3/4/2025
+
+Updated escalation ticket 00436501
+
+2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+- Updated Ticket Number # 00436501 
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-04-23T21:27:57.000Z"
+"0D5Qk00000ct1AnKAI","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-04-28T20:58:16.000Z","What We've Learned Updated: 4/28/2025
+
+- Sent customer follow up email - second attempt
+4/23/2025
+- Sent customer follow up email
+
+4/15/2025
+- Devops team updated ticket with response that currently Our product blocks access using only the domain (www.dropbox.com), and not the URL path (/login).
+
+However, if there is a need for this to be implemented, the customer can submit a feature request regarding this. 
+
+- Sent email to customer informing him that it is not currently possible to implement and that he can open a feature request.
+
+3/12/2025
+- Requested update on escalation ticket
+
+3/4/2025
+
+Updated escalation ticket 00436501
+
+2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+- Updated Ticket Number # 00436501 
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-04-28T20:58:16.000Z"
+"0D5Qk00000ct6LTKAY","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-04-28T20:58:26.000Z","What We've Learned Updated: 4/28/2025
+
+- Sent customer follow up email - second attempt
+
+4/23/2025
+- Sent customer follow up email
+
+4/15/2025
+- Devops team updated ticket with response that currently Our product blocks access using only the domain (www.dropbox.com), and not the URL path (/login).
+
+However, if there is a need for this to be implemented, the customer can submit a feature request regarding this. 
+
+- Sent email to customer informing him that it is not currently possible to implement and that he can open a feature request.
+
+3/12/2025
+- Requested update on escalation ticket
+
+3/4/2025
+
+Updated escalation ticket 00436501
+
+2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+- Updated Ticket Number # 00436501 
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-04-28T20:58:26.000Z"
+"0D5Qk00000d4QvvKAE","500Qk00000LuC7GIAV","TextPost","005Qk000002lX5pIAE","2025-05-01T13:08:49.000Z","What We've Learned Updated: 5/1/2025
+
+- Sent customer follow up email - third attempt
+
+4/28/2025
+
+- Sent customer follow up email - second attempt
+
+4/23/2025
+- Sent customer follow up email
+
+4/15/2025
+- Devops team updated ticket with response that currently Our product blocks access using only the domain (www.dropbox.com), and not the URL path (/login).
+
+However, if there is a need for this to be implemented, the customer can submit a feature request regarding this. 
+
+- Sent email to customer informing him that it is not currently possible to implement and that he can open a feature request.
+
+3/12/2025
+- Requested update on escalation ticket
+
+3/4/2025
+
+Updated escalation ticket 00436501
+
+2/26/2025
+- Joined remote session and verified that the EPP server completed the upgrade to 5.9.4.1
+- Customer uses an API call to dropbox.com and the policy is preventing the API from completing.
+- Grabbed screen shot and added it to Attachments of the error produced when running API
+- Enable smart DPI login set to on
+- From denylists, edited *dropbox.com/login* to www.dropbox.com/login*
+- Issue still present after changing settings
+- Updated Ticket Number # 00436501 
+
+- Customer requested assistance on removing licenses and deleting multiple computers from EPP server
+
+---------------------------------------------------
+
+2/24/2025
+Customer reporting that issue still present after upgrade to 5.9.4.1
+
+- Customer wants to block dropbox.com/login yet wants to allow dropbox.com to be accessible
+
+- Scheduled Teams meeting for 2/26/2025 at 12 PM CST
+Customer seeks to block certain URL while allowing main URL to be allowed
+
+2/20/25
+
+EPP version 5.9.4.0 (hosted by Netwrix)
+
+- enable DPI 
+- Go to Denylists and Allowlists
+- Go to Domain and URL set address to be clocked to www.dropbox.com/login*
+
+* Client (macintosh) not communicating with EPP server
+ 
+_Verified through client EPP app on apple
+ 
+command + Options + I
+ 
+- Ran two commands via Cli
+ 
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+ 
+ 
+- Logged into the EPP UI, computer shows as online while the client app shows not connnected
+
+- Attempted to uninstall EPP client from apple computer
+
+- In EPP console ,select system configuration, client software, select mac os version and download and install it
+
+- Client has not communicated since last friday with server, customer is rebooting macbook and rejoin meeting. 
+
+- Customer still not able to connect to EPP server
+
+- Customer used the remove-epp script from the CLI 
+
+- Customer installed the endpointprotector install package
+
+- Issue still present, uninstalled and reinstalled EPP server while checking on permissions
+
+* Issue relating to third party software zero trust, once disabled customer able to connnect
+
+- Under allowlist, created a new DPI inspection to allow www,dropbox.com, and under CAP edited policy to inclust newly created allowlist
+
+* Able to access both dropbox.com and dropbox.com/login. Not blocking dropbox.com/login.
+
+- Upgraded EPP server to 5.9.4.1
+
+- Customer completing client software upgrade and will email us once he has tested to see if he can access dropbox.com and block dropbox.com/login*
+
+* Once we receive an email from him depending if the upgrade cleared the issue or not, scheduling next remote session will be determined
+
+* Raised an ADO question asking this: Ticket Number # 00436501
+
+How to allow dropbox.com yet block dropbox.com/login question proposed to devops set at medium priority.","","","","005Qk000002lX5pIAE","2025-05-01T13:08:49.000Z"

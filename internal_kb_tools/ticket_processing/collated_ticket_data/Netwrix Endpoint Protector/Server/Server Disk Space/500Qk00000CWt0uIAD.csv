@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CWt0uIAD","00413634","Support Ticket","Low Disk Space","Hello,
+
+I am running out of disk space on the server. Is there any recommendations you can provide? I am also available for a Teams call.","","","","Ran the below to clear space:
+
+du -sh /var/spool/*
+du -sh /var/log/*
+
+journal:
+journalctl --vacuum-size=100M 
+tune2fs -m 1 /dev/nvme0n1p4
+
+mcache:
+rm -rf /run/shm/mcache/*
+php /EPPServer/sieratool/symfony cc
+
+echo '' > /usr/local/logs/php-fpm.log","","Flaviu Moldovan","","Netwrix Endpoint Protector","Server","Server Disk Space","","","9.1","Closed - Resolved","Iovance BioTherapeutics","Michael Aquinde","2024-07-01T17:33:18.000Z","2024-07-10T20:31:36.000Z"

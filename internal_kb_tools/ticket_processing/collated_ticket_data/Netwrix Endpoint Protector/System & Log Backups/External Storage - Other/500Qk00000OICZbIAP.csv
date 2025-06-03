@@ -1,0 +1,33 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OICZbIAP","00442661","Support Ticket","Trouble Connecting to Azure Storage via SFTP","Hello,
+
+We’re running into issues setting up external storage using a container in an Azure Storage Account via SFTP. Despite entering the requested credentials, we continue to receive an ""incorrect credentials"" error.
+
+Could you help us troubleshoot?
+
+Thank you,
+Phil","","22.04
+- the customer is having setting up external storage using a container in an Azure Storage Account via SFTP. Despite entering the requested credentials, they continue to receive an ""incorrect credentials"" error.
+- asked for their availability for a remote session to troubleshoot
+
+24.04
+- the customer is located in the US, transferring the case to shift 2 colleagues
+
+25.04
+In today's remote session we managed to access the sftp storage via backend with the sftp command, and checked the tls values in nginx config file. The relevant screenshots from the EPP UI, backend commands and Azure have been attached to this ticket.
+
+28.04
+The engineering team informed us that the Azure Blobs are not officially supported yet, and suggested trying with Azure SMB. We informed the customer about this.
+
+29.04
+We had a remote session in which we tested the Azure external storage and provided answers regarding licensing. The customer noticed communication issues for a few computers that don't communicate with the EPP server. They will try a reinstall first, and if this won't work, we'll schedule another remote session to address that.","22.04.
+waiting on the customer ti schedule a remote session
+
+25.04
+Waiting for T2 to follow up with the engineering team for the next steps.
+
+28.04
+Waiting for the customer to confirm if they can use Azure SMB and if it works.
+
+29.04
+Waiting for customer feedback on reinstalling the epp agent","The customer tried to use Azure Blobs for External Storage in EPP. As we currently do not support this, we recommend the Azure SMB. The customer confirmed that they successfully configured the External Storage with Azure SMB.","Integration/Compatibility","Iosif Muntean","Question","Netwrix Endpoint Protector","System & Log Backups","External Storage - Other","","","16.8","Closed - Resolved","Technology & IT Data Analyst","Philip Wang","2025-04-21T20:37:37.000Z","2025-05-08T16:54:13.000Z"

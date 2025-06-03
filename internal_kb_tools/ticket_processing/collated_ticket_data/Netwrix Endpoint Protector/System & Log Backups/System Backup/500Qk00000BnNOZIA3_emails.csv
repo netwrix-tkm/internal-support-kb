@@ -1,0 +1,3506 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000BGa4PIAT","500Qk00000BnNOZIA3","2024-06-13T13:50:05.000Z","2024-06-13T13:50:05.000Z","Hello,
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+ref:!00D70091pB.!500Qk0BnNOZ:ref","Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","techsupport@netwrix.com","Netwrix Support","alexis.vervondel@cluepoints.com","","alin.decean@netwrix.com","false","2024-06-13T13:50:05.000Z","true"
+"02sQk00000BGXxvIAH","500Qk00000BnNOZIA3","2024-06-13T14:45:17.000Z","2024-06-13T14:45:17.000Z","ref:_00D7091pB._500Q000BnNOZ:ref
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints(r)
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[https://cluepoints.com/wp-content/uploads/2020/01/clue_points_cmyk.png]","Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","alexis.vervondel@cluepoints.com","Alexis Vervondel","techsupport@netwrix.com","","","false","2024-06-13T14:44:41.000Z","true"
+"02sQk00000BH90hIAD","500Qk00000BnNOZIA3","2024-06-13T17:51:19.000Z","2024-06-13T17:51:19.000Z","Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+
+
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W.  www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","techsupport@netwrix.com","Netwrix Support","alexis.vervondel@cluepoints.com","","alin.decean@netwrix.com","false","2024-06-13T17:51:19.000Z","true"
+"02sQk00000BIuwgIAD","500Qk00000BnNOZIA3","2024-06-14T06:33:47.000Z","2024-06-14T06:33:47.000Z","ref:_00D7091pB._500Q000BnNOZ:ref
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. 😉
+
+Kind Regards,
+Alexis
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[Image removed by sender.]
+[Image removed by sender.]
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[https://cluepoints.com/wp-content/uploads/2020/01/clue_points_cmyk.png]","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","alexis.vervondel@cluepoints.com","Alexis Vervondel","techsupport@netwrix.com","","","false","2024-06-14T06:33:33.000Z","true"
+"02sQk00000BJJ76IAH","500Qk00000BnNOZIA3","2024-06-14T12:23:08.000Z","2024-06-14T12:23:08.000Z","Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. 😉 
+
+ 
+
+Kind Regards,
+
+Alexis
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+
+
+
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W.  www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","techsupport@netwrix.com","Netwrix Support","alexis.vervondel@cluepoints.com","","alin.decean@netwrix.com","false","2024-06-14T12:23:08.000Z","true"
+"02sQk00000BJQrkIAH","500Qk00000BnNOZIA3","2024-06-14T13:08:46.000Z","2024-06-14T13:08:46.000Z","ref:_00D7091pB._500Q000BnNOZ:ref
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+Thanks in advance,
+Alexis Vervondel
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ?
+
+Kind Regards,
+Alexis
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[Image removed by sender.]
+[Image removed by sender.]
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[https://cluepoints.com/wp-content/uploads/2020/01/clue_points_cmyk.png]","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","alexis.vervondel@cluepoints.com","Alexis Vervondel","techsupport@netwrix.com","","","false","2024-06-14T13:08:22.000Z","true"
+"02sQk00000BJMJTIA5","500Qk00000BnNOZIA3","2024-06-14T13:19:16.000Z","2024-06-14T13:19:16.000Z","Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+ 
+
+Thanks in advance,
+
+Alexis Vervondel
+ 
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ? 
+
+ 
+
+Kind Regards,
+
+Alexis
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+
+
+
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W.  www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","techsupport@netwrix.com","Netwrix Support","alexis.vervondel@cluepoints.com","","alin.decean@netwrix.com","true","2024-06-14T13:19:15.000Z","true"
+"02sQk00000BJNkAIAX","500Qk00000BnNOZIA3","2024-06-14T13:37:49.000Z","2024-06-14T13:37:49.000Z","ref:_00D7091pB._500Q000BnNOZ:ref
+
+Hello,
+
+I tried, but it still doesn’t work. I restarted my computer, but nothing changed.
+The options.ini file has the wrong server address. I tried to modify manually in admin mode and reverted to the old config just after.
+
+Kind Regards,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 15:25
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+Thanks in advance,
+Alexis Vervondel
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ?
+
+Kind Regards,
+Alexis
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[Image removed by sender.]
+[Image removed by sender.]
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[https://cluepoints.com/wp-content/uploads/2020/01/clue_points_cmyk.png]","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","alexis.vervondel@cluepoints.com","Alexis Vervondel","techsupport@netwrix.com","","","false","2024-06-14T13:37:27.000Z","true"
+"02sQk00000BJU5qIAH","500Qk00000BnNOZIA3","2024-06-14T13:56:16.000Z","2024-06-14T13:56:16.000Z","Please make sure that you configure the correct server domain or IP before running the MacOS script :
+
+
+
+I have attached the script again.
+If it still doesn't work for you, then you may uninstall the epp agent, perform a fresh download of the agent from the new server UI and install the new epp agent which should have the correct server domain setting.
+
+Thank you and Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:37 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+
+Hello,
+
+I tried, but it still doesn’t work. I restarted my computer, but nothing changed.
+
+The options.ini file has the wrong server address. I tried to modify manually in admin mode and reverted to the old config just after.
+
+ 
+
+Kind Regards,
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 15:25
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+ 
+
+Thanks in advance,
+
+Alexis Vervondel
+ 
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ? 
+
+ 
+
+Kind Regards,
+
+Alexis
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+
+
+
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W.  www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","techsupport@netwrix.com","Netwrix Support","alexis.vervondel@cluepoints.com","","alin.decean@netwrix.com","true","2024-06-14T13:56:15.000Z","true"
+"02sQk00000BJXTTIA5","500Qk00000BnNOZIA3","2024-06-14T14:14:22.000Z","2024-06-14T14:14:22.000Z","ref:_00D7091pB._500Q000BnNOZ:ref
+
+This is my config:
+[cid:image001.png@01DABE75.D24CA3A0]
+Is it right?
+
+KR,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 16:01
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Please make sure that you configure the correct server domain or IP before running the MacOS script :
+
+[cid:d47611ba-9992-41b4-9961-e8b845975285@Image_0_]
+
+I have attached the script again.
+If it still doesn't work for you, then you may uninstall the epp agent, perform a fresh download of the agent from the new server UI and install the new epp agent which should have the correct server domain setting.
+
+Thank you and Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:37 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hello,
+
+I tried, but it still doesn’t work. I restarted my computer, but nothing changed.
+The options.ini file has the wrong server address. I tried to modify manually in admin mode and reverted to the old config just after.
+
+Kind Regards,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 15:25
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+Thanks in advance,
+Alexis Vervondel
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ?
+
+Kind Regards,
+Alexis
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[Image removed by sender.]
+[Image removed by sender.]
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[https://cluepoints.com/wp-content/uploads/2020/01/clue_points_cmyk.png]","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","alexis.vervondel@cluepoints.com","Alexis Vervondel","techsupport@netwrix.com","","","true","2024-06-14T14:14:03.000Z","true"
+"02sQk00000BJceWIAT","500Qk00000BnNOZIA3","2024-06-14T14:50:19.000Z","2024-06-14T14:50:19.000Z","ref:_00D7091pB._500Q000BnNOZ:ref
+
+Currently, we have 103 MacOS computers, 80 Linux Computers, and 17 Windows Computers.
+One of the key challenges we face is the inability to perform manual uninstallation/installation, primarily due to the lack of admin rights among our users.
+We use JamF for Mac, Intune for Windows, and Landscape for Linux; that’s why we need a functional script.
+
+From: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Date: Friday, 14 June 2024 at 16:14
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+This is my config:
+[cid:image001.png@01DABE75.D24CA3A0]
+Is it right?
+
+KR,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 16:01
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Please make sure that you configure the correct server domain or IP before running the MacOS script :
+
+[cid:d47611ba-9992-41b4-9961-e8b845975285@Image_0_]
+
+I have attached the script again.
+If it still doesn't work for you, then you may uninstall the epp agent, perform a fresh download of the agent from the new server UI and install the new epp agent which should have the correct server domain setting.
+
+Thank you and Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:37 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+Hello,
+
+I tried, but it still doesn’t work. I restarted my computer, but nothing changed.
+The options.ini file has the wrong server address. I tried to modify manually in admin mode and reverted to the old config just after.
+
+Kind Regards,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 15:25
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+Thanks in advance,
+Alexis Vervondel
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ?
+
+Kind Regards,
+Alexis
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[Image removed by sender.]
+[Image removed by sender.]
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[https://cluepoints.com/wp-content/uploads/2020/01/clue_points_cmyk.png]","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","alexis.vervondel@cluepoints.com","Alexis Vervondel","techsupport@netwrix.com","","","true","2024-06-14T14:49:59.000Z","true"
+"02sQk00000BJi5ZIAT","500Qk00000BnNOZIA3","2024-06-14T15:21:07.000Z","2024-06-14T15:21:07.000Z","Hello,
+
+Yes, the configuration seems fine.
+Make sure you use the latest version of the MacOS change IP script I provided. Also you may need to run the script using Mac admin rights.
+Then if you go to the agent UI > Settings tab, and press on MacOS : command key + option/Alt key + I , then you will see a new section which tells you the configured server domain or IP. 
+Let us know the results.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 5:49 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+
+Currently, we have 103 MacOS computers, 80 Linux Computers, and 17 Windows Computers.
+One of the key challenges we face is the inability to perform manual uninstallation/installation, primarily due to the lack of admin rights among our users.
+We use JamF for Mac, Intune for Windows, and Landscape for Linux; that’s why we need a functional script.
+
+ 
+
+
+
+
+From: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Date: Friday, 14 June 2024 at 16:14
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+
+This is my config:
+
+
+
+Is it right?
+
+ 
+
+KR,
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 16:01
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Please make sure that you configure the correct server domain or IP before running the MacOS script :
+
+
+
+I have attached the script again.
+If it still doesn't work for you, then you may uninstall the epp agent, perform a fresh download of the agent from the new server UI and install the new epp agent which should have the correct server domain setting.
+
+Thank you and Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:37 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+ 
+
+
+Hello,
+
+I tried, but it still doesn’t work. I restarted my computer, but nothing changed.
+
+The options.ini file has the wrong server address. I tried to modify manually in admin mode and reverted to the old config just after.
+
+ 
+
+Kind Regards,
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 15:25
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+ 
+
+Thanks in advance,
+
+Alexis Vervondel
+ 
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ? 
+
+ 
+
+Kind Regards,
+
+Alexis
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W.  www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","techsupport@netwrix.com","Netwrix Support","alexis.vervondel@cluepoints.com","","alin.decean@netwrix.com","true","2024-06-14T15:21:06.000Z","true"
+"02sQk00000BNyd3IAD","500Qk00000BnNOZIA3","2024-06-17T07:12:52.000Z","2024-06-17T07:12:52.000Z","ref:_00D7091pB._500Q000BnNOZ:ref
+
+Hello Alin,
+
+I executed your script with admin rights and the config change to this:
+[cid:image001.png@01DAC095.D4807760]
+
+Then, reverted to the initial configuration:
+
+[cid:image002.png@01DAC095.E67CA740]
+
+By the way, I uninstalled it and then reinstalled it with the suitable configuration, and it worked.
+It’s not something we can do manually on all computers!
+
+Kind Regards,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 17:26
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Yes, the configuration seems fine.
+Make sure you use the latest version of the MacOS change IP script I provided. Also you may need to run the script using Mac admin rights.
+Then if you go to the agent UI > Settings tab, and press on MacOS : command key + option/Alt key + I , then you will see a new section which tells you the configured server domain or IP.
+Let us know the results.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 5:49 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Currently, we have 103 MacOS computers, 80 Linux Computers, and 17 Windows Computers.
+One of the key challenges we face is the inability to perform manual uninstallation/installation, primarily due to the lack of admin rights among our users.
+We use JamF for Mac, Intune for Windows, and Landscape for Linux; that’s why we need a functional script.
+
+From: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Date: Friday, 14 June 2024 at 16:14
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+This is my config:
+[cid:b4e02a8c-8291-4c50-9e99-aad812b5130e@Image_0_]
+Is it right?
+
+KR,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 16:01
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Please make sure that you configure the correct server domain or IP before running the MacOS script :
+
+[cid:06cda496-0b55-4f3b-a2c0-24ea361049bb@Image_1_]
+
+I have attached the script again.
+If it still doesn't work for you, then you may uninstall the epp agent, perform a fresh download of the agent from the new server UI and install the new epp agent which should have the correct server domain setting.
+
+Thank you and Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:37 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+Hello,
+
+I tried, but it still doesn’t work. I restarted my computer, but nothing changed.
+The options.ini file has the wrong server address. I tried to modify manually in admin mode and reverted to the old config just after.
+
+Kind Regards,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 15:25
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+Thanks in advance,
+Alexis Vervondel
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ?
+
+Kind Regards,
+Alexis
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[Image removed by sender.]
+[Image removed by sender.]
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[https://cluepoints.com/wp-content/uploads/2020/01/clue_points_cmyk.png]","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","alexis.vervondel@cluepoints.com","Alexis Vervondel","techsupport@netwrix.com","","","true","2024-06-17T07:12:23.000Z","true"
+"02sQk00000BODIkIAP","500Qk00000BnNOZIA3","2024-06-17T10:45:54.000Z","2024-06-17T10:45:54.000Z","Hi Alexis,
+
+Is it possible you have a deployment job scheduled for the MacOS epp agent which could overwrite the manual change IP setting you are doing ?
+Please try to update again using the latest version of the script I provided.
+You may also try to configure the server IP address which corresponds to your domain, which is 18.199.196.214 (for mc302pv.hosted.endpointprotector.com).
+Let us know the results.
+If the issue still persists let me know your timezone and availability for a remote session using Zoom.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/17/2024 10:12 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+
+Hello Alin,
+
+I executed your script with admin rights and the config change to this:
+
+
+
+ 
+
+Then, reverted to the initial configuration:
+
+ 
+
+
+
+ 
+
+By the way, I uninstalled it and then reinstalled it with the suitable configuration, and it worked.
+
+It’s not something we can do manually on all computers! 
+
+ 
+
+Kind Regards,
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 17:26
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Yes, the configuration seems fine.
+Make sure you use the latest version of the MacOS change IP script I provided. Also you may need to run the script using Mac admin rights.
+Then if you go to the agent UI > Settings tab, and press on MacOS : command key + option/Alt key + I , then you will see a new section which tells you the configured server domain or IP. 
+Let us know the results.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 5:49 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Currently, we have 103 MacOS computers, 80 Linux Computers, and 17 Windows Computers.
+One of the key challenges we face is the inability to perform manual uninstallation/installation, primarily due to the lack of admin rights among our users.
+We use JamF for Mac, Intune for Windows, and Landscape for Linux; that’s why we need a functional script.
+
+ 
+
+
+
+
+From: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Date: Friday, 14 June 2024 at 16:14
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+
+This is my config:
+
+
+
+Is it right?
+
+ 
+
+KR,
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 16:01
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Please make sure that you configure the correct server domain or IP before running the MacOS script :
+
+
+
+I have attached the script again.
+If it still doesn't work for you, then you may uninstall the epp agent, perform a fresh download of the agent from the new server UI and install the new epp agent which should have the correct server domain setting.
+
+Thank you and Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:37 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+ 
+
+
+Hello,
+
+I tried, but it still doesn’t work. I restarted my computer, but nothing changed.
+
+The options.ini file has the wrong server address. I tried to modify manually in admin mode and reverted to the old config just after.
+
+ 
+
+Kind Regards,
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 15:25
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+ 
+
+Thanks in advance,
+
+Alexis Vervondel
+ 
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ? 
+
+ 
+
+Kind Regards,
+
+Alexis
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+
+
+
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W.  www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","techsupport@netwrix.com","Netwrix Support","alexis.vervondel@cluepoints.com","","alin.decean@netwrix.com","true","2024-06-17T10:45:54.000Z","true"
+"02sQk00000BOqojIAD","500Qk00000BnNOZIA3","2024-06-17T14:26:55.000Z","2024-06-17T14:26:55.000Z","ref:_00D7091pB._500Q000BnNOZ:ref
+
+Hello Alin,
+
+Thank you for the last script; now it’s working perfectly!
+The configuration will be deployed on all MacOS in the next 24 hours.
+
+Can you provide the package for Ubuntu Linux 22.04, please?
+
+Thank you for being so helpful!
+
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Monday, 17 June 2024 at 12:51
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+Is it possible you have a deployment job scheduled for the MacOS epp agent which could overwrite the manual change IP setting you are doing ?
+Please try to update again using the latest version of the script I provided.
+You may also try to configure the server IP address which corresponds to your domain, which is 18.199.196.214 (for mc302pv.hosted.endpointprotector.com).
+Let us know the results.
+If the issue still persists let me know your timezone and availability for a remote session using Zoom.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/17/2024 10:12 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hello Alin,
+
+I executed your script with admin rights and the config change to this:
+[cid:d190c7ec-512c-46a0-a85d-01bf630ec5d5@Image_0_]
+
+Then, reverted to the initial configuration:
+
+[cid:193568ab-660c-476d-9acc-e396fdd1315b@Image_1_]
+
+By the way, I uninstalled it and then reinstalled it with the suitable configuration, and it worked.
+It’s not something we can do manually on all computers!
+
+Kind Regards,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 17:26
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Yes, the configuration seems fine.
+Make sure you use the latest version of the MacOS change IP script I provided. Also you may need to run the script using Mac admin rights.
+Then if you go to the agent UI > Settings tab, and press on MacOS : command key + option/Alt key + I , then you will see a new section which tells you the configured server domain or IP.
+Let us know the results.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 5:49 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Currently, we have 103 MacOS computers, 80 Linux Computers, and 17 Windows Computers.
+One of the key challenges we face is the inability to perform manual uninstallation/installation, primarily due to the lack of admin rights among our users.
+We use JamF for Mac, Intune for Windows, and Landscape for Linux; that’s why we need a functional script.
+
+From: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Date: Friday, 14 June 2024 at 16:14
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+This is my config:
+[cid:88e041fb-c744-4fff-a407-b774c3f30e9a@Image_2_]
+Is it right?
+
+KR,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 16:01
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Please make sure that you configure the correct server domain or IP before running the MacOS script :
+
+[cid:47b77150-85dd-4820-a4c5-6f4553d1b161@Image_3_]
+
+I have attached the script again.
+If it still doesn't work for you, then you may uninstall the epp agent, perform a fresh download of the agent from the new server UI and install the new epp agent which should have the correct server domain setting.
+
+Thank you and Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:37 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+Hello,
+
+I tried, but it still doesn’t work. I restarted my computer, but nothing changed.
+The options.ini file has the wrong server address. I tried to modify manually in admin mode and reverted to the old config just after.
+
+Kind Regards,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 15:25
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+Thanks in advance,
+Alexis Vervondel
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ?
+
+Kind Regards,
+Alexis
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+Error! Filename not specified.
+Error! Filename not specified.
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[Image removed by sender.]
+[Image removed by sender.]
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+[https://cluepoints.com/wp-content/uploads/2020/01/clue_points_cmyk.png]","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","alexis.vervondel@cluepoints.com","Alexis Vervondel","techsupport@netwrix.com","","","true","2024-06-17T14:26:31.000Z","true"
+"02sQk00000BOkoGIAT","500Qk00000BnNOZIA3","2024-06-17T15:21:10.000Z","2024-06-17T15:21:10.000Z","Hi Alexis,
+ 
+You're welcome.
+You can find here the latest epp agent for Ubuntu 22.04 :
+https://download.endpointprotector.com/linux_agent/EPPClient_v2.4.2.1006/EPPClient_ubuntu_22.04_v2.4.2.1006_x86_64.tar.gz
+                                                                          
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/17/2024 5:26 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+
+
+Hello Alin,
+
+Thank you for the last script; now it’s working perfectly! 
+
+The configuration will be deployed on all MacOS in the next 24 hours.
+
+Can you provide the package for Ubuntu Linux 22.04, please?
+
+Thank you for being so helpful!
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Monday, 17 June 2024 at 12:51
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+Is it possible you have a deployment job scheduled for the MacOS epp agent which could overwrite the manual change IP setting you are doing ?
+Please try to update again using the latest version of the script I provided.
+You may also try to configure the server IP address which corresponds to your domain, which is 18.199.196.214 (for mc302pv.hosted.endpointprotector.com).
+Let us know the results.
+If the issue still persists let me know your timezone and availability for a remote session using Zoom.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/17/2024 10:12 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hello Alin,
+
+I executed your script with admin rights and the config change to this:
+
+
+
+ 
+
+Then, reverted to the initial configuration:
+
+ 
+
+
+
+ 
+
+By the way, I uninstalled it and then reinstalled it with the suitable configuration, and it worked.
+
+It’s not something we can do manually on all computers! 
+
+ 
+
+Kind Regards,
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 17:26
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Yes, the configuration seems fine.
+Make sure you use the latest version of the MacOS change IP script I provided. Also you may need to run the script using Mac admin rights.
+Then if you go to the agent UI > Settings tab, and press on MacOS : command key + option/Alt key + I , then you will see a new section which tells you the configured server domain or IP. 
+Let us know the results.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 5:49 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Currently, we have 103 MacOS computers, 80 Linux Computers, and 17 Windows Computers.
+One of the key challenges we face is the inability to perform manual uninstallation/installation, primarily due to the lack of admin rights among our users.
+We use JamF for Mac, Intune for Windows, and Landscape for Linux; that’s why we need a functional script.
+
+ 
+
+
+
+
+From: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Date: Friday, 14 June 2024 at 16:14
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+
+This is my config:
+
+
+
+Is it right?
+
+ 
+
+KR,
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 16:01
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Please make sure that you configure the correct server domain or IP before running the MacOS script :
+
+
+
+I have attached the script again.
+If it still doesn't work for you, then you may uninstall the epp agent, perform a fresh download of the agent from the new server UI and install the new epp agent which should have the correct server domain setting.
+
+Thank you and Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:37 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+ 
+
+
+Hello,
+
+I tried, but it still doesn’t work. I restarted my computer, but nothing changed.
+
+The options.ini file has the wrong server address. I tried to modify manually in admin mode and reverted to the old config just after.
+
+ 
+
+Kind Regards,
+
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 15:25
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Try to use the version of the script I attached to this email for MacOS.
+
+Best regards,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 4:08 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hi Alin,
+
+I’ve tested the MacOS script by changing the address server from “endpoint.cluepoints.com” to “mc302pv.hosted.endpointprotector.com”, and it didn’t work.
+
+Can you provide some help?
+
+ 
+
+Thanks in advance,
+
+Alexis Vervondel
+ 
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Friday, 14 June 2024 at 14:28
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+You just need to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Please confirm if / when this support ticket can be closed.
+
+Thank you,
+Alin
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/14/2024 9:33 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hi Alin,
+
+I’ve migrated the backup to the SaaS.
+You can proceed with the next step.
+
+Thank you for the scripts. ? 
+
+ 
+
+Kind Regards,
+
+Alexis
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 19:57
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Re: Netwrix Support Ticket #411841 - - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hi Alexis,
+
+I enabled System Backup V2 option on your new server instance. You should be able to see it now from the server UI.
+Please continue with the import and please let us know once it's finalized and you see the configurations migrated, as we have to do one more step on our side.
+
+For Windows OS, if you need to change the epp server IP the client-machines communicate with, you can use this tool :
+http://download.endpointprotector.com/Support_files/ClientIPChange.zip
+For MacOS you can use this script:
+http://download.endpointprotector.com/custom_files/epp_change_ip.sh.zip
+For Linux OS, you will have to run again the agent installer with the new server IP/ domain configured and it will overwrite the existing settings.
+
+Thank you and Best regards,
+Alin
+
+
+
+--------------- Original Message ---------------
+From: Alexis Vervondel [alexis.vervondel@cluepoints.com]
+Sent: 6/13/2024 5:44 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #411841 - ref:_00D7091pB._500Q000BnNOZ:ref - Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+ref:_00D7091pB._500Q000BnNOZ:ref
+
+ 
+
+
+Hello,
+
+Both servers are on version 5.9.3.0.
+
+The backup V2 is done!
+Can you please enable the option on the SaaS server?
+
+Can you also generate a script to change the configuration for Linux (Ubuntu), MacOS, and  Windows, please?
+
+Thanks a lot,
+Alexis Vervondel
+
+ 
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Date: Thursday, 13 June 2024 at 15:50
+To: Alexis Vervondel <alexis.vervondel@CluePoints.com>
+Subject: Migration Premise to SaaS [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]
+
+
+Hello,
+
+Can you please let me know what is your current on-premise EPP Server version and also the version of the server hosted by us ?
+The first step is to make sure both server instances have the same version which is mandatory for the migration to work.
+If needed, please upgrade the servers using the Live Updates feature until they have the same version. (as seen from the lower right corner of server UI).
+
+Once the servers are on the same version you can create a System backup V2 on the old server. This will save all the settings and configurations. Make sure to save the password that is generated along with the System Backup V2 because it will be needed for the import. When the backup is complete, you can download it.
+Then on the new appliance from System Maintenance > System Backup V2 we can import the backup previously created. Let us know when you reach this step, as we'll have to enable this feature from the backend for the server hosted by us.
+
+Please note that the System Backup v2 will only save the settings and configuration from the old server, not the logs. You will find all the computers on the new server, all the rights and all the settings, except the logs. If you need the logs please create backups and download them before the migration (EPP UI > System Maintenance > Audit Log Backup).
+
+The final migration step will be for you to redirect the existing epp agents to the new epp server IP/ domain and then shutdown the old server.
+Let us know which OS you are using for client machines, as we can provide a tool to help you with this task.
+
+Thank you and Best regards,
+Alin
+
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0BnNOZ:ref
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+Error! Filename not specified.
+
+
+Error! Filename not specified.
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W. www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE
+
+
+
+
+
+
+
+
+
+
+
+Alexis Vervondel
+Senior IT Support Engineer I CluePoints®
+P. Mobile +32 487531029
+E. alexis.vervondel@CluePoints.com
+W.  www.cluepoints.com
+Cluepoints SA
+New Tech Centre, Avenue Albert Einstein 2A,
+Louvain-La-Neuve, 1348 BE","Re: Netwrix Support Ticket #411841 -  - Migration Premise to SaaS    [ ref:!00D70091pB.!500Qk0BnNOZ:ref ]","techsupport@netwrix.com","Netwrix Support","alexis.vervondel@cluepoints.com","","alin.decean@netwrix.com","true","2024-06-17T15:21:10.000Z","true"

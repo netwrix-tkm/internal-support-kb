@@ -1,0 +1,52 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000N69zSIAR","00439312","Support Ticket","Endpoint Protector agents not communicating to the managing server","A few users agents are not communicating back to the managing server. We had a look and the agent is running on these laptops but not updating in the machine/computers <a href='https://logs.They' target='_blank'>logs.They</a> all seem to have last communicated in Feb 2025.
+We need troubleshooting steps to ascertain if there is something wrong with the agents.
+We have a users available who have this issue, we just need guidance on how to collect the logs.
+
+Regards
+Shaheed.","","Customer have an issue with the EPP clients which are not communicating with the server.","Guide them to check if the endpoint can reach the server through the command telnet.
+
+Provide them the steps to gather a set of logs.
+
+Customer provided us the logs which contain a detailed error (curl 35) which helped us understand why the EPP client is not communicating with the server.
+
+We will schedule a new session where, we will uninstall and reinstall the client and if the situation will persist we will reregister the license.
+
+We propose a new session to the customer to perform a new troubleshooting steps.
+
+In the new session we have reregister the endpoint that appeared offline and asked the customer to install one EPP client on one of the affected endpoints using the 6.2.4.2 version and on the other using the default department.
+
+Today we had a new session with the customer where we checked the following details:
+-activated Wireshark logs and set filters for their epp like ""host 10.5.8.170""
+-tried to update policies and restart service  - same curl 35 error received on the test system;
+-switched the client to communicate to their staging server - 10.5.8.149  -same curl 35 error received on the test system; 
+-checked chipers version after seeing the following error in the Schannel logs A fatal alert was received from the remote endpoint. The TLS protocol defined fatal alert code is 40. The SSPI client process is EPPservice (PID: 11396). 
+-We checked that TLS1.2 is enabled in registries for that test system  - result -  Enabled
+-Checked curl command for Forcepoint IP -adding a screenshot for comparison  - the 10.5.8.170 and 10.5.8.149 are EPP while the 10.5.8.178 is Forcepoint one - The epp ones receiving curl 35 while Forecpoint is connected receives curl 60 
+
+
+All the above information have been forwarded to our R&D team.
+
+We would like to schedule a new session with the customer where we will invite In  our Senior Engineer Manager of the Client team DevOps Manager.
+
+11-04 Currently waiting for the customer to share with us their availability.
+15-04 We had a new session with the customer where we discussed about the EPP server cyphers and it remains to check if they are changing after the update of the EPP server version .
+We have performed the steps required and install a new VM with the 5.6.0.0 with Ubuntu 18.04 which we have upgraded it to the 5.9.3.0 and verified if any changes were made on the epp.nginx.conf file.
+16-04 We informed the customer about our findings and sent them the answers to their questions.
+A new session was performed with the customer to clear the disk usage, which was cleared successfully.
+
+Checking  why the cyphers from 5.9.4.0 to 5.9.4.1 were changed
+
+25.04.2025 - we replaced the ciphers on the Staging EPP server 5941 version with  the ones from 5940 and agreed that we will have a sync regarding the results next week.
+
+29-04 We have added 4 more ciphers to the nginx.conf so they can test with the affected machines.
+
+12-05 Performed a new follow up on the case.
+
+15-05 Customer confirmed that they fix the issue after we added 4 more ciphers to the nginx.conf .","Customer confirmed that they fix the issue after we added 4 more ciphers to the nginx.conf .
+AES256-SHA256
+AES128-SHA256
+AES256-SHA
+AES128-SHA
+
+Case can be closed.","Caching/Indexing Issue","Daniel Anton","Unexpected Behavior","Netwrix Endpoint Protector","Device Control","Device not recognized","","","61.0","Closed - Resolved","FNB - First National Bank","Shaheed Jardine","2025-03-19T13:32:32.000Z","2025-05-19T12:51:32.000Z"

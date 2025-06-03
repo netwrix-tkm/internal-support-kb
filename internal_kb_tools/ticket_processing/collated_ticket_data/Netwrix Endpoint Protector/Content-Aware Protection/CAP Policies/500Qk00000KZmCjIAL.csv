@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KZmCjIAL","00431950","Support Ticket","Issue with Compressed Files Not Being Blocked or Logged in Content Aware Protection (CAP) Policy","Hello,
+
+We are encountering an issue in 'Content Aware Protection (CAP)' under 'Content Aware Policies' when creating a new policy. When the 'Archive Files' option is not checked, compressed files sent via email or ADB are neither being blocked nor generating logs.
+
+Test environment details:
+
+OS: macOS (Sequoia 15.1.1)
+EPP Server: 5.9.4.0
+EPP Client: 3.0.3.1
+Policy configurations: Images attached (Content Aware <a href='https://Protection.png' target='_blank'>Protection.png</a>, Content Aware <a href='https://Policies.png' target='_blank'>Policies.png</a>)
+List of files used: Image attached (test file <a href='https://list.png' target='_blank'>list.png</a>)
+Log results after sending compressed files: Image attached (Content Aware <a href='https://Report.png' target='_blank'>Report.png</a>)
+Test results: Image attached (test <a href='https://result.png' target='_blank'>result.png</a>)
+
+Testing on macOS (Sequoia 15.1.1) revealed that compressed file formats such as ace, xz, bz2, and xar were neither blocked nor logged. Additionally, for other compressed files (excluding the four mentioned above), logs were not generated completely. The logs were only generated properly when I re-compressed the test files individually and sent them.
+
+For example, when compressing five files (png, bmp, gif, ppt, and docx) into a <a href='https://test.zip' target='_blank'>test.zip</a> file and sending it, only png and docx appear in the logs. However, when the files are compressed and sent individually, they all appear in the logs.
+
+I would like to understand why the logs are not being generated properly. Additionally, I am wondering if the issue with compressed file extensions not being blocked or logged could be a bug in the product. I would appreciate a detailed explanation.","","Some archive formats are supported (like .zip, .gz), these are scanned by contents. The other unsupported formats are not scanned by contents.
+
+The checkboxes related to ACE/xz/etc refer to the mimetype. So, when a file is determined to be an ACE archive, even if we do not support scanning the contents, we know that it is an ACE archive and the policy could choose to block ACE archives.","- Share with the customer the limitation that EPP has in the mentioned scenario.
+- clear with R&D the limitations based on the customers answer","Ticket closed by Client","Guidance","Alin Anca","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","","","90.2","Closed - Resolved","CoSoSys Korea","daehee kim","2025-01-14T00:42:18.000Z","2025-04-14T06:39:57.000Z"

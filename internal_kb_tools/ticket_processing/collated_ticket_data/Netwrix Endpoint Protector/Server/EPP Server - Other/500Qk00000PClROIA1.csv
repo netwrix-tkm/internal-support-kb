@@ -1,0 +1,28 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000PClROIA1","00445280","Support Ticket","Missing log reports on the Unify server console","Issue:
+Since May 10, 2025, log reports are no longer advised in the Unify server console!
+
+Expectation:
+- Please review and resolve the issue.
+- The retrieval of all log reports on the console must be restored and made possible!
+
+Hint:
+Communication between EPP client and server is functional!
+
+Attached is the list ""<a href='https://EP_Reporting_and_Administration_Tool_2025-05-15.xlsx' target='_blank'>EP_Reporting_and_Administration_Tool_2025-05-15.xlsx</a>"" sorted by lastly created log reports.
+Thanks for a quick intervention in advance!","","16 May
+
+- Log reports created after May 10, 2025, are not being displayed in the Unify server console.
+- Communication between the EPP client and server is working as expected.
+- Initial investigation revealed that logs are being stored in Redis but are not processed due to the memory threshold being reached.
+- No logs have been lost; they remain stored in Redis.
+- The root cause appears related to memory usage and batch log processing limitations.
+- Further investigation is required to address the memory threshold issue and restore normal log processing.","16 May
+
+1. R&D team to further investigate the root cause of the memory threshold being reached in Redis.
+2. Analyze and optimize memory usage and batch log processing on the Unify server.
+3. Implement necessary fixes or configuration changes to allow logs to be processed and displayed in the console.
+4. Update the customer with progress and estimated resolution timeline.
+5. Confirm with the customer once log report visibility is restored.","The issue where log reports created after May 10, 2025, were not displayed in the Unify server console was resolved during a remote support session. The root cause was identified as excessive memory consumption by the Redis key scanning mechanism, which led to logs being stored but not processed or displayed due to memory thresholds being reached. No logs were lost during this period.
+
+To resolve the issue, the Redis data search and processing logic was optimized to reduce memory usage and improve efficiency. After these adjustments, all logs from May 10, 2025, onward are now visible in the UI, and the system is operating normally. The solution was confirmed during a follow-up session, and the environment will continue to be monitored to ensure ongoing stability.","Server/Infrastructure Issue - Netwrix-Managed System","Alin Anca","Unexpected Behavior","Netwrix Endpoint Protector","Server","EPP Server - Other","","","13.9","Closed - Resolved","BMW Group AG","Christian Spies","2025-05-15T15:47:54.000Z","2025-05-29T14:27:39.000Z"

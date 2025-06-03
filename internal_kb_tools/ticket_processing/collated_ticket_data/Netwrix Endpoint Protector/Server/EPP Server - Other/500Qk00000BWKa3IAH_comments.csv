@@ -1,0 +1,236 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007p7TGIAY","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Account ACV has been changed to 1439333.34.
+Priority has been changed to High.","005Qk000001nVk9IAE","2024-07-09T16:32:41.000Z","2024-07-09T16:32:41.000Z","false","false"
+"00aQk000007pAFqIAM","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Account ACV has been changed to 719666.67.","005Qk000001nVk9IAE","2024-07-09T16:32:42.000Z","2024-07-09T16:32:42.000Z","false","false"
+"00aQk000007ytf8IAA","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: I have lost access to ADO. This is a test to see if this message is received there.","005Qk000001nVk9IAE","2024-07-17T13:26:22.000Z","2024-07-17T13:26:22.000Z","false","false"
+"00aQk000007ywoOIAQ","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Andrew Siemasko:
+
+From customer today:
+
+
+	 - 	Ensure port 25 is running for localhost and FQDN of China instance # netstat -ntlp | grep sendmail
+
+	 - 	Port 25 should listen on both i.e. localhost and cim5d26.hosted.endpointprotector.com
+	 - 	Ports 25/587 should be open
+	 - 	Run check-hostname script and ensure the hostname consistence and okay along domain name
+
+	 - 	/etc/mail/hosts
+	 - 	/etc/hosts
+	 - 	/etc/nsswitch.conf  <Ensure dns lookup start from host file>
+	 - 	/etc/mail/access < Connectivity check> for localhost, localhost.localdomain, server FQDN i.e. cim5d26.hosted.endpointprotector.com
+	 - 	Root users are not allowed by default in sendmail. Check LOCAL_USER value and allow root account.
+
+	 - 	Hostname and site name is okay in sendmail.mc.
+	 - 	SMART_HOST is point to our email security
+
+They are requesting a meeting with a developer ""with sendmail experience""
+
+[DevOps CommentId:10564535]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007ywoPIAQ","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Oana-Cristina Rus:
+
+Did the customer receive the success message when you checked the sent test email and saved the settings?
+
+
+--- CODE ---
+Changes have been saved! A test email was sent to xxx
+--- CODE ---
+Your email settings may be incorrect if you don't get this message.
+
+[DevOps CommentId:10566888]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007ywoQIAQ","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Andrew Siemasko:
+
+@Oana-Cristina Rus The customer does receive this message, but they do not receive the test email or any other email alerts.
+
+[DevOps CommentId:10574195]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007ywoRIAQ","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi @Andrew Siemasko,
+
+I hope you are well.
+
+After discussing with dev team, I can confirm the following: We do not officially support SMTP relay, only a direct connection to a SMTP server with UI settings and limitations.
+If we need to support SMTP relay, please either create a new investigation request or add to this request all the information related to their infrastructure. After that, we will ask DevOps team to do a sendmail POC and if needed, server team will add anything else that is required in the codebase.
+
+Thank you and apologies for the delay on this one.
+
+Regards,
+Cristi
+
+cc: @Oana-Cristina Rus
+
+[DevOps CommentId:10583036]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007ywoSIAQ","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Michael Paye:
+
+[Force comment sync]
+
+[DevOps CommentId:10587448]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007z6VuIAI","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: The customer is using the same SMTP relay in another instance and it is able to send out email alerts. I'm also confused... sendmail doesn't work with SMTP relays or is this a limitation based on how it is implemented in epp?","005Qk000001nVk9IAE","2024-07-17T15:23:18.000Z","2024-07-17T15:23:18.000Z","false","false"
+"00aQk0000084KQCIA2","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Krzysztof Staszalek:
+
+Hi Support,
+
+We don't officially support SMTP relay. If behavior of this MTA indicate different response than target mail servers, we are not supporting it.
+If other instance of EPP works with that SMTP Relay, seems MTA behave properly, but there is routing issue on customer side then. 
+Our DEV team will no provide outside EPP product any customer environment SMTP/routing troubleshooting. Out of EPP scope. This is task of customer mailing/routing teams or their providers.  Based on earlier Oana feedback SMTP on our appliance works if proper message is return and seems traffic is cut off somewhere on customer side. 
+
+fyi @Cecilia-Maria Iepure @Cristian-Alexandru Halmajan @Stacy Petruzzi @Peter Rooney 
+
+[DevOps CommentId:10602765]","0054u000006gtWUAAY","2024-07-22T10:51:03.000Z","2024-07-22T10:51:03.000Z","false","false"
+"00aQk000008Dwb3IAC","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-30T05:00:37.000Z","2024-07-30T05:00:37.000Z","false","false"
+"00aQk000008Dwb5IAC","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-07-22 10:51 UTC and the last detected comment from support was 2024-07-17 15:23 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10645615]","0054u000006gtWUAAY","2024-07-30T05:00:38.000Z","2024-07-30T05:00:38.000Z","false","false"
+"00aQk000008EJasIAG","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Customer is using a mimecast server that has a server UI/settings/etc. Their /var/eppfiles/mailer directory does not exist, so there is nothing to clean up.","005Qk000001nVk9IAE","2024-07-30T13:10:45.000Z","2024-07-30T13:10:45.000Z","false","false"
+"00aQk000008EfBaIAK","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Additionally, inodes have a lot of free space, and there are no alerts pending in the DB (nothing seems to have ever been sent). Telnet connections to the inbound server on port 587 are successful, yet sendmail still times out.","005Qk000001nVk9IAE","2024-07-30T16:38:39.000Z","2024-07-30T16:38:39.000Z","false","false"
+"00aQk000008ObLCIA0","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nVk9IAE","2024-08-07T17:16:23.000Z","2024-08-07T17:16:23.000Z","false","false"
+"00aQk000008bDmTIAU","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-19T05:01:03.000Z","2024-08-19T05:01:03.000Z","false","false"
+"00aQk000008bDmVIAU","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-08-09 06:31 UTC and the last detected comment from support was 2024-07-30 16:38 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10777663]","0054u000006gtWUAAY","2024-08-19T05:01:04.000Z","2024-08-19T05:01:04.000Z","false","false"
+"00aQk000008bYe2IAE","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Customer is still looking for an update. They've reached out to their mimecast server team, and this is what they reported back:
+
+""Emails are failing to be delivered because of the DNS authentication policy. There is no SPF record, no DKIM or DMARC set up for the sending entity.
+There is data mismatch for MAIL FROM and ENVELOPE FROM address which needs to be addressed.""
+
+Is this expected behavior?","005Qk000001nVk9IAE","2024-08-19T12:35:53.000Z","2024-08-19T12:35:53.000Z","false","false"
+"00aQk000008bZILIA2","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nVk9IAE","2024-08-19T12:48:22.000Z","2024-08-19T12:48:22.000Z","false","false"
+"00aQk000008bZdKIAU","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: ""mail.log.zip"" attached to ticket and sharefile:
+
+https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/Forms/AllItems.aspx?FolderCTID=0x012000978F70D7BA571F45AD9B3319B15F1A4A&id=%2Fsites%2FCustomerSupportFiles%2FData%2F00414520
+
+Connection time outs begin at Aug  8 21:43:54","005Qk000001nVk9IAE","2024-08-19T12:53:10.000Z","2024-08-19T12:53:10.000Z","false","false"
+"00aQk000008crMrIAI","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-20T09:00:32.000Z","2024-08-20T09:00:32.000Z","false","false"
+"00aQk000008crMtIAI","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Krzysztof Staszalek:
+
+@WaitingOnEngineer 
+
+Any Exchange and related DKIM/SPF/DMARC configuration is Haelon part, it should be configured and investigated by customer related support team responsible for Exchange and DNS domain configuration, as well any network routing traffic.
+Our DEV can only support appliance part, to ensure that services are running and attempting to deliver e-mails based on given configuration. DEV will not provide any support for 3rd party solution or technology.
+
+[DevOps CommentId:10787823]","0054u000006gtWUAAY","2024-08-20T09:00:33.000Z","2024-08-20T09:00:33.000Z","false","false"
+"00aQk0000095c2gIAA","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: I have communicated to Haleon that we believe the issue is on their end, but Mimecast disagrees and is still pointing the finger at us. We received a communication from Haleon yesterday requesting an escalation and a meeting with our development team and Mimecast.
+
+""We’d like to get to resolution for the email issue in China.  It’s been dragging on for over three (3) months. While we have engagement from EPP & Mimecast, the communication has been solely via email and each are essentially stating that it’s not their issue.  It’s time to get the experts on a call together to sort this out in real time. Please escalate our request to have an engineer/SME assigned to this issue. We are working on the same from the Mimecast side.""
+
+This issue has been a full deployment showstopper for their Chinese instance and they are getting extremely frustrated. I understand we are not the developers of sendmail, but Haleon views this as an EPP functionality essential to their business that does not function.","005Qk000001nVk9IAE","2024-09-13T16:15:33.000Z","2024-09-13T16:15:33.000Z","false","false"
+"00aQk0000095ePSIAY","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: team can we please work with this customer on this???","005Qk000001nVk2IAE","2024-09-13T16:46:45.000Z","2024-09-13T16:46:45.000Z","false","false"
+"00aQk000009ByJrIAK","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Hi team, can we please schedule a call with this customer and their mimecast vendor?? Honestly it's an unacceptable look for us to not be flexible or work with a large enterprise customer like Haleon.","005Qk000001nVk2IAE","2024-09-19T13:36:43.000Z","2024-09-19T13:36:43.000Z","false","false"
+"00aQk000009DHKTIA4","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Krzysztof Staszalek:
+
+@WaitingOnEngineer @Stacy Petruzzi 
+
+In this case nothing changed. 
+As it was confirmed by our DEV's configuration and ""relay"" part is proper. 
+Any other troubleshooting or 3rd party communication is on customer support side. 
+Based on Andrew comment: https://dev.azure.com/NetwrixCorporation/CoSoSys-EPP/_workitems/edit/345975#10587653 I believe it is routing/config issue on customer side.
+
+As well as was bellow mentioned (https://dev.azure.com/NetwrixCorporation/CoSoSys-EPP/_workitems/edit/345975#10583036) we only support direct SMTP connection, so if used MTA is not responding like SMTP server, we don't support it. 
+
+fyi @Cristian-Alexandru Halmajan @Peter Rooney 
+
+[DevOps CommentId:10954050]","0054u000006gtWUAAY","2024-09-20T11:04:12.000Z","2024-09-20T11:04:12.000Z","false","false"
+"00aQk000009ILOzIAO","500Qk00000BWKa3IAH","According to Mimecast, who Haleon is also working with, they are saying everything is configured correctly on their end too. We're not sure how to proceed here. Is there any further information you can provide to the customer/anything I can collect to help explain ourselves?","005Qk000001nVk9IAE","2024-09-24T22:20:40.000Z","2024-09-24T22:20:40.000Z","false","false"
+"00aQk000009J86MIAS","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: According to Mimecast, who Haleon is also working with, they are saying everything is configured correctly on their end too. We're not sure how to proceed here. Is there any further information you can provide to the customer/anything I can collect to help explain ourselves?","005Qk000001nVk9IAE","2024-09-25T15:21:45.000Z","2024-09-25T15:21:45.000Z","false","false"
+"00aQk000009J8BBIA0","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nVk9IAE","2024-09-25T15:22:05.000Z","2024-09-25T15:22:05.000Z","false","false"
+"00aQk000009zC2HIAU","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-01T12:48:04.000Z","2024-11-01T12:48:04.000Z","false","false"
+"00aQk000009zC2JIAU","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+Findings during the 31.10.2024 Investigation
+
+
+	 - 	Temporary configuration files for sendmail SMTP relay were not created. Resolution: Created them manually.
+	 - 	Sent test email, received an error from mimecast relay server 050 535 Incorrect authentication data - https://community.mimecast.com/docs/DOC-1369#535 [LIrhMjyFM2-cBQSIPYYd-g.de62]
+
+Test email:
+
+
+--- CODE ---
+220 cim5d26.hosted.endpointprotector.com ESMTP Sendmail 8.15.2/8.15.2/Debian-22ubuntu3; Thu, 31 Oct 2024 13:21:29 GMT; (No UCE/UBE) logging access from: localhost(OK)-localhost [127.0.0.1]
+
+>>> EHLO cim5d26.hosted.endpointprotector.com
+250-cim5d26.hosted.endpointprotector.com Hello localhost [127.0.0.1], pleased to meet you
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-EXPN
+250-VERB
+250-8BITMIME
+250-SIZE
+250-DSN
+250-ETRN
+250-AUTH DIGEST-MD5 CRAM-MD5
+250-DELIVERBY
+250 HELP
+>>> VERB
+250 2.0.0 Verbose mode
+>>> MAIL From:<root@cim5d26.hosted.endpointprotector.com> SIZE=168 AUTH=root@cim5d26.hosted.endpointprotector.com
+250 2.1.0 <root@cim5d26.hosted.endpointprotector.com>... Sender ok
+>>> RCPT To:<flaviu.costras@netwrix.com>
+>>> DATA
+250 2.1.5 <flaviu.costras@netwrix.com>... Recipient ok
+354 Enter mail, end with ""."" on a line by itself
+>>> .
+050 <flaviu.costras@netwrix.com>... Connecting to de-smtp-outbound-1.mimecast.com. port 587 via relay...
+050 220 de-smtp-outbound-1.mimecast.com ESMTP; Thu, 31 Oct 2024 14:21:30 +0100
+050 >>> EHLO cim5d26.hosted.endpointprotector.com
+050 250-de-smtp-outbound-1.mimecast.com Hello [3.233.76.139]
+050 250-STARTTLS
+050 250 HELP
+050 >>> STARTTLS
+050 220 Starting TLS [LIrhMjyFM2-cBQSIPYYd-g.de62]
+050 >>> EHLO cim5d26.hosted.endpointprotector.com
+050 250-de-smtp-outbound-1.mimecast.com Hello [3.233.76.139]
+050 250-AUTH PLAIN LOGIN
+050 250 HELP
+050 >>> AUTH LOGIN
+050 334 VXNlcm5hbWU6
+050 >>> <<<REDACTED>>> - we checked and it's the correct username setup
+050 334 UGFzc3dvcmQ6
+050 >>> <<REDACTED>> - we checked that the password is the same saved in the email config
+050 535 Incorrect authentication data - https://community.mimecast.com/docs/DOC-1369#535 [LIrhMjyFM2-cBQSIPYYd-g.de62]
+050 >>> AUTH PLAIN cososys-endpoint-protector2-CN@haleon.com cososys-endpoint-protector2-CN@haleon.com <<<REDACTED_PASSWORD>>>
+050 <flaviu.costras@netwrix.com>... Deferred: Connection reset by de-smtp-outbound-1.mimecast.com.
+250 2.0.0 49VDLTod1336896 Message accepted for delivery
+flaviu.costras@netwrix.com... Sent (49VDLTod1336896 Message accepted for delivery)
+Closing connection to [127.0.0.1]
+>>> QUIT
+221 2.0.0 cim5d26.hosted.endpointprotector.com closing connection
+--- CODE ---
+
+[DevOps CommentId:11158483]","0054u000006gtWUAAY","2024-11-01T12:48:05.000Z","2024-11-01T12:48:05.000Z","false","false"
+"00aQk00000A3BNmIAN","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVk9IAE","2024-11-05T16:18:26.000Z","2024-11-05T16:18:26.000Z","false","false"
+"00aQk00000A4w4UIAR","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Haleon is reporting that they are observing the following behavior on their PROD server where email alerts can be sent:
+ 
+-Email alerts are being sent to all Admins even when only certain admins are selected for the alert.
+-Email alerts appear to be coming from ‘root user’ (looking to get more clarification on this)","005Qk000001nVk9IAE","2024-11-06T20:31:33.000Z","2024-11-06T20:31:33.000Z","false","false"
+"00aQk00000ABZO6IAP","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Mimecast recommended that Haleon reset their password, which they have done. After changing the credentials to the new ones within the management console, they say that they are still unable to receive the test email.","005Qk000001nVk9IAE","2024-11-12T14:57:09.000Z","2024-11-12T14:57:09.000Z","false","false"
+"00aQk00000AIGWpIAP","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the new comment has been added: Met with customer at 10 AM EST (18/11). Flaviu altered the configuration file and Sudhir corrected the credentials entered into the frontend UI. This seems to have corrected the issue, but we are still going to have to wait on Haleon to perform a few more tests to be sure.","005Qk000001nVk9IAE","2024-11-18T16:18:27.000Z","2024-11-18T16:18:27.000Z","false","false"
+"00aQk00000Agu85IAB","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVk9IAE","2024-12-11T14:52:16.000Z","2024-12-11T14:52:16.000Z","false","false"
+"00aQk00000AguEYIAZ","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Account ACV has been changed to 1439333.34.","005Qk000001nVk9IAE","2024-12-11T14:53:26.000Z","2024-12-11T14:53:26.000Z","false","false"
+"00aQk00000AguG9IAJ","500Qk00000BWKa3IAH","On Escalation Ticket # 00414520 the Following Fields have been updated: 
+Account ACV has been changed to 719666.67.","005Qk000001nVk9IAE","2024-12-11T14:53:32.000Z","2024-12-11T14:53:32.000Z","false","false"

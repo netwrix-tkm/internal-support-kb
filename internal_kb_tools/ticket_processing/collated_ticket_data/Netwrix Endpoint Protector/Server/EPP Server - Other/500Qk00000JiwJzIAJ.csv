@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000JiwJzIAJ","00430412","Support Ticket","The server returned a ""500 Internal Server Error"".","We couldn't access the server and got the following error message. 
+========================================================
+Oops! An Error Occurred
+The server returned a ""500 Internal Server Error"".
+
+
+Something is broken
+
+Please e-mail us at <a href='https://support@endpointprotector.com' target='_blank'>support@endpointprotector.com</a> and let us know what you were doing when this
+error occurred. We will fix it as soon as possible. Sorry for any
+inconvenience caused.","","/var/lib/mysql partition got filled up and mysql was not starting anymore.
+
+Services were stopped.
+Backed up /var/lib/mysql and /var/eppfiles/mysql (from 2 separate partitions) to a newly-created temporary disk.
+Disk was extended to 200 GB finally.
+Removed last 3 partitions (the 2 separate partitions above and the extended partition that held them) and created a new ext4 partition that replaces the three on which backed up data was put back.
+/etc/mysql/my.cnf was configured to point to /var/eppfiles/mysql instead of /var/lib/mysql.
+apparmor profile was modified to include /var/eppfiles/mysql
+/var/lib/mysql -> /var/eppfiles/mysql symlink has been created
+Services were started again.
+EPP Server worked successfully in the UI.","","Solved in a session with the customer. We needed to clear some disk space on the appliance","","Adrian Draghici","Error","Netwrix Endpoint Protector","Server","EPP Server - Other","","5941","25.5","Closed - Resolved","King's Own Institute","Brian KANG","2024-12-19T22:12:53.000Z","2025-01-14T11:13:45.000Z"

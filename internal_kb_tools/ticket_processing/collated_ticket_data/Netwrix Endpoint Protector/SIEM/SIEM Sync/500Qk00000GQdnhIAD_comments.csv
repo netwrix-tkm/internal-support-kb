@@ -1,0 +1,127 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009S6tJIAS","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Account ACV has been changed to 11393.14.
+Priority has been changed to Critical.","005Qk000001nViCIAU","2024-10-03T07:54:54.000Z","2024-10-03T07:54:54.000Z","false","false"
+"00aQk000009S6uvIAC","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Account ACV has been changed to 5696.57.","005Qk000001nViCIAU","2024-10-03T07:54:55.000Z","2024-10-03T07:54:55.000Z","false","false"
+"00aQk000009a7QqIAI","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi @Cătălin Stoian, @Bogdan Melinte,
+
+Could you please have a look at the above issue?
+Augustina mentioned that this is something devops should look into.
+
+Thank you,
+Cristi
+
+[DevOps CommentId:11040502]","0054u000006gtWUAAY","2024-10-10T09:40:25.000Z","2024-10-10T09:40:25.000Z","false","false"
+"00aQk000009h2uEIAQ","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: Hi @Cristian-Alexandru Halmajan:
+The customer is asking for an update on this case.","005Qk000001nViCIAU","2024-10-16T15:18:40.000Z","2024-10-16T15:18:40.000Z","false","false"
+"00aQk000009iTdpIAE","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-17T14:39:39.000Z","2024-10-17T14:39:39.000Z","false","false"
+"00aQk000009iTdrIAE","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: Bogdan Melinte:
+
+@WaitingOnEngineer
+
+Hi Andre,
+
+I can see from the attached screenshots that they are using UDP for the communication, so the tcpdump command would need to be adjusted to capture the UDP traffic. Based on the reply from here: https://askubuntu.com/a/913417 we would need the following command:
+
+
+--- CODE ---
+tcpdump -n udp port 1516
+--- CODE ---
+
+Also could you please also make a screenshot of the actual config file locate under `/etc/syslog-ng/conf.d/*` would have a number attached to it based on the actual entry in the SIEM list.
+
+Also could you please issue the following command `systemctl restart syslog-ng` and capture from the `/var/eppfiles/syslog` file when the service restart the connection parameters. They will show as an error if there is an issue. 
+
+Also we could potentially verify if the udp port is actually open on the other side by using the netcat utility, but this would potentially need to be installed as we do not have it by default on the instance (https://serverfault.com/a/263034).
+
+[DevOps CommentId:11077505]","0054u000006gtWUAAY","2024-10-17T14:39:41.000Z","2024-10-17T14:39:41.000Z","false","false"
+"00aQk000009ieCgIAI","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: Hi @Bogdan Melinte
+Thank you for the feedback.  I would need to request SSM access again to their appliance as it is hosted by us.","005Qk000001nViCIAU","2024-10-17T16:16:37.000Z","2024-10-17T16:16:37.000Z","false","false"
+"00aQk000009ieMLIAY","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-10-17T16:17:57.000Z","2024-10-17T16:17:57.000Z","false","false"
+"00aQk000009zZDOIA2","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: Hi @Bogdan Melinte:
+
+Please see the output by the screenshots uploaded to the attachments folder.
+
+I ran  `systemctl restart syslog-ng` but received the following error
+
+""Job for syslog-ng.service failed because the control process exited with error code.
+See ""systemctl status syslog-ng.service"" and ""journalctl -xe"" for details.""
+
+
+The directory ""/var/eppfiles/syslog"" does not exist.
+
+
+I could not action the below, could you please advise on how t proceed?
+""Also we could potentially verify if the udp port is actually open on the other side by using the netcat utility, but this would potentially need to be installed as we do not have it by default on the instance (https://serverfault.com/a/263034).""","005Qk000001nViCIAU","2024-11-01T17:51:39.000Z","2024-11-01T17:51:39.000Z","false","false"
+"00aQk000009zZEzIAM","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-11-01T17:52:37.000Z","2024-11-01T17:52:37.000Z","false","false"
+"00aQk00000A6hEEIAZ","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: Hi Bogdan, Team
+Could you please advise on next steps? Please see the results (screenshots) after running the commands given.","005Qk000001nViCIAU","2024-11-08T08:12:56.000Z","2024-11-08T08:12:56.000Z","false","false"
+"00aQk00000A6t8vIAB","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-08T12:26:52.000Z","2024-11-08T12:26:52.000Z","false","false"
+"00aQk00000A6t8xIAB","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: Bogdan Melinte:
+
+@WaitingOnEngineer
+
+Andre, could you please take a quick look at what the error when starting syslog-ng is and also potentially test the configs with
+
+`
+syslog-ng -s` - this will check for syntax errors
+`
+syslog-ng --check-startup` - this will check the initialization (might not be available depending on the syslog-ng version)
+
+[DevOps CommentId:11192311]","0054u000006gtWUAAY","2024-11-08T12:26:53.000Z","2024-11-08T12:26:53.000Z","false","false"
+"00aQk00000A6w5CIAR","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-08T13:38:42.000Z","2024-11-08T13:38:42.000Z","false","false"
+"00aQk00000AHmgnIAD","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-18T05:02:44.000Z","2024-11-18T05:02:44.000Z","false","false"
+"00aQk00000AHmgpIAD","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-11-08 12:26 UTC and the last detected comment from support was 2024-11-08 08:12 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11225243]","0054u000006gtWUAAY","2024-11-18T05:02:44.000Z","2024-11-18T05:02:44.000Z","false","false"
+"00aQk00000AHn3NIAT","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-18T05:13:52.000Z","2024-11-18T05:13:52.000Z","false","false"
+"00aQk00000AQqN0IAL","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-26T05:02:09.000Z","2024-11-26T05:02:09.000Z","false","false"
+"00aQk00000AQqN2IAL","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-11-08 12:26 UTC and the last detected comment from support was 2024-11-08 08:12 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11272909]","0054u000006gtWUAAY","2024-11-26T05:02:10.000Z","2024-11-26T05:02:10.000Z","false","false"
+"00aQk00000AQycHIAT","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2024-11-26T06:48:15.000Z","2024-11-26T06:48:15.000Z","false","false"
+"00aQk00000AUFDbIAP","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: The customer confirmed that their SIEM logs are now received, the issue is resolved and the case can be closed.  Thank you very much for your help @Bogdan Melinte","005Qk000001nViCIAU","2024-11-29T11:20:01.000Z","2024-11-29T11:20:01.000Z","false","false"
+"00aQk00000AUFlRIAX","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2024-11-29T11:20:25.000Z","2024-11-29T11:20:25.000Z","false","false"
+"00aQk00000AUFogIAH","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Account ACV has been changed to 11393.14.","005Qk000001nViCIAU","2024-11-29T11:20:56.000Z","2024-11-29T11:20:56.000Z","false","false"
+"00aQk00000AUAfNIAX","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Account ACV has been changed to 5696.57.","005Qk000001nViCIAU","2024-11-29T11:21:02.000Z","2024-11-29T11:21:03.000Z","false","false"
+"00aQk00000AXR0UIAX","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: Bogdan Melinte:
+
+Closed based on Automated communication from SF
+
+[DevOps CommentId:11316488]","0054u000006gtWUAAY","2024-12-03T09:24:53.000Z","2024-12-03T09:24:53.000Z","false","false"
+"00aQk00000AXR26IAH","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the new comment has been added: Bogdan Melinte:
+
+Closed based on Automated communication from SF
+
+[DevOps CommentId:11316488]","0054u000006gtWUAAY","2024-12-03T09:24:55.000Z","2024-12-03T09:24:55.000Z","false","false"
+"00aQk00000AXT5WIAX","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Account ACV has been changed to 11393.14.","005Qk000001nViCIAU","2024-12-03T10:29:32.000Z","2024-12-03T10:29:32.000Z","false","false"
+"00aQk00000AXT77IAH","500Qk00000GQdnhIAD","On Escalation Ticket # 00422805 the Following Fields have been updated: 
+Account ACV has been changed to 5696.57.","0054u000006gtWUAAY","2024-12-03T10:29:40.000Z","2024-12-03T10:29:40.000Z","false","false"

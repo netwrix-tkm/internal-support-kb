@@ -1,0 +1,54 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007Pr0HIAS","500Qk00000BiNLyIAN","Had remote session -> server did not receive logs from the EPP clients.
+Proposed another remote session to generate logs on the EPP client side.","005Qk000001nViKIAU","2024-06-18T20:55:01.000Z","2024-06-18T20:55:01.000Z","false","false"
+"00aQk000007RLabIAG","500Qk00000BiNLyIAN","On Escalation Ticket # 00412387 the Following Fields have been updated: 
+Account ACV has been changed to 17933.20.","005Qk000001nViKIAU","2024-06-20T00:49:58.000Z","2024-06-20T00:49:58.000Z","false","false"
+"00aQk000007RLcDIAW","500Qk00000BiNLyIAN","On Escalation Ticket # 00412387 the Following Fields have been updated: 
+Account ACV has been changed to 8966.60.","005Qk000001nViKIAU","2024-06-20T00:49:59.000Z","2024-06-20T00:49:59.000Z","false","false"
+"00aQk000007bDVOIA2","500Qk00000BiNLyIAN","Issue resolved by regenerating the Server Certificate Stack -> Waiting 1 week to make sure everything is okay and that the logs will still be received.","005Qk000001nViKIAU","2024-06-27T15:54:02.000Z","2024-06-27T15:54:02.000Z","false","false"
+"00aQk000007oxX9IAI","500Qk00000BiNLyIAN","On Escalation Ticket # 00412387 the Following Fields have been updated: 
+Account ACV has been changed to 23250.47.
+Status has been changed to Closed - Resolved.","005Qk000001nViKIAU","2024-07-09T16:10:12.000Z","2024-07-09T16:10:12.000Z","false","false"
+"00aQk000007p3RJIAY","500Qk00000BiNLyIAN","On Escalation Ticket # 00412387 the new comment has been added: ADO can be closed.
+Regenerate Server Certificate Stack -> resolved the issue","005Qk000001nViKIAU","2024-07-09T16:11:30.000Z","2024-07-09T16:11:30.000Z","false","false"
+"00aQk000007p8QwIAI","500Qk00000BiNLyIAN","On Escalation Ticket # 00412387 the Following Fields have been updated: 
+Account ACV has been changed to 46500.94.","005Qk000001nViKIAU","2024-07-09T16:12:31.000Z","2024-07-09T16:12:31.000Z","false","false"
+"00aQk000007p8SXIAY","500Qk00000BiNLyIAN","On Escalation Ticket # 00412387 the Following Fields have been updated: 
+Account ACV has been changed to 23250.47.","005Qk000001nViKIAU","2024-07-09T16:12:33.000Z","2024-07-09T16:12:33.000Z","false","false"
+"00aQk000008784KIAQ","500Qk00000BiNLyIAN","On Escalation Ticket # 00412387 the new comment has been added: Marius Ghiurcau:
+
+The issue here seems to be similar to the one here. Logs are generated for sure on the client side. And probably most of the logs are still stored on the machine (and can't say that for sure since I don't have the SecureItEasy.db) According to the logs the EPP client receives a certificate but when it tries to use it to communicate with the EPP server it receives an 401 error. I mentioned some tips on the other thread, there might be something related to the customer's environment, maybe a Load balancer that's messing up client's certificates. Anyway, this should be probably handled by the DevOps or Server team, if you don't figure it out in Support.
+
+[DevOps CommentId:10471220]","0054u000006gtWUAAY","2024-07-24T05:00:45.000Z","2024-07-24T05:00:45.000Z","false","false"
+"00aQk000008784LIAQ","500Qk00000BiNLyIAN","On Escalation Ticket # 00412387 the new comment has been added: Flaviu Moldovan:
+
+Hi @Cristian-Alexandru Halmajan ,
+Can you please assign this ticket to a colleague from the Server Team or Devops? Regarding Marius's previous comment I do not believe it to be a Load Balancer issue or other configuration issue, because the EPP server is hosted in AWS on EPP side.
+
+Customer noticed the issue appearing after a partition was extended in AWS on our side, from what they mentioned.
+
+AWS details: Production Connecture(Oregon - us-west-2)
+
+
+Thank you!
+Flaviu
+
+[DevOps CommentId:10473234]","0054u000006gtWUAAY","2024-07-24T05:00:45.000Z","2024-07-24T05:00:45.000Z","false","false"
+"00aQk000008784MIAQ","500Qk00000BiNLyIAN","On Escalation Ticket # 00412387 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi @Flaviu Moldovan ,
+
+Here are some steps that you can try:
+
+	 - 	Regenerate the Server Certificate Stack
+	 - 	Reregister a machine and check the communication after reregister.
+	 - 	Check the value of  Appliance->Server Maintenance, Increase Communication Security - if it's On , please set it to Off until this is resolved
+	 - 	Check the  Appliance->Server Maintenance, Client Registration Certificate. Do they have a  Client Registration Certificate set here?
+
+	 - 	Ask the customer what kind of certificates he is using
+
+	 - 	Please provide some printscreens with the Appliance->Server Maintenance page (Client Registration Certificate, Increase Communication Security) and  System Configuration -> System Settings page (Server Certificate Stack)
+
+Thanks
+
+[DevOps CommentId:10492871]","0054u000006gtWUAAY","2024-07-24T05:00:45.000Z","2024-07-24T05:00:45.000Z","false","false"

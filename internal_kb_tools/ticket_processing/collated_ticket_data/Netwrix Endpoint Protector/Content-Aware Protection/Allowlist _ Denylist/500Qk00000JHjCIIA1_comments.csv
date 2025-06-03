@@ -1,0 +1,441 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BsWe5IAF","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Account ACV has been changed to 115546.0292307692308.
+Priority has been changed to Medium.","005Qk000002lX5pIAE","2025-02-18T19:13:29.000Z","2025-02-18T19:13:29.000Z","false","false"
+"00aQk00000BsWfhIAF","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Account ACV has been changed to 57773.0146153846154.","005Qk000002lX5pIAE","2025-02-18T19:13:31.000Z","2025-02-18T19:13:31.000Z","false","false"
+"00aQk00000BthIwIAJ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Uploaded screen shots from attempts to modify the sysinfo EPP version to 5.8.1.0 in order to attempt to trick the server to upgrade.","005Qk000002lX5pIAE","2025-02-19T17:18:21.000Z","2025-02-19T17:18:21.000Z","false","false"
+"00aQk00000Btiq5IAB","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Priority has been changed to High.
+Product Version has been changed to NONE.","005Qk000002lX5pIAE","2025-02-19T17:31:10.000Z","2025-02-19T17:31:10.000Z","false","false"
+"00aQk00000BvtJBIAZ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-21T09:41:53.000Z","2025-02-21T09:41:53.000Z","false","false"
+"00aQk00000BvtJDIAZ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Oana-Cristina Rus:
+
+SQL error 27.png (logs from 2025 02 19) - Cannot apply manual patch, wrong version: 5.9.0.0. Should be 5.8.1.0
+This error appears when the previous patch is applied successfully, in our case 5900, and you try again to apply the 5900 offline patch.
+All the MySQL errors like 'Column already exists: Duplicate column name 'xxxxxxx'' indicates that the column already exists in the database.
+
+This shows that the 5900 patch was applied successfully.
+
+This scenario was also tested on our end.
+We successfully applied the 5900 offline patch, but after trying to apply it again, we encountered the same error in the logs.
+
+Also, you can take a look at the space disk space problem.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11683295]","0054u000006gtWUAAY","2025-02-21T09:41:54.000Z","2025-02-21T09:41:54.000Z","false","false"
+"00aQk00000Bwi0kIAB","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Hello,
+
+During our meetings with the customer we tried 2 approaches during our remote sessions:
+1. We checked in the database and discovered that the current version displayed there is 5920 even if the version displayed in the bottom right corner of the UI was 5810. 
+Then we tried to apply the 5930 offline patch. The patch was applied, it did not return any errors in the patch log, but some pages from the UI were not accessible. 
+So we had to revert back to the backup which was taken prior to the server update.
+
+2. Since in the UI the version displayed was 5810 we updated the server version in the database to match the version from the UI and then we tried to apply the patch 5900.
+It returned the errors that we collected last time and then we had to revert back to the backup.
+
+Regarding the disk space, there was enough disk space so that the patch could be applied, as we increased the disk space on the server before applying the update.
+
+Let us know what we should try to do in order to have this fixed.
+
+Thank you,","005Qk000001nViHIAU","2025-02-21T21:02:44.000Z","2025-02-21T21:02:44.000Z","false","false"
+"00aQk00000ByUcpIAF","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Oana-Cristina Rus:
+
+-  Second attempt at upgrade after restoring from previous backup
+
+Can you provide us with all the steps that you follow?
+Before you make the backup what was the EPP server version?
+Did you import the database before to update the EPP server?
+
+Were the servers the same version (backup version and new server version need to be the same).
+If they were not, did you upgrade the new server to the same version as the backup or did you import the backup before updating the new server to the old server version (backup version).
+If they were not the same version, you need to do the restore again, but make sure that both the backup version and the server version are the same before importing the backup.
+Otherwise the database will be in an inconsistent state and pages / functionality will break .
+
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11692551]","0054u000006gtWUAAY","2025-02-24T15:24:14.000Z","2025-02-24T15:24:14.000Z","false","false"
+"00aQk00000BylvOIAR","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-02-24T17:27:22.000Z","2025-02-24T17:27:22.000Z","false","false"
+"00aQk00000BypKgIAJ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: -  Second attempt at upgrade after restoring from previous backup:
+
+1. Can you provide us with all the steps that you follow?
+- The backup was restored as it was before we applied the update, the restore was made from the virtualization software
+- EPP Server was again showing 5810 in the UI and 5920 in the database
+
+2. Before you make the backup what was the EPP server version?
+Before making the backup the server showed 5810 in the EPP UI
+
+3. Did you import the database before to update the EPP server?
+Since there is no other update applied to the server prior to the server update, I strongly believe that the database could have been migrated to this appliance from an old server. 
+
+4. Were the servers the same version (backup version and new server version need to be the same).
+I don't know who assisted with the server migration but I am pretty sure that the servers were on the same version, the version displayed in the UI 5810. This is the first thing we check prior to a migration.
+ 
+5. If they were not, did you upgrade the new server to the same version as the backup or did you import the backup before updating the new server to the old server version (backup version).
+I don't know what happened in the past regarding the migration, but I assume that the update was not correctly applied on the old server and it did not modify the version on the UI and then the database was imported on a 5810 server
+
+6. If they were not the same version, you need to do the restore again, but make sure that both the backup version and the server version are the same before importing the backup.
+Otherwise the database will be in an inconsistent state and pages / functionality will break .
+I don't know who assisted with the server migration but I am pretty sure that the servers were on the same version, the version displayed in the UI 5810. This is the first thing we check prior to a migration.","005Qk000001nViHIAU","2025-02-24T17:38:15.000Z","2025-02-24T17:38:15.000Z","false","false"
+"00aQk00000BynxCIAR","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViHIAU","2025-02-24T17:39:13.000Z","2025-02-24T17:39:13.000Z","false","false"
+"00aQk00000Bz4pyIAB","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Customer followed up and asked that we help them with the upgrade urgently, or they will start looking for other DLP solutions.
+
+Could we get someone from the Server Team join us in a meeting with the customer?","005Qk000001nViGIAU","2025-02-24T20:07:53.000Z","2025-02-24T20:07:53.000Z","false","false"
+"00aQk00000Bz5IzIAJ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Severity has been changed to Critical.","005Qk000001nViGIAU","2025-02-24T20:10:03.000Z","2025-02-24T20:10:03.000Z","false","false"
+"00aQk00000BzbxBIAR","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-25T08:30:12.000Z","2025-02-25T08:30:12.000Z","false","false"
+"00aQk00000BzbxDIAR","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Krzysztof Staszalek:
+
+@WaitingOnEngineer
+
+It seems, that backup were not made improper moment, if after restore shows proper consistent version.
+
+No ACV has been provided, but still this out of DEV support scope.
+In this case we recommend deploy new image and copy configuration.
+
+fyi @Jeremy Moskowitz @Oana-Cristina Rus @Cristian-Alexandru Halmajan
+
+[DevOps CommentId:11696285]","0054u000006gtWUAAY","2025-02-25T08:30:13.000Z","2025-02-25T08:30:13.000Z","false","false"
+"00aQk00000C04frIAB","500Qk00000JHjCIIA1","Hi Team! The version of the server appears correct after the restore of the snapshot, indeed, but I don't understand how is that relevant here. The problem is that the upgrade doesn't work and didn't work from the beginning. Not sure what you mean that the ""backup were not made improper moment"".","005Qk000001nViGIAU","2025-02-25T16:55:12.000Z","2025-02-25T16:55:12.000Z","false","false"
+"00aQk00000C0dVWIAZ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-02-25T22:37:49.000Z","2025-02-25T22:37:49.000Z","false","false"
+"00aQk00000C15QCIAZ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Hi Team! The version of the server appears correct after the restore of the snapshot, indeed, but I don't understand how is that relevant here. The problem is that the upgrade doesn't work and didn't work from the beginning. Not sure what you mean that the ""backup were not made improper moment"".","005Qk000001nViGIAU","2025-02-26T13:51:36.000Z","2025-02-26T13:51:36.000Z","false","false"
+"00aQk00000C2O7OIAV","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-27T11:56:56.000Z","2025-02-27T11:56:56.000Z","false","false"
+"00aQk00000C2O7QIAV","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+Let's backtrack:
+
+	 - 	 Support mentioned the following (ramon.torres@netwrix.com):
+
+""Uploaded screen shots from attempts to modify the sysinfo EPP version to
+ 5.8.1.0 in order to attempt to trick the server to upgrade.""
+
+The above should never be done. You WILL corrupti the database, regardless if the server had an issue or not.
+
+
+2. Support later said that (Emil-Ionut Podar): They tried to apply 5930 and then reverted back to previous version (?) and changed the database server version again like above, and applied 5900 . This resulted in an error, that some of the changes in the 5900 patch were already present on the server's database which reported 5920
+
+Again, this should not be done, as stated above. At this point the following questions become relevant, to understand what has actually happened at this customer. The problem here is not that the upgrade didn't work, it's that the UI server version is not the same as the one in the db, thus:
+
+
+	 - 	Was there a database migration being done on that server before upgrading it? If so, what was the ORIGINAL/INITIAL version of the customers server from which the database was taken. (Moving customer from old VM to new VM)
+	 - 	If above, then: What was the original version of the server where this database backup has been imported to (NEW VM)
+	 - 	Were the servers involved in the scenario above at the same version. NO MIGRATION or System Backup should be made between servers of different versions
+
+As it's already know, uploading a database backup/doing a migration before servers are updated to the same version will not work.
+
+
+Going further, we asked the above questions and didn't get a full response to understand what has happened. 3 of the questions were answered with ""I don't know"", and one implied that there might have been an import of a previous backup to that server, which we also suspect.  
+What do you mean by: ""The version of the server appears correct after the restore of the snapshot, indeed"". The UI version is in sync with the db version? Can you elaborate? This detail is relevant, as are the questions above.
+
+Thus, to continue from the developers' perspective, we need clear answers. 
+
+IF the backup of previous database was made, and was of a different version of the server than the server you import the database backup to, then the database is in an inconsistent state related to the project sources (code). That means the solution is to start the process again and MAKE SURE both the servers have reached the same version BEFORE importing the migrated database.
+
+Another option is to deploy a new image and make the config changes manually from one server to another,as previously mentioned.
+
+[DevOps CommentId:11711129]","0054u000006gtWUAAY","2025-02-27T11:56:58.000Z","2025-02-27T11:56:58.000Z","false","false"
+"00aQk00000C2lQZIAZ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: We had the server snapshot created before trying to attempt any of the changes.
+Since the version in the UI and database were different we just tried to apply each one of the 2 patches:
+1. 5930, on top of the existing configuration (5810 displayed in ui and 5920 displayed in the database) -> after the patch was applied it showed the correct version for the server in the UI and also in the database -> but some pages which failed to open returning 500 internal server errors -> then the server was reverted to the snapshot
+2. 5900, on top of the existing configuration (5810 displayed in ui and 5920 displayed in the database) in order to have this scenario tested I modified the version in the database from 5920 to 5810 -> then the server was reverted to the snapshot
+
+Other questions:
+Q: Was there a database migration being done on that server before upgrading it? If so, what was the ORIGINAL/INITIAL version of the customers server from which the database was taken. (Moving customer from old VM to new VM)
+A: I am not sure about this. I just suppose that there was a database migration done since there are no log files or backups from the previous patches which should have been applied in the past.
+
+Q: If above, then: What was the original version of the server where this database backup has been imported to (NEW VM)
+A: Going further on the premise that there was a database migration, I suppose that the issue was occurring on the previous server. So the server versions were already messed up (5810 displayed in UI and 5920 displayed in the database) and then, when the migration was made on a new server, the new server was running on 5810.
+
+Q: Were the servers involved in the scenario above at the same version. NO MIGRATION or System Backup should be made between servers of different versions
+A: If there was a migration at some point, all the migrations are made after checking that the server version displayed in the UI is the same on both the server. So I'm pretty sure that both the servers were on the same version.
+
+
+Q: What do you mean by: ""The version of the server appears correct after the restore of the snapshot, indeed"". The UI version is in sync with the db version? Can you elaborate? This detail is relevant, as are the questions above.
+A: After restoring the server to the snapshot, it does not show the correct versions. It shows 5810 in UI and 5920 in database.
+The server was in this state before we even tried to apply any update.","005Qk000001nViHIAU","2025-02-27T16:27:40.000Z","2025-02-27T16:27:40.000Z","false","false"
+"00aQk00000C64bWIAR","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer 
+
+We need to find out if we are talking about a migration of the database on that server, or not. Was it done or not during your intervention or in the past.
+
+Once we find out, depending on that we need to change focus on investigating if the database, before ANY changes are made (patch, support intervention, etc), was in an inconsistent state with the project sources. This will need to happen either:
+
+	 - 	On the server from which the database was/is migrated from, if that operation has taken place now or in the past (OLD SERVER) .                   OR
+	 - 	On the current server you are applying the upgrade, and no migration has/is taken/taking place
+
+That means, the version inconsistency needs to be resolved BEFORE any upgrade or change is applied.
+For that we need:
+
+	 - 	From the OLD server, if it exists and a migration has taken place
+
+	 - 	Database version and UI version
+	 - 	Logs with all the updates applied from /var/log/epp
+
+	 - 	From the current or new server
+
+	 - 	Original version of the database, sources (from UI) and VM version (what base is used)
+	 - 	Logs with all the updates applied from /var/log/epp
+
+Based on the logs and the potential errors within, we can further check if there is an issue with the database or sources, if in the past patches were not applied correctly. For continued investigation AFTER we get the info above, we will prepare steps of commands to run and/or files to change/update.
+
+As previously mentioned, there is also the option of recreating the server from scratch with a new VM base. This is the preferred approach if we are talking about a PoC, or a newer server in production. If it's an established server in production, we need to continue with the above points and investigate, resolve the initial issue about versioning and ONLY THEN upgrade the appliance.
+
+[DevOps CommentId:11720797]","0054u000006gtWUAAY","2025-03-03T08:02:57.000Z","2025-03-03T08:02:57.000Z","false","false"
+"00aQk00000C6TJlIAN","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-03-03T15:26:55.000Z","2025-03-03T15:26:55.000Z","false","false"
+"00aQk00000C9898IAB","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Hello,
+The customers told us that they did not migrate the EPP Server in the past.
+Let us know what other details we should collect from the customer's server.
+Thank you,","005Qk000001nViHIAU","2025-03-05T13:44:15.000Z","2025-03-05T13:44:15.000Z","false","false"
+"00aQk00000C9750IAB","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViHIAU","2025-03-05T13:44:25.000Z","2025-03-05T13:44:25.000Z","false","false"
+"00aQk00000CEGaiIAH","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-10T08:59:48.000Z","2025-03-10T08:59:48.000Z","false","false"
+"00aQk00000CEGakIAH","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+I understand the customer did not do this, but was it done via support? (moved db dump or backup restore?)
+
+You have the details in the previous comment, i will paste them again:
+
+
+	 - 	Version of the database and sources (from UI) and VM version (what base is used)
+	 - 	Logs with all the updates applied from /var/log/epp
+
+Run these/check these/retrieve these from the appliance/appliances affected:
+
+From database:
+
+--- CODE ---
+SELECT * FROM sysinfo WHERE name = 'eppversion';
+
+--- CODE ---
+
+From UI:
+
+Check the eppversion displayed in the right-hand-side corner.
+
+Patch logs From disk:
+
+All logs from all appliance involved that have the format below and are located at: /var/log/epp
+
+
+--- CODE ---
+update_HWA*
+update_MP*
+--- CODE ---
+
+
+--- CODE ---
+--- CODE ---
+
+[DevOps CommentId:11756507]","0054u000006gtWUAAY","2025-03-10T08:59:49.000Z","2025-03-10T08:59:49.000Z","false","false"
+"00aQk00000CFUN3IAP","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-03-10T21:59:41.000Z","2025-03-10T21:59:41.000Z","false","false"
+"00aQk00000CFTqoIAH","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-10T21:59:54.000Z","2025-03-10T21:59:54.000Z","false","false"
+"00aQk00000CG8E1IAL","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-03-11T13:30:34.000Z","2025-03-11T13:30:34.000Z","false","false"
+"00aQk00000CGLEVIA5","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Hi Team, 
+
+We checked the backend and could not find any of the files in the mentioned locations. The version in the backend is 5.9.2.0,  same as it is when checking for view applied updates. On the EPP UI, in the bottom right corner, it still says 5.8.1.0. Also if we check for updates, we an not find any. 
+
+Also, Ubuntu version is 22.04 and mysql is on 5.7.42. 
+
+We have uploaded all of the requested screenshot in the Daniela screenshots folder. 
+
+Please advise.
+
+Thank you.","005Qk000002lX5pIAE","2025-03-11T16:05:43.000Z","2025-03-11T16:05:43.000Z","false","false"
+"00aQk00000CHKRdIAP","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-12T08:08:04.000Z","2025-03-12T08:08:04.000Z","false","false"
+"00aQk00000CHKRfIAP","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+I reviewed the screenshots in the added ""Daniel"" archive, and the following are still in question/need to be clarified:
+
+
+	 - 	From which server are these retrieved? Old server or new server?
+	 - 	The screenshots daniela-001, daniela-002 show that the DB is at version 5920 and that the 5900, 5910 and 5920 patches were applied to the server (online patches from liveupdate). This also corroborates with (daniela - 009 - UI applied patches.PNG) which implies that the DB was updated sequentialy in december 2023. ------ BUT (daniela - 004 - var-log-epp no update logs.PNG) and (daniela - 005 - EPPserver-appliance-updates.PNG) screenshots imply that there are no patch logs or artifacts on that server (new server, fresh VM?). That means, db is updated to 5920 BUT no patches have been applied to that server, which shows it's last patch script as code 0060 (5810) in the (daniela - 005 - EPPserver-appliance-updates.PNG) screenshot. 
+	 - 	So, what happened here? Was there a database dump from a server with 5920 version uploaded to that server which is actually at 5810, based on the last script code in appliance/update (0060 script is for 5810) (daniela - 005 - EPPserver-appliance-updates.PNG).
+	 - 	To sum up, based on the screenshots: That server from which the shots are taken looks to be at version 5810 sources but 5920 database. The last update run there is 5810 based on the script list in appliance/updates (daniela - 005 - EPPserver-appliance-updates.PNG). It also looks like a 5920 database was uploaded there manually and imported over the original 5810 database. This will not work! Sources are out of sync with the database, there is a 3 patch difference/gap there that can not be accounted for otherwise.
+
+To fix this guys, make sure that what you import on the new server is from an old server with the same version (both db and sources). As it looks now, the server in the screenshots is in fact 5810 sources. So, in order to upload/import/migrate a database that has version 5920, you need a server with 5920 sources as well.
+
+[DevOps CommentId:11769916]","0054u000006gtWUAAY","2025-03-12T08:08:05.000Z","2025-03-12T08:08:05.000Z","false","false"
+"00aQk00000CHokfIAD","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-03-12T15:29:20.000Z","2025-03-12T15:29:20.000Z","false","false"
+"00aQk00000CI3jiIAD","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: 1. From which server are these retrieved?
+ 
+The server in question is from the original snapshot created before the attempt to apply the EPP 5820 maintenance offline clients patch, which applies to version 5810. 
+ 
+2. Are the logs or screenshots from the old server or the new server?
+ 
+The logs and screenshots are from the old server.
+ 
+3. What happened here?
+ 
+An attempt was made to apply the EPP 5820 maintenance offline clients patch, which is intended for use on version 5810.
+ 
+4. Was there a database dump from a server with version 5920 uploaded to the server that is actually at version 5810, based on the last script code in appliance/update?
+ 
+To the best of my knowledge, no database dump from a server with version 5920 was uploaded to the server that remains at 5810.","005Qk000002lX5pIAE","2025-03-12T17:51:20.000Z","2025-03-12T17:51:20.000Z","false","false"
+"00aQk00000CIkVJIA1","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-13T07:50:21.000Z","2025-03-13T07:50:21.000Z","false","false"
+"00aQk00000CIkVLIA1","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+How did a 5920 database get to be on that server? Take these into consideration:
+
+	 - 	Database changes from 5900, 5910 and 5920 seem to be correctly applied (via screenshots provided on applied updates page as well as live_update table)
+	 - 	No patch scripts in the appliance/uploads indicate that any patch higher than 5810 was applied on that server
+	 - 	No patch logs are present on that appliance, indicating no patches have been applied or that it's a 5810 new vm
+
+Do you guys have any historic intervention list / operations made for this customer?
+
+[DevOps CommentId:11776482]","0054u000006gtWUAAY","2025-03-13T07:50:22.000Z","2025-03-13T07:50:22.000Z","false","false"
+"00aQk00000CIkwkIAD","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+To try and identify which version of sources we are actually talking about here, provide us with the following hashes. Run the below commands:
+
+
+--- CODE ---md5sum /EPPServer/sieratool/apps/ratool/lib/SoapControllerMySQL.class.php
+
+md5sum /EPPServer/sieratool/web/js/jquery/functions.js
+--- CODE ---
+
+ 
+Also, list the contents of the following directory:
+ 
+
+--- CODE ---ls -la /var/eppfiles/backup/patches/
+--- CODE ---
+
+[DevOps CommentId:11776595]","0054u000006gtWUAAY","2025-03-13T08:03:39.000Z","2025-03-13T08:03:39.000Z","false","false"
+"00aQk00000CJ7LSIA1","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: To answer the question, Do you guys have any historic intervention list / operations made for this customer? 
+
+We do not have any historic intervention list / operations at this time. I will keep you posted if I find one.
+
+I will send out an invite to the customer to gather the results from the code requested. 
+
+Thank you.","005Qk000002lX5pIAE","2025-03-13T14:21:49.000Z","2025-03-13T14:21:49.000Z","false","false"
+"00aQk00000CJ9GnIAL","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-03-13T14:41:10.000Z","2025-03-13T14:41:10.000Z","false","false"
+"00aQk00000CKh1uIAD","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Hello Team,
+
+I have created screenshots from latest remote session and have uploaded them to the escalation case (Daniela Screenshots 2):
+
+Also here is the output from the code you requested to be ran from the backend:
+
+[root@eppserver:/home/epproot]$ md5sum /EPPserver/sieratcool/apps/epptool/lib/SoapControllerMySQL.class.php
+5e30b33a35faed58f301ad8e432ed5ad  /EPPserver/sieratcool/apps/epptool/lib/SoapControllerMySQL.class.php
+
+
+[root@eppserver:/home/epproot]$ md5sum /EPPserver/sieratcool/web/js/jquery/functions.js
+6c2659e5a32ab09f7c69214f6ad49aaa  /EPPserver/sieratcool/web/js/jquery/functions.js
+
+
+[root@eppserver:/home/epproot]$ ls -al /var/eppfiles/backup/patches
+total 8
+drwxr-xr-x 2 root root 4096 May 15 2023 .
+drwxr-xr-x 5 root root 4096 Jan 19 2023 ..","005Qk000002lX5pIAE","2025-03-14T16:23:15.000Z","2025-03-14T16:23:15.000Z","false","false"
+"00aQk00000COI0AIAX","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-18T11:38:17.000Z","2025-03-18T11:38:17.000Z","false","false"
+"00aQk00000COI0CIAX","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+[root@eppserver:/home/epproot]$ md5sum /EPPserver/sieratcool/apps/epptool/lib/SoapControllerMySQL.class.php
+5e30b33a35faed58f301ad8e432ed5ad  /EPPserver/sieratcool/apps/epptool/lib/SoapControllerMySQL.class.php
+
+There is no directory named 'epptool' , maybe you are refering to 'ratool'? Also, i see no screenshot with this command in the folder. Can you confirm that the hash is correct/do you have a screenshot for it?
+
+I ask because.... the hash for the second file you mentioned in the comment is different from the one in the screenshot provided  (image1).
+
+Comment:
+[root@eppserver:/home/epproot]$ md5sum /EPPserver/sieratcool/web/js/jquery/functions.js
+----> 6c2659e5a32ab09f7c69214f6ad49aaa  <----- /EPPserver/sieratcool/web/js/jquery/functions.js
+
+Screenshot:
+6c269bfa32ab09f76c9241f6ad49aaa6
+
+I will assume that the hash in the screenshot is correct, as such:
+
+
+	 - 	That's a 5810 clean/new vm server, with 5810 sources. This is because there are no patches applied / no backups present based on the screenshot provided. The functions.js hash in the screenshot (image1) coincides with the original 5810 file on record on our side.
+	 - 	This being a new server,as far as the data indicates, i come back to my original question: Why is there a 5920 database on a server, with 5810 sources?
+
+To put this case to rest:
+
+	 - 	Revert new server to original snapshot with 5810 database
+	 - 	Update new server to 5920
+	 - 	Create snapshot of new server
+	 - 	Go to old server which (as far as this ticket is concerned, is apparently at 5920) and create a backup/backupv2/db dump
+
+	 - 	Move backup/dump to new server
+	 - 	Import backupv2/dump on new server
+
+[DevOps CommentId:11799999]","0054u000006gtWUAAY","2025-03-18T11:38:18.000Z","2025-03-18T11:38:18.000Z","false","false"
+"00aQk00000COs5CIAT","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-03-18T17:07:56.000Z","2025-03-18T17:07:56.000Z","false","false"
+"00aQk00000CQX1TIAX","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: We were successfully able to migrate the EPP 5.9.2.0 database from old EPP server to new one. 6 hours later. Thank you.","005Qk000002lX5pIAE","2025-03-19T20:36:46.000Z","2025-03-19T20:36:46.000Z","false","false"
+"00aQk00000CYGpqIAH","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Hello Team, 
+
+Customer is having an issue blocking sensitive data from being sent out in outlook. Sensitive data being sent out email addresses that are not apart of their domain. Policy created to block from happening while allowing emails in domain. 
+
+ I collected the logs while they reproduced the issue. 
+
+The logs are located here: 
+https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00429307
+
+epp_logs.zip;epp_logs.1.zip
+
+- Customer is using Microsoft Outlook for Microsoft 365 MSO Version 2502 (Build 16.0.18526.20168) 64-bit
+
+Please let us know what could be the issue.
+
+Thank you","005Qk000002lX5pIAE","2025-03-26T14:32:23.000Z","2025-03-26T14:32:23.000Z","false","false"
+"00aQk00000Cb2wnIAB","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-28T13:10:28.000Z","2025-03-28T13:10:28.000Z","false","false"
+"00aQk00000Cb2wpIAB","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Ramon,
+I hope you are well.
+
+As the new issue related to blocking Outlook is not related to the reported and escalated issue with incorrectly applying manual patch, I would kindly ask you to raise a new ticket and close this one as it is fixed.
+
+Also, if this new issue is related to New Outlook, and based on the version (2502), it seems it is, please be aware that we do not currently offer support for New Outlook. This improvement will be available in the 5.9.4.3 release, which will be released in the upcoming months.
+
+Thank you,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11859634]","0054u000006gtWUAAY","2025-03-28T13:10:29.000Z","2025-03-28T13:10:29.000Z","false","false"
+"00aQk00000Cb7q2IAB","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the new comment has been added: Hi Team,
+
+As requested we have raised a separate ticket for the second issue.
+
+Thank you!
+Ramon","005Qk000002lX5pIAE","2025-03-28T14:00:39.000Z","2025-03-28T14:00:39.000Z","false","false"
+"00aQk00000Cb9WrIAJ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002lX5pIAE","2025-03-28T14:18:39.000Z","2025-03-28T14:18:39.000Z","false","false"
+"00aQk00000Cb9bjIAB","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Account ACV has been changed to 115546.0292307692308.","005Qk000002lX5pIAE","2025-03-28T14:21:27.000Z","2025-03-28T14:21:27.000Z","false","false"
+"00aQk00000Cb8VyIAJ","500Qk00000JHjCIIA1","On Escalation Ticket # 00436207 the Following Fields have been updated: 
+Account ACV has been changed to 57773.0146153846154.","005Qk000002lX5pIAE","2025-03-28T14:21:29.000Z","2025-03-28T14:21:29.000Z","false","false"

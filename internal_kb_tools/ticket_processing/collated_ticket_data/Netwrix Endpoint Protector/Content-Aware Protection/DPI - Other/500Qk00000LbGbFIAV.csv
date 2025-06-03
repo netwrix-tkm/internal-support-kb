@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LbGbFIAV","00435056","Support Ticket","Poor performance with EPP Client","Hello,
+
+We recently starting rolling out the Netwrix Endpoint Protector to our employees and we're seeing the EppClient process slowing down workstations...
+
+Most of our staff are software engineers (myself included) and we can see the EppClient spike to using 100~150% CPU when doing disk ""heavy"" operations.
+These aren't super disk heavy operations, just fairly standard things with tools like our version control (git) or code editors (VsCode / InteliJ).
+
+Sometimes it's just hogging up CPU, but at other times it also seems to be slowing down the actions we're doing along the way!
+
+Do you have any suggestions on how to reduce this pain?
+
+Are there ways to exclude specific processes, paths, or files from being scanned by Netwrix?
+
+Regards,
+
+Ruben de Vries
+CTO, Provable Labs","","Based on the log file we could see that it is scanning very many git files.
+Recommended them to try to deselect from the CAP policy > Exit Point > Github Client, and to select under Policy Denylist > Source Code > Restricted Apps > Git
+Another scenario that they may try is to add the file path under Allowlist > File Location and see if the performances improves in this way.","- analyze the client logs
+- wait for a confirmation from them if the issue is resolved","Based on the log file we could see that it is scanning very many git files.
+Recommended them to try to deselect from the CAP policy > Exit Point > Github Client, and to select under Policy Denylist > Source Code > Restricted Apps > Git
+Another scenario that they may try is to add the file path under Allowlist > File Location and see if the performances improves in this way.","Incorrect configuration: Netwrix product","Alin Anca","Performance","Netwrix Endpoint Protector","Content-Aware Protection","DPI - Other","","","5.1","Closed - Resolved","Provable Labs","Ruben de Vries","2025-02-07T13:45:28.000Z","2025-02-12T16:04:40.000Z"

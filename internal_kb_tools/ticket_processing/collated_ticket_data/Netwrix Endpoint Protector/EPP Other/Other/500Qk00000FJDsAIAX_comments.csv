@@ -1,0 +1,66 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000951CnIAI","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-13T06:58:49.000Z","2024-09-13T06:58:49.000Z","false","false"
+"00aQk00000951CpIAI","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the new comment has been added: Robert Zavalczki:
+
+This customer uses the Chrome browser from a different location than ""/Applications"". The logs show that we don't monitor it:
+
+
+--- CODE ---com.cososys.eppclient: (Foundation) netext: New TCP flow: 105553122307456 - TCP com.google.Chrome.helper[{length = 20, bytes = 0xd06eb2fefaa16abbdc1a8b2ea9ebb31f19d78dd4}] remote: 142.251.175.94:443 interface en0
+
+com.cososys.eppclient: (Foundation) netext: NOT MONITORED TCP app: , com.google.Chrome.helper
+com.cososys.eppclient: (NetworkExtension) [com.apple.networkextension:] [Extension com.cososys.eppclient]: provider rejected new flow TCP com.google.Chrome.helper[{length = 20, bytes = 0xd06eb2fefaa16abbdc1a8b2ea9ebb31f19d78dd4}] remote: 142.251.175.94:443 interface en0
+--- CODE ---
+
+ This can be easily fixed by someone from the server team by adding the following process name for Chrome in the back-end:
+
+--- CODE ---INSERT INTO cf_application_grouped (cf_application_id, name, code, channel, use_data_exchange_host_process, use_dpi) VALUES (*XXXX*, 'Google Chrome', 'com.google.Chrome.helper', 3, 0, 1);--- CODE ---
+
+
+where *XXXX* should be replaced with the value returned by this query:
+
+
+--- CODE ---
+SELECT id FROM cf_application WHERE os_type=2 AND name='Chrome' AND code='Google Chrome';
+--- CODE ---
+
+@WaitingOnEngineer @Cristian-Alexandru Halmajan this can be assigned to the server team and a new development task should be filed.
+
+[DevOps CommentId:10920491]","0054u000006gtWUAAY","2024-09-13T06:58:49.000Z","2024-09-13T06:58:49.000Z","false","false"
+"00aQk00000951skIAA","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the new comment has been added: Thank you for the feedback @Robert Zavalczki","005Qk000001nViCIAU","2024-09-13T07:17:02.000Z","2024-09-13T07:17:02.000Z","false","false"
+"00aQk00000951uLIAQ","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-09-13T07:17:10.000Z","2024-09-13T07:17:10.000Z","false","false"
+"00aQk000009IWttIAG","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-25T05:01:56.000Z","2024-09-25T05:01:56.000Z","false","false"
+"00aQk000009IWtvIAG","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-17 10:02 UTC and the last detected comment from support was 2024-09-13 07:17 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:10971639]","0054u000006gtWUAAY","2024-09-25T05:01:57.000Z","2024-09-25T05:01:57.000Z","false","false"
+"00aQk000009IxcLIAS","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-09-25T13:39:19.000Z","2024-09-25T13:39:19.000Z","false","false"
+"00aQk000009QcxKIAS","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-02T05:01:59.000Z","2024-10-02T05:01:59.000Z","false","false"
+"00aQk000009QcxMIAS","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-17 10:02 UTC and the last detected comment from support was 2024-09-13 07:17 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11001926]","0054u000006gtWUAAY","2024-10-02T05:02:00.000Z","2024-10-02T05:02:00.000Z","false","false"
+"00aQk000009QgfxIAC","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-10-02T06:25:00.000Z","2024-10-02T06:25:00.000Z","false","false"
+"00aQk000009QevvIAC","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the new comment has been added: As the fix for this issue is scheduled to be included in the release of Endpoint Protector v5.9.4.1 the pending tasks are with R&D","005Qk000001nViCIAU","2024-10-02T06:27:01.000Z","2024-10-02T06:27:01.000Z","false","false"
+"00aQk00000BYAeYIAX","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Closing this ticket as 5.9.4.1 was released
+
+[DevOps CommentId:11582814]","0054u000006gtWUAAY","2025-01-31T14:27:27.000Z","2025-01-31T14:27:27.000Z","false","false"
+"00aQk00000BsV0TIAV","500Qk00000FJDsAIAX","On Escalation Ticket # 00420608 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2025-02-18T18:59:10.000Z","2025-02-18T18:59:10.000Z","false","false"

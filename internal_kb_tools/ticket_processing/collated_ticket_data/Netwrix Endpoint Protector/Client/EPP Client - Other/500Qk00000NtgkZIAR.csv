@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NtgkZIAR","00441540","Support Ticket","Issue with Xcode & rsync","Hello,
+
+Users have reported issues with building apps using Xcode after switching to Mac OS 15.4. From my understanding, this has also happened when EPP was first deployed on our estate, back in 2022. We have collected logs from one of the user which I will upload to the ticket.
+
+We added an user to the exemption group, and they confirmed that they did not have any more issues afterwards. Also another user had their EPP uninstalled to test and they also confirmed that the issue disappeared so it is confirmed that EPP is the culprit in this situation.
+
+Here are all the details from one of the users: ""After an upgrade to Mac OSX version 15.4 we are no longer able to build our apps using
+Xcode (doesn't matter which version of Xcode we use).
+The problem seems to be somehow related to `rsync`.
+I'd like to mention that similar issue with `rsync - Operation not permitted` already happened in 2022 and was reported by me and it came out to be related to the Endpoint Protector"".
+
+Could you please investigate and provide a resolution as soon as possible, as this is affecting a significant number of our users? 
+
+Thank you.","","the customer reported issues with building apps using Xcode, after switching to Mac OS 15.4
+The logs do not show anything else out of the ordinary, than a huge amount of threat scans for the rsync exit point.
+explained why it acts like this but the customer needs to use the exit point so excluding it is not an option.
+R&D ticket was raised and I am waiting for their feedback","gather new logs if needed.
+
+As we discovered the build failed because rsync is selected in the policy.
+The EPP Client scans the files which are compiled and if any of the files is blocked by epp, the build also fails.
+The engineers recommendation is to exclude rsync from scanning","Xcode is using Rsync, so when the EPP Client is blocking rsync it also prevents xcode from building apps.
+Removing rsync from the policy assigned to the developers addressed this.","Incorrect configuration: Netwrix product","Emil Podar","Unexpected Behavior","Netwrix Endpoint Protector","Client","EPP Client - Other","","","40.3","Closed - Resolved","The Stars Group Interactive Services / Flutter International","Denis Pasca","2025-04-10T07:22:27.000Z","2025-05-20T13:31:51.000Z"

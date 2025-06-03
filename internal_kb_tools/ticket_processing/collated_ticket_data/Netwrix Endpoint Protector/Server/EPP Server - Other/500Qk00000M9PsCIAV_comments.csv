@@ -1,0 +1,91 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BwA77IAF","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the Following Fields have been updated: 
+Account ACV has been changed to 3265320.00.
+Priority has been changed to Low.","005Qk000001nViFIAU","2025-02-21T14:52:36.000Z","2025-02-21T14:52:36.000Z","false","false"
+"00aQk00000Bw9scIAB","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the Following Fields have been updated: 
+Account ACV has been changed to 1632660.00.","005Qk000001nViFIAU","2025-02-21T14:52:38.000Z","2025-02-21T14:52:38.000Z","false","false"
+"00aQk00000ByMljIAF","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the new comment has been added: Laura-Dana Gyorgy:
+
+Hello,
+
+The error returned by API is correct given the fact that the items used for filtering accept multiple selections.
+For the query to work the request needs to be like : 
+
+
+--- CODE ---/api/logs/device-control?limit=10&page=1&direction=DESC&filter_by[device_type_id][]=1,
+--- CODE ---
+
+ meaning for parameters that accept multiple selections before, ""="" ""[ ]"" is needed, also the correct parameter for device_type is device_type_id.
+
+For this specific query the parameters that accept multiple selections are: 
+
+	 - 	event_id,  
+	 - 	machine_name,  
+	 - 	device_name,  
+	 - 	client_name and  
+	 - 	device_type_id. 
+ 
+
+CC @Cecilia-Maria Iepure, @Ioana-Adina Padurean
+
+[DevOps CommentId:11691542]","0054u000006gtWUAAY","2025-02-24T14:03:20.000Z","2025-02-24T14:03:20.000Z","false","false"
+"00aQk00000ByYuvIAF","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-24T15:17:07.000Z","2025-02-24T15:17:07.000Z","false","false"
+"00aQk00000ByYuxIAF","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the new comment has been added: Cecilia-Maria Iepure:
+
+ @WaitingOnEngineer Pleasee see the below feedback
+
+[DevOps CommentId:11692503]","0054u000006gtWUAAY","2025-02-24T15:17:08.000Z","2025-02-24T15:17:08.000Z","false","false"
+"00aQk00000BzbHFIAZ","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2025-02-25T08:21:01.000Z","2025-02-25T08:21:01.000Z","false","false"
+"00aQk00000Bzt9KIAR","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the new comment has been added: The customer replied:
+
+With the provided information some of the filters works now and I can export the required information via API
+
+ Unfortunately, the filter with VID = 0 or  PID = 0 does not work.
+
+&filter_by[vid][]=0 à Bad Request
+
+&filter_by[vid]=0 à contains values with vid e. g. B0E
+
+ Can you also check and adjust your API documentation. some of the values has been copied from the example and don’t work, please see the screenshots ""API filter not working 1"", ""API filter not working 2"", ""API filter not working 3"".","005Qk000001nViFIAU","2025-02-25T14:33:36.000Z","2025-02-25T14:33:36.000Z","false","false"
+"00aQk00000C1AEZIA3","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the new comment has been added: Laura-Dana Gyorgy:
+
+For the first filter VID is not a field that supports multiple selections, in my last comment there are the fields that support multiple selections. 
+
+
+
+For the second filter VID=0 and PID=0, the filter retrieves all items that contain the filled in value.
+For the errors presented in the attaches images, fields that accept multiple selections were used this means that the query needs to be like: 
+
+--- CODE ---
+/api/logs/device-control?limit=10&page=1&direction=DESC&filter_by[machine_name][]=MY_Computer_name
+--- CODE ---
+
+
+
+--- CODE ---/api/logs/device-control?limit=10&page=1&direction=DESC&filter_by[device_name][]=MY_Device_name
+--- CODE ---
+
+Please notice the square brackets at the end of the parameter and use them after each parameter that allows multiple selection.
+
+
+CC @Cecilia-Maria Iepure, @Ioana-Adina Padurean
+
+[DevOps CommentId:11706376]","0054u000006gtWUAAY","2025-02-26T14:10:49.000Z","2025-02-26T14:10:49.000Z","false","false"
+"00aQk00000C67O6IAJ","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the new comment has been added: Thank you Laura, please check the reply from the customer below:
+
+
+
+thanks for the explanation. now I understand.
+
+Please adjust the API examples and add the square brackets.","005Qk000001nViFIAU","2025-03-03T09:20:27.000Z","2025-03-03T09:20:27.000Z","false","false"
+"00aQk00000CErQYIA1","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the new comment has been added: The ticket was closed by the customer with no other mentions.
+Please close this ticket.
+Thank you","005Qk000001nViFIAU","2025-03-10T15:48:24.000Z","2025-03-10T15:48:24.000Z","false","false"
+"00aQk00000CEoR4IAL","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViFIAU","2025-03-10T15:52:31.000Z","2025-03-10T15:52:31.000Z","false","false"
+"00aQk00000CEoR6IAL","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the Following Fields have been updated: 
+Account ACV has been changed to 3265320.00.","005Qk000001nViFIAU","2025-03-10T15:52:34.000Z","2025-03-10T15:52:34.000Z","false","false"
+"00aQk00000CEr8oIAD","500Qk00000M9PsCIAV","On Escalation Ticket # 00436615 the Following Fields have been updated: 
+Account ACV has been changed to 1632660.00.","005Qk000001nViFIAU","2025-03-10T15:52:43.000Z","2025-03-10T15:52:43.000Z","false","false"

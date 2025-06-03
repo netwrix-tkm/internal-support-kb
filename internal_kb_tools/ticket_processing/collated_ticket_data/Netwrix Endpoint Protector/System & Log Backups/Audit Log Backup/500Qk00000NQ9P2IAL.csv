@@ -1,0 +1,32 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NQ9P2IAL","00440286","Support Ticket","Critical Low Disk Space Alert – Assistance Needed with Log and Shadow File Backup","Hi Support,
+
+We’ve received the following critical alert from our Endpoint Protector appliance:
+
+“Your appliance is on critical low disk space, there is only 5.8 GB free available from 446.21 GB (1%). EPP Server functionality and performance may be severely affected. Use Audit Log Backup to reduce the logs stored in the database, delete older system and audit log backups, and tune policies to reduce incoming log count. For further assistance contact Support. You will be automatically logged out in 3 minutes.”
+
+We’ve attempted to take action as suggested, but we’re running into several issues:
+
+The application hangs or becomes unresponsive when attempting to back up or delete older shadow files.
+
+When performing a log backup with the option to include shadow files, the resulting .gz backup files are smaller than expected, which raises concerns that data might be missing or not included properly.
+
+Can you assist us in:
+
+- Diagnosing why the backup process hangs or fails when managing shadow files?
+
+- Verifying whether the shadow files are being properly included in our backups?
+
+- Guiding us on safely clearing space without risking data loss?
+
+We’d appreciate your help resolving this as soon as possible given the critical state of the system.
+
+Best,
+Philip","","Disc space
+
+We had a remote connection with the customer in which we:
+-Deleted the shadows from the backend of the server.
+-Monitored the server resources since it is not accessible from the UI console.
+-Advised the customer to set a Schedule Audit Log Backup for all the modules and retain only the last few months of logs on the server, after the server is accessible.","Schedule a remote connection.
+
+We will followup on Monday to see haw things are progressing.","We have deleted the shadows from the backend of the EPP Server. The customer also increased the CPU and RAM of the appliance.","","Iosif Muntean","Performance","Netwrix Endpoint Protector","System & Log Backups","Audit Log Backup","","","17.8","Closed - Resolved","Technology & IT Data Analyst","Philip Wang","2025-03-28T00:30:18.000Z","2025-04-14T20:19:14.000Z"

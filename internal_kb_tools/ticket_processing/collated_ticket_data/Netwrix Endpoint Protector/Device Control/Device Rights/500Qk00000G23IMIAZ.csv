@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000G23IMIAZ","00421634","Support Ticket","Unblocking a SD card not possible","User has the following issue:
+User is connecting a SD card to a computer. The SD card appears in the Windows Explorer, but there is no access to the card.
+The Endpoint Protector PopUp window does not appear to unblock the card either.
+--> Please take a look at the error message and the SD card used in the screenshot “<a href='https://EM_SD_Card_BW07984890.jpg' target='_blank'>EM_SD_Card_BW07984890.jpg</a>” attached.
+
+Analysis:
+- The SD card is not displayed in the EPP client!
+- There are also no logs from the SD card connection process on the server console.
+
+Hint:
+- After connecting a USB device, the user was able to unblock the device using the Endpoint Protector PopUp window.
+- But there have been no logs collected from this USB connection process on the server console!
+
+Please analyze this behavior.
+Log file ""<a href='https://BW07984890.zip' target='_blank'>BW07984890.zip</a>"" has been uploaded on the website.
+
+Thank you.","","27 February 2025 - Customer specifically asked for case not to be closed while they are testing!
+11 February 2025 - Check with the customer if the issue is still present with the 7.2.0 patch
+25 Nov- R&D recommendation is to wait for 7.2.0 release, to be applied and do further investigation afterward.
+11 Nov - Under Investigation. QA was not able to reproduce this issue internally.
+5 Nov - Under investigation
+15 Oct - The customer provided feedback, back to R&D for analyses
+7 Oct - Steps were provided to the customer to use the VID/PID and SN from the logs to add a specific device for unblocking it., awaiting feedback from the customer","- provide the customer with the workaround until engineering is finishing the investigation.
+- check with the customer if the issue is still present with the 7.2.0 patch","Ticket is getting closed as it is open for a long time and the customers didn't come back with a test result.
+
+We were connected and found out that the problem was that an SD card was allowed when the rights were set to deny. This was because the connection between the unify and nodes was not done correctly and when the right was deleted from unify it couldn't be deleted from nodes. We made the connection ok, so all the modifications made after to be executed ok and we deleted the right from the nodes, that was deleted on unify server.","Root Cause Unknown","Alin Anca","Unexpected Behavior","Netwrix Endpoint Protector","Device Control","Device Rights","","","217.1","Closed - Resolved","BMW Group AG","Christian Spies","2024-09-20T10:46:21.000Z","2025-04-25T12:41:28.000Z"

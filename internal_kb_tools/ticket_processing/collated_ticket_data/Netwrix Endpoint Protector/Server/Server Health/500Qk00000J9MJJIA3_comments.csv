@@ -1,0 +1,73 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000Aan9JIAR","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the Following Fields have been updated: 
+Account ACV has been changed to 1439333.34.","005Qk000001nVk9IAE","2024-12-05T18:53:51.000Z","2024-12-05T18:53:51.000Z","false","false"
+"00aQk00000AanAvIAJ","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the Following Fields have been updated: 
+Account ACV has been changed to 719666.67.","005Qk000001nVk9IAE","2024-12-05T18:53:55.000Z","2024-12-05T18:53:55.000Z","false","false"
+"00aQk00000Ae649IAB","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-09T14:25:56.000Z","2024-12-09T14:25:56.000Z","false","false"
+"00aQk00000Ae64BIAR","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the new comment has been added: Augustina Sidor:
+
+Hi, 
+
+The dashboard information is taken from files located in the /EPPServer/appliance/dashbordData/ directory. Some crons update these files every day.
+
+
+Check if dashboardData directory exists, and has the right owner and permission
+
+	 - 	ls -la /EPPServer/appliance.
+	 - 	make sure the permissions are set correctly: 
+
+	 - 	chmod 0755  /EPPServer/appliance/dashboardData
+	 - 	chown www-data:www-data  /EPPServer/appliance/dashboardData
+
+
+Please check if the files exist on the server, and if the owner and permissions are set correctly.
+
+
+	 - 	  cd /EPPServer/appliance/dashboardData/
+	 - 	 ls -la
+
+	 - 	three files should be displayed: 
+
+	 - 	capDashboard.json (used for Content-Aware Dasbord ) - if the module is available
+
+	 - 	eDiscoveryDashboard.json (used for eDiscovery Dashboard) - if the module is available
+
+	 - 	dcDashboard.json - used for the DC dashboard and General dashboard
+
+	 - 	make sure the permissions are set to 644 and the owner is www-data:www-data or just set them using the following commands:
+
+	 - 	chown www-data:www-data  /EPPServer/appliance/dashboardData/file_name
+
+	 - 	chmod 0644 /EPPServer/appliance/dashboardData/file_name
+
+
+	 - 	replace the file_name with the appropriate file name
+If the above steps, didn't fix the problem, please delete the files from  /EPPServer/appliance/dashboardData/, and run the following cron job to recreate them:
+
+	 - 	rm  /EPPServer/appliance/dashboardData/dcDashboard.json
+	 - 	php /EPPServer/appliance/operations/prepareDcDashboard.php
+
+
+
+Regards,
+Augustina
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11384132]","0054u000006gtWUAAY","2024-12-09T14:25:57.000Z","2024-12-09T14:25:57.000Z","false","false"
+"00aQk00000AeuTxIAJ","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVk9IAE","2024-12-09T22:51:08.000Z","2024-12-09T22:51:08.000Z","false","false"
+"00aQk00000AgAhyIAF","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the new comment has been added: Hi Augustina,
+
+Removing the files and rerunning the cron job corrected the issue. Thank you for the help!","005Qk000001nVk9IAE","2024-12-10T21:24:10.000Z","2024-12-10T21:24:10.000Z","false","false"
+"00aQk00000AgAq1IAF","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVk9IAE","2024-12-10T21:25:16.000Z","2024-12-10T21:25:16.000Z","false","false"
+"00aQk00000B7sN7IAJ","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the Following Fields have been updated: 
+Account ACV has been changed to 1439333.34.","005Qk000002Fjy9IAC","2025-01-08T14:50:01.000Z","2025-01-08T14:50:01.000Z","false","false"
+"00aQk00000B7sOjIAJ","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the Following Fields have been updated: 
+Account ACV has been changed to 719666.67.","005Qk000002Fjy9IAC","2025-01-08T14:50:04.000Z","2025-01-08T14:50:04.000Z","false","false"
+"00aQk00000BAgJ1IAL","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the Following Fields have been updated: 
+Account ACV has been changed to 1439333.34.","005Qk000002Fjy9IAC","2025-01-10T16:38:06.000Z","2025-01-10T16:38:06.000Z","false","false"
+"00aQk00000BAk01IAD","500Qk00000J9MJJIA3","On Escalation Ticket # 00429033 the Following Fields have been updated: 
+Account ACV has been changed to 719666.67.","005Qk000002Fjy9IAC","2025-01-10T16:38:14.000Z","2025-01-10T16:38:14.000Z","false","false"

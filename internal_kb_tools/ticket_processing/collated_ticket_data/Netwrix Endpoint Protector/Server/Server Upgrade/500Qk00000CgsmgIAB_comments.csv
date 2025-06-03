@@ -1,0 +1,91 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007lQflIAE","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 10000.16.
+Priority has been changed to High.","005Qk000001nVi2IAE","2024-07-05T20:06:03.000Z","2024-07-05T20:06:03.000Z","false","false"
+"00aQk000007lQhNIAU","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 5000.08.","005Qk000001nVi2IAE","2024-07-05T20:06:05.000Z","2024-07-05T20:06:05.000Z","false","false"
+"00aQk000007s1r7IAA","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nVi2IAE","2024-07-11T14:23:43.000Z","2024-07-11T14:23:43.000Z","false","false"
+"00aQk000007s27FIAQ","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 10000.16.","005Qk000001nVi2IAE","2024-07-11T14:26:24.000Z","2024-07-11T14:26:24.000Z","false","false"
+"00aQk000007s2OzIAI","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 5000.08.","005Qk000001nVi2IAE","2024-07-11T14:28:12.000Z","2024-07-11T14:28:12.000Z","false","false"
+"00aQk000007s2P0IAI","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 10000.16.","005Qk000001nVi2IAE","2024-07-11T14:28:15.000Z","2024-07-11T14:28:15.000Z","false","false"
+"00aQk000007s2dVIAQ","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 5000.08.","005Qk000001nVi2IAE","2024-07-11T14:29:36.000Z","2024-07-11T14:29:36.000Z","false","false"
+"00aQk000007s2dWIAQ","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 10000.16.","005Qk000001nVi2IAE","2024-07-11T14:29:40.000Z","2024-07-11T14:29:40.000Z","false","false"
+"00aQk000007z3L7IAI","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 5000.08.","0054u000006gtWUAAY","2024-07-17T14:54:18.000Z","2024-07-17T14:54:18.000Z","false","false"
+"00aQk000007z3LHIAY","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the new comment has been added: Michael Paye:
+
+[Force comment sync]
+
+[DevOps CommentId:10587441]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007z3LGIAY","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the new comment has been added: Botond-Robert Biro:
+
+Hi @Oana-Cristina Rus ,
+Progress bar was successfully removed, closing this case.
+Thanks,
+Boti
+
+[DevOps CommentId:10563852]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007z3LFIAY","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the new comment has been added: Oana-Cristina Rus:
+
+Hi,
+
+If the DevOps applied the hotfix, it is not necessarily that the client applied again the hotfix event he appeared in the Applied EPP Software Updates.
+
+To remove the progress bar, please check if update_HWA-EPP4-U8800.json exists in the path:
+
+--- CODE ---
+ls -la /var/log/epp/update_HWA-EPP4-U8800.json
+--- CODE ---
+
+If it exists, please remove the file
+
+--- CODE ---
+1. rm /var/log/epp/update_HWA-EPP4-U8800.json
+--- CODE ---
+
+2. Rum the Mysql commands:
+
+--- CODE ---
+2.1. DELETE from syscommands where name = 'update' and value = 'HWA-EPP4-U8800';
+--- CODE ---
+
+
+--- CODE ---
+2.2. DELETE FROM live_update WHERE code like  'HWA-EPP4-U8800%' and installed = 0 ;
+--- CODE ---
+
+
+--- CODE ---
+2.3. UPDATE sysinfo set value = '' WHERE name = 'last_update_code';
+--- CODE ---
+
+3. Logout and login to UI
+
+[DevOps CommentId:10549435]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007z3LEIAY","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the new comment has been added: Botond-Robert Biro:
+
+Hi @Oana-Cristina Rus ,
+Sorry, I probably forgot to hit Save after uploading the screenshot.
+Thanks,
+Boti
+
+[DevOps CommentId:10542450]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007z3LDIAY","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the new comment has been added: Oana-Cristina Rus:
+
+Hi,
+
+Please share the screenshot from the customer with us.
+
+[DevOps CommentId:10542326]","0054u000006gtWUAAY","2024-07-17T14:54:19.000Z","2024-07-17T14:54:19.000Z","false","false"
+"00aQk000007z4U6IAI","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 10000.16.","005Qk000001nVi2IAE","2024-07-17T15:01:51.000Z","2024-07-17T15:01:51.000Z","false","false"
+"00aQk000007z4XJIAY","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 5000.08.","005Qk000001nVi2IAE","2024-07-17T15:01:57.000Z","2024-07-17T15:01:57.000Z","false","false"
+"00aQk00000BoH0wIAF","500Qk00000CgsmgIAB","On Escalation Ticket # 00414223 the Following Fields have been updated: 
+Account ACV has been changed to 10600.17.","0054u000006gtWUAAY","2025-02-14T11:44:11.000Z","2025-02-14T11:44:11.000Z","false","false"

@@ -1,0 +1,193 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BL0l5IAD","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Hi Team,
+The customer is making a follow up on this case and is requesting an update.","005Qk000001nViCIAU","2025-01-20T15:11:09.000Z","2025-01-20T15:11:09.000Z","false","false"
+"00aQk00000BLrKkIAL","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-21T11:38:24.000Z","2025-01-21T11:38:24.000Z","false","false"
+"00aQk00000BLrKmIAL","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Andre,
+
+After discussing with dev team, we will need the following information:
+
+	 - 	did the customer have issues with the offline patch as well, or just with Live Update? 
+	 - 	please check if ports 443 and port 80 (HTTPS and HTPP) are open  
+	 - 	also, could you please confirm when they tried to use the ""Check now"" functionality on live update? as you may be aware, we had some issues lately and Live update was taken down for some time. 
+ 
+Thank you,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11530925]","0054u000006gtWUAAY","2025-01-21T11:38:25.000Z","2025-01-21T11:38:25.000Z","false","false"
+"00aQk00000BMUVmIAP","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Hi @Cristian-Alexandru Halmajan:
+
+Please see the answers below.
+
+
+- did the customer have issues with the offline patch as well, or just with Live Update?
+[ Yes, they had issues when applying the 5940 offline patch.  We had a remote sesson and I removed the error and also deleted the erroneous patch. ] 
+
+- please check if ports 443 and port 80 (HTTPS and HTPP) are open
+[ Yes they are open, we get replies when pinging from the backend.
+ping liveupdate.endpointprotector.com
+ping 178.63.3.86
+wget www.netwrix.com/endpoint-dlp-solution.html 80 ] 
+
+- also, could you please confirm when they tried to use the ""Check now"" functionality on live update? as you may be aware, we had some issues lately and Live update was taken down for some time.
+[ We tried 2 days after the drip release was stopped. ] 
+
+
+Please view the screenshots and videos recording.","005Qk000001nViCIAU","2025-01-21T17:28:36.000Z","2025-01-21T17:28:36.000Z","false","false"
+"00aQk00000BMUdpIAH","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2025-01-21T17:30:22.000Z","2025-01-21T17:30:22.000Z","false","false"
+"00aQk00000BNISXIA5","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-22T08:47:43.000Z","2025-01-22T08:47:43.000Z","false","false"
+"00aQk00000BNISZIA5","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+- did the customer have issues with the offline patch as well, or just with Live Update?
+[
+ Yes, they had issues when applying the 5940 offline patch.  We had a 
+remote sesson and I removed the error and also deleted the erroneous 
+patch. ] 
+
+----> After removing the erroneous 5940 patch did you reapply the patch correctly? Did it properly update to 5940 such that we can continue to investigate 5941 patch or are we still stuck at the patching 5940?
+
+-----------------------------------------
+
+- please check if ports 443 and port 80 (HTTPS and HTPP) are open
+[ Yes they are open, we get replies when pinging from the backend.
+ping liveupdate.endpointprotector.com
+ping 178.63.3.86
+wget www.netwrix.com/endpoint-dlp-solution.html 80 ] 
+
+----> Just pinging the liveupdate server DOES NOT tell us if the ports required (80 and 443 outgoing) are open. Also, the netwrix.com server IS NOT the liveupdate server, any checks on that host DO NOT HELP. Run the following:
+
+wget liveupdate.endpointprotector.com
+
+You should get something like the below, if connection is established (do the same for both ports, and for 443, ignore the certificate check):
+
+wget liveupdate.endpointprotector.com
+
+--2024-12-10 13:21:30--  http://liveupdate.endpointprotector.com/
+Resolving liveupdate.endpointprotector.com (liveupdate.endpointprotector.com)... 178.63.3.86
+Connecting to liveupdate.endpointprotector.com (liveupdate.endpointprotector.com)|178.63.3.86|:80... connected.
+-----------------------------------------
+
+- also, could you please confirm when they tried to use the ""Check now"" 
+functionality on live update? as you may be aware, we had some issues 
+lately and Live update was taken down for some time.
+[ We tried 2 days after the drip release was stopped. ] 
+
+----> When exactly did you try? Can you give us a date? If there was still drip enabled and no slots available for download, the process would not have worked.
+
+[DevOps CommentId:11535279]","0054u000006gtWUAAY","2025-01-22T08:47:45.000Z","2025-01-22T08:47:45.000Z","false","false"
+"00aQk00000BNUNIIA5","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Hi @Flaviu-Dorin Costras:
+
+Please see below my answers to your questions.  Could you please review the video and the screenshots?
+
+- did the customer have issues with the offline patch as well, or just with Live Update?
+[
+Yes, they had issues when applying the 5940 offline patch. We had a
+remote sesson and I removed the error and also deleted the erroneous
+patch. ] 
+
+----> After removing the erroneous 5940 patch did you reapply the patch correctly? Did it properly update to 5940 such that we can continue to investigate 5941 patch or are we still stuck at the patching 5940?
+
+Answer:
+They have already upgraded to 5940, this is the current version of the EPP Server. This is also visible in the video recording which I submitted when I opened the ADO
+-----------------------------------------
+
+- please check if ports 443 and port 80 (HTTPS and HTPP) are open
+[ Yes they are open, we get replies when pinging from the backend.
+ping liveupdate.endpointprotector.com
+ping 178.63.3.86
+wget www.netwrix.com/endpoint-dlp-solution.html 80 ] 
+
+----> Just pinging the liveupdate server DOES NOT tell us if the ports required (80 and 443 outgoing) are open. Also, the netwrix.com server IS NOT the liveupdate server, any checks on that host DO NOT HELP. Run the following:
+
+wget liveupdate.endpointprotector.com
+
+You should get something like the below, if connection is established (do the same for both ports, and for 443, ignore the certificate check):
+
+wget liveupdate.endpointprotector.com
+
+--2024-12-10 13:21:30--  http://liveupdate.endpointprotector.com/
+Resolving liveupdate.endpointprotector.com (liveupdate.endpointprotector.com)... 178.63.3.86
+Connecting to liveupdate.endpointprotector.com (liveupdate.endpointprotector.com)|178.63.3.86|:80... connected.
+
+Response:
+Okay I will do this in a remote session with the customer and also make a video recording.  Thank you for this.
+
+-----------------------------------------
+
+- also, could you please confirm when they tried to use the ""Check now""
+functionality on live update? as you may be aware, we had some issues
+lately and Live update was taken down for some time.
+[ We tried 2 days after the drip release was stopped. ] 
+
+----> When exactly did you try? Can you give us a date? If there was still drip enabled and no slots available for download, the process would not have worked.
+
+Answer:
+We tried on the 17th January, this is also visible in the video recording which I added to the attachments folder.  Also to mention here, this is fours days after Krzysztof confirmed to me that the drip was turned off.  As the drip was turned off on the 14th, The morning.","005Qk000001nViCIAU","2025-01-22T14:38:38.000Z","2025-01-22T14:38:38.000Z","false","false"
+"00aQk00000BNboXIAT","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2025-01-22T14:47:01.000Z","2025-01-22T14:47:01.000Z","false","false"
+"00aQk00000BOdUwIAL","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Hi @Flaviu-Dorin Costras
+
+Please review the video recording in the attachments folder of the result running wget commands:
+
+wget liveupdate.endpointprotector.com
+wget liveupdate.endpointprotector.com 80
+wget liveupdate.endpointprotector.com 443","005Qk000001nViCIAU","2025-01-23T08:28:07.000Z","2025-01-23T08:28:07.000Z","false","false"
+"00aQk00000BOdWXIA1","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2025-01-23T08:28:15.000Z","2025-01-23T08:28:15.000Z","false","false"
+"00aQk00000BSKyOIAX","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+Based on the new video, this looks like the request to liveupdate times out, that generally means that there is a firewall or proxy in between the eppserver and liveupdate server, either dropping the connection, not routing to liveupdate or not properly forwarding the response (malformed response from the proxy).
+
+Ask the customer if they are using any of that in between the eppserver and liveupdate. If they use a proxy server, there are settings on the UI they will need to update suck that the proxy can be used.
+
+Also, run the following on their machine in mysql, and come back with the result so we can also check on the liveupdate server itself
+
+
+--- CODE ---
+select * from sysinfo where name in ('identification', 'eppversion', 'identificationpass', 'hwkey');
+--- CODE ---
+
+[DevOps CommentId:11553781]","0054u000006gtWUAAY","2025-01-27T09:01:10.000Z","2025-01-27T09:01:10.000Z","false","false"
+"00aQk00000BSKyMIAX","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-27T09:01:10.000Z","2025-01-27T09:01:10.000Z","false","false"
+"00aQk00000BSO4IIAX","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+Based on the new video, this looks like the request to liveupdate times out, that generally means that there is a firewall or proxy in between the eppserver and liveupdate server, either dropping the connection, not routing to liveupdate or not properly forwarding the response (malformed response from the proxy).
+
+Ask the customer if they are using any of that in between the eppserver and liveupdate. If they use a proxy server, there are settings on the UI they will need to update suck that the proxy can be used.
+
+Also, run the following on their machine in mysql, and come back with the result so we can also check on the liveupdate server itself
+
+
+--- CODE ---
+select * from sysinfo where name in ('identification', 'eppversion', 'identificationpass', 'hwkey');
+--- CODE ---
+
+[DevOps CommentId:11553781]","0054u000006gtWUAAY","2025-01-27T09:01:12.000Z","2025-01-27T09:01:12.000Z","false","false"
+"00aQk00000BSqwbIAD","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2025-01-27T16:15:21.000Z","2025-01-27T16:15:21.000Z","false","false"
+"00aQk00000BTmcQIAT","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Hi @Flaviu-Dorin Costras:
+
+The EPP Server is hosted on AWS platform and the customer says that there is no proxy server being used.  I am having multiple sessions with the customer to check different things and the customer is already annoyed. 
+
+Can we please have a dev join in a remote session with the customer please?","005Qk000001nViCIAU","2025-01-28T08:31:18.000Z","2025-01-28T08:31:18.000Z","false","false"
+"00aQk00000BV7JqIAL","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Flaviu-Dorin Costras:
+
+Disabling proxy settings on UI resolved the issue. Closing.
+
+[DevOps CommentId:11566482]","0054u000006gtWUAAY","2025-01-29T07:03:47.000Z","2025-01-29T07:03:47.000Z","false","false"
+"00aQk00000BV8nmIAD","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the new comment has been added: Hi @Flaviu-Dorin Costras
+Thank you for your help on this case.  The customer was able to upgrade their EPP Server to 5.9.4.1.","005Qk000001nViCIAU","2025-01-29T07:57:04.000Z","2025-01-29T07:57:04.000Z","false","false"
+"00aQk00000BV8pNIAT","500Qk00000KX3rjIAD","On Escalation Ticket # 00432691 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2025-01-29T07:58:04.000Z","2025-01-29T07:58:04.000Z","false","false"

@@ -1,0 +1,59 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OOoaYIAT","00443032","Support Ticket","Active direct synchronization issue","We have moved the DLP VM to the VNET where we have a Site-to-Site (S2S) tunnel setup with our On-premises domain controller server. But we are still not able to connect with DC server.","","24/04/2025
+
+Client moved their DLP VM  to VNET where they've set up a Site-To-Site tunnel with their on-premises domain controller but they're unable to make a connection for the AD sync with our EPP server.
+
+Update 25/04/2025
+
+Connected remote with the client to get more details.
+
+They have a domain controller on premises in their office and the server is connected to their azure through a site-to-site tunnel setup.
+
+What they want is to make the server appliance to sync with their domain controller so the server could take the data of their users and devices. That way it will be easier for them to create policies for groups/deployments/users etc.
+
+They have tried to set up the connection from Directory Services->Microsoft Active Directory but each time they get an error saying either ''AD said: Invalid Credentials'' or '' AD Said: Can't contact LDAP Server''.
+
+Now, I went on the SSH to make a telnet ip port command to see if the appliance communicates with their domain controller and it was connecting without a problem.
+
+From what it looks like, the client is hosting the appliance on a VM hosted on Azure and we checked the VM and ithe client allowed the connection accordingly by allowing the port 3389 along with their internal IP for the domain controller.
+
+We've tried to follow the instructions from here:
+
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4.2/page/Content/EndpointProtector/Admin/DirectoryServices/Overview.htm
+
+But each time we would get the same errors.
+
+
+29/04/2025
+
+Went on and connected remote with the user.
+Followed the instructions Eduard gave me and we  were able to sync the AD with the EPP server.
+Now it's a matter of twitching the settings by the client to have the objects synced as we hanted.
+Will keep the ticket opened and he will let me know.
+
+08/05/2025
+Client did not show up.
+Sent a follow up note.
+
+09/05/2025
+
+Connected remote with Davendra to take a look at his inquiry.
+He first wanted to know how to set up policies for CAP or how to use the default ones.
+Went on and exemplified on how to use the custom policies and also the predefined ones.
+Also explained the differences between global/regular threshold.
+
+The main issue currently is related to groups. Davendra wants to add users and computers to specific groups automatically and not manually.
+Advised I will have to get this internally to see if it's possible to do it through Smartgroups or if they need to do it manually.","24/04/2025
+
+
+25/04/2025
+
+Will have to take a look internally to investigate and get back to them.
+
+28/04/2025
+
+Spoke with T2 in regards of this and been advised to check the following:
+Ask the client to make sure they have the rights to perform syncs and other such tasks for their role.
+Make sure the port that they use from the domain controller is properly added.
+In the OU field to add the details like below:
+DC = rstacksolutions DC=COM OU = RSTACK-USERS","Issue was solved after we have enabled and configured the AD configuration settings and synchronized it with the client's domain controller.","Advanced Configuration Change","Marian Ilies","Request","Netwrix Endpoint Protector","Active Directory Sync","AD Sync Error","NONE","","35.1","Closed - Resolved","Rstack Solutions Private Solutions","Devendra Reddy","2025-04-24T09:03:36.000Z","2025-05-29T10:46:02.000Z"

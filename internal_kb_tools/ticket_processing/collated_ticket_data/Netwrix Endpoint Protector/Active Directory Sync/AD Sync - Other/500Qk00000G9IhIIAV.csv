@@ -1,0 +1,6 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000G9IhIIAV","00421839","Support Ticket","Migration from User Type EPP to AD and the AD Sync doesn't re-add accounts if they had the same name","When we delete a user account that was manually created in EPP and then we try to add the user account to the AD Group and sync, the accounts will not get created.  In the past, we have needed to have the old EPP accounts cleared out of the Database.","","","","The issue with the AD Admins not synced was due to the database entries with the same name marked as deleted. 
+We used the following commands in the mysql db in order to resolve that:
+select * from sf_guard_user where deleted = 1;
+delete from sf_guard_user where deleted=1;
+After this restart the mysql service and perform the Sync AD Administrators from System Settings.","","Iosif Muntean","","Netwrix Endpoint Protector","Active Directory Sync","AD Sync - Other","","","1.0","Closed - Resolved","HDR","Michael Block","2024-09-23T19:14:38.000Z","2024-09-24T18:30:00.000Z"

@@ -1,0 +1,63 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000CBphpIAD","500Qk00000MOcdpIAD","On Escalation Ticket # 00438039 the Following Fields have been updated: 
+Account ACV has been changed to 25012.80.
+Priority has been changed to High.","005Qk000001nViEIAU","2025-03-07T12:43:51.000Z","2025-03-07T12:43:51.000Z","false","false"
+"00aQk00000CBn8AIAT","500Qk00000MOcdpIAD","On Escalation Ticket # 00438039 the Following Fields have been updated: 
+Account ACV has been changed to 12506.40.","005Qk000001nViEIAU","2025-03-07T12:43:53.000Z","2025-03-07T12:43:53.000Z","false","false"
+"00aQk00000CEmCMIA1","500Qk00000MOcdpIAD","On Escalation Ticket # 00438039 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-10T15:19:48.000Z","2025-03-10T15:19:48.000Z","false","false"
+"00aQk00000CEmCOIA1","500Qk00000MOcdpIAD","On Escalation Ticket # 00438039 the new comment has been added: Oana-Cristina Rus:
+
+Hi,
+
+Can you share with us the details for the user that is set as Report and Analysis? Go to the System Administrator page, find the user, and share with us Department and Administrator Group.
+
+Go to MySQL run the following commands and share the results:
+
+--- CODE ---
+select * from sysinfo where name like '%block_department_id%';
+select * from sysinfo where name like '%show_cflog_vspn%';
+select * from sysinfo where name like '%enable_reporting_v2%';
+--- CODE ---
+
+
+--- CODE ---
+select * from sysinfo where name like '%partitions_activated%';
+--- CODE ---
+
+
+--- CODE ---
+SELECT COUNT(1) AS nr_partitions FROM INFORMATION_SCHEMA.PARTITIONS WHERE table_name = 'cf_log' AND partition_name IS NOT NULL;
+--- CODE ---
+
+Log in with the super admin user. Go to the Content Aware Report logs. From the Show/Hide Columns option, select File Hash and get the file hash for a log dated 27.02.2025 that does not appear.
+
+Go to MySQL and run:
+
+
+--- CODE ---
+select * from cf_log where filehash = 'XXXXXXXXXXX'G
+--- CODE ---
+
+replace XXXXXXXXXXX with the file hash from UI. Please share with us the details.
+
+Log in with the super admin user. Go to the Content Aware Report logs. From the Show/Hide Columns option, select File Hash and get the file hash for a log dated 09.01.2025.
+
+Go to MySQL and run:
+
+--- CODE ---
+select * from cf_log where filehash = 'XXXXXXXXXXX'G
+--- CODE ---
+
+replace XXXXXXXXXXX with the file hash from UI. Please share with us the details.
+
+We need to verify if these two logs belong to the same department.  Please verify if the report and analysis and super admin user belong to the same department as indicated in the department_id column from the logs.
+
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11760497]","0054u000006gtWUAAY","2025-03-10T15:19:49.000Z","2025-03-10T15:19:49.000Z","false","false"
+"00aQk00000CFkObIAL","500Qk00000MOcdpIAD","On Escalation Ticket # 00438039 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViEIAU","2025-03-11T05:19:07.000Z","2025-03-11T05:19:07.000Z","false","false"
+"00aQk00000CKliEIAT","500Qk00000MOcdpIAD","On Escalation Ticket # 00438039 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViKIAU","2025-03-14T17:56:57.000Z","2025-03-14T17:56:57.000Z","false","false"

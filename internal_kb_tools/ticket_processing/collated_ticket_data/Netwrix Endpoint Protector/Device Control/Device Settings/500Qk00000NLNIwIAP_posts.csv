@@ -1,0 +1,42 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000aLBnMKAW","500Qk00000NLNIwIAP","TextPost","0054u000008ARZjAAO","2025-03-26T10:35:27.000Z","Description: Hi Support,
+
+We have noticed printer devices are being added over 10,000 times at a time as duplicate entries and is overcrowding the console, is there anything we can do about this?","","","","0054u000008ARZjAAO","2025-03-26T10:35:27.000Z"
+"0D5Qk00000aLRxyKAG","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-03-26T14:00:16.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000003xRAXIA2","2025-03-26T14:00:16.000Z"
+"0D5Qk00000aLRxzKAG","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-03-26T14:00:16.000Z","Invitation updated. Attendees: Marian Ilies, Daniel Anton","","","","005Qk000003xRAXIA2","2025-03-26T14:00:16.000Z"
+"0D5Qk00000aLRy0KAG","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-03-26T14:00:17.000Z","Invitation updated. Attendees: Marian Ilies, Daniel Anton, Harry Chew","","","","005Qk000003xRAXIA2","2025-03-26T14:00:17.000Z"
+"0D5Qk00000aLe69KAC","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-03-26T14:13:23.000Z","What We've Learned Updated: Client is reporting that he's getting duplicate device entries.","","","","005Qk000003xRAXIA2","2025-03-26T14:13:23.000Z"
+"0D5Qk00000aLX51KAG","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-03-26T14:13:37.000Z","Next Steps Updated: Scheduled a remote session to further assist.","","","","005Qk000003xRAXIA2","2025-03-26T14:13:37.000Z"
+"0D5Qk00000aQBhTKAW","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-03-27T13:53:58.000Z","What We've Learned Updated: Connected remote to the client's machine to troubleshoot.
+He had about 693K network printers entries.
+Deleted right up to 43K and asked to monitor the situation and will follow up last week.","","","","005Qk000003xRAXIA2","2025-03-27T13:53:58.000Z"
+"0D5Qk00000aPvF3KAK","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-03-27T13:54:38.000Z","Next Steps Updated: Will have to schedule another remote session to check 
+
+select count(1) from clientdevice where device_type_id = 45;","","","","005Qk000003xRAXIA2","2025-03-27T13:54:38.000Z"
+"0D5Qk00000aneNrKAI","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-04-01T13:12:37.000Z","What We've Learned Updated: Connected remote to Harry's device to take a look at the problem.
+We checked again the network printers and they were still at 43K as shown in the uploaded screenshot.
+
+Seems like the newly added entries in the list were showing up with no user and Daniel found the following:
+
+
+The event having ""noUser"" is generated when EppClient service is starting, but there is no user logged in yet. Hence, any events during the period between the service starting and any user logging in will have a ""noUser"" indication. 
+It looks like the events are generated when EppClient service stops abruptly, but then it starts on a different day, usually this is due a force power off or a power outage.
+
+""noUser"" is the user linked to all events performed while no user was logged into the computer. Remote users’ names who log into the computer will not be logged and their events will be stored as events of noUser. Another occurrence of noUser events would be to have an automated script/software which accesses a device when no user is logged in to the specific computer.
+
+Explained the above to the client and they understood, which would explain why the number of entries did not increase.
+Agreed to keep the ticket opened and we will do a follow up on Friday to check if the number increased.","","","","005Qk000003xRAXIA2","2025-04-01T13:12:37.000Z"
+"0D5Qk00000b0KsiKAE","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-04-04T06:48:55.000Z","Invitation updated. Attendees: Marian Ilies","","","","005Qk000003xRAXIA2","2025-04-04T06:48:55.000Z"
+"0D5Qk00000b0KsjKAE","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-04-04T06:48:55.000Z","Invitation updated. Attendees: Marian Ilies, Harry Chew","","","","005Qk000003xRAXIA2","2025-04-04T06:48:55.000Z"
+"0D5Qk00000b12CcKAI","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-04-04T12:25:53.000Z","What We've Learned Updated: Connected remote with Harry to take a look at the entries.
+
+There were no significant differences between Tuesday and now(only increased with 100 device entries) and neither the total amount.
+
+Also Harry got this mail from the netwrix security team as he is a client:
+
+https://community.netwrix.com/t/adv-2025-010-insufficient-computational-complexity-in-key-derivation-in-netwrix-endpoint-protector/5299
+
+Seems like they've already got notifications about upgrading to 5.9.4.2 version.
+
+Will send a follow up note.","","","","005Qk000003xRAXIA2","2025-04-04T12:25:53.000Z"
+"0D5Qk00000b1E26KAE","500Qk00000NLNIwIAP","TextPost","005Qk000003xRAXIA2","2025-04-04T12:26:05.000Z","Next Steps Updated: Will sent a follow up note with the answer.","","","","005Qk000003xRAXIA2","2025-04-04T12:26:05.000Z"

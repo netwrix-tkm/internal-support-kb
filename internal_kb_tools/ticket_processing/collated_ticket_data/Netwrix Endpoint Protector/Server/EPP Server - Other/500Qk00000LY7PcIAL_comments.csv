@@ -1,0 +1,140 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BtosHIAR","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the Following Fields have been updated: 
+Priority has been changed to Low.","005Qk000002lX5pIAE","2025-02-19T18:35:58.000Z","2025-02-19T18:35:58.000Z","false","false"
+"00aQk00000BvyVmIAJ","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-21T11:27:28.000Z","2025-02-21T11:27:28.000Z","false","false"
+"00aQk00000BvyVoIAJ","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the new comment has been added: Mihai-Adrian Daboc:
+
+Hello,
+What ""failed tests"" exactly means?
+Is there any error displayed on the UI or in the request response after using the delete action? If not then is possible that an error message will be displayed if you access again Device Control -> Computers after using the delete action.
+Does the UI get stuck after using the delete action?
+
+How many computers does the customer wants to delete?
+
+We need the output of the following query from db to see what process is used when deleting with checked select all entries option:
+
+--- CODE ---
+select value from parameter where name = 'limit_select_all_action';
+--- CODE ---
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11684306]","0054u000006gtWUAAY","2025-02-21T11:27:29.000Z","2025-02-21T11:27:29.000Z","false","false"
+"00aQk00000BwX0TIAV","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-02-21T18:53:59.000Z","2025-02-21T18:53:59.000Z","false","false"
+"00aQk00000C4V38IAF","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the new comment has been added: * What ""failed tests"" exactly means?
+
+Customer able to delete computers less then 10 at a time.
+
+Customer not able to delete more then 10 computers at a time when selected.
+
+* Is there any error displayed on the UI or in the request response after using the delete action? 
+
+The UI displays a message stating that the Delete successfully started. Yet the computers do not delete as expected. 
+df -
+* If not then is possible that an error message will be displayed if you access again Device Control -> Computers after using the delete action.
+
+No error messages seen from here
+
+* Does the UI get stuck after using the delete action? The UI displays a message stating that the Delete successfully started. 
+
+* How many computers does the customer wants to delete? Customer wants to delete 47 computers at one time
+
+* We need the output of the following query from db to see what process is used when deleting with checked select all entries option:
+
+--- CODE ---
+select value from parameter where name = 'limit_select_all_action';
+--- CODE ---
+
+Results:
+mysql> select value from parameter where name = 'limit_select_all_action';
+
++-------+
+
+| value |
+
++-------+
+
+| 10    |
+
++-------+
+
+1 row in set (0.00 sec)
+ 
+
+
+* Link with screenshots and video: https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00434863","005Qk000002lX5pIAE","2025-02-28T20:52:25.000Z","2025-02-28T20:52:25.000Z","false","false"
+"00aQk00000C4V7yIAF","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the new comment has been added: Please advise on next steps. The customer would like to delete larger selections then less then 10 computers.","005Qk000002lX5pIAE","2025-02-28T20:53:32.000Z","2025-02-28T20:53:32.000Z","false","false"
+"00aQk00000C4V9ZIAV","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the Following Fields have been updated: 
+Product Version has been changed to NONE.
+Status has been changed to Awaiting R&D.","005Qk000002lX5pIAE","2025-02-28T20:53:58.000Z","2025-02-28T20:53:58.000Z","false","false"
+"00aQk00000CAMzdIAH","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-06T11:29:06.000Z","2025-03-06T11:29:06.000Z","false","false"
+"00aQk00000CAMzfIAH","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the new comment has been added: Mihai-Adrian Daboc:
+
+Hello,
+
+This could be a permission issue. Please check if the entities_to_be_deleted directory has the right owner and permission:
+
+	 - 	
+
+--- CODE ---ls -ld /var/eppfiles/entities_to_be_deleted--- CODE ---
+
+
+The permission for entities_to_be_deleted directory should be 755 and www-data set as owner. If they do not have these permissions, please set them.
+
+	 - 	
+
+--- CODE ---chmod 755 /var/eppfiles/entities_to_be_deleted--- CODE ---
+
+	 - 	
+
+--- CODE ---chown www-data:www-data /var/eppfiles/entities_to_be_deleted--- CODE ---
+
+
+Also please increase the value for limit_select_all_action parameter to 1000 which is the default value. Run the following query into the database:
+
+--- CODE ---
+
+--- CODE ---UPDATE parameter SET value = 1000 WHERE name = 'limit_select_all_action';--- CODE ---
+
+--- CODE ---
+
+
+--- CODE ---@WaitingOnEngineer --- CODE ---
+
+
+--- CODE ---
+--- CODE ---
+
+[DevOps CommentId:11745457]","0054u000006gtWUAAY","2025-03-06T11:29:08.000Z","2025-03-06T11:29:08.000Z","false","false"
+"00aQk00000CAc57IAD","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002lX5pIAE","2025-03-06T15:14:51.000Z","2025-03-06T15:14:51.000Z","false","false"
+"00aQk00000CCGBmIAP","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the new comment has been added: Here is the output from mysql:
+
+mysql> UPDATE parameter SET value = 1000 WHERE name = 'limit_select_all_action';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+ 
+mysql> select value from parameter where name = 'limit_select_all_action';
++-------+
+| value |
++-------+
+| 1000  |
++-------+
+1 row in set (0.00 sec
+
+Here is the output for rest of code: 
+
+[root@gpbdhjr:/home/epproot]$ ls -ld /var/eppfiles/entities_to_be_deleted
+drwxr-xr-x 2 www-data www-data 4096 Aug 14  2024 /var/eppfiles/entities_to_be_deleted
+[root@gpbdhjr:/home/epproot]$ chmod 755 /var/eppfiles/entities_to_be_deleted
+[root@gpbdhjr:/home/epproot]$ ls -ld /var/eppfiles/entities_to_be_deleted
+drwxr-xr-x 2 www-data www-data 4096 Aug 14  2024 /var/eppfiles/entities_to_be_deleted
+[root@gpbdhjr:/home/epproot]$ chown www-data:www-data /var/eppfiles/entities_to_be_deleted
+[root@gpbdhjr:/home/epproot]$ ls -ld /var/eppfiles/entities_to_be_deleted
+drwxr-xr-x 2 www-data www-data 4096 Aug 14  2024 /var/eppfiles/entities_to_be_deleted","005Qk000002lX5pIAE","2025-03-07T16:51:00.000Z","2025-03-07T16:51:00.000Z","false","false"
+"00aQk00000CCM5uIAH","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the new comment has been added: Customer is able to delete computers greater than 10 without issue and now requests to close the ticket. Thank you for your time and support.","005Qk000002lX5pIAE","2025-03-07T17:55:07.000Z","2025-03-07T17:55:07.000Z","false","false"
+"00aQk00000CChFBIA1","500Qk00000LY7PcIAL","On Escalation Ticket # 00436339 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002lX5pIAE","2025-03-07T21:51:02.000Z","2025-03-07T21:51:02.000Z","false","false"

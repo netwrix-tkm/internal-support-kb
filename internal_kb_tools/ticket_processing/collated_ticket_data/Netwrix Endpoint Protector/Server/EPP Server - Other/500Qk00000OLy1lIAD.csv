@@ -1,0 +1,72 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OLy1lIAD","00442862","Support Ticket","CAP policy is not working as it was earlier","There was a rule on all DLP CAP policy that file uploading is restricted for all websites including emails (I.g. Gmail, Outlook, Yahoo, etc) expect websites added in allowlist, but right now we checked and found that this is not working on any policy. 
+
+It was working fine when we last checked this on December 2024, when DLP Server version was 5.9.4.0","","23.04
+- CAP policies not blocking on latest Windows/Mac clients
+- asked the customer for their availability to check the settings, policy and the behaviour
+- scheduled the RS on the 24th from 9:30
+
+24.04
+- server: 5.9.4.1
+- client: 3.0.4.1 / 6.2.4.2
+- the issue started happening after upgrading to the latest server/client version
+- they have a CAP policy which should block all files from being uploaded to web browsers and other apps, only a few websites are whitelisted
+- the files don't get blocked from being uploaded only on web browsers
+- during the call we tested on Chrome
+- the DPI certificate does appear on Chrome
+- during the call we uploaded to gmail, gdrive and dlptest.com (not whitelisted websites), while collecting logs both on Mac and Windows
+- noticed the customer has Sophos installed. Asked them to disable it to test that way as well, but they couldn't, they need to uninstall it and they can't do that
+- sent the customer the list of EPP processes that need to be whitelisted in Sophos
+
+25.04
+- the customer agreed to whitelist the EPP processes
+- sent them the process list for Windows and Mac
+
+28.04
+- the customer whitelisted the processes, but it they can still upload
+- asked for another remote session
+
+29.04
+During the RS:
+- tested on a Mac after Sophos was disabled
+- tested with DPI off - the issue was still present
+- turned Intercept VPN off - the issue was still present
+- collected a set of logs with Intercept VPN off
+- uploaded to dlptest.com
+- logs didn't show up in CAP logs report
+- sent them 2 test builds, 1 for win, 1 for mac after talking to T2
+
+30.04
+- customer confirmed the macOS test build worked correctly
+- they haven't tested the Windows one yet
+
+07.05
+- files are still not being blocked with the new builds I sent the customer
+- asked them to create a test policy(block&report) only for 1 user/pc and test it that way as well
+- the test policy worked on mac
+- asked them to add more users and create one for Windows as well and test
+- both policies work correctly
+- asked the customer to duplicate the old policies and check if they work. If they don't they will have to re-create the original policies
+
+09.05
+- let the customer know how Monitored Categories works
+
+12.05
+- asked the customer to create an allowlist for the websites on which uploads should be permitted and add it to the policy
+- asked them to test and provide feedback","23.04
+- waiting for the RS
+
+24.04
+- send the customer the list of EPP processes that need to be whitelisted in Sophos
+- waiting on the customer to whitelist and test
+
+29.04
+- check with T2
+- check last seen on UI after updating the policies on the mac/PC
+- waiting on the customer to provide feedback on the test builds
+
+07.05
+- waiting on the customer
+
+09.05
+- waiting on the customer","created an allowlist for the websites on which uploads should be permitted and add it to the policy instead of using monitored categories. uploads were permitted this way only on required websites","Incorrect configuration: Netwrix product","Botond Biro","Unexpected Behavior","Netwrix Endpoint Protector","Server","EPP Server - Other","","","27.3","Closed - Resolved","The Cloud Mail Store Inc / Cyberspace Networking Systems","Pankaj Pandit","2025-04-23T07:28:09.000Z","2025-05-20T13:42:42.000Z"

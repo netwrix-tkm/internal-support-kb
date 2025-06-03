@@ -1,0 +1,25 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000bTumMKAS","500Qk00000NtgkZIAR","TextPost","0054u000008ARZjAAO","2025-04-10T07:22:28.000Z","Description: Hello,
+
+Users have reported issues with building apps using Xcode after switching to Mac OS 15.4. From my understanding, this has also happened when EPP was first deployed on our estate, back in 2022. We have collected logs from one of the user which I will upload to the ticket.
+
+We added an user to the exemption group, and they confirmed that they did not have any more issues afterwards. Also another user had their EPP uninstalled to test and they also confirmed that the issue disappeared so it is confirmed that EPP is the culprit in this situation.
+
+Here are all the details from one of the users: ""After an upgrade to Mac OSX version 15.4 we are no longer able to build our apps using
+Xcode (doesn't matter which version of Xcode we use).
+The problem seems to be somehow related to `rsync`.
+I'd like to mention that similar issue with `rsync - Operation not permitted` already happened in 2022 and was reported by me and it came out to be related to the Endpoint Protector"".
+
+Could you please investigate and provide a resolution as soon as possible, as this is affecting a significant number of our users? 
+
+Thank you.","","","","0054u000008ARZjAAO","2025-04-10T07:22:28.000Z"
+"0D5Qk00000bp327KAA","500Qk00000NtgkZIAR","TextPost","005Qk000001nViBIAU","2025-04-14T13:16:53.000Z","What We've Learned Updated: the customer reported issues with building apps using Xcode, after switching to Mac OS 15.4
+The logs do not show anything else out of the ordinary, than a huge amount of threat scans for the rsync exit point.
+explained why it acts like this but the customer needs to use the exit point so excluding it is not an option.
+R&D ticket was raised and I am waiting for their feedback","","","","005Qk000001nViBIAU","2025-04-14T13:16:53.000Z"
+"0D5Qk00000bpBYzKAM","500Qk00000NtgkZIAR","TextPost","005Qk000001nViBIAU","2025-04-14T13:17:12.000Z","Next Steps Updated: gather new logs if needed.","","","","005Qk000001nViBIAU","2025-04-14T13:17:12.000Z"
+"0D5Qk00000dPRTQKA4","500Qk00000NtgkZIAR","TextPost","005Qk000001nViHIAU","2025-05-05T14:05:30.000Z","Next Steps Updated: gather new logs if needed.
+
+As we discovered the build failed because rsync is selected in the policy.
+The EPP Client scans the files which are compiled and if any of the files is blocked by epp, the build also fails.
+The engineers recommendation is to exclude rsync from scanning","","","","005Qk000001nViHIAU","2025-05-05T14:05:30.000Z"

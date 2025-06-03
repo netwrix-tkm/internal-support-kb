@@ -1,0 +1,36 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Cwi8IIAR","00414803","Support Ticket","User getting error while running Framework from Terminal for Xcode Application on MAC","Hi team,
+
+User getting error while running Framework from Terminal for Xcode Application on MAC. Four users are running the same work.
+
+First user can run the code without error if EPP is disabled.
+
+For second user even after disabling EPP, it does not work.
+
+For third user, everything works properly without disabling EPP.
+
+All Users are in same policy and same group. All users have same OS version on their MAC's. Intercept VPN is enabled for all users.
+
+EPP version is also same for all users.
+
+There is no CAP logs available on the Console. Also there is no EPP Block notification on user's computer.
+
+User is using the following steps -
+
+1.The user is building SPMReport (our/users) which will be available /deployed under Field Insights app
+
+And Field Insights will(have tab of reports in their application)
+
+ 
+
+2.For spm reports to be in Field insights- user is creating a framework first (where they run file script.sh file in their project folder path)- it gives error - archive failed
+
+ 
+
+3.Then user create pod/dependences/packges of this spm reports and/to install in Field insight — when they archive this field insights or even build it…. it gives below error:
+
+xcodebuild archive -workspace ${WORKSPACE}.xcworkspace -scheme ${SCHEME} -archivePath ""${ARCHIVE_PATH_IOS_SIMULATOR}.xcarchive"" -destination ""generic/platform=iOS Simulator"" -sdk iphonesimulator SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+script.sh: line 46: 11496 Killed: 9              
+
+xcodebuild -create-xcframework -framework ""${ARCHIVE_PATH_IOS}.xcarchive/Products/Library/Frameworks/${FINAL_NAME}.framework"" -framework ""${ARCHIVE_PATH_IOS_SIMULATOR}.xcarchive/Products/Library/Frameworks/${FINAL_NAME}.framework"" -output ""../Frameworks/R11/${FINAL_NAME}.xcframework""","","","","the problem is not present anymore therefore the ticket can be closed.","","Adrian Draghici","","Netwrix Endpoint Protector","Server","","","5930","10.9","Closed - Resolved","ZS","Mohammad Qamar Sayyed","2024-07-11T16:23:31.000Z","2024-07-22T13:32:59.000Z"

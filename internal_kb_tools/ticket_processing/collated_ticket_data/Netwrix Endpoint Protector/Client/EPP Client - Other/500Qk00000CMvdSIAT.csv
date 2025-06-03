@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CMvdSIAT","00413215","Support Ticket","File shadowing not working when DPI enabled","Dear Support team,
+
+We are in the process of a POC with Sony, ACV:$156k, facing the following issue.
+When DPI is turned on and shadowing as well, the sensitive files get blocked BUT do not get shadowed.
+
+This issue is due to the fact that the background discovery thread does not activate until after the file block event is sent to the server.
+File scanning and blocked:
+06-26 11:18:25.006 1648 DEBUG  The policy 'test policy shadow' was satisfied by threshold [cf::PoliciesScanStatus::setPolThresholdIsMet <a href='https://PolicyScanStatus.cpp' target='_blank'>PolicyScanStatus.cpp</a>:138]
+06-26 11:18:25.006 1648 DEBUG  Policy 'test policy shadow' was satisfied, action is: '1' [cf::threatDetected <a href='https://ScanContext.cpp' target='_blank'>ScanContext.cpp</a>:1000]
+06-26 11:18:25.006 1648 DEBUG  First time a policy was satisfied for threat type 'word/blocked content for usb' [cf::threatDetected <a href='https://ScanContext.cpp' target='_blank'>ScanContext.cpp</a>:1004]
+06-26 11:18:25.006 1648 DEBUG  ThreatType: 'word/blocked content for usb', matchedText: 'secrXX', policyName: 'test policy shadow', fileName: 'Web Upload*[<a href='https://shadows.txt' target='_blank'>shadows.txt</a>]'  [cf::handleServerLogs <a href='https://DlpMain.cpp' target='_blank'>DlpMain.cpp</a>:163]
+06-26 11:18:25.006 1648 INFO   Event: cf threat(704), 3388, size: 12680 [CEvtMan::SendMessageW <a href='https://EvtMan.cpp' target='_blank'>EvtMan.cpp</a>:164]
+
+ While Background discovery:
+06-26 11:18:25.008 21244 INFO   Starting the background discovery thread! [scan_persist::PersistentScanCache::pushBackgroundScanLocationJob <a href='https://PersistentScanCache.cpp' target='_blank'>PersistentScanCache.cpp</a>:1247]
+06-26 11:18:25.008 11084 INFO   scanning location: 'C:UsersAPSISCRLT-5730Desktop' [scan_persist::PersistentScanCache::backgroundScan <a href='https://PersistentScanCache.cpp' target='_blank'>PersistentScanCache.cpp</a>:891]
+
+Immediately after the file gets blocked, the background scan starts. 
+On my computer, whenever i do this, the backgound scan starts before the file gets blocked. 
+After speaking to sales, this seems to be a frequent issue that is encountered, so  I would like to open this ticket to submit as an improvement request to the above mentioned behavior.
+
+Can you please add me as a watcher or @ me on the resulting ADO ticket?
+
+Thank you,
+
+Andreas","","","","Oppurtunity with Sony lost","","Andre Le Roux","","Netwrix Endpoint Protector","Client","EPP Client - Other","NONE","","47.9","Closed - Resolved","Sony India Software Centre","Sathiyapprakaash Kesavaram","2024-06-27T10:45:26.000Z","2024-08-14T07:59:25.000Z"

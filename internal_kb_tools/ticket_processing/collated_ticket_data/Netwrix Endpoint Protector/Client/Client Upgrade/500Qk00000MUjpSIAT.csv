@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MUjpSIAT","00437507","Support Ticket","Client not reporting correctly after upgrade","Hi Support,
+
+I have updated some of our clients today to version 6.2.4.2000 and one of them is now not reporting correctly. It started off with the machine not showing that the new version of the client was installed so i removed the agent and reinstalled it but this didn't help. I have tried completely removing the agent and delete the computer from the server console but nothing is working with it. Please could you advise what i can do to find out what is causing this behaviour.
+
+Kind Regards,
+Andrew","","- server version: 5.9.4.1
+- client version: 6.2.4.2
+- windows server
+- client was installed manually
+- uninstalled the client with the ZAP tool, than reinstalled it without success
+- Security software: Eset server security. We stopped it, but the connection still wasn't made. The customer also whitelisted the EPP processes
+- the customer opened the communication in the firewall
+- the EPP client has a last server connection, but it's not connected
+- it shows up as online and licensed, but the client version is missing
+- re-registered clients
+- found the following error in the eppclient.log:
+ConnectedDevices request failed. cURL error is: 58, schannel: Failed to import cert file (memory blob), password is bad, proxy: false [CSoapClient::SendRequest SoapClient.cpp:339]
+- Windows Server 2016
+
+20.03
+- the options.ini contains the wrong certificate
+- installed client version 6.2.3.1010 which worked correctly - the customer will use it until we figure out the issue with the new client
+- updated the R&D ticket
+
+- R&D let me know that since Windows Server is not supported anymore, we won't be making clients for it
+- I let the customer know, and asked him to use the old client since that still works","waiting on the customer","R&D informed me that since Windows Server is not supported anymore, we won't be making clients for it. Customer confirmed closure","","Botond Biro","Unexpected Behavior","Netwrix Endpoint Protector","Client","Client Upgrade","","5941","38.0","Closed - Resolved","Oyster Bay Systems","Andrew Temple","2025-03-03T14:14:09.000Z","2025-04-10T13:08:01.000Z"

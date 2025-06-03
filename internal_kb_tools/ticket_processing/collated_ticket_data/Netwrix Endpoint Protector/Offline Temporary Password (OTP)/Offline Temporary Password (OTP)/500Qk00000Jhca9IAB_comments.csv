@@ -1,0 +1,186 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000Aqv7hIAB","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Account ACV has been changed to 29930.48.
+Priority has been changed to High.","005Qk000001nViFIAU","2024-12-20T10:19:58.000Z","2024-12-20T10:19:58.000Z","false","false"
+"00aQk00000Aqv9JIAR","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Account ACV has been changed to 14965.24.","005Qk000001nViFIAU","2024-12-20T10:19:59.000Z","2024-12-20T10:19:59.000Z","false","false"
+"00aQk00000AqvSgIAJ","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: FYI The customer is mentioning that they upgraded to 5.9.4.1 on the 13th of December at around 9:15AM.","005Qk000001nViFIAU","2024-12-20T10:33:44.000Z","2024-12-20T10:33:44.000Z","false","false"
+"00aQk00000AqvVuIAJ","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: When I checked the eppclient log for OTP keyword, I found the line below:
+
+12-19 13:21:20.436 13832 DEBUG  server_otp_token = '' [ApplicationSettings::LogSettings ApplicationSettings.cpp:1527]
+
+Is it normal for it to not have any value?","005Qk000001nViFIAU","2024-12-20T10:35:47.000Z","2024-12-20T10:35:47.000Z","false","false"
+"00aQk00000ArDnlIAF","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-20T15:19:59.000Z","2024-12-20T15:19:59.000Z","false","false"
+"00aQk00000ArDnnIAF","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Marius Ghiurcau:
+
+@WaitingOnEngineer
+
+Unfortunately the issue is reproducing and indeed, only after an upgrade from an older client. In 5941 the EPP client upgraded to OpenSSL3. It seems that the certificate stored locally by EPP contains some unsupported algorithms in OpenSSL3 (this certificate was generated using OpenSSL1.1 and it is not changed at upgrade.) Because of this, the EPP client is unable to extract the computer ID from the certificate. And this computer ID is used in OTP generation/validation. So in the end OTP validation fails. To our knowledge so far, this is the only feature affected. I already have a fix in place, on Monday I will get back on the thread with a test build. Right now there are two workarounds in place:
+
+	 - 	The costumers can force a re-register of the affected clients. This will generate a new certificate and it should be fine after this 
+	 - 	Uninstall (with remove database and logs) and install back the 5941 client
+
+[DevOps CommentId:11441408]","0054u000006gtWUAAY","2024-12-20T15:20:00.000Z","2024-12-20T15:20:00.000Z","false","false"
+"00aQk00000ArEdOIAV","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-12-20T16:10:13.000Z","2024-12-20T16:10:13.000Z","false","false"
+"00aQk00000At0heIAB","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Marius Ghiurcau:
+
+I am preparing a build right now. Unfortunately the first build that I prepared is not going to work because it has a support version and that version can't be installed over a production version (upgrade does not work). I am preparing a new build with a maintenance version, that should be fine and upgrading a 5941 production build to that one should be fine. This is going to be a test build anyway, the management teams will decide how we should proceed for the other customers as well, the ones that did not upgrade yet, maybe we will prepare another production build for 5941.
+
+When testing the build, please upgrade to 5941 first, test OTP for computer and see it is not working. After this upgrade to the test build that will be added to this thread. Test again OTP and it should work this time.
+
+The build will force a computer re-register.
+
+Note: I will add an ADO entry later today, I discovered that in 5941 on the server side only one user is displayed in server, in case there are multiple users with the same name. For example I have 3 different machines that have the same username (marius) and I see only one entry. Unfortunately this is not OK. OTP for username if not going to work. Because in the backend, together with the username there is also a SID which is going to be different for each user. We need to check, the change might be in Unify as well.
+
+[DevOps CommentId:11442418]","0054u000006gtWUAAY","2024-12-23T06:38:32.000Z","2024-12-23T06:38:32.000Z","false","false"
+"00aQk00000AsyeBIAR","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Marius Ghiurcau:
+
+Build location: \192.168.14.5Publicgroups_daily_buildsCoSoSys2024-builds2024_12_23EppClient_v6.2.4.2000
+
+For now do not send the test build, let's see the decision on how we proceed with it. We can use it to test in-house and validate the fix.
+
+[DevOps CommentId:11442506]","0054u000006gtWUAAY","2024-12-23T07:33:32.000Z","2024-12-23T07:33:32.000Z","false","false"
+"00aQk00000At6tSIAR","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Marius Ghiurcau:
+
+I will add some some advices for testing the build. First of all, right now the scenarios will imply in most of the cases manual upgrades. 
+
+	 - 	have a 5940 or older client installed. Check OTP, works. Upgrade to 5941 build, check OTP, does not work anymore. Upgrade to the test build, OTP should work again
+	 - 	have a5940 build. OTP works. Upgrade to the test build. OTP should still work
+
+Use OTPs for computer in the above cases. OTPs for user can be affected by another issue in some cases, I will elaborate more on a different thread. 
+
+@Krzysztof Staszalek @Cristian-Alexandru Halmajan please advise how we proceed with the customers that discovered the issue. For now are we on hold until we validate properly in-house the test build?
+
+[DevOps CommentId:11442916]","0054u000006gtWUAAY","2024-12-23T09:32:55.000Z","2024-12-23T09:32:55.000Z","false","false"
+"00aQk00000At7vyIAB","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Marius Ghiurcau:
+
+When this is tested, if you add two OTPs, the second OTP will have to be for a different device, if the initial OTP did not expire yet. That is because you can't select another OTP for a device that is already allowed This behavior was added in 5940 I think. 
+
+[DevOps CommentId:11443081]","0054u000006gtWUAAY","2024-12-23T10:03:02.000Z","2024-12-23T10:03:02.000Z","false","false"
+"00aQk00000At8jzIAB","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Marius Ghiurcau:
+
+I've upgraded to 5941, checked that indeed OTP is not working, released the EPP license from the server (this forces a re-register) and OTPs did not work right away, a restart of the service (or the PC) was needed. I will double check the code as well, probably I will conclude that this is expected. If the customers are using the test build provided, another restart will not be needed. 
+
+Another note related to the tests. It seems that sometimes, after client upgrade, OTPs that are in place are not working anymore, even if they are valid. This might be fixed with a device re-plug, I can't test the scenario right now. Anyway, it is not that important
+
+[DevOps CommentId:11443341]","0054u000006gtWUAAY","2024-12-23T10:55:15.000Z","2024-12-23T10:55:15.000Z","false","false"
+"00aQk00000AtDlHIAV","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Marius Ghiurcau:
+
+I've made some tests with the test build that I provided. In my case, OTPs work as expected after upgrading from an older version (5940 or 5941 client) to the test build that I provided. 
+
+[DevOps CommentId:11443531]","0054u000006gtWUAAY","2024-12-23T11:41:22.000Z","2024-12-23T11:41:22.000Z","false","false"
+"00aQk00000AtHNRIA3","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-23T12:54:54.000Z","2024-12-23T12:54:54.000Z","false","false"
+"00aQk00000AtHNTIA3","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Alin,
+
+The customer can use the following link to download the test build:
+https://download.endpointprotector.com/custom_agent/Epp23122024/EppClient_v6.2.4.2000.zip
+
+Regards,
+Cristi 
+@WaitingOnEngineer
+
+[DevOps CommentId:11443826]","0054u000006gtWUAAY","2024-12-23T12:54:55.000Z","2024-12-23T12:54:55.000Z","false","false"
+"00aQk00000AtIrNIAV","500Qk00000Jhca9IAB","Thank you all, I just had a call with the customer, and the test build solved the mentioned issue.
+The scenario that we checked was:
+
+- does it work with the client from 5.9.4.1? 
+- no. Then we upgraded that client to 6.2.4.2 Test build
+- does it work now?
+- Yes.
+
+I have recommended to the customer also to perform a release o the licenses, a reboot and after that to check if the issue is still present. Waiting on Feedback from them.","005Qk000001nViFIAU","2024-12-23T13:33:10.000Z","2024-12-23T13:33:10.000Z","false","false"
+"00aQk00000AtIwEIAV","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Thank you all, I just had a call with the customer, and the test build solved the mentioned issue.
+The scenario that we checked was:
+
+- does it work with the client from 5.9.4.1?
+- no. Then we upgraded that client to 6.2.4.2 Test build
+- does it work now?
+- Yes.
+
+I have recommended to the customer also to perform a release o the licenses, a reboot and after that to check if the issue is still present. Waiting on Feedback from them.","005Qk000001nViFIAU","2024-12-23T13:34:24.000Z","2024-12-23T13:34:24.000Z","false","false"
+"00aQk00000AtJ97IAF","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2024-12-23T13:39:03.000Z","2024-12-23T13:39:03.000Z","false","false"
+"00aQk00000AtSZ0IAN","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Levente-Cristian Fangli:
+
+@Cristian-Alexandru Halmajan @Marius Ghiurcau 
+We have checked the following scenarios successfully based on your comments
+
+	 - 	5940 and the equivalent client installed on windows, upgraded the server to 5941, from the server upgraded the client (6.2.4.1006) and generated an OTP for a blocked device -> OTP issue reproduced and by using the Release license for the problematic computer and restarting the services / computer the OTP was now working as expected 
+	 - 	A similar scenario followed, but this time before upgrading we generated an OTP in 5940, updated the server to 5941, from the server upgraded the client . OTP generated in 5940 was working for the device, but generating  a new OTP for another device -> the OTP issue reproduced again, the workaround was again to release the license and to restart the EPP service or the computer to make OTP work again 
+	 - 	We also performed a server update to 5941 and a manual upgrade of the 5940 client to the initial rc client (6.2..4.1006). OTP was generated to a denied device and the ""Invalid Authorization Code"" message was displayed, hence the issue was reproduced.  Again the release license and restart services workaround was used to make OTP functional 
+ Tested also the build from Marius Ghiurcau, 6.2.4.2000.  The Tested scenario was the following:
+
+
+	 - 	Updated an 5940 server to 5941. Upgraded the client from the server to 6.2.4.1006. Generated an OTP for HD Camera -> Reproduced the ""Invalid Authorization Code"" issue. While having the 6.2.4.1006 build installed, we have downloaded the test build and installed over. Tried again the OTP and the access was granted to the Camera. 
+	 - 	Checked also the OTP revocation after aprox. 20 minutes and it was working. 
+	 - 	Need to check the Transfer Limit unlock from the OTP 
+
+[DevOps CommentId:11444542]","0054u000006gtWUAAY","2024-12-23T15:42:37.000Z","2024-12-23T15:42:37.000Z","false","false"
+"00aQk00000AtSZ2IAN","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: The customer has provided the following feedback:
+
+
+""The workaround worked on one other test client.
+
+But another point came to my mind: We are rolling out the update to 6.2.4.1006 gradually and therefore we have to release the licenses of the updated clients everytime afterwards, right?
+
+If that’s the case it would be nice if you could fix it in the backend so we can eliminate the problem once for all.""","005Qk000001nViFIAU","2024-12-23T16:03:08.000Z","2024-12-23T16:03:08.000Z","false","false"
+"00aQk00000AwV0rIAF","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-27T07:45:32.000Z","2024-12-27T07:45:32.000Z","false","false"
+"00aQk00000AwV0tIAF","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Alin,
+
+I hope you are well.
+
+Krzysztof mentioned on escalation channels that for the customers who already applied 5.9.4.1. patch, there will be an offline patch delivered which will include the client that you mentioned it fixes the issue.
+Currently, the offline patch is in testing.
+
+I will let you know as soon as the offline patch is available.
+
+Regards,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11448414]","0054u000006gtWUAAY","2024-12-27T07:45:33.000Z","2024-12-27T07:45:33.000Z","false","false"
+"00aQk00000B4m1KIAR","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-12-27 07:45 UTC and the last detected comment from support was 2024-12-23 16:03 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11459130]","0054u000006gtWUAAY","2025-01-06T05:02:55.000Z","2025-01-06T05:02:55.000Z","false","false"
+"00aQk00000B4qzOIAR","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: @Cristian-Alexandru Halmajan can you please provide an update here?
+What is the current status for the fixed offline patch?
+Thank you","005Qk000001nViFIAU","2025-01-06T08:32:25.000Z","2025-01-06T08:32:25.000Z","false","false"
+"00aQk00000BCeeUIAT","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Alin, 
+
+I hope you are well.
+
+The issue has been fixed and it is now available in the new patch that is available on the LiveUpdate.
+
+For the customers that have already upgraded to 5.9.4.1. before the OTP issue was fixed, they can use the following link to download the offline patch that includes the OTP fix: http://download.endpointprotector.com/offline_agent_patches/MP-HWA-EPP4-U0066-M0001.tar.gz
+
+I hope this helps.
+
+Regards,
+Cristi
+@WaitingOnEngineer
+
+[DevOps CommentId:11490501]","0054u000006gtWUAAY","2025-01-13T07:39:12.000Z","2025-01-13T07:39:12.000Z","false","false"
+"00aQk00000BChVtIAL","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViFIAU","2025-01-13T09:24:57.000Z","2025-01-13T09:24:57.000Z","false","false"
+"00aQk00000BETdJIAX","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViFIAU","2025-01-14T15:11:11.000Z","2025-01-14T15:11:11.000Z","false","false"
+"00aQk00000BETdLIAX","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Account ACV has been changed to 29930.48.","005Qk000001nViFIAU","2025-01-14T15:11:14.000Z","2025-01-14T15:11:14.000Z","false","false"
+"00aQk00000BETgXIAX","500Qk00000Jhca9IAB","On Escalation Ticket # 00430441 the Following Fields have been updated: 
+Account ACV has been changed to 14965.24.","0054u000006gtWUAAY","2025-01-14T15:11:25.000Z","2025-01-14T15:11:25.000Z","false","false"

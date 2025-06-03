@@ -1,0 +1,230 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000A3RU9IAN","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Account ACV has been changed to 20257.40.","005Qk000002i2OLIAY","2024-11-05T19:01:29.000Z","2024-11-05T19:01:29.000Z","false","false"
+"00aQk00000A3RVlIAN","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Account ACV has been changed to 10128.70.","005Qk000002i2OLIAY","2024-11-05T19:01:35.000Z","2024-11-05T19:01:35.000Z","false","false"
+"00aQk00000A3zvfIAB","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi @WaitingOnDevOps,
+
+We have an urgent case for NPI LLC:
+
+""Description
+
+Customer Name: NPI LLC
+- ACV: 5,064
+- Components: Web Console
+- OS: NA
+- EPP Server Version: 5.9.2.0
+- Agent Version: NA
+- Endpoints affected: NA
+
+
+Hi Team,
+
+The customer reported that the EPP server is down and cannot connect to the UI. The /var/eppfiles were occupying all the disk space and we performed a disk cleanup.
+
+After this procedure, the 502 Bad Gateway error page is displayed.
+The ifconfig command returned the following result:
+root@eppserver:/usr/bin]$ ifconfig
+eth0: flags=4163 mtu 9001
+inet 111.33.33.111 netmask 255.255.255.255 broadcast 0.0.0.0
+inet6 fe80::10f1:34ff:fe9b:836b prefixlen 64 scopeid 0x20
+ether 12:f1:34:9b:83:6b txqueuelen 1000 (Ethernet)
+RX packets 431207 bytes 636603528 (636.6 MB)
+RX errors 0 dropped 0 overruns 0 frame 0
+TX packets 114821 bytes 6836336 (6.8 MB)
+TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+
+lo: flags=73 mtu 65536
+inet 127.0.0.1 netmask 255.0.0.0
+inet6 ::1 prefixlen 128 scopeid 0x10
+loop txqueuelen 1000 (Local Loopback)
+RX packets 16447 bytes 391331996 (391.3 MB)
+RX errors 0 dropped 0 overruns 0 frame 0
+TX packets 16447 bytes 391331996 (391.3 MB)
+TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+
+Seems that eth1 network is missing
+The server is hosted by us: Production NPI - https://54.85.101.159/""
+
+Could you please have a look?
+
+Thank you,
+Cristi
+
+[DevOps CommentId:11175405]","0054u000006gtWUAAY","2024-11-06T07:28:29.000Z","2024-11-06T07:28:29.000Z","false","false"
+"00aQk00000A41EIIAZ","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: -- DevOps Automation Assistant --
+Escalation ticket 363901 raised with the DevOps team
+
+[DevOps CommentId:11175408]","0054u000006gtWUAAY","2024-11-06T07:28:37.000Z","2024-11-06T07:28:37.000Z","false","false"
+"00aQk00000A41KjIAJ","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-06T07:32:21.000Z","2024-11-06T07:32:21.000Z","false","false"
+"00aQk00000A41KlIAJ","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Iosif,
+I raised this issue with devops.
+Regards,
+Cristi
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11175416]","0054u000006gtWUAAY","2024-11-06T07:32:22.000Z","2024-11-06T07:32:22.000Z","false","false"
+"00aQk00000A41RCIAZ","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Cristian-Alexandru Halmajan:
+
+@WaitingOnEngineer,
+
+Please make sure that the folder is correct. We get a 404 when trying to access it.
+
+Thank you,
+Cristi
+
+[DevOps CommentId:11175419]","0054u000006gtWUAAY","2024-11-06T07:33:05.000Z","2024-11-06T07:33:05.000Z","false","false"
+"00aQk00000A42OsIAJ","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Augustina Sidor:
+
+Hi Iosif, 
+
+Please try to run the following command. This will clean the empty files from the workers directories.
+
+find /var/eppfiles/quicklogs/worker/1/ -type f -size 0 -delete
+
+find /var/eppfiles/quicklogs/worker/2/ -type f -size 0 -delete
+find /var/eppfiles/quicklogs/worker/3/ -type f -size 0 -delete
+find /var/eppfiles/quicklogs/worker/4/ -type f -size 0 -delete
+find /var/eppfiles/quicklogs/worker/5/ -type f -size 0 -delete
+
+
+Also, before and after running the above command please check the iNodes.
+
+Thanks,
+Augustina
+
+FYI @WaitingOnEngineer
+
+[DevOps CommentId:11175544]","0054u000006gtWUAAY","2024-11-06T07:55:53.000Z","2024-11-06T07:55:53.000Z","false","false"
+"00aQk00000A458EIAR","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Francisc Farkas:
+
+@WaitingOnEngineer
+
+more details on this machine:
+
+
+Quicklogs workers folders are occupying most of the space:
+
+
+there are no 0-sized files there:
+
+
+quicklogs was empty one day ago, now disk is full again, so, we expect logs are not processed for any reason.
+Need development investigation.
+
+Notes: 
+  - after reset, the server starts, UI is up, however, after a while, because of missing space, processes are freezing and the page can't be accessed anymore.
+
+[DevOps CommentId:11176237]","0054u000006gtWUAAY","2024-11-06T09:12:12.000Z","2024-11-06T09:12:12.000Z","false","false"
+"00aQk00000A465wIAB","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Augustina Sidor:
+
+I connected to the server and noticed that the customer’s approach to using the policies could be improved.
+
+The workers are functioning, but due to the way the policies are configured, a large number of logs are generated, leading to low disk space.
+
+Solution:
+
+	 - 	The customer should be advised to configure the policies to monitor only what is truly necessary, rather than checking all exit points and PIIs. 
+	 - 	increase the resources on the server (the number of  CPUs and RAM); 
+ 
+@WaitingOnEngineer
+
+[DevOps CommentId:11177964]","0054u000006gtWUAAY","2024-11-06T11:21:17.000Z","2024-11-06T11:21:17.000Z","false","false"
+"00aQk00000A4r1ZIAR","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2024-11-06T19:34:41.000Z","2024-11-06T19:34:41.000Z","false","false"
+"00aQk00000A6I7nIAF","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Hi Team,
+
+We had today a remote connection with the customer but were unable to log into the web console to check the CAP policies, after entering the credentials the page stayed on loading until timed-out. The customer tried to log in multiple times today but is still getting timed-out or 502 errors.
+
+I saw in the backend that the memory is just 2GB RAM and is always at 100% usage, is there a way to make the server accessible in order to refine the CAP policies?
+
+Thank you!","005Qk000002i2OLIAY","2024-11-07T21:23:14.000Z","2024-11-07T21:23:14.000Z","false","false"
+"00aQk00000A6Im5IAF","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Product Version has been changed to NONE.
+Status has been changed to Awaiting R&D.","005Qk000002i2OLIAY","2024-11-07T21:23:39.000Z","2024-11-07T21:23:39.000Z","false","false"
+"00aQk00000A6wGVIAZ","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-08T14:00:16.000Z","2024-11-08T14:00:16.000Z","false","false"
+"00aQk00000A6wGXIAZ","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Francisc Farkas:
+
+@WaitingOnEngineer
+We propose to increase, temporary, the hardware resources for this instance, so that can be enough room to do your reconfiguration, as @Augustina Sidor suggested.
+After your part of the task is complete, we will revert the hardware resources to original state.
+
+[DevOps CommentId:11192946]","0054u000006gtWUAAY","2024-11-08T14:00:17.000Z","2024-11-08T14:00:17.000Z","false","false"
+"00aQk00000A71cnIAB","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Hi Francisc,
+
+Please go ahead with this temporary solution.
+
+Thank you!","005Qk000002i2OLIAY","2024-11-08T15:02:45.000Z","2024-11-08T15:02:45.000Z","false","false"
+"00aQk00000A7417IAB","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000002i2OLIAY","2024-11-08T15:03:05.000Z","2024-11-08T15:03:05.000Z","false","false"
+"00aQk00000AACv3IAH","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-11T15:43:30.000Z","2024-11-11T15:43:30.000Z","false","false"
+"00aQk00000AACv5IAH","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Francisc Farkas:
+
+@WaitingOnEngineer 
+looks like currently server is freezed. 
+So I don't need request to reboot it.
+Let you know when is ready
+
+[DevOps CommentId:11198723]","0054u000006gtWUAAY","2024-11-11T15:43:31.000Z","2024-11-11T15:43:31.000Z","false","false"
+"00aQk00000AAEyRIAX","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Francisc Farkas:
+
+@WaitingOnEngineer
+Upgrade complete.
+Iosif is granted to do the cleanup.
+
+[DevOps CommentId:11198901]","0054u000006gtWUAAY","2024-11-11T16:21:26.000Z","2024-11-11T16:21:26.000Z","false","false"
+"00aQk00000AAKMHIA5","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2024-11-11T16:27:25.000Z","2024-11-11T16:27:25.000Z","false","false"
+"00aQk00000AJ9ZhIAL","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-19T05:03:06.000Z","2024-11-19T05:03:06.000Z","false","false"
+"00aQk00000AJ9ZjIAL","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-11-11 16:21 UTC and the last detected comment from support was 2024-11-08 15:02 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11231902]","0054u000006gtWUAAY","2024-11-19T05:03:07.000Z","2024-11-19T05:03:07.000Z","false","false"
+"00aQk00000AJamnIAD","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2024-11-19T15:14:13.000Z","2024-11-19T15:14:13.000Z","false","false"
+"00aQk00000AJeX4IAL","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Hi Team,
+
+The customer has optimized his CAP policies and now the server seems to be working properly for about a week.
+
+Please go ahead and revert the resources to the original values. We will monitor the machine for 2-3 days to see if any issues occur.
+
+Thank you!","005Qk000002i2OLIAY","2024-11-19T15:54:08.000Z","2024-11-19T15:54:08.000Z","false","false"
+"00aQk00000AJedVIAT","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000002i2OLIAY","2024-11-19T15:54:25.000Z","2024-11-19T15:54:25.000Z","false","false"
+"00aQk00000AQTVGIA5","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Hi Team,
+
+Could you please confirm if the resources for the hosted server have been reverted to the original values?
+
+Thank you!","005Qk000002i2OLIAY","2024-11-25T19:41:39.000Z","2024-11-25T19:41:39.000Z","false","false"
+"00aQk00000AYwWrIAL","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-04T12:12:20.000Z","2024-12-04T12:12:20.000Z","false","false"
+"00aQk00000AYwWtIAL","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Francisc Farkas:
+
+@WaitingOnEngineer
+instance reverted to the original configuration
+
+[DevOps CommentId:11334892]","0054u000006gtWUAAY","2024-12-04T12:12:20.000Z","2024-12-04T12:12:20.000Z","false","false"
+"00aQk00000AZ9kEIAT","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Thank you! We will monitor the appliance for 2-3 days, and if there is no issue, we will close this ticket.","005Qk000002i2OLIAY","2024-12-04T15:32:59.000Z","2024-12-04T15:32:59.000Z","false","false"
+"00aQk00000AZ9p3IAD","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2024-12-04T15:35:05.000Z","2024-12-04T15:35:05.000Z","false","false"
+"00aQk00000AltJSIAZ","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the new comment has been added: Hi Team,
+
+The customer replied the server is running fine with the original resources now. This ticket can be closed.
+
+Thank you!","005Qk000002i2OLIAY","2024-12-16T15:16:21.000Z","2024-12-16T15:16:21.000Z","false","false"
+"00aQk00000AltphIAB","500Qk00000Hs37CIAR","On Escalation Ticket # 00426114 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002i2OLIAY","2024-12-16T15:19:35.000Z","2024-12-16T15:19:35.000Z","false","false"

@@ -1,0 +1,9935 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MgEbNIAV","500Qk00000IC4a9IAD","2025-03-17T09:52:23.000Z","2025-03-17T09:52:23.000Z","Hello Bera,
+
+I hope my email finds you well. 
+
+I wanted to check in regarding your support ticket 00426753. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+Have a nice day ahead!
+
+Best Regards,
+Marian Ilies | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/26/2025 9:35 AM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; drake.scott@ing.com; sudipa.bera@ing.com; marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+Hello Chris,
+
+I hope my email finds you well. 
+
+I wanted to check in regarding your support ticket 00426753. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/17/2025 2:54 PM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; drake.scott@ing.com; sudipa.bera@ing.com; marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your patience regarding this case.
+
+We have received an update from our R&D team, that they have checked the current logs. This time the EPP client receives the list of excluded network shares. Going forward, there is a lot of scanning here, but all the files scanned are from ""C:tempGBSDownload""and not from network share like in the previous set of logs.
+
+Moreover, they decrypted the database with the policies and it seems that WinSCP is monitored in the CAP policy. In this case, network share whitelist will not apply anyway.
+As long as the file is transferred through a monitored application, network share whitelist is ignored. If not, one could use network share as a ""proxy"" to exfiltrate any data outside the company.
+For example, the user has a confidential file on the local machine. Theoretically transferring it through a browser is blocked by EPP. But if the user copies the file on the network share (which is whitelisted) he can then upload the file, through the browser from that location (again, because the location it is whitelisted). So this is the reason why Network Share whitelist doesn't apply for transfers made by monitored apps.
+The reason why Network Share whitelist was added was to give the user the possibility to browse the network share, view/open files, copy them to the local machine, but that's all, he should not be able to actually transfer them outside the company if they contain confidential info.
+
+Finally, in the logs they see a file being scanned and blocked by the EPP client. The reason the file is blocked is the fact that WinSCP is monitored in the CAP policy and the file is being handled (read) by WinSCP. 
+
+Please test without the WinSCP exit point enabled and also with the policy action set to report only.
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/4/2025 3:08 PM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; marco.cabral@ing.com; drake.scott@ing.com; sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your response.
+
+I have forward them to our R&D team for further analysis, and as soon as I receive an update I will inform you accordingly.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 2/4/2025 12:16 PM
+To: techsupport@netwrix.com
+Cc: xian.ken.jin@cn.ing.com; sudipa.bera@ing.com; marco.cabral@ing.com; drake.scott@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+
+
+Hi Daniel,
+
+ 
+
+The log has already been collected in 3rd Jan and Sudipa has attached the log into this ticket, could you please check? Thanks.
+
+ 
+
+
+
+ 
+
+
+ 
+
+ 
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, January 30, 2025 4:00 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Chris, 
+
+I hope my email finds you well. 
+
+Have you manage to gather the logs using the steps my colleague sent to you ? 
+
+Could you please gather the logs and forward them to us for further analysis? 
+
+@Sudipa, for the time being the offline patch is still unavailable. 
+
+Looking for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 1/2/2025 2:39 PM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com;  marco.cabral@ing.com; drake.scott@ing.com; sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hi Chris,
+
+Thank you for your email.  My colleague Daniel Anton is currently out of office so I will answer here in his absence.
+
+You can collect the logs using the debug mode with the Endpoint Protector client or you can collect the logs using the Support Tool.
+
+
+	You can use the attached step by step guide ""How to enable and collect Debug Logs from Endpoint Protector Client v1.3.pdf"" on how to collect the logs (artifact)
+	Alternatively you can follow the guide ""How to Capture Client Logs using the Support Tool-v2 on a Windows Machine v1.2.pdf"" this method is to collect the client logs with the Support Tool.
+
+
+
+I hope this helps, if you have any follow up questions then please do let us know.
+
+
+Kind regards
+__________________
+André Le Roux | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+*************************************************************************************************************************************************
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 1/2/2025 4:46 AM
+To: techsupport@netwrix.com;  sudipa.bera@ing.com
+Cc: xian.ken.jin@cn.ing.com;  drake.scott@ing.com; marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+ 
+
+
+HI Sudipa,
+
+ 
+
+Thanks for the feedback, we will plan to collect the log tomorrow.
+
+ 
+
+Hi Daniel & Netwrix support,
+
+ 
+
+Given that the log didn’t record the issue last time, may I double check with you about the log collection procedure? Is it after cososys block report comes up, we just need to send you the eppclient.log file in C drive? Or do we need to start any other process to initiate the log recording before we reproduce the issue?
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Sent: Tuesday, December 31, 2024 5:58 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>; Netwrix Support <techsupport@netwrix.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Chris,
+
+I am not available on 2nd Jan. Please schedule at 3rd Jan, I’ll be available then.
+
+ 
+
+ 
+
+Thanks and Regards
+
+Sudipa
+
+ 
+
+ 
+
+ 
+
+
+
+From: Hu, Chris <Chris.Hu@cn.ing.com>
+Sent: 31 December 2024 02:39
+To: Netwrix Support <techsupport@netwrix.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hi Daniel,
+
+ 
+
+It is strange that last time we performed the file transfer but it is not recorded on the log. Could you please share with us how to collect the log?
+
+ 
+
+As it is the last day of Y2024 and our GBS files must be collected, we will try to re-enable the Cososys agent and collect the log after 1st Jan.
+
+ 
+
+Hi  @Bera, S. (Sudipa), will you be available in 2nd Jan to disable the Cososys agent after we collect the log again? Thank you.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, December 30, 2024 11:29 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Chris,
+
+Thank you for your patience regarding this case.
+
+Our Engineering team investigated the logs and couldn't find the file transfer that we performed in the meeting. 
+
+Could you please start the logs one more time and redo the file transfer then share the new logs with us ? 
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 12/27/2024 9:52 AM
+To: techsupport@netwrix.com
+Cc: xian.ken.jin@cn.ing.com; sudipa.bera@ing.com;  marco.cabral@ing.com; drake.scott@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+
+Hi Daniel,
+
+ 
+
+Please check the attached log file as requested. Thanks.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, December 27, 2024 3:46 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Chris,
+
+Thank you for your patience regarding this case. 
+
+We have asked the colleagues regarding the offline patch and for the moment we do not have an ETA. 
+They asked to check the logs collected in our last session, to verify how is reproduced. 
+
+Could you please check under your C: drive and share with us the eppclient.log file? 
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 12/20/2024 11:38 AM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; drake.scott@ing.com;  sudipa.bera@ing.com; marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your time in today's session .
+
+In the meeting we have tried to apply the allowlist, one more time without success. 
+We have upgraded the EPP client to 6.2.3.1 , reapplied the allowlist and the file transfer is still blocked. 
+
+I will inform my colleagues regarding this and get back to you as soon as the offline patch for 5.9.4.1 version appear. 
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 12/18/2024 12:19 PM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; marco.cabral@ing.com;  drake.scott@ing.com; sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for getting back to us.
+
+We have scheduled a session on Friday at 16:00 SGT and sent you the meeting details in a separate email.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 12/18/2024 8:11 AM
+To: techsupport@netwrix.com; marco.cabral@ing.com
+Cc: xian.ken.jin@cn.ing.com; drake.scott@ing.com;  sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+ 
+
+
+Hi Daniel & Marco,
+
+ 
+
+Thanks for the feedback. Local IT are available after 16:00 PM SGT today, The same time in Thursday and Friday as well.
+
+ 
+
+Thanks.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, December 13, 2024 5:26 PM
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Hu, Chris <Chris.Hu@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Marco,
+
+Thank you for your patience regarding this case.
+
+We have received an update from our Engineering team and we would like to schedule a new meeting next week to apply the steps received. 
+
+Could you please provide us your availability, so we can schedule a new session??
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Aguemi Cabral, M.V. [marco.cabral@ing.com]
+Sent: 12/11/2024 10:46 AM
+To: techsupport@netwrix.com; chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; drake.scott@ing.com;  sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+ 
+
+
+Hi Daniel, any update? It’s been almost a month already.
+
+ 
+
+Marco
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, 14 November 2024 13:27
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello,
+
+Thank you for getting back to us.
+
+I will forward the details to our Engineering team for further analysis.
+
+As soon as we receive an update , we will inform you accordingly.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 11/14/2024 12:46 PM
+To: techsupport@netwrix.com
+Cc: xian.ken.jin@cn.ing.com; sudipa.bera@ing.com;  marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+ 
+
+
+Hi Daniel,
+
+ 
+
+After restart, the issue still persists.
+
+ 
+
+
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Sent: Thursday, November 14, 2024 4:55 PM
+To: 'Netwrix Support' <techsupport@netwrix.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Hu, Chris <Chris.Hu@cn.ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Daniel,
+
+Can we rejoin the call again in 30 mins?
+
+Chris still getting the blocks. 
+
+
+
+ 
+
+ 
+
+Thanks and Regards
+
+Sudipa
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, November 14, 2024 9:41 AM
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Hu, Chris <Chris.Hu@cn.ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello,
+
+Thank you all for your time in today's meeting. 
+
+In the session we manage to fix the encountered issue, by adding the network share path in the allowlist.
+
+We will proceed with the closure of this case.
+
+Should you require any further assistance or additional information, do not hesitate to contact us.
+
+Have a nice day ahead! 
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/13/2024 9:57 AM
+To: marco.cabral@ing.com
+Cc: xian.ken.jin@cn.ing.com; chris.hu@cn.ing.com;  sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Marco,
+
+Thank you for getting back to us. 
+
+I have scheduled the meeting for tomorrow at 16:00SGT and sent you the session details in a separate email.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Aguemi Cabral, M.V. [marco.cabral@ing.com]
+Sent: 11/13/2024 8:50 AM
+To: xian.ken.jin@cn.ing.com; techsupport@netwrix.com; chris.hu@cn.ing.com
+Cc: sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - ref:_00D7091pB._500Q000IC4a9:ref - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+ 
+
+
+Daniel, 4pm SGT is 9am for me, so maybe that is a good time for you as well? Please send the invitation.
+
+ 
+
+Marco
+
+ 
+
+
+
+From: Hu, Chris <Chris.Hu@cn.ing.com>
+Sent: Wednesday, 13 November 2024 07:48
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>; Netwrix Support <techsupport@netwrix.com>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hi Marco,
+
+ 
+
+Tomorrow after 4 PM is fine with me. Thank you for coordinating the trouble shooting session.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Sent: Wednesday, November 13, 2024 2:46 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>; Netwrix Support <techsupport@netwrix.com>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Chris, Netwrix is not available today, only tomorrow. Still the same time?
+
+ 
+
+Marco
+
+ 
+
+
+
+From: Hu, Chris <Chris.Hu@cn.ing.com>
+Sent: Wednesday, 13 November 2024 07:45
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>; Netwrix Support <techsupport@netwrix.com>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hi Marco,
+
+ 
+
+I am available after 4 PM SGT today. Thanks.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Sent: Wednesday, November 13, 2024 2:39 PM
+To: Netwrix Support <techsupport@netwrix.com>; Hu, Chris <Chris.Hu@cn.ing.com>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+@Hu, Chris  @Jin, Xian Ken, could (one of) you please share your availability to troubleshoot the issue with WinSCP together with Netwrix team? This is the GBS download issue.
+
+ 
+
+Daniel, I am available from 9am to 12pm (Amsterdam timezone).
+
+ 
+
+Marco
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, 12 November 2024 15:07
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Marco, 
+
+Thank you for reaching out!
+
+Could you please provide us more details regarding this issue? 
+
+Is the file transfer through the WINSCP are blocked? What is the message received? 
+
+Also, can you please let us know your availability for Thursday? 
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+ref:!00D70091pB.!500Qk0IC4a9:ref
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ATTENTION:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+ 
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ATTENTION:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+ 
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ATTENTION:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ATTENTION:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+ 
+ 
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+ 
+
+
+ATTENTION:
+
+
+ 
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+ATTENTION:
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+-----------------------------------------------------------------
+
+
+ 
+
+
+
+-----------------------------------------------------------------
+ATTENTION:
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+-----------------------------------------------------------------","RE: Netwrix Support Ticket #426753 -  - EPP blocking WinSCP for exempted domains    [ ref:!00D70091pB.!500Qk0IC4a9:ref ]","techsupport@netwrix.com","Netwrix Support","chris.hu@cn.ing.com","xian.ken.jin@cn.ing.com; drake.scott@ing.com; sudipa.bera@ing.com; marco.cabral@ing.com","marian.ilies@netwrix.com","true","2025-03-17T09:52:21.000Z","true"
+"02sQk00000Mgn9RIAR","500Qk00000IC4a9IAD","2025-03-17T14:50:06.000Z","2025-03-17T15:14:19.000Z","ref:_00D7091pB._500Q000IC4a9:ref
+
+Hello Mirian,
+We are waiting to have the agent upgraded before performing any further test.
+You can keep this ticket on hold or archieved till then. I'll reopen if issue persists with the new agent.
+
+
+Thanks and Regards
+Sudipa
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 17 March 2025 10:52
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+Hello Bera,
+
+I hope my email finds you well.
+
+I wanted to check in regarding your support ticket 00426753. We haven't heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you're still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We're here to help you get the most out of your Netwrix products.
+Have a nice day ahead!
+
+Best Regards,
+Marian Ilies | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/26/2025 9:35 AM
+To: chris.hu@cn.ing.com<mailto:chris.hu@cn.ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+Hello Chris,
+
+I hope my email finds you well.
+
+I wanted to check in regarding your support ticket 00426753. We haven't heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you're still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We're here to help you get the most out of your Netwrix products.
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/17/2025 2:54 PM
+To: chris.hu@cn.ing.com<mailto:chris.hu@cn.ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your patience regarding this case.
+
+We have received an update from our R&D team, that they have checked the current logs. This time the EPP client receives the list of excluded network shares. Going forward, there is a lot of scanning here, but all the files scanned are from ""C:tempGBSDownload""and not from network share like in the previous set of logs.
+
+Moreover, they decrypted the database with the policies and it seems that WinSCP is monitored in the CAP policy. In this case, network share whitelist will not apply anyway.
+As long as the file is transferred through a monitored application, network share whitelist is ignored. If not, one could use network share as a ""proxy"" to exfiltrate any data outside the company.
+For example, the user has a confidential file on the local machine. Theoretically transferring it through a browser is blocked by EPP. But if the user copies the file on the network share (which is whitelisted) he can then upload the file, through the browser from that location (again, because the location it is whitelisted). So this is the reason why Network Share whitelist doesn't apply for transfers made by monitored apps.
+The reason why Network Share whitelist was added was to give the user the possibility to browse the network share, view/open files, copy them to the local machine, but that's all, he should not be able to actually transfer them outside the company if they contain confidential info.
+
+Finally, in the logs they see a file being scanned and blocked by the EPP client. The reason the file is blocked is the fact that WinSCP is monitored in the CAP policy and the file is being handled (read) by WinSCP.
+
+Please test without the WinSCP exit point enabled and also with the policy action set to report only.
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/4/2025 3:08 PM
+To: chris.hu@cn.ing.com<mailto:chris.hu@cn.ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your response.
+
+I have forward them to our R&D team for further analysis, and as soon as I receive an update I will inform you accordingly.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 2/4/2025 12:16 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+
+Hi Daniel,
+
+The log has already been collected in 3rd Jan and Sudipa has attached the log into this ticket, could you please check? Thanks.
+
+[cid:image002.png@01DB9754.2D087E60]
+
+
+
+B,rgds
+
+Chris Hu
+IT - Shanghai
+ING Bank N.V. - Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+E: Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>
+[New possibilities, here I come (email signature)]<http://www.ingwb.com/insights/asia-here-i-come>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, January 30, 2025 4:00 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>; Scott, D.A. (Drake) <drake.scott@ing.com<mailto:drake.scott@ing.com>>; Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+I hope my email finds you well.
+
+Have you manage to gather the logs using the steps my colleague sent to you ?
+
+Could you please gather the logs and forward them to us for further analysis?
+
+@Sudipa, for the time being the offline patch is still unavailable.
+
+Looking for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 1/2/2025 2:39 PM
+To: chris.hu@cn.ing.com<mailto:chris.hu@cn.ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hi Chris,
+
+Thank you for your email.  My colleague Daniel Anton is currently out of office so I will answer here in his absence.
+
+You can collect the logs using the debug mode with the Endpoint Protector client or you can collect the logs using the Support Tool.
+
+  1.  You can use the attached step by step guide ""How to enable and collect Debug Logs from Endpoint Protector Client v1.3.pdf"" on how to collect the logs (artifact)
+  2.  Alternatively you can follow the guide ""How to Capture Client Logs using the Support Tool-v2 on a Windows Machine v1.2.pdf"" this method is to collect the client logs with the Support Tool.
+
+I hope this helps, if you have any follow up questions then please do let us know.
+
+
+Kind regards
+__________________
+André Le Roux | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com<http://www.endpointprotector.com/>
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+*************************************************************************************************************************************************
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 1/2/2025 4:46 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+
+HI Sudipa,
+
+Thanks for the feedback, we will plan to collect the log tomorrow.
+
+Hi Daniel & Netwrix support,
+
+Given that the log didn't record the issue last time, may I double check with you about the log collection procedure? Is it after cososys block report comes up, we just need to send you the eppclient.log file in C drive? Or do we need to start any other process to initiate the log recording before we reproduce the issue?
+
+B,rgds
+
+Chris Hu
+IT - Shanghai
+ING Bank N.V. - Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+E: Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>
+[New possibilities, here I come (email signature)]<http://www.ingwb.com/insights/asia-here-i-come>
+
+From: Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Sent: Tuesday, December 31, 2024 5:58 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>; Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>; Scott, D.A. (Drake) <drake.scott@ing.com<mailto:drake.scott@ing.com>>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+I am not available on 2nd Jan. Please schedule at 3rd Jan, I'll be available then.
+
+
+Thanks and Regards
+Sudipa
+
+
+
+From: Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>
+Sent: 31 December 2024 02:39
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>; Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>; Scott, D.A. (Drake) <drake.scott@ing.com<mailto:drake.scott@ing.com>>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hi Daniel,
+
+It is strange that last time we performed the file transfer but it is not recorded on the log. Could you please share with us how to collect the log?
+
+As it is the last day of Y2024 and our GBS files must be collected, we will try to re-enable the Cososys agent and collect the log after 1st Jan.
+
+Hi @Bera, S. (Sudipa)<mailto:sudipa.bera@ing.com>, will you be available in 2nd Jan to disable the Cososys agent after we collect the log again? Thank you.
+
+B,rgds
+
+Chris Hu
+IT - Shanghai
+ING Bank N.V. - Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+E: Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>
+[New possibilities, here I come (email signature)]<http://www.ingwb.com/insights/asia-here-i-come>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, December 30, 2024 11:29 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your patience regarding this case.
+
+Our Engineering team investigated the logs and couldn't find the file transfer that we performed in the meeting.
+
+Could you please start the logs one more time and redo the file transfer then share the new logs with us ?
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 12/27/2024 9:52 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+Hi Daniel,
+
+Please check the attached log file as requested. Thanks.
+
+B,rgds
+
+Chris Hu
+IT - Shanghai
+ING Bank N.V. - Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+E: Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>
+[New possibilities, here I come (email signature)]<http://www.ingwb.com/insights/asia-here-i-come>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, December 27, 2024 3:46 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>; Scott, D.A. (Drake) <drake.scott@ing.com<mailto:drake.scott@ing.com>>; Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your patience regarding this case.
+
+We have asked the colleagues regarding the offline patch and for the moment we do not have an ETA.
+They asked to check the logs collected in our last session, to verify how is reproduced.
+
+Could you please check under your C: drive and share with us the eppclient.log file?
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 12/20/2024 11:38 AM
+To: chris.hu@cn.ing.com<mailto:chris.hu@cn.ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your time in today's session .
+
+In the meeting we have tried to apply the allowlist, one more time without success.
+We have upgraded the EPP client to 6.2.3.1 , reapplied the allowlist and the file transfer is still blocked.
+
+I will inform my colleagues regarding this and get back to you as soon as the offline patch for 5.9.4.1 version appear.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 12/18/2024 12:19 PM
+To: chris.hu@cn.ing.com<mailto:chris.hu@cn.ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for getting back to us.
+
+We have scheduled a session on Friday at 16:00 SGT and sent you the meeting details in a separate email.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 12/18/2024 8:11 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+
+Hi Daniel & Marco,
+
+Thanks for the feedback. Local IT are available after 16:00 PM SGT today, The same time in Thursday and Friday as well.
+
+Thanks.
+
+B,rgds
+
+Chris Hu
+IT - Shanghai
+ING Bank N.V. - Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+E: Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>
+[New possibilities, here I come (email signature)]<http://www.ingwb.com/insights/asia-here-i-come>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, December 13, 2024 5:26 PM
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>; Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>; Scott, D.A. (Drake) <drake.scott@ing.com<mailto:drake.scott@ing.com>>; Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Marco,
+
+Thank you for your patience regarding this case.
+
+We have received an update from our Engineering team and we would like to schedule a new meeting next week to apply the steps received.
+
+Could you please provide us your availability, so we can schedule a new session??
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Aguemi Cabral, M.V. [marco.cabral@ing.com]
+Sent: 12/11/2024 10:46 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>; chris.hu@cn.ing.com<mailto:chris.hu@cn.ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; drake.scott@ing.com<mailto:drake.scott@ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+
+Hi Daniel, any update? It's been almost a month already.
+
+Marco
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, 14 November 2024 13:27
+To: Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>; Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello,
+
+Thank you for getting back to us.
+
+I will forward the details to our Engineering team for further analysis.
+
+As soon as we receive an update , we will inform you accordingly.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 11/14/2024 12:46 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>; marco.cabral@ing.com<mailto:marco.cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+
+Hi Daniel,
+
+After restart, the issue still persists.
+
+[cid:image004.png@01DB9754.2D087E60]
+
+B,rgds
+
+Chris Hu
+IT - Shanghai
+ING Bank N.V. - Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+E: Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>
+[New possibilities, here I come (email signature)]<http://www.ingwb.com/insights/asia-here-i-come>
+
+From: Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Sent: Thursday, November 14, 2024 4:55 PM
+To: 'Netwrix Support' <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>; Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Daniel,
+Can we rejoin the call again in 30 mins?
+Chris still getting the blocks.
+[cid:image005.png@01DB9754.2D087E60]
+
+
+Thanks and Regards
+Sudipa
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, November 14, 2024 9:41 AM
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>; Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>; Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello,
+
+Thank you all for your time in today's meeting.
+
+In the session we manage to fix the encountered issue, by adding the network share path in the allowlist.
+
+We will proceed with the closure of this case.
+
+Should you require any further assistance or additional information, do not hesitate to contact us.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/13/2024 9:57 AM
+To: marco.cabral@ing.com<mailto:marco.cabral@ing.com>
+Cc: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; chris.hu@cn.ing.com<mailto:chris.hu@cn.ing.com>; sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Marco,
+
+Thank you for getting back to us.
+
+I have scheduled the meeting for tomorrow at 16:00SGT and sent you the session details in a separate email.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Aguemi Cabral, M.V. [marco.cabral@ing.com]
+Sent: 11/13/2024 8:50 AM
+To: xian.ken.jin@cn.ing.com<mailto:xian.ken.jin@cn.ing.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>; chris.hu@cn.ing.com<mailto:chris.hu@cn.ing.com>
+Cc: sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - ref:_00D7091pB._500Q000IC4a9:ref - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+Daniel, 4pm SGT is 9am for me, so maybe that is a good time for you as well? Please send the invitation.
+
+Marco
+
+From: Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>
+Sent: Wednesday, 13 November 2024 07:48
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>; Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hi Marco,
+
+Tomorrow after 4 PM is fine with me. Thank you for coordinating the trouble shooting session.
+
+B,rgds
+
+Chris Hu
+IT - Shanghai
+ING Bank N.V. - Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+E: Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>
+[New possibilities, here I come (email signature)]<http://www.ingwb.com/insights/asia-here-i-come>
+
+From: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Sent: Wednesday, November 13, 2024 2:46 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>; Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Chris, Netwrix is not available today, only tomorrow. Still the same time?
+
+Marco
+
+From: Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>
+Sent: Wednesday, 13 November 2024 07:45
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>; Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hi Marco,
+
+I am available after 4 PM SGT today. Thanks.
+
+B,rgds
+
+Chris Hu
+IT - Shanghai
+ING Bank N.V. - Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+E: Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>
+[New possibilities, here I come (email signature)]<http://www.ingwb.com/insights/asia-here-i-come>
+
+From: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Sent: Wednesday, November 13, 2024 2:39 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>; Hu, Chris <Chris.Hu@cn.ing.com<mailto:Chris.Hu@cn.ing.com>>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com<mailto:Xian.Ken.Jin@cn.ing.com>>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com<mailto:sudipa.bera@ing.com>>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+@Hu, Chris<mailto:Chris.Hu@cn.ing.com> @Jin, Xian Ken<mailto:Xian.Ken.Jin@cn.ing.com>, could (one of) you please share your availability to troubleshoot the issue with WinSCP together with Netwrix team? This is the GBS download issue.
+
+Daniel, I am available from 9am to 12pm (Amsterdam timezone).
+
+Marco
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, 12 November 2024 15:07
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com<mailto:Marco.Cabral@ing.com>>
+Subject: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Marco,
+
+Thank you for reaching out!
+
+Could you please provide us more details regarding this issue?
+
+Is the file transfer through the WINSCP are blocked? What is the message received?
+
+Also, can you please let us know your availability for Thursday?
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com<http://www.netwrix.com/>
+
+[cid:image001.png@01DB9754.2D087E60]
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+ref:!00D70091pB.!500Qk0IC4a9:ref
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ATTENTION:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+[cid:image006.png@01DB9754.2D087E60]
+ [cid:image006.png@01DB9754.2D087E60]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ATTENTION:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ATTENTION:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ATTENTION:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+ATTENTION:
+
+
+
+
+
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------
+
+
+
+ATTENTION:
+
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+-----------------------------------------------------------------
+
+ATTENTION:
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+-----------------------------------------------------------------
+[cid:image008.png@01DB9754.2D087E60]
+ [cid:image007.gif@01DB9754.2D087E60]
+ [cid:image008.png@01DB9754.2D087E60]
+ [cid:image007.gif@01DB9754.2D087E60]
+
+-----------------------------------------------------------------
+ATTENTION:
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+-----------------------------------------------------------------","RE: Netwrix Support Ticket #426753 -  - EPP blocking WinSCP for exempted domains    [ ref:!00D70091pB.!500Qk0IC4a9:ref ]","sudipa.bera@ing.com","Bera, S.","techsupport@netwrix.com","xian.ken.jin@cn.ing.com; marco.cabral@ing.com; chris.hu@cn.ing.com; drake.scott@ing.com","","true","2025-03-17T14:49:43.000Z","true"
+"02sQk00000MwWu8IAF","500Qk00000IC4a9IAD","2025-03-24T15:02:49.000Z","2025-03-24T15:02:49.000Z","Hello Sudipa, 
+
+Thank you for getting back to us. 
+
+We will proceed with the closure of this case. 
+
+Please feel free to reopen it, if the situation persist with the new client, also please check the details presented in our reply from the 17 February.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Bera, S. [sudipa.bera@ing.com]
+Sent: 3/17/2025 4:49 PM
+To: techsupport@netwrix.com
+Cc: xian.ken.jin@cn.ing.com; marco.cabral@ing.com; chris.hu@cn.ing.com; drake.scott@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+
+
+Hello Mirian,
+
+We are waiting to have the agent upgraded before performing any further test. 
+
+You can keep this ticket on hold or archieved till then. I’ll reopen if issue persists with the new agent. 
+
+ 
+
+ 
+
+Thanks and Regards
+
+Sudipa
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 17 March 2025 10:52
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Bera,
+
+I hope my email finds you well. 
+
+I wanted to check in regarding your support ticket 00426753. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Have a nice day ahead!
+
+Best Regards,
+Marian Ilies | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/26/2025 9:35 AM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com;  drake.scott@ing.com; sudipa.bera@ing.com; marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ 
+
+Hello Chris,
+
+I hope my email finds you well. 
+
+I wanted to check in regarding your support ticket 00426753. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/17/2025 2:54 PM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com;  drake.scott@ing.com; sudipa.bera@ing.com; marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your patience regarding this case.
+
+We have received an update from our R&D team, that they have checked the current logs. This time the EPP client receives the list of excluded network shares. Going forward, there is a lot of scanning here, but all the files scanned are from ""C:tempGBSDownload""and not from network share like in the previous set of logs.
+
+Moreover, they decrypted the database with the policies and it seems that WinSCP is monitored in the CAP policy. In this case, network share whitelist will not apply anyway.
+As long as the file is transferred through a monitored application, network share whitelist is ignored. If not, one could use network share as a ""proxy"" to exfiltrate any data outside the company.
+For example, the user has a confidential file on the local machine. Theoretically transferring it through a browser is blocked by EPP. But if the user copies the file on the network share (which is whitelisted) he can then upload the file, through the browser from that location (again, because the location it is whitelisted). So this is the reason why Network Share whitelist doesn't apply for transfers made by monitored apps.
+The reason why Network Share whitelist was added was to give the user the possibility to browse the network share, view/open files, copy them to the local machine, but that's all, he should not be able to actually transfer them outside the company if they contain confidential info.
+
+Finally, in the logs they see a file being scanned and blocked by the EPP client. The reason the file is blocked is the fact that WinSCP is monitored in the CAP policy and the file is being handled (read) by WinSCP. 
+
+Please test without the WinSCP exit point enabled and also with the policy action set to report only.
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/4/2025 3:08 PM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com;  marco.cabral@ing.com; drake.scott@ing.com; sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your response.
+
+I have forward them to our R&D team for further analysis, and as soon as I receive an update I will inform you accordingly.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 2/4/2025 12:16 PM
+To: techsupport@netwrix.com
+Cc: xian.ken.jin@cn.ing.com;  sudipa.bera@ing.com; marco.cabral@ing.com; drake.scott@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+ 
+
+
+Hi Daniel,
+
+ 
+
+The log has already been collected in 3rd Jan and Sudipa has attached the log into this ticket, could you please check? Thanks.
+
+ 
+
+
+
+ 
+
+
+ 
+
+ 
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, January 30, 2025 4:00 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Chris, 
+
+I hope my email finds you well. 
+
+Have you manage to gather the logs using the steps my colleague sent to you ? 
+
+Could you please gather the logs and forward them to us for further analysis? 
+
+@Sudipa, for the time being the offline patch is still unavailable. 
+
+Looking for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 1/2/2025 2:39 PM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; marco.cabral@ing.com;  drake.scott@ing.com; sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hi Chris,
+
+Thank you for your email.  My colleague Daniel Anton is currently out of office so I will answer here in his absence.
+
+You can collect the logs using the debug mode with the Endpoint Protector client or you can collect the logs using the Support Tool.
+
+
+	You can use the attached step by step guide ""How to enable and collect Debug Logs from Endpoint Protector Client v1.3.pdf"" on how to collect the logs (artifact)
+	Alternatively you can follow the guide ""How to Capture Client Logs using the Support Tool-v2 on a Windows Machine v1.2.pdf"" this method is to collect the client logs with the Support Tool.
+
+
+
+I hope this helps, if you have any follow up questions then please do let us know.
+
+
+Kind regards
+__________________
+André Le Roux | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+www.endpointprotector.com
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+*************************************************************************************************************************************************
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 1/2/2025 4:46 AM
+To: techsupport@netwrix.com; sudipa.bera@ing.com
+Cc: xian.ken.jin@cn.ing.com; drake.scott@ing.com;  marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+ 
+
+
+HI Sudipa,
+
+ 
+
+Thanks for the feedback, we will plan to collect the log tomorrow.
+
+ 
+
+Hi Daniel & Netwrix support,
+
+ 
+
+Given that the log didn’t record the issue last time, may I double check with you about the log collection procedure? Is it after cososys block report comes up, we just need to send you the eppclient.log file in C drive? Or do we need to start any other process to initiate the log recording before we reproduce the issue?
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Sent: Tuesday, December 31, 2024 5:58 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>; Netwrix Support <techsupport@netwrix.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Chris,
+
+I am not available on 2nd Jan. Please schedule at 3rd Jan, I’ll be available then.
+
+ 
+
+ 
+
+Thanks and Regards
+
+Sudipa
+
+ 
+
+ 
+
+ 
+
+
+
+From: Hu, Chris <Chris.Hu@cn.ing.com>
+Sent: 31 December 2024 02:39
+To: Netwrix Support <techsupport@netwrix.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hi Daniel,
+
+ 
+
+It is strange that last time we performed the file transfer but it is not recorded on the log. Could you please share with us how to collect the log?
+
+ 
+
+As it is the last day of Y2024 and our GBS files must be collected, we will try to re-enable the Cososys agent and collect the log after 1st Jan.
+
+ 
+
+Hi  @Bera, S. (Sudipa), will you be available in 2nd Jan to disable the Cososys agent after we collect the log again? Thank you.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, December 30, 2024 11:29 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Chris,
+
+Thank you for your patience regarding this case.
+
+Our Engineering team investigated the logs and couldn't find the file transfer that we performed in the meeting. 
+
+Could you please start the logs one more time and redo the file transfer then share the new logs with us ? 
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 12/27/2024 9:52 AM
+To: techsupport@netwrix.com
+Cc: xian.ken.jin@cn.ing.com; sudipa.bera@ing.com;  marco.cabral@ing.com; drake.scott@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+
+Hi Daniel,
+
+ 
+
+Please check the attached log file as requested. Thanks.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, December 27, 2024 3:46 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Chris,
+
+Thank you for your patience regarding this case. 
+
+We have asked the colleagues regarding the offline patch and for the moment we do not have an ETA. 
+They asked to check the logs collected in our last session, to verify how is reproduced. 
+
+Could you please check under your C: drive and share with us the eppclient.log file? 
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 12/20/2024 11:38 AM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; drake.scott@ing.com;  sudipa.bera@ing.com; marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for your time in today's session .
+
+In the meeting we have tried to apply the allowlist, one more time without success. 
+We have upgraded the EPP client to 6.2.3.1 , reapplied the allowlist and the file transfer is still blocked. 
+
+I will inform my colleagues regarding this and get back to you as soon as the offline patch for 5.9.4.1 version appear. 
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 12/18/2024 12:19 PM
+To: chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; marco.cabral@ing.com;  drake.scott@ing.com; sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Chris,
+
+Thank you for getting back to us.
+
+We have scheduled a session on Friday at 16:00 SGT and sent you the meeting details in a separate email.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 12/18/2024 8:11 AM
+To: techsupport@netwrix.com; marco.cabral@ing.com
+Cc: xian.ken.jin@cn.ing.com; drake.scott@ing.com;  sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+ 
+
+
+Hi Daniel & Marco,
+
+ 
+
+Thanks for the feedback. Local IT are available after 16:00 PM SGT today, The same time in Thursday and Friday as well.
+
+ 
+
+Thanks.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, December 13, 2024 5:26 PM
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Hu, Chris <Chris.Hu@cn.ing.com>; Scott, D.A. (Drake) <drake.scott@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Marco,
+
+Thank you for your patience regarding this case.
+
+We have received an update from our Engineering team and we would like to schedule a new meeting next week to apply the steps received. 
+
+Could you please provide us your availability, so we can schedule a new session??
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Aguemi Cabral, M.V. [marco.cabral@ing.com]
+Sent: 12/11/2024 10:46 AM
+To: techsupport@netwrix.com; chris.hu@cn.ing.com
+Cc: xian.ken.jin@cn.ing.com; drake.scott@ing.com;  sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+ 
+
+
+Hi Daniel, any update? It’s been almost a month already.
+
+ 
+
+Marco
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, 14 November 2024 13:27
+To: Hu, Chris <Chris.Hu@cn.ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello,
+
+Thank you for getting back to us.
+
+I will forward the details to our Engineering team for further analysis.
+
+As soon as we receive an update , we will inform you accordingly.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Hu, Chris [chris.hu@cn.ing.com]
+Sent: 11/14/2024 12:46 PM
+To: techsupport@netwrix.com
+Cc: xian.ken.jin@cn.ing.com; sudipa.bera@ing.com;  marco.cabral@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+
+ 
+
+
+Hi Daniel,
+
+ 
+
+After restart, the issue still persists.
+
+ 
+
+
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Sent: Thursday, November 14, 2024 4:55 PM
+To: 'Netwrix Support' <techsupport@netwrix.com>; Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Hu, Chris <Chris.Hu@cn.ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Daniel,
+
+Can we rejoin the call again in 30 mins?
+
+Chris still getting the blocks. 
+
+
+
+ 
+
+ 
+
+Thanks and Regards
+
+Sudipa
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, November 14, 2024 9:41 AM
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Cc: Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>; Hu, Chris <Chris.Hu@cn.ing.com>; Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello,
+
+Thank you all for your time in today's meeting. 
+
+In the session we manage to fix the encountered issue, by adding the network share path in the allowlist.
+
+We will proceed with the closure of this case.
+
+Should you require any further assistance or additional information, do not hesitate to contact us.
+
+Have a nice day ahead! 
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/13/2024 9:57 AM
+To: marco.cabral@ing.com
+Cc: xian.ken.jin@cn.ing.com; chris.hu@cn.ing.com;  sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+Hello Marco,
+
+Thank you for getting back to us. 
+
+I have scheduled the meeting for tomorrow at 16:00SGT and sent you the session details in a separate email.
+
+Have a nice day ahead!
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+
+--------------- Original Message ---------------
+From: Aguemi Cabral, M.V. [marco.cabral@ing.com]
+Sent: 11/13/2024 8:50 AM
+To: xian.ken.jin@cn.ing.com; techsupport@netwrix.com; chris.hu@cn.ing.com
+Cc: sudipa.bera@ing.com
+Subject: RE: Netwrix Support Ticket #426753 - ref:_00D7091pB._500Q000IC4a9:ref - EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+ref:_00D7091pB._500Q000IC4a9:ref
+ 
+
+
+Daniel, 4pm SGT is 9am for me, so maybe that is a good time for you as well? Please send the invitation.
+
+ 
+
+Marco
+
+ 
+
+
+
+From: Hu, Chris <Chris.Hu@cn.ing.com>
+Sent: Wednesday, 13 November 2024 07:48
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>; Netwrix Support <techsupport@netwrix.com>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hi Marco,
+
+ 
+
+Tomorrow after 4 PM is fine with me. Thank you for coordinating the trouble shooting session.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Sent: Wednesday, November 13, 2024 2:46 PM
+To: Hu, Chris <Chris.Hu@cn.ing.com>; Netwrix Support <techsupport@netwrix.com>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Chris, Netwrix is not available today, only tomorrow. Still the same time?
+
+ 
+
+Marco
+
+ 
+
+
+
+From: Hu, Chris <Chris.Hu@cn.ing.com>
+Sent: Wednesday, 13 November 2024 07:45
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>; Netwrix Support <techsupport@netwrix.com>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hi Marco,
+
+ 
+
+I am available after 4 PM SGT today. Thanks.
+
+ 
+
+
+B,rgds
+
+ 
+
+Chris Hu   
+
+IT - Shanghai
+
+ING Bank N.V. – Shanghai Branch
+D: +86  21 2020 8004 | Mobile: 15902108286
+
+E: Chris.Hu@cn.ing.com
+
+
+
+
+ 
+
+
+
+From: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Sent: Wednesday, November 13, 2024 2:39 PM
+To: Netwrix Support <techsupport@netwrix.com>; Hu, Chris <Chris.Hu@cn.ing.com>; Jin, Xian Ken <Xian.Ken.Jin@cn.ing.com>
+Cc: Bera, S. (Sudipa) <sudipa.bera@ing.com>
+Subject: RE: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+@Hu, Chris  @Jin, Xian Ken, could (one of) you please share your availability to troubleshoot the issue with WinSCP together with Netwrix team? This is the GBS download issue.
+
+ 
+
+Daniel, I am available from 9am to 12pm (Amsterdam timezone).
+
+ 
+
+Marco
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, 12 November 2024 15:07
+To: Aguemi Cabral, M.V. (Marco) <Marco.Cabral@ing.com>
+Subject: EPP blocking WinSCP for exempted domains [ ref:!00D70091pB.!500Qk0IC4a9:ref ]
+
+
+
+ 
+
+Hello Marco, 
+
+Thank you for reaching out!
+
+Could you please provide us more details regarding this issue? 
+
+Is the file transfer through the WINSCP are blocked? What is the message received? 
+
+Also, can you please let us know your availability for Thursday? 
+
+Looking forward for your response.
+
+Best regards,
+__________________
+Daniel Anton | Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | MDM | Device Control | Content Aware Protection
+www.netwrix.com
+
+
+
+This Email may contain confidential information. Not to be disclosed to third parties without prior written approval.
+
+ref:!00D70091pB.!500Qk0IC4a9:ref
+
+
+
+ 
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+-----------------------------------------------------------------
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ATTENTION:
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+&nb","RE: Netwrix Support Ticket #426753 -  - EPP blocking WinSCP for exempted domains    [ ref:!00D70091pB.!500Qk0IC4a9:ref ]","techsupport@netwrix.com","Netwrix Support","sudipa.bera@ing.com","xian.ken.jin@cn.ing.com; marco.cabral@ing.com; chris.hu@cn.ing.com; drake.scott@ing.com","","true","2025-03-24T15:02:48.000Z","true"
+"02sQk00000MwUp9IAF","500Qk00000IC4a9IAD","2025-03-24T15:03:12.000Z","2025-03-24T15:03:12.000Z","ref:_00D7091pB._500Q000IC4a9:ref
+
+Hello Sender,
+
+Thank you for your email.
+
+I'm currently out of office until 17th Feb. I'll respond to your email on my return.
+
+
+
+For anything urgent , please reach out to my team.
+
+
+
+Kind Regards
+
+Sudipa
+
+
+
+-----------------------------------------------------------------
+ATTENTION:
+The information in this e-mail is confidential and only meant for the intended recipient. If you are not the intended recipient, don't use or disclose it in any way. Please let the sender know and delete the message immediately.
+-----------------------------------------------------------------","Automatic reply: Netwrix Support Ticket #426753 -  - EPP blocking WinSCP for exempted domains    [ ref:!00D70091pB.!500Qk0IC4a9:ref ]","sudipa.bera@ing.com","Bera, S.","techsupport@netwrix.com","","","false","2025-03-24T15:03:00.000Z","true"

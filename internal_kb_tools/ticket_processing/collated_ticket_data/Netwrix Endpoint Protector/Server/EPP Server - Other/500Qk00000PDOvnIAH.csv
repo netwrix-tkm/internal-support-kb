@@ -1,0 +1,19 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000PDOvnIAH","00445315","Support Ticket","Broken Group Settings Inheritance After Modifying Computer Settings","Hello Support,
+
+According to the documentation, the hierarchy for “Settings” in Netwrix works as follows:
+General Settings → Group Settings → Computer Settings.
+Settings from General Settings are applied unless the computer belongs to a group, and Group Settings override General Settings. If there are specific Computer Settings, these take precedence over both Group and General Settings.
+
+This hierarchy works correctly when an agent is freshly installed and first reports to the console. However, we have noticed the following issue:
+
+If we modify a setting (for example, “DPI”) directly at the Computer Settings level, it successfully overrides the Group Settings.
+However, if we later revert the Computer Setting back to match the Group Setting (or remove the customization), and then make a change at the Group Settings level, the new group-level changes are not applied to the endpoint anymore. It seems that once any setting is changed at the Computer Settings level, the normal inheritance is broken, even if the change is reversed.
+
+Our question:
+Is there a way to restore or reset the normal settings inheritance for an endpoint without having to delete and reinstall the agent?
+Is there a command, action, or procedure that can force the agent to respect Group or General Settings again after a local change has been made?
+
+Thanks in advance for your help.","","","","We have this functionality to restore Settings to the previous hierarchy. Please access Device Control -> Computers -> Manage Settings -> Restore Global Settings(on the bottom of the page).
+
+Also provided info regarding Priority.","Best Practices Question","Flaviu Moldovan","Question","Netwrix Endpoint Protector","Server","EPP Server - Other","","","1.0","Closed - Resolved","Konfio Limited","Gibrann Montero","2025-05-15T19:20:21.000Z","2025-05-16T18:56:32.000Z"

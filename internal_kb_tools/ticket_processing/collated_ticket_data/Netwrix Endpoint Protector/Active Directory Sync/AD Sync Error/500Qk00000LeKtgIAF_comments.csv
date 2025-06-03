@@ -1,0 +1,95 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BhQ90IAF","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the Following Fields have been updated: 
+Account ACV has been changed to 991142.34.
+Priority has been changed to High.","005Qk000001nViJIAU","2025-02-08T14:50:32.000Z","2025-02-08T14:50:32.000Z","false","false"
+"00aQk00000BhQAbIAN","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the Following Fields have been updated: 
+Account ACV has been changed to 495571.17.","005Qk000001nViJIAU","2025-02-08T14:50:33.000Z","2025-02-08T14:50:33.000Z","false","false"
+"00aQk00000BicckIAB","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-10T13:23:48.000Z","2025-02-10T13:23:48.000Z","false","false"
+"00aQk00000BiccmIAB","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the new comment has been added: Oana-Cristina Rus:
+
+Hi @WaitingOnEngineer,
+
+
+This situation suggests a potential issue with Azure AD synchronization or group assignment rules but unfortunately, I don't have enough information about the problem.
+
+1. How many users have the group that works in the morning of 6 Feb.
+
+2. How many users have the group that does not work in the afternoon ( OT-GLB-DP-AllowCardReaders )?  
+
+3. How many groups were added for the Sync?  
+
+4. Can you share with us also the sync_aad.log file, this file will help us to investigate the problem, the file is trivial in our case.
+
+5. Is the Sync interval set to 15 minutes?
+
+Also, you can run this MYSQL command:
+SELECT * FROM aad_operation WHERE last_sync IS NULL OR TIMESTAMPDIFF(MINUTE, last_sync, NOW()) >= sync_interval-5;
+
+If you have some other information that helps us to find the problem please share it with us.
+
+[DevOps CommentId:11622736]","0054u000006gtWUAAY","2025-02-10T13:23:49.000Z","2025-02-10T13:23:49.000Z","false","false"
+"00aQk00000BjGlTIAV","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViJIAU","2025-02-10T20:12:54.000Z","2025-02-10T20:12:54.000Z","false","false"
+"00aQk00000BjHw2IAF","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the new comment has been added: Thanks Oana.
+
+They have 6 AAD groups and none of them have updated since mid-day Feb 6.  So probably the behavior never differed by group; rather, the successful morning OT-GLB-DP-AllowNoUSBEncryption update and unsuccessful afternoon OT-GLB-DP-AllowCardReaders update just give time bounds for the onset of the problem.
+
+No changes were made that we know of, except in AAD moving users into/out of existing groups.
+
+
+mysql> SELECT * FROM aad_operation WHERE last_sync IS NULL OR TIMESTAMPDIFF(MINUTE, last_sync, NOW()) >= sync_interval-5;
++----+-----------------------+---------------+-----------+-------------+-------------+-----------------------+-----------------------+----------------------+
+| id | graph_api_consumer_id | sync_interval | last_sync | name        | description | groups_filter_content | groups_filter_enabled | on_prem_user_mapping |
++----+-----------------------+---------------+-----------+-------------+-------------+-----------------------+-----------------------+----------------------+
+|  1 |                     1 | 15            | NULL      | AzureADSync | AzureADSync | NULL                  |                     0 |                    1 |
++----+-----------------------+---------------+-----------+-------------+-------------+-----------------------+-----------------------+----------------------+
+1 row in set (0.00 sec)","005Qk000001nViJIAU","2025-02-10T20:16:53.000Z","2025-02-10T20:16:53.000Z","false","false"
+"00aQk00000Bk3iwIAB","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-11T13:37:33.000Z","2025-02-11T13:37:33.000Z","false","false"
+"00aQk00000Bk3iyIAB","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the new comment has been added: Oana-Cristina Rus:
+
+Hi @WaitingOnEngineer,
+
+
+
+Can you verify that OT-GLB-DP-AllowCardReaders is not included in OT-GLB-DP-AllowNoUSBEncryption?
+This thing can be checked in AzureAD.
+I left you an example for a better understanding of what happens if group OT-GLB-DP-AllowCardReaders is a subgroup for OT-GLB-DP-AllowNoUSBEncryption.
+
+Example:
+
+Group1 -> U1, U2, U3
+Group2 -> Group1, U4
+Group3 -> Group2, U5
+
+If Group3 is selected for the sync operation:
+
+- Group 3 will be imported and created in Epp
+- U5 will be imported and added as a member of Group3
+- Group2 and all subsequent groups will be parsed, and only the members will be retrieved and added as members to Group3. The actual groups (Group2, Group1) are NOT created in Epp
+
+After sync is done, the following will be created in EPP/their respective tables:
+
+Imported: Group3, U5, U4, U3, U2, U1
+Membership: Group3 => U5, U4, U3, U2, U1
+
+The following will not be created in EPP:
+
+Group2, Group1
+
+
+Also, in the sync_aad.log, we found that the customer has a group that doesn't exist or doesn't have enough permission.
+
+[DevOps CommentId:11630352]","0054u000006gtWUAAY","2025-02-11T13:37:33.000Z","2025-02-11T13:37:33.000Z","false","false"
+"00aQk00000BkIWfIAN","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViJIAU","2025-02-11T15:51:10.000Z","2025-02-11T15:51:10.000Z","false","false"
+"00aQk00000BkvgAIAR","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the new comment has been added: This is fixed -- thank you for your help.
+
+The group causing the error was deleted in eppgroup but not deleted in aad_sync_object.","005Qk000001nViJIAU","2025-02-11T22:36:00.000Z","2025-02-11T22:36:00.000Z","false","false"
+"00aQk00000BkyfZIAR","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViJIAU","2025-02-11T22:40:33.000Z","2025-02-11T22:40:33.000Z","false","false"
+"00aQk00000BkyneIAB","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the Following Fields have been updated: 
+Account ACV has been changed to 991142.34.","005Qk000001nViJIAU","2025-02-11T22:41:31.000Z","2025-02-11T22:41:31.000Z","false","false"
+"00aQk00000BkypFIAR","500Qk00000LeKtgIAF","On Escalation Ticket # 00435182 the Following Fields have been updated: 
+Account ACV has been changed to 495571.17.","0054u000006gtWUAAY","2025-02-11T22:41:43.000Z","2025-02-11T22:41:43.000Z","false","false"

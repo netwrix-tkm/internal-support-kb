@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000JB2OaIAL","00429099","Support Ticket","[CTBC] How to","Hi Support,
+
+We are currently conducting a Proof of Concept (PoC) with our customer, who has outlined the following requirements:
+- Block passowrd-protected/encrypted PDF files from being sent through all exit points.
+- Prevent confidential and highly confidential classified files (using metadata) from being sent to external domains, while allowing them within the internal domain via the Outlook desktop application.
+
+For the first requirement, we have set up the CAP policy with the following configuration:
+Action: Block & Report
+Exit point : Web Application, Email Application
+Policy Denylist: File type -> Office2003+/Password
+Result: Password-protected PDF files are not being blocked. 
+
+For the second requirement, we configured the CAP Policy as follows:
+Action: Block & Report
+Exit point : Web Application, Email Application -> Outlook (Attachment)
+Policy Denylist: Custom Content -> Classification (~HIGHLY CONFIDENTIAL~)
+Policy Allowlist: E-mail Domain -> internal (<a href='https://ctbcbank.co.id' target='_blank'>ctbcbank.co.id</a>)
+When a classified file is sent to an internal domain recipient, the activity is blocked, and the destination details in the event is logged as: /o=ctbc/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn=01e46e33b86941cab9bb1603f4a6baba-Adiprastowo Rustama
+
+Could you please advise on how we can:
+- Effectively block password-protected or encrypted PDF files transfer.
+- Add the recipient as logged format to the e-mail allowlis to prevent internal classified file trasnsfer from being blocked.
+
+Thank you. 
+
+Regards,","","","","Information provided.","","Andrei Pop","Question","Netwrix Endpoint Protector","Content-Aware Protection","Allowlist / Denylist","NONE","","10.0","Closed - Resolved","Halodata International Pte Ltd","Denni Prima Putra Roli","2024-12-06T11:49:52.000Z","2024-12-16T10:39:46.000Z"

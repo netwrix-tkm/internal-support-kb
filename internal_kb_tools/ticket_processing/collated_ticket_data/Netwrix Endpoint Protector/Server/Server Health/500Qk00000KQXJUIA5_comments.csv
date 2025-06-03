@@ -1,0 +1,289 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BDPOrIAP","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Account ACV has been changed to 79772.86.
+Priority has been changed to Medium.","005Qk000002i2OLIAY","2025-01-13T18:15:08.000Z","2025-01-13T18:15:08.000Z","false","false"
+"00aQk00000BDPQTIA5","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Account ACV has been changed to 39886.43.","005Qk000002i2OLIAY","2025-01-13T18:15:09.000Z","2025-01-13T18:15:09.000Z","false","false"
+"00aQk00000BSR3lIAH","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-27T10:39:10.000Z","2025-01-27T10:39:10.000Z","false","false"
+"00aQk00000BSR3nIAH","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+
+Please try to follow the next steps:
+
+I. Check if tables are configured ok:
+
+    Check the following value from the sysinfo table:
+        SELECT * FROM sysinfo WHERE name = 'olog_epp_client_version';
+    The returned value should be the same as the olog table field_4 position value.
+         SHOW CREATE TABLE olog; (to check the fields from olog table)
+    If the result from sysinfo is field_4, then the olog table should also present field_4.
+    If the result from the sysinfo table is epp_client_version, in olog table, at the filed_4 position should be epp_client_version.
+    If not, please update the sysinfo table:
+        UPDATE sysinfo SET value = 'new_value' WHERE name = 'olog_epp_client_version';
+            !!!  Replace new_value with the value from olog, from field_4 position
+
+II. Apply the backend procedure:
+     37. Audit Backup Debug Instructions
+
+If these steps do not fix the issue , please provide some screenshots with the following information:
+
+SHOW CREATE TABLE olog;
+SHOW CREATE TABLE ofiletrace;
+SHOW CREATE TABLE cf_log;
+
+SELECT * FROM sysinfo WHERE name = ""olog_epp_client_version"";
+SELECT * FROM sysinfo WHERE name = ""partitions_activated"";
+
+SELECT count(*) FROM olog;
+SELECT count(*) FROM ofiletrace;
+
+Thank you.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11555011]","0054u000006gtWUAAY","2025-01-27T10:39:11.000Z","2025-01-27T10:39:11.000Z","false","false"
+"00aQk00000BSdjGIAT","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2025-01-27T15:23:56.000Z","2025-01-27T15:23:56.000Z","false","false"
+"00aQk00000BUbjmIAD","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Hi Team,
+
+We had a remote session with the customer and managed to fix the issue with the Log Reports Page using the provided steps. Thank you!
+
+But the Audit Log Backup is still not working. I have attached the requested screenshots to the SharePoint folder: https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00431640
+
+Please advise.
+
+Thank you!","005Qk000002i2OLIAY","2025-01-28T19:58:03.000Z","2025-01-28T19:58:03.000Z","false","false"
+"00aQk00000BUblNIAT","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Product Version has been changed to NONE.
+Status has been changed to Awaiting R&D.","005Qk000002i2OLIAY","2025-01-28T19:58:17.000Z","2025-01-28T19:58:17.000Z","false","false"
+"00aQk00000BVHpSIAX","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-29T11:17:05.000Z","2025-01-29T11:17:05.000Z","false","false"
+"00aQk00000BVHpUIAX","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+The audit_log_backup_status.png shows that all Audits have run successfully.
+
+Can you please check if External Storage is enabled ? (System Maintenance - External Storage)
+
+If it is enabled, search for the Audit file in the storage.
+
+If it is not enabled, please send us this information:
+
+   1. Enable debug for the Audit Log Backup
+
+
+--- CODE ---
+      touch /tmp/prepareAuditLogs.debug
+      touch /var/log/epp/prepareAuditLogs.log
+      chmod 777 /var/log/epp/prepareAuditLogs.log
+--- CODE ---
+
+      Start a new one time Audit backup and wait until it is finished
+      Copy the /var/log/epp/prepareAuditLogs.log
+
+      Very important: Remove debug log by running command:
+                  rm /tmp/prepareAuditLogs.debug
+   
+    2. Execute query:
+        SELECT * FROM parameter WHERE name = ""ex_storage_type"" OR name = ""sftp_ext_audit_log_backup"" OR name = ""ftp_ext_audit_log_backup"" OR name = ""ns_ext_audit_log_backup"" OR name = ""sftp_enable"" OR name = ""ftp_enable"" OR name = ""ns_enable"";
+
+
+Thank you
+
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11568728]","0054u000006gtWUAAY","2025-01-29T11:17:06.000Z","2025-01-29T11:17:06.000Z","false","false"
+"00aQk00000BVS9nIAH","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2025-01-29T15:35:37.000Z","2025-01-29T15:35:37.000Z","false","false"
+"00aQk00000BeS5hIAF","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-06T05:02:36.000Z","2025-02-06T05:02:36.000Z","false","false"
+"00aQk00000BeS5jIAF","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-01-29 11:17 UTC and the last detected comment from support was 2025-01-28 19:58 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11605577]","0054u000006gtWUAAY","2025-02-06T05:02:37.000Z","2025-02-06T05:02:37.000Z","false","false"
+"00aQk00000BeraLIAR","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2025-02-06T14:25:53.000Z","2025-02-06T14:25:53.000Z","false","false"
+"00aQk00000BfAMuIAN","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Hi Team,
+
+I have attached the requested logs and query output here: https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00431640 in the Second Session folder.
+
+Please advise.
+
+Thank you!","005Qk000002i2OLIAY","2025-02-06T18:27:49.000Z","2025-02-06T18:27:49.000Z","false","false"
+"00aQk00000BfDHWIA3","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000002i2OLIAY","2025-02-06T18:28:05.000Z","2025-02-06T18:28:05.000Z","false","false"
+"00aQk00000BioxFIAR","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-10T15:32:12.000Z","2025-02-10T15:32:12.000Z","false","false"
+"00aQk00000BioxHIAR","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi Iosif,
+
+
+It appears that  ofiletrace table does not have partitions created, and I suspect  olog table may not have them either (as the olog.png does not display the full query result).
+
+To provide accurate steps for creating partitions on these tables, we need to know the versions of MySQL and Ubuntu being used:
+
+mysql -V
+lsb_release -a
+
+
+Please check all tables that should have partitions and try to make screenshots of the full query result:
+
+
+SHOW CREATE TABLE olog;
+SHOW CREATE TABLE ofiletrace;
+SHOW CREATE TABLE cf_log;
+SHOW CREATE TABLE cf_log_details;
+SHOW CREATE TABLE dr_object;
+
+Thank you
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11624130]","0054u000006gtWUAAY","2025-02-10T15:32:12.000Z","2025-02-10T15:32:12.000Z","false","false"
+"00aQk00000BixMDIAZ","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2025-02-10T16:49:02.000Z","2025-02-10T16:49:02.000Z","false","false"
+"00aQk00000Bv3ECIAZ","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Hi Alina,
+
+I have attached the requested details in the ""Third Session"" folder here: https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00431640
+
+Please let me know if anything else is needed from the support side.
+
+Thank you!","005Qk000002i2OLIAY","2025-02-20T18:14:48.000Z","2025-02-20T18:14:48.000Z","false","false"
+"00aQk00000Bv90DIAR","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000002i2OLIAY","2025-02-20T18:15:04.000Z","2025-02-20T18:15:04.000Z","false","false"
+"00aQk00000C2VteIAF","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-27T13:44:58.000Z","2025-02-27T13:44:58.000Z","false","false"
+"00aQk00000C2VtgIAF","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi Iosif,
+
+Here are the steps to activate partitioning:
+
+1. Make a system snapshot or a database backup
+2. Copy script from  location smb://192.168.14.5/public/users/cilea/PARTITIONS/02-migrate.sql in the EPP backend in /home/epproot/ .
+
+
+3. Run these commands to rename these files (in case they exist):
+
+
+--- CODE ---
+   mv /var/eppfiles/exports/export_olog.txt /var/eppfiles/exports/backup_export_olog.txt
+   mv /var/eppfiles/exports/export_ofiletrace.txt /var/eppfiles/exports/backup_export_ofiletrace.txt
+   mv /var/eppfiles/exports/export_cf_log.txt /var/eppfiles/exports/backup_export_cf_log.txt.txt
+   mv /var/eppfiles/exports/export_capshadow.txt /var/eppfiles/exports/backup_export_capshadow.txt
+   mv /var/eppfiles/exports/export_oshadow.txt /var/eppfiles/exports/backup_export_oshadow.txt
+--- CODE ---
+
+ 
+
+4. Activate the Base Partitions by running the mysql migration with the command:
+
+
+--- CODE ---
+   mysql -p eppdatabase < /home/epproot/02-migrate.sql
+--- CODE ---
+
+   This may take some time to execute depending on the number of logs.
+
+5. Once the above script has finished running, execute the following mysql queries to verify the partitioning.
+
+--- CODE ---
+        show create table olog;
+        show create table ofiletrace;
+        show create table cf_log;
+        show create table cf_log_details;
+        show create table dr_object;
+--- CODE ---
+
+If the partitioning was a success, at the end of each query result you should see something like this:
+
+
+--- CODE ---
+         ....
+         PARTITION `last` VALUES LESS THAN MAXVALUE ENGINE = InnoDB
+
+--- CODE ---
+
+6. Also check all log pages  and Audit:
+      Reports and Analysis - Logs Report
+      Reports and Analysis - File Tracing
+      Reports and Analysis - Content Aware Report
+      eDiscovery - Scan Results and Actions
+
+
+7. Check if the partitions scripts exist in the crontab:
+
+
+--- CODE ---
+       crontab -e
+--- CODE ---
+
+  You should have these scripts:
+
+     0 21 * * * /usr/local/bin/php /opt/epptools/partitions.php -table=olog
+     0 21 * * * /usr/local/bin/php /opt/epptools/partitions.php -table=ofiletrace -clone=oshadow
+     0 21 * * * /usr/local/bin/php /opt/epptools/partitions.php -table=cf_log -clone=capshadow
+     0 21 * * * /usr/local/bin/php /opt/epptools/partitions.php -table=dr_object
+      .....
+     0 21 * * * /usr/local/bin/php /opt/epptools/partitions.php -table=cf_log_details 2>/dev/null 2>&1
+
+   If they are not present in the crontab please add them.
+
+8. Remove script 02-migrate.sql from /home/epproot/
+
+If you have any questions please let me know.
+
+Regards,
+Alina
+
+   @WaitingOnEngineer
+ 
+
+[DevOps CommentId:11712300]","0054u000006gtWUAAY","2025-02-27T13:44:59.000Z","2025-02-27T13:44:59.000Z","false","false"
+"00aQk00000C2iu6IAB","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Hi Team,
+
+Thank you for the provided steps!
+
+To apply them I'll need a download link for the smb://192.168.14.5/public/users/cilea/PARTITIONS/02-migrate.sql file as I don't have any access to the internal network
+
+Regards,
+Iosif","005Qk000002i2OLIAY","2025-02-27T16:03:06.000Z","2025-02-27T16:03:06.000Z","false","false"
+"00aQk00000C2iyvIAB","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000002i2OLIAY","2025-02-27T16:03:20.000Z","2025-02-27T16:03:20.000Z","false","false"
+"00aQk00000C3mnbIAB","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Iosif,
+
+Please use the following link: https://download.endpointprotector.com/custom_files/02-migrate.sql
+
+Regards,
+Cristi
+
+[DevOps CommentId:11716774]","0054u000006gtWUAAY","2025-02-28T11:52:13.000Z","2025-02-28T11:52:13.000Z","false","false"
+"00aQk00000C3joAIAR","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-28T11:52:29.000Z","2025-02-28T11:52:29.000Z","false","false"
+"00aQk00000C3u3aIAB","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2025-02-28T15:08:48.000Z","2025-02-28T15:08:48.000Z","false","false"
+"00aQk00000C8QkoIAF","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the new comment has been added: Hi Team,
+
+Thank you for the help provided with this case!
+
+We had today a remote session with the customer and activating the partitions has saved the day, the Audit Log Backup is now working.
+
+This ticket can now be closed.
+
+Regards,
+Iosif","005Qk000002i2OLIAY","2025-03-04T21:09:11.000Z","2025-03-04T21:09:11.000Z","false","false"
+"00aQk00000C8R5lIAF","500Qk00000KQXJUIA5","On Escalation Ticket # 00431908 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002i2OLIAY","2025-03-04T21:12:38.000Z","2025-03-04T21:12:38.000Z","false","false"

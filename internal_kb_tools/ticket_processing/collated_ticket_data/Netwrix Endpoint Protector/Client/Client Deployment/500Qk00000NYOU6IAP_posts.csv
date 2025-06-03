@@ -1,0 +1,41 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000anLAJKA2","500Qk00000NYOU6IAP","TextPost","0054u000008ARZjAAO","2025-04-01T09:29:01.000Z","Description: Hello,
+
+On the latest major version of macOS (15) we are getting a prompt for each user that logs in that Endpoint Protector would like to access ‘Bluetooth’. This is not something I’ve seen on our previous version of macOS (13). We are in a MDM environment utilising Jamf Pro, but Apple don’t appear to allow us to manage this with a PPPC profile. We can’t see any further information on this in your Jamf deployment guide (<a href='https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Install/Agent/JAMF/Overview.htm' target='_blank'>https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Install/Agent/JAMF/Overview.htm</a>).
+
+Could I please clarify the impact if the user hits ‘No’ or ‘Yes’ to this message? Will the application function correctly?
+
+Thanks","","","","0054u000008ARZjAAO","2025-04-01T09:29:01.000Z"
+"0D5Qk00000anTqwKAE","500Qk00000NYOU6IAP","TextPost","005Qk000001nViFIAU","2025-04-01T12:04:16.000Z","What We've Learned Updated: Issue is known by us: https://dev.azure.com/NetwrixCorporation/CoSoSys-EPP/_workitems/edit/360646
+
+Alex Puskas:
+
+@WaitingOnEngineer
+I managed to replicate the problem.
+
+The Bluetooth pop-up is displayed because the agent doesn’t have full disk access property enabled. The most of our customers install the agent using third party solutions (MDM solutions and from this solution the full disk access is granted).
+
+The problem here appears when the agent try to register for bluetooth notifications: the bluetooth pop-up right cannot be manipulated by the daemon => when the agent tries to register notifications the pop-up is displayed.
+
+
+What the customer wants? (to NOT display the pop-up at all?)
+
+!!! If we will change the behaviour the pop-up will be never displayed -> admin can check in logs (server logs) if the bluetooth control was granted (this is the wanted behaviour?)","","","","005Qk000001nViFIAU","2025-04-01T12:04:16.000Z"
+"0D5Qk00000anjSHKAY","500Qk00000NYOU6IAP","TextPost","005Qk000001nViFIAU","2025-04-01T12:07:24.000Z","What We've Learned Updated: Issue is known by us: https://dev.azure.com/NetwrixCorporation/CoSoSys-EPP/_workitems/edit/360646
+
+Alex Puskas:
+
+@WaitingOnEngineer
+I managed to replicate the problem.
+
+The Bluetooth pop-up is displayed because the agent doesn’t have full disk access property enabled. The most of our customers install the agent using third party solutions (MDM solutions and from this solution the full disk access is granted).
+
+The problem here appears when the agent try to register for bluetooth notifications: the bluetooth pop-up right cannot be manipulated by the daemon => when the agent tries to register notifications the pop-up is displayed.
+
+
+What the customer wants? (to NOT display the pop-up at all?)
+
+!!! If we will change the behaviour the pop-up will be never displayed -> admin can check in logs (server logs) if the bluetooth control was granted (this is the wanted behaviour?)
+
+- sent to the customer a test build: https://download.endpointprotector.com/custom_agent/Epp22112024/EPPMac3.0.4.0017.Notarized.tar","","","","005Qk000001nViFIAU","2025-04-01T12:07:24.000Z"
+"0D5Qk00000anfn4KAA","500Qk00000NYOU6IAP","TextPost","005Qk000001nViFIAU","2025-04-01T12:12:36.000Z","Next Steps Updated: - Provided the customer with the test build - waiting on feedback","","","","005Qk000001nViFIAU","2025-04-01T12:12:36.000Z"

@@ -1,0 +1,227 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009REhdIAG","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Account ACV has been changed to 425403.2252790346902.
+Priority has been changed to High.","005Qk000002Fjy9IAC","2024-10-02T15:30:44.000Z","2024-10-02T15:30:44.000Z","false","false"
+"00aQk000009REjGIAW","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Account ACV has been changed to 212701.6126395173451.","005Qk000002Fjy9IAC","2024-10-02T15:30:45.000Z","2024-10-02T15:30:45.000Z","false","false"
+"00aQk000009bQkkIAE","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-11T06:41:43.000Z","2024-10-11T06:41:43.000Z","false","false"
+"00aQk000009bQkmIAE","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Oana-Cristina Rus:
+
+We tested this scenario on our environment. We changed the password for an AD user and added it at the end !@#.
+
+On our side, the user can log in to the EPP.
+
+I think that there might be some problems on the customer side.
+Can you please check if the customer use the right password for the AD user?
+Did you try to change the password for this AD user from the AD and try to log in?
+
+Is there some chance that the customer will try to use the AD password and not the AD user password?
+
+@WaitingOnEngineer 
+
+[DevOps CommentId:11045716]","0054u000006gtWUAAY","2024-10-11T06:41:44.000Z","2024-10-11T06:41:44.000Z","false","false"
+"00aQk000009bkecIAA","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Hello Oana, 
+
+The customer is using the correct password as they copied the password from their password manager into EPP. 
+I will have them test changing their AD password and testing that.
+This is not the only account that is affected. All of the user accounts that were synced cannot login.","005Qk000002Fjy9IAC","2024-10-11T13:10:23.000Z","2024-10-11T13:10:23.000Z","false","false"
+"00aQk000009bkjRIAQ","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002Fjy9IAC","2024-10-11T13:11:38.000Z","2024-10-11T13:11:38.000Z","false","false"
+"00aQk000009c054IAA","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Customer changed their password to the one below and it did not resolve the issue.
+
+Username: taccount
+Password: Bayport1!Bayport1!","005Qk000002Fjy9IAC","2024-10-11T15:54:55.000Z","2024-10-11T15:54:55.000Z","false","false"
+"00aQk000009c08HIAQ","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000002Fjy9IAC","2024-10-11T15:55:18.000Z","2024-10-11T15:55:18.000Z","false","false"
+"00aQk000009c28UIAQ","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Customer raised the following concern and would like it answered.  Could this be related to the on-prem setup specifically?","005Qk000002Fjy9IAC","2024-10-11T16:14:15.000Z","2024-10-11T16:14:15.000Z","false","false"
+"00aQk000009fST0IAM","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Customer is available for a meeting anytime 8am - 5pm EDT Wed-Fri this week.","005Qk000002Fjy9IAC","2024-10-15T13:09:04.000Z","2024-10-15T13:09:04.000Z","false","false"
+"00aQk000009lpmgIAA","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-21T08:51:10.000Z","2024-10-21T08:51:10.000Z","false","false"
+"00aQk000009lpmiIAA","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+To proceed we need information about the following:
+
+
+	 - 	Does AD Authentication add new administrators to the administrators list using their existing credentials
+
+	 - 	What kind of user is used on the AD authentication setting (normal AD user, domain administrator user)
+	 - 	Does the user used on the AD Authentication settings form have the right privileges in their Active Directory to issue ""authentication"" requests to their domain controller?
+	 - 	Does EPP normal authentication work?
+	 - 	Did, at any time in the past, the AD authentication work for this customer, or did they just set it up? If it did, what has changed on their end since then (updated user privileges in their AD, updated password, user moved to another security grup etc)
+	 - 	Screenshots (or just information about the AD Auth settings form) can help you further debug. This can help us see, for example, if the proper AD username format as well as domain name/DC= is used
+
+To clarify, the exc_auth setting in EPP means: ""Allow exclusive EPP authentication for existing administrators (ignore AD Auth settings)"". Having this set to 1 in the database for any user will make it so that the EPP credentials are used instead of redirecting authentication to their AD.
+
+If you are testing AD Authentication, make sure you have this setting on 0. Also make sure that the users are AD users not locally created users.
+
+You can also propose to the customer that they use a Domain Administrator account when setting up AD authentication, and see if that works (after you make sure AD authentication is used for your test user -> exc_auth = 0).
+
+[DevOps CommentId:11086233]","0054u000006gtWUAAY","2024-10-21T08:51:11.000Z","2024-10-21T08:51:11.000Z","false","false"
+"00aQk000009nSduIAE","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002Fjy9IAC","2024-10-22T12:47:42.000Z","2024-10-22T12:47:42.000Z","false","false"
+"00aQk000009nV2IIAU","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: - Does AD Authentication add new administrators to the administrators list using their existing credentials
+      When sync is run, new administrators are added to the administrators list. It should be using their existing credentials.
+
+- What kind of user is used on the AD authentication setting (normal AD user, domain administrator user)
+       The users are all Domain admins
+
+- Does the user used on the AD Authentication settings form have the right privileges in their Active Directory to issue ""authentication"" requests to their domain controller?
+         The account used is a service account that they use for all their AD lookups on other applications.
+
+- Does EPP normal authentication work?
+          They can log in normally with Root and if they set exc_auth to 1 and change the password on the console, they are able to login using it as a local account.
+
+- Did, at any time in the past, the AD authentication work for this customer, or did they just set it up? If it did, what has changed on their end since then (updated user privileges in their AD, updated password, user moved to another security grup etc)
+           They are trying to set this up for the first time.
+
+- Screenshots (or just information about the AD Auth settings form) can help you further debug. This can help us see, for example, if the proper AD username format as well as domain name/DC= is used
+            Screenshot of AD Auth settings in folder https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00422343","005Qk000002Fjy9IAC","2024-10-22T13:12:40.000Z","2024-10-22T13:12:40.000Z","false","false"
+"00aQk000009nVGnIAM","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000002Fjy9IAC","2024-10-22T13:15:14.000Z","2024-10-22T13:15:14.000Z","false","false"
+"00aQk000009rU61IAE","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-25T12:10:10.000Z","2024-10-25T12:10:10.000Z","false","false"
+"00aQk000009rU63IAE","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+ - Does the user used on the AD Authentication settings form have the 
+right privileges in their Active Directory to issue ""authentication"" 
+requests to their domain controller?
+         The account used is a service account that they use for all their AD lookups on other applications.
+
+--> We recommend that a normal Domain administrator account is used instead of a service account.
+
+- Screenshots (or just information about the AD Auth settings form) can 
+help you further debug. This can help us see, for example, if the proper
+ AD username format as well as domain name/DC= is used
+            Screenshot of AD Auth settings in folder https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00422343
+
+--> From the screenshot provided, it seems that the AD auth is not properly set up, try the following settings or permutations of them:
+
+Account Suffix: @fi.local
+Username: dhcpsvc
+
+You can also try using TLS instead together with port 389 (DC) or 3268(Global Catalog).
+
+IMPORTANT: Make sure that their AD does not require ""client 
+certificate validation"", that means, make sure that their server does not require 
+EPP to provide a certificate for validation at connection time. If it does, further manual 
+changes need to be made to the appliance in order to deploy a client 
+certificate and tie it in to the authentication process.
+
+[DevOps CommentId:11113113]","0054u000006gtWUAAY","2024-10-25T12:10:10.000Z","2024-10-25T12:10:10.000Z","false","false"
+"00aQk000009rVYNIA2","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Hello Flaviu,
+
+What would the different permutations of the AD Auth account change? Wouldn't it not sync the accounts properly if it was not configured properly?","005Qk000002Fjy9IAC","2024-10-25T13:13:35.000Z","2024-10-25T13:13:35.000Z","false","false"
+"00aQk000009rZgnIAE","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000002Fjy9IAC","2024-10-25T13:13:46.000Z","2024-10-25T13:13:46.000Z","false","false"
+"00aQk000009rWr1IAE","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Also, customer has now stated that newly created local accounts will not login either, the only account that is working currently is the root account.","005Qk000002Fjy9IAC","2024-10-25T13:15:17.000Z","2024-10-25T13:15:17.000Z","false","false"
+"00aQk000009rUIwIAM","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-25T13:24:10.000Z","2024-10-25T13:24:10.000Z","false","false"
+"00aQk000009rUIyIAM","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+AD Authentication works, as following
+
+
+	 - 	Administrator sets up connections, then hits sync now
+	 - 	Information about the users (username, email, etc) in the specified AD group are mirrored to EPP thus creating new administrative users. These users are required placeholders in EPP, as the project itself requires an user entity to log in and create a user session. Credentials are NOT mirrored.
+
+	 - 	If the feature is enabled, and the users appear in the administration list, and the exc_auth is set to 0, then the administrator can use one of the users imported for AD authentication. AD authentication is a separate connection to the DC/GC where the username and password provided are presented and validated by the DC (authenticate)
+	 - 	If response from the AD DC is positive, the EPP user session is created and logged in
+
+To your questions:
+
+
+	 - 	What would the different permutations of the AD Auth account change? 
+Wouldn't it not sync the accounts properly if it was not configured 
+properly?
+
+	 - 	The required format of the credentials is the one i mentioned in the previous response. Please use that format to ensure that the connection string at authentication time is properly generated
+	 - 	Also, customer has now stated that newly created local accounts will not
+ login either, the only account that is working currently is the root 
+account.
+
+	 - 	Local user account of EPP (not marked as AD users), and having exc_auth 1 will always use local authentication. Make sure that when they want to use local accounts the AD authentication feature is disabled in the Settings page.
+
+[DevOps CommentId:11113795]","0054u000006gtWUAAY","2024-10-25T13:24:11.000Z","2024-10-25T13:24:11.000Z","false","false"
+"00aQk000009rbDxIAI","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002Fjy9IAC","2024-10-25T13:36:19.000Z","2024-10-25T13:36:19.000Z","false","false"
+"00aQk000009rcV1IAI","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Their AD does require cert validation. What are the manual changes that need to be made to support this?","005Qk000002Fjy9IAC","2024-10-25T13:52:39.000Z","2024-10-25T13:52:39.000Z","false","false"
+"00aQk000009tWDNIA2","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-28T06:47:24.000Z","2024-10-28T06:47:24.000Z","false","false"
+"00aQk000009tWDPIA2","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Flaviu-Dorin Costras:
+
+@WaitingOnEngineer
+
+First, try and change the credentials as mentioned in the previous message.
+
+If this does not work, make sure which of the following is required: 
+
+	 - 	client certificate authentication (on EPP side) or 
+	 - 	AD server certificate authentication (on their AD side) si absolutely required.
+
+
+If at least client certificate validation is required, open the /etc/ldap/ldap.conf file and follow the instructions within.
+
+
+For client certificate validation, you need to change the following entries: (uncomment + update paths)
+
+
+--- CODE ---# Only modify these if necessary for SSL/TLS mutual authentication (client)
+
+# Comment out TLS_REQCERT never
+#TLS_REQCERT try
+#TLS_CACERT /path/to/CA_SERVER
+#TLS_CERT /path/to/CERT_CLIENT
+#TLS_KEY /path/to/KEY_CLIENT
+#SASL_MECH external --- CODE ---
+
+
+You will need to obtain the client certificate (pub+key) from the customer and upload it to the location you define in the config file.
+
+[DevOps CommentId:11115738]","0054u000006gtWUAAY","2024-10-28T06:47:25.000Z","2024-10-28T06:47:25.000Z","false","false"
+"00aQk000009tuysIAA","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Hello Flaviu, 
+
+The other steps did not resolve the issue. I will be going ahead with the cert auth steps.","005Qk000002Fjy9IAC","2024-10-28T14:06:03.000Z","2024-10-28T14:06:03.000Z","false","false"
+"00aQk000009twEHIAY","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002Fjy9IAC","2024-10-28T14:17:50.000Z","2024-10-28T14:17:50.000Z","false","false"
+"00aQk000009v9W3IAI","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Confirmed in escalation call the big issues is resolved. item is de-escalated
+
+[DevOps CommentId:11129114]","0054u000006gtWUAAY","2024-10-29T13:13:15.000Z","2024-10-29T13:13:15.000Z","false","false"
+"00aQk000009vTbDIAU","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002Fjy9IAC","2024-10-29T16:52:50.000Z","2024-10-29T16:52:50.000Z","false","false"
+"00aQk000009vTbFIAU","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Account ACV has been changed to 425403.2252790346902.","005Qk000002Fjy9IAC","2024-10-29T16:52:54.000Z","2024-10-29T16:52:54.000Z","false","false"
+"00aQk000009vZGnIAM","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Account ACV has been changed to 212701.6126395173451.","0054u000006gtWUAAY","2024-10-29T16:53:02.000Z","2024-10-29T16:53:02.000Z","false","false"
+"00aQk000009wKxFIAU","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-30T07:45:48.000Z","2024-10-30T07:45:48.000Z","false","false"
+"00aQk000009wKxHIAU","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Cristian-Alexandru Halmajan:
+
+Hi Zachary, @WaitingOnEngineer,
+
+Could you please confirm which steps solved the issue for this specific customer?
+It would be good if we could have it documented so that we have a reference for similar cases in the future.
+
+Thank you,
+Cristi
+
+[DevOps CommentId:11132566]","0054u000006gtWUAAY","2024-10-30T07:45:49.000Z","2024-10-30T07:45:49.000Z","false","false"
+"00aQk000009wgwAIAQ","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the new comment has been added: Hello Cristi,
+
+They resolved the issue by disabling Client Cert Authorization and I told them to follow your recommendations when it came to AD formatting in the settings.","005Qk000002Fjy9IAC","2024-10-30T14:05:52.000Z","2024-10-30T14:05:52.000Z","false","false"
+"00aQk000009wxlhIAA","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002Fjy9IAC","2024-10-30T16:52:05.000Z","2024-10-30T16:52:05.000Z","false","false"
+"00aQk000009wxljIAA","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Account ACV has been changed to 425403.2252790346902.","005Qk000002Fjy9IAC","2024-10-30T16:52:08.000Z","2024-10-30T16:52:08.000Z","false","false"
+"00aQk000009wxnJIAQ","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Account ACV has been changed to 212701.6126395173451.","005Qk000002Fjy9IAC","2024-10-30T16:52:15.000Z","2024-10-30T16:52:15.000Z","false","false"
+"00aQk00000BY0iPIAT","500Qk00000GLRqTIAX","On Escalation Ticket # 00422720 the Following Fields have been updated: 
+Account ACV has been changed to 218913.7559728506788.","0054u000006gtWUAAY","2025-01-31T11:11:11.000Z","2025-01-31T11:11:11.000Z","false","false"

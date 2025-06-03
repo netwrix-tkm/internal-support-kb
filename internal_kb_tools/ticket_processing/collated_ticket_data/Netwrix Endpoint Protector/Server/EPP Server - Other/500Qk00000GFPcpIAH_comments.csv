@@ -1,0 +1,13 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009JHj7IAG","500Qk00000GFPcpIAH","Email I sent earlier (before case was received):
+
+The longer run time is indeed puzzling.  The number of rows are similar.  Looking at the data, I feel like the ITINs had a lot more threats per log entry, so that might explain it, since the string manipulation part of the script probably takes the most time.  We also might have gotten lucky with the load on the server when we ran the US TINs script.  E.g., I believe this was during the time when most eDiscovery scans were accidentally stopped.
+
+As it sits now, I have the full table of ITINs in both unmasked and masked form sitting in a temp table in QA.  I can move that back to Prod and then update the CAP table in a single step.  So the performance of the script is a moot point now.  However, in testing the update step in QA, it too took hours to complete.  I noticed it was running single-threaded, so there is reason to think it will take a similar amount of time in Prod, even with the additional cores/memory.
+
+At this point, to get this closed ASAP, I’d suggest scheduling a long (probably 6-hour) change window to run the update in Prod, probably on a Sunday so it’s well outside banking hours, during which time we wouldn’t expect any Comerica personnel to sit on a call – you could just log in and validate it at the end.  It might run much quicker, but if not, we wouldn’t risk overrunning the change window and having to reschedule again.
+
+Please let me know if that approach sounds OK.
+
+Thanks,
+Aaron","005Qk000001nViJIAU","2024-09-25T16:51:55.000Z","2024-09-25T16:51:55.000Z","false","false"

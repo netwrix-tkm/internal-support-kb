@@ -1,0 +1,69 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000aToG6KAK","500Qk00000NQkMvIAL","TextPost","0054u000008ARZjAAO","2025-03-28T08:19:11.000Z","Description: Messages sent in teams chat being detected as html files hence getting blocked","","","","0054u000008ARZjAAO","2025-03-28T08:19:11.000Z"
+"0D5Qk00000aU1OvKAK","500Qk00000NQkMvIAL","TextPost","005Qk000001nVi2IAE","2025-03-28T12:00:20.000Z","What We've Learned Updated: waiting on further details from the customer, RS might be needed","","","","005Qk000001nVi2IAE","2025-03-28T12:00:20.000Z"
+"0D5Qk00000aU9isKAC","500Qk00000NQkMvIAL","TextPost","005Qk000001nVi2IAE","2025-03-28T12:00:28.000Z","Next Steps Updated: waiting on the customer","","","","005Qk000001nVi2IAE","2025-03-28T12:00:28.000Z"
+"0D5Qk00000arbbLKAQ","500Qk00000NQkMvIAL","TextPost","005Qk000001nVi2IAE","2025-04-02T07:41:13.000Z","What We've Learned Updated: waiting on further details from the customer, RS might be needed
+
+02.04
+- some classic outlook replies get blocked
+- outlook new emails get sent
+- disabled OCR, but still didn’t send
+- one email gets blocked for containing Haskell, but it doesn’t contain any
+- customer uses Crowdstrike - he couldn't turn it off during the remote
+- Teams replies get blocked as well - only the replies, new messages can be sent
+- the blocked messages show up as HTML in the logs report
+- tried multiple DPI settings, but without success
+- DPI was turned on and off for Teams during testing
+- 1st log for email (Log.zip)
+- 2nd log for teams (log-1.zip)","","","","005Qk000001nVi2IAE","2025-04-02T07:41:13.000Z"
+"0D5Qk00000arV1PKAU","500Qk00000NQkMvIAL","TextPost","005Qk000001nVi2IAE","2025-04-02T07:41:24.000Z","Next Steps Updated: analyse the logs, maybe open R&D","","","","005Qk000001nVi2IAE","2025-04-02T07:41:24.000Z"
+"0D5Qk00000axBimKAE","500Qk00000NQkMvIAL","TextPost","005Qk000001nVi2IAE","2025-04-03T12:52:21.000Z","What We've Learned Updated: waiting on further details from the customer, RS might be needed
+
+02.04
+- some classic outlook replies get blocked
+- outlook new emails get sent
+- disabled OCR, but still didn’t send
+- one email gets blocked for containing Haskell, but it doesn’t contain any
+- customer uses Crowdstrike - he couldn't turn it off during the remote
+- Teams replies get blocked as well - only the replies, new messages can be sent
+- the blocked messages show up as HTML in the logs report
+- tried multiple DPI settings, but without success
+- DPI was turned on and off for Teams during testing
+- 1st log for email (Log.zip)
+- 2nd log for teams (log-1.zip)
+
+The issues were caused as follows:
+1. Outlook blocked email
+- the email was blocked because of the long subject, the text between the brackets - [Request ID :##62346##] |RE: [Request ID :=#62346##] |RE: [Request ID :##62346##] |RE: [Request ID:##623469*] |RE: [Request ID :##62346##] - is similar to a Haskell string.
+- It is also the reason this was the only email that was blocked.
+2. Teams replies
+- Teams replies are formatted as HTML and that is why the EPP client picked it up as HTML code.
+- We recommend removing HTML completely from the policy, because most applications use if for communication, and it will cause a lot of false positives; it only needs to be used if you're writing HTML code.","","","","005Qk000001nVi2IAE","2025-04-03T12:52:21.000Z"
+"0D5Qk00000awz53KAA","500Qk00000NQkMvIAL","TextPost","005Qk000001nVi2IAE","2025-04-03T12:52:29.000Z","Next Steps Updated: waiting on customer","","","","005Qk000001nVi2IAE","2025-04-03T12:52:29.000Z"
+"0D5Qk00000bwaSkKAI","500Qk00000NQkMvIAL","TextPost","005Qk000001nVi2IAE","2025-04-16T13:20:40.000Z","What We've Learned Updated: 02.04
+- waiting on further details from the customer, RS might be needed
+
+02.04
+- some classic outlook replies get blocked
+- outlook new emails get sent
+- disabled OCR, but still didn’t send
+- one email gets blocked for containing Haskell, but it doesn’t contain any
+- customer uses Crowdstrike - he couldn't turn it off during the remote
+- Teams replies get blocked as well - only the replies, new messages can be sent
+- the blocked messages show up as HTML in the logs report
+- tried multiple DPI settings, but without success
+- DPI was turned on and off for Teams during testing
+- 1st log for email (Log.zip)
+- 2nd log for teams (log-1.zip)
+
+After checking the logs we found out that issues were caused as follows:
+1. Outlook blocked email
+- the email was blocked because of the long subject, the text between the brackets - [Request ID :##62346##] |RE: [Request ID :=#62346##] |RE: [Request ID :##62346##] |RE: [Request ID:##623469*] |RE: [Request ID :##62346##] - is similar to a Haskell string.
+- It is also the reason this was the only email that was blocked.
+2. Teams replies
+- Teams replies are formatted as HTML and that is why the EPP client picked it up as HTML code.
+- We recommend removing HTML completely from the policy, because most applications use if for communication, and it will cause a lot of false positives; it only needs to be used if you're writing HTML code.
+
+- sent this to the customer","","","","005Qk000001nVi2IAE","2025-04-16T13:20:40.000Z"
+"0D5Qk00000bwnMTKAY","500Qk00000NQkMvIAL","TextPost","005Qk000001nVi2IAE","2025-04-16T13:21:02.000Z","Next Steps Updated: 04.02
+- waiting on customer","","","","005Qk000001nVi2IAE","2025-04-16T13:21:02.000Z"

@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MrJvzIAF","00438610","Support Ticket","Performance poor and low disk space message","Please can you look into performance improvement and the low disk space messages present in the UI.
+
+Secondly, we are receiving a login request from a user BOWTECH originating from the server.  This user was disabled a long time ago and there is no place in the UI that allows us to change/alter the user, or even what the user is trying to do.  Please can somebody explain the need for the user and if necessary we will supply another user and pwd.
+
+Thank you,
+
+Kind regards
+
+Shaun","","Customer wanted to display all computers (+1100 entries) within the page ""Device Control"" > ""Computers"".  An alternative solution was provided to the customer to export list of computers instead, customer was happy with this workaround that was suggested. 
+
+For performance:
+8 GB RAM is allocated to their CoSoSys hosted server, memory spilled over to swap and after it resumed to normal load swap memory was still being utilized.  We advised the customer to restart their EPP server in order to clear swap so that only RAM would be in use again (this will improve server performance).
+
+For low disk space:
+65% of system partition was in use, to free up space I cleared Ubuntu log files by running:
+
+echo """"> /usr/local/logs/php-fpm.log
+and 
+sudo journalctl --vacuum-size=1M
+
+After running the above commands the system partition was at 54% utilization.","Customer to confirm if low disk space message is gone and also if performance improved after EPP Server reboot as suggested.","Customer confirmed the low disk message is gone and requested that case be closed.","","Andre Le Roux","Performance","Netwrix Endpoint Protector","Server","Server Disk Space","NONE","","6.0","Closed - Resolved","Bowman Gilfillan","Shaun Morris","2025-03-12T18:52:01.000Z","2025-03-18T17:54:44.000Z"

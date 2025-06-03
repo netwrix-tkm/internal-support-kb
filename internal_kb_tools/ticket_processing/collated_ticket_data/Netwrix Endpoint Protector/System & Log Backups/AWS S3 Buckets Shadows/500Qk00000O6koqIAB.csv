@@ -1,0 +1,34 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000O6koqIAB","00442231","Support Ticket","Can EPP get access to S3 Bucket with no Access Key ID and Secret Access Key?","Hello!
+
+Customer name is PrivatBank.
+They wanted to clarify if it is possible for EPP server to get access to S3 Bucket with no entering Access Key ID and Secret Access Key?
+Can EPP AMI get access to the S3 Bucket by internal AWS IAM role and policy?
+
+This instruction:
+<a href='https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4.2/page/Content/EndpointProtector/Admin/SystemMaintenance/ShadowRepository.htm' target='_blank'>https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4.2/page/Content/EndpointProtector/Admin/SystemMaintenance/ShadowRepository.htm</a>#s3_bucket_file_shadow_repository
+It is related to the external S3 Bucket, but customer has all Buckets only internal due to the security reasons.
+
+Could you please clarify these questions?","","16-04 Customer would like to know if they can get access to S3 Bucket with no Access Key ID and Secret Access Key?
+
+06-05 We had a remote session with the customer and explain how the S3 Bucket works with the direct and indirect configuration.
+
+07-06 customer would like to create a FR so we can implement new regions on the S3 bucket Indirect artefact.","16-04 For the moment the SDK that we are using is asking for authentication, the access key and the secret key and you cannot get access to S3 Bucket without them.
+
+02-05 they currently cannot download the shadow copy with error ""File not found. File shadow upload is in progress. Please retry later.""
+
+05-05 We explain to the customer that the EPP client sent the logs (shadows) directly to S3 bucket location and if the communication between the EPP client and the S3 bucket is not working then the shadows cannot be downloaded.
+Once you disabled the externalisation of the logs, they were stored to the EPP server.
+
+06-05 we have checked why the eu-central -1 is missing and it seems that for now these are the regions that we added to the Indirect artefact. Our recommendation would be to use one of the following existing regions:
+us-west1 - Northern California
+us-west2 - Oregon
+eu-west1 - EU (Ireland)
+ap-southeast-1 - Asia Paciﬁc (Singapore)
+ap-southeast-2 - Asia Paciﬁc (Sydney)
+ap-northeast-1 - Asia Paciﬁc (Japan)
+sa-east-1 - South America (São Paulo)
+us-gov1-west-1 - United States GovCloud
+ﬁps-us-gov-west-1 - United States GovCloud FIPS 140-2
+
+07-05 guided them on how to create a FR","customer raised a feature request","Corrupt/Invalid Data","Daniel Anton","Question","Netwrix Endpoint Protector","System & Log Backups","AWS S3 Buckets Shadows","","","26.3","Closed - Resolved","CoreWin Distributor","CoreWin Tech","2025-04-16T07:45:34.000Z","2025-05-12T14:33:38.000Z"

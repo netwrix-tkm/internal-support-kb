@@ -1,0 +1,113 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000AYIHhIAP","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Account ACV has been changed to 8027.38.","005Qk000001nViCIAU","2024-12-03T20:33:52.000Z","2024-12-03T20:33:52.000Z","false","false"
+"00aQk00000AYIJJIA5","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Account ACV has been changed to 4013.69.","005Qk000001nViCIAU","2024-12-03T20:33:54.000Z","2024-12-03T20:33:54.000Z","false","false"
+"00aQk00000AdtWkIAJ","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the new comment has been added: The customer asks if there is an update regarding this.","005Qk000001nViEIAU","2024-12-09T11:24:20.000Z","2024-12-09T11:24:20.000Z","false","false"
+"00aQk00000AiM0gIAF","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the new comment has been added: The customer asks if there is an update regarding this.","005Qk000001nVi3IAE","2024-12-12T15:30:15.000Z","2024-12-12T15:30:15.000Z","false","false"
+"00aQk00000AjYKjIAN","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-13T14:09:14.000Z","2024-12-13T14:09:14.000Z","false","false"
+"00aQk00000AjYKlIAN","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the new comment has been added: Alex Puskas:
+
+@WaitingOnEngineer
+
+After I watched the video, only the chrome.exe was added to be blocked without any parameter. (and works as expected when the chrome executable is launched without any paramter).
+
+When the incognito mode is launched the chrome executable is launched with some parameters. To block the executable with all possible parameters you can use * like ""general"" parameter.
+
+
+Please see the following image and use the same setting on the customer side.
+
+
+Application: chrome.exe
+Parameters: *
+
+[DevOps CommentId:11408780]","0054u000006gtWUAAY","2024-12-13T14:09:15.000Z","2024-12-13T14:09:15.000Z","false","false"
+"00aQk00000AjXoUIAV","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi3IAE","2024-12-13T14:35:55.000Z","2024-12-13T14:35:55.000Z","false","false"
+"00aQk00000AouPSIAZ","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the new comment has been added: Hi @Alex Puskas:
+Thank you for the feedback.  
+
+Adding ""chrome.exe"" in ""Application & CLI Command:"" and then "" *"" in ""Parameters:""
+Blocks the regular chrome application as well.  The customer wants the regular chrome to work and only block the incognito window of Chrome.
+
+The feedback was relayed to the customer and they came back with this:
+
+ ""I tried the mentioned steps but it is also blocking the normal chrome window. Additionally, it is showing that chrome_exe is blocked even though I have mentioned chrome.exe in the denylist.""
+
+I am also able to reproduce this in my test environment. please see short video recording and logs in the attachments folder.
+
+Could you please have a look at the screenshot and see if I maybe misconfigured?
+
+How can we modify the parameters to only block the incognito windows of Chrome?","005Qk000001nViCIAU","2024-12-18T18:23:34.000Z","2024-12-18T18:23:34.000Z","false","false"
+"00aQk00000AotI6IAJ","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2024-12-18T18:23:43.000Z","2024-12-18T18:23:43.000Z","false","false"
+"00aQk00000BOfA9IAL","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-23T09:14:23.000Z","2025-01-23T09:14:23.000Z","false","false"
+"00aQk00000BOfABIA1","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the new comment has been added: Alex Puskas:
+
+@WaitingOnEngineer
+
+This sounds like a feature request to block the incognito mode for Chrome process @Krzysztof Staszalek  (we can think about something, NOT using applications denylist).
+
+Why Denylist is NOT a solution? (just using a workaround)
+The parameters used by chrome app in incognito mode selecting from a normal chrome window (please see the below image) HAS the same parameters like when the chrome app is started. (the same parameters used).
+
+
+
+
+Unfortunately we cannot found a perfect solution using Application Denylist, the following workaround can be used like a ""solution"":
+
+chrome.exe * --incognito
+chrome.exe * --disable-databases *
+
+These settings will block the incognito mode selecting:
+
+	 - 	new incognito window from START Menu
+	 - 	new incognito window from chrome app started normally before
+
+Using these settings the chrome application cannot be started if you will click on chrome app (because one of the chrome process will have --disable-databases parameter, BUT the chrome process can be started using the ""New Window"".
+
+[DevOps CommentId:11542801]","0054u000006gtWUAAY","2025-01-23T09:14:24.000Z","2025-01-23T09:14:24.000Z","false","false"
+"00aQk00000BPvBFIA1","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViCIAU","2025-01-24T06:39:47.000Z","2025-01-24T06:39:47.000Z","false","false"
+"00aQk00000BPy98IAD","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the new comment has been added: Hi @Alex Puskas
+
+Thank you for your feedback, I have tested "" chrome.exe * --disable-databases * "" on windows and can confirm that this work to make incognito windows unusable (it still opens up but one cannot browse ).
+
+I have tried a similar config for macos, i tried:
+    Google Chrome * --disable-databases *
+    Google Chrome * --incognito
+    Google Chrome * --incognito *
+
+But this does not work, is there perhaps a similar workaround for macOS ?","005Qk000001nViCIAU","2025-01-24T08:22:15.000Z","2025-01-24T08:22:15.000Z","false","false"
+"00aQk00000BPyAjIAL","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nViCIAU","2025-01-24T08:22:35.000Z","2025-01-24T08:22:35.000Z","false","false"
+"00aQk00000BY0orIAD","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Account ACV has been changed to 2305.69.","0054u000006gtWUAAY","2025-01-31T11:11:14.000Z","2025-01-31T11:11:14.000Z","false","false"
+"00aQk00000Bfz2oIAB","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-07T10:46:36.000Z","2025-02-07T10:46:36.000Z","false","false"
+"00aQk00000Bfz2qIAB","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the new comment has been added: Alex Puskas:
+
+@WaitingOnEngineer
+
+I managed to investigate this item, and as I mentioned, we can provide a workaround solution on both Windows and macOS.
+
+The following setting can be used:
+
+Application & CLI Command: ""Google Chrome *""
+Parameters: ""* --disable-databases *""
+
+As I mentioned, on Windows, simply clicking on Google Chrome will not work; the user must right-click and select 'New Window'.
+I think this item can be closed. @Cristian-Alexandru Halmajan
+
+[DevOps CommentId:11614333]","0054u000006gtWUAAY","2025-02-07T10:46:37.000Z","2025-02-07T10:46:37.000Z","false","false"
+"00aQk00000Bg5D4IAJ","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the new comment has been added: Hi Alex Puskas
+Thank you for your help on this case and the feedback, appreciate it.
+Yes this case can be closed now.","005Qk000001nViCIAU","2025-02-07T11:12:13.000Z","2025-02-07T11:12:13.000Z","false","false"
+"00aQk00000Bg0waIAB","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2025-02-07T11:12:54.000Z","2025-02-07T11:12:54.000Z","false","false"
+"00aQk00000Bg4P8IAJ","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Account ACV has been changed to 4611.38.","005Qk000001nViCIAU","2025-02-07T11:14:59.000Z","2025-02-07T11:14:59.000Z","false","false"
+"00aQk00000Bg1iwIAB","500Qk00000ItHx8IAF","On Escalation Ticket # 00428724 the Following Fields have been updated: 
+Account ACV has been changed to 2305.69.","005Qk000001nViCIAU","2025-02-07T11:15:04.000Z","2025-02-07T11:15:04.000Z","false","false"

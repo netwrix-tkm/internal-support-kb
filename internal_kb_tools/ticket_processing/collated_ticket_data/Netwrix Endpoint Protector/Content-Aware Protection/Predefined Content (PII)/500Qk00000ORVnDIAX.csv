@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000ORVnDIAX","00443182","Support Ticket","TCID Problem - Outlook Body (Wellpoint)","Hello Team,
+
+We are experiencing an issue with the Turkish ID number (TCID) at one of our customers.
+
+When the TCID is copied or sent within a file attached to an email, it is blocked as expected. However, when it is written directly in the body of the email and sent, it is not detected, and the email is delivered.
+
+The server version was 5.9.4.1. We upgraded it due to this issue. The current version is 5.9.4.2, but the problem still persists. The client version is 6.2.4.2.
+
+Best Regards.","","29 April
+
+- CAP with DPI and Text Inspection is enabled and functioning for file attachments.
+- TCIDs in file attachments are detected and blocked as expected.
+- TCIDs written in the body of an email are not detected or blocked when using the new Outlook application.
+- The issue does not occur with the old Outlook; detection and blocking work as expected there.
+- This is a known limitation with the current EPP client and the new Outlook application, as confirmed by engineering colleagues
+- Upgrading the server and client versions did not resolve the issue.","29 April
+
+1. Monitor Netwrix Endpoint Protector release notes for updates or fixes related to content inspection in the new Outlook application.
+2. Inform end users and stakeholders of the current limitation with the new Outlook and recommend using the old Outlook if TCID detection in email bodies is critical.
+3. Consider submitting a feature request to Netwrix for improved support of the new Outlook application.
+4. Continue to use CAP for file attachments, which is functioning as expected.","The issue is a known limitation of the current Netwrix Endpoint Protector client with the new Outlook application: TCIDs in the email body are not detected or blocked, while attachments are handled correctly. The customer was informed, and the case was closed as per their confirmation.","Product defect","Alin Anca","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","Predefined Content (PII)","","","10.2","Closed - Resolved","Laykon Distributor","Faruk Sarı","2025-04-25T08:35:08.000Z","2025-05-05T14:34:42.000Z"

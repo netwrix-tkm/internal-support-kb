@@ -1,0 +1,4225 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MsCPLIA3","500Qk00000NBgwTIAT","2025-03-21T18:50:07.000Z","2025-03-21T18:50:07.000Z","Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com
+ref:!00D70091pB.!500Qk0NBgwT:ref","Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","false","2025-03-21T18:50:06.000Z","true"
+"02sQk00000MszBXIAZ","500Qk00000NBgwTIAT","2025-03-22T00:21:28.000Z","2025-03-24T16:01:28.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+Using user Zihaozhao's activity as an example:
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs.
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later).
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs.
+4. Upon comparing both files, we confirmed they have identical size and content.
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state.
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9A82.90976AF0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-03-22T00:21:03.000Z","true"
+"02sQk00000Mx07OIAR","500Qk00000NBgwTIAT","2025-03-24T17:00:51.000Z","2025-03-24T17:00:51.000Z","Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that the location mentioned corresponds to sources of files that are accessed or called when visiting a specific website. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+
+	Block the website that the end user is using.
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+ 
+
+Using user Zihaozhao's activity as an example: 
+
+ 
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs. 
+
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later). 
+
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs. 
+
+4. Upon comparing both files, we confirmed they have identical size and content. 
+
+ 
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state. 
+
+ 
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+
+ 
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","true","2025-03-24T17:00:49.000Z","true"
+"02sQk00000Mx8WOIAZ","500Qk00000NBgwTIAT","2025-03-24T18:29:49.000Z","2025-03-24T18:42:11.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+Hello Iosif,
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+The log is recorded when I finished installing EPP on user ""hengliu""'s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac's Keychain.
+Now, from your explanation, the log has been recorded because the location (user's download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+For the instruction you provide:
+
+  1.  Block the website that the end user is using.
+This can't be done, as the site is the the NAS storage site used by IT.
+
+  1.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+Please explain what this option do and how it improve the log output?
+
+  1.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+The source location is the general user's download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don't think that is a good practice.
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9CAA.97424E40]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+  1.  Block the website that the end user is using.
+  2.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+  3.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+Using user Zihaozhao's activity as an example:
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs.
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later).
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs.
+4. Upon comparing both files, we confirmed they have identical size and content.
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state.
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9CAA.97424E40]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-03-24T18:29:37.000Z","true"
+"02sQk00000Mxg0IIAR","500Qk00000NBgwTIAT","2025-03-24T21:04:30.000Z","2025-03-24T21:04:30.000Z","Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+
+Hello Iosif, 
+
+ 
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+
+The log is recorded when I finished installing EPP on user “hengliu”’s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac’s Keychain.
+
+Now, from your explanation, the log has been recorded because the location (user’s download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+ 
+
+For the instruction you provide:
+
+
+	Block the website that the end user is using.
+
+
+This can’t be done, as the site is the the NAS storage site used by IT.
+
+
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+
+
+Please explain what this option do and how it improve the log output?
+
+
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+The source location is the general user’s download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don’t think that is a good practice. 
+
+ 
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+
+	Block the website that the end user is using.
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+ 
+
+Using user Zihaozhao's activity as an example: 
+
+ 
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs. 
+
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later). 
+
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs. 
+
+4. Upon comparing both files, we confirmed they have identical size and content. 
+
+ 
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state. 
+
+ 
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+
+ 
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","true","2025-03-24T21:04:28.000Z","true"
+"02sQk00000N0KpWIAV","500Qk00000NBgwTIAT","2025-03-25T19:40:37.000Z","2025-03-25T19:40:37.000Z","Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+ 
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+
+Hello Iosif, 
+
+ 
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+
+The log is recorded when I finished installing EPP on user “hengliu”’s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac’s Keychain.
+
+Now, from your explanation, the log has been recorded because the location (user’s download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+ 
+
+For the instruction you provide:
+
+
+	Block the website that the end user is using.
+
+
+This can’t be done, as the site is the the NAS storage site used by IT.
+
+
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+
+
+Please explain what this option do and how it improve the log output?
+
+
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+The source location is the general user’s download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don’t think that is a good practice. 
+
+ 
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+
+	Block the website that the end user is using.
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+ 
+
+Using user Zihaozhao's activity as an example: 
+
+ 
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs. 
+
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later). 
+
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs. 
+
+4. Upon comparing both files, we confirmed they have identical size and content. 
+
+ 
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state. 
+
+ 
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+
+ 
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","true","2025-03-25T19:40:35.000Z","true"
+"02sQk00000N0k0qIAB","500Qk00000NBgwTIAT","2025-03-25T22:14:45.000Z","2025-03-25T22:14:45.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+Would you please provide instruction how to enable ""Use Stealthy DPI Driver"" option? Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9D98.9B3BA9D0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+The log is recorded when I finished installing EPP on user ""hengliu""'s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac's Keychain.
+Now, from your explanation, the log has been recorded because the location (user's download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+For the instruction you provide:
+
+  1.  Block the website that the end user is using.
+This can't be done, as the site is the the NAS storage site used by IT.
+
+  1.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+Please explain what this option do and how it improve the log output?
+
+  1.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+The source location is the general user's download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don't think that is a good practice.
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9D98.9B3BA9D0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+  1.  Block the website that the end user is using.
+  2.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+  3.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+Using user Zihaozhao's activity as an example:
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs.
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later).
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs.
+4. Upon comparing both files, we confirmed they have identical size and content.
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state.
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9D98.9B3BA9D0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-03-25T22:14:30.000Z","true"
+"02sQk00000N2FIfIAN","500Qk00000NBgwTIAT","2025-03-26T15:04:37.000Z","2025-03-26T15:04:37.000Z","Hi Tai,
+
+I apologize for not mentioning this earlier. The DPI settings are under Device Control -> Global Settings.
+
+Thank you for your understanding.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/26/2025 12:14 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+
+Would you please provide instruction how to enable “Use Stealthy DPI Driver” option? Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+ 
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Hello Iosif, 
+
+ 
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+
+The log is recorded when I finished installing EPP on user “hengliu”’s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac’s Keychain.
+
+Now, from your explanation, the log has been recorded because the location (user’s download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+ 
+
+For the instruction you provide:
+
+
+	Block the website that the end user is using.
+
+
+This can’t be done, as the site is the the NAS storage site used by IT.
+
+
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+
+
+Please explain what this option do and how it improve the log output?
+
+
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+The source location is the general user’s download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don’t think that is a good practice. 
+
+ 
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+
+	Block the website that the end user is using.
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+ 
+
+Using user Zihaozhao's activity as an example: 
+
+ 
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs. 
+
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later). 
+
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs. 
+
+4. Upon comparing both files, we confirmed they have identical size and content. 
+
+ 
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state. 
+
+ 
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+
+ 
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","true","2025-03-26T15:04:36.000Z","true"
+"02sQk00000N3KjTIAV","500Qk00000NBgwTIAT","2025-03-26T22:03:12.000Z","2025-03-26T22:03:12.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+Hello Iosif,
+
+We are not able to locate the ""Use Stealthy DPI Driver"" under Device Control -> Global Settings.
+We do find the option under ""Settings"", however it can only apply to Windows platform and this issue occurred on Mac. Please instruct how to configure for Mac and Linux platform?
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9E60.29867BD0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 8:05 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+I apologize for not mentioning this earlier. The DPI settings are under Device Control -> Global Settings.
+
+Thank you for your understanding.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/26/2025 12:14 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Would you please provide instruction how to enable ""Use Stealthy DPI Driver"" option? Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9E60.29867BD0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+The log is recorded when I finished installing EPP on user ""hengliu""'s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac's Keychain.
+Now, from your explanation, the log has been recorded because the location (user's download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+For the instruction you provide:
+
+  1.  Block the website that the end user is using.
+This can't be done, as the site is the the NAS storage site used by IT.
+
+  1.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+Please explain what this option do and how it improve the log output?
+
+  1.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+The source location is the general user's download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don't think that is a good practice.
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9E60.29867BD0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+  1.  Block the website that the end user is using.
+  2.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+  3.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+Using user Zihaozhao's activity as an example:
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs.
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later).
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs.
+4. Upon comparing both files, we confirmed they have identical size and content.
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state.
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9E60.29867BD0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-03-26T22:02:59.000Z","true"
+"02sQk00000N4mDuIAJ","500Qk00000NBgwTIAT","2025-03-27T15:20:13.000Z","2025-03-27T15:20:13.000Z","Hi Tai,
+
+The DPI settings are located under Device Control -> Global Settings. However, the ""Use Stealthy DPI Driver"" option is indeed available only for Windows systems.
+
+Could you please let us know your availability for a remote session? This will allow us to collect more data about this behavior.
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 12:02 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+
+Hello Iosif,
+
+We are not able to locate the “Use Stealthy DPI Driver” under Device Control -> Global Settings.
+We do find the option under “Settings”, however it can only apply to Windows platform and this issue occurred on Mac. Please instruct how to configure for Mac and Linux platform?
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 8:05 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+I apologize for not mentioning this earlier. The DPI settings are under  Device Control ->  Global Settings.
+
+Thank you for your understanding.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/26/2025 12:14 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Would you please provide instruction how to enable “Use Stealthy DPI Driver” option? Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+ 
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Hello Iosif, 
+
+ 
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+
+The log is recorded when I finished installing EPP on user “hengliu”’s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac’s Keychain.
+
+Now, from your explanation, the log has been recorded because the location (user’s download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+ 
+
+For the instruction you provide:
+
+
+	Block the website that the end user is using.
+
+
+This can’t be done, as the site is the the NAS storage site used by IT.
+
+
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+
+
+Please explain what this option do and how it improve the log output?
+
+
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+The source location is the general user’s download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don’t think that is a good practice. 
+
+ 
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+
+	Block the website that the end user is using.
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+ 
+
+Using user Zihaozhao's activity as an example: 
+
+ 
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs. 
+
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later). 
+
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs. 
+
+4. Upon comparing both files, we confirmed they have identical size and content. 
+
+ 
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state. 
+
+ 
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+
+ 
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","true","2025-03-27T15:20:12.000Z","true"
+"02sQk00000N5CcrIAF","500Qk00000NBgwTIAT","2025-03-27T16:32:34.000Z","2025-03-27T17:53:14.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+Hello Iosif,
+
+We are available M-F 10:30 am to 6:00pm PST. Does this require system admin to attend the meeting? Please also let me  know what data you plan to collect so I can have the environment ready for you. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9EFB.1F994580]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 27, 2025 8:20 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+The DPI settings are located under Device Control -> Global Settings. However, the ""Use Stealthy DPI Driver"" option is indeed available only for Windows systems.
+[cid:image002.png@01DB9EFB.1F994580]
+Could you please let us know your availability for a remote session? This will allow us to collect more data about this behavior.
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 12:02 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+We are not able to locate the ""Use Stealthy DPI Driver"" under Device Control -> Global Settings.
+We do find the option under ""Settings"", however it can only apply to Windows platform and this issue occurred on Mac. Please instruct how to configure for Mac and Linux platform?
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9EFB.1F994580]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 26, 2025 8:05 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+I apologize for not mentioning this earlier. The DPI settings are under Device Control -> Global Settings.
+
+Thank you for your understanding.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/26/2025 12:14 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Would you please provide instruction how to enable ""Use Stealthy DPI Driver"" option? Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9EFB.1F994580]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+The log is recorded when I finished installing EPP on user ""hengliu""'s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac's Keychain.
+Now, from your explanation, the log has been recorded because the location (user's download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+For the instruction you provide:
+
+  1.  Block the website that the end user is using.
+This can't be done, as the site is the the NAS storage site used by IT.
+
+  1.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+Please explain what this option do and how it improve the log output?
+
+  1.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+The source location is the general user's download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don't think that is a good practice.
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9EFB.1F994580]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+  1.  Block the website that the end user is using.
+  2.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+  3.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+Using user Zihaozhao's activity as an example:
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs.
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later).
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs.
+4. Upon comparing both files, we confirmed they have identical size and content.
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state.
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9EFB.1F994580]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-03-27T16:32:15.000Z","true"
+"02sQk00000N5dDCIAZ","500Qk00000NBgwTIAT","2025-03-27T18:23:45.000Z","2025-03-27T18:23:45.000Z","Hi Tai,
+
+We would like to activate logging for the EPP client on the Mac computer and collect the logs after we reproduce the scenario with the download file. You will need admin rights on the Mac to execute a few commands in the terminal, and having an EPP admin user would be helpful if we need to change settings in the EPP UI console.
+
+Is it ok to schedule the remote session for tomorrow from 11:00 to 12:00 PST?
+
+Please let me know if this time works for you or if you have another preference.
+
+Thank you!
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 6:32 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+
+Hello Iosif,
+
+ 
+
+We are available M-F 10:30 am to 6:00pm PST. Does this require system admin to attend the meeting? Please also let me  know what data you plan to collect so I can have the environment ready for you. Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 27, 2025 8:20 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+The DPI settings are located under Device Control -> Global Settings. However, the ""Use Stealthy DPI Driver"" option is indeed available only for Windows systems.
+
+
+Could you please let us know your availability for a remote session? This will allow us to collect more data about this behavior.
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 12:02 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Hello Iosif,
+
+We are not able to locate the “Use Stealthy DPI Driver” under Device Control -> Global Settings.
+We do find the option under “Settings”, however it can only apply to Windows platform and this issue occurred on Mac. Please instruct how to configure for Mac and Linux platform?
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 8:05 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+I apologize for not mentioning this earlier. The DPI settings are under  Device Control ->  Global Settings.
+
+Thank you for your understanding.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/26/2025 12:14 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Would you please provide instruction how to enable “Use Stealthy DPI Driver” option? Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+ 
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Hello Iosif, 
+
+ 
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+
+The log is recorded when I finished installing EPP on user “hengliu”’s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac’s Keychain.
+
+Now, from your explanation, the log has been recorded because the location (user’s download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+ 
+
+For the instruction you provide:
+
+
+	Block the website that the end user is using.
+
+
+This can’t be done, as the site is the the NAS storage site used by IT.
+
+
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+
+
+Please explain what this option do and how it improve the log output?
+
+
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+The source location is the general user’s download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don’t think that is a good practice. 
+
+ 
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+
+	Block the website that the end user is using.
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+ 
+
+Using user Zihaozhao's activity as an example: 
+
+ 
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs. 
+
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later). 
+
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs. 
+
+4. Upon comparing both files, we confirmed they have identical size and content. 
+
+ 
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state. 
+
+ 
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+
+ 
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","true","2025-03-27T18:23:44.000Z","true"
+"02sQk00000N6SE5IAN","500Qk00000NBgwTIAT","2025-03-27T23:11:09.000Z","2025-03-27T23:11:09.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+Hello Iosif,
+
+Tomorrow 11 is good. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F32.D1BAE7F0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 27, 2025 11:24 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+We would like to activate logging for the EPP client on the Mac computer and collect the logs after we reproduce the scenario with the download file. You will need admin rights on the Mac to execute a few commands in the terminal, and having an EPP admin user would be helpful if we need to change settings in the EPP UI console.
+
+Is it ok to schedule the remote session for tomorrow from 11:00 to 12:00 PST?
+
+Please let me know if this time works for you or if you have another preference.
+
+Thank you!
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 6:32 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+We are available M-F 10:30 am to 6:00pm PST. Does this require system admin to attend the meeting? Please also let me  know what data you plan to collect so I can have the environment ready for you. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F32.D1BAE7F0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, March 27, 2025 8:20 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+The DPI settings are located under Device Control -> Global Settings. However, the ""Use Stealthy DPI Driver"" option is indeed available only for Windows systems.
+[cid:image002.png@01DB9F32.D1BAE7F0]
+Could you please let us know your availability for a remote session? This will allow us to collect more data about this behavior.
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 12:02 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+We are not able to locate the ""Use Stealthy DPI Driver"" under Device Control -> Global Settings.
+We do find the option under ""Settings"", however it can only apply to Windows platform and this issue occurred on Mac. Please instruct how to configure for Mac and Linux platform?
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F32.D1BAE7F0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 26, 2025 8:05 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+I apologize for not mentioning this earlier. The DPI settings are under Device Control -> Global Settings.
+
+Thank you for your understanding.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/26/2025 12:14 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Would you please provide instruction how to enable ""Use Stealthy DPI Driver"" option? Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F32.D1BAE7F0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+The log is recorded when I finished installing EPP on user ""hengliu""'s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac's Keychain.
+Now, from your explanation, the log has been recorded because the location (user's download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+For the instruction you provide:
+
+  1.  Block the website that the end user is using.
+This can't be done, as the site is the the NAS storage site used by IT.
+
+  1.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+Please explain what this option do and how it improve the log output?
+
+  1.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+The source location is the general user's download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don't think that is a good practice.
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F32.D1BAE7F0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+  1.  Block the website that the end user is using.
+  2.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+  3.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+Using user Zihaozhao's activity as an example:
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs.
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later).
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs.
+4. Upon comparing both files, we confirmed they have identical size and content.
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state.
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F32.D1BAE7F0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-03-27T23:10:54.000Z","true"
+"02sQk00000N6JncIAF","500Qk00000NBgwTIAT","2025-03-28T01:09:04.000Z","2025-03-28T01:09:04.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+Hello Iosif,
+
+I am sorry, the EPP admin is not available in the morning, are you available in the afternoon? Or we shall schedule on the Monday?
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F43.277B5160]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 27, 2025 11:24 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+We would like to activate logging for the EPP client on the Mac computer and collect the logs after we reproduce the scenario with the download file. You will need admin rights on the Mac to execute a few commands in the terminal, and having an EPP admin user would be helpful if we need to change settings in the EPP UI console.
+
+Is it ok to schedule the remote session for tomorrow from 11:00 to 12:00 PST?
+
+Please let me know if this time works for you or if you have another preference.
+
+Thank you!
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 6:32 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+We are available M-F 10:30 am to 6:00pm PST. Does this require system admin to attend the meeting? Please also let me  know what data you plan to collect so I can have the environment ready for you. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F43.277B5160]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, March 27, 2025 8:20 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+The DPI settings are located under Device Control -> Global Settings. However, the ""Use Stealthy DPI Driver"" option is indeed available only for Windows systems.
+[cid:image002.png@01DB9F43.277B5160]
+Could you please let us know your availability for a remote session? This will allow us to collect more data about this behavior.
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 12:02 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+We are not able to locate the ""Use Stealthy DPI Driver"" under Device Control -> Global Settings.
+We do find the option under ""Settings"", however it can only apply to Windows platform and this issue occurred on Mac. Please instruct how to configure for Mac and Linux platform?
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F43.277B5160]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 26, 2025 8:05 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+I apologize for not mentioning this earlier. The DPI settings are under Device Control -> Global Settings.
+
+Thank you for your understanding.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/26/2025 12:14 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Would you please provide instruction how to enable ""Use Stealthy DPI Driver"" option? Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F43.277B5160]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+The log is recorded when I finished installing EPP on user ""hengliu""'s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac's Keychain.
+Now, from your explanation, the log has been recorded because the location (user's download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+For the instruction you provide:
+
+  1.  Block the website that the end user is using.
+This can't be done, as the site is the the NAS storage site used by IT.
+
+  1.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+Please explain what this option do and how it improve the log output?
+
+  1.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+The source location is the general user's download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don't think that is a good practice.
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F43.277B5160]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+  1.  Block the website that the end user is using.
+  2.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+  3.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+Using user Zihaozhao's activity as an example:
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs.
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later).
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs.
+4. Upon comparing both files, we confirmed they have identical size and content.
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state.
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9F43.277B5160]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-03-28T01:08:49.000Z","true"
+"02sQk00000N84vdIAB","500Qk00000NBgwTIAT","2025-03-28T16:29:10.000Z","2025-03-28T16:29:10.000Z","Hi Tai,
+
+Unfortunately, I don't have any available time slots for this afternoon. However, I'm available on Monday from 11:00 to 12:00 or 12:00 to 1:00 PM PST. Do either of these times work for you?
+
+Thank you!
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/28/2025 3:08 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+
+Hello Iosif,
+
+ 
+
+I am sorry, the EPP admin is not available in the morning, are you available in the afternoon? Or we shall schedule on the Monday?
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 27, 2025 11:24 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+We would like to activate logging for the EPP client on the Mac computer and collect the logs after we reproduce the scenario with the download file. You will need admin rights on the Mac to execute a few commands in the terminal, and having an EPP admin user would be helpful if we need to change settings in the EPP UI console.
+
+Is it ok to schedule the remote session for tomorrow from 11:00 to 12:00 PST?
+
+Please let me know if this time works for you or if you have another preference.
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 6:32 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Hello Iosif,
+
+ 
+
+We are available M-F 10:30 am to 6:00pm PST. Does this require system admin to attend the meeting? Please also let me  know what data you plan to collect so I can have the environment ready for you. Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 27, 2025 8:20 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+The DPI settings are located under Device Control -> Global Settings. However, the ""Use Stealthy DPI Driver"" option is indeed available only for Windows systems.
+
+
+Could you please let us know your availability for a remote session? This will allow us to collect more data about this behavior.
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 12:02 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Hello Iosif,
+
+We are not able to locate the “Use Stealthy DPI Driver” under Device Control -> Global Settings.
+We do find the option under “Settings”, however it can only apply to Windows platform and this issue occurred on Mac. Please instruct how to configure for Mac and Linux platform?
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 8:05 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+I apologize for not mentioning this earlier. The DPI settings are under  Device Control ->  Global Settings.
+
+Thank you for your understanding.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/26/2025 12:14 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Would you please provide instruction how to enable “Use Stealthy DPI Driver” option? Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+ 
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+Hello Iosif, 
+
+ 
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+
+The log is recorded when I finished installing EPP on user “hengliu”’s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac’s Keychain.
+
+Now, from your explanation, the log has been recorded because the location (user’s download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+ 
+
+For the instruction you provide:
+
+
+	Block the website that the end user is using.
+
+
+This can’t be done, as the site is the the NAS storage site used by IT.
+
+
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+
+
+Please explain what this option do and how it improve the log output?
+
+
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+The source location is the general user’s download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don’t think that is a good practice. 
+
+ 
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+
+	Block the website that the end user is using.
+	Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+	Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+ 
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+ 
+
+Using user Zihaozhao's activity as an example: 
+
+ 
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs. 
+
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later). 
+
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs. 
+
+4. Upon comparing both files, we confirmed they have identical size and content. 
+
+ 
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state. 
+
+ 
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+
+ 
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","true","2025-03-28T16:29:09.000Z","true"
+"02sQk00000N7wRrIAJ","500Qk00000NBgwTIAT","2025-03-28T16:31:32.000Z","2025-03-28T16:31:32.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+Please schedule for Monday 11 am then. Thank uou.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9FC4.28429460]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 28, 2025 9:29 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Unfortunately, I don't have any available time slots for this afternoon. However, I'm available on Monday from 11:00 to 12:00 or 12:00 to 1:00 PM PST. Do either of these times work for you?
+
+Thank you!
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/28/2025 3:08 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+I am sorry, the EPP admin is not available in the morning, are you available in the afternoon? Or we shall schedule on the Monday?
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9FC4.28429460]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, March 27, 2025 11:24 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+We would like to activate logging for the EPP client on the Mac computer and collect the logs after we reproduce the scenario with the download file. You will need admin rights on the Mac to execute a few commands in the terminal, and having an EPP admin user would be helpful if we need to change settings in the EPP UI console.
+
+Is it ok to schedule the remote session for tomorrow from 11:00 to 12:00 PST?
+
+Please let me know if this time works for you or if you have another preference.
+
+Thank you!
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 6:32 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+We are available M-F 10:30 am to 6:00pm PST. Does this require system admin to attend the meeting? Please also let me  know what data you plan to collect so I can have the environment ready for you. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9FC4.28429460]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, March 27, 2025 8:20 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+The DPI settings are located under Device Control -> Global Settings. However, the ""Use Stealthy DPI Driver"" option is indeed available only for Windows systems.
+[cid:image002.png@01DB9FC4.28429460]
+Could you please let us know your availability for a remote session? This will allow us to collect more data about this behavior.
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/27/2025 12:02 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+We are not able to locate the ""Use Stealthy DPI Driver"" under Device Control -> Global Settings.
+We do find the option under ""Settings"", however it can only apply to Windows platform and this issue occurred on Mac. Please instruct how to configure for Mac and Linux platform?
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9FC4.28429460]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 26, 2025 8:05 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+I apologize for not mentioning this earlier. The DPI settings are under Device Control -> Global Settings.
+
+Thank you for your understanding.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/26/2025 12:14 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Would you please provide instruction how to enable ""Use Stealthy DPI Driver"" option? Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9FC4.28429460]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 25, 2025 12:41 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+Hi Tai,
+
+The ""Use Stealthy DPI Driver"" improves the interaction with third-party applications.
+Could you please enable this option and let us know if you still see these logs?
+
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 11:04 PM
+To: taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+
+Hi Tai,
+
+Thank you for the update. We are currently reviewing this internally and will get back to you as soon as possible.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/24/2025 8:29 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+Hello Iosif,
+
+Thank you for the suggestion, here I will provide another example to better describe the situation. Please see attached screenshot.
+The log is recorded when I finished installing EPP on user ""hengliu""'s laptop and trying to download the certificates from our NAS. The zip downloaded contain one cer file, one crt file and one pem file. Upon installing the certificate will set EPP server as the trusted site in Mac's Keychain.
+Now, from your explanation, the log has been recorded because the location (user's download folder) mentioned corresponds to sources of files (certificate zip) that are accessed or called when visiting a specific website (NAS server). However, since the browser is trying to write the file into download folder, it will definitely access the .crdownload file (a.k.a. temporary state of the download file). This is clear to be a download behavior as I am the person who download the file and the zip contains no python or shell script for the NAS server to trigger, why EPP still record this log?
+
+For the instruction you provide:
+
+  1.  Block the website that the end user is using.
+This can't be done, as the site is the the NAS storage site used by IT.
+
+  1.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+Please explain what this option do and how it improve the log output?
+
+  1.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+The source location is the general user's download folder, whitelist it means any user can upload anything from their download folder without been monitor. I don't think that is a good practice.
+
+Please provide a more solid solution to address the download been identified as upload issue. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9FC4.28429460]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 24, 2025 10:01 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: RE: Netwrix Support Ticket #439655 - - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for sending us the screenshot.
+
+Upon internal review, it appears that. These files seem to be either Python or shell scripts triggered by the website that the user is accessing.
+
+To prevent these logs from appearing on the server, you can consider the following options:
+
+  1.  Block the website that the end user is using.
+  2.  Utilize the DPI with the ""Use Stealthy DPI Driver"" functionality.
+  3.  Whitelist the source location displayed in the logs. A wildcard can be used if the source is similar for multiple users.
+
+Implementing these options should help prevent these log entries from appearing in the future.
+
+Please let us know if you have further questions or if there's anything we can assist with.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 3/22/2025 2:21 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+It only allowed to show 200 logs on the web UI, I will try to explain the scenario based it. Please see the attached screenshot for reference.
+
+Using user Zihaozhao's activity as an example:
+
+1. At 14:59:45 on 02-19, we observe the file ""Unconfirmed 813951.crdownload"" first appearing in the logs.
+2. This file continues to appear in the logs until 15:54:51 on 02-19 (approximately 55 minutes later).
+3. Immediately after ""Unconfirmed 813951.crdownload"" stops appearing, the file ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" begins to show up in the logs.
+4. Upon comparing both files, we confirmed they have identical size and content.
+
+Based on this evidence, it appears that ""bst-dal-tutorial-bevdel-v1.1.0.tar.gz"" was the file being downloaded, with ""Unconfirmed 813951.crdownload"" being its temporary download state.
+
+This observation contradicts your statement that EPP should not generate logs for downloads. Could you please explain this discrepancy? Also, for your information, the Destination Detail are empty for all the logs mentioned above. Thank you for your assistance in clarifying this matter.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DB9FC4.28429460]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 21, 2025 11:50 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai<mailto:taiting.tseng@bst.ai>>
+Subject: Download been classified as upload. [ ref:!00D70091pB.!500Qk0NBgwT:ref ]
+
+    CAUTION: This email is from external domain.
+
+Hi Tai,
+
+Thank you for reaching out.
+
+The EPP is not designed to generate logs specifically for downloads. However, if you can provide a detailed description of the scenario where you observe these logs, it would help us better understand your situation.
+
+There might be instances where, after downloading a file such as 'xxxx.crdownload,' the file hash or other information is sent for validation to a server. This action might appear as a web upload in the logs.
+
+Please enable the Destination Details in the log page and send us some screenshots so we can assist you further.
+
+Thank you, and I look forward to your response.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com<http://www.endpointprotector.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-03-28T16:31:16.000Z","true"
+"02sQk00000N7rC8IAJ","500Qk00000NBgwTIAT","2025-03-28T16:36:29.000Z","2025-03-28T16:36:29.000Z","Hi Tai Ting,
+
+
+
+Please use the link below to schedule ""Netwrix Support Ticket #00439655"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+
+
+ 
+
+
+Thanks!
+Iosif Muntean
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com ","Schedule Meeting for ""Netwrix Support Ticket #00439655""","iosif.muntean@netwrix.com","Iosif Muntean","taiting.tseng@bst.ai","","","false","2025-03-28T16:36:29.000Z","true"
+"02sQk00000NDHSeIAP","500Qk00000NBgwTIAT","2025-03-31T18:42:03.000Z","2025-03-31T18:42:03.000Z","Hi Tai,
+ 
+Thank you for joining today's remote session.
+
+Below are the steps to generate and collect EPP logs for Mac and Linux computers:
+Linux: 
+ 
+1. $ sudo su
+2. $ cd /var/log/epp-client/
+3. $ touch /var/log/epp-client/epp_client_daemon_append.log
+4. $ touch /var/log/epp-client/eppsslsplit.log
+5. $ sudo service epp-client-daemon restart
+
+6. replicate the issue / allow the issue to reproduce itself
+
+7. $ cp /var/log/epp-client/epp_client_daemon_append.log /home/user/Desktop/
+8. $ cp /var/log/epp-client/eppsslsplit.log /home/user/Desktop/
+
+MAC:
+
+sudo /bin/launchctl unload /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+sudo touch /private/var/log/eppclient_append.log
+sudo touch /private/var/log/eppsslsplit.log
+sudo /bin/launchctl load /Library/LaunchDaemons/com.cososys.eppclient.launchdaemon.plist
+
+After this, let the issue reproduce a few times (wait for the computer to duplicate on the EPP UI a few more times). Once this happens, collect the logs with the following commands:
+
+cp /private/var/log/eppclient_append.log ~/Desktop
+cp /private/var/log/eppsslsplit.log ~/Desktop
+cp /etc/epp/reprovision.db ~/Desktop
+cp /etc/epp/rights.s3db ~/Desktop
+cp /etc/epp/netdlp/netdlp_settings.json ~/Desktop
+
+Please archive the above log files after the issue is reproduced and send them to us along with a screenshot of the log from the Report and Analysis. We will then raise the issue internally with our development team for further investigation.
+
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Iosif Muntean [iosif.muntean@netwrix.com]
+Sent: 3/28/2025 6:36 PM
+To: taiting.tseng@bst.ai
+Subject: Schedule Meeting for ""Netwrix Support Ticket #00439655""
+
+Hi Tai Ting,
+
+
+Please use the link below to schedule ""Netwrix Support Ticket #00439655"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+
+
+
+
+
+Thanks!
+Iosif Muntean
+
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Schedule Meeting for ""Netwrix Support Ticket #00439655""    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","false","2025-03-31T18:42:01.000Z","true"
+"02sQk00000NXNQRIA5","500Qk00000NBgwTIAT","2025-04-09T00:41:36.000Z","2025-04-09T20:21:25.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+Hello Iosif,
+
+Thank you for following up. The issue does not occur recently, so I am not able to catch the log. Can we wait till the end of this week then close the ticket if the issue doesn’t occur.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DBA8AD.70FA44E0]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 7, 2025 1:08 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: 00439655 - Download been classified as upload.
+
+    CAUTION: This email is from external domain.
+Hello Tai Ting,
+
+I wanted to check in regarding your support ticket 00439655. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00439655
+Ticket Subject: Download been classified as upload.
+Ticket Details: When investigating EPP logs. We notice that browser downloads has two set of entries: first, a bunch of logs with 'xxxx.crdownload' as source and Chrome as destination, then when completed, it shows the downloaded file as source and Chrome as destination. Why does EPP incorrectly log downloads as potential browser uploads? This creates unnecessary noise in our security monitoring.
+
+Thank you!
+
+Iosif Muntean
+Technical Support Engineer Tier 1
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - 00439655 - Download been classified as upload.","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-04-09T00:41:22.000Z","true"
+"02sQk00000Nb3o8IAB","500Qk00000NBgwTIAT","2025-04-10T14:15:20.000Z","2025-04-10T14:15:20.000Z","Hi Tai,
+
+No problem, we can keep this ticket open until Friday. After you've managed to reproduce the issue, you can reopen the ticket within 30 days, or open a new one thereafter.
+Thank you!
+
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 4/9/2025 3:41 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - 00439655 - Download been classified as upload.
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+
+Hello Iosif,
+
+ 
+
+Thank you for following up. The issue does not occur recently, so I am not able to catch the log. Can we wait till the end of this week then close the ticket if the issue doesn’t occur. 
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 7, 2025 1:08 PM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: 00439655 - Download been classified as upload.
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hello Tai Ting,
+
+I wanted to check in regarding your support ticket 00439655. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00439655
+Ticket Subject: Download been classified as upload.
+Ticket Details: When investigating EPP logs. We notice that browser downloads has two set of entries: first, a bunch of logs with 'xxxx.crdownload' as source and Chrome as destination, then when completed, it shows the downloaded file as source and Chrome as destination. Why does EPP incorrectly log downloads as potential browser uploads? This creates unnecessary noise in our security monitoring.
+
+Thank you!
+
+Iosif Muntean
+Technical Support Engineer Tier 1
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - 00439655 - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","true","2025-04-10T14:15:19.000Z","true"
+"02sQk00000Nk7NyIAJ","500Qk00000NBgwTIAT","2025-04-15T00:50:00.000Z","2025-04-15T14:14:04.000Z","ref:_00D7091pB._500Q000NBgwT:ref
+
+Hello Iosif,
+
+This issue has not occurred recently. You may procced to close the ticket. Thank you.
+
+Tai Ting Tseng
+IT Support Engineer
+[cid:image001.png@01DBAD65.9A1FA970]
+
+Phone: + 1 (669) 900-8311
+Black Sesame Technologies Inc. www.bst.ai<http://www.bst.ai/>
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 14, 2025 7:23 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: 00439655 - Download been classified as upload.
+
+    CAUTION: This email is from external domain.
+Hello Tai Ting,
+
+I wanted to check in regarding your support ticket 00439655. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00439655
+Ticket Subject: Download been classified as upload.
+Ticket Details: When investigating EPP logs. We notice that browser downloads has two set of entries: first, a bunch of logs with 'xxxx.crdownload' as source and Chrome as destination, then when completed, it shows the downloaded file as source and Chrome as destination. Why does EPP incorrectly log downloads as potential browser uploads? This creates unnecessary noise in our security monitoring.
+
+Thank you!
+
+Iosif Muntean
+Technical Support Engineer Tier 1
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - 00439655 - Download been classified as upload.","taiting.tseng@bst.ai","Tai Ting Tseng","techsupport@netwrix.com","","","true","2025-04-15T00:49:42.000Z","true"
+"02sQk00000NlIAkIAN","500Qk00000NBgwTIAT","2025-04-15T14:15:29.000Z","2025-04-15T14:15:29.000Z","Hi Tai,
+
+Thank you for the update.
+
+In this case, we will proceed with closing the ticket. If you have any further questions or need assistance in the future, please feel free to reach out.
+Best Regards,
+Iosif Muntean| Technical Support Engineer
+Endpoint Protector by CoSoSys, now part of Netwrix
+DLP | Device Control | Content Aware Protection | eDiscovery | Enforced Encryption
+ www.endpointprotector.com 
+
+
+--------------- Original Message ---------------
+From: Tai Ting Tseng [taiting.tseng@bst.ai]
+Sent: 4/15/2025 3:49 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #439655 - ref:_00D7091pB._500Q000NBgwT:ref - 00439655 - Download been classified as upload.
+
+ref:_00D7091pB._500Q000NBgwT:ref
+
+
+
+Hello Iosif,
+
+ 
+
+This issue has not occurred recently. You may procced to close the ticket. Thank you.
+
+ 
+
+
+Tai Ting Tseng 
+
+IT Support Engineer 
+
+
+ 
+
+Phone: + 1 (669) 900-8311 
+
+Black Sesame Technologies Inc. www.bst.ai 
+
+Address: 2290 N 1st. St. STE100 San Jose, CA 95131 
+
+""This e-mail and any attachments thereto may contain private, confidential, and privileged material for the sole use of the intended recipient. If you are not the intended recipient, any dissemination, distribution or copying is strictly prohibited. If you think that you have received this e-mail message in error, please contact the sender at Black Sesame Technologies, Inc. immediately and permanently delete the original and any copies of this e-mail and any attachments thereto.""
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 14, 2025 7:23 AM
+To: Tai Ting Tseng <taiting.tseng@bst.ai>
+Subject: RE: 00439655 - Download been classified as upload.
+
+
+
+ 
+
+    CAUTION: This email is from external domain.
+
+
+Hello Tai Ting,
+
+I wanted to check in regarding your support ticket 00439655. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00439655
+Ticket Subject: Download been classified as upload.
+Ticket Details: When investigating EPP logs. We notice that browser downloads has two set of entries: first, a bunch of logs with 'xxxx.crdownload' as source and Chrome as destination, then when completed, it shows the downloaded file as source and Chrome as destination. Why does EPP incorrectly log downloads as potential browser uploads? This creates unnecessary noise in our security monitoring.
+
+Thank you!
+
+Iosif Muntean
+Technical Support Engineer Tier 1
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0NBgwT:ref","RE: Netwrix Support Ticket #439655 -  - 00439655 - Download been classified as upload.    [ ref:!00D70091pB.!500Qk0NBgwT:ref ]","techsupport@netwrix.com","Netwrix Support","taiting.tseng@bst.ai","","iosif.muntean@netwrix.com","true","2025-04-15T14:15:28.000Z","true"

@@ -1,0 +1,16 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KydB3IAJ","00433308","Support Ticket","How to detect Google Docs labels with CAP policy","Hello,
+
+Customer name is RubyPlay.
+They are in the PoC process right now.
+They are using Google Docs labels to mark confidential files (with label Confidential).
+Would it be possible to detect these labels with CAP policy to block their transfer? How we can realize this case?
+The issue is that these labels visible only in the Google Docs and Google Drive.","","The labels created in Google Docs are only visible within the Google platform and these labels are not included in the documents the moment they are downloaded and exported as a file type (.docx for example) because of this Endpoint Protector will not be able to detect these labels are they do not exist while the file is stored locally on the endpoint machine.
+
+Endpoint Protector is able to detect metadata and the information imbedded within the metadata.  See below screenshot is an example of the word document that the customer provided, here we can see that the .xml extensions or ""metadata"" are detected by Endpoint Protector.  You will notice the time stamps indicates a single incident with multiple event log entries listing all the metadata extensions embedded within the word document.  If these Google Doc labels had also been exported with the word document then Endpoint Protector would have detected them too.","2025.03.07 update:
+Partner:
+
+""Please move this ticket on hold, we need to check if customer moved to the corporate Google Docs version because it potentially would start make labels inside the files.""","2025.03.07 update:
+Partner:
+
+""Please move this ticket on hold, we need to check if customer moved to the corporate Google Docs version because it potentially would start make labels inside the files.""","","Andre Le Roux","Request","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","NONE","","43.2","Closed - Resolved","Rubyplay Limited","Danylo Didenko","2025-01-23T12:19:50.000Z","2025-03-07T16:28:51.000Z"

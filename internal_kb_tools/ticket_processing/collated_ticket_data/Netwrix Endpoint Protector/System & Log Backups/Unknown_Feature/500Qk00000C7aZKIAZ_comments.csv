@@ -1,0 +1,134 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007xSNdIAM","500Qk00000C7aZKIAZ","On Escalation Ticket # 00413093 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000001nViCIAU","2024-07-16T13:03:04.000Z","2024-07-16T13:03:04.000Z","false","false"
+"00aQk000007z31sIAA","500Qk00000C7aZKIAZ","On Escalation Ticket # 00413093 the new comment has been added: Oana-Cristina Rus:
+
+It would be helpful if you could check the file size in the backend too. The file size is converted from KB in the UI.
+
+
+
+The size of the backup file can be found in the file_size column by running the following commands in MySQL:
+
+--- CODE ---
+select * from system_backupG;
+--- CODE ---
+
+You can also check the file size by going to the following path:
+
+--- CODE ---ls -la /var/eppfiles/logbackup/system_backup/
+--- CODE ---
+
+[DevOps CommentId:10518259]","0054u000006gtWUAAY","2024-07-17T14:54:14.000Z","2024-07-17T14:54:14.000Z","false","false"
+"00aQk000007z31wIAA","500Qk00000C7aZKIAZ","On Escalation Ticket # 00413093 the new comment has been added: Oana-Cristina Rus:
+
+Related to ""The partner informed me that Privatbank is only interested in migrating the settings and policies, no other details are need, no entities like computers, devices, users etc. ""
+
+- The Administrator can migrate the database (entities, rights,
+settings, policies, configurations, etc.) from an older Endpoint Protector Server to a newer one. The customer requirement is not viable.
+
+Please collect the files database_table_list.log and database_files_size.log for further investigation.
+
+--- CODE ---
+mysql -uroot -p eppdatabase -e ""SHOW TABLES;"" > /home/epproot/database_table_list.log
+--- CODE ---
+
+
+--- CODE ---
+ls -laSh /var/eppfiles/mysql/eppdatabase > /home/epproot/database_files_size.log
+--- CODE ---
+
+Can you check if the customer has duplicate devices?
+
+--- CODE ---59. Device cache update - Device duplicates fix.
+--- CODE ---
+
+[DevOps CommentId:10577254]","0054u000006gtWUAAY","2024-07-17T14:54:14.000Z","2024-07-17T14:54:14.000Z","false","false"
+"00aQk000007z31uIAA","500Qk00000C7aZKIAZ","On Escalation Ticket # 00413093 the new comment has been added: Oana-Cristina Rus:
+
+Hi,
+After we checked the attached image, we noticed that the actual size of the backup v2 is the one we have in the /var/eppfiles/logbackup/system_backup/, approximately 14GB.
+
+It is possible that we got an error when we calculated the file size for this backup. This could be the reason why the file size in the database is different.
+
+
+
+
+The backup can be imported into UI.
+
+To import this kind of system backup (14GB), you need to follow the procedure:
+
+
+--- CODE ---
+33. Changing maximum upload size of files on the EPP UI
+--- CODE ---
+
+
+After uploading the backup, it is essential to revert the updated settings to their default values.
+
+
+
+
+
+Please share with us the results.
+
+[DevOps CommentId:10540959]","0054u000006gtWUAAY","2024-07-17T14:54:14.000Z","2024-07-17T14:54:14.000Z","false","false"
+"00aQk000007z31vIAA","500Qk00000C7aZKIAZ","On Escalation Ticket # 00413093 the new comment has been added: Andre Wayne Le Roux:
+
+Hi @Oana-Cristina Rus
+Thank you for the feedback.
+I clarified with the partner 'Corewin' the exact requirements for PrivatBank.
+
+The partner informed me that Privatbank is only interested in migrating the settings and policies, no other details are need, no entities like computers, devices, users etc.  
+
+ They have 2 instances:
+
+ 1. Production Server:  Currently on 5920 (Unfortunately, customer cannot update the server to 5.9.3.0 because of the issue: ""00409929 PrivatBank massive issues after EPP server upgrade"".)
+
+2. Test Server: They want to backup-restore the settings and policies of the production server over to the test one.  The test environment is needed to fix a bug which is present in the latest version of EPP in the client's environment.  The total number of endpoints would be 50.   Tests will be performed on a very limited number of workstations.
+
+Both Production and Test servers are in AWS instances.
+
+I wanted to confirm with you.  Considering these requirements (that only settings and policies are to be migrated for 50 endpoints), is procedure 33 still the only option where the test server needs to be optimized with high resources for them to upload a 14GB backup file into the Test server?  or would there be another method possible?
+
+FYI: @Adrian Draghici
+
+[DevOps CommentId:10566144]","0054u000006gtWUAAY","2024-07-17T14:54:14.000Z","2024-07-17T14:54:14.000Z","false","false"
+"00aQk000007z31xIAA","500Qk00000C7aZKIAZ","On Escalation Ticket # 00413093 the new comment has been added: Andre Wayne Le Roux:
+
+Hi @Oana-Cristina Rus Thank you for the feedback.
+Today I had a remote session with the customer and the issue was resolved by a back-end procedure. Policies and Settings were migrated successfully after applying an php patch, the new backup v2 file was 69MB in size.
+
+Procedure:
+After checking the database files size and database table list we noticed that the table cf_log_details was not ignored from System Backup V2.
+
+As a workaround you can use the following steps to replace the system_backup.php .b64 file:
+
+1) create a backup of the existing file: cp /EPPServer/appliance/operations/system_backup.php /var/eppfiles/backup/system_backup.php.original
+
+2) upload the system_backup.php .b64 file (which you can find in this attached to this jira) on /home/epproot/ by using Winscp/Filezilla etc
+
+3) overwrite the freshly uploaded system backup file on the existing one: cat system_backup.php.b64 | base64 -d > /EPPServer/appliance/operations/system_backup.php
+
+ 
+
+Create a new System Backup V2 and check if the size was considerably reduced  or not. The system backup V2 should not have sizes over 200MB in order to be able to import it.
+
+[EPPSUPPORT-3003] System backup V2 - is too big and cannot be imported - Server version 5810 - CoSoSys JIRA
+https://jira-epp.endpointprotector.com/browse/EPPSUPPORT-3003
+
+
+php file ""system_backup.php.b64"" uploaded to this ado.
+
+[DevOps CommentId:10580071]","0054u000006gtWUAAY","2024-07-17T14:54:14.000Z","2024-07-17T14:54:14.000Z","false","false"
+"00aQk000007z31yIAA","500Qk00000C7aZKIAZ","On Escalation Ticket # 00413093 the new comment has been added: Michael Paye:
+
+[Force comment sync]
+
+[DevOps CommentId:10587428]","0054u000006gtWUAAY","2024-07-17T14:54:14.000Z","2024-07-17T14:54:14.000Z","false","false"
+"00aQk000007z31tIAA","500Qk00000C7aZKIAZ","On Escalation Ticket # 00413093 the new comment has been added: Andre Wayne Le Roux:
+
+Hi @Oana-Cristina Rus , @Cristian-Alexandru Halmajan Customer asked for this case to be placed on high priority.
+ 
+Please see results below from the commands that was executed.  The backup file size is indeed 14GB in size.
+
+[DevOps CommentId:10528916]","0054u000006gtWUAAY","2024-07-17T14:54:14.000Z","2024-07-17T14:54:14.000Z","false","false"

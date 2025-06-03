@@ -1,0 +1,134 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LY7PcIAL","00434863","Support Ticket","Server Not delete computers","try to delete computers ""unlicense"" and ""offline"" and ""duplicate"".
+maked filter...
+select all and delete.... green mensage.... but anyone deleted.","","3/7/2025
+
+Gathered permission from customer and team to access the backend to run code for engineers
+Updated the escalation ticket with output:
+
+[root@gpbdhjr:/home/epproot]$ ls -ld /var/eppfiles/entities_to_be_deleted
+drwxr-xr-x 2 www-data www-data 4096 Aug 14  2024 /var/eppfiles/entities_to_be_deleted
+[root@gpbdhjr:/home/epproot]$ chmod 755 /var/eppfiles/entities_to_be_deleted
+[root@gpbdhjr:/home/epproot]$ ls -ld /var/eppfiles/entities_to_be_deleted
+drwxr-xr-x 2 www-data www-data 4096 Aug 14  2024 /var/eppfiles/entities_to_be_deleted
+[root@gpbdhjr:/home/epproot]$ chown www-data:www-data /var/eppfiles/entities_to_be_deleted
+[root@gpbdhjr:/home/epproot]$ ls -ld /var/eppfiles/entities_to_be_deleted
+drwxr-xr-x 2 www-data www-data 4096 Aug 14  2024 /var/eppfiles/entities_to_be_deleted
+
+mysql> UPDATE parameter SET value = 1000 WHERE name = 'limit_select_all_action';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+ 
+mysql> select value from parameter where name = 'limit_select_all_action';
++-------+
+| value |
++-------+
+| 1000  |
++-------+
+1 row in set (0.00 sec)
+
+3/4/2025
+- Gave R&D the requested information:
+* What ""failed tests"" exactly means?
+
+Customer able to delete computers less then 10 at a time.
+
+Customer not able to delete more then 10 computers at a time when selected.
+
+* Is there any error displayed on the UI or in the request response after using the delete action?
+
+The UI displays a message stating that the Delete successfully started. Yet the computers do not delete as expected.
+df -
+* If not then is possible that an error message will be displayed if you access again Device Control -> Computers after using the delete action.
+
+No error messages seen from here
+
+* Does the UI get stuck after using the delete action? The UI displays a message stating that the Delete successfully started.
+
+* How many computers does the customer wants to delete? Customer wants to delete 47 computers at one time
+
+* We need the output of the following query from db to see what process is used when deleting with checked select all entries option:
+
+--- CODE ---
+select value from parameter where name = 'limit_select_all_action';
+--- CODE ---
+
+Results:
+mysql> select value from parameter where name = 'limit_select_all_action';
+
++-------+
+
+| value |
+
++-------+
+
+| 10 |
+
++-------+
+
+1 row in set (0.00 sec)
+
+
+
+* Link with screenshots and video: https://nwxcorp.sharepoint.com/sites/CustomerSupportFiles/Data/00434863
+
+2/25/2025
+- Sent customer another email requesting available times this week to gather necessary information that engineering has requested
+- Customer responded requesting to set up a remote session on 2/28/2025
+
+2/21/2025
+Reached out to customer to get available times and days to schedule a remote session to gather further information asked by Devops and run code
+
+2/19/2025
+Joined remote session
+Failed tests when filtering Unlicensed and Offline Computers:
+- selecting Select all entries + Delete
+- manually selecting 10+ computers + delete
+
+What worked:
+- manually selecting 9 or less computers + delete -> worked
+- when we had less than 9 computers and we selected all entries + delete -> it worked
+
+• What is the impact of the problem on your business?
+Low, except for the visual pollution of machines that have several options to choose from the same equipment, when we want to apply a rule, we do not know which machine is active. And this is hindering management.
+
+• Have you tried any troubleshooting steps? If so, what did you try?
+No, I can't imagine what steps there might be for this...
+We tested in other browsers and the problem repeats itself.
+
+• When did this problem start?
+I don't know, we tried to delete the machines today, and we couldn't. In previous versions we have already deleted machines and had no problems.
+
+Customer filtered the machines yet when he  tries to delete multiple machines, he can't, there's no result, even after waiting for hours...
+
+If customer uses filter and select just 1, it is deleted normally.
+
+2/7/2025
+
+- Joined Teams @ 759 AM CST
+- Flagged as deleted but still showing up on database
+- Need to update the data base 
+- Attempt to find out how many computers can delete at a time
+- Need to find out how many computers need to be deleted
+- Need permission from customer to access the backend via email
+- Customer selects unlicense, duplicate and offline computers
+- Can delete one at a time yet when selecting 25 issues occur
+- Sent customer email requesting access and the EPP server url
+- Plan on access the backend to update database and work on getting unlicensed, duplicate and offline computers deleted
+- Access granted by customer and team
+- Deleted unlicensed computers from database
+- Sent email to customer to confirm deletion successful
+
+2/10/2025
+- Customer reports deleting unlicensed computers was successful yet when customer attempts to delete more computers, issue still present
+
+- Attempting to schedule a meeting with customer again for Brazilian time frame
+
+2/12/2025
+
+- Able to delete the computers using the backend procedure, yet when the customer attempts to delete multiple newer computers that are unlicensed and offline, he is unable to delete them.
+- Customer able to delete computers up to 5 at a time, but not all at once (gives a message stating the deletion has successfully started yet no results).
+
+- Unlicensed offline computers still present and not deleted after starting deletion action
+
+2/19/2025","Awaiting R&D","Customer able to delete more then 10 computers at a time after checking for limit select all action value which was set at 10 was then set to 1000","Incorrect configuration: Netwrix server","Ramon Torres","Unexpected Behavior","Netwrix Endpoint Protector","Server","EPP Server - Other","NONE","5.9.4.0","29.3","Closed - Resolved","Secure Gate (@securegate.com.br)","Tiago Guerra","2025-02-06T14:48:20.000Z","2025-03-07T21:51:01.000Z"

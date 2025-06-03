@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LfiQpIAJ","00435197","Support Ticket","Credit card detections when using website","Hi support,
+
+A user has reported an issue where he receives regular pop up notification saying content has been blocked when he is not attempting to upload any content - just brose the web site.
+
+The alert claims to have blocked a number of credit card number.  Not always the same number, but sometimes they are the same.
+
+In the content aware report we see these reported as web-upload (no file name) and the events are not logged against any particular website, just Mozilla.
+
+I'll send a screenshot so you can see.
+
+How can we determine the cause of these please and will it be possible to exception if there is no web site shown in the report?
+
+Thank you,
+Dave","","-connected with the customer and found that the server is on 5.9.4.0
+- the disk space was pretty full
+- cleared the disk space
+- asked the customer to upgrade to 5.9.4.1 to check if the issue still persists
+- client: 6.2.4.2
+
+19.03
+- issue is happening on *sendgrid.com - application for sending bulk email
+- blocks are false since nothing is being uploaded
+- it happens randomly when going from one page to another
+- there is a CAP policy to monitor credit cards
+- created contextual detection rule for this policy","waiting on the customer to further test","contextual detection for credit cards fixed the issue","","Botond Biro","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","CAP Policies","","","45.7","Closed - Resolved","Aptitude Software","Dave Young","2025-02-09T20:46:15.000Z","2025-03-27T12:58:20.000Z"

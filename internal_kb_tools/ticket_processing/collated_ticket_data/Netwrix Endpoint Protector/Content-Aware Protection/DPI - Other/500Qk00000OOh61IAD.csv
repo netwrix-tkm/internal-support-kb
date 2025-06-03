@@ -1,0 +1,70 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OOh61IAD","00443020","Support Ticket","DPI does not replace certificate on macOS","Hello!
+
+Customer name is PrivatBank.
+Yesterday they did the migration to new EPP instance.
+But thereafter, an issue with DPI occurs on macOS computers.
+Customer changed the old certificate i their JAMF profile and pushed it to the computers, but even after a few hours, DPI certificate does not replace in the browser, so it seems like DPI is not working properly, but in the client UI DPI is ""Enabled"" and certificate is Trusted.
+Restarting the browser and clearing the cash also did not help.
+
+Can we please schedule a remote session to investigate it?
+Attaching screenshots.","","Client(Privat Bank) upgraded the server to the latest 5.9.4.2 version and now they're having difficulties with the DPI functionality on MAC OS devices.
+
+UPDATE 24/04/2025
+
+Connected remote with Danylo and the PrivatBank team to take a look at the issue.
+
+Basically, the problem they encounter is that after deploying a new MAC OS DPI Certificate, the people who were working from outside of the corporate office cannot have the policies applied at all to their computers.
+
+For some of them, as the client related, they need to restart the device in order for it to work, but on the machine that we have tested while the enduser was WFH and connected to their CISCO VPN(which is mandatory to access internal resources), we have found out it is not working even after a restart as the certificate is not applied.
+
+What I did first was to check the full disk, accessibility and bluetooth access and the EPP was missing from full disk and accessibility. Added the app there, updated and tried again but the policies were still not applied.
+
+Client had the latest 3.0.4.1 installed on that machine and it was communicating with the server.
+
+Went on computer settings from the console and enabled intercept VPN traffic and updated again but the network extension pop up did not came up at all.
+
+Restarted again the machine and tried but that didn't help.
+
+Also, I've checked to see if the MAC is allowed apps from Apple and developers and it was.
+
+We tested with a blocked website(dropbox.com) and there's a different certificate Cisco Umbrella that keeps showing up.
+
+Also, when tested on DLPTEST.COM for HTTPS upload, when we tried to send a bank account number it went through so the policy was not applied.
+
+
+
+Client deployed the certificate through JAMF by using  a .cer filetype instead of pem. 
+I've tried to remove it manually and add the pem one and try again but that didn't make any difference.
+
+
+To check if there's a difference between working outside of the network and in the office(internal network), client connected to a device from the office and everything was working fine after the certificate was imported.
+They could block content/websites without a problem and the configuration was the same.
+
+
+Gathered the logs along with necessary screenshot on the JAMF setup they used.
+
+30/04/2025
+
+Connected remote to create another JAMF profile by following the KA:
+
+https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Install/Agent/JAMF/Configuration.htm
+
+Especially the VPN Settings part and we tested again.
+
+The problem initially was  the certificate could not be deployed on the testing machine as they had a test build installed for another issue that they have(Intercept VPN and GoogleMeet)
+
+We wen on and installed the latest 3.0.4.1 and tried again with the Cisco VPN ON and the certificate was installed and enabled accordingly but the issue that came up afterwards was that it could not be received on the websites to work.
+
+As soon as we would get off the VPN and remain connected to the outside network or even internal network, the certificate would work on websites accordingly(dlptest.com).
+
+We tested that by uploading some data through the HTTPS text box and it went through directly while VPN was on, but as soon as we disconnected, updated policy and refreshed the browser we added the same text and the page was blocked accordingly(only connected to the external network).
+
+Asked to gather the logs and get back to me for further investigation.","Arranged a remote session to further take a look and investigate.
+
+UPDATE 24/04/2025
+
+Will wait for Danylo to provide the logs.
+
+UPDATE 30/04/2025
+Will wait for Danylo to provide the logs.","Issue solved after sorting the JAMF and the intercept VPN.","Incorrect configuration: target server software","Marian Ilies","Unexpected Behavior","Netwrix Endpoint Protector","Content-Aware Protection","DPI - Other","","","20.0","Closed - Resolved","CoreWin Distributor","CoreWin Tech","2025-04-24T07:27:28.000Z","2025-05-14T06:44:27.000Z"

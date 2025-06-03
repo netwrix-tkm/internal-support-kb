@@ -1,0 +1,269 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000A3mAPIAZ","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Account ACV has been changed to 23422.14.
+Priority has been changed to High.","005Qk000001nVi2IAE","2024-11-05T22:59:40.000Z","2024-11-05T22:59:40.000Z","false","false"
+"00aQk00000A3mC1IAJ","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Account ACV has been changed to 11711.07.","005Qk000001nVi2IAE","2024-11-05T22:59:41.000Z","2024-11-05T22:59:41.000Z","false","false"
+"00aQk00000AECErIAP","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-14T09:47:27.000Z","2024-11-14T09:47:27.000Z","false","false"
+"00aQk00000AECEtIAP","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+I was able to reproduce this scenario on our side. The issue is in the Alert creation , ""Check all"" checkbox in the Administrator section.
+
+A task was created for the fix.
+
+As a workaround , please edit the Alerts , uncheck all Administrators and Save the Alert without any Administrators. Edit again and manually check each Administrator that needs to receive the Alert without using the ""Check all"" checkbox.
+
+Thanks
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11214326]","0054u000006gtWUAAY","2024-11-14T09:47:28.000Z","2024-11-14T09:47:28.000Z","false","false"
+"00aQk00000AEZ3NIAX","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2024-11-14T15:18:03.000Z","2024-11-14T15:18:03.000Z","false","false"
+"00aQk00000ANAYnIAP","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-22T05:02:54.000Z","2024-11-22T05:02:54.000Z","false","false"
+"00aQk00000ANAYpIAP","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-11-14 09:47 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11260917]","0054u000006gtWUAAY","2024-11-22T05:02:55.000Z","2024-11-22T05:02:55.000Z","false","false"
+"00aQk00000AOB6EIAX","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: Hello,
+The customer tried your previous recommendation, and unfortunately it didn't work for them.
+Do you know of anything else we could try?
+Thanks,
+Boti","005Qk000001nVi2IAE","2024-11-22T21:19:22.000Z","2024-11-22T21:19:22.000Z","false","false"
+"00aQk00000AOB9RIAX","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nVi2IAE","2024-11-22T21:19:32.000Z","2024-11-22T21:19:32.000Z","false","false"
+"00aQk00000AUhcsIAD","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: Hello,
+Are there any updates for this case?
+Thanks,
+Boti","005Qk000001nVi2IAE","2024-11-29T22:23:07.000Z","2024-11-29T22:23:07.000Z","false","false"
+"00aQk00000AfFlLIAV","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-10T10:05:37.000Z","2024-12-10T10:05:37.000Z","false","false"
+"00aQk00000AfFlNIAV","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+Please run these queries and provide some screenshots with the results:
+
+  How many deleted vs active administrators:
+
+--- CODE ---
+   SELECT count(*) FROM sf_guard_user WHERE deleted =0;
+   SELECT count(*) FROM sf_guard_user WHERE deleted =1;
+--- CODE ---
+
+    How many administrators have this email set:
+
+--- CODE ---
+   SELECT count(*) FROM sf_guard_user_profile WHERE email = ""kstrobach@hcfraudshield.com"";
+--- CODE ---
+
+
+--- CODE ---
+   SELECT count(*) FROM sf_guard_user
+
+   LEFT JOIN sf_guard_user_profile ON sf_guard_user.id = sf_guard_user_profile.user_id
+   WHERE sf_guard_user_profile.email = ""kstrobach@hcfraudshield.com"";
+--- CODE ---
+
+
+
+How many administrators are assigned to these alerts:
+
+
+
+--- CODE ---  SELECT count(*) FROM clientalert
+  LEFT JOIN alert ON clientalert.alert_id = alert.id  WHERE alert.name = ""Unknown Device Connected"";
+--- CODE ---
+
+
+
+
+
+--- CODE ---  SELECT count(*) FROM clientalert
+  LEFT JOIN alert ON clientalert.alert_id = alert.id  WHERE alert.name = ""USB Storage Connected"";
+--- CODE ---
+
+
+
+Please also provide some screenshots from the UI with the 2 alerts named  Unknown Device Connected and  USB Storage Connected
+
+Thanks
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11387655]","0054u000006gtWUAAY","2024-12-10T10:05:38.000Z","2024-12-10T10:05:38.000Z","false","false"
+"00aQk00000Afc6nIAB","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2024-12-10T15:31:11.000Z","2024-12-10T15:31:11.000Z","false","false"
+"00aQk00000AfaUoIAJ","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-10T15:31:23.000Z","2024-12-10T15:31:24.000Z","false","false"
+"00aQk00000AhOMHIA3","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2024-12-11T19:35:44.000Z","2024-12-11T19:35:44.000Z","false","false"
+"00aQk00000Ao9yPIAR","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-18T05:02:52.000Z","2024-12-18T05:02:52.000Z","false","false"
+"00aQk00000Ao9yRIAR","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-12-10 10:05 UTC and the last detected comment from support was 2024-11-29 22:23 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11424646]","0054u000006gtWUAAY","2024-12-18T05:02:53.000Z","2024-12-18T05:02:53.000Z","false","false"
+"00aQk00000AoYrxIAF","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2024-12-18T14:50:01.000Z","2024-12-18T14:50:01.000Z","false","false"
+"00aQk00000AvPGrIAN","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-26T05:02:17.000Z","2024-12-26T05:02:17.000Z","false","false"
+"00aQk00000AvPGtIAN","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-12-10 10:05 UTC and the last detected comment from support was 2024-11-29 22:23 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11447399]","0054u000006gtWUAAY","2024-12-26T05:02:18.000Z","2024-12-26T05:02:18.000Z","false","false"
+"00aQk00000AvpcjIAB","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nViKIAU","2024-12-26T15:45:44.000Z","2024-12-26T15:45:44.000Z","false","false"
+"00aQk00000B2QWLIA3","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-03T05:02:09.000Z","2025-01-03T05:02:09.000Z","false","false"
+"00aQk00000B2QWNIA3","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-12-10 10:05 UTC and the last detected comment from support was 2024-11-29 22:23 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11456120]","0054u000006gtWUAAY","2025-01-03T05:02:10.000Z","2025-01-03T05:02:10.000Z","false","false"
+"00aQk00000B353FIAR","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2025-01-03T17:07:07.000Z","2025-01-03T17:07:07.000Z","false","false"
+"00aQk00000BAAFtIAP","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-10T05:02:36.000Z","2025-01-10T05:02:36.000Z","false","false"
+"00aQk00000BAAFvIAP","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-12-10 10:05 UTC and the last detected comment from support was 2024-11-29 22:23 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11484103]","0054u000006gtWUAAY","2025-01-10T05:02:37.000Z","2025-01-10T05:02:37.000Z","false","false"
+"00aQk00000BAAJ8IAP","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-12-10 10:05 UTC and the last detected comment from support was 2024-11-29 22:23 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11484103]","0054u000006gtWUAAY","2025-01-10T05:02:39.000Z","2025-01-10T05:02:39.000Z","false","false"
+"00aQk00000BATjyIAH","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000001nVi2IAE","2025-01-10T14:54:31.000Z","2025-01-10T14:54:31.000Z","false","false"
+"00aQk00000BOIVLIA5","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: Hello,
+The ticket can be closed, the issue isn't happening anymore.
+Thanks,
+Boti","005Qk000001nVi2IAE","2025-01-22T22:29:12.000Z","2025-01-22T22:29:12.000Z","false","false"
+"00aQk00000BOCuZIAX","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000001nVi2IAE","2025-01-22T22:29:23.000Z","2025-01-22T22:29:23.000Z","false","false"
+"00aQk00000BnnfcIAB","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: Hello,
+The issue changed, now the emails aren't sent at all, not even the test email, even if the UI says the test email was sent.
+In the mail and syslog files there are a lot of connection refused errors.
+We sent the test emails on the 13th of February at around 16:00.
+I attached the syslog and mail logs to the sharepoint folder.
+Could you please check and advise?
+Thanks,
+Boti","005Qk000001nVi2IAE","2025-02-13T22:48:27.000Z","2025-02-13T22:48:27.000Z","false","false"
+"00aQk00000Bw52dIAB","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: Hello,
+Are there any updates for this case?
+Thanks,
+Boti","005Qk000001nVi2IAE","2025-02-21T14:28:05.000Z","2025-02-21T14:28:05.000Z","false","false"
+"00aQk00000C007bIAB","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: Alexandra-Alina Pascalau:
+
+Hi,
+
+This is not related to the initial reported issue with the alerts.
+
+The message from the UI test mail, shows that the email has been sent but it cannot check if the recipient has received it.
+
+At around 16:00 the error messages are : 
+
+   ""DSN: Service unavailable""
+   ""Name server: smtp.office365.com: host name lookup failure""
+   ""stat=User unknown""
+
+You can try these steps to debug:
+
+    1. Please double check the E-mail Server settings. Make sure TLS1.3 is checked. I noticed ""version=TLSv1/SSLv3"" in the log
+
+    2. Check if  E-mail Server settings have been changed since it was last working. To view the changes go to:
+        Reports and Analysis - Admin Actions
+        filter by UI Section: Configuration
+
+      3. Check with the customer if there have been any changes to the  account used in the E-mail settings or any changes to Firewall, Filters, Limitations on receiving emails from EPP (root@eppserver).
+
+       4. Check  dead.letter - it may provide a more detailed error message
+           vim  /var/lib/sendmail/dead.letter
+           and look for messages from the day of the test
+
+Regards,
+Alina
+
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11700967]","0054u000006gtWUAAY","2025-02-25T15:37:36.000Z","2025-02-25T15:37:36.000Z","false","false"
+"00aQk00000C007ZIAR","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-25T15:37:36.000Z","2025-02-25T15:37:36.000Z","false","false"
+"00aQk00000C1SrNIAV","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2025-02-26T16:48:23.000Z","2025-02-26T16:48:23.000Z","false","false"
+"00aQk00000C1OuFIAV","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-26T16:48:35.000Z","2025-02-26T16:48:35.000Z","false","false"
+"00aQk00000C1SzRIAV","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2025-02-26T16:49:43.000Z","2025-02-26T16:49:43.000Z","false","false"
+"00aQk00000C8n9VIAR","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-05T05:04:48.000Z","2025-03-05T05:04:48.000Z","false","false"
+"00aQk00000C8n9XIAR","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-02-25 15:37 UTC and the last detected comment from support was 2025-02-21 14:28 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11733992]","0054u000006gtWUAAY","2025-03-05T05:04:49.000Z","2025-03-05T05:04:49.000Z","false","false"
+"00aQk00000C9BoXIAV","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Product Version has been changed to NONE.
+Status has been changed to Awaiting Client.","005Qk000002i2OLIAY","2025-03-05T14:30:27.000Z","2025-03-05T14:30:27.000Z","false","false"
+"00aQk00000CC4XDIA1","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002i2OLIAY","2025-03-07T16:08:08.000Z","2025-03-07T16:08:08.000Z","false","false"
+"00aQk00000CIf5pIAD","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-13T05:04:43.000Z","2025-03-13T05:04:43.000Z","false","false"
+"00aQk00000CIf5rIAD","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-02-25 15:37 UTC and the last detected comment from support was 2025-02-21 14:28 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11775826]","0054u000006gtWUAAY","2025-03-13T05:04:45.000Z","2025-03-13T05:04:45.000Z","false","false"
+"00aQk00000CJILiIAP","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the new comment has been added: Hi team, 
+
+The customer confirmed that the issue was resolved and this ticket can be closed.
+
+Thank you!","005Qk000002i2OLIAY","2025-03-13T15:59:59.000Z","2025-03-13T15:59:59.000Z","false","false"
+"00aQk00000CJG8cIAH","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000002i2OLIAY","2025-03-13T16:00:53.000Z","2025-03-13T16:00:53.000Z","false","false"
+"00aQk00000CJH35IAH","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Account ACV has been changed to 23422.14.","005Qk000002i2OLIAY","2025-03-13T16:01:23.000Z","2025-03-13T16:01:23.000Z","false","false"
+"00aQk00000CJIK8IAP","500Qk00000HiTKhIAN","On Escalation Ticket # 00426144 the Following Fields have been updated: 
+Account ACV has been changed to 11711.07.","005Qk000002i2OLIAY","2025-03-13T16:01:29.000Z","2025-03-13T16:01:29.000Z","false","false"

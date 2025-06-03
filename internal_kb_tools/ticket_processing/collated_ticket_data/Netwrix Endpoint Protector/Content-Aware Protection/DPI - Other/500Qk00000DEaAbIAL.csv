@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DEaAbIAL","00415365","Support Ticket","Browsing issue when DPI is enabled","Hello Support Team,
+
+I realized I was not able to browse any website in my browser, tested with Safari, Chrome, Firefox, all same. In the Developer tools in the Network tab it did not even show the request.
+In <a href='https://eppsplit.log' target='_blank'>eppsplit.log</a> the error below keeps repeating:
+----------------------------------
+2024-07-18 10:54:05.721 sslsplit[69124:6853464] TMP DATA: Cannot extract the orig ip and port
+fc170c00 27.175 !!!!!! PRIMIT 'Cannot extract the orig ip and port'
+fc170c00 27.175 !!!!!DEST IP  : [Cannot extract the orig ip and port]
+fc170c00 27.175 !!!!!DEST PORT: []
+fc170c00 27.175 !!!!!APP Identifier: []
+fc170c00 27.175 !!!!!APP Name: []
+fc170c00 27.175 error receive socket
+fc170c00 27.175 Connection not found in NAT state table, aborting connection
+fc170c00 27.175 !!!!!INTRU AICI
+fc170c00 27.175 !!!!!IP: [127.0.0.1]
+fc170c00 27.175 !!!!!PORT: [63146]
+----------------------------------
+
+When we disabled DPI for this agent, the issue was fixed and I was able to browse again.
+
+Attaching the diagnostics and <a href='https://eppsplit.log' target='_blank'>eppsplit.log</a> file.","","The EPP Client is causing errors when accessing websites.","A test build was provided and I'm waiting for the client to confirm if the issue is addressed.","We provided a fix in 5941. Customer will test this and re-open the ticket in case the results will invalidate the fix.","","Emil Podar","Error","Netwrix Endpoint Protector","Content-Aware Protection","DPI - Other","","5941","244.1","Closed - Resolved","Booking.com","Serhat Demir","2024-07-18T09:13:26.000Z","2025-03-19T12:42:32.000Z"

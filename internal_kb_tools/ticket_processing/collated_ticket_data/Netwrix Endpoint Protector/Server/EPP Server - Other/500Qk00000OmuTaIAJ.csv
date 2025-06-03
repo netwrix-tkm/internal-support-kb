@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OmuTaIAJ","00444002","Support Ticket","Unable to SSH Endpoint protector Instance","Unable to access Endpoint protector server instance using SSH, require root usre's credentials.","","05/05/2025
+
+Client cannot access the EPP Instance with the root credentials.
+This should require a password reset
+
+Connected remote with Paresh and it seems like their issue was that they wanted access to the actual SSH root account as they needed to check things related to the SIEM integration.
+
+Paresh has problems with the SIEM integration where no logs are being received.
+Asked if it's possible to check the integration but he said he's not the one who did the set up and he will have to check with the team who did it.
+
+Gave him the instructions from https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4.2/page/Content/EndpointProtector/Admin/Appliance/Overview.htm
+
+And will wait for their response.
+
+13/05/2025
+Connected remote along with Adrian to take a look at the problem.
+We went on the SSH and tried to check the siem_rsyslog_update to see if it has the value 1 and it did.
+Also, we went on the EPP Server and made again the connection on the SIEM and tried again.
+When we did tail -f syslog the file was updating live and they confirmed on their end that it is working as expected.
+Closing ticket as resolved.","05/05/2025
+Would require to login.
+
+Waiting for Paresh's reply.","Issue sorted after configuring the SIEM settings.","Incorrect configuration: Netwrix product","Marian Ilies","Question","Netwrix Endpoint Protector","Server","EPP Server - Other","","","8.0","Closed - Resolved","OPL Innovate","Paresh Patel","2025-05-05T07:41:31.000Z","2025-05-13T07:41:11.000Z"
