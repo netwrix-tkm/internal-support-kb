@@ -8,7 +8,7 @@ This document is designed to help support engineers troubleshoot common issues, 
 
 ---
 
-## Technical Background
+## Technical Background 
 
 ### Key Concepts
 - **Access Information Center (AIC):** A module in Netwrix Enterprise Auditor that provides detailed reports on permissions, effective access, and changes to Active Directory attributes.
