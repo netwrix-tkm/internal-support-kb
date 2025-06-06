@@ -1,0 +1,11 @@
+# NEA for Oracle (Netwrix Enterprise Auditor) Knowledge Base
+
+Technical support training materials for NEA for Oracle in Netwrix Enterprise Auditor.
+
+## Features
+
+- [Configuration](./Configuration.md)
+- [Instance Discovery](./Instance Discovery.md)
+
+
+[Back to platform index](../index.md) | [Back to main index](../../index.md)
