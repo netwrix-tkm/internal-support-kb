@@ -1,0 +1,204 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000I7f2iIAB","500Qk00000IVpQWIA1","2024-11-19T16:18:28.000Z","2024-11-19T16:18:28.000Z","Hello Mohammed, 
+
+This is Artem here, with the support ticket 00427524 - 1_FSAC_SystemScans for FC02 is failing with ""Unable to start scan"". 
+
+Currently the FSAC scan job is failing for the FC02 host with the following error:
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Unable to start scan: GetSessions failed with code 0x80004005
+at Stealthbits.StealthAUDIT.DataCollectors.FSAA.ActivityScanTask.InternalProcessRecord()
+at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute
+
+In previous history this error was known to be caused by either a lack of permissions for the user account specified in Connection Profile of activity scan job or in case a StealthAUDITRPC.exe process appears in hung state on the target file server or StealthAudit server. 
+
+We checked if the process StealthAUDITRPC.exe is still running of FC02 server by running ""Get-Process -name Stealth*"" command, but we had 0 results. Which means that there is no such process running on the FC02 currently. 
+We also checked the list of processes runing on the StealthAudit server it self - there was no StealthAUDITRPC.exe process there as well.
+
+As such, it seems that the issue is caused by the lack of permissions for the user account that is specified in the connection profile for the 1_FSAC_SystemScans job. 
+
+We checked the File System access query settings for the 1_FSAC_SystemScans job and found the following:
+query settings:
+Applet launch mechanism ""MS Task Scheduler""
+
+Scan server selection:
+Automatic
+
+With these settings StealthAudit will try to run the File System activity collector applet in Applet Mode directly on the FC02 server by trying to start the applet via MS Task Scheduler. 
+
+As such, please, review this article and make sure that the same permissions are provided to the account specified in Connection Profile that is used by 1_FSAC_SystemScans job:
+Applet Mode Permissions
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePermissions.htm
+The Connection Profile should be assigned under the FileSystem > 0.Collection job’s Properties window on the Connection tab.
+
+To continue, very that the following port requirements are met between the StealthAudit Server and the FC02 server:
+Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+As a workaround to the issue at hand I would also suggest switching the ""Scan Server selection"" to ""Local server"". You can set this setting by navigating down this path:
+1_FSAC_SystemScans> Configure> Queries > Right-Click Activity Scan Query > select properties > Click ""Configure"" > set Scan Server selection to Local Server 
+Run the 1_FSAC_SystemScans after changing this setting to test if Local Server scan option is working correctly for the FC02 server and let me know the results. 
+
+I am looking forward to your reply.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0IVpQW:ref","1_FSAC_SystemScans for FC02 is failing with ""Unable to start scan""    [ ref:!00D70091pB.!500Qk0IVpQW:ref ]","techsupport@netwrix.com","Netwrix Support","mohammed.oomer@boltonft.nhs.uk","","","false","2024-11-19T16:18:27.000Z","true"
+"02sQk00000IPzpAIAT","500Qk00000IVpQWIA1","2024-11-26T11:02:00.000Z","2024-11-26T12:16:10.000Z","ref:_00D7091pB._500Q000IVpQW:ref
+
+Hi Artem,
+
+Yes thank you this is now working.
+
+Regards,
+Mohammed Oomer
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 26 November 2024 10:53
+To: Oomer Mohammed <Mohammed.Oomer@boltonft.nhs.uk>
+Subject: RE: 00427524 - 1_FSAC_SystemScans for FC02 is failing with ""Unable to start scan""
+
+Hello Mohammed,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00427524
+Ticket Subject: 1_FSAC_SystemScans for FC02 is failing with ""Unable to start scan""
+Ticket Details: 1_FSAC_SystemScans job is failing for FC02 file server as well as for other file servers with the following error:
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Unable to start scan: GetSessions failed with code 0x80004005
+at Stealthbits.StealthAUDIT.DataCollectors.FSAA.ActivityScanTask.InternalProcessRecord()
+at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+Thank you!
+
+Artem Naskal
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0IVpQW:ref","RE: Netwrix Support Ticket #427524 - ref:_00D7091pB._500Q000IVpQW:ref - 00427524 - 1_FSAC_SystemScans for FC02 is failing with ""Unable to start scan""","mohammed.oomer@boltonft.nhs.uk","Oomer Mohammed","techsupport@netwrix.com","","","false","2024-11-26T11:01:44.000Z","true"
+"02sQk00000IQELCIA5","500Qk00000IVpQWIA1","2024-11-26T12:27:24.000Z","2024-11-26T12:27:24.000Z","Hi Mohammed, 
+
+Thank you for your reply. 
+I am glad that we were able to resolve your issue with 1_FSAC_SystemScans job.
+
+The following is a summary of the ticket for your records:
+
+Issue:
+FSAC scan job was failing for the FC02 host with the following error:
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Unable to start scan: GetSessions failed with code 0x80004005
+at Stealthbits.StealthAUDIT.DataCollectors.FSAA.ActivityScanTask.InternalProcessRecord()
+at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute
+
+
+Cause:
+In previous history this error was known to be caused by either a lack of permissions for the user account specified in Connection Profile of activity scan job or in case a StealthAUDITRPC.exe process appears in hung state on the target file server or StealthAudit server. 
+
+We checked if the process StealthAUDITRPC.exe is still running of FC02 server by running ""Get-Process -name Stealth*"" command, but we had 0 results. Which means that there is no such process running on the FC02 currently. 
+We also checked the list of processes running on the StealthAudit server itself - there was no StealthAUDITRPC.exe process there as well.
+
+As such, a conclusion was made that the issue is caused by the lack of permissions for the user account that is specified in the connection profile for the 1_FSAC_SystemScans job. 
+
+
+Solution:
+We checked the File System access query settings for the 1_FSAC_SystemScans job and found the following:
+query settings:
+Applet launch mechanism ""MS Task Scheduler""
+
+Scan server selection:
+Automatic
+
+With these settings StealthAudit will try to run the File System activity collector applet in Applet Mode directly on the FC02 server by trying to start the applet via MS Task Scheduler. 
+
+To run the File System activity scan in applet mode on the Windows File server host - the following permissions must be provided to the account specified in Connection Profile that is used by 1_FSAC_SystemScans job:
+Applet Mode Permissions
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePermissions.htm
+The Connection Profile should be assigned under the FileSystem > 0.Collection job’s Properties window on the Connection tab.
+
+As well as the following port requirements must be met between the StealthAudit Server and the FC02 server:
+Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+As a workaround switching the ""Scan Server selection"" to ""Local server"" can help resolve the issue by utilizing service account permissions on the Enterprise Auditor server itself.
+This can be set by navigating down this path:
+1_FSAC_SystemScans> Configure> Queries > Right-Click Activity Scan Query > select properties > Click ""Configure"" > set Scan Server selection to Local Server 
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return.
+In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Oomer Mohammed [mohammed.oomer@boltonft.nhs.uk]
+Sent: 11/26/2024 3:01 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #427524 - ref:_00D7091pB._500Q000IVpQW:ref - 00427524 - 1_FSAC_SystemScans for FC02 is failing with ""Unable to start scan""
+
+ref:_00D7091pB._500Q000IVpQW:ref
+
+
+
+
+Hi Artem,
+
+ 
+
+Yes thank you this is now working.
+
+
+Regards,
+
+Mohammed Oomer
+
+ 
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 26 November 2024 10:53
+To: Oomer Mohammed <Mohammed.Oomer@boltonft.nhs.uk>
+Subject: RE: 00427524 - 1_FSAC_SystemScans for FC02 is failing with ""Unable to start scan""
+
+ 
+
+Hello Mohammed,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00427524
+Ticket Subject: 1_FSAC_SystemScans for FC02 is failing with ""Unable to start scan""
+Ticket Details: 1_FSAC_SystemScans job is failing for FC02 file server as well as for other file servers with the following error:
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Unable to start scan: GetSessions failed with code 0x80004005
+at Stealthbits.StealthAUDIT.DataCollectors.FSAA.ActivityScanTask.InternalProcessRecord()
+at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+Thank you!
+
+Artem Naskal
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0IVpQW:ref","RE: Netwrix Support Ticket #427524 -  - 00427524 - 1_FSAC_SystemScans for FC02 is failing with ""Unable to start scan""    [ ref:!00D70091pB.!500Qk0IVpQW:ref ]","techsupport@netwrix.com","Netwrix Support","mohammed.oomer@boltonft.nhs.uk","","","false","2024-11-26T12:27:23.000Z","true"

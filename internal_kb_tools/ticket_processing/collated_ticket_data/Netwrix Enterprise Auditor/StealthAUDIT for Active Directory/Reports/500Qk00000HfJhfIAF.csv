@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HfJhfIAF","00425507","Support Ticket","24 hour report sending stale data","We have a report that is supposed to send daily activity for a folder, but it is sending a report with activity from over a week ago.  The analysis 'preview' shows blank data, but the results table and report have the stale data in it.","Run the daily activity report","I reviewed the logs provided and dont' see any obvious signs of issues with the NEA job
+
+I reviewed NAM's configuration and it is configured to collected the desired data. I couldn't get NAM search to return data from the share, but I did find it in NAM's raw agent logs
+
+I also founf the data in NEA's SQL database
+-SA_FSAC_DailyActivityView
+
+their analysis task filters that table to create a new table that is used to generate the report
+--filters for isoutlookinterval|Yesterday|
+--and not a particular user
+
+originally configured by PS
+
+everything looks good
+make a test change and will wait until tomorrow to see if it's reported","zoom meeting to review NAM configuration
+Also need to confirm FSAC job is running without issue","client failed to respond for long period then just replied to say the ticket can be closed
+
+I'm assuming my finds during our meeting were correct.
+The report was working as intended, it just didn't clear the table if there was no new activity. The client saw stale data until there was fresh data
+
+I offered to modify the filter to behave more reliably, but he never scheduled the meeting","Data validation / interpretation","Joshua Sexton","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Reports","11.6","","36.0","Closed - Resolved","Caxton Alternative Management LP","Rick Schaktman","2024-10-30T13:11:56.000Z","2024-12-05T14:03:34.000Z"

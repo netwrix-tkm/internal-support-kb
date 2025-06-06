@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IhPjxIAF","00427963","Support Ticket","FSAC Scan via Local or Applet mode Retry timeout exceeded Error","In our environment we have a domain controller located at our office in the UK and we have StealthBits configured in line to the main Domain Controller in us data center. 
+
+We have a solution in place to do remote scanning as we do not have an agent on the UK domain controller. 
+
+I believe the set up we have now is out of date and there is a better way to be doing this. Is there any documentation you can share for better ways to do this remote scanning?","Win File Cluster issue, unable to replicate in lab.","Two node Windows File Server cluster (Active Passive) Fails when running scan via Local or Applet mode.
+
+12/12/2024 16:05:31	DEBUG	FILESYSTEMACCESS	ActivityScanTask	""GetSessions failed with code 0x80004005""	
+12/12/2024 16:05:31	ERROR	FILESYSTEMACCESS	ActivityScanTask	""Error scanning server (SecFs01c, SecFs01c): Retry timeout exceeded""	
+
+Connection Status is ACCESS GRANTED
+
+All nodes Test-NetConnection -ComputerName <HOST-NAME> -Port 8766 fail.
+
+Local scan mode runs as expected for the Remote London Server.","Post Host mapping correction we are still seeing the same error in the logs.","Netwrix Enterprise Auditor (NEA): Version 11.6.0.138 is running in the environment.
+
+We identified a non-removed StealthAUDIT FSAA Proxy Scanner Service, not visible in Add/Remove Programs, impacting Windows Cluster scans.
+Ensure ports 8767 and 8766 are added to the host firewall settings. The IP of the NEA host had changed this was the root of the issue.
+
+Cleaned up older certificates from the Nodes as advised by Paul (ProServ).","Incorrect configuration: target server software","Dusty Grayson","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.6","138","186.9","Closed - Resolved","K2 Integrity (formerly K2 Intelligence)","Jack Shashaty","2024-11-22T23:21:03.000Z","2025-05-28T20:53:30.000Z"

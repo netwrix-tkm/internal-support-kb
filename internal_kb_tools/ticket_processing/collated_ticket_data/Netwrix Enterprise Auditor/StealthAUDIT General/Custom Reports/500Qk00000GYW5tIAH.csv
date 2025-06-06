@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GYW5tIAH","00422743","Support Ticket","SA Upgrade","Upgrade from StealthAUDIT 11.5 to 11.6","","","","Issue
+
+Permission scanning errors and issues with FSAA System Scans.
+
+Cause
+
+A network share caused the FSAA system scan to run for extended periods before ultimately aborting the scan. with this issue present the Bulk Imports were put on hold until the scan could complete. 
+
+Resolution
+
+Discovered that shares weren't accessible due to an access denied error for some shares/subfolders existing on a NetApp server. We determined that having another meeting after running the scan additional exclusions for share is needed for further investigation.
+
+We discovered that the FSAA proxies were installed in a different directory than what originally was scanned. This may have caused a storage issue with the tier 2 data compression process. We uninstalled the proxies and installed them on the designated drives with an increased amount of space. Additionally, we included folder and share exclusions for a problematic share prompting access denied within the FSAA scans.
+
+We discovered that the scheduled FSAA task started a secondary scan after the initial scan started. We then investigated job logs and discovered that the scheduled task timed out and then the secondary task was initiated. We then made changes to the query properties of the FSAA scan not to restart and continue where the scan left off. We then restarted the scan and suggested monitoring the scan after changes were made.
+
+We discovered that the FSAA system scan was able to progress past the network share that was causing it to previously hang. We suggested allowing for the scan to run again, monitor the job and if you experience a hang time with the FSAA system scan again please generate a process dump on the FSAA proxy host using the steps provided in the documentation below.
+
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u0000000InUCAU.html","Guidance","Frantz Baptiste","","Netwrix Enterprise Auditor","StealthAUDIT General","Custom Reports","11.5","","20.0","Closed - Resolved","Cedars-Sinai Medical Center","Andrew Kim","2024-10-02T17:39:51.000Z","2024-10-22T17:00:23.000Z"

@@ -1,0 +1,98 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PgRkCKAV","500Qk00000Fc46nIAB","TextPost","0054u000007p4sbAAA","2024-10-30T07:17:22.000Z","What We've Learned Updated: We've ran following queries to determine tempdb file size and usage:
+
+SELECT name AS [File Name], size * 8 / 1024 AS [Size (MB)], size * 8 / 1024 - CAST(FILEPROPERTY(name, 'SpaceUsed') AS INT) * 8 / 1024 AS [Available Space (MB)], growth * 8 / 1024 AS [Growth (MB)], max_size AS [Max Size] FROM sys.master_files WHERE database_id = DB_ID('tempdb');
+
+
+SELECT 
+    s.session_id, 
+    s.login_name, 
+    s.host_name, 
+    t.[text] AS [Query Text],
+    r.total_elapsed_time, 
+    r.wait_time, 
+    r.wait_type,
+    (r.total_elapsed_time / 1000) AS [Elapsed Time (sec)],
+    (r.wait_time / 1000) AS [Wait Time (sec)],
+    u.user_objects_alloc_page_count AS [User Object Alloc Pages],
+    u.internal_objects_alloc_page_count AS [Internal Object Alloc Pages]
+FROM sys.dm_exec_sessions s
+INNER JOIN sys.dm_exec_requests r ON s.session_id = r.session_id
+INNER JOIN sys.dm_db_session_space_usage u ON s.session_id = u.session_id
+CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) t
+WHERE u.user_objects_alloc_page_count + u.internal_objects_alloc_page_count > 0;
+
+I've took screenshots of database settings, and you've provided me with csv files with output.
+
+Comment from Andy Watson:
+
+So it looks as though it hadn't blown out the tempdb last week but did have an issue with a path being truncated so I think we are definitely in a better place but I'd keep the ticket open for monitoring until we've had a good number of run throughs without the tempdb blowing up. There is more code to update as some of the other sections of code in the direct permissions and other jobs definitely need to be rewritten to stop trying to calculate everything in one go","","","","0054u000007p4sbAAA","2024-10-30T07:17:22.000Z"
+"0D5Qk00000PgvjZKAR","500Qk00000Fc46nIAB","TextPost","0054u000007p4sbAAA","2024-10-30T07:17:48.000Z","Next Steps Updated: Waiting for customer to confirm if issue is resolved.","","","","0054u000007p4sbAAA","2024-10-30T07:17:48.000Z"
+"0D5Qk00000Ph2D7KAJ","500Qk00000Fc46nIAB","TextPost","0054u000007p4sbAAA","2024-10-30T07:18:18.000Z","What We've Learned Updated: We've ran following queries to determine tempdb file size and usage:
+
+SELECT name AS [File Name], size * 8 / 1024 AS [Size (MB)], size * 8 / 1024 - CAST(FILEPROPERTY(name, 'SpaceUsed') AS INT) * 8 / 1024 AS [Available Space (MB)], growth * 8 / 1024 AS [Growth (MB)], max_size AS [Max Size] FROM sys.master_files WHERE database_id = DB_ID('tempdb');
+
+
+SELECT 
+    s.session_id, 
+    s.login_name, 
+    s.host_name, 
+    t.[text] AS [Query Text],
+    r.total_elapsed_time, 
+    r.wait_time, 
+    r.wait_type,
+    (r.total_elapsed_time / 1000) AS [Elapsed Time (sec)],
+    (r.wait_time / 1000) AS [Wait Time (sec)],
+    u.user_objects_alloc_page_count AS [User Object Alloc Pages],
+    u.internal_objects_alloc_page_count AS [Internal Object Alloc Pages]
+FROM sys.dm_exec_sessions s
+INNER JOIN sys.dm_exec_requests r ON s.session_id = r.session_id
+INNER JOIN sys.dm_db_session_space_usage u ON s.session_id = u.session_id
+CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) t
+WHERE u.user_objects_alloc_page_count + u.internal_objects_alloc_page_count > 0;
+
+I've took screenshots of database settings, and you've provided me with csv files with output.
+
+Andy Watson had a meeting with customer.
+
+Comment from Andy Watson:
+
+So it looks as though it hadn't blown out the tempdb last week but did have an issue with a path being truncated so I think we are definitely in a better place but I'd keep the ticket open for monitoring until we've had a good number of run throughs without the tempdb blowing up. There is more code to update as some of the other sections of code in the direct permissions and other jobs definitely need to be rewritten to stop trying to calculate everything in one go","","","","0054u000007p4sbAAA","2024-10-30T07:18:18.000Z"
+"0D5Qk00000QZYDVKA5","500Qk00000Fc46nIAB","TextPost","0054u000007p4sbAAA","2024-11-11T11:17:26.000Z","What We've Learned Updated: We've ran following queries to determine tempdb file size and usage:
+
+SELECT name AS [File Name], size * 8 / 1024 AS [Size (MB)], size * 8 / 1024 - CAST(FILEPROPERTY(name, 'SpaceUsed') AS INT) * 8 / 1024 AS [Available Space (MB)], growth * 8 / 1024 AS [Growth (MB)], max_size AS [Max Size] FROM sys.master_files WHERE database_id = DB_ID('tempdb');
+
+
+SELECT 
+    s.session_id, 
+    s.login_name, 
+    s.host_name, 
+    t.[text] AS [Query Text],
+    r.total_elapsed_time, 
+    r.wait_time, 
+    r.wait_type,
+    (r.total_elapsed_time / 1000) AS [Elapsed Time (sec)],
+    (r.wait_time / 1000) AS [Wait Time (sec)],
+    u.user_objects_alloc_page_count AS [User Object Alloc Pages],
+    u.internal_objects_alloc_page_count AS [Internal Object Alloc Pages]
+FROM sys.dm_exec_sessions s
+INNER JOIN sys.dm_exec_requests r ON s.session_id = r.session_id
+INNER JOIN sys.dm_db_session_space_usage u ON s.session_id = u.session_id
+CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) t
+WHERE u.user_objects_alloc_page_count + u.internal_objects_alloc_page_count > 0;
+
+I've took screenshots of database settings, and you've provided me with csv files with output.
+
+Andy Watson had a meeting with customer.
+
+Comment from Andy Watson:
+
+So it looks as though it hadn't blown out the tempdb last week but did have an issue with a path being truncated so I think we are definitely in a better place but I'd keep the ticket open for monitoring until we've had a good number of run throughs without the tempdb blowing up. There is more code to update as some of the other sections of code in the direct permissions and other jobs definitely need to be rewritten to stop trying to calculate everything in one go
+
+Update from 11.11.2024
+
+Running into issues with SQL Deadlocking when either ADI or EntraADI is running. Running it again today to see if it dies overnight, if so I'm going to tweak the code so it puts the data it needs into custom tables so we can avoid the deadlock","","","","0054u000007p4sbAAA","2024-11-11T11:17:26.000Z"
+"0D5Qk00000RXjenKAD","500Qk00000Fc46nIAB","TextPost","0054u000007p4sbAAA","2024-11-22T11:31:11.000Z","Next Steps Updated: Waiting for customer to confirm if issue is resolved.
+
+Andy provided custom version of SP_DomainUsers job, waiting for feedback","","","","0054u000007p4sbAAA","2024-11-22T11:31:11.000Z"
+"0D5Qk00000UMXvSKAX","500Qk00000Fc46nIAB","TextPost","0054u000007p4sbAAA","2025-01-07T10:14:45.000Z","<p>Waiting on Andy to provide updated version of report, will escalate once uploaded.</p>","","","","0054u000007p4sbAAA","2025-01-07T10:14:45.000Z"

@@ -1,0 +1,84 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IU958IAD","00427456","Support Ticket","FileSystem StaleContent Job Incorrect","For some reason the File System Stale content job is showing incorrect data. It only has two shares in the job when in reality it should be more. Already attempted to replace job files with solution in Instant Solutions and reran job. This is used in upper management reporting feature.","","Job thinks it's completing successfully, since there are no errors in the log","Review the job configuration to see what the time frame is on their stale data","The FS_StaleContent_ShareSummary analysis task does not correctly pull the data needed. We adjusted the script to what is written below to get the job running. An internal escalation (Ticket #00428218) has been raised to get the job working for other customers.
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SA_FS_StaleContent_ShareSummary]') AND type in (N'U'))
+DROP TABLE SA_FS_StaleContent_ShareSummary;
+GO
+
+CREATE TABLE [dbo].[SA_FS_StaleContent_ShareSummary](
+[Share] [nvarchar](512) NOT NULL,
+[Folder Count] [int] NULL,
+[Last File Modification] [datetime] NULL,
+[Active Files] [bigint] NULL,
+[Stale Files] [bigint] NULL,
+[Percent Active] [int] NULL,
+[Percent Stale] [int] NULL,
+[StaleRank] [bigint] NULL
+)
+
+GO
+
+insert into SA_FS_StaleContent_ShareSummary
+SELECT '\' + STV.HostName + '' + STV.ShareName +'' as [Share],
+COUNT(DISTINCT stv.folderid),
+MAX([Last Modified]) as [Last File Modification], 
+ISNULL(SUM(CAST([Active Files] as bigint)),0) AS [Active Files],
+ISNULL(SUM(CAST([Stale Files] as bigint)),0) AS [Stale Files],
+CASE WHEN (SUM(CAST([Stale Files] as bigint)) + SUM(CAST([Active Files] as bigint))) = 0
+THEN 0 
+ELSE 
+100.0 - FLOOR(SUM(CAST([Stale Files] as bigint))*100.0/(SUM(CAST([Stale Files] as bigint)) + SUM(CAST([Active Files] as bigint))))
+end,
+CASE WHEN (SUM(CAST([Stale Files] as bigint)) + SUM(CAST([Active Files] as bigint))) = 0
+THEN 0 
+ELSE 
+FLOOR(SUM(CAST([Stale Files] as bigint))*100.0/(SUM(CAST([Stale Files] as bigint)) + SUM(CAST([Active Files] as bigint))))
+end,
+1 AS StaleRank
+FROM (
+ SELECT  
+     stv.[HostName],
+ stv.[ShareName],
+ stv.resourceid as [FolderID],
+     r.LastModified AS [Last Modified],
+     ISNULL(FileCount0, 0) AS [Active Files],
+     ISNULL(FileCount1 + FileCount2 + FileCount3 + FileCount4 +
+         FileCount5 + FileCount6 + FileCount7 + FileCount8 +
+         FileCount9 + FileCount10, 0) AS [Stale Files],
+     ISNULL(FileCount0 + FileCount1 + FileCount2 + FileCount3 +
+         FileCount4 + FileCount5 + FileCount6 + FileCount7 +
+         FileCount8 + FileCount9 + FileCount10, 0) AS FileCount,
+     CASE WHEN ( FileCount0 + FileCount1 + FileCount2 +
+                   FileCount3 + FileCount4 + FileCount5 +
+                   FileCount6 + FileCount7 + FileCount8 +
+                   FileCount9 + FileCount10 )<>0 THEN ROUND(FileCount0 * 100 / ( FileCount0 + FileCount1 + FileCount2 +
+                   FileCount3 + FileCount4 + FileCount5 +
+                   FileCount6 + FileCount7 + FileCount8 +
+                   FileCount9 + FileCount10 ), 2) ELSE 0 END AS [Percent Active],
+     CASE WHEN ( FileCount0 + FileCount1 + FileCount2 +
+                   FileCount3 + FileCount4 + FileCount5 +
+                   FileCount6 + FileCount7 + FileCount8 +
+                   FileCount9 + FileCount10 )<>0 THEN 100 - ROUND(FileCount0 * 100 / ( FileCount0 + FileCount1 +
+                      FileCount2 + FileCount3 +
+                      FileCount4 + FileCount5 +
+                      FileCount6 + FileCount7 +
+                      FileCount8 + FileCount9 +
+                      FileCount10 ), 2) ELSE 0 END AS [Percent Stale]
+from
+ dbo.SA_FSAA_SharesTraversalView as STV
+left join SA_FSAA_FileAges FA on fa.host = stv.[HostID]
+                 and fa.resourceid = stv.resourceid
+left join SA_FSAA_Resources R on r.HOST = stv.[HostID]
+and r.ID = stv.ResourceID
+where fa.[ResourceID] is not null
+--and fa.[LastModified] is not null
+and stv.resourcetypedescription = 'Folder') stv
+GROUP BY STV.HostName, STV.ShareName
+
+GO
+
+UPDATE A
+SET a.[StaleRank] = b.[StaleRank]
+FROM SA_FS_StaleContent_ShareSummary a
+INNER JOIN (SELECT share, ROW_NUMBER() over (ORDER BY [Percent Stale] desc, [Stale Files] DESC) AS StaleRank from SA_FS_StaleContent_ShareSummary) b
+ON a.share = b.share","Product defect","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Reports","11.6","","7.9","Closed - Resolved","Medpace, Inc","Brittany Lac","2024-11-18T21:40:00.000Z","2024-11-26T19:34:17.000Z"

@@ -1,0 +1,134 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GExqGIAT","00422078","Support Ticket","Live session required to review Sealthbits application compliance objects to review the count","Live session required to review Sealthbits application compliance objects to review the count","","The 2 smaller but useful PowerShell scripts are at the beginning of this email.
+Then I included a summary of the meeting which I should have sent to you last week on 25-Sep-2024.
+I will send the other more verbose PowerShell script from Dusty and Josh in a second email.
+
++++++
+1) 2024_0927: PowerShell script from Dusty for ""get-aduser"" with output to TXT file
++++++
+
+get-aduser -filter * -Properties * | where {$_.enabled -eq ""True""} | Sort-Object DistinguishedName | FT Name, DistinguishedName, Enabled -AutoSize | Tee-Object ""c:tempEnabled_AD_Users_per_OU_2024_0927.txt""
+
++++++
+2) 2024_0927: Also a PowerShell Script from Dusty to ""get-aduser"" counts of Active, Inactive and Total AD Users
++++++
+
+# +++++
+# PowerShell ISE - need a server with AD Tools installed
+# +++++
+
+Clear-Host
+##Import-Module ActiveDirectory
+$enabled = (get-aduser -filter *|where {$_.enabled -eq ""True""}).count
+Write-host ""Enabled users total =  $enabled"" -f green
+$disabled = (get-aduser -filter *|where {$_.enabled -ne ""False""}).count
+Write-host ""Disabled users total =  $disabled"" -f yellow
+$TotalADCount = (get-aduser -Filter *).count
+Write-host ""All users total = $TotalADCount"" -f red
+
+
+#####
+#####
+
++++++
+2024_0927: PowerShell script - ""Get-ADOrganizationalUnit"" counts and names - Josh and Dusty
++++++
+
+#####
+#####
+
+# Get all Organizational Units
+$OUs = Get-ADOrganizationalUnit -Filter *
+
+# Initialize an array to store the results
+$results = @()
+
+foreach ($OU in $OUs) {
+    # Get the distinguished name of the OU
+    $OUName = $OU.DistinguishedName
+
+    # Count active users in the OU
+    $activeUsers = Get-ADUser -Filter {Enabled -eq $true} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Count disabled users in the OU
+    $disabledUsers = Get-ADUser -Filter {Enabled -eq $false} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Add the results to the array
+    $results += [PSCustomObject]@{
+        OUName        = $OUName
+        ActiveUsers   = $activeUsers
+        DisabledUsers = $disabledUsers
+    }
+}
+
+# Output the results
+$results | Format-Table -AutoSize
+
+#####
+#####","","The 2 smaller but useful PowerShell scripts are at the beginning of this email.
+Then I included a summary of the meeting which I should have sent to you last week on 25-Sep-2024.
+I will send the other more verbose PowerShell script from Dusty and Josh in a second email.
+
++++++
+1) 2024_0927: PowerShell script from Dusty for ""get-aduser"" with output to TXT file
++++++
+
+get-aduser -filter * -Properties * | where {$_.enabled -eq ""True""} | Sort-Object DistinguishedName | FT Name, DistinguishedName, Enabled -AutoSize | Tee-Object ""c:tempEnabled_AD_Users_per_OU_2024_0927.txt""
+
++++++
+2) 2024_0927: Also a PowerShell Script from Dusty to ""get-aduser"" counts of Active, Inactive and Total AD Users
++++++
+
+# +++++
+# PowerShell ISE - need a server with AD Tools installed
+# +++++
+
+Clear-Host
+##Import-Module ActiveDirectory
+$enabled = (get-aduser -filter *|where {$_.enabled -eq ""True""}).count
+Write-host ""Enabled users total =  $enabled"" -f green
+$disabled = (get-aduser -filter *|where {$_.enabled -ne ""False""}).count
+Write-host ""Disabled users total =  $disabled"" -f yellow
+$TotalADCount = (get-aduser -Filter *).count
+Write-host ""All users total = $TotalADCount"" -f red
+
+
+#####
+#####
+
++++++
+2024_0927: PowerShell script - ""Get-ADOrganizationalUnit"" counts and names - Josh and Dusty
++++++
+
+#####
+#####
+
+# Get all Organizational Units
+$OUs = Get-ADOrganizationalUnit -Filter *
+
+# Initialize an array to store the results
+$results = @()
+
+foreach ($OU in $OUs) {
+    # Get the distinguished name of the OU
+    $OUName = $OU.DistinguishedName
+
+    # Count active users in the OU
+    $activeUsers = Get-ADUser -Filter {Enabled -eq $true} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Count disabled users in the OU
+    $disabledUsers = Get-ADUser -Filter {Enabled -eq $false} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Add the results to the array
+    $results += [PSCustomObject]@{
+        OUName        = $OUName
+        ActiveUsers   = $activeUsers
+        DisabledUsers = $disabledUsers
+    }
+}
+
+# Output the results
+$results | Format-Table -AutoSize
+
+#####
+#####","Data validation / interpretation","Mike Candon","","Netwrix Enterprise Auditor","StealthAUDIT General","Licensing","11.6","","41.9","Closed - Resolved","Central Bank of Trinidad and Tobago","Ryan Tyson","2024-09-25T14:50:54.000Z","2024-11-06T13:18:00.000Z"

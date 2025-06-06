@@ -1,144 +1,136 @@
-# Netwrix Endpoint Protector: Troubleshooting BSOD and Kernel Panic Issues in the Client Component
+# Knowledge Base Reference Guide: Troubleshooting Client BSOD Issues in Netwrix Endpoint Protector
 
 ## Overview
-This document provides a comprehensive guide to troubleshooting Blue Screen of Death (BSOD) and kernel panic issues related to the Netwrix Endpoint Protector (EPP) client. These issues can occur on both Windows and Linux systems and are often triggered by conflicts with third-party software, resource allocation problems, or bugs in specific client versions. This guide includes a summary of common issues, detailed troubleshooting steps, root cause analyses, and tested solutions.
+This guide provides a comprehensive reference for troubleshooting Blue Screen of Death (BSOD) issues related to the Netwrix Endpoint Protector (EPP) client. BSOD errors can severely impact endpoint stability and productivity, making it critical for support engineers to diagnose and resolve these issues efficiently. This document outlines systematic approaches, common scenarios, and best practices to ensure consistent and effective handling of BSOD-related cases.
 
----
+## Technical Background
+### Key Concepts
+- **BSOD (Blue Screen of Death):** A critical system error in Windows that forces the operating system to halt and display a diagnostic screen. Typically caused by hardware issues, driver conflicts, or software bugs.
+- **Kernel Panic:** The Linux equivalent of a BSOD, where the operating system encounters a fatal error and halts.
+- **Dump Files:** Files generated during BSOD or kernel panic events that contain diagnostic information about the crash.
+- **EPP Client:** The Netwrix Endpoint Protector agent installed on endpoints to enforce security policies, including Data Loss Prevention (DLP).
 
-## Issue Summary Table
+### System Context
+- **Windows Environment:** BSOD errors often result from driver conflicts or software incompatibilities.
+- **Linux Environment:** Kernel panics may occur due to resource allocation issues or bugs in the EPP client during specific operations, such as file syncing.
 
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| BSOD on Windows after deploying EPP agent | BSOD with `cssdlp20.sys` error | Test newer client versions and collect dump files | Update to the latest EPP agent version | [BSOD with `cssdlp20.sys`](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DR4CyIAL/view) |
-| BSOD on Windows 11 due to driver conflict | BSOD after installing DLP agent | Analyze crash dumps and identify conflicting drivers | Update or remove conflicting Fortinet driver | [Driver conflict with Fortinet](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EhgyPIAR/view) |
-| Kernel panic on Linux during sync | System crash during repository sync | Enable trace logging, throttle sync, disable parallelization | Apply workarounds or update to fixed client version | [Kernel panic during sync](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JljZsIAJ/view) |
-| Kernel panic on Linux due to client bug | System crash during file sync | Collect logs, disable parallelization, test new client build | Update to fixed client version | [Kernel panic due to client bug](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JlrxDIAR/view) |
+## Issue Recognition & Triage
+### Identifying BSOD Issues
+- **Symptoms:** Sudden system crashes with diagnostic screens, often referencing specific files or drivers (e.g., `cssdlp20.sys`).
+- **Customer Reports:** Look for mentions of system instability, crashes during specific operations, or error codes displayed on the BSOD screen.
+- **Affected Systems:** Determine the operating system, EPP client version, and any third-party software installed.
 
----
+### Assessing Priority
+- **High Priority:** BSODs occurring frequently or affecting critical systems.
+- **Medium Priority:** BSODs occurring sporadically or during specific operations.
+- **Low Priority:** BSODs reported on non-critical systems or during pilot testing.
 
-## Detailed Issues
+## Diagnostic Methodology
+### Systematic Approach
+1. **Initial Assessment:**
+   - Confirm the operating system and EPP client version.
+   - Gather details about the frequency and circumstances of the BSOD.
+2. **Log Collection:**
+   - Request dump files, client logs, and any relevant system logs.
+3. **Analyze Crash Dumps:**
+   - Use tools like WinDbg (Windows) or `dmesg` (Linux) to analyze dump files for driver conflicts or resource allocation issues.
+4. **Test New Versions:**
+   - Provide the customer with the latest EPP client build for testing.
+5. **Engage Engineering:**
+   - If the issue persists, escalate to R&D for deeper analysis and potential fixes.
 
-### 1. BSOD on Windows After Deploying EPP Agent
-**Symptoms:**  
-- BSOD with error referencing `cssdlp20.sys` after deploying EPP agent version 6.2.2.2.
+### Decision Points
+- **Driver Conflicts:** Investigate third-party software compatibility.
+- **Resource Allocation:** Test configurations like throttling or disabling parallelization.
+- **Version-Specific Bugs:** Recommend testing newer client builds.
 
-**Troubleshooting Steps:**  
-1. Analyze the dump file associated with the BSOD.
-2. Test newer client versions (e.g., build 5940 or RC candidate 5941) on affected machines.
-3. Request additional dump files and client logs if the issue persists.
-4. Confirm the frequency of the BSOD (e.g., during boot or specific operations).
+## Information Collection
+### Customer Queries
+- What operating system and version are affected?
+- What is the frequency and timing of the BSOD (e.g., during boot, specific operations)?
+- Are there any third-party security or system management tools installed?
+- Can the customer provide dump files and logs from affected systems?
 
-**Root Cause:**  
-- Likely related to a bug in the specific version of the EPP agent (6.2.2.2).
+### Logs and Data
+- **Windows:** Mini dump files, client logs, and system event logs.
+- **Linux:** Kernel logs (`/var/log/kern.log`), trace logs, and crash dump files.
+- **EPP Client Logs:** Logs generated by the Endpoint Protector agent.
 
-**Solution:**  
-- Update to the latest version of the EPP agent. The customer confirmed that the issue was resolved after updating.
+## Common Scenarios & Solutions
+### Scenario 1: BSOD on Windows Due to Driver Conflict
+- **Symptoms:** BSOD referencing `cssdlp20.sys` or other driver files.
+- **Solution:**
+  - Test newer EPP client builds.
+  - Investigate third-party driver conflicts (e.g., Fortinet drivers).
+  - Advise customers to update or remove conflicting software.
 
-**Warnings/Considerations:**  
-- Monitor system performance after deploying updates to ensure stability.
+### Scenario 2: Kernel Panic on Linux During File Sync
+- **Symptoms:** Crashes during repository sync operations.
+- **Solution:**
+  - Enable trace logging and throttle sync operations.
+  - Disable parallelization during sync.
+  - Provide updated client builds with bug fixes.
 
-**Source Ticket:** [BSOD with `cssdlp20.sys`](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DR4CyIAL/view)
+### Scenario 3: BSOD During Pilot Testing
+- **Symptoms:** BSODs on endpoints running pilot versions of the EPP client.
+- **Solution:**
+  - Collect logs and crash dumps for analysis.
+  - Test compatibility with third-party software.
+  - Provide updated client builds for testing.
 
----
+## Detailed Case Studies
+### Case Study 1: BSOD on Windows Due to `cssdlp20.sys`
+- **Ticket ID:** [500Qk00000DR4CyIAL](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DR4CyIAL/view)
+- **Symptoms:** BSOD after deploying EPP agent version 6.2.2.2.
+- **Diagnostic Steps:**
+  - Analyzed dump files and logs.
+  - Tested newer client builds (5940 and RC candidate for 5941).
+- **Resolution:** Issue resolved after updating to the latest EPP client version.
+- **Key Takeaways:** Monitor performance after updates and test newer builds for similar issues.
 
-### 2. BSOD on Windows 11 Due to Driver Conflict
-**Symptoms:**  
-- BSOD errors on Windows 11 endpoints after installing the DLP agent during a pilot program.
+### Case Study 2: BSOD on Windows Due to Fortinet Driver Conflict
+- **Ticket ID:** [500Qk00000EhgyPIAR](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EhgyPIAR/view)
+- **Symptoms:** BSOD errors on Windows 11 endpoints during pilot testing.
+- **Diagnostic Steps:**
+  - Analyzed crash dumps and identified conflict with Fortinet's driver.
+  - Advised customer to contact Fortinet for resolution.
+- **Resolution:** Issue resolved by updating or removing the conflicting driver.
+- **Key Takeaways:** Ensure compatibility with third-party security software before deployment.
 
-**Troubleshooting Steps:**  
-1. Collect mini dump files and logs from affected machines.
-2. Analyze crash dumps to identify potential conflicts.
-3. Test the latest client version on one of the affected endpoints.
-4. Identify conflicting third-party drivers (e.g., Fortinet's `AV_FortiEDRWinDriver`).
+### Case Study 3: Kernel Panic on Linux During Sync Operations
+- **Ticket ID:** [500Qk00000JljZsIAJ](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JljZsIAJ/view)
+- **Symptoms:** Kernel panics during repository sync.
+- **Diagnostic Steps:**
+  - Tested throttling and disabling parallelization.
+  - Enabled trace logging for analysis.
+- **Resolution:** Workarounds mitigated the issue; further fixes awaited.
+- **Key Takeaways:** Resource allocation issues may require configuration adjustments.
 
-**Root Cause:**  
-- Conflict between the DLP agent and Fortinet's driver.
+### Case Study 4: Kernel Panic on Linux Resolved with Updated Client
+- **Ticket ID:** [500Qk00000JlrxDIAR](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JlrxDIAR/view)
+- **Symptoms:** Kernel panics during sync operations.
+- **Diagnostic Steps:**
+  - Raised priority with R&D and provided test builds.
+  - Customer confirmed resolution with updated client version.
+- **Resolution:** Issue resolved with EPPClient_ubuntu_18.04_v2.4.4.1004.
+- **Key Takeaways:** Updated client builds can address underlying bugs effectively.
 
-**Solution:**  
-- Contact Fortinet to update or remove the conflicting driver. The customer resolved the issue by addressing the driver conflict.
+## Best Practices & Tips
+- **Proactive Monitoring:** Encourage customers to monitor endpoint performance after deploying new EPP client versions.
+- **Compatibility Checks:** Verify compatibility with third-party security software before installation.
+- **Efficient Log Collection:** Request detailed logs and dump files early in the troubleshooting process.
+- **Workaround Testing:** Recommend temporary configurations (e.g., throttling, disabling parallelization) to mitigate issues.
+- **Customer Communication:** Provide clear instructions for log collection and testing updated builds.
+- **Documentation:** Maintain detailed records of recurring issues and their resolutions for future reference.
 
-**Warnings/Considerations:**  
-- Verify compatibility of third-party security software with the EPP agent before deployment.
+## Escalation Guidelines
+### Criteria for Escalation
+- BSODs or kernel panics persist despite testing updated client builds.
+- Issues involve critical systems or widespread endpoint failures.
+- Diagnostic analysis indicates potential bugs requiring R&D intervention.
 
-**Source Ticket:** [Driver conflict with Fortinet](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EhgyPIAR/view)
-
----
-
-### 3. Kernel Panic on Linux During Sync
-**Symptoms:**  
-- Kernel panic when users attempt to browse a repository directory and initiate syncing.
-
-**Troubleshooting Steps:**  
-1. Collect user reports and identify scenarios triggering the kernel panic.
-2. Enable trace logging during sync operations.
-3. Throttle the sync process to reduce resource strain.
-4. Disable parallelization during sync operations.
-
-**Root Cause:**  
-- Likely related to resource allocation conflicts during sync operations.
-
-**Solution:**  
-- Apply the following workarounds:
-  - Enable trace logging.
-  - Throttle the sync process.
-  - Disable parallelization.
-- Monitor for updates or patches addressing the underlying issue.
-
-**Warnings/Considerations:**  
-- These workarounds mitigate the issue but do not resolve the root cause. Apply updates when available.
-
-**Source Ticket:** [Kernel panic during sync](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JljZsIAJ/view)
-
----
-
-### 4. Kernel Panic on Linux Due to Client Bug
-**Symptoms:**  
-- Kernel panic during file sync operations on Linux clients using the latest EPP-client version.
-
-**Troubleshooting Steps:**  
-1. Collect logs and crash reports from affected machines.
-2. Test disabling parallelization and throttling the sync process.
-3. Engage R&D to investigate and raise a priority ticket.
-4. Provide a test build to the customer for validation.
-
-**Root Cause:**  
-- Bug in the EPP-client causing kernel panics during sync operations.
-
-**Solution:**  
-- Update to the fixed client version:  
-  [EPPClient_ubuntu_18.04_v2.4.4.1004](https://download.endpointprotector.com/linux_agent/EPPLinux_v2.4.4.1004/EPPClient_ubuntu_18.04_v2.4.4.1004_x86_64.tar.gz)
-
-**Warnings/Considerations:**  
-- Keep kernel panic logs for further analysis if similar issues arise.
-
-**Source Ticket:** [Kernel panic due to client bug](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JlrxDIAR/view)
-
----
-
-## Best Practices
-1. **Pre-Deployment Testing:**  
-   - Test new versions of the EPP agent in a controlled environment before full deployment.
-   - Verify compatibility with third-party security software.
-
-2. **Log Collection:**  
-   - Always collect detailed logs and crash dumps when issues occur. This accelerates root cause analysis.
-
-3. **Monitor Updates:**  
-   - Stay informed about new releases or patches from Netwrix that address known issues.
-
-4. **Temporary Workarounds:**  
-   - For Linux kernel panics, consider disabling parallelization or throttling sync operations as temporary measures.
-
-5. **Communication with Third-Party Vendors:**  
-   - Engage third-party vendors promptly if conflicts with their software are identified.
-
----
-
-## Advanced Topics
-### Handling Complex Scenarios
-- **Concurrent Issues:** If multiple issues (e.g., BSOD and driver conflicts) occur simultaneously, prioritize resolving third-party conflicts before addressing EPP-client-specific bugs.
-- **Custom Configurations:** For environments with unique configurations, consider engaging R&D for tailored solutions or test builds.
-
---- 
-
-End of Document
+### Escalation Process
+1. **Engage Engineering:** Provide detailed logs, dump files, and customer reports.
+2. **Raise Priority:** Use internal tracking systems (e.g., Azure DevOps) to prioritize the issue.
+3. **Test Builds:** Request test builds from R&D and coordinate customer testing.
+4. **Follow-Up:** Ensure timely updates and resolution from engineering teams.

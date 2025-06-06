@@ -1,0 +1,11 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IMAG7IAP","00427190","Support Ticket","Download V3.3.0.1 failed","Message: ""Something went wrong. Please open a ticket""","","","","It seems there are issues with the certificate store for the account that runs the scheduled task. This is apparently a chaining issue to the trusted root certification authority. Error in hex: 0x800B010A (this is more googleable). It really does seem to be an issue with the account running the tool and I suspect due to no internet and not keeping the trusted roots updated or similar.
+ 
+I've not had to do much with manual updates for these but you can use certutil to download with certutil -syncWithWU DestinationDir and then import the ones needed or deploy from GPO etc. The download contains 0563b8630d62d75abbc8ab1e4bdfb5a899b24d43.crt which is the DigiCert Assured ID Root CA certificate that is used at the top of the chain.
+ 
+Here are some links that may help resolve the issues, the first link is around troubleshooting and the others are for the offline trusted root updates etc.
+https://learn.microsoft.com/en-us/windows/win32/appxpkg/how-to-troubleshoot-app-package-signature-errors 
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn265983(v=ws.11)?redirectedfrom=MSDN
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/configure-trusted-roots-disallowed-certificates
+ 
+Looking at the Windows Event Viewer at the CAPI2 log (may need to be enabled) located in  Event Viewer -> Applications and Services Logs -> Microsoft -> Windows may also shed some light on the specific certificate that is failing.","","Ali Asif","","PingCastle","PC Standard","PingCastle General","3.2.0.1","","35.3","Closed - Resolved","Barmenia Krankenversicherung AG","Markus König","2024-11-15T07:11:57.000Z","2024-12-20T15:13:31.000Z"

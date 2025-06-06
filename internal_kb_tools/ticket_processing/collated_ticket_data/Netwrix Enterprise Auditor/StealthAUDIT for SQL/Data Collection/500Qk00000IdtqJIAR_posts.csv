@@ -1,0 +1,181 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000RUWslKAH","500Qk00000IdtqJIAR","TextPost","0050g000006QqyEAAS","2024-11-21T21:58:21.000Z","Description: SQL Data is not reliable collected","","","","0050g000006QqyEAAS","2024-11-21T21:58:21.000Z"
+"0D5Qk00000RYQSJKA5","500Qk00000IdtqJIAR","TextPost","0050g000006QqyEAAS","2024-11-22T14:47:41.000Z","Next Steps Updated: Investigate clear environmental errors:
+permissions on the databases
+connectivity issues - network or permissions","","","","0050g000006QqyEAAS","2024-11-22T14:47:41.000Z"
+"0D5Qk00000RYQSIKA5","500Qk00000IdtqJIAR","TextPost","0050g000006QqyEAAS","2024-11-22T14:47:41.000Z","What We've Learned Updated: Different SQL Collection jobs are reporting a variety of errors to targets.
+
+a.	The SQL Instance Discovery Job is used to find all Windows hosts in the environment that have an SQL Server Instance installed. This job was using a manually created SQL Hosts list.  We changed this to use All Windows Hosts (active) to discover new SQL hosts automatically and update the SQL Servers host list.
+b.	We set all other SQL Collection jobs to use the SQL Servers host list, which will only target SQL servers identified by the SQL Instance Discovery Job.
+c.	Many errors refer to network connectivity problems or database permission deficiencies. This document details the required permissions and ports to collect data.  Please review this with the respective parties at Eglin to verify the proper permissions and firewall rules are in place.","","","","0050g000006QqyEAAS","2024-11-22T14:47:41.000Z"
+"0D5Qk00000SnWDfKAN","500Qk00000IdtqJIAR","TextPost","0050g000006QqyEAAS","2024-12-11T21:41:35.000Z","Steps to Reproduce Updated: Execute SQL Data Collection
+observe warnings and errors in message table - all refer to envrionmental issues.","","","","0050g000006QqyEAAS","2024-12-11T21:41:35.000Z"
+"0D5Qk00000Su8KgKAJ","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2024-12-13T00:45:46.000Z","What We've Learned Updated: Different SQL Collection jobs are reporting a variety of errors to targets.
+
+a.	The SQL Instance Discovery Job is used to find all Windows hosts in the environment that have an SQL Server Instance installed. This job was using a manually created SQL Hosts list.  We changed this to use All Windows Hosts (active) to discover new SQL hosts automatically and update the SQL Servers host list.
+b.	We set all other SQL Collection jobs to use the SQL Servers host list, which will only target SQL servers identified by the SQL Instance Discovery Job.
+c.	Many errors refer to network connectivity problems or database permission deficiencies. This document details the required permissions and ports to collect data.  Please review this with the respective parties at Eglin to verify the proper permissions and firewall rules are in place.
+
+--------
+12/12/2024
+--------
+SQL jobs state they have never run even though they have data. When running the jobs we see no errors or warnings and the job states that it completed in 3 seconds.
+Looking into the logs we see that the job just states it is waiting for abort and no other tasks. We attempted to change the host list but the results were the same.
+
+Environmental or database errors mentioned previously were not see on this run, but the job doesn't appear to do anything.","","","","005Qk000002AJWTIA4","2024-12-13T00:45:46.000Z"
+"0D5Qk00000Su8KhKAJ","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2024-12-13T00:45:47.000Z","Next Steps Updated: Deploying a new instance of NEA and will use this as a second datapoint for the job after it is configured in the new environment.","","","","005Qk000002AJWTIA4","2024-12-13T00:45:47.000Z"
+"0D5Qk00000U9cqYKAR","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-02T23:08:04.000Z","Checked on errors generated during the file system scans. No immediately alarming errors are present and most seem to point to a know access issue with a new server. Migrated the database and log files on the database server to the correct drives and verified access. Verified that AIC is seeing information and could still access information after DB migration. Setup Active Directory job, we expect this to fail as we were not able to fully configure it but this will help point us to any possible problems that may exist.","","","","005Qk000002AJWTIA4","2025-01-02T23:08:04.000Z"
+"0D5Qk00000UPavZKAT","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-07T23:11:45.000Z","Final job migrations are complete. AD jobs are running and appear to be working as expected. SQL jobs are setup and will run overnight and we will check on their status in the next meeting. A new license has also been provided that we will apply in the next meeting. Licensing for Ad permissions module does not appear to exist for eglin. They have jobs setup to run this module but it has been failing for quite a while now. I have requested the account manager for eglin look into getting them a license for this as Glenda has stated she would like to use this.","","","","005Qk000002AJWTIA4","2025-01-07T23:11:45.000Z"
+"0D5Qk00000UdZq1KAF","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-10T23:21:47.000Z","What We've Learned Updated: Different SQL Collection jobs are reporting a variety of errors to targets.
+
+a.	The SQL Instance Discovery Job is used to find all Windows hosts in the environment that have an SQL Server Instance installed. This job was using a manually created SQL Hosts list.  We changed this to use All Windows Hosts (active) to discover new SQL hosts automatically and update the SQL Servers host list.
+b.	We set all other SQL Collection jobs to use the SQL Servers host list, which will only target SQL servers identified by the SQL Instance Discovery Job.
+c.	Many errors refer to network connectivity problems or database permission deficiencies. This document details the required permissions and ports to collect data.  Please review this with the respective parties at Eglin to verify the proper permissions and firewall rules are in place.
+
+--------
+12/12/2024
+--------
+SQL jobs state they have never run even though they have data. When running the jobs we see no errors or warnings and the job states that it completed in 3 seconds.
+Looking into the logs we see that the job just states it is waiting for abort and no other tasks. We attempted to change the host list but the results were the same.
+
+Environmental or database errors mentioned previously were not see on this run, but the job doesn't appear to do anything.
+
+
+--------
+10/01/2025
+--------
+remaining SQL servers that were not responding have been corrected with the exception of one that Glenda cannot login to as its permissions were setup wrong.
+
+FWVMIT - port not opened on firewall, SQLExpress was using high number port instead of default 1433
+FWVMLLA1 - SQL service is not enabled on IPv4 so all connections were rejected
+ITM2SQLDB - Firewall was only allowing specific IPs to connect, added NEA server IP to the list. waiting for after hours service reboot
+FWVMIT3 - No user permissions or access, SA is disabled and only local users have permissions.","","","","005Qk000002AJWTIA4","2025-01-10T23:21:47.000Z"
+"0D5Qk00000UdiT3KAJ","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-10T23:22:08.000Z","Next Steps Updated: Awaiting correction of server FWVMIT3  for final approval","","","","005Qk000002AJWTIA4","2025-01-10T23:22:08.000Z"
+"0D5Qk00000UdejGKAR","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-10T23:23:55.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002AJWTIA4","2025-01-10T23:23:55.000Z"
+"0D5Qk00000UdejIKAR","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-10T23:23:56.000Z","Invitation updated. Attendees: Ian Ranstrom, Glenda Coley","","","","005Qk000002AJWTIA4","2025-01-10T23:23:56.000Z"
+"0D5Qk00000UdejHKAR","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-10T23:23:56.000Z","Invitation updated. Attendees: Ian Ranstrom","","","","005Qk000002AJWTIA4","2025-01-10T23:23:56.000Z"
+"0D5Qk00000UdmehKAB","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-10T23:28:56.000Z","SQL Issues are resolved except for one remaining server that was misconfigured and Glenda cannot login to. FWVMIT - port not opened on firewall, SQLExpress was using high number port instead of default 1433FWVMLLA1 - SQL service is not enabled on IPv4 so all connections were rejectedITM2SQLDB - Firewall was only allowing specific IPs to connect, added NEA server IP to the list. waiting for after hours service rebootFWVMIT3 - No user permissions or access, SA is disabled and only local users have permissions. File servers are all scanning and seem to have no errors, monitoring for 60 days to make sure retention is working as expected. host cleanup is done and host list looks correct.","","","","005Qk000002AJWTIA4","2025-01-10T23:28:56.000Z"
+"0D5Qk00000Up3mPKAR","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-14T18:01:53.000Z","SQL connectivity issues are solved to all but 2 servers. Glenda is checking on getting access to these servers to fix the permissions. FWVMEXPRESSOCVMWJA Several jobs show they ran with no errors but have empty data. I suspect this is normal for these jobs but I need to look into them. SQL_PermissionChangesSQL_ActivitySQL_SensitiveDataActivity One job is throwing an odd access error that needs to be investigated. SQL_PasswordIssues","","","","005Qk000002AJWTIA4","2025-01-14T18:01:53.000Z"
+"0D5Qk00000V3a2YKAR","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-17T21:59:34.000Z","Description Updated: SQL Data is not reliable collected
+
+--------
+17/01/2025
+--------
+SQL discovery and scanning appears to be working. One remaining error to sort out, it appears the passwordIssues job is trying to sign into local host with no user.
+
+14/01/2025 11:12:34	ERROR	POWERSHELL	ExecuteScript	"" : Unable to truncate table SA_Password_List. The following error was returned: Exception calling ""Open"" with ""0"" argument(s): ""Login failed for user ''.""  At line:74 char:9  +         throw ""Unable to truncate table SA_Password_List. The followi ...  +         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ""	OCVMNEA	DCExtract	31124	31048	31508","","","","005Qk000002AJWTIA4","2025-01-17T21:59:34.000Z"
+"0D5Qk00000V3jlKKAR","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-17T21:59:50.000Z","Steps to Reproduce Updated: Investigate error in PasswordIssues job.
+
+14/01/2025 11:12:34	ERROR	POWERSHELL	ExecuteScript	"" : Unable to truncate table SA_Password_List. The following error was returned: Exception calling ""Open"" with ""0"" argument(s): ""Login failed for user ''.""  At line:74 char:9  +         throw ""Unable to truncate table SA_Password_List. The followi ...  +         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ""	OCVMNEA	DCExtract	31124	31048	31508","","","","005Qk000002AJWTIA4","2025-01-17T21:59:50.000Z"
+"0D5Qk00000V3jnMKAR","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-17T22:23:47.000Z","On call with Glenda today we were still attempting to push NAM upgrades. All accounts get rejected even though they have full permissions and testing using powershell shows the accounts have permissions to push file and execute them on remote servers.Glenda believes her team found what is causing the issue and will update once they have it resolved. KB article may be needed for the error seen as it only appears in one other ticket and the solution did not work here.","","","","005Qk000002AJWTIA4","2025-01-17T22:23:47.000Z"
+"0D5Qk00000VQ32qKAD","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-23T22:17:23.000Z","Created a two new tickets for Glenda, one to detail the NAM migration and another for NAM not showing all activity she expects to see.The activity monitor console cannot upgrade the agents on remote systems due to some security block that neither Glenda or I can determine. I was able to test pushing the agent through powershell and the install succeeded. I have created a script for Glenda to run that will automate pulling the host info from the Agents.ini file and will use this to push agents to servers through powershell.  #Netwrix Activity Monitor Remote installation #1.0 Ian Ranstrom $oldPolicy = Get-ExecutionPolicySet-ExecutionPolicy Unrestricted -Scope Process$hosts = @()$credentials = Get-Credential -Message &quot;Please enter credentials for an account with access to all systems&quot;  Function naminstall {   param(       $computername,       $creds   )   $session = New-PSSession -ComputerName $computername -Credential $creds   Copy-Item -Path &quot;C:Program FilesNetwrixActivity MonitorConsoleAgentsx64SBFileMonAgent.msi&quot; -Destination &quot;C:WindowsTempSBFileMonAgent.msi&quot; -ToSession $session   Invoke-Command -Session $session -ScriptBlock{       C:WindowsTempSBFileMonAgent.msi /qn   }} Write-Host &quot;Building host list&quot; Get-Content &quot;C:ProgramDataNetwrixActivity MonitorConsoleAgents.ini&quot; |ForEach-Object {   if ($_ -match &quot;HOST&quot;){       $hosts += $_.SubString(5)       }   }foreach ($h in $hosts){   Write-Host &quot;Installing agent on $h&quot;   naminstall -computername $h -creds $credentials} Set-ExecutionPolicy $oldPolicy -Scope ProcessWrite-Host &quot;Install complete&quot;","","","","005Qk000002AJWTIA4","2025-01-23T22:17:23.000Z"
+"0D5Qk00000Vgm9lKAB","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-28T21:51:56.000Z","Glenda does not want to resolve the installation through script any longer. She wants to use this time to try and diagnose why the agent could never upgrade even in previous upgrades.I was able to look at the logs a little deeper and the error that we found on the FWVMIT server and I don&#39;t think this is an NTLMv1 issue. In my internal labs I was able to disable NTLMv1 and the agent pushed successfully. However I did find this from Microsoft when I looked up the error code.   Error Code Description 0xC0000064 The username you typed does not exist. Bad username.  Looking at the Activity Monitor logs I see this for the username.  &quot;Domain&quot;:null,&quot;UserName&quot;:&quot;SBSVC&quot;  I think that the target machine is trying to authenticate locally instead of to the domain.Glenda is going to try updating the FWVMIT to use the domainusername format and see if this corrects the issue.","nwxcorp.my.salesforce-sites.com","","","005Qk000002AJWTIA4","2025-01-28T21:51:56.000Z"
+"0D5Qk00000Vu00dKAB","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-31T20:11:41.000Z","Next Steps Updated: awaiting meeting to look into last error in SQL servers","","","","005Qk000002AJWTIA4","2025-01-31T20:11:41.000Z"
+"0D5Qk00000VtuJzKAJ","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-01-31T20:12:20.000Z","What We've Learned Updated: Different SQL Collection jobs are reporting a variety of errors to targets.
+
+a.	The SQL Instance Discovery Job is used to find all Windows hosts in the environment that have an SQL Server Instance installed. This job was using a manually created SQL Hosts list.  We changed this to use All Windows Hosts (active) to discover new SQL hosts automatically and update the SQL Servers host list.
+b.	We set all other SQL Collection jobs to use the SQL Servers host list, which will only target SQL servers identified by the SQL Instance Discovery Job.
+c.	Many errors refer to network connectivity problems or database permission deficiencies. This document details the required permissions and ports to collect data.  Please review this with the respective parties at Eglin to verify the proper permissions and firewall rules are in place.
+
+--------
+12/12/2024
+--------
+SQL jobs state they have never run even though they have data. When running the jobs we see no errors or warnings and the job states that it completed in 3 seconds.
+Looking into the logs we see that the job just states it is waiting for abort and no other tasks. We attempted to change the host list but the results were the same.
+
+Environmental or database errors mentioned previously were not see on this run, but the job doesn't appear to do anything.
+
+
+--------
+10/01/2025
+--------
+remaining SQL servers that were not responding have been corrected with the exception of one that Glenda cannot login to as its permissions were setup wrong.
+
+FWVMIT - port not opened on firewall, SQLExpress was using high number port instead of default 1433
+FWVMLLA1 - SQL service is not enabled on IPv4 so all connections were rejected
+ITM2SQLDB - Firewall was only allowing specific IPs to connect, added NEA server IP to the list. waiting for after hours service reboot
+FWVMIT3 - No user permissions or access, SA is disabled and only local users have permissions.
+
+--------
+01/31/2025
+--------
+Last sql error is that the passwordIssues job cannot truncate. Awaiting meeting to look into this error.","","","","005Qk000002AJWTIA4","2025-01-31T20:12:20.000Z"
+"0D5Qk00000WophjKAB","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-02-11T18:02:10.000Z","What We've Learned Updated: Different SQL Collection jobs are reporting a variety of errors to targets.
+
+a.	The SQL Instance Discovery Job is used to find all Windows hosts in the environment that have an SQL Server Instance installed. This job was using a manually created SQL Hosts list.  We changed this to use All Windows Hosts (active) to discover new SQL hosts automatically and update the SQL Servers host list.
+b.	We set all other SQL Collection jobs to use the SQL Servers host list, which will only target SQL servers identified by the SQL Instance Discovery Job.
+c.	Many errors refer to network connectivity problems or database permission deficiencies. This document details the required permissions and ports to collect data.  Please review this with the respective parties at Eglin to verify the proper permissions and firewall rules are in place.
+
+--------
+12/12/2024
+--------
+SQL jobs state they have never run even though they have data. When running the jobs we see no errors or warnings and the job states that it completed in 3 seconds.
+Looking into the logs we see that the job just states it is waiting for abort and no other tasks. We attempted to change the host list but the results were the same.
+
+Environmental or database errors mentioned previously were not see on this run, but the job doesn't appear to do anything.
+
+
+--------
+10/01/2025
+--------
+remaining SQL servers that were not responding have been corrected with the exception of one that Glenda cannot login to as its permissions were setup wrong.
+
+FWVMIT - port not opened on firewall, SQLExpress was using high number port instead of default 1433
+FWVMLLA1 - SQL service is not enabled on IPv4 so all connections were rejected
+ITM2SQLDB - Firewall was only allowing specific IPs to connect, added NEA server IP to the list. waiting for after hours service reboot
+FWVMIT3 - No user permissions or access, SA is disabled and only local users have permissions.
+
+--------
+01/31/2025
+--------
+Last sql error is that the passwordIssues job cannot truncate. Awaiting meeting to look into this error.
+
+--------
+02/11/2025
+--------
+Truncate error seems to have resolved itself.
+Dynamic SQL list is possibly not updating as expected, need to test in labs.
+SQL activity shows no info, not sure if this is expected or not as there shouldn't be much activity.","","","","005Qk000002AJWTIA4","2025-02-11T18:02:10.000Z"
+"0D5Qk00000WogGWKAZ","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-02-11T18:02:23.000Z","Next Steps Updated: Awaiting logs from SQl jobs and lab investigation.","","","","005Qk000002AJWTIA4","2025-02-11T18:02:23.000Z"
+"0D5Qk00000YhWZgKAN","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-03-07T23:18:06.000Z","What We've Learned Updated: --------
+03/07/2025
+--------
+Dynamic lists setup for sql servers. validated all errors have cleared from SQL scans.
+
+Different SQL Collection jobs are reporting a variety of errors to targets.
+
+a.	The SQL Instance Discovery Job is used to find all Windows hosts in the environment that have an SQL Server Instance installed. This job was using a manually created SQL Hosts list.  We changed this to use All Windows Hosts (active) to discover new SQL hosts automatically and update the SQL Servers host list.
+b.	We set all other SQL Collection jobs to use the SQL Servers host list, which will only target SQL servers identified by the SQL Instance Discovery Job.
+c.	Many errors refer to network connectivity problems or database permission deficiencies. This document details the required permissions and ports to collect data.  Please review this with the respective parties at Eglin to verify the proper permissions and firewall rules are in place.
+
+--------
+12/12/2024
+--------
+SQL jobs state they have never run even though they have data. When running the jobs we see no errors or warnings and the job states that it completed in 3 seconds.
+Looking into the logs we see that the job just states it is waiting for abort and no other tasks. We attempted to change the host list but the results were the same.
+
+Environmental or database errors mentioned previously were not see on this run, but the job doesn't appear to do anything.
+
+
+--------
+10/01/2025
+--------
+remaining SQL servers that were not responding have been corrected with the exception of one that Glenda cannot login to as its permissions were setup wrong.
+
+FWVMIT - port not opened on firewall, SQLExpress was using high number port instead of default 1433
+FWVMLLA1 - SQL service is not enabled on IPv4 so all connections were rejected
+ITM2SQLDB - Firewall was only allowing specific IPs to connect, added NEA server IP to the list. waiting for after hours service reboot
+FWVMIT3 - No user permissions or access, SA is disabled and only local users have permissions.
+
+--------
+01/31/2025
+--------
+Last sql error is that the passwordIssues job cannot truncate. Awaiting meeting to look into this error.
+
+--------
+02/11/2025
+--------
+Truncate error seems to have resolved itself.
+Dynamic SQL list is possibly not updating as expected, need to test in labs.
+SQL activity shows no info, not sure if this is expected or not as there shouldn't be much activity.","","","","005Qk000002AJWTIA4","2025-03-07T23:18:06.000Z"
+"0D5Qk00000YhWZhKAN","500Qk00000IdtqJIAR","TextPost","005Qk000002AJWTIA4","2025-03-07T23:18:07.000Z","Next Steps Updated: Awaiting approval to close.","","","","005Qk000002AJWTIA4","2025-03-07T23:18:07.000Z"

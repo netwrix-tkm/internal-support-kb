@@ -1,0 +1,58 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000N92beIAB","00439500","Support Ticket","Assistance needed to resolve warning and errors on AD Inventory Scan","Hello, could someone assist me in resolving the errors in the attached file? most messages include in the message that 'A full ADI scan may be required'. My understanding was if the ""Collect only updates since the last scan"" checkbox was cleared in the query options, this was a full scan (see other screenshot). i've unchecked that box, but still see errors and warnings.","","fixed issue in Analysis tasks
+-changed placeholder [tablename] with the actual table name
+-re-ran analysis tasks to make sure it completed without error
+
+discussed warnings calling out custom attributes
+client has serveral domains and those attributes are not all present in all domains.
+Warnings call out domains by DomainID not name
+used table, ADInventory_UserView, to identify which domain was which by DomianID
+
+ 
+client understands the issue and is okay with leaving as is
+-he wants to make sure he's getting those attributes from the other domains that have them set
+
+LDAP server is unavailable for one domain is because that domain has heavily limited connections
+the DC it was trying to connect to has LDAP ports blocked.
+-still pings
+
+Client has a custom job already in place that builds dynamic host lists for AD scans. Corrected it so it will choose a DC from that domain that isn't as limited
+
+---------------
+dropping ADInventory tables for the affected domain and re-running AD scan seems to have fixed the issue","confirming status with client and asking if ticket is good to close","Errors and resolutions:
+
+Error:
+Error while adding: user 'CN=Service Account (Azure Release Dev),OU=Service Accounts,DC=dtt,DC=omg,DC=crhomg,DC=com' 'Error while searching 'SA_ADInventory_DistinguishedNames' Table : System.Data.SqlClient.SqlException (0x80131904): 1.) @PId SET TO NULL, @DeletedDnId = 84867, @CurrentDnId = 97435
+Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.
+
+Resolution:
+Dropped ADInventory tables for that domain (omg.crhomg.com)
+Re-ran 1-AD_Scan job to repopulate those tables
+
+------------------------------
+Error:
+Invalid object name 'tablename'.
+
+Cause:
+Enable analysis tasks on AD Inventory scans were still using placeholder, [Tablename]
+
+Resolution:
+changed analysis task to target explicit tables
+
+For Example: 
+SELECT * from [Tablename]()
+changed to 
+SELECT * from SA_ADInventory_ComputersView
+
+------------------------------
+
+Error:
+The Custom Attribute %CustomAttibuteName% was requested but not set in domain %DomainID%
+
+Cause:
+Some custom attributes are audited by default in the AD_Scan query. If those attributes are not present in some or all of the target domains, then you get this error
+
+Resolution:
+Add those attributes to the targeted domains, or remove the custom attributes from the 1-AD_Scan job's query configuration
+
+In this client's instance, most domains have those, but a couple do not. He will leave as is and look into adding those attributes to those domains.","Incorrect configuration: audit settings","Joshua Sexton","Error","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Inventory","11.6","","11.2","Closed - Resolved","CRH Americas Materials","Frank Babcock","2025-03-20T15:06:29.000Z","2025-03-31T20:30:16.000Z"

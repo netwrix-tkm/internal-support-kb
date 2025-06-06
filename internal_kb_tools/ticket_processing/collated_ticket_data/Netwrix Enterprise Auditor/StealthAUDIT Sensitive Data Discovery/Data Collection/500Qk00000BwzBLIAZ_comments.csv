@@ -1,0 +1,67 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007dCq8IAE","500Qk00000BwzBLIAZ","Ran a test SQL SDD scan against test hosts. Verified that the job seems to run successfully and did not throw any errors during our meeting time.","0054u000007MdqrAAC","2024-06-28T19:48:46.000Z","2024-06-28T19:48:46.000Z","false","false"
+"00aQk000007z64TIAQ","500Qk00000BwzBLIAZ","Discovered a bug within the event viewer pointing issues with .Net. Suggested upgrading to the latest version of NEA.","0054u000007MdqrAAC","2024-07-17T15:21:13.000Z","2024-07-17T15:21:13.000Z","false","false"
+"00aQk00000816LJIAY","500Qk00000BwzBLIAZ","Performed an upgrade of the NEA platform and SDD application. Verified that we can successfully open the console and global settings matched. Decided to run the SQL job group and provide an update on the results of the job once its finished.","0054u000007MdqrAAC","2024-07-18T21:36:48.000Z","2024-07-18T21:36:48.000Z","false","false"
+"00aQk000008Df0jIAC","500Qk00000BwzBLIAZ","Discovered a running.lck file correlating to the host aborted message within the SQLSDD scans. Removed the file and ran the job again. Also discovered a known bug associated with .Net Framework versions 4.0 and 4.8 within Event Viewer. Have acquired screenshots of the error messages and will provide them to development for a possible hotfix or CU update.. We will postpone this ticket until Thursday 8/1/24.","0054u000007MdqrAAC","2024-07-29T21:11:43.000Z","2024-07-29T21:11:43.000Z","false","false"
+"00aQk000008OwPdIAK","500Qk00000BwzBLIAZ","We performed a standard NEA platform upgrade to 11.6.0.88 to target a .Net Framework issue that was addressed. We also discovered that there were no issues when completely allowing a job to gracely end before starting a new job scan. This was apparent by the discovery of another running.lck file existing in the SDD job group file path. We recommended two options for scheduling these scans as tasks, running the entire job group itself and allowing each job to run in sequential order or individually running each scan with a 2 to 3 minute offset from each other.","0054u000007MdqrAAC","2024-08-07T19:37:58.000Z","2024-08-07T19:37:58.000Z","false","false"
+"00aQk000008RkN8IAK","500Qk00000BwzBLIAZ","The customer has uploaded procdump files as well as application logs for further investigation.","0054u000007MdqrAAC","2024-08-09T20:31:33.000Z","2024-08-09T20:31:33.000Z","false","false"
+"00aQk000008VrOPIA0","500Qk00000BwzBLIAZ","Installed the latest Microsoft CU updates that the latest stack services for .Net. Rebooted the NEA application server and attempted to install the designated .Net KB 4486129 feature pack. Was not successfully able to install it. Discovered that there are multiple AV software applications installed on the server and requested to temporarily disable them to allow for a clean install of the .Net feature pack. Once this process has been completed and the .Net installer has completed please run the SQL job group again and provide an update.","0054u000007MdqrAAC","2024-08-13T22:14:59.000Z","2024-08-13T22:14:59.000Z","false","false"
+"00aQk000008lKI2IAM","500Qk00000BwzBLIAZ","We attempted to install the NEA application on the newly created server for testing purposes but were unable to fully complete the installation due to network connectivity using the required ports for SQL server communication from the NEA application server. 
+
+Additionally, more time was requested to allow for desired host communication to the NEA application server for testing purposes.","0054u000007MdqrAAC","2024-08-27T15:59:43.000Z","2024-08-27T15:59:43.000Z","false","false"
+"00aQk000008prYjIAI","500Qk00000BwzBLIAZ","Putting the case in postponed reply to allow the customer and his network team a few extra days to enable ports and firewall protocols.","0054u000007MdqrAAC","2024-08-30T16:00:50.000Z","2024-08-30T16:00:50.000Z","false","false"
+"00aQk00000966gfIAA","500Qk00000BwzBLIAZ","Was able to import the SQL jobs from the production environment successfully. Identified that the SQL Sensitive Data scan errors were associated with not having the SDD application installed. Resolved this error by installing the SDD application to the server and running the scans again. The SQL job group was successfully able to initialize and start scanning objects. Identified that there were some AIC import errors but these errors are directly correlated to not having the AIC installed on the server. Once the AIC is installed these errors will be resolved. We also verified that the .Net error reported on the production server was non-existent on this server during the time of the scheduled tasks and has not aborted the scheduled job. 
+
+We decided to allow the scan to run over the weekend to monitor the progression of it.","0054u000007MdqrAAC","2024-09-13T22:44:55.000Z","2024-09-13T22:44:55.000Z","false","false"
+"00aQk000009CyWHIA0","500Qk00000BwzBLIAZ","Today we:
+
+Reviewed the job logs after the SQL job group with the full hosts list. We identified an access violation error pointing to a ntdll.dll file. We attempted to run the SQL permission scan job again a couple of hosts and we were successful in completing those scans.
+
+We then created a new hosts list with only 23 hosts. We then adjusted the performance of the SQL permissions scan to only 10 threads and started the scan again to monitor the 23 hosts being scanned. 
+
+Our next steps are:
+
+You will:
+
+Monitor the scan job for the 23 hosts. If the job is successful please add the full host list to the SQL permissions scan and run the job group again with the modified performance settings.","0054u000007MdqrAAC","2024-09-19T23:23:22.000Z","2024-09-19T23:23:22.000Z","false","false"
+"00aQk000009DqIBIA0","500Qk00000BwzBLIAZ","The customer has confirmed that we were successfully able to scan a smaller chunk of the hosts with the job performance set to 10 threads, down from 30, with no errors including the .Net error that aborts the SQL job group. 
+
+The customer is going to run a full scan of all hosts using the current performance settings and provided an update once its finished.","0054u000007MdqrAAC","2024-09-20T17:17:20.000Z","2024-09-20T17:17:20.000Z","false","false"
+"00aQk000009IJexIAG","500Qk00000BwzBLIAZ","The test environment has successfully be able to run with the 10 thread modification. The customer is going to modify the prod environments performance settings to the same thread count and monitor the scans.","0054u000007MdqrAAC","2024-09-24T22:27:17.000Z","2024-09-24T22:27:17.000Z","false","false"
+"00aQk000009QVfhIAG","500Qk00000BwzBLIAZ","Today we:
+
+Performed the migration of the host data to the new application server successfully. 
+
+Backed up the current job configurations from the old prod server to the new application server. 
+
+Verified all host management data. 
+
+Our next steps are:
+
+You will:
+
+Migrate the job configurations and import them into the new application server.","0054u000007MdqrAAC","2024-10-01T23:20:41.000Z","2024-10-01T23:20:41.000Z","false","false"
+"00aQk000009TyObIAK","500Qk00000BwzBLIAZ","Today we:
+
+Reviewed changes that were made to the new NEA application server. 
+
+Modified the SQL permissions scan and SQL sensitive data scan performance settings to from 30 threads to 10 threads. Increased the timeout for the permission scans to 120 minutes. Decreased the SQL-sensitive data scan threads from 10 to 4 threads.
+
+Created a new scheduled task for the SQL 0. collections job group to only scan one host list to allow for efficient scans to successfully run and complete. 
+
+Our next steps are:
+You will:
+
+Monitor SQL permission and SQL sensitive data scans for the .Net error that has been noticed previously to abort the","0054u000007MdqrAAC","2024-10-04T14:58:07.000Z","2024-10-04T14:58:07.000Z","false","false"
+"00aQk000009fU09IAE","500Qk00000BwzBLIAZ","#EAM --- Dusty
+Customers last comment: 10/10/2024 The full job has been running for almost a full day and doesn't seem to be close to finish; next execution is in an hour:
+
+T1: 10/11/2024 Suggested adjusting the jobs settings to allow usage of more system resources
+10/4/2024
+Modified the SQL permission  & SEEK scans threads. Increased the timeout on permission scans.
+Noted a  .Net error.
+ 
+Current Status:   Awaiting Client
+Automatic Follow-Up: 10/11/2024 General Follow-Up
+
+---","00570000003KXurAAG","2024-10-15T13:27:22.000Z","2024-10-15T13:27:22.000Z","false","false"

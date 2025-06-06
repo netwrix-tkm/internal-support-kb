@@ -1,0 +1,43 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000J53wqIAB","00428802","Support Ticket","Data mismatch with the generated report","Files existed under the provided path ""C:HYDVNWI085005_N_MPSADIMPAAPOIO_ADMINISTRATIVOATA - REDIR
+ "" contains 5 files
+2 - DOC, 
+1 - XML, 
+1- XLS, 
+1 - XLSX file. 
+Meanwhile , in the File type report it shows only 4 files with missing xml and 1 docx instead we have 1 doc file. 
+1-DOC
+1-DOCX
+1-XLS
+1-XLSX
+Attached screenshots and report for reference.","","Customer wanted to check if the information inside StealthAudit FS_FileTypes job table matches the files on the HYDVNWI085005 file server behind this path:
+C:HYDVNWI085005_N_MPSADIMPAAPOIO_ADMINISTRATIVOATA - REDIR
+
+This file path has 5 files:
+2 DOC files
+1 DOCX file which inside the explorer folder has a file type description of Open Office XML Document 
+1 XLS and 1 XLSX files 
+
+After inspecting the FS_FileTypes job table inside StealthAudit DB we could see that the table represents these files correctly without mismatch. Table shows that there are 2 DOC files 1 DOCX and 1 XLS and 1 XLSX.  
+
+Customer was just confused because table displays DOC file with a single row which has a column ""file count"". And the file count for the DOC file is 2 - which matches the number of DOC files on the file path mentioned above. 
+
+Also, customer was confused because one of the files (the DOCX file) has XML in its file type description - I explained to customer that this file is an Open Office freeware document, and it is not an XML document. Inside Stealth Audit table we can see this file as well with DOCX extension. 
+
+As such, there is no mismatch in information about file types between StealthAudit DB and the File Server.","Support provided customer with description of the 4.Content Job Group and the 'File Types > FS_FileTypes' Job. 
+
+Support is waiting for customer reply after they review provided information.","Customer wanted to check if the information inside StealthAudit FS_FileTypes job table matches the files on the HYDVNWI085005 file server behind this path:
+C:HYDVNWI085005_N_MPSADIMPAAPOIO_ADMINISTRATIVOATA - REDIR
+
+This file path has 5 files:
+2 DOC files
+1 DOCX file which inside the explorer folder has a file type description of Open Office XML Document
+1 XLS and 1 XLSX files
+
+After inspecting the FS_FileTypes job table inside StealthAudit DB we could see that the table represents these files correctly without mismatch. Table shows that there are 2 DOC files 1 DOCX and 1 XLS and 1 XLSX.
+
+Customer was just confused because table displays DOC file with a single row which has a column ""file count"". And the file count for the DOC file is 2 - which matches the number of DOC files on the file path mentioned above.
+
+Also, customer was confused because one of the files (the DOCX file) has XML in its file type description - I explained to customer that this file is an Open Office freeware document, and it is not an XML document. Inside Stealth Audit table we can see this file as well with DOCX extension.
+
+As such, there is no mismatch in information about file types between StealthAudit DB and the File Server.","Data validation / interpretation","Artem Naskal","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Reports","11.5","","25.9","Closed - Resolved","Hydro Group Norway","saveetha Anesh","2024-12-04T13:27:53.000Z","2024-12-30T10:57:31.000Z"

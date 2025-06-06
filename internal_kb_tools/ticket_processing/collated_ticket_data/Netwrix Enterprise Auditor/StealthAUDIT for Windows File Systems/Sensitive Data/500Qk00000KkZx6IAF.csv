@@ -1,0 +1,31 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KkZx6IAF","00432623","Support Ticket","[Ardentec] The field ""filepath"" of  Share with Sensitive Contenct showing nothing at all","Hi Support,
+
+Here's an issue reported by Ardentec,[Ardentec] The field ""filepath"" of  Share with Sensitive Contenct showing nothing at all as attached screenshot.
+Please assist in clarifying it and make it clear.
+
+Jimmy","Step 1: Navigate to File System Job Group and run 0.Collection and SEEK job (collects Sensitive Data). 
+Step 2: View FileSystem Solution -> 0.Collection -> 0-Collection-> FSDLP_Matchesview
+Step 3: Navigate to 7.Sensitive Data and then execute the FS_DLPResults and view reports.","The customer has upgraded to v.11.6.125 and afterwards ran the SEEK job (sensitive data discovery job) for file systems. However, for some of the entries in the reports, they dont see any data for the file path being scanned. This is a known bug for files that have exceptions like being password protected and has been resolved in v.11.6.127 and v.11.6.132.
+
+Customer has upgraded to 11.6.0.130.
+As per latest update and screenshot image, they are able to see data in FileSystem Solution -> 0.Collection -> 0-Collection-> FSDLP_Matchesview but not in 7.Sensitive Data reports. This is reproducible in my lab. 
+
+Post in SWAT: 
+https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1738907441819?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1738907441819&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=NEA%20DAG&createdTime=1738907441819","Steps have been shared to remediate the issue. The partner will setup a meeting with the end client. I will follow up on Thursday","Symptom
+When you were running the FS_DLPResults job from Sensitive Data group, the filepath was empty.
+
+Resolution
+1. Run the SEEK job for this host only and navigate to this directory in NEA server: C:Program Files (x86)STEALTHbitsStealthAUDITFSAASERVER_NAME
+SERVER_NAME in above path refers to the host for which we are facing issue.
+2. Re-arrange the files according to timestamp and copy these files that have the latest timestamp.
+3. Delete these files.
+4. Create an instant job (Library Name: File System -> FS_SDD_DELETE).
+5. In the FS_SDD_DELETE job, navigate to Analysis and check the box for ""Delete Host"" and then click on Analysis Configuration.
+6. Now follow the steps mentioned in following screenshot:
+7. Now hit okay and then click on ""Save and Close"" on SQL Script Editor.
+8. Execute this job.
+9. Navigate to SEEK Job, open Queries -> Query Properties and then click on Maintenance.
+10. Click on Reset Hosts and then click Next.
+11. Select the host and hit reset.
+12. Now run SEEK scan, SEEK Bulk import scan and Sensitive data scan.","Advanced Configuration Change","Saqib Sharif","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Sensitive Data","11.6","11.6.0.125","38.8","Closed - Resolved","Ardentec","Support Sphinxtec","2025-01-17T07:26:33.000Z","2025-02-25T02:47:51.000Z"

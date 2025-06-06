@@ -1,0 +1,309 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000C8BaUIAV","500Qk00000Ccci5IAB","2024-07-03T14:27:12.000Z","2024-07-03T14:27:12.000Z","James,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Please note any changes in what is being scanned with NEA that could also point to the root of the issue.
+
+Within SQL Server Management Studio (SSMS) run the following TSQL the output can then be saved as CSV files then merged together within Excel or Copy with headers and pasted into an Excel file for review. 
+/* 
+In the DB drop down select the NEA/SA DB to investigate
+*/
+SET NOCOUNT ON
+
+DBCC UPDATEUSAGE(0)
+
+-- DB size.
+EXEC sp_spaceused
+
+--Get size of each tables in database
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+    SUM(a.total_pages) * 8 AS TotalSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+    SUM(a.used_pages) * 8 AS UsedSpaceKB,
+    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN     
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE 'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255 
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB DESC, t.name
+
+TSQL Output Example if needed:
+
+
+The file(s) can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0Ccci5:ref","DB Size    [ ref:!00D70091pB.!500Qk0Ccci5:ref ]","techsupport@netwrix.com","Netwrix Support","james.lilley@carlstargroup.com","","","true","2024-07-03T14:27:11.000Z","true"
+"02sQk00000CfwZ6IAJ","500Qk00000Ccci5IAB","2024-07-16T15:49:54.000Z","2024-07-16T15:49:54.000Z","ref:_00D7091pB._500Q000Ccci5:ref
+
+You can close the case. The issue was due to SQL Logging being set to Full instead of Simple.
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 16, 2024 11:39 AM
+To: Lilley, James <James.Lilley@carlstargroup.com>
+Subject: [EXTERNAL] RE: DB Size
+
+Dear James, I wanted to follow up because I have not heard from you since my last email. May I ask what the current status of the issue is? Did the previous email that I sent answer your questions and resolve your issues? Please let me know
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender
+This message came from outside your organization.
+ZjQcmQRYFpfptBannerEnd
+Dear James,
+
+I wanted to follow up because I have not heard from you since my last email. May I ask what the current status of the issue is? Did the previous email that I sent answer your questions and resolve your issues?
+
+Please let me know if I can be of further assistance on this case.
+
+Regards,
+
+Dusty Grayson
+Technical Support Engineer
+
+Netwrix Corporation
+Powerful Data Security Made Easy
+www.netwrix.com [netwrix.com]<https://urldefense.com/v3/__https:/www.netwrix.com__;!!MQSLAArXbw!ZiCC3FXrZ1aPu7lt36-GA5eeT6qcqQAZCci2Mi2CDyUMKjyi89WMAGuFBtgEN7Vh8hLe8KnFHfgdyW6j2zrFwI6SvFgrcbM$> | Twitter: @netwrix
+
+
+
+
+
+ref:!00D70091pB.!500Qk0Ccci5:ref","RE: Netwrix Support Ticket #413920 - ref:_00D7091pB._500Q000Ccci5:ref - [EXTERNAL] RE: DB Size","james.lilley@carlstargroup.com","Lilley, James","techsupport@netwrix.com","","","false","2024-07-16T15:49:40.000Z","true"
+"02sQk00000CgFN8IAN","500Qk00000Ccci5IAB","2024-07-16T15:55:40.000Z","2024-07-16T15:55:40.000Z","James,
+
+Thank You for the update, I will close out this ticket as noted.
+
+We have 30days to reopen once the closure email is received.
+
+To reopen we can just reply to that email to bring the case back into my queue.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. 
+
+Feel free to leave any feedback via the survey link.
+
+Have a great week.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Lilley, James [james.lilley@carlstargroup.com]
+Sent: 7/16/2024 11:49 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #413920 - ref:_00D7091pB._500Q000Ccci5:ref - [EXTERNAL] RE: DB Size
+
+ref:_00D7091pB._500Q000Ccci5:ref
+ 
+You can close the case. The issue was due to SQL Logging being set to Full instead of Simple.
+ 
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 16, 2024 11:39 AM
+To: Lilley, James <James.Lilley@carlstargroup.com>
+Subject: [EXTERNAL] RE: DB Size
+ 
+
+Dear James, I wanted to follow up because I have not heard from you since my last email. May I ask what the current status of the issue is? Did the previous email that I sent answer your questions and resolve your issues? Please let me know 
+
+ZjQcmQRYFpfptBannerStart
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									This Message Is From an External Sender 
+								
+								
+									This message came from outside your organization. 
+								
+							
+						
+						
+					
+				
+			
+			
+		
+	
+
+
+ZjQcmQRYFpfptBannerEnd
+Dear James,
+
+I wanted to follow up because I have not heard from you since my last email. May I ask what the current status of the issue is? Did the previous email that I sent answer your questions and resolve your issues?
+
+Please let me know if I can be of further assistance on this case.
+
+Regards,
+
+Dusty Grayson
+Technical Support Engineer
+
+Netwrix Corporation
+Powerful Data Security Made Easy 
+www.netwrix.com [netwrix.com] | Twitter: @netwrix
+ 
+
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/3/2024 10:27 AM
+To: james.lilley@carlstargroup.com
+Subject: DB Size [ ref:!00D70091pB.!500Qk0Ccci5:ref ]
+
+James,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Please note any changes in what is being scanned with NEA that could also point to the root of the issue.
+
+Within SQL Server Management Studio (SSMS) run the following TSQL the output can then be saved as CSV files then merged together within Excel or Copy with headers and pasted into an Excel file for review. 
+/* 
+In the DB drop down select the NEA/SA DB to investigate
+*/
+SET NOCOUNT ON
+
+DBCC UPDATEUSAGE(0)
+
+-- DB size.
+EXEC sp_spaceused
+
+--Get size of each tables in database
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+    SUM(a.total_pages) * 8 AS TotalSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+    SUM(a.used_pages) * 8 AS UsedSpaceKB,
+    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN     
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE 'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255 
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB DESC, t.name
+
+TSQL Output Example if needed:
+
+
+The file(s) can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ccci5:ref","RE: DB Size    [ ref:!00D70091pB.!500Qk0Ccci5:ref ]","techsupport@netwrix.com","Netwrix Support","james.lilley@carlstargroup.com","","","true","2024-07-16T15:55:40.000Z","true"

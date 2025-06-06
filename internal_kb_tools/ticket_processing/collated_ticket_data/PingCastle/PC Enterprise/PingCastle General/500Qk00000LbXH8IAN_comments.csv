@@ -1,0 +1,80 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BgJeDIAV","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the Following Fields have been updated: 
+Account ACV has been changed to 4400.00.","005Qk000003YNwXIAW","2025-02-07T15:30:00.000Z","2025-02-07T15:30:00.000Z","false","false"
+"00aQk00000BgJfpIAF","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the Following Fields have been updated: 
+Account ACV has been changed to 2200.00.","005Qk000003YNwXIAW","2025-02-07T15:30:01.000Z","2025-02-07T15:30:01.000Z","false","false"
+"00aQk00000BgPWkIAN","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the new comment has been added: Joe Dibley:
+
+# More details
+I took a look at this before escalating. It seems we have some discrepancies in the reporting on ""Windows LAPS"".
+
+In the unlocked report (paid for versions) we do some LAPS analysis. This was originally just legacy laps and has been updated to include Windows LAPS but it does not seem to work correctly.
+
+As you can see from my screenshot I have a working server called PCPro (2019), it correctly has the password but does not show in the table under ""Number of LAPS Installed""
+![==image_0==.png](https://dev.azure.com/NetwrixCorporation/34efe383-f25c-4c87-b831-7e06a9c6777d/_apis/wit/attachments/81fc88e6-9122-4a30-a9af-a863d3ead7f5?fileName===image_0==.png)
+
+It also does not show anything on the pie charts in the product
+![==image_0==.png](https://dev.azure.com/NetwrixCorporation/34efe383-f25c-4c87-b831-7e06a9c6777d/_apis/wit/attachments/32678bed-dc1c-4b7c-966a-74f4799323d2?fileName===image_0==.png) 
+
+But we do see the new laps in the LAPS distribution graph. 
+![==image_0==.png](https://dev.azure.com/NetwrixCorporation/34efe383-f25c-4c87-b831-7e06a9c6777d/_apis/wit/attachments/08b71377-b241-4991-a56d-87ba6e2e7b93?fileName===image_0==.png) 
+
+I must admit I was confused looking at the code for LAPS but could see there was nothing specific for the updated LAPS.
+
+# Proposed solution
+* Edit columns on the table
+   * Rename `Number of LAPS Installed` to `Legacy LAPS`.
+   * Add new column `Microsoft LAPS` to track Microsoft LAPS numbers.
+   * Add new column `Combined Total` which is just the sum of `Legacy LAPS` and `Microsoft LAPS` fields
+* Pie charts should include the LAPS New data.
+
+# Information about LAPS
+There are two different versions of laps commonly known as Legacy LAPS and Windows LAPS.
+
+## Legacy LAPS
+Legacy LAPS is the version hosted [here](https://www.microsoft.com/en-us/download/details.aspx?id=46899). You download it and then run through the documentation that is bundled in the download to install it.
+
+### Basic steps to get up and running
+1. Download and install MSI with all options enabled
+1. Copy the policy definitions to the group policy admx store or import via the GPO Editor
+1. Setup a new OU with 1 system in it
+1. Create a new GPO in this OU and configure the laps settings
+1. Update the AD Schema (Update-ADMPWDSchema - PowerShell module and current user has to be in Schema Admins and run PowerShell as admin)
+1. Set the Computer SELF Permissions ( This is also done with PowerShell module. IIRC it was called Set-ADMPWDComputerSelfPermission
+1. You can setup viewing and reset permissions but these are not required if you are a domain admin.
+1. Run gpupdate.
+
+## Windows LAPS
+Windows LAPS is the up-to-date version that works in both Active Directory and Azure AD. Documentation for Windows LAPS is found [here](https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview).
+
+1. Setup new OU with a single computer
+1. Setup GPO using the new LAPS settings (make sure password policy for LAPS meets your domains password policy)
+1. Make sure to set the Backup directory to Active Directory
+1. Update AD Schema for Windows Laps -[`Update-LapsADSchema`](https://learn.microsoft.com/en-us/powershell/module/laps/update-lapsadschema)
+1. Set Computer Self permissions on OU - [`Set-LapsADComputerSelfPermission`](https://learn.microsoft.com/en-us/powershell/module/laps/set-lapsadcomputerselfpermission)
+1. Run gpupdate on the computer in the OU or Invoke-LAPSPOlicyProcessing command
+
+[DevOps CommentId:11617309]","0054u000006gtWUAAY","2025-02-07T16:32:33.000Z","2025-02-07T16:32:33.000Z","false","false"
+"00aQk00000BgPdCIAV","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the new comment has been added: Joe Dibley:
+
+@ Hi Denis, sending over for triage. I have added a bunch of detail to the comment below and a proposed solution. Let me know if you need any further details.
+
+[DevOps CommentId:11617312]","0054u000006gtWUAAY","2025-02-07T16:33:35.000Z","2025-02-07T16:33:35.000Z","false","false"
+"00aQk00000BtGfKIAV","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the new comment has been added: Evgeniy Panarin:
+
+Hello the issue is fixed in 3.3.0.8
+
+[DevOps CommentId:11671818]","0054u000006gtWUAAY","2025-02-19T11:57:05.000Z","2025-02-19T11:57:05.000Z","false","false"
+"00aQk00000BtGiXIAV","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-19T11:57:38.000Z","2025-02-19T11:57:38.000Z","false","false"
+"00aQk00000BtGiZIAV","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the new comment has been added: Evgeniy Panarin:
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11671829]","0054u000006gtWUAAY","2025-02-19T11:57:38.000Z","2025-02-19T11:57:38.000Z","false","false"
+"00aQk00000BuUI1IAN","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000003YNwXIAW","2025-02-20T08:28:42.000Z","2025-02-20T08:28:42.000Z","false","false"
+"00aQk00000C1Ey6IAF","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000003YNwXIAW","2025-02-26T15:01:54.000Z","2025-02-26T15:01:54.000Z","false","false"
+"00aQk00000D9hMPIAZ","500Qk00000LbXH8IAN","On Escalation Ticket # 00435091 the Following Fields have been updated: 
+Account ACV has been changed to 4664.00.","0054u000006gtWUAAY","2025-04-28T09:07:21.000Z","2025-04-28T09:07:21.000Z","false","false"

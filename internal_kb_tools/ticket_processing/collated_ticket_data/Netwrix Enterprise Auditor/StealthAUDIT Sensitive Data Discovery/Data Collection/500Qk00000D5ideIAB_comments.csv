@@ -1,0 +1,307 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007wHFlIAM","500Qk00000D5ideIAB","to be clear scans are not getting errors just not working as expected I spoke with Ethan and they should work as follows
+ 
+[6/7 10:03 AM] Ethan Israel
+if you have differential set to pick up all files modified since previous scan then i think that would work, if the scan encounters a file it hasn't scanned yet it should get picked up, but if you have differential based on a date or date range if the file wasn't modified within that date range it wouldn't get picked up","0054u000006goFBAAY","2024-07-15T16:01:06.000Z","2024-07-15T16:01:06.000Z","false","false"
+"00aQk000007wHIzIAM","500Qk00000D5ideIAB","so i have no error logs to provide just excel sheet with results and difference between full vs differential","0054u000006goFBAAY","2024-07-15T16:01:47.000Z","2024-07-15T16:01:47.000Z","false","false"
+"00aQk000007wCuQIAU","500Qk00000D5ideIAB","this should be reproducible in DEV lab","0054u000006goFBAAY","2024-07-15T16:06:10.000Z","2024-07-15T16:06:10.000Z","false","false"
+"00aQk000007xjczIAA","500Qk00000D5ideIAB","WHY HAS THIS BEEN SET TO WAITING ON CLIENT","0054u000006goFBAAY","2024-07-16T15:49:52.000Z","2024-07-16T15:49:52.000Z","false","false"
+"00aQk000007xjbOIAQ","500Qk00000D5ideIAB","Problem Statement/Business Impact:
+Describe specifically what the customer is trying to accomplish.
+
+differential scan set not finding all files when set to use last scan date
+
+Desired Outcome:
+How should the results appear or be presented to the user?
+
+What is the expected outcome?
+
+Customer wants the differential scans to pick up new data 
+
+Steps to Reproduce:
+1. Add some sensitive data to a rich doc
+2. Set the query to target the document type under the Sensitive data setting
+3. Unser the SDD Criteria Settings, selected the criteria
+
+
+Troubleshooting completed/Notes: 
+1. Action Take
+Set the querry to run the SEEK System Scan (differential ) from my lab
+    a. Result: No new data
+2.
+    a.
+
+Ensure relevant logs are uploaded to SPO:","0054u000007osjSAAQ","2024-07-16T16:44:17.000Z","2024-07-16T16:44:17.000Z","false","false"
+"00aQk000007xzMoIAI","500Qk00000D5ideIAB","Problem Statement/Business Impact:
+Describe specifically what the customer is trying to accomplish.
+
+they need to be able to run incremental scans to collect data depth 2 5 so on to remediate in stages 
+so once a 2 level scan has completed and we have selected differential scan and since last scan it should be aware that files deeper then level 2 have not been scanned and now scan all files deeper then 2 even if not created after last scan date i confirmed with Ethan that this how it is expected to work
+differential scan set not finding all files when set to use last scan date
+
+Desired Outcome:
+How should the results appear or be presented to the user?
+
+they should find the same document count of sensitive files as a full depth single scan
+
+What is the expected outcome?
+
+Customer wants the differential scans to pick up new data plus any data that was not scanned in previous scan depth
+
+Steps to Reproduce:
+1. Add some sensitive data to a rich doc
+2. Set the query to target the document type under the Sensitive data setting
+3. Unser the SDD Criteria Settings, selected the criteria
+4, then increase depth of scan and make sure files with sensitive content were created before last scan date and ensure they are now found
+
+
+Troubleshooting completed/Notes:
+1. Action Take
+Set the querry to run the SEEK System Scan (differential ) from my lab
+a. Result: No new data
+2.
+a.","0054u000006goFBAAY","2024-07-16T19:07:09.000Z","2024-07-16T19:07:09.000Z","false","false"
+"00aQk000007y35RIAQ","500Qk00000D5ideIAB","last thing as i said in ticket there are no logs included since the scan is not erroring in anyway it is just not working as intended and this can be reproduced it is important to note DUE to nature of this problem it would be impacting most if not all current customers","0054u000006goFBAAY","2024-07-16T19:09:37.000Z","2024-07-16T19:09:37.000Z","false","false"
+"00aQk0000080b6DIAQ","500Qk00000D5ideIAB","Quick testing on our side appears to have similar issues in our lab.
+
+Tiger team is going to run with this for now but would like some more information from the customers environment. So this is officially a qualified escalation.
+
+1. Log files – we understand there’s no errors but dev will require it and it will confirm the versions (need SSD version for example), specifically we would like to see the log from the job
+2. We’ve seen the excel sheet provided but can you explain this a bit more?  We’ve put our heads together trying to figure out which report/table is generating this but if you can provide more information it will prevent us from guessing.
+3. Is there a proxy? 
+4. Exact version numbers of the console and the proxy versions?  and SSD add on version.","0054u000006gpoAAAQ","2024-07-18T16:06:25.000Z","2024-07-18T16:06:25.000Z","false","false"
+"00aQk00000814bFIAQ","500Qk00000D5ideIAB","LOGS HAVE BEEN UPLOADED","0054u000006goFBAAY","2024-07-18T21:12:36.000Z","2024-07-18T21:12:36.000Z","false","false"
+"00aQk00000818OjIAI","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Account ACV has been changed to 434064.96.
+Priority has been changed to High.","0054u000006gpoAAAQ","2024-07-18T22:11:22.000Z","2024-07-18T22:11:22.000Z","false","false"
+"00aQk000008174VIAQ","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Account ACV has been changed to 217032.48.","0054u000006gpoAAAQ","2024-07-18T22:11:23.000Z","2024-07-18T22:11:23.000Z","false","false"
+"00aQk0000081GNuIAM","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Testing with 11.6.0.84 and SDD 11.6.0.12
+
+
+Scan 0 subfolder depth with differential enabled.
+
+
+Increase depth to subfolder that includes a sensitive match test file and run scan again.
+
+Confirm in SA_FSDLP_MatchHitsView that no new matches were discovered.
+
+Disable differential scan and scan again.
+
+Confirm in SA_FSDLP_MatchHitsView that file match was discovered.  
+
+
+Increase scan depth to unlimited and run scan with differential enabled.
+
+Confirm in SA_FSDLP_MatchHitsView that no new file matches were discovered.
+
+Disable differential scan and rescan.
+
+Confirm in SA_FSDLP_MatchHitsView that new file matches were discovered.
+
+
+Renaming a file in a subfolder that has already been scanned with differential scans enabled appears does not cause the differential scan to catch that new file, e.g. no new matches in SA_FSDLP_MatchHitsView.
+
+New files do not appear to be getting scanned whether created in a new folder that had not been scanned or in a folder that had already been scanned. No difference if FSAA scan is run before or after SEEK scan, though new resources do show up in SA_FSAA_ResourcesView after FSAA scan.
+
+If initial differential scan is unlimited depth files are matched as expected. Adding new folders with new test files we do not get further matches unless differential scan is disabled.
+
+
+Issue does not appear to impact SPSEEK scans in testing.","0054u000006goFUAAY","2024-07-19T01:08:45.000Z","2024-07-19T01:08:45.000Z","false","false"
+"00aQk0000081h1WIAQ","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Priority has been changed to Critical.","0054u000006gpoAAAQ","2024-07-19T12:50:42.000Z","2024-07-19T12:50:42.000Z","false","false"
+"00aQk0000086C0HIAU","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-23T14:23:31.000Z","2024-07-23T14:23:31.000Z","false","false"
+"00aQk0000086C0JIAU","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Ethan Israel:
+
+@Michael Burrofato @Adam DeSapio @Chris Brooks @Helen Randall @Mike Longo @Robert Minichino @Salesforce - Dev reviewed this case and this behavior is expected. Our file system differential scanning logic only looks at the actual Modified Date of the file, if that modified date is later than the date of the last scan then the file gets scanned. When a file is renamed or copied from a different location the Modified Date does not change so the file would not be picked up by a differential scan. 
+
+This is a known limitation of our differential scanning logic and we have a roadmap item on the backlog to re-work differential scanning to account for scenarios like this. 
+
+[DevOps CommentId:10611083]","0054u000006gtWUAAY","2024-07-23T14:23:32.000Z","2024-07-23T14:23:32.000Z","false","false"
+"00aQk0000086K5uIAE","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Thanks for the update, Ethan.  Tiger team will do a little more testing/documentation of the problem and impact so we can figure out a plan to remediate while we wait for the longer-term roadmap item.","005Qk000000vbvhIAA","2024-07-23T15:35:36.000Z","2024-07-23T15:35:36.000Z","false","false"
+"00aQk0000089L8gIAE","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Uploaded 2 videos showing we captured SDD content after increasing subfolder depth and we captured new copied files in previously scanned folders with older versions of 11.5.","0054u000006goLGAAY","2024-07-25T16:17:29.000Z","2024-07-25T16:17:29.000Z","false","false"
+"00aQk0000089LBtIAM","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006goLGAAY","2024-07-25T16:18:02.000Z","2024-07-25T16:18:02.000Z","false","false"
+"00aQk000008G58nIAC","500Qk00000D5ideIAB","Hey team i need an update on this ticket for later today i have status call with customer and this is urgent  are meeting is at 3:30 EDT","0054u000006goFBAAY","2024-07-31T14:21:47.000Z","2024-07-31T14:21:47.000Z","false","false"
+"00aQk000008G5K5IAK","500Qk00000D5ideIAB","with latest updates it is unclear if this is even being addressed but i do know this is not how NEA has worked in past and Paul has uploaded video proving it","0054u000006goFBAAY","2024-07-31T14:23:18.000Z","2024-07-31T14:23:18.000Z","false","false"
+"00aQk000008GIu2IAG","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: hey team i really need an update on this ticket for status call later today at 3:30 EDT it is unclear where this stands at this time","0054u000006goFBAAY","2024-07-31T16:22:45.000Z","2024-07-31T16:22:45.000Z","false","false"
+"00aQk000008GQEsIAO","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Version this was working in 11.5.0.186
+Kurt says this no longer works in 11.5.0.249
+
+Chris Brooks looking into this","0054u000006goLGAAY","2024-07-31T17:22:23.000Z","2024-07-31T17:22:23.000Z","false","false"
+"00aQk000008GkThIAK","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-31T20:33:53.000Z","2024-07-31T20:33:53.000Z","false","false"
+"00aQk000008GkTjIAK","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Chris Brooks:
+
+@Salesforce 
+As Paul mentioned, I've been investigating this issue, and I believe the behavior changed with the code updates implemented in version 11.5.0.190. I'm scheduled to discuss this further with the development team tomorrow (8/1). However, I've noticed some discrepancies in the reproduction steps. When I add a file to a scanned location, new files and matches are detected in version 11.6. However, when I copy or rename an existing file, and the ""Date Modified"" remains unchanged, the behavior differs as Paul provided further evidence of. In version 11.5, the system would detect the file, whereas in version 11.6, the file is only mentioned in the applet logs with the message ""Skipping unmodified differential '{NameOfFile}'"". This behavior also occurs when adjusting the scan settings for subfolder depth.
+     I intend on having that behavior addressed and was wondering if these are the issues the customer is seeing or the behavior previously mentioned of adding a file in the scanned location and enabling differential scanning. 
+
+[DevOps CommentId:10656817]","0054u000006gtWUAAY","2024-07-31T20:33:54.000Z","2024-07-31T20:33:54.000Z","false","false"
+"00aQk000008GqndIAC","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-07-31T21:57:31.000Z","2024-07-31T21:57:31.000Z","false","false"
+"00aQk000008HhiJIAS","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: my customer is seeing this issue when increasing depth of scan","0054u000006goFBAAY","2024-08-01T15:25:11.000Z","2024-08-01T15:25:11.000Z","false","false"
+"00aQk000008LihOIAS","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-05T17:22:16.000Z","2024-08-05T17:22:16.000Z","false","false"
+"00aQk000008LihQIAS","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Helen Randall:
+
+@Salesforce this one will be brought into the next sprint, starting 6th Aug, for investigation.
+
+[DevOps CommentId:10686729]","0054u000006gtWUAAY","2024-08-05T17:22:17.000Z","2024-08-05T17:22:17.000Z","false","false"
+"00aQk000008M9hbIAC","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-08-05T22:07:14.000Z","2024-08-05T22:07:14.000Z","false","false"
+"00aQk000008Mx85IAC","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-06T14:10:43.000Z","2024-08-06T14:10:43.000Z","false","false"
+"00aQk000008Mx87IAC","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Michael Burrofato:
+
+@Salesforce @Helen Randall @Ethan Israel This has been pulled onto the sprint and is being investigated by development.
+
+[DevOps CommentId:10692137]","0054u000006gtWUAAY","2024-08-06T14:10:44.000Z","2024-08-06T14:10:44.000Z","false","false"
+"00aQk000008Nj1RIAS","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-08-06T21:52:30.000Z","2024-08-06T21:52:30.000Z","false","false"
+"00aQk000008R5TdIAK","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-09T12:14:08.000Z","2024-08-09T12:14:08.000Z","false","false"
+"00aQk000008R5TfIAK","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Helen Randall:
+
+@Salesforce this one is in the early stages of investigation. We will provide a further update next week.
+
+[DevOps CommentId:10709036]","0054u000006gtWUAAY","2024-08-09T12:14:09.000Z","2024-08-09T12:14:09.000Z","false","false"
+"00aQk000008Vo0jIAC","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-08-13T21:29:39.000Z","2024-08-13T21:29:39.000Z","false","false"
+"00aQk000008XjhhIAC","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-15T12:20:24.000Z","2024-08-15T12:20:24.000Z","false","false"
+"00aQk000008XjhjIAC","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Helen Randall:
+
+@Salesforce due to the unavailability of the original resource, this one has been reassigned and will be looked at very soon. 
+
+[DevOps CommentId:10753487]","0054u000006gtWUAAY","2024-08-15T12:20:25.000Z","2024-08-15T12:20:25.000Z","false","false"
+"00aQk000008XnOjIAK","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-08-15T13:14:03.000Z","2024-08-15T13:14:03.000Z","false","false"
+"00aQk000008Y63BIAS","500Qk00000D5ideIAB","i could really use a relevant update on this more importantly an ETA","0054u000006goFBAAY","2024-08-15T16:17:16.000Z","2024-08-15T16:17:16.000Z","false","false"
+"00aQk000008ZABBIA4","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-16T12:40:31.000Z","2024-08-16T12:40:31.000Z","false","false"
+"00aQk000008ZABDIA4","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Michael Burrofato:
+
+@Salesforce The issue is identified on the R&D side and we have an implementation plan to move forward with.
+
+Will provide updates as development takes place.
+
+[DevOps CommentId:10757612]","0054u000006gtWUAAY","2024-08-16T12:40:32.000Z","2024-08-16T12:40:32.000Z","false","false"
+"00aQk000008bbwrIAA","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-08-19T13:20:22.000Z","2024-08-19T13:20:22.000Z","false","false"
+"00aQk000008eV0VIAU","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-21T13:02:14.000Z","2024-08-21T13:02:14.000Z","false","false"
+"00aQk000008eWPaIAM","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Michael Burrofato:
+
+@Salesforce Development is actively working on a fix.
+
+[DevOps CommentId:10795860]","0054u000006gtWUAAY","2024-08-21T13:02:36.000Z","2024-08-21T13:02:36.000Z","false","false"
+"00aQk000008eYeHIAU","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-08-21T13:31:52.000Z","2024-08-21T13:31:52.000Z","false","false"
+"00aQk000008fzcPIAQ","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-22T13:04:53.000Z","2024-08-22T13:04:53.000Z","false","false"
+"00aQk000008gE6pIAE","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Michael Burrofato:
+
+@Salesforce A fix has been made and will be available in tomorrow's CU.
+
+A hotfix is also being created. Expect link shortly.
+
+[DevOps CommentId:10822268]","0054u000006gtWUAAY","2024-08-22T16:27:35.000Z","2024-08-22T16:27:35.000Z","false","false"
+"00aQk000008gWwYIAU","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Hotfix available in this KB article: https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk00000054UPIAY/view","0054u000006goGXAAY","2024-08-22T18:26:37.000Z","2024-08-22T18:26:37.000Z","false","false"
+"00aQk000008lO77IAE","500Qk00000D5ideIAB","Will attempted to do the hotfix but got held up due to EDR not playing nice.
+Added an exception and going to attempt to reapply today.
+Postponed to next week to await results","0054u000006gpoAAAQ","2024-08-27T15:49:34.000Z","2024-08-27T15:49:34.000Z","false","false"
+"00aQk000008mpWgIAI","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Hotfix implemented. 
+
+Uploaded screenshot. Appears to be duplicate SA_FSAA_Resources now in the SDD import. 
+
+Not sure if this is expected or we have a reason for this?","0054u000006gpoAAAQ","2024-08-28T15:17:48.000Z","2024-08-28T15:17:48.000Z","false","false"
+"00aQk000008mpZtIAI","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-08-28T15:17:55.000Z","2024-08-28T15:17:55.000Z","false","false"
+"00aQk000008nBFRIA2","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-28T18:40:47.000Z","2024-08-28T18:40:47.000Z","false","false"
+"00aQk000008nBFTIA2","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Chris Brooks:
+
+@Salesforce Hi Nick,
+
+We replicated that behavior before Dev made changes and provided a hotfix, so it seems unrelated to our changes and a benign issue. Other than this reported behavior have new files been added with the new differential scan hotfix implemented?
+
+[DevOps CommentId:10846593]","0054u000006gtWUAAY","2024-08-28T18:40:48.000Z","2024-08-28T18:40:48.000Z","false","false"
+"00aQk000008rwUHIAY","500Qk00000D5ideIAB","Waiting On COnfirmation from Will I'll update by Escalations on Thursday","0054u000006gpoAAAQ","2024-09-02T13:19:34.000Z","2024-09-02T13:19:34.000Z","false","false"
+"00aQk000008x3GbIAI","500Qk00000D5ideIAB","Litte more information in the short term.
+In my lab I have 3 test files. I have them in 3 places c:, c:testdata2, and c:testdata2new folder
+
+I started with level 2 scans so it never picked up the copies in new folder. went to level 3. it still did not pick them up post hotfix. 
+But then I ran a full scan level 2. and found the 2 sets of 3 files as expected. then I ran a level 3 and it picked up the set of 3 files in the ""new folder""
+
+So it appears post hotfix and a full scan it behaves as expected. however prior to the full scan it was not picking up files it previously skipped.","0054u000006gpoAAAQ","2024-09-06T13:57:52.000Z","2024-09-06T13:57:52.000Z","false","false"
+"00aQk000008xp58IAA","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Reproduced issue
+1. Drop all FSAA data for the host in my lab. T1 and T2.
+2. Run a Level 4 scan Permissions.
+3. Run non diff SDD Scan at level 2.  (I have data available at levels 1-4 in various test folders)
+4. Review results. See expected files at that scan.
+5. Run diff SDD at level 4. No new matches or results on subsequent SDD report run.
+6. Delete SDD data with Instant Job. I deleted host and Criteria.  FS_SDD_DELETE job.
+7. Re run non diff level 2 scan. And it picked up the expected results. 
+8. Re run Diff SDD at level 4 again. no new results just like step 5.
+
+Other observations. 
+1. If I copy a file from one level to the other say 2 to 3 between scans. It does get picked up as expected. 
+2. If I move a file from one level to the other it is ignored.
+3. Not the same issue and maybe this would be resolved if I ran perms but after moving files around and rescanning SDD, all records remain in matches even though the files don't exist in original location. SDD_DELETE job remedies this too. 
+4. I can run a full scan at level 4 and it picks up all expected files.","0054u000006gpoAAAQ","2024-09-06T21:51:51.000Z","2024-09-06T21:51:51.000Z","false","false"
+"00aQk000008xp8MIAQ","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: I have uploaded my Tier 2 as well as My JOB configs and logs from FSAA and SDD Scans and Imports.","0054u000006gpoAAAQ","2024-09-06T21:52:29.000Z","2024-09-06T21:52:29.000Z","false","false"
+"00aQk000008xp9xIAA","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-09-06T21:52:42.000Z","2024-09-06T21:52:42.000Z","false","false"
+"00aQk000008zRbPIAU","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Michael Burrofato:
+
+@Adam DeSapio @Ethan Israel @Chris Brooks @Helen Randall @Salesforce None of the artifacts that you just provided was using the hotfix that we provided on August 22nd.
+
+
+Logs show us you are using FSAA version 11.6.1417.259
+
+Fix is in FSAA version 11.6.1431.348
+
+Please apply the hotfix that was already provided.
+
+[DevOps CommentId:10894165]","0054u000006gtWUAAY","2024-09-09T11:50:19.000Z","2024-09-09T11:50:19.000Z","false","false"
+"00aQk000008zRbNIAU","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-09T11:50:19.000Z","2024-09-09T11:50:19.000Z","false","false"
+"00aQk000008zhhmIAA","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Alright. Corrected my mistakes from earlier. Uploading fresh information but I think It does work but I'll lay out the scenario.
+
+Confirmed if we drop all data after hotfix/cu update. It works as intended. can do a 0 level full SEEK scan. then do diffs as deep as required and it works.
+
+Customers generally don't want to drop all data but can drop the SEEK data. In order to preserve perms and activity data i did this and it seems to have worked.
+This is What I did.
+1. deleted all files with ""DLP"" in the name of the t2 files. 
+2. Rescanned 0 level full scan FS Seek job and Imported. It gave me the warning ""Tier 2 GUID does not match Tier 2 map GUID, resetting DLP data in order to import""
+3. Upped to Diff scan on FS Seek and ran a level 4 depth scan and import successfully.
+4. It picked up all SDD data as expected. 
+
+If that is the best way to go about this I will recommend the customer try but wanted to run it past you guys.","0054u000006gpoAAAQ","2024-09-09T14:51:51.000Z","2024-09-09T14:51:51.000Z","false","false"
+"00aQk000008ziFeIAI","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: new job logs and t2's from my lab uploaded in this folder. nzimmer_SDD_Test_9-9","0054u000006gpoAAAQ","2024-09-09T14:57:20.000Z","2024-09-09T14:57:20.000Z","false","false"
+"00aQk000008ziIrIAI","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-09-09T14:57:35.000Z","2024-09-09T14:57:35.000Z","false","false"
+"00aQk000008zjQEIAY","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: I also ran the FS_SDD_DELETE job in step one.","0054u000006gpoAAAQ","2024-09-09T15:05:34.000Z","2024-09-09T15:05:34.000Z","false","false"
+"00aQk0000092Sr4IAE","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-11T13:46:33.000Z","2024-09-11T13:46:33.000Z","false","false"
+"00aQk0000092Sr6IAE","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Adam DeSapio:
+
+@Chris Brooks @Salesforce @Ethan Israel 
+
+Those steps will work
+
+[DevOps CommentId:10911858]","0054u000006gtWUAAY","2024-09-11T13:46:34.000Z","2024-09-11T13:46:34.000Z","false","false"
+"00aQk00000931tdIAA","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-09-11T19:02:22.000Z","2024-09-11T19:02:22.000Z","false","false"
+"00aQk000009CAfxIAG","500Qk00000D5ideIAB","I emailed the customer to follow Nicholas's suggestions. The customer replied, ""Will helped me already with this.""","0054u000007osjSAAQ","2024-09-19T14:38:30.000Z","2024-09-19T14:38:30.000Z","false","false"
+"00aQk000009P5vOIAS","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the new comment has been added: Customer finally confirmed we are good to close.","0054u000006gpoAAAQ","2024-09-30T22:51:19.000Z","2024-09-30T22:51:19.000Z","false","false"
+"00aQk000009P0cNIAS","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2024-09-30T22:52:09.000Z","2024-09-30T22:52:09.000Z","false","false"
+"00aQk000009P0cPIAS","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Account ACV has been changed to 434064.96.","0054u000006gpoAAAQ","2024-09-30T22:52:11.000Z","2024-09-30T22:52:11.000Z","false","false"
+"00aQk000009P60DIAS","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Account ACV has been changed to 217032.48.","0054u000006gpoAAAQ","2024-09-30T22:52:17.000Z","2024-09-30T22:52:18.000Z","false","false"
+"00aQk00000ChpV0IAJ","500Qk00000D5ideIAB","On Escalation Ticket # 00415459 the Following Fields have been updated: 
+Account ACV has been changed to 402432.28.","0054u000006gtWUAAY","2025-04-03T13:23:11.000Z","2025-04-03T13:23:11.000Z","false","false"

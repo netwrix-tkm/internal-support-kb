@@ -1,0 +1,115 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000Vr7KrKAJ","500Qk00000LIhFJIA1","TextPost","0054u000008ARZjAAO","2025-01-31T05:40:42.000Z","Description: I am not getting data for 3-4 Nasuni's","","","","0054u000008ARZjAAO","2025-01-31T05:40:42.000Z"
+"0D5Qk00000Vr7j3KAB","500Qk00000LIhFJIA1","TextPost","005Qk00000214EvIAI","2025-01-31T05:45:38.000Z","What We've Learned Updated: US Customer. -10 UTC","","","","005Qk00000214EvIAI","2025-01-31T05:45:38.000Z"
+"0D5Qk00000W10qSKAR","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-02-03T17:16:35.000Z","Invitation updated. Attendees: Scottie Taylor, Chad Fontanini","","","","0054u000007MdqrAAC","2025-02-03T17:16:35.000Z"
+"0D5Qk00000W10qRKAR","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-02-03T17:16:35.000Z","Invitation updated. Attendees: Scottie Taylor","","","","0054u000007MdqrAAC","2025-02-03T17:16:35.000Z"
+"0D5Qk00000W10qQKAR","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-02-03T17:16:35.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007MdqrAAC","2025-02-03T17:16:35.000Z"
+"0D5Qk00000W1tWpKAJ","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-02-03T20:24:47.000Z","What We've Learned Updated: US Customer. -10 UTC
+-------------------------------------------------------
+
+Today we:
+
+Discovered that the FSAC System Scan for Nasuni hosts list was only targeting an individual host instead of the Nasuni host list built by the discovery job. 
+
+Removed the individual host and configured the job to use the Nasuni host list. Once this setting was changed we then ran the activity group from the scheduled tasks.","","","","0054u000007MdqrAAC","2025-02-03T20:24:47.000Z"
+"0D5Qk00000W1tWqKAJ","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-02-03T20:24:48.000Z","Next Steps Updated: Our next steps are:
+
+You will:
+
+Monitor the FSAC System Scan and Bulk Import for any errors. 
+
+Verify that updated data from the new Nasuni hosts have been successfully imported and is displayed within the AIC.","","","","0054u000007MdqrAAC","2025-02-03T20:24:48.000Z"
+"0D5Qk00000WAXgSKAX","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-02-05T15:39:26.000Z","What We've Learned Updated: US Customer. -10 UTC
+-------------------------------------------------------
+
+Today we:
+
+Discovered that the FSAC System Scan for Nasuni hosts list was only targeting an individual host instead of the Nasuni host list built by the discovery job. 
+
+Removed the individual host and configured the job to use the Nasuni host list. Once this setting was changed we then ran the activity group from the scheduled tasks.
+----------------------------------------------------------
+
+Customer is currently running the FSAA system scan job to build out the file structure for a Nasuni filer within the AIC. 
+
+FSAA job has been running for 9 hours and POC will monitor and provide an update if the job does not complete.","","","","0054u000007MdqrAAC","2025-02-05T15:39:26.000Z"
+"0D5Qk00000Yf0F3KAJ","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-03-07T18:28:49.000Z","What We've Learned Updated: 3/7/25
+
+Investigated the FSAA System Scan again and the scan was still running for 574 hours at a 12 level scan depth. In order to verify if there were any major issues with host that could cause the scan to take longer we attempted to run a 0 level scan. This generated non-factor access errors below that would not cause performance issues with the scan.
+
+HOST  SA_HOST  JobRunTimeKey  MSG_TYPE  TableName  MESSAGE  TaskName  SequenceID  MessageTimestamp
+NYNFILER102  NPNETWRIXSMP101  3/7/2025 9:11:00 AM  ERROR  Access  Error enumerating security descriptor for \NYNFILER102ftp$ while Instantiate file path security descriptor Error:  67 Unable to retrieve DACL : The network name cannot be found      3/7/2025 9:23:40 AM
+NYNFILER102  NPNETWRIXSMP101  3/7/2025 9:11:00 AM  ERROR  Access  Error enumerating TFolderEnumerator:  Unable to perform folder scan for \NYNFILER102ftp$ Error code(67): The network name cannot be found      3/7/2025 9:23:54 AM
+NYNFILER102  NPNETWRIXSMP101  3/7/2025 9:11:00 AM  ERROR  Access  Error expanding folder \NYNFILER102ftp$  Unable to perform folder scan for \NYNFILER102ftp$ Error code(67): The network name cannot be found      3/7/2025 9:23:54 AM
+
+We also verified the thread count for the job and threads were set to 15 with only 11 Nasuni hosts. Additionally, only one Nasuni host was causing long run times for the FSAA system scan. 
+
+Once the FSAA System scan was complete at a 0 level we were successfully able to run a Bulk Import. This indicated that this may not be a performance issue with the scan but a volume issue. 
+
+We then increased the scan depth starting with 3 and will continue to take an incremental approach while a review of how far deep we should be scanning for files takes place.
+-------------------------------------------------
+US Customer. -10 UTC
+-------------------------------------------------------
+
+Today we:
+
+Discovered that the FSAC System Scan for Nasuni hosts list was only targeting an individual host instead of the Nasuni host list built by the discovery job. 
+
+Removed the individual host and configured the job to use the Nasuni host list. Once this setting was changed we then ran the activity group from the scheduled tasks.
+----------------------------------------------------------
+
+Customer is currently running the FSAA system scan job to build out the file structure for a Nasuni filer within the AIC. 
+
+FSAA job has been running for 9 hours and POC will monitor and provide an update if the job does not complete.","","","","0054u000007MdqrAAC","2025-03-07T18:28:49.000Z"
+"0D5Qk00000Yf0F4KAJ","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-03-07T18:28:49.000Z","Next Steps Updated: 3/7/25
+
+Our next steps are:
+
+You will:
+
+Provide an update on the progress and results of the FSAA system scan as well as the Bulk Import. 
+
+Provide an update of how far our target goal of scan depth should be.
+---------------------------------------------------
+Our next steps are:
+
+You will:
+
+Monitor the FSAC System Scan and Bulk Import for any errors. 
+
+Verify that updated data from the new Nasuni hosts have been successfully imported and is displayed within the AIC.","","","","0054u000007MdqrAAC","2025-03-07T18:28:49.000Z"
+"0D5Qk00000YtYgqKAF","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-03-10T19:33:27.000Z","What We've Learned Updated: 3/10/25
+
+Update from customer below:
+
+Scotty,
+
+ The lvl 3 scan finally completed and now I am running the lvl6 deep scan.
+-------------------------------------------------------3/7/25
+
+Investigated the FSAA System Scan again and the scan was still running for 574 hours at a 12 level scan depth. In order to verify if there were any major issues with host that could cause the scan to take longer we attempted to run a 0 level scan. This generated non-factor access errors below that would not cause performance issues with the scan.
+
+HOST  SA_HOST  JobRunTimeKey  MSG_TYPE  TableName  MESSAGE  TaskName  SequenceID  MessageTimestamp
+NYNFILER102  NPNETWRIXSMP101  3/7/2025 9:11:00 AM  ERROR  Access  Error enumerating security descriptor for \NYNFILER102ftp$ while Instantiate file path security descriptor Error:  67 Unable to retrieve DACL : The network name cannot be found      3/7/2025 9:23:40 AM
+NYNFILER102  NPNETWRIXSMP101  3/7/2025 9:11:00 AM  ERROR  Access  Error enumerating TFolderEnumerator:  Unable to perform folder scan for \NYNFILER102ftp$ Error code(67): The network name cannot be found      3/7/2025 9:23:54 AM
+NYNFILER102  NPNETWRIXSMP101  3/7/2025 9:11:00 AM  ERROR  Access  Error expanding folder \NYNFILER102ftp$  Unable to perform folder scan for \NYNFILER102ftp$ Error code(67): The network name cannot be found      3/7/2025 9:23:54 AM
+
+We also verified the thread count for the job and threads were set to 15 with only 11 Nasuni hosts. Additionally, only one Nasuni host was causing long run times for the FSAA system scan. 
+
+Once the FSAA System scan was complete at a 0 level we were successfully able to run a Bulk Import. This indicated that this may not be a performance issue with the scan but a volume issue. 
+
+We then increased the scan depth starting with 3 and will continue to take an incremental approach while a review of how far deep we should be scanning for files takes place.
+-------------------------------------------------
+US Customer. -10 UTC
+-------------------------------------------------------
+
+Today we:
+
+Discovered that the FSAC System Scan for Nasuni hosts list was only targeting an individual host instead of the Nasuni host list built by the discovery job. 
+
+Removed the individual host and configured the job to use the Nasuni host list. Once this setting was changed we then ran the activity group from the scheduled tasks.
+----------------------------------------------------------
+
+Customer is currently running the FSAA system scan job to build out the file structure for a Nasuni filer within the AIC. 
+
+FSAA job has been running for 9 hours and POC will monitor and provide an update if the job does not complete.","","","","0054u000007MdqrAAC","2025-03-10T19:33:27.000Z"
+"0D5Qk00000Z59NiKAJ","500Qk00000LIhFJIA1","TextPost","0054u000007MdqrAAC","2025-03-12T20:09:33.000Z","Steps to Reproduce Updated: N/A","","","","0054u000007MdqrAAC","2025-03-12T20:09:33.000Z"

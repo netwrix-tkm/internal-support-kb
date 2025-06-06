@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LbXH8IAN","00435090","Support Ticket","Issue with LAPS Reporting in Pie Charts and Table","The PingCastle report incorrectly indicates that Windows LAPS is not deployed on any Windows 10 (22H2) computers, despite it being fully deployed across both servers and workstations. The issue appears to be related to how PingCastle processes Windows LAPS vs. Legacy LAPS data.","Deploy Windows LAPS across multiple systems (Windows 10 22H2, servers, and workstations).
+Run a PingCastle Enterprise scan.
+Navigate to the LAPS reporting section within the unlocked report.
+Observe that the report does not recognize Windows LAPS on Windows 10 devices.
+Verify the LAPS Distribution Graph, which does recognize Windows LAPS but does not reflect it in other reporting areas.","Windows LAPS was not properly included in the analysis.
+The ""Number of LAPS Installed"" metric was designed for Legacy LAPS only.
+The Excel export and dashboard pie charts did not factor in Windows LAPS.
+The root cause was identified in how Windows LAPS data is retrieved and processed in the reports.","Implemented a fix in a new version to properly detect and differentiate Windows LAPS.
+Column adjustments in the report:
+Renamed “Number of LAPS Installed” to “Legacy LAPS”.
+Added “Microsoft LAPS” column to track Windows LAPS separately.
+Introduced a “Combined Total” column summing both values.
+Updated pie charts to reflect Windows LAPS data properly.
+The issue has been escalated and resolved in the latest release.","A new version of PingCastle Enterprise has been released, which properly detects Windows LAPS deployments across all supported systems, including Windows 10 (22H2), servers, and workstations.
+
+Users are advised to update to the latest version to ensure accurate LAPS reporting.","Product defect","Iulia Apatachioaei","Unexpected Behavior","PingCastle","PC Enterprise","PingCastle General","","","19.0","Closed - Resolved","Euronext Technolog. Unipessoal LDA","emmanuel Broggi","2025-02-07T15:28:28.000Z","2025-02-26T15:01:53.000Z"

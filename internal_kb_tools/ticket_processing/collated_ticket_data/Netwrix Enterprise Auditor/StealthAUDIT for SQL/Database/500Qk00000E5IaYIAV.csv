@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000E5IaYIAV","00417276","Support Ticket","GSFC Information Request","clarify if there is any way we can scan databases which are ONLINE only. We can ping servers but some databases on the servers are offline and this is causing an issue with the NOC.
+You can query real time as part of your query to verify you’re not hitting an offline database.
+
+SELECT name FROM sys.databases WHERE state = 0;
+
+Here’s a list of the state descriptions:
+
+0 = ONLINE
+1 = RESTORING
+2 = RECOVERING 1
+3 = RECOVERY_PENDING 1
+4 = SUSPECT
+5 = EMERGENCY 1
+6 = OFFLINE 1
+7 = COPYING 2
+10 = OFFLINE_SECONDARY 2
+
+This is ok if we are querying a handful of databases interactively but is there a way we can perform this automatically via StealthAudit?","","","","NEA cannot scan only the ""Online"" databases unless the exact scan scope of the databases is specified to scan their permissions
+Database objects can be filtered out in the Query setting of the SQL_PermissionScan job.","Missing functionality / Feature request","Aleksandr Timofeev","","Netwrix Enterprise Auditor","StealthAUDIT for SQL","Database","11.6","","7.7","Closed - Resolved","Allstate Insurance Company","Kaviya -","2024-08-06T16:24:50.000Z","2024-08-14T08:17:11.000Z"

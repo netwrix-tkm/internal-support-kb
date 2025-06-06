@@ -1,0 +1,40 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000ao1hmKAA","500Qk00000NZ3VfIAL","TextPost","0054u000008ARZjAAO","2025-04-01T14:53:29.000Z","Description: One of our hosts has error while performing bulk import. 
+Erro: Failed to import SA_FSAA_Resources: database disk image is malformed
+database disk image is malformed.
+code = Corrupt (11), message = <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at <a href='https://System.Data.SQLite.SQLite3.Step' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+   at <a href='https://System.Data.SQLite.SQLiteDataReader.Read' target='_blank'>System.Data.SQLite.SQLiteDataReader.Read</a>()
+   at <a href='https://Dapper.WrappedReader.System.Data.IDataReader.Read' target='_blank'>Dapper.WrappedReader.System.Data.IDataReader.Read</a>()
+   at <a href='https://Stealthbits.Common.Database.BatchDataReaderWrapper.Read' target='_blank'>Stealthbits.Common.Database.BatchDataReaderWrapper.Read</a>()
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.ReadFromRowSource()
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.ReadFromRowSourceAsync(CancellationToken cts)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.CopyRowsAsync(Int32 rowsSoFar, Int32 totalRows, CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.CopyBatchesAsyncContinued(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.CopyBatchesAsync(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteToServerInternalRestContinuedAsync(BulkCopySimpleResultSet internalResults, CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteToServerInternalRestAsync(CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteToServerInternalAsync(CancellationToken ctoken)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteRowSourceToServerAsync(Int32 columnCount, CancellationToken ctoken)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteToServer(IDataReader reader)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Import.Import.BulkImport(TableDefinition definition, String tempTableName, String mergeSql)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Import.Import.ImportData(TableDefinition definition, String tempTableName, ImportType importType, Object[,] parameters)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.ImportTable(Import import, TableDefinition table, Int32 hostId, TimeSpan strucMapTime)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+While running a repair in maintenance mode for this host there is an error: 
+Repair tool could not complete: 
+One or more errors occurred.","","","","0054u000008ARZjAAO","2025-04-01T14:53:29.000Z"
+"0D5Qk00000asS86KAE","500Qk00000NZ3VfIAL","TextPost","0054u000007ow49AAA","2025-04-02T15:21:18.000Z","Steps to Reproduce Updated: Run bulk import for BREDSNTP008","","","","0054u000007ow49AAA","2025-04-02T15:21:18.000Z"
+"0D5Qk00000at4rkKAA","500Qk00000NZ3VfIAL","TextPost","0054u000007ow49AAA","2025-04-02T15:41:04.000Z","What We've Learned Updated: database disk image is malformed
+^ seen this being fixed by dropping t2","","","","0054u000007ow49AAA","2025-04-02T15:41:04.000Z"
+"0D5Qk00000at7apKAA","500Qk00000NZ3VfIAL","TextPost","0054u000007ow49AAA","2025-04-02T15:42:51.000Z","Next Steps Updated: Asking T2 about this","","","","0054u000007ow49AAA","2025-04-02T15:42:51.000Z"
+"0D5Qk00000bUgxSKAS","500Qk00000NZ3VfIAL","TextPost","005Qk0000018eMHIAY","2025-04-10T13:22:08.000Z","<p>Management Escalation request approved. Here are the details: </p><p>I believe that we have been at the same point before. We know that the problem can be fixed by removing the host from the database completely, however, what is the root cause of the T1T2 Database to become corrupted? Is there something that we can do to prevent this from happening?</p>","","","","005Qk0000018eMHIAY","2025-04-17T13:04:20.000Z"
+"0D5Qk00000c0ZbFKAU","500Qk00000NZ3VfIAL","TextPost","0054u000007ow49AAA","2025-04-17T13:05:47.000Z","Next Steps Updated: Asking T2 about this
+Waiting PM/R&D response about 'why databases corrupt'","","","","0054u000007ow49AAA","2025-04-17T13:05:47.000Z"
+"0D5Qk00000c0xcGKAQ","500Qk00000NZ3VfIAL","TextPost","0054u000007ow49AAA","2025-04-17T14:41:58.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007ow49AAA","2025-04-17T14:41:58.000Z"
+"0D5Qk00000c0xcHKAQ","500Qk00000NZ3VfIAL","TextPost","0054u000007ow49AAA","2025-04-17T14:41:58.000Z","Invitation updated. Attendees: Ilya Kotov","","","","0054u000007ow49AAA","2025-04-17T14:41:58.000Z"
+"0D5Qk00000c0xcIKAQ","500Qk00000NZ3VfIAL","TextPost","0054u000007ow49AAA","2025-04-17T14:41:59.000Z","Invitation updated. Attendees: Ilya Kotov, Olaf Wiśniewski","","","","0054u000007ow49AAA","2025-04-17T14:41:59.000Z"

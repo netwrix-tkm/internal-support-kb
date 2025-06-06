@@ -1,0 +1,15 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LxkfXIAR","00436009","Support Ticket","Report Generation Errors, AD attributes not populating","A report called BT_Billing does not getting generated with its attributes. An error while executing the analysis for an attribute called 'Company'.","In SQL DB, reference two or more tables/views with same column name present in all of them in a SQL script and you will get an error:
+Ambiguous Column Name: COLUMN_NAME","Customer has a custom SQL Analysis that has two tasks. One is to get data from multiple tables and views and essentially create another DB table in SQL. The second task exports that data using reports functionality and drops it at a location as a CSV file.
+
+There were two SQL views that had a column name """"Company"" due to which SQL task 1 was not running.
+
+During our meeting today, we corrected the reference to ""company"" column in the SELECT statement. Job is now running","I will follow up tomorrow with the customer as the job takes 20-25 minutes to complete.","Symptom
+When you were running a custom job to fetch data inside a SQL DB, you were getting an error:
+Ambiguous Column Name: ""Company""
+
+Cause
+There were multiple tables/views that had a column with same name i.e., ""Column""
+
+Resolution
+To resolve this issue, we modified the SQL query to target ""company"" column for only one and valid table/view.","Incorrect configuration: target server software","Saqib Sharif","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Reports","11.6","11.6.0.55","2.9","Closed - Resolved","Shell Information Technology International, Inc.","Brige PG","2025-02-17T06:21:08.000Z","2025-02-20T04:40:32.000Z"

@@ -1,0 +1,39 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NIqNuIAL","00439897","Support Ticket","""DropFSHostData"" Job failed with ""Job connection profile is not available"".","Customer has configured ""DropFSHostData"" job to remove data for decommissioned hosts from Enterprise Auditor database using steps from this KB article:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+Job has failed with ""Job connection profile is not available"".","Configure ""DropFSHostData"" using this KB:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+Have empty connection profile. 
+Job fails with ""Job connection profile is not available"".","----------
+25.03.2025 
+
+Customer has configured ""DropFSHostData"" job to remove data for decommissioned hosts from Enterprise Auditor database using steps from this KB article:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+Job failed with ""Job connection profile is not available"".
+
+Will schedule remote session to have a closer look.
+
+-----
+26.03.2025 
+
+The ""DropFSHostData"" job had empty connection profile (no connection profile was selected). 
+Even though job is not scanning any data but removing it from NEA SQL db - it still needs connection profile to run. 
+We configured ""DropFSHostData"" job with one of the connection profiles they had in NEA, then we restarted job.
+
+----------
+01.04.2025 
+
+Customer replied that ""DropFSHostData"" job now runs successfully, but it took 5+ hours to complete for 2 hosts. 
+
+Checked the logs - most of the time job spent on performing analysis task ""FSAA _hosts"". (this task does select statement from FSAA_Hosts table).
+In case of this customer - they have 13K+ hosts.
+
+Suggested disabling this analysis task, then check how long job will take without it.","Customer will test ""DropFSHostData"" job with ""FSAA_Hosts"" analysis task disabled and will get back to us with results.","The ""DropFSHostData"" job was not starting.
+After checking its settings we noticed that job had empty connection profile (no connection profile was selected).
+
+Even though job is not scanning any data but removing it from NEA SQL db - it still needs connection profile to run.
+We configured ""DropFSHostData"" job with one of the connection profiles in NEA, then we restarted job.
+
+As of now the job is running and removing data.","Guidance","Artem Naskal","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Configuration","11.6","","10.2","Closed - Resolved","Allstate Insurance Company","Stealth Audit","2025-03-25T12:28:17.000Z","2025-04-04T16:23:33.000Z"

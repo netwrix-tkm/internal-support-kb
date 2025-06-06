@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000O96ZqIAJ","00442356","Support Ticket","[TSMC] A question regard to the report of unique Trustee","Hi Support,
+
+Here is a question from TSMC regarding the report of unique Trustee,first of all,why the Trustee has a vaule like sID ,for example,""S-1-5-21XXX"" .
+Then what does it mean the value of of Inheritance is ""Identical Rights""
+Look forward to hearing from you.
+
+Jimmy","N/A","The customer wants to know what does ""Identical Rights"" mean when running the Broken Inheritance job. ""identical rights"" mean that a trustee has same permissions on the parent folder and folder inside that you are currently looking at. 
+
+Moreover, they also wanted to know why some SIDs were not getting translated to accounts. They have been guided that either those accounts are no longer present in AD or .ADI needs to be re-run. To verify if accounts exist against a SID, check in Powershell with AD module installed:
+
+$SID = ""S-1-5-21-1234567890-1234567890-1234567890-1234""
+$objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
+$user = Get-ADUser -Filter { ObjectSID -eq $objSID }
+$user","Awaiting customer's response","Query
+When observing the results of Broken Inheritance job, in one report you were seeing SIDs and ""Identical Rights"" key word. You wanted to clarify what those words meant.
+
+Resolution
+""Identical rights"" mean that a trustee has same permissions on the parent folder and folder inside that you are currently looking at. Moreover, if a SID is present for only few entries then it means that user account associated with that SID no longer exists in Active Directory or the .Active Directory Inventory job needs to be run to update the data. You can also verify this using this command in elevated PowerShell:
+
+$SID = ""S-1-5-21-1234567890-1234567890-1234567890-1234""
+$objSID = New-Object System.Security.Principal.SecurityIdentifier($SID)
+$user = Get-ADUser -Filter { ObjectSID -eq $objSID }
+$user","Data Validation/Interpretation","Saqib Sharif","Question","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Activity Auditing","11.6","11.6.0.14","8.2","Closed - Resolved","TSMC","Support Sphinxtec","2025-04-17T03:24:17.000Z","2025-04-25T07:30:02.000Z"

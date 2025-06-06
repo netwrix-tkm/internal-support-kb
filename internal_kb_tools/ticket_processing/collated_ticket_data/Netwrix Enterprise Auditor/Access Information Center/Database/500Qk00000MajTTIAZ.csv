@@ -1,0 +1,30 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MajTTIAZ","00437825","Support Ticket","AIC SQL errors when adding resources","As referenced in 00432286, I am opening this new case to get this addressed.  I am unable to manually add or import new resources for review.  I cannot use AIC until this is resolved.
+
+I get the same sort of DB errors we saw before in 00432286. The GUI says, There was an error saving your changes.
+
+On 3/3 in the attached log:
+Cannot insert the value NULL into column 'ID', table '<a href='https://StealthAudit.dbo' target='_blank'>StealthAudit.dbo</a>.SA_AIC_Resources'; column does not allow nulls. INSERT fails.","","The issue with the ""SA_AIC_Resources"" table has been resolved
+
+A similar error is now happening with ""SA_AIC_ResourceReviews"" - it appears that the AIC tables are missing identity columns, which is likely causing these errors, and may arise with other tables after this one is addressed.","Provided SQL script from dev to customer and will await results.
+
+The query returns the AIC tables that have identity columns and it should return 14 tables on the ""ID"":
+- SA_AIC_AuditEvents
+- SA_AIC_FlexibleActivityEvents
+- SA_AIC_FlexibleHosts
+- SA_AIC_FlexibleLocalGroupMembership
+- SA_AIC_FlexiblePermissions
+- SA_AIC_FlexibleResources
+- SA_AIC_FlexibleSddMatches
+- SA_AIC_FlexibleSddMatchHits
+- SA_AIC_FlexibleSddMatchSubjectProfiles
+- SA_AIC_GroupMemberChanges
+- SA_AIC_ResourceAccessRequests
+- SA_AIC_ResourceReviewResponses
+- SA_AIC_ResourceReviews
+- SA_AIC_Resources column:","This all spurred from an attempt to clean up database due to a previously neglected instance of NAA/Stealthaudit..
+
+After restoring AIC tables ended up with many constraints.
+Redid the ADI jobs as well as used scripts from development to remove and remake the AIC tables.
+
+AIC is back to full functionality.","Guidance","Nicholas Zimmer","Error","Netwrix Enterprise Auditor","Access Information Center","Database","11.6","","35.9","Closed - Resolved","Nexidia","Angie Sawyer","2025-03-05T17:40:49.000Z","2025-04-10T14:46:55.000Z"

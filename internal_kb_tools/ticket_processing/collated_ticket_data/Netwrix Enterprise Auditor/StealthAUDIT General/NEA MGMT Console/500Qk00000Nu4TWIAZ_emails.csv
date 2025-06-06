@@ -1,0 +1,435 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000NcQSTIA3","500Qk00000Nu4TWIAZ","2025-04-10T21:25:30.000Z","2025-04-10T21:25:30.000Z","Hi Scott,
+
+In NEA (or NAA) are you referring to ""Host Management"" where there are a number of created host lists?
+
+See the Netwrix Help Center documentation here:
+
+NEA v11.6 - Hosts Lists
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists.htm
+
+Or are you referring to somewhere else?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0Nu4TW:ref","How to Determine Host Group Membership by Host    [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com","","false","2025-04-10T21:25:28.000Z","true"
+"02sQk00000NdlYHIAZ","500Qk00000Nu4TWIAZ","2025-04-11T14:52:49.000Z","2025-04-11T16:24:34.000Z","ref:_00D7091pB._500Q000Nu4TW:ref
+
+Yes. My question is given a host, how can I determine all of the host groups it is a member of? I don't see the answer in the documentation links you provided. I'll be out of the office until Monday.
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+Company Use
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 10, 2025 4:26 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+Hi Scott, In NEA (or NAA) are you referring to ""Host Management"" where there are a number of created host lists? See the Netwrix Help Center documentation here: NEA v11. 6 - Hosts Lists https: //helpcenter. netwrix. com/bundle/EnterpriseAuditor_11. 6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists. htm
+
+
+Hi Scott,
+
+In NEA (or NAA) are you referring to ""Host Management"" where there are a number of created host lists?
+
+See the Netwrix Help Center documentation here:
+
+NEA v11.6 - Hosts Lists<https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists.htm>
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists.htm
+
+Or are you referring to somewhere else?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+ref:!00D70091pB.!500Qk0Nu4TW:ref","RE: Netwrix Support Ticket #441574 - ref:_00D7091pB._500Q000Nu4TW:ref - How to Determine Host Group Membership by Host    [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]","priggescottm@johndeere.com","Scott Prigge","techsupport@netwrix.com","eric.szymanski@netwrix.com","","false","2025-04-11T14:52:36.000Z","true"
+"02sQk00000Net0eIAB","500Qk00000Nu4TWIAZ","2025-04-11T21:22:54.000Z","2025-04-11T21:22:54.000Z","Hi Scott,
+
+Here is the SQL that could be configured in a Job to achieve what you are looking for.
+
+I would run it against your database to see what it returns for a list. 
+
+select hmt.name as Host_Name
+, hlt.name as list_name
+from HostListsContentTbl hlct
+join HostListsTbl hlt on hlt.listID = hlct.listID
+join SA_HostMasterTbl hmt on hmt.hostID = hlct.hostID
+order by hmt.name, hlt.name 
+;
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 4/11/2025 10:52 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #441574 - ref:_00D7091pB._500Q000Nu4TW:ref - How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+ref:_00D7091pB._500Q000Nu4TW:ref
+
+
+
+Yes. My question is given a host, how can I determine all of the host groups it is a member of? I don't see the answer in the documentation links you provided. I'll be out of the office until Monday.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 10, 2025 4:26 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+
+ 
+
+
+Hi Scott, In NEA (or NAA) are you referring to ""Host Management"" where there are a number of created host lists? See the Netwrix Help Center documentation here: NEA v11. 6 - Hosts Lists https: //helpcenter. netwrix. com/bundle/EnterpriseAuditor_11. 6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists. htm
+
+
+
+ 
+
+
+Hi Scott,
+
+In NEA (or NAA) are you referring to ""Host Management"" where there are a number of created host lists?
+
+See the Netwrix Help Center documentation here:
+
+NEA v11.6 - Hosts Lists
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists.htm
+
+Or are you referring to somewhere else?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Nu4TW:ref","RE: Netwrix Support Ticket #441574 -  - How to Determine Host Group Membership by Host    [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com","","false","2025-04-11T21:22:53.000Z","true"
+"02sQk00000NjFH6IAN","500Qk00000Nu4TWIAZ","2025-04-14T18:30:08.000Z","2025-04-14T20:06:34.000Z","ref:_00D7091pB._500Q000Nu4TW:ref
+
+That query seems to provide me with the information I need. Thanks. You can close out this case.
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+Company Use
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 11, 2025 4:23 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #441574 - - How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+Hi Scott, Here is the SQL that could be configured in a Job to achieve what you are looking for. I would run it against your database to see what it returns for a list. select hmt. name as Host_Name , hlt. name as list_name from HostListsContentTbl
+
+Hi Scott,
+
+Here is the SQL that could be configured in a Job to achieve what you are looking for.
+
+I would run it against your database to see what it returns for a list.
+
+select hmt.name as Host_Name
+, hlt.name as list_name
+from HostListsContentTbl hlct
+join HostListsTbl hlt on hlt.listID = hlct.listID
+join SA_HostMasterTbl hmt on hmt.hostID = hlct.hostID
+order by hmt.name, hlt.name
+;
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 4/11/2025 10:52 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #441574 - ref:_00D7091pB._500Q000Nu4TW:ref - How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+ref:_00D7091pB._500Q000Nu4TW:ref
+
+
+Yes. My question is given a host, how can I determine all of the host groups it is a member of? I don't see the answer in the documentation links you provided. I'll be out of the office until Monday.
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+Company Use
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, April 10, 2025 4:26 PM
+To: Scott Prigge <priggescottm@johndeere.com<mailto:priggescottm@johndeere.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+Hi Scott, In NEA (or NAA) are you referring to ""Host Management"" where there are a number of created host lists? See the Netwrix Help Center documentation here: NEA v11. 6 - Hosts Lists https: //helpcenter. netwrix. com/bundle/EnterpriseAuditor_11. 6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists. htm
+
+
+Hi Scott,
+
+In NEA (or NAA) are you referring to ""Host Management"" where there are a number of created host lists?
+
+See the Netwrix Help Center documentation here:
+
+NEA v11.6 - Hosts Lists<https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists.htm>
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists.htm
+
+Or are you referring to somewhere else?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+ref:!00D70091pB.!500Qk0Nu4TW:ref","RE: Netwrix Support Ticket #441574 -  - How to Determine Host Group Membership by Host    [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]","priggescottm@johndeere.com","Scott Prigge","techsupport@netwrix.com","eric.szymanski@netwrix.com","","false","2025-04-14T18:29:53.000Z","true"
+"02sQk00000Njaa2IAB","500Qk00000Nu4TWIAZ","2025-04-14T20:08:38.000Z","2025-04-14T20:08:38.000Z","Hi Scott,
+I am glad that we were able to get your issue resolved.
+The following is a summary of the ticket for your records.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+++
+
+DECLARE @Server NVARCHAR(50) = 'MCANDON-FS';
+SELECT Name from HostListsTbl where listID in (
+SELECT listID FROM HostListsContentTbl where hostID = (
+SELECT hostID FROM SA_HostMasterTbl where Name = @Server));
+
+++
+++
+
+select hmt.name as Host_Name
+, hlt.name as list_name
+from HostListsContentTbl hlct
+join HostListsTbl hlt on hlt.listID = hlct.listID
+join SA_HostMasterTbl hmt on hmt.hostID = hlct.hostID
+order by hmt.name, hlt.name
+;
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 4/14/2025 2:29 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #441574 - - How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+ref:_00D7091pB._500Q000Nu4TW:ref
+
+
+
+That query seems to provide me with the information I need. Thanks. You can close out this case.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 11, 2025 4:23 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #441574 - - How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+
+ 
+
+
+Hi Scott, Here is the SQL that could be configured in a Job to achieve what you are looking for. I would run it against your database to see what it returns for a list. select hmt. name as Host_Name , hlt. name as list_name from HostListsContentTbl
+
+
+
+ 
+
+
+Hi Scott,
+
+Here is the SQL that could be configured in a Job to achieve what you are looking for.
+
+I would run it against your database to see what it returns for a list. 
+
+select hmt.name as Host_Name
+, hlt.name as list_name
+from HostListsContentTbl hlct
+join HostListsTbl hlt on hlt.listID = hlct.listID
+join SA_HostMasterTbl hmt on hmt.hostID = hlct.hostID
+order by hmt.name, hlt.name 
+;
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 4/11/2025 10:52 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #441574 - ref:_00D7091pB._500Q000Nu4TW:ref - How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+ref:_00D7091pB._500Q000Nu4TW:ref
+
+ 
+
+
+Yes. My question is given a host, how can I determine all of the host groups it is a member of? I don't see the answer in the documentation links you provided. I'll be out of the office until Monday.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 10, 2025 4:26 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: How to Determine Host Group Membership by Host [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]
+
+
+ 
+
+
+Hi Scott, In NEA (or NAA) are you referring to ""Host Management"" where there are a number of created host lists? See the Netwrix Help Center documentation here: NEA v11. 6 - Hosts Lists https: //helpcenter. netwrix. com/bundle/EnterpriseAuditor_11. 6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists. htm
+
+
+
+ 
+
+
+Hi Scott,
+
+In NEA (or NAA) are you referring to ""Host Management"" where there are a number of created host lists?
+
+See the Netwrix Help Center documentation here:
+
+NEA v11.6 - Hosts Lists
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists.htm
+
+Or are you referring to somewhere else?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Nu4TW:ref","RE: Netwrix Support Ticket #441574 -  - How to Determine Host Group Membership by Host    [ ref:!00D70091pB.!500Qk0Nu4TW:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com","","false","2025-04-14T20:08:36.000Z","true"

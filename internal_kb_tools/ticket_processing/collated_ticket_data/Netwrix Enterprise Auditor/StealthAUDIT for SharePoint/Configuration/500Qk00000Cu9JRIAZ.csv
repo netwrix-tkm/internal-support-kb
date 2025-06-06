@@ -1,0 +1,30 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Cu9JRIAZ","00414678","Support Ticket","New Voicemail from +12016631770 - :IVR US","You have received a new voice mail from ""+12016631770 -"":IVR US""
+			
+From:+12016631770 
+To: 8040"" - ""TS"" ""SBSA""
+Received:""Wednesday, July 10, 2024 6:16:06 PM""
+Duration:""00:00:53""	
+File:""vmail_+12016631770_8040_20240710181606""
+
+
+Transcription:
+Hi there. My name is Bill brunt. I'm with Nova Coast. I'm at area code 201-663-1770. I have configured according to the directions.  To the best that I could obviously missing something. You know, what the SharePoint?  Job Solutions, and I'm getting a message that says, this is for SharePoint online unable to create shapland application contacts token request failed X cetera doesn't appear to be connecting. I'm at 201-663-1770. Thank you.","","","","Reference the Netwrix Enterprise Auditor V11.6 > Administration > Jobs Tree > Instant Job Wizard > SP_RegisterAzureAppAuth Job
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/InstantJobs/SP_RegisterAzureAppAuth.htm 
+Noted that the newapp pwd this would need to be noted somewhere internal for later reference.
+
+Being that this is the Recommended way to set up new Azure (Entra) apps It should have been listed in the SPO guide section you noted, I have submitted feed back to the Doc team to address this.
+
+There are also similar jobs for EXO and AzureAD/Entra ID (Entra ID Inventory) Requirements, Permissions, and Ports should reference the AADI_RegisterAzureAppAuth which is currently not documented in the 11.6 guide being that this job is the recommended method to setup/update the needed Azure App registration, Feedback as again been submitted.
+
+For Exchange Online Auditing Configuration does note the recommend EX_RegisterAzureAppAuth to setup the needed App Registration.
+
+Contact noted the following:
+1.	Contrary to documentation, the host should have been “M365X41559705.SHAREPOINT.COM” versus “M365X41559705.ONMICROSOFT.COM”. This might have been the sole cause of the issue.
+ 
+2.	The version of NEA I was running was Netwrix Enterprise Auditor V11.6, version 11.6.0.72 which I had installed on May 10th, 2024. I downloaded and installed the latest version of all the NIC as well.
+ 
+3.	The documentation indicates a new browser window will open, looks like 3 windows opened but one was completely blank.
+ 
+4.	Despite this, the collection job folder shows error icons on three of the jobs. One because it can’t find an INI file because of on premise remnants being used for the SharePoint online process. Two others because of WARNINGS which show as errors.
+The Instant job was able to set up the needed Azure App and start scanning the needed environment.","Incorrect configuration: Netwrix product","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Configuration","11.6","72","1.1","Closed - Resolved","Novacoast","Bill Brunt","2024-07-10T18:17:19.000Z","2024-07-11T19:50:07.000Z"

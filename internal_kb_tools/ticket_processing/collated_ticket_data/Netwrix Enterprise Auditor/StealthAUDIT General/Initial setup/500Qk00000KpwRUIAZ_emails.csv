@@ -1,0 +1,203 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MPYYDIA5","500Qk00000KpwRUIAZ","2025-03-10T08:21:03.000Z","2025-03-10T14:00:16.000Z","ref:_00D7091pB._500Q000KpwRU:ref
+
+Hello Artem,
+
+Thanks much for your support. This case can be closed.
+
+
+
+Regards,
+Saveetha Anesh
+FSAM Support Engineer
+Email Address: saveetha.a@kyndryl.com
+[cid:1de5ff0a-ec8c-4c04-9620-046502350134]
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 10:23 PM
+To: SAVEETHA ANESH <saveetha.a@kyndryl.com>
+Subject: [EXTERNAL] RE: 00432846 - To understand Disovery run for windows server.
+
+Hello saveetha, I wanted to check in regarding your support ticket 00432846. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue. If you’re still experiencing problems or have any updates
+
+Hello saveetha,
+
+I wanted to check in regarding your support ticket 00432846. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00432846
+Ticket Subject: To understand Disovery run for windows server.
+Ticket Details: We ran Nov month discovery run for windows share servers. The result is different. Need to have some understanding about the report.
+In which column new shares is mentioned in the result report?
+Which column contains source server name and Destination server ?
+How the discovery run result, finds the new windows shares? so that we can add the newly found windows share server for SA monitoring.
+Please refer the attached report.
+
+Thank you!
+
+Artem Naskal
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com >
+
+ref:!00D70091pB.!500Qk0KpwRU:ref","RE: Netwrix Support Ticket #432846 - ref:_00D7091pB._500Q000KpwRU:ref - 00432846 - To understand Disovery run for windows server.","saveetha.a@kyndryl.com","SAVEETHA ANESH","techsupport@netwrix.com","fenilkumar.s@kyndryl.com; nagendra.prasad1@kyndryl.com","","true","2025-03-10T08:20:49.000Z","true"
+"02sQk00000MQGngIAH","500Qk00000KpwRUIAZ","2025-03-10T14:24:52.000Z","2025-03-10T14:24:52.000Z","Hi Saveetha, 
+
+Thank you for your reply. I am glad to hear I was able to assist with your request. 
+
+The following is a summary of the ticket for your records:
+
+According to conversation with Profession Services team the Job group (job folder) consists of these two jobs:“1.GetHostList1” and “GetHostShares1” jobs.
+These jobs must be configured with the following host lists settings:
+
+“1.GetHostList1” - this job must be configured with ""GET SHARE WIN"" list (with list of servers for scanning).
+“GetHostShares1” - this job must have its own separate ""hosts"" settings. for this job you must add only StealthAudit server (AZITSBITS01). 
+
+These jobs will produce a ""Hosts"" table. The ""HOST"" column within that table shows a server from which the PowerShell job ""GetHostShares1"" was running from.
+If there are multiple servers there - then you must check the ""HostList"" of the ""GetHostShares1"" job to see which servers are added there. This HostList (for the ""GetHostShares1"" job) should only have StealthAudit server. 
+
+The ""Remark"" column will show text that was added to the comments when the Windows Share was created.  
+
+The final report does not show which shares are newly found and which were already found during previous job run. Currently the ""GetHostShares1"" job does not have such functionality. 
+
+The ShareType column represents the type of share that was identified during job processing:
+
+This is most likely related to the Microsoft Windows types of shares, which are the following:
+
+
+	
+		
+			0 (Admin)
+			Hidden shares used for system administration
+			C$, Admin$, IPC$, Print$
+		
+	
+
+
+
+	
+		
+			1 (Default)
+			User-created file shares for general use
+			Documents, Public
+		
+	
+
+
+
+	
+		
+			2 (Printer)
+			Shares for printers
+			Printer share (e.g., HP_Printer)
+		
+	
+
+
+
+	
+		
+			3 (Special)
+			Non-standard, specialized shares
+			Mailslot, service-specific shares
+		
+	
+
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: SAVEETHA ANESH [saveetha.a@kyndryl.com]
+Sent: 3/10/2025 12:20 PM
+To: techsupport@netwrix.com
+Cc: fenilkumar.s@kyndryl.com; nagendra.prasad1@kyndryl.com
+Subject: RE: Netwrix Support Ticket #432846 - ref:_00D7091pB._500Q000KpwRU:ref - 00432846 - To understand Disovery run for windows server.
+
+ref:_00D7091pB._500Q000KpwRU:ref
+
+
+
+Hello Artem, 
+
+ 
+
+Thanks much for your support. This case can be closed. 
+
+ 
+
+ 
+
+ 
+
+
+Regards,
+
+Saveetha Anesh
+
+FSAM Support Engineer 
+Email Address: saveetha.a@kyndryl.com
+
+  
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 10:23 PM
+To: SAVEETHA ANESH <saveetha.a@kyndryl.com>
+Subject: [EXTERNAL] RE: 00432846 - To understand Disovery run for windows server.
+
+ 
+
+
+
+Hello saveetha, I wanted to check in regarding your support ticket 00432846. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue. If you’re still experiencing problems or have any updates
+
+ 
+Hello saveetha,
+
+I wanted to check in regarding your support ticket 00432846. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00432846
+Ticket Subject: To understand Disovery run for windows server.
+Ticket Details: We ran Nov month discovery run for windows share servers. The result is different. Need to have some understanding about the report.
+In which column new shares is mentioned in the result report?
+Which column contains source server name and Destination server ?
+How the discovery run result, finds the new windows shares? so that we can add the newly found windows share server for SA monitoring.
+Please refer the attached report.
+
+Thank you!
+
+Artem Naskal
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0KpwRU:ref","RE: Netwrix Support Ticket #432846 -  - 00432846 - To understand Disovery run for windows server.    [ ref:!00D70091pB.!500Qk0KpwRU:ref ]","techsupport@netwrix.com","Netwrix Support","saveetha.a@kyndryl.com","nagendra.prasad1@kyndryl.com; fenilkumar.s@kyndryl.com","","true","2025-03-10T14:24:50.000Z","true"

@@ -1,0 +1,58 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000ONmxOIAT","00442987","Support Ticket","main enviroment scan not working post upgrade.","after upgradingn to 11.6.137 our colleciton job is stuck in commiting state","run the SQL Permissions scan","connection profile is correct
+test connections to the SQL servers work
+-from the connection wizard in the job's filters
+
+There are some old SQL servers in the list that are no longer there
+but the job just moves on to the next
+
+The issue seems to be the final commit set in the SQL process
+We used SQL Management Studio to identify the query that is running while the job hangs
+
+It does eventually complete
+but it takes 5+ hours per SQL server and there are over 100 servers
+Before the upgrade, the entire job (so all servers combined) took only about 6 hours
+
+It seemed like the test environment was working fine after upgrade, but we discovered that the transaction log was out of space on that server. When we cleared space for it, the SQL permissions job started behaving the same as the Prod environment
+-that is to say that it seemingly hangs on the final committing step
+
+The SQL query is attached to the ticket
+---------------
+
+The client is experienced with SQL and has been reviewing the query that seems to be the issue. Here is what he said:
+
+""Looks like there is no WHERE clause on this call.   Meaning for EVERY server, you are running against the entire database.  It SHOULD only be running for the server data it just gathered.
+
+Probably this is your issue.""
+
+""It seems like the query is using terribly inefficient nested views.  It joins many tables to views, unions, and the views have many internal table joins.
+
+If you have any real amount of data this will not run well.  What would have changed related to this for the .137 upgrade?
+
+As the issue started immediately after that, it seems the data would not have changed, but the logic of how it is handled might?
+
+Another thought.  As this data technically should be wiped and re-loaded every time….. we don’t care about history.""
+
+---------------
+
+I've provided directions for clearing the permissions data
+client would like this treated as a production outage and escalate to the highest level
+-I've been working with T2 Nicholas Zimmer
+
+Client wants to rollback. He has DB backups and maybe server backups to facilitate. I'm trying to confirm if he has a full snapshot or just folders.
+
+sent meeting invite
+
+---------------
+
+met with client and upgraded test and prod environments to NEA 11.6.0.141
+-looks like it includes a fix for the SQL Permissions scan
+
+it seems to have fixed the issue in Prod.
+Test is still running slow but it does not identify it as a ""Slow Thread""
+-client is less concerned with that, at the moment, because at least prod is up and going.
+
+he will let it run a full SQL permissions scan over the weekend and let me know how it looks on Monday.","client failed to respond about test environment
+proceeding with ticket closure","issue was a bug that was already fixed in later builds
+upgrading to NEA 11.6.0.141
+this resolved the issue in Prod, and I believe test too, but the client didn't confirm.","Product defect","Joshua Sexton","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for SQL","Data Collection","11.6","141","20.7","Closed - Resolved","Regions Bank","Jim Callison","2025-04-23T20:17:20.000Z","2025-05-14T12:27:36.000Z"

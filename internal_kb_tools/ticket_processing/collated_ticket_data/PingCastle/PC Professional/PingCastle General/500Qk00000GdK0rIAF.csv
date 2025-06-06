@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GdK0rIAF","00422948","Support Ticket","Inactive objects (Last usage > 6 months)","Dear Support,
+
+Hope you are doing well.
+
+We are using Ping Castle, and we have one question related to User Information - Account analysis - Inactive objects (Last usage > 6 months).
+Would you be able to let us know how is this calculated, what property of the account is used for it?
+In the description I see ""Indicates the number of enabled accounts without any logon during the last 6 months"".
+
+Thank you very much.
+
+Best regards,
+Ciprian Lozonschi","","","","Symptom
+Want to know how the User Information - Account analysis - Inactive objects (Last usage > 6 months) is calculated.
+
+
+Resolution
+this is the line used to calculate the ""Last usage > 6 months""
+https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Healthcheck.cs#L367
+
+LastLogonTimeStamp can be up to around 9-14 days out of date. Microsoft does this to limit replication traffic.
+You can check this article explaining that in more details:
+https://techcommunity.microsoft.com/t5/ask-the-directory-services-team/8220-the-lastlogontimestamp-attribute-8221-8211-8220-what-it-was/ba-p/396204","","Emiliano Krainuk","","PingCastle","PC Professional","PingCastle General","3.2.0.1","","12.7","Closed - Resolved","Guerbet","Ciprian Lozonschi","2024-10-04T09:36:32.000Z","2024-10-17T01:41:19.000Z"

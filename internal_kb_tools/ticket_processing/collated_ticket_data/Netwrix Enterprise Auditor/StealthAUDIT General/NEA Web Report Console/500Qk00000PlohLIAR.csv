@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000PlohLIAR","00446679","Support Ticket","All Reports not updating after migration to new servers","All the reports in dev are not updating after migration.  
+Last update time 4/19/2025
+Migration date was:  4/25/2025","Step 1: Perform a migration of the reporting system to new servers.
+Step 2: Verify the last update time of the reports in the development environment (expected to be 4/19/2025).
+Step 3: Observe that no reports have updated since the migration date of 4/25/2025.","Reports in the development environment stopped updating after the migration to new servers on 4/25/2025. The last successful update occurred on 4/19/2025, prior to the migration.
+- The issue appears to be directly related to the migration process, as no updates have been recorded since the migration date.
+- The root cause of the problem has not yet been identified, and further investigation is required to determine why the reporting system is failing to update.
+- A meeting has been proposed to review the configuration file for the reporting site, which may provide insights into the issue.","I will schedule a meeting with Bradley Dickinson to review the configuration file for the reporting site, as proposed in the email sent on 2025-05-30. This step is critical to identify potential issues in the configuration that may be causing the reports to stop updating.
+
+2. The technical support team will investigate the root cause of the reporting system's failure to update after the migration, as further analysis is required to resolve the issue.","Issue: After migrating the reporting system to new servers on 4/25/2025, reports in the development environment stopped updating. The last successful update occurred on 4/19/2025, prior to the migration.
+
+Cause: The issue was caused by a misconfiguration in the webserver. Specifically, the Report site was connecting to the wrong server due to a DNS issue. Additionally, the webserver's certificate binding needed to be corrected.
+
+Resolution: The issue was resolved by performing the following steps:
+1. Edited the webserver configuration to bind the correct certificate.
+2. Restarted the webserver service.
+3. Updated the DNS IP address to ensure the Report site connected to the correct server.
+
+These actions restored the reporting system's functionality, allowing reports to update as expected.
+
+(Requested by Frantz Baptiste)","Configuration/Customization Request","Frantz Baptiste","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.6","","3.2","Closed - Resolved","EverBank","Bradley Dickinson","2025-05-30T14:35:12.000Z","2025-06-02T18:23:43.000Z"

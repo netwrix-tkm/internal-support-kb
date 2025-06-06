@@ -1,0 +1,21 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000FG3FpIAL","00419839","Support Ticket","Permission Changes","Is it possible to see if permissions on a file share changed and who changed them with StealthAudit?
+
+If I am looking at the web UI correctly, it looks like it is showing that permissions changed, but not when or who changed them?","","","","Confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)                                                                11.5.0.245
+Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC)      11.5.0.130
+Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM)                                        6.0.124
+
+**Noted** Netwrix Access Information Center 11.6 > Resource Audit Overview > File System Reports > File System Reports Quick Reference Guide > Share & Subfolder Levels Reports >
+Permissions Report
+There is one table at the bottom displaying Compared to Parent permissions for the select trustee. It contains information on explicit permissions granted for the selected resource.
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/3.File_System_Reports/Share_and_Subfolder_Level/Permissions.htm
+ 
+Based on what we found the change was more than likely made within AD to one of the Groups that has access to the needed folder.
+
+We did note that the Owner of the folder was the Manger of the Group.
+
+The only permissions changes (SA_ENG_PermissionChangesView and or SA_FS_PermissionChanges_Details) via File Server Scan (FSAC) was from the old NetApp host back in April of this year.
+
+Retention settings within NAM and NEA are set to clear post 60 days.","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Reports","11.5","","2.1","Closed - Resolved","Howard County, MD","Frank Salah","2024-09-03T12:54:23.000Z","2024-09-05T14:48:08.000Z"

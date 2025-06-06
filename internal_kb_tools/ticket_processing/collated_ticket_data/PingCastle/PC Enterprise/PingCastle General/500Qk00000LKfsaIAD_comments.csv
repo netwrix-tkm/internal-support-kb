@@ -1,0 +1,192 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BiKCnIAN","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Account ACV has been changed to 15336616.8200000000090.","005Qk000003YNwXIAW","2025-02-10T08:30:00.000Z","2025-02-10T08:30:00.000Z","false","false"
+"00aQk00000BiKEPIA3","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Account ACV has been changed to 7668308.4100000000045.","005Qk000003YNwXIAW","2025-02-10T08:30:02.000Z","2025-02-10T08:30:02.000Z","false","false"
+"00aQk00000BiRxTIAV","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Joe Dibley:
+
+Fiddler logs located at [pingcastlecloud_HP.onmicrosoft.com.json.zip](https://nwxcorp-my.sharepoint.com/:u:/r/personal/kurtis_andersen_netwrix_com/Documents/HP/pingcastlecloud_HP.onmicrosoft.com.json.zip?csf=1&web=1&e=LEz3MO). 
+
+Customer has a large azure instance and azure data is not getting populated.
+
+### Installing fiddler
+Can either get fiddler classic from the website https://www.telerik.com/download/fiddler
+or just use chocolatey if on VM
+
+```
+# Install chocolatey
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+# Install Fiddler
+choco install fiddler
+```
+
+## Company information is not filled out
+Packet 16 - URI: `/IProvisioningWebService/GetCompanyInformation` returned a 200 code but the body is an error stating `Company type cannot be read for client version`. It seems this may be to do with the ClientID `50afce61-c917-435b-8c6d-60aa5a8b8aa7` but it works in my lab ok. Maybe they have blocked access to that ClientID? Looks like the MSOL Service which is being deprecated by MS?
+
+### Further Details
+| # | Result | Protocol | Host | URL | Body | Caching | Content-Type | Process | Comments | Custom |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 16 | 200 | HTTP | provisioning.microsoftonline.com | /IProvisioningWebService/GetCompanyInformation | 1,118 |  |  | pingcastlecloud.exe:1234 | Task:Company Info |  |
+
+SOAP Request (Excluding JWT)
+```xml
+<s:Envelope xmlns:a=""http://www.w3.org/2005/08/addressing"" xmlns:s=""http://www.w3.org/2003/05/soap-envelope"">
+  <s:Header>
+    <a:Action s:mustUnderstand=""1"">http://provisioning.microsoftonline.com/IProvisioningWebService/GetCompanyInformation</a:Action>
+    <a:MessageID>urn:uuid:04a33277-c06c-4b5f-a772-c14cf1f17ff4</a:MessageID>
+    <a:ReplyTo>
+      <a:Address>http://www.w3.org/2005/08/addressing/anonymous</a:Address>
+    </a:ReplyTo>
+    <UserIdentityHeader xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"" xmlns=""http://provisioning.microsoftonline.com/"">
+      <BearerToken xmlns=""http://schemas.datacontract.org/2004/07/Microsoft.Online.Administration.WebService"">eyJ0eXAiO.....REDACTED....Yb6ugUbNH6udzbTpNcO_dFzJKAeg</BearerToken>
+      <LiveToken i:nil=""true"" xmlns=""http://schemas.datacontract.org/2004/07/Microsoft.Online.Administration.WebService"" />
+    </UserIdentityHeader>
+    <ClientVersionHeader xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"" xmlns=""http://provisioning.microsoftonline.com/"">
+      <ClientId xmlns=""http://schemas.datacontract.org/2004/07/Microsoft.Online.Administration.WebService"">50afce61-c917-435b-8c6d-60aa5a8b8aa7</ClientId>
+      <Version xmlns=""http://schemas.datacontract.org/2004/07/Microsoft.Online.Administration.WebService"">1.2.183.66</Version>
+    </ClientVersionHeader>
+  </s:Header>
+  <s:Body>
+    <GetCompanyInformation xmlns=""http://provisioning.microsoftonline.com/"">
+      <request xmlns:d4p1=""http://schemas.datacontract.org/2004/07/Microsoft.Online.Administration.WebService"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">
+        <d4p1:BecVersion>Version4</d4p1:BecVersion>
+        <d4p1:TenantId i:nil=""true"" />
+        <d4p1:VerifiedDomain i:nil=""true"" />
+      </request>
+    </GetCompanyInformation>
+  </s:Body>
+</s:Envelope>
+```
+
+SOAP Response
+```xml
+HTTP/1.1 200 OK
+
+[DevOps CommentId:11620383][1/2]","0054u000006gtWUAAY","2025-02-10T10:01:51.000Z","2025-02-10T10:01:51.000Z","false","false"
+"00aQk00000BiRxUIAV","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: <s:Envelope xmlns:s=""http://www.w3.org/2003/05/soap-envelope"" xmlns:a=""http://www.w3.org/2005/08/addressing"">
+  <s:Header>
+    <a:Action s:mustUnderstand=""1"">http://www.w3.org/2005/08/addressing/soap/fault</a:Action>
+    <a:RelatesTo>urn:uuid:04a33277-c06c-4b5f-a772-c14cf1f17ff4</a:RelatesTo>
+  </s:Header>
+  <s:Body>
+    <s:Fault>
+      <s:Code>
+        <s:Value>s:Sender</s:Value>
+      </s:Code>
+      <s:Reason>
+        <s:Text xml:lang=""en-US"">Company type cannot be read for client version.</s:Text>
+      </s:Reason>
+      <s:Detail>
+        <InternalServiceException xmlns=""http://schemas.datacontract.org/2004/07/Microsoft.Online.Administration.WebService"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">
+          <HelpLink i:nil=""true"" />
+          <Message>Company type cannot be read for client version.</Message>
+          <OperationId>cb9f5023-3133-4305-ad9f-2dd2c5dc0ece</OperationId>
+          <Source>Microsoft.Online.Administration.Services</Source>
+          <StackTrace />
+        </InternalServiceException>
+      </s:Detail>
+    </s:Fault>
+  </s:Body>
+</s:Envelope>
+```
+
+## Applications (ServicePrincipals) do not renew access tokens
+Need to implement dynamic handling for expired access tokens. If you scroll down to around packet 18000 you'll see many 401 errors stating the access token has expired and needs to be renewed. This should be handled properly in the application.
+
+| # | Result | Protocol | Host | URL | Body | Caching | Content-Type | Process | Comments | Custom |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 17411 | 401 | HTTP | graph.windows.net | /ca7981a2-785a-463d-b82a-3db87dfc3ce6/servicePrincipals/f7d61d36-065f-4786-8de3-5bbab34dbe01/appRoleAssignedTo?api-version=1.61-internal | 213 |  |  | pingcastlecloud.exe:1234 | Task:Applications and permissions |  |
+
+[DevOps CommentId:11620383][2/2]","0054u000006gtWUAAY","2025-02-10T10:01:51.000Z","2025-02-10T10:01:51.000Z","false","false"
+"00aQk00000BiTWEIA3","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Joe Dibley:
+
+## Azure AD Connect
+It seems to be configured and checked in the API but nothing in the report
+| # | Result | Protocol | Host | URL | Body | Caching | Content-Type | Process | Comments | Custom |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 23 | 200 | HTTP | main.iam.ad.ext.azure.com | /api/Directories/ADConnectStatus?api-version=2.0 | 234 | no-store |  | pingcastlecloud.exe:1234 | Task:AD Connect |  |
+
+## User counts and groups
+The json file has no information on user and groups. I don't actually see it queried?
+
+[DevOps CommentId:11620915]","0054u000006gtWUAAY","2025-02-10T10:44:26.000Z","2025-02-10T10:44:26.000Z","false","false"
+"00aQk00000BiyGgIAJ","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: hi team, do we have an ETA on this?","005Qk000003YNwXIAW","2025-02-10T16:56:46.000Z","2025-02-10T16:56:46.000Z","false","false"
+"00aQk00000BtGdiIAF","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Evgeniy Panarin:
+
+Hello the issue is fixed in 3.3.0.8
+
+[DevOps CommentId:11671814]","0054u000006gtWUAAY","2025-02-19T11:56:52.000Z","2025-02-19T11:56:52.000Z","false","false"
+"00aQk00000BtGgxIAF","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Evgeniy Panarin:
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11671826]","0054u000006gtWUAAY","2025-02-19T11:57:30.000Z","2025-02-19T11:57:30.000Z","false","false"
+"00aQk00000BtGgvIAF","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-19T11:57:30.000Z","2025-02-19T11:57:30.000Z","false","false"
+"00aQk00000BtDspIAF","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000003YNwXIAW","2025-02-19T12:10:28.000Z","2025-02-19T12:10:28.000Z","false","false"
+"00aQk00000CF3WXIA1","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","005Qk000003YNwXIAW","2025-03-10T17:35:53.000Z","2025-03-10T17:35:53.000Z","false","false"
+"00aQk00000CNDdaIAH","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Evgeniy Panarin:
+
+Fixed work with token. 
+But since Hp is also waiting for fixes for work with provisioning API.
+
+[DevOps CommentId:11795281]","0054u000006gtWUAAY","2025-03-17T14:56:32.000Z","2025-03-17T14:56:32.000Z","false","false"
+"00aQk00000COV8cIAH","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Evingey - what does your last comment mean? Is the issue only partially fixed in 3.3.0.8 that was released in February?","0050g000006QqyEAAS","2025-03-18T13:31:32.000Z","2025-03-18T13:31:32.000Z","false","false"
+"00aQk00000Cf270IAB","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Evgeniy Panarin:
+
+Hi Brandon, The version is 3.3.0.10.
+
+In agreement with Joe, we are awaiting the next version where there will be more fixes fro this escalation.
+
+Unfortunately, it's just a wait now.
+Customer is asking about a fix?
+
+[DevOps CommentId:11874029]","0054u000006gtWUAAY","2025-04-01T12:52:14.000Z","2025-04-01T12:52:14.000Z","false","false"
+"00aQk00000ChdIXIAZ","500Qk00000LKfsaIAD","Whats the ETA on the next version?","005Qk000003cQkXIAU","2025-04-03T08:33:58.000Z","2025-04-03T08:33:58.000Z","false","false"
+"00aQk00000Cl8b8IAB","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Account ACV has been changed to 7223200.0000000000045.","0054u000006gtWUAAY","2025-04-06T18:13:17.000Z","2025-04-06T18:13:17.000Z","false","false"
+"00aQk00000CnwtaIAB","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Denis Antropov:
+
+@Evgeniy Panarin, as required fixes have been done, I update the state to Awaiting Release
+
+[DevOps CommentId:11907381]","0054u000006gtWUAAY","2025-04-08T20:56:39.000Z","2025-04-08T20:56:39.000Z","false","false"
+"00aQk00000CnwvCIAR","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Denis Antropov:
+
+@Evgeniy Panarin, as required fixes have been done, I update the state to Awaiting Release
+
+[DevOps CommentId:11907381]","0054u000006gtWUAAY","2025-04-08T20:56:41.000Z","2025-04-08T20:56:41.000Z","false","false"
+"00aQk00000CzyRmIAJ","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: is this fix published?","0050g000006QqyEAAS","2025-04-18T17:15:07.000Z","2025-04-18T17:15:07.000Z","false","false"
+"00aQk00000D4VdeIAF","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Account ACV has been changed to 7235380.3600000000095.","0054u000006gtWUAAY","2025-04-23T08:44:33.000Z","2025-04-23T08:44:33.000Z","false","false"
+"00aQk00000D50pXIAR","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Evgeniy Panarin:
+
+Hi Brandon,
+
+
+Not yet, we are waiting for the final fix for this release.
+
+[DevOps CommentId:11967357]","0054u000006gtWUAAY","2025-04-23T15:47:44.000Z","2025-04-23T15:47:44.000Z","false","false"
+"00aQk00000DCRt1IAH","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Account ACV has been changed to 8379385.9700000000395.","0054u000006gtWUAAY","2025-04-30T09:38:03.000Z","2025-04-30T09:38:03.000Z","false","false"
+"00aQk00000DFEzIIAX","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the new comment has been added: Evgeniy Panarin:
+
+Hello,
+
+Fixes in public build 3.3.0.11
+
+Evgenii
+
+@WaitingOnEngineer
+
+[DevOps CommentId:12002812]","0054u000006gtWUAAY","2025-05-02T10:28:43.000Z","2025-05-02T10:28:43.000Z","false","false"
+"00aQk00000DFEzGIAX","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Account ACV has been changed to 8329269.3400000000345.
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-02T10:28:43.000Z","2025-05-02T10:28:43.000Z","false","false"
+"00aQk00000DFL7tIAH","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","005Qk000003cQkXIAU","2025-05-02T12:20:12.000Z","2025-05-02T12:20:12.000Z","false","false"
+"00aQk00000DSbA1IAL","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Account ACV has been changed to 7897575.3400000000345.","0054u000006gtWUAAY","2025-05-14T11:26:05.000Z","2025-05-14T11:26:05.000Z","false","false"
+"00aQk00000Dfx1RIAR","500Qk00000LKfsaIAD","On Escalation Ticket # 00435212 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000003cQkXIAU","2025-05-26T08:35:47.000Z","2025-05-26T08:35:47.000Z","false","false"

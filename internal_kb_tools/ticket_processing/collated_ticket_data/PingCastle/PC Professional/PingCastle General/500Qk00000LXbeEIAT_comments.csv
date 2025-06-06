@@ -1,0 +1,47 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BeyTlIAJ","500Qk00000LXbeEIAT","On Escalation Ticket # 00434868 the Following Fields have been updated: 
+Account ACV has been changed to 120929.70.","005Qk000003YNwXIAW","2025-02-06T15:30:56.000Z","2025-02-06T15:30:56.000Z","false","false"
+"00aQk00000BeyVNIAZ","500Qk00000LXbeEIAT","On Escalation Ticket # 00434868 the Following Fields have been updated: 
+Account ACV has been changed to 60464.85.","005Qk000003YNwXIAW","2025-02-06T15:30:57.000Z","2025-02-06T15:30:57.000Z","false","false"
+"00aQk00000Bf5VIIAZ","500Qk00000LXbeEIAT","On Escalation Ticket # 00434868 the new comment has been added: Joe Dibley:
+
+Investigation into this points to the installer updates and specifically the GrantApplicationPoolAsSql.ps1 step.
+
+The installer is attempting to run PowerShell on it prior to it being in the directory or something. The PingCastle Enterprise installer works without issue.
+
+Here is the log showing the issue.
+```
+MSI (s) (70:68) [14:32:07:384]: Executing op: ActionStart(Name=GrantApplicationPoolToSql,,)  
+MSI (s) (70:68) [14:32:07:400]: Executing op: CustomActionSchedule(Action=GrantApplicationPoolToSql,ActionType=1025,Source=BinaryData,Target=WixQuietExec,CustomActionData=""C:WindowsSystem32WindowsPowerShellv1.0powershell.exe"" -NonInteractive -ExecutionPolicy Bypass -InputFormat None -NoProfile -File ""C:PingCastlePro\ScriptsGrantApplicationPoolToSql.ps1"" "".SQLExpress"" ""Pro"")  
+MSI (s) (70:64) [14:32:07:400]: Invoking remote custom action. DLL: C:WindowsInstallerMSI61FB.tmp, Entrypoint: WixQuietExec  
+WixQuietExec:  The argument 'C:PingCastlePro\ScriptsGrantApplicationPoolToSql.ps1' to the -File parameter does not exist. Provide the path to an existing '.ps1' file as an argument to the -File parameter.  
+WixQuietExec:  Windows PowerShell  
+WixQuietExec:  Copyright (C) Microsoft Corporation. All rights reserved.  
+WixQuietExec:   
+WixQuietExec:  Error 0xfffd0000: Command line returned an error.  
+WixQuietExec:  Error 0xfffd0000: QuietExec Failed  
+WixQuietExec:  Error 0xfffd0000: Failed in ExecCommon method  
+CustomAction GrantApplicationPoolToSql returned actual error code 1603 (note this may not be 100% accurate if translation happened inside sandbox)
+```
+
+I am not sure what the difference between pro and enterprise is here. I can see the steps are in enterprise and then consumed by Pro. I assume something small has been missed with either the wix upgrade or the cherrypick into the releases/release_3.3.0.1 branch?
+
+I have uploaded a process monitor capture and a verbose MSI log of the installer in my lab to the ticket.
+
+Do not worry about the `""Forces installation on E drive""` comment. I did some digging on this and it turns out it is because we dont specifically specify the [ROOTDRIVE](https://learn.microsoft.com/en-us/windows/win32/msi/rootdrive) msi property and without it being specified it just picks the drive with the most space (last paragraph). I have passed this info to support with information on how to specify the ROOTDRIVE and TARGETDIR with MSIEXEC Properties.
+
+[DevOps CommentId:11611511]","0054u000006gtWUAAY","2025-02-06T17:12:19.000Z","2025-02-06T17:12:19.000Z","false","false"
+"00aQk00000BnM98IAF","500Qk00000LXbeEIAT","On Escalation Ticket # 00434868 the new comment has been added: Evgeniy Panarin:
+
+Fixed in 3.3.0.7
+
+[DevOps CommentId:11646915]","0054u000006gtWUAAY","2025-02-13T17:04:41.000Z","2025-02-13T17:04:41.000Z","false","false"
+"00aQk00000BoG9jIAF","500Qk00000LXbeEIAT","On Escalation Ticket # 00434868 the new comment has been added: Joe Dibley:
+
+Released.
+
+[DevOps CommentId:11651072]","0054u000006gtWUAAY","2025-02-14T11:11:36.000Z","2025-02-14T11:11:36.000Z","false","false"
+"00aQk00000BoG9hIAF","500Qk00000LXbeEIAT","On Escalation Ticket # 00434868 the Following Fields have been updated: 
+Account ACV has been changed to 52733.0533333333326.","0054u000006gtWUAAY","2025-02-14T11:11:36.000Z","2025-02-14T11:11:36.000Z","false","false"
+"00aQk00000Bqh5lIAB","500Qk00000LXbeEIAT","On Escalation Ticket # 00434868 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","005Qk000003YNwXIAW","2025-02-17T11:10:06.000Z","2025-02-17T11:10:06.000Z","false","false"

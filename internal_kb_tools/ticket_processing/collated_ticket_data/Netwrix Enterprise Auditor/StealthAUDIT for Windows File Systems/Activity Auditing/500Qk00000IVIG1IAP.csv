@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IVIG1IAP","00427477","Support Ticket","Errors on hosts","Customer experiencing the following warning during FSAC scan:
+Error: Ini section for %hostname% does not exist in ini file  C:Program FilesSTEALTHbitsStealthAUDITFSACSBTFileMon.ini","N/A","Customer experiencing the following warning during FSAC scan:
+
+Error: Ini section for %hostname% does not exist in ini file C:Program FilesSTEALTHbitsStealthAUDITFSACSBTFileMon.ini
+
+ 
+
+This issue can be resolved as described in this KB article:
+Error: Ini Section Does Not Exist in SBTFileMon.ini | Knowledge | Salesforce","Support suggested scheduling a meeting with customer because KB describes multiple root causes and is not user friendly.","Issue:
+The FSAC scan for FC06 host and FC02 host was displaying the following warning:
+Error: Ini section for FC06 does not exist in ini file C:Program FilesSTEALTHbitsStealthAUDITFSACSBTFileMon.ini
+
+Symptoms:
+As per this KB:
+https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk00000056w1IAA/view?ws=%2Flightning%2Fr%2FCase%2F500Qk00000IVIG1IAP%2Fview
+this issue is caused by ""The name of the monitored host in Netwrix Activity Monitor mismatches the expected name.""
+
+After inspecting the FC06 and FC02 hosts in Monitored Hosts of Activity Monitor console we saw that ""report the hostname as:"" setting was set to FQDN.
+This means that while Stealh Audit was looking for the FC06 hostname the Activity Monitor was reporting the FC06 host via FQDN, such as fc06.example.domain.
+As a result, the SBTFileMon.ini configuration file had incorrect entry for the FC06 host and File System activity log collection could not continue. 
+
+Solution:
+To resolve this, we changed the ""report the hostname as:"" setting to NETBIOS name in Monitored Hosts of Activity Monitor console for hosts FC06 and FC02.
+The Activity Monitor is now reporting FC06 and FC02 hosts using just ""FC06"" and ""FC02"", without the domain part.
+
+After this the FSAC job was able to complete successfully for FC06 file server.","Incorrect configuration: Netwrix product","Artem Naskal","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Activity Auditing","11.0","","0.3","Closed - Resolved","Bolton NHS Foundation Trust","Mohammed Oomer","2024-11-19T09:17:08.000Z","2024-11-19T15:45:23.000Z"

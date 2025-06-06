@@ -1,0 +1,38 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000XAKiTKAX","500Qk00000LyNCAIA3","TextPost","0054u000008ARZjAAO","2025-02-17T12:41:24.000Z","Description: Hello guys,
+
+we can´t get rid of the following. The admin already changed his password, even more than once. Could you help us?
+We already tried to use the RODCPurge Account, but anyway - no luck. The user will show up after a while.
+
+Check if privileged users have been revealed on RODC
+Rule ID:
+P-RODCAdminRevealed
+Description:
+The purpose is to check if privileged users have already been revealed
+Technical explanation:
+On Active Directory, all users revealed to a RODC are tracked by an attribute set on the computer object of the RODC named msDS-RevealedUsers.
+The program checks on the list of revealed users if one of them is known as a privileged user.
+Indeed, the RODC is caching the authentication secrets related of this user, which can then be used to impersonate it.
+In addition to that, RODC are placed in general on more riskier environment.
+Advised solution:
+The admin account should have its secrets change (a password reset) and be sure that the account will not be revealed anymore.","","","","0054u000008ARZjAAO","2025-02-17T12:41:24.000Z"
+"0D5Qk00000Xguw8KAB","500Qk00000LyNCAIA3","TextPost","005Qk000003YNwXIAW","2025-02-25T06:50:26.000Z","Description Updated: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.","","","","005Qk000003YNwXIAW","2025-02-25T06:50:26.000Z"
+"0D5Qk00000XgyhnKAB","500Qk00000LyNCAIA3","TextPost","005Qk000003YNwXIAW","2025-02-25T06:50:51.000Z","Steps to Reproduce Updated: Reset the admin account password multiple times.
+Execute the RODCPurgeAccount command to clear the user from the RODC cache.
+Wait for a period of time.
+Observe that the admin user reappears in the msDS-RevealedUsers attribute on the RODC.","","","","005Qk000003YNwXIAW","2025-02-25T06:50:51.000Z"
+"0D5Qk00000bNHuGKAW","500Qk00000LyNCAIA3","TextPost","0050g000006QqyEAAS","2025-04-08T17:06:13.000Z","<p>Is this a problem with our product? Or the customer&#39;s environment?</p>","","","","0050g000006QqyEAAS","2025-04-08T17:06:13.000Z"

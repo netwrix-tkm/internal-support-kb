@@ -1,0 +1,354 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000XHp8EKAT","500Qk00000M3dkxIAB","TextPost","0054u000008ARZjAAO","2025-02-19T10:16:08.000Z","Description: slow sharepoint scans","","","","0054u000008ARZjAAO","2025-02-19T10:16:08.000Z"
+"0D5Qk00000XxbE5KAJ","500Qk00000M3dkxIAB","TextPost","005Qk000002b4gDIAQ","2025-02-28T14:55:31.000Z","Invitation updated. Attendees: Artem Naskal","","","","005Qk000002b4gDIAQ","2025-02-28T14:55:31.000Z"
+"0D5Qk00000XxbE4KAJ","500Qk00000M3dkxIAB","TextPost","005Qk000002b4gDIAQ","2025-02-28T14:55:31.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002b4gDIAQ","2025-02-28T14:55:31.000Z"
+"0D5Qk00000XxbE6KAJ","500Qk00000M3dkxIAB","TextPost","005Qk000002b4gDIAQ","2025-02-28T14:55:31.000Z","Invitation updated. Attendees: Artem Naskal, Rehaan R","","","","005Qk000002b4gDIAQ","2025-02-28T14:55:31.000Z"
+"0D5Qk00000XxeqMKAR","500Qk00000M3dkxIAB","TextPost","005Qk000002b4gDIAQ","2025-02-28T14:58:06.000Z","Steps to Reproduce Updated: n/a","","","","005Qk000002b4gDIAQ","2025-02-28T14:58:06.000Z"
+"0D5Qk00000Xxt8mKAB","500Qk00000M3dkxIAB","TextPost","005Qk000002b4gDIAQ","2025-02-28T14:59:10.000Z","What We've Learned Updated: -------
+28.02.2025 
+Customer uploaded logs but I do not see SPAA job scan logs in the bundle. Instead, there are only SEEK and SPAA exceptions logs. 
+
+Suggested scheduling remote session to get as many details about NEA configuration and the issue.","","","","005Qk000002b4gDIAQ","2025-02-28T14:59:10.000Z"
+"0D5Qk00000XxsJCKAZ","500Qk00000M3dkxIAB","TextPost","005Qk000002b4gDIAQ","2025-02-28T15:00:24.000Z","Next Steps Updated: Support will have a meeting with customer to clarify details of the issue.","","","","005Qk000002b4gDIAQ","2025-02-28T15:00:24.000Z"
+"0D5Qk00000Y9YooKAF","500Qk00000M3dkxIAB","TextPost","005Qk000002b4gDIAQ","2025-03-04T11:18:42.000Z","What We've Learned Updated: -------
+28.02.2025 
+Customer uploaded logs but I do not see SPAA job scan logs in the bundle. Instead, there are only SEEK and SPAA exceptions logs. 
+
+Suggested scheduling remote session to get as many details about NEA configuration and the issue.
+
+
+
+------------
+04.03.2025 
+
+Customer is on 11.6.0.76. 
+They are concerned about SharePoint Online SEEK system scan job performance.
+
+Customer has 3799 SharePoint Online sites to scan. 
+To lower the SEEK scan processing time they started scanning sites in batches (by running SDD scan against 10-15 sites at once) but at some point SDD scan started to take an abnormally long amounts of time event for a single site. 
+At the moment they are scanning a single site with 1 level depth. 
+
+Currently they are running SDD scan with these settings:
+a Vitality_goinGymForBank site is selected for processing. 
+don`t process files larger than 10 mb 
+7 concurrent SDD threads 
+Scan typical documents only 
+Store discovered sensitive data is enabled. 
+Site depth - 1 site 
+SDD module is running locally on Stealth Audit server. 
+around 32 Sensitive data criteria 
+agent service scan is disabled. 
+
+
+This last SEEK Job was started at 08 AM on 03.03.2025, and then the job got stuck at 13:37 03.03.2025 - ""DLP finished"" was the last line in the logs. 
+But the job is still visible in console as ""running"". 
+Job was started via schedule. 
+
+We took memory dump of the NEA console, memory dump of the StealthAudit Job process and also collected debug logs from SADatabase folder and export the SEEK scan job logs. 
+
+We killed the job process which made the last job run appear as ""Success"" in the console. 
+After this we started bulk import job - bulk import was still running when I left meeting. 
+
+We agreed with customer that once bulk import has finished, they will test SEEK scan with these settings to see if the SEEK job gets stuck again:
+don`t process files larger than 2 mb 
+Only 2 concurrent SDD threads 
+
+In the meantime, support will escalate this issue to RnD.","","","","005Qk000002b4gDIAQ","2025-03-04T11:18:42.000Z"
+"0D5Qk00000Y9YrNKAV","500Qk00000M3dkxIAB","TextPost","005Qk000002b4gDIAQ","2025-03-04T11:32:12.000Z","Next Steps Updated: Support will analyze logs collected from last meeting and then prepare escalation.","","","","005Qk000002b4gDIAQ","2025-03-04T11:32:12.000Z"
+"0D5Qk00000YQznuKAD","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-03-06T10:07:54.000Z","Steps to Reproduce Updated: Run SP SEEK Scan","","","","0054u000007p4sbAAA","2025-03-06T10:07:54.000Z"
+"0D5Qk00000Z7KqjKAF","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-03-13T07:27:53.000Z","Invitation updated. Attendees: Damir Akhmatshin","","","","0054u000007p4sbAAA","2025-03-13T07:27:53.000Z"
+"0D5Qk00000Z7KqkKAF","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-03-13T07:27:53.000Z","Invitation updated. Attendees: Damir Akhmatshin, Rehaan R","","","","0054u000007p4sbAAA","2025-03-13T07:27:53.000Z"
+"0D5Qk00000ZgVjmKAF","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-03-19T11:44:41.000Z","What We've Learned Updated: -------
+28.02.2025 
+Customer uploaded logs but I do not see SPAA job scan logs in the bundle. Instead, there are only SEEK and SPAA exceptions logs. 
+
+Suggested scheduling remote session to get as many details about NEA configuration and the issue.
+
+
+
+------------
+04.03.2025 
+
+Customer is on 11.6.0.76. 
+They are concerned about SharePoint Online SEEK system scan job performance.
+
+Customer has 3799 SharePoint Online sites to scan. 
+To lower the SEEK scan processing time they started scanning sites in batches (by running SDD scan against 10-15 sites at once) but at some point SDD scan started to take an abnormally long amounts of time event for a single site. 
+At the moment they are scanning a single site with 1 level depth. 
+
+Currently they are running SDD scan with these settings:
+a Vitality_goinGymForBank site is selected for processing. 
+don`t process files larger than 10 mb 
+7 concurrent SDD threads 
+Scan typical documents only 
+Store discovered sensitive data is enabled. 
+Site depth - 1 site 
+SDD module is running locally on Stealth Audit server. 
+around 32 Sensitive data criteria 
+agent service scan is disabled. 
+
+
+This last SEEK Job was started at 08 AM on 03.03.2025, and then the job got stuck at 13:37 03.03.2025 - ""DLP finished"" was the last line in the logs. 
+But the job is still visible in console as ""running"". 
+Job was started via schedule. 
+
+We took memory dump of the NEA console, memory dump of the StealthAudit Job process and also collected debug logs from SADatabase folder and export the SEEK scan job logs. 
+
+We killed the job process which made the last job run appear as ""Success"" in the console. 
+After this we started bulk import job - bulk import was still running when I left meeting. 
+
+We agreed with customer that once bulk import has finished, they will test SEEK scan with these settings to see if the SEEK job gets stuck again:
+don`t process files larger than 2 mb 
+Only 2 concurrent SDD threads 
+
+In the meantime, support will escalate this issue to RnD.
+
+3/19/2025
+
+Requested
+
+1. SP_SEEK scans 
+2. Sensitive data logs 
+
+Additionally, I've noticed issues with disk on system level, it looks like it happens every evening at 22:30-22:50, please investigate that issue as potentially it could be a root cause.
+
+There was another issue with VSS service having a major delay around 30000 ms which could also indicate issues with infrastructure.
+
+Job is not being aborted manually, it just hangs for some time and then aborts automatically.","","","","0054u000007p4sbAAA","2025-03-19T11:44:41.000Z"
+"0D5Qk00000Zgf96KAB","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-03-19T11:45:05.000Z","Next Steps Updated: Support will analyze logs collected from last meeting and then prepare escalation.
+
+3/19/2025
+
+Update R&D once logs are received.","","","","0054u000007p4sbAAA","2025-03-19T11:45:05.000Z"
+"0D5Qk00000bYkrbKAC","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-04-11T13:26:34.000Z","What We've Learned Updated: -------
+28.02.2025 
+Customer uploaded logs but I do not see SPAA job scan logs in the bundle. Instead, there are only SEEK and SPAA exceptions logs. 
+
+Suggested scheduling remote session to get as many details about NEA configuration and the issue.
+
+
+
+------------
+04.03.2025 
+
+Customer is on 11.6.0.76. 
+They are concerned about SharePoint Online SEEK system scan job performance.
+
+Customer has 3799 SharePoint Online sites to scan. 
+To lower the SEEK scan processing time they started scanning sites in batches (by running SDD scan against 10-15 sites at once) but at some point SDD scan started to take an abnormally long amounts of time event for a single site. 
+At the moment they are scanning a single site with 1 level depth. 
+
+Currently they are running SDD scan with these settings:
+a Vitality_goinGymForBank site is selected for processing. 
+don`t process files larger than 10 mb 
+7 concurrent SDD threads 
+Scan typical documents only 
+Store discovered sensitive data is enabled. 
+Site depth - 1 site 
+SDD module is running locally on Stealth Audit server. 
+around 32 Sensitive data criteria 
+agent service scan is disabled. 
+
+
+This last SEEK Job was started at 08 AM on 03.03.2025, and then the job got stuck at 13:37 03.03.2025 - ""DLP finished"" was the last line in the logs. 
+But the job is still visible in console as ""running"". 
+Job was started via schedule. 
+
+We took memory dump of the NEA console, memory dump of the StealthAudit Job process and also collected debug logs from SADatabase folder and export the SEEK scan job logs. 
+
+We killed the job process which made the last job run appear as ""Success"" in the console. 
+After this we started bulk import job - bulk import was still running when I left meeting. 
+
+We agreed with customer that once bulk import has finished, they will test SEEK scan with these settings to see if the SEEK job gets stuck again:
+don`t process files larger than 2 mb 
+Only 2 concurrent SDD threads 
+
+In the meantime, support will escalate this issue to RnD.
+
+3/19/2025
+
+Requested
+
+1. SP_SEEK scans 
+2. Sensitive data logs 
+
+Additionally, I've noticed issues with disk on system level, it looks like it happens every evening at 22:30-22:50, please investigate that issue as potentially it could be a root cause.
+
+There was another issue with VSS service having a major delay around 30000 ms which could also indicate issues with infrastructure.
+
+Job is not being aborted manually, it just hangs for some time and then aborts automatically.
+
+4/11/2025
+
+we've set up procdump app to monitor Stealthaudit.exe process to create a crash dump if it will crash and another instance of procdump to create a dump regardless of crash.
+
+Additionally we're still waiting on customer's team to approve access to scan Sharepoint Online from a different host.","","","","0054u000007p4sbAAA","2025-04-11T13:26:34.000Z"
+"0D5Qk00000bYpwHKAS","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-04-11T13:27:03.000Z","Next Steps Updated: Support will analyze logs collected from last meeting and then prepare escalation.
+
+3/19/2025
+
+Update R&D once logs are received.
+
+
+4/11/2025
+
+ Need to follow up on Monday 4/14/2025","","","","0054u000007p4sbAAA","2025-04-11T13:27:03.000Z"
+"0D5Qk00000bp16jKAA","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-04-14T11:20:02.000Z","What We've Learned Updated: -------
+28.02.2025 
+Customer uploaded logs but I do not see SPAA job scan logs in the bundle. Instead, there are only SEEK and SPAA exceptions logs. 
+
+Suggested scheduling remote session to get as many details about NEA configuration and the issue.
+
+
+
+------------
+04.03.2025 
+
+Customer is on 11.6.0.76. 
+They are concerned about SharePoint Online SEEK system scan job performance.
+
+Customer has 3799 SharePoint Online sites to scan. 
+To lower the SEEK scan processing time they started scanning sites in batches (by running SDD scan against 10-15 sites at once) but at some point SDD scan started to take an abnormally long amounts of time event for a single site. 
+At the moment they are scanning a single site with 1 level depth. 
+
+Currently they are running SDD scan with these settings:
+a Vitality_goinGymForBank site is selected for processing. 
+don`t process files larger than 10 mb 
+7 concurrent SDD threads 
+Scan typical documents only 
+Store discovered sensitive data is enabled. 
+Site depth - 1 site 
+SDD module is running locally on Stealth Audit server. 
+around 32 Sensitive data criteria 
+agent service scan is disabled. 
+
+
+This last SEEK Job was started at 08 AM on 03.03.2025, and then the job got stuck at 13:37 03.03.2025 - ""DLP finished"" was the last line in the logs. 
+But the job is still visible in console as ""running"". 
+Job was started via schedule. 
+
+We took memory dump of the NEA console, memory dump of the StealthAudit Job process and also collected debug logs from SADatabase folder and export the SEEK scan job logs. 
+
+We killed the job process which made the last job run appear as ""Success"" in the console. 
+After this we started bulk import job - bulk import was still running when I left meeting. 
+
+We agreed with customer that once bulk import has finished, they will test SEEK scan with these settings to see if the SEEK job gets stuck again:
+don`t process files larger than 2 mb 
+Only 2 concurrent SDD threads 
+
+In the meantime, support will escalate this issue to RnD.
+
+3/19/2025
+
+Requested
+
+1. SP_SEEK scans 
+2. Sensitive data logs 
+
+Additionally, I've noticed issues with disk on system level, it looks like it happens every evening at 22:30-22:50, please investigate that issue as potentially it could be a root cause.
+
+There was another issue with VSS service having a major delay around 30000 ms which could also indicate issues with infrastructure.
+
+Job is not being aborted manually, it just hangs for some time and then aborts automatically.
+
+4/11/2025
+
+we've set up procdump app to monitor Stealthaudit.exe process to create a crash dump if it will crash and another instance of procdump to create a dump regardless of crash.
+
+Additionally we're still waiting on customer's team to approve access to scan Sharepoint Online from a different host.
+
+4/14/2025
+
+Collected and provided dumps to R&D team.","","","","0054u000007p4sbAAA","2025-04-14T11:20:02.000Z"
+"0D5Qk00000bovXJKAY","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-04-14T11:21:14.000Z","Next Steps Updated: Support will analyze logs collected from last meeting and then prepare escalation.
+
+3/19/2025
+
+Update R&D once logs are received.
+
+
+4/11/2025
+
+ Need to follow up on Monday 4/14/2025
+
+4/14/2025
+
+Waiting on R&D to provide feedback and for customer to check if the issue is the same when scanned from different host.","","","","0054u000007p4sbAAA","2025-04-14T11:21:14.000Z"
+"0D5Qk00000criNKKAY","500Qk00000M3dkxIAB","TextPost","0054u000007MiY9AAK","2025-04-28T14:37:15.000Z","Next Steps Updated: Dev requested job logs and sdd logs that are from the scan that the new dump files are from - awaiting customer response","","","","0054u000007MiY9AAK","2025-04-28T14:37:15.000Z"
+"0D5Qk00000ffVI8KAM","500Qk00000M3dkxIAB","TextPost","0054u000007p4sbAAA","2025-05-30T14:27:24.000Z","What We've Learned Updated: -------
+28.02.2025 
+Customer uploaded logs but I do not see SPAA job scan logs in the bundle. Instead, there are only SEEK and SPAA exceptions logs. 
+
+Suggested scheduling remote session to get as many details about NEA configuration and the issue.
+
+
+
+------------
+04.03.2025 
+
+Customer is on 11.6.0.76. 
+They are concerned about SharePoint Online SEEK system scan job performance.
+
+Customer has 3799 SharePoint Online sites to scan. 
+To lower the SEEK scan processing time they started scanning sites in batches (by running SDD scan against 10-15 sites at once) but at some point SDD scan started to take an abnormally long amounts of time event for a single site. 
+At the moment they are scanning a single site with 1 level depth. 
+
+Currently they are running SDD scan with these settings:
+a Vitality_goinGymForBank site is selected for processing. 
+don`t process files larger than 10 mb 
+7 concurrent SDD threads 
+Scan typical documents only 
+Store discovered sensitive data is enabled. 
+Site depth - 1 site 
+SDD module is running locally on Stealth Audit server. 
+around 32 Sensitive data criteria 
+agent service scan is disabled. 
+
+
+This last SEEK Job was started at 08 AM on 03.03.2025, and then the job got stuck at 13:37 03.03.2025 - ""DLP finished"" was the last line in the logs. 
+But the job is still visible in console as ""running"". 
+Job was started via schedule. 
+
+We took memory dump of the NEA console, memory dump of the StealthAudit Job process and also collected debug logs from SADatabase folder and export the SEEK scan job logs. 
+
+We killed the job process which made the last job run appear as ""Success"" in the console. 
+After this we started bulk import job - bulk import was still running when I left meeting. 
+
+We agreed with customer that once bulk import has finished, they will test SEEK scan with these settings to see if the SEEK job gets stuck again:
+don`t process files larger than 2 mb 
+Only 2 concurrent SDD threads 
+
+In the meantime, support will escalate this issue to RnD.
+
+3/19/2025
+
+Requested
+
+1. SP_SEEK scans 
+2. Sensitive data logs 
+
+Additionally, I've noticed issues with disk on system level, it looks like it happens every evening at 22:30-22:50, please investigate that issue as potentially it could be a root cause.
+
+There was another issue with VSS service having a major delay around 30000 ms which could also indicate issues with infrastructure.
+
+Job is not being aborted manually, it just hangs for some time and then aborts automatically.
+
+4/11/2025
+
+we've set up procdump app to monitor Stealthaudit.exe process to create a crash dump if it will crash and another instance of procdump to create a dump regardless of crash.
+
+Additionally we're still waiting on customer's team to approve access to scan Sharepoint Online from a different host.
+
+4/14/2025
+
+Collected and provided dumps to R&D team.
+
+5/30/2025
+
+Customer performed scan from server that is outside of DMZ, scan was completed within 15 minutes.
+
+This suggests the issue with infrastructure, since troubled server is in DMZ.
+
+Customer then moved both servers in DMZ and applied same FW rules, troubled server still shows same issue, new test server is still finishing job within 15 minutes.
+
+We've advised customer to consult with their Network team to determine the issue, but customer still asked for our assistance.","","","","0054u000007p4sbAAA","2025-05-30T14:27:24.000Z"

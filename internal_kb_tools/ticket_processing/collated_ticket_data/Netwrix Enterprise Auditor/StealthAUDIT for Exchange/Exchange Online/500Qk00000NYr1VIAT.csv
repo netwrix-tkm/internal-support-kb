@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NYr1VIAT","00440604","Support Ticket","Distribution Group Message Tracking not accurate","Hello, 
+
+It has been requested that we build a report that contains message tracking for distribution groups (how many emails were sent to our dlists for a specific period of time). I found the below 2 tables, but neither are accurately reflecting how many emails our dlists actually received. Need some help on this one. Thanks
+
+SA_RS_DLCountReceived_Last30days_EXO 
+SA_RS_DLCountReceived_Last180days_EXO","Another possible issue:  Exchange Online Host List
+Exchange Online requires a custom host list. The host list should include the tenant name of the Microsoft Entra tenant used to connect to Exchange Online.
+
+The host name must be the domain name of the tenant, for example 
+company.onmicrosoft.com
+
+We are currently pointintg to the old  PS.OUTLOOK.COM","We were receiving the following error with a few minutes of the Exchange Online Mailflow Collection job kicking off:
+'Microsoft.PowerShell.Commands.PowerShellGet.Telemetry' error: Unable to find type [Microsoft.PowerShell.Commands.PowerShellGet.Telemetry]
+
+In PowerShell Admin we ran Get-Module -ListAvailable⁠ and noticed the current PowerShellGet version was 1.0.0.1 which tells me that even though we are trying to install/upgrade to a newer version of PowerShellGet in the Exchange script, it is failing.","We ran PowerShell Install-Module -Name PowerShellGet -Force manually from PowerShell and are now waiting on the job to complete, but the error is no longer in the logs where it previously was.","Post patching to later build and running the PowerShell Install-Module -Name PowerShellGet -Force manually from PowerShell and are now waiting on the job to complete.
+
+The following are both populating now
+SA_RS_DLCountReceived_Last30days_EXO 
+SA_RS_DLCountReceived_Last180days_EXO","Incorrect configuration: target server software","Dusty Grayson","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Exchange","Exchange Online","11.6","","42.2","Closed - Resolved","Reed Smith LLP","Lenny Jones","2025-04-01T14:18:34.000Z","2025-05-13T19:08:48.000Z"

@@ -1,0 +1,32 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000diEsdKAE","500Qk00000OzjAWIAZ","TextPost","0054u000006goKrAAI","2025-05-09T19:02:08.000Z","Description: FSAC is not detecting the SBTFileMon.ini file or its configuration for activity on 1 server.
+It was not detecting it on 2 servers, but we got 1 of the servers functioning. 
+
+Initial error:
+Error during processing:  GetFSACIniAttributeValueC:ProgramDataNetwrixActivity MonitorAgentSBTFileMon.ini does not exist.
+
+Verified on call that NAM is configured correctly. And events are searchable in NAM. 
+
+The 2 servers do not have a lot of activity. 
+1. Updated both hosts in NEA, initially they were showing as Offline and no server fingerprint information, but that populated correctly after host update performed. 
+2. Remotely accessed server's INI file location from NEA server, verified content of INI file correct for setup and server name matches NEA server name. 
+3. Created activity on both servers, and 1 of the servers began functioning correctly.
+
+Backstory: Servers were offline for some time due to network outage. Both servers had been removed from NEA. They were brought online, with no major changes done to them during downtime. Prior to our call the agents for NAM, were removed and reinstalled.","","","","0054u000006goKrAAI","2025-05-09T19:02:08.000Z"
+"0D5Qk00000diQqPKAU","500Qk00000OzjAWIAZ","TextPost","0054u000007osjSAAQ","2025-05-09T21:02:53.000Z","Steps to Reproduce Updated: Verified that NAM is configured correctly and that events are searchable in NAM.
+ 
+The 2 servers do not have a lot of activity.
+1. Updated both hosts in NEA, initially they were showing as Offline and no server fingerprint information, but that populated correctly after host update performed.
+ 
+2. Remotely accessed server's INI file location from NEA server, verified that the content of the INI file is correct for the setup, and the server name matches the NEA server name.
+ 
+3. Created activity on both servers, and 1 of the servers began functioning correctly.","","","","0054u000007osjSAAQ","2025-05-09T21:02:53.000Z"
+"0D5Qk00000diWiwKAE","500Qk00000OzjAWIAZ","TextPost","0054u000007osjSAAQ","2025-05-09T21:06:57.000Z","What We've Learned Updated: FSAC is not detecting the SBTFileMon.ini file or its configuration for activity on one server.
+Previously, it did not detect it on two servers, but now one is working, and the other is still down.","","","","0054u000007osjSAAQ","2025-05-09T21:06:57.000Z"
+"0D5Qk00000diZtuKAE","500Qk00000OzjAWIAZ","TextPost","0054u000007osjSAAQ","2025-05-09T21:07:41.000Z","Next Steps Updated: Review the log for escalation","","","","0054u000007osjSAAQ","2025-05-09T21:07:41.000Z"
+"0D5Qk00000dzCKZKA2","500Qk00000OzjAWIAZ","TextPost","0054u000007MiY9AAK","2025-05-12T19:35:33.000Z","<p>@Frantz Baptiste​ ignore my previous comment, Idk what log I was looking at.</p><p> </p><p>For this ticket, I&#39;d like the sbtfilemon.ini config file uploaded as well as a screenshot of the monitored hosts section in NAM please</p>","","","","0054u000007MiY9AAK","2025-05-12T19:35:33.000Z"
+"0D5Qk00000e1STkKAM","500Qk00000OzjAWIAZ","TextPost","0054u000007MiY9AAK","2025-05-13T13:40:37.000Z","Next Steps Updated: Collecting artifacts for further review of the issue","","","","0054u000007MiY9AAK","2025-05-13T13:40:37.000Z"
+"0D5Qk00000eC5ksKAC","500Qk00000OzjAWIAZ","TextPost","0054u000007MiY9AAK","2025-05-15T18:02:54.000Z","<p>Hey @Frantz Baptiste​ - Please scheduled a meeting with the customer (include me as optional) and try the following:</p><ol><li>Open C:ProgramDataNetwrixActivity MonitorAgentSBTFileMon.ini on ISR-MMR-FS1</li><li> Under the [FILE_MONITOR1] section, look for STEALTHAUDIT=ON (line 91, if using Notepad++)</li><li>Set this to STEALTHAUDIT=OFF and save</li><li>Kick off a new FSAC System Scan (you can scope it to just that host and should know pretty soon if it can connect or not)</li></ol><p> </p><p>Keep in mind, there is are [FILE_MONITOR1] and [FILE_MONITOR] sections. We only want to adjust the STEALTHAUDIT value for [FILE_MONITOR1] because there is no log file location associated. I&#39;m not sure why this would have occurred, as there&#39;s no option for StealthAUDIT on Syslog outputs, but if this doesn&#39;t correct the issue, then I&#39;ll open an escalation.</p>","","","","0054u000007MiY9AAK","2025-05-15T18:02:54.000Z"
+"0D5Qk00000eCnRNKA0","500Qk00000OzjAWIAZ","TextPost","0054u000007osjSAAQ","2025-05-15T23:18:25.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007osjSAAQ","2025-05-15T23:18:25.000Z"
+"0D5Qk00000eCnROKA0","500Qk00000OzjAWIAZ","TextPost","0054u000007osjSAAQ","2025-05-15T23:18:25.000Z","Invitation updated. Attendees: Frantz Baptiste, Tay Caliguiri","","","","0054u000007osjSAAQ","2025-05-15T23:18:25.000Z"
+"0D5Qk00000eCnRPKA0","500Qk00000OzjAWIAZ","TextPost","0054u000007osjSAAQ","2025-05-15T23:18:25.000Z","Invitation updated. Attendees: Frantz Baptiste, Tay Caliguiri, Stephen Byrd","","","","0054u000007osjSAAQ","2025-05-15T23:18:25.000Z"

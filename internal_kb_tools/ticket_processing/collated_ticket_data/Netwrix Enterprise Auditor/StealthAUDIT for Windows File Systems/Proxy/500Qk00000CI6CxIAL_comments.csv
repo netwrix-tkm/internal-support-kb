@@ -1,0 +1,63 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007ZLojIAG","500Qk00000CI6CxIAL","Dusty Grayson: SDD Proxy error
+posted in SWAT Teams: Product Discussions, PM Q&A, Feedback / StealthAUDIT DAG on Tuesday, June 18, 2024 4:57 PM
+ 
+https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1718744258048?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1718744258048&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=StealthAUDIT%20DAG&createdTime=1718744258048","00570000003KXurAAG","2024-06-26T13:24:47.000Z","2024-06-26T13:24:47.000Z","false","false"
+"00aQk000007bIzdIAE","500Qk00000CI6CxIAL","Problem Statement/Business Impact:
+
+Post upgrade the SDD scans via the Proxies fail with the following ERROR:
+1-**REDACTED** SEEK System Scans_Log.tsv
+ERROR	FILESYSTEMACCESS	TFileSystemProcessor.RunFileSystemScan	""Error during processing:  StealthAUDIT Sensitive Data Components are not installed on
+ 
+SDD_**REDACTED**ME2_2024_06_18_181221098_c295487b-bf58-47d1-9b80-e2e2086e7996_0.log
+ERROR                       TFileSystemProcessor.RunFileSystemScan  ""Error during processing:  StealthAUDIT Sensitive Data Components are not installed on **REDACTED-PRXY""
+
+The Proxy and SDD software have been correctly installed to the D: drive and the %sainstalldir% Environment variable  was added to the proxy host.
+
+Desired Outcome:
+For the Proxy to correctly ID that SDD is installed and preform the normal scanning functionality 
+
+Steps to Reproduce:
+1. Install the needed applications to a drive other than C: 
+2. Run the related job
+
+
+Reliably Repro'd in Customer Envi
+
+Troubleshooting completed/Notes: 
+1. Confirmed the Environment variable
+    
+2. Re-installed the SDD application 
+
+3. Rebooted the Proxy host.
+
+4. Re-run the SDD Job.
+
+Ensure relevant logs are uploaded to SPO:
+Application Logs
+Job Logs
+FSAA Proxy/Applet Logs","00570000003KXurAAG","2024-06-27T15:43:58.000Z","2024-06-27T15:43:58.000Z","false","false"
+"00aQk000007dUyHIAU","500Qk00000CI6CxIAL","Observed in customer's SDD_USA-RNC-HOME2_2024_06_24_050117541_c295487b-bf58-47d1-9b80-e2e2086e7996_0.log:
+
+24/06/2024 01:01:20	DEBUG		TFileSystemScan.Create	""Missing StealthAUDIT Sensitive Data Component D:Program Files (x86)STEALTHbitsStealthAUDITFSAASensitiveDatajdk-17.0.7+7-jreconfsecuritypolicyREADME.txt""	USA-RNC-HOME2	DCExecute	3888	2504	3400
+	
+I can reproduce this error specifically by removing the referenced README.txt file from the location on the proxy. It does not appear that this file gets copied over during a scan, but it should be dropped in place during the install of the SDD Add-On on the proxy server. Somehow this file must be getting removed after the successful scan that occurred previously in customer's environment. 
+
+Running Process Monitor during lab testing FSAAScanHost.EXE checks for the README.txt file when SEEK scan is initiated.
+4:12:05.0689077 PM	FSAAScanHost.EXE	209164	QueryOpen	F:Program Files (x86)STEALTHbitsStealthAUDITFSAASensitiveDatajdk-17.0.7+7-jreconfsecuritypolicyREADME.txt	NAME NOT FOUND	
+
+Lab testing if SDD add-on is not installed on FSAA proxy it does not produce the same error message observed in customer environment. The error messages outlined from my lab align with current documentation.
+
+11.6 Lab:
+
+27/06/2024 15:25:37	ERROR	FILESYSTEMACCESS	TDLP.Create	""Failed to create FSAdapter (80070002): The system cannot find the file specified""	KGERTH-FS	DCExtract	8152	11404	7896
+27/06/2024 15:25:37	DEBUG	TSPADOEngineTransportItf.DebugLog	TSPEngineTransportItf.PrepareForTable	""Start""	KGERTH-FS		8152	11404	7896
+27/06/2024 15:25:37	DEBUG	TSPADOEngineTransportItf.DebugLog	TSPEngineTransportItf.PrepareForTable	""End""	KGERTH-FS	Messages	8152	11404	7896
+27/06/2024 15:25:37	ERROR	FILESYSTEMACCESS	TFileSystemProcessor.RunFileSystemScan	""Error during processing:  Failed to create FSAdapter""	KGERTH-FS	DCExtract	8152	11404	7896
+	
+11.5 Lab:
+
+28/06/2024 10:42:46	ERROR	FILESYSTEMACCESS	InitializeScan	""failed to launch SDD client (2): The system cannot find the file specified.  ""	STEALTHAUDIT01	DCExtract	3168	5928	6164
+STEALTHAUDIT01	Messages	3168	5928	6164
+28/06/2024 10:42:46	ERROR	FILESYSTEMACCESS	TDLPThreads._CreateDLPSession	""Error creating DLP components. Error:Error initializing DLP communications, received invalid pipe handle""	STEALTHAUDIT01	DCExtract	3168	5928	6164
+28/06/2024 10:42:46	ERROR	FILESYSTEMACCESS	InitializeScan	""failed to launch SDD client (2): The system cannot find the file specified.  ""	STEALTHAUDIT01	DCExtract	3168	5928	6164","0054u000006goFUAAY","2024-06-28T23:26:43.000Z","2024-06-28T23:26:43.000Z","false","false"

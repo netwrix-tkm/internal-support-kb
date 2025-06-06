@@ -1,0 +1,57 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000N1FsfIAF","00439010","Support Ticket","POC - NEA Permission Analyzer Job Errors - all seven (7) jobs are failing","Running a POC where all the NEA AD Permission Analyzer Collection Jobs report the same error 
+17/03/2025 15:36:12	ERROR	ADP	TManagedDCExtractItf.PrepareForTask	""Unable to cast object of type 'System.String' to type 'System.Byte[]'""	LEWDC001	DCExtract	8904	8812	6244
+In the same POC I am able run FS, SP and File Systems jobs no problem. All reports are available with expectation we can’t login to the Published reports directory which we have another support case open for. 
+The MSSQL Database is US Version with a MSSQL Latin version on the collation and it looks fine. 
+If it was Collation problem, I would have seen that within the AD Inventory, FS and Sharepoint Online scans. 
+The AIC is working as expected but the NEA AD {Permission analyser jobs are throwing the same issue as displayed above.","1) Use MS SQL Server Authentication for Settings > Storage in NEA.
+2 Use an Active Directory Account for Settings > Connection to run the Active Directory Permissions Analyzer jobs.   
+3) Prerequisites are that the "".Active Directory Inventory"" and ""Active Directory"" job groups have run successfully.","+++++
+NEA > Active Directory Permissions Analyzer Job Group
+All 7 jobs are failing in this job group.
++++++
+AD_ComputerRights
+AD_ContainerRights
+AD_DomainRights
+AD_GroupRights
+AD_OURights
+AD_SiteRights
+AD_UserRights
+
+
++++++
+Invalid time zone. Sent initial email requesting logs and moving to T1 queue
++++++
+
+hotfix provided was successful","+++++
+2025_0326: Suggested Next Steps:
++++++
+
+1) As a test, can we use a Domain Admin cred on the ADPA Collection jobs --does this throw the same error?
+
+2) I would like to see evidence/screenshots that the POCNetwrix account has at least the following permissions on the root of the domain/all AD objects
+Read
+Read permissions
+LDAP Read
+
+3) Also might not hurt to try and run the attached PS script as POCNetwrix from the NEA console server --does this succeed?
+
+4) Another option is try pulling a new copy of the group from instant solutions
+
+4-18 fix implemented waiting on cause from development if we can get it before close.","Symptom
+
+Running a POC where all the NEA AD Permission Analyzer Collection Jobs report the same error 
+17/03/2025 15:36:12	ERROR	ADP	TManagedDCExtractItf.PrepareForTask	""Unable to cast object of type 'System.String' to type 'System.Byte[]'""	LEWDC001	DCExtract	8904	8812	6244
+In the same POC I am able run FS, SP and File Systems jobs no problem. All reports are available with expectation we can’t login to the Published reports directory which we have another support case open for. 
+The MSSQL Database is US Version with a MSSQL Latin version on the collation and it looks fine. 
+If it was Collation problem, I would have seen that within the AD Inventory, FS and Sharepoint Online scans. 
+The AIC is working as expected but the NEA AD {Permission analyser jobs are throwing the same issue as displayed above.
+
+Cause
+
+Root Cause Unknown
+
+Resolution
+
+Hotfix delivered to mitigate in future.
+Issue is believed to be Environmental with some corruption on customer AD side of things.","Root Cause Unknown","Nicholas Zimmer","Error","Netwrix Enterprise Auditor","StealthAUDIT AD Permissions Analyzer","Configuration","11.6","","51.9","Closed - Resolved","Lewis Group Ltd","Ziyaad Rasool","2025-03-17T16:07:54.000Z","2025-05-08T14:22:05.000Z"

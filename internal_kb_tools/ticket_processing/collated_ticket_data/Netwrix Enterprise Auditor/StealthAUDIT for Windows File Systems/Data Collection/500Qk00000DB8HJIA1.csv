@@ -1,0 +1,21 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DB8HJIA1","00415211","Support Ticket","FS Scan Unable to initiate","Filesystem permission scan unable to initiate because of:
+
+ 17/07/2024 08:26:24WARNINGSAJobEngineCPassSDK.IsPasswordSDKAvailable""Unable to load library (CPasswordSDK): The specified module could not be found""42641282813444
+17/07/2024 08:26:24WARNINGSAJobEngineCPassSDK.IsPasswordSDKAvailable""   C:Windowssystem32<a href='https://CPasswordSDK.dll' target='_blank'>CPasswordSDK.dll</a>""42641282813444
+17/07/2024 08:26:24WARNINGSAJobEngineCPassSDK.IsPasswordSDKAvailable""Unable to load library (CPasswordSDK): The specified module could not be found""42641282813444
+17/07/2024 08:26:24WARNINGSAJobEngineCPassSDK.IsPasswordSDKAvailable""   C:Program Files (x86)CyberArkApplicationPasswordSdk<a href='https://CPasswordSDK.dll' target='_blank'>CPasswordSDK.dll</a>""42641282813444
+17/07/2024 08:26:24WARNINGSAJobEngineCPassSDK.IsPasswordSDKAvailable""Unable to load library (libeay32): The specified module could not be found""42641282813444
+17/07/2024 08:26:24WARNINGSAJobEngineCPassSDK.IsPasswordSDKAvailable""   D:Program Files (x86)STEALTHbitsStealthAUDIT<a href='https://libeay32.dll' target='_blank'>libeay32.dll</a>""42641282813444
+17/07/2024 08:26:24WARNINGSAJobEngineCPassSDK.IsPasswordSDKAvailable""Unable to load library (libeay32): The specified module could not be found""42641282813444
+17/07/2024 08:26:24WARNINGSAJobEngineCPassSDK.IsPasswordSDKAvailable""   C:Program Files (x86)CyberArkApplicationPasswordSdk<a href='https://libeay32.dll' target='_blank'>libeay32.dll</a>""42641282813444
+17/07/2024 <a href='https://08:26:24ERRORFILESYSTEMACCESSStealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>08:26:24ERRORFILESYSTEMACCESSStealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute""<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Unable to start scan: Attempted to perform an unauthorized operation.     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.AccessScanTask.d__2.MoveNext()  --- End of stack trace from previous location where exception was thrown ---     at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)     at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.AccessScanTask.InternalProcessRecord()     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()""MANDBN-FS-01DCExtract42641282813444
+17/07/2024 08:26:26WARNINGStealthAUDITTJobQueueThread.AbortQueue""Abort queue pending""130081282813444
+17/07/2024 08:26:26WARNINGStealthAUDITTJobQueueThread.TerminateQueue""Terminate pending""130081282813444","","","","The customer had 2 issues in a row: the service account was getting locked out and this error appeared if the account was in a normal state:
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Unable to start scan: Invalid provider type specified.
+
+The actions are the same as described in this article:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000WSvKAM.html
+
+The customer deleted the FSAA Certificate Authority Store and FSAA Client Certificate Store certificates on NEA host and the scan was initiated successfully.","Third-party system failure","Aleksandr Timofeev","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.6","","5.5","Closed - Resolved","MANCOSA","ziyaad Rasool","2024-07-17T06:37:08.000Z","2024-07-22T17:51:49.000Z"

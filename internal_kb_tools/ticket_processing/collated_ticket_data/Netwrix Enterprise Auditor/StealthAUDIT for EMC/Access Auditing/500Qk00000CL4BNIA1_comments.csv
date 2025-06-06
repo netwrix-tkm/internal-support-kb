@@ -1,0 +1,62 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007sHSrIAM","500Qk00000CL4BNIA1","We discovered that the FSAA Bulk import was failing due to a permissions-based issue occurring on the update statistics SQL script for the analysis task. I recommend providing the service account used in the job with this permission and running the bulk import again.","0054u000007MdqrAAC","2024-07-11T16:39:42.000Z","2024-07-11T16:39:42.000Z","false","false"
+"00aQk000008VbwLIAS","500Qk00000CL4BNIA1","Discovered that the applet service can not run due to it actively being refused on the NEA server over port 8766.
+
+Verified that the Isilon hosts that are being monitored have activity and the archive files are being stored on the NAM application server. Attempted to run the FSAC job as a local server but experienced an error on the job prompting that the SBTFileMon.ini file doesn't exist.
+
+Discovered that the agent being used to monitor activity on the Isilon servers is being used as a proxy and not installed on each individual host. The NEA application calls to the default activity path (C:ProgramDataNetwrixActivity MonitorAgentActivityLogs) which the files are located in a different path.
+
+Possible next steps will include allowing the StealthAuditRPC.exe process and opening port 8766 since the NEA application server is actively refusing the connection over port 8766. 
+
+Also possibly adding the NAM application server as a monitored host since an NAM agent already exists on the server as well as the activity archive files for each Isilon host that the FSAC system scan is targeting. Modify the default NAM activity logs file path to target the file path location that facilitates all of the Isilon activity file paths.","0054u000007MdqrAAC","2024-08-13T19:33:54.000Z","2024-08-13T19:33:54.000Z","false","false"
+"00aQk000008Wph9IAC","500Qk00000CL4BNIA1","[Meeting Notes 8/14/24]
+**Current Issue**
+- Few issues going on here: FSAA Bulk Import, FSAC System Scans, SPAC Bulk Import
+
+**Troubleshooting Completed during Meeting**
+- Reset Netwrix Customer Portal Password
+- Upgraded the Netwrix File Proxy from v11.0.0.45 to v11.6.0.29
+--- After upgrading, we set the FSAC query applet setting to ""Require applet to be running as a service on target"", then kicked the FSAC scan job off from the scheduled tasks and it appeared to be scanning correctly
+- Took a look at the SPAC Bulk Import which ran for 0 secs but had no data. Removed a running.lck file and kicked the scan off from the schedule and it appeared to be working.
+
+**Logs/Screenshots Collected**
+
+**Next Steps**
+Customer will update me once those scan and import finish","0054u000007MiY9AAK","2024-08-14T19:00:31.000Z","2024-08-14T19:00:31.000Z","false","false"
+"00aQk000008ehb7IAA","500Qk00000CL4BNIA1","From: Sterianos, Peter <Peter.Sterianos@point32health.org>
+Sent: Wednesday, August 21, 2024 10:42 AM
+To: Stacy Petruzzi <Stacy.Petruzzi@netwrix.com>
+Subject: RE: 00413149 - Checking In
+ 
+You don't often get email from peter.sterianos@point32health.org. Learn why this is important
+Hi Stacy,
+
+ 
+
+Thank you for checking in. I can confirm as of this morning, everything is back on track. We can go ahead and close the case on this issue.
+
+ 
+
+Thank you for escalating this issue and getting it addressed asap. I appreciate your help.
+
+ 
+
+Thanks
+
+Peter Sterianos
+
+Sr. Information Security Analyst
+
+Cyber & Information Security
+
+Peter.Sterianos@point32health.org
+
+Office: (781) 612-4322
+
+Cell: (781) 760-1153
+
+ 
+
+www.point32health.org
+www.harvardpilgrim.org
+www.tuftshealthplan.com","005Qk0000018eMHIAY","2024-08-21T15:05:18.000Z","2024-08-21T15:05:18.000Z","false","false"

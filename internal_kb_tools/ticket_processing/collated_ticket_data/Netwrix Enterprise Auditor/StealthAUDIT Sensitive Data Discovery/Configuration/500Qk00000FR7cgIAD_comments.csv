@@ -1,0 +1,124 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk0000093JddIAE","500Qk00000FR7cgIAD","In today's meeting, we ran a repair on the Host, which did not resolve the issue. We dropped the data from the Host.
+After completing the drop, the customer will rescan the file server group and let me know if anything has changed","0054u000007osjSAAQ","2024-09-11T22:14:57.000Z","2024-09-11T22:14:57.000Z","false","false"
+"00aQk00000963inIAA","500Qk00000FR7cgIAD","Next step
+ 
+	• We will delete all DLP data from T2 and run the FS_SDD_DELETE job to clear the T1 database.
+	• We will run the FS_DLPResults job to make sure everything was removed.
+	• We will upgrade the to the latest version of StealthAUDIT (11.6.0.98).
+	• After the upgrade, we will run a 0-level depth on the SEEK System Scan. We will increment the level slowly until we reach the level you are on now.
+	• We will run the FS_DLPResults job to make sure everything is back.","0054u000007osjSAAQ","2024-09-13T21:44:24.000Z","2024-09-13T21:44:24.000Z","false","false"
+"00aQk0000097sbBIAQ","500Qk00000FR7cgIAD","The customer is on SA version 11.6.0.84, and the SDD version is 11.6.0.12
+The 11.6.0.92 version, Released on August 23, has some improvements for the SDD (11.6.0.13).
+ 
+These are the steps to follow with the customer:
+ 
+Delete all DLP data from T2 and run the FS_SDD_DELETE job to clear the T1 database.
+
+Run the FS_DLPResults job to make sure everything was removed.
+
+Upgrade the customer to the latest version of StealthAUDIT (11.6.0.98).
+
+After the upgrade, we will run a 0-level depth on the SEEK System Scan.
+
+Advise the customer to incrementally increase the scan level until he reaches the level he wants it to be or the current level he is on.","0054u000007osjSAAQ","2024-09-16T14:58:11.000Z","2024-09-16T14:58:11.000Z","false","false"
+"00aQk0000099XcHIAU","500Qk00000FR7cgIAD","We ran a repair on one host that was erring out.
+We ran the FS_SDD_DELETE job to clear the DLP data from the T1 database.
+We deleted all DPL related to the T2 database from the two Hosts that were erring out.
+I did the preflight meeting in case we have to upgrade the customer to the latest version.
+The customer is currently running a full scan on the Sensitive Data Group
+We are waiting for an update from the customer to find out if the issue is resolved.
+ 
+If the issue is resolved, we will close this ticket.
+If the issue is not resolved, we will upgrade the customer to the latest version (911.6.0.98)","0054u000007osjSAAQ","2024-09-17T17:01:04.000Z","2024-09-17T17:01:04.000Z","false","false"
+"00aQk000009DrkUIAS","500Qk00000FR7cgIAD","Today we:
+
+Reviewed the SEEK Bulk Import and SEEK system scan and discovered the reason the bulk import error is being prompted ""DLPEX database does not exist, there is no data to import"" is due to the connection profile used for the SEEK system scan not having the ability to initiate a DLP scan of the folders and file paths for the Cohesity NAS device. 
+
+We also verified that the service account used in the connection profile of the scan does have access to the host as well as access to the files and folders being recorded as errors in the SEEK system scan.
+
+We verified this by logging into the NEA application server as the service account, UNC to the Cohesity NAS filer, accessing a folder that was recorded in the job as an error, and drilling into the folder to access the file that is being recorded as not found and was able to successfully open the file without any errors. We also verified that the service account is part of a group that has full read permissions and list of contents and read & execute permissions. 
+
+We also attempted to drop the scan depth down to a 1-level scan and were still prompted with the same error above as well as the error below:
+
+Error during processing:  Could not load file or assembly 'System.Data.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+
+We were also able to confirm the version of the Cohesity NAS device and all versions of the NEA application and associated modules. 
+
+We also gathered additional screenshots of the permissions for the service account, errors for the job as well as screenshots of the DLP results for the job and can identify that the job is collecting some data and not all data from the FILER.
+
+Our next steps are:
+
+I will:
+
+Discuss the new information collected today with my team for further investigation as well as providing the Cohesity NAS device information to development for further research on the platform and if any additional requirements are needed on our end to address the error below:
+
+Error during processing:  Could not load file or assembly 'System.Data.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)","0054u000007MdqrAAC","2024-09-20T16:57:27.000Z","2024-09-20T16:57:27.000Z","false","false"
+"00aQk000009EIPhIAO","500Qk00000FR7cgIAD","Opened a SWAT discussion on this topic. Link is below:
+
+https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1726868906960?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1726868906960&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=StealthAUDIT%20DAG&createdTime=1726868906960","0054u000007MdqrAAC","2024-09-20T21:52:21.000Z","2024-09-20T21:52:21.000Z","false","false"
+"00aQk000009PwusIAC","500Qk00000FR7cgIAD","To resend confirmation email, navigate to Salesforce Calendar > Find the meeting and click into it > Under the TimeTrade Scheduler banner select ""Resent Confirmation Email""","0054u000007MiY9AAK","2024-10-01T16:31:24.000Z","2024-10-01T16:31:24.000Z","false","false"
+"00aQk000009gIRZIA2","500Qk00000FR7cgIAD","Today we:
+
+Identified that the DLP scan could not initiate on the desired file paths located on the Cohesity NAS device. 
+
+We noticed that the exclude shares option was enabled and deselected this setting to allow for the C$ share that's being reported as unable to scan in the error messages of the SEEK System Scan. By making these changes there were no improvements of the scan and the error persisted. 
+
+We then removed the T2s from the FSAAFILER folder. Then ran the SEEK System scan again. This also did not change the outcome of the SEEK System Scan. 
+
+We also modified the Cohesity NAS device host information in the Host Management node to allow it to populate with new information. Once this process was complete we then ran the scan again on that host and this did not change the outcome of the scan. 
+
+We also collected further artifacts and have uploaded them to the ticket. 
+
+Our next steps are:
+
+We have determined that this issue needs to be escalated to development and have discussed bringing this issue up on our upcoming development meetings this Thursday. 
+
+We have also discussed potentially involving development on a call if they are available. 
+
+Once we have more information we will provide an update on next steps. I will put this ticket into a postponed state until an update has been provided on Thursday.","0054u000007MdqrAAC","2024-10-15T22:22:18.000Z","2024-10-15T22:22:18.000Z","false","false"
+"00aQk000009iPDdIAM","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Account ACV has been changed to 139969.94.
+Priority has been changed to High.","0054u000006gpoAAAQ","2024-10-17T13:54:51.000Z","2024-10-17T13:54:51.000Z","false","false"
+"00aQk000009iPFFIA2","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Account ACV has been changed to 69984.97.","0054u000006gpoAAAQ","2024-10-17T13:54:52.000Z","2024-10-17T13:54:52.000Z","false","false"
+"00aQk000009ig4nIAA","500Qk00000FR7cgIAD","Obtain new information from the customer below:
+
+Line 3122737: {""Timestamp"" : ""2024-10-15T15:44:23.889-04:00"", ""RecordID"" : ""3edab4f:dc18d"", ""Protocol"" : ""SMB"", ""ClientIP"" : ""10.1.7.112"", ""UserName"" : ""sbitsservice"", ""UserID"" : 118107, ""DomainName"" : ""fcci-group.com"", ""UserSID"" : ""S-1-5-21-665280756-27275935-701057205-118107"", ""RequestType"" : ""Mount"", ""Result"" : ""NotFound"", ""EntityPath"" : ""\\FILER\C$""}
+
+The above is a snippet of a log from the Cohesity device. The Cohesity device is installed to a Linux server and from the POV of the Cohesity server it doesn't seem that we attempt any other path but the C$.","0054u000007MdqrAAC","2024-10-17T16:34:59.000Z","2024-10-17T16:34:59.000Z","false","false"
+"00aQk000009o33zIAA","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the new comment has been added: Line 3122737: {""Timestamp"" : ""2024-10-15T15:44:23.889-04:00"", ""RecordID"" : ""3edab4f:dc18d"", ""Protocol"" : ""SMB"", ""ClientIP"" : ""10.1.7.112"", ""UserName"" : ""sbitsservice"", ""UserID"" : 118107, ""DomainName"" : ""fcci-group.com"", ""UserSID"" : ""S-1-5-21-665280756-27275935-701057205-118107"", ""RequestType"" : ""Mount"", ""Result"" : ""NotFound"", ""EntityPath"" : ""\\FILER\C$""}
+
+The above is a snippet of a log from the Cohesity device. The Cohesity device is installed to a Linux server and from the POV of the Cohesity server it doesn't seem that we attempt any other path but the C$.","0054u000006gpoAAAQ","2024-10-22T18:56:33.000Z","2024-10-22T18:56:33.000Z","false","false"
+"00aQk000009oB1XIAU","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the new comment has been added: Ethan Israel:
+
+@Salesforce @Helen Randall - dev looked into this and the issue here is that the customer has LAT preservation (which requires Write permissions) turned on, but there are no Write permissions. The reason we're trying the C$ path is because we fall back to admin paths if we can't open the file any other way. The customer should turn off LAT preservation unless absolutely necessary. 
+
+[DevOps CommentId:11097350]","0054u000006gtWUAAY","2024-10-22T20:10:59.000Z","2024-10-22T20:10:59.000Z","false","false"
+"00aQk000009oB1VIAU","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-22T20:10:59.000Z","2024-10-22T20:10:59.000Z","false","false"
+"00aQk000009oFMsIAM","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-10-22T21:11:13.000Z","2024-10-22T21:11:13.000Z","false","false"
+"00aQk000009xcouIAA","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-31T05:03:55.000Z","2024-10-31T05:03:55.000Z","false","false"
+"00aQk000009xcowIAA","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-23 21:54 UTC and the last detected comment from support was 2024-10-22 18:56 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11141476]","0054u000006gtWUAAY","2024-10-31T05:03:56.000Z","2024-10-31T05:03:56.000Z","false","false"
+"00aQk000009xz3tIAA","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-10-31T13:35:36.000Z","2024-10-31T13:35:36.000Z","false","false"
+"00aQk000009zNCFIA2","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the new comment has been added: Confirmed this is all good now. We can close 
+Thanks for pointing out that setting was definitely causing the problem.","0054u000006gpoAAAQ","2024-11-01T15:52:31.000Z","2024-11-01T15:52:32.000Z","false","false"
+"00aQk000009zQd7IAE","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2024-11-01T16:04:57.000Z","2024-11-01T16:04:57.000Z","false","false"
+"00aQk000009zQd9IAE","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Account ACV has been changed to 139969.94.","0054u000006gpoAAAQ","2024-11-01T16:05:01.000Z","2024-11-01T16:05:01.000Z","false","false"
+"00aQk000009zQgLIAU","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Account ACV has been changed to 69984.97.","0054u000006gpoAAAQ","2024-11-01T16:05:08.000Z","2024-11-01T16:05:08.000Z","false","false"
+"00aQk00000CZhj7IAD","500Qk00000FR7cgIAD","On Escalation Ticket # 00424250 the Following Fields have been updated: 
+Account ACV has been changed to 96014.6366666666674.","0054u000006gtWUAAY","2025-03-27T13:37:45.000Z","2025-03-27T13:37:45.000Z","false","false"

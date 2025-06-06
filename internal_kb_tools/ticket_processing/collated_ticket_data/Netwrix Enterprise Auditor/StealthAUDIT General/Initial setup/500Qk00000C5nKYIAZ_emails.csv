@@ -1,0 +1,1557 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000BZlnPIAT","500Qk00000C5nKYIAZ","2024-06-20T19:54:49.000Z","2024-06-20T19:54:49.000Z","Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0C5nKY:ref","Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com","","false","2024-06-20T19:54:47.000Z","true"
+"02sQk00000BZrG8IAL","500Qk00000C5nKYIAZ","2024-06-20T20:40:49.000Z","2024-06-20T20:40:49.000Z","ref:_00D7091pB._500Q000C5nKY:ref
+
+Thanks for the quick response. I've asked the customer to run the modified query and update us with the results. I'll let you know when I get a response. If there's still an issue, I'll set up a meeting to review the job - I'm suspecting there's some issues with it.
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+Company Use
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 2:55 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott, Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below
+
+Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0C5nKY:ref","RE: Netwrix Support Ticket #412503 - ref:_00D7091pB._500Q000C5nKY:ref - Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","priggescottm@johndeere.com","Scott Prigge","techsupport@netwrix.com","eric.szymanski@netwrix.com","","false","2024-06-20T20:40:39.000Z","true"
+"02sQk00000BaFVHIA3","500Qk00000C5nKYIAZ","2024-06-20T21:56:47.000Z","2024-06-20T21:56:47.000Z","Hi Scott,
+
+Thank you for the updated information.
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/20/2024 3:40 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - ref:_00D7091pB._500Q000C5nKY:ref - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+
+
+Thanks for the quick response. I've asked the customer to run the modified query and update us with the results. I'll let you know when I get a response. If there's still an issue, I'll set up a meeting to review the job - I'm suspecting there's some issues with it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 2:55 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0C5nKY:ref","RE: Netwrix Support Ticket #412503 -  - Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com","","false","2024-06-20T21:56:46.000Z","true"
+"02sQk00000BbYxIIAV","500Qk00000C5nKYIAZ","2024-06-21T13:38:50.000Z","2024-06-21T13:38:50.000Z","ref:_00D7091pB._500Q000C5nKY:ref
+
+I got feedback from my customer who confirmed the updated query did not resolve the issue, so I just requested a meeting on your calendar. To summarize, the customer is seeing permission data from a folder that does not exist on the filesystem anymore. I suspect the permissions job is not updating the database, but we need some help understanding why that is and what to do about it.
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+Company Use
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 4:57 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott, Thank you for the updated information. Scottie Taylor Technical Support Engineer ____________________________ Cybersecurity That Works For You 6160 Warren Parkway, Suite 100, Frisco, TX 75034 www. netwrix. com --------------- Original
+
+Hi Scott,
+
+Thank you for the updated information.
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/20/2024 3:40 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #412503 - ref:_00D7091pB._500Q000C5nKY:ref - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+
+Thanks for the quick response. I've asked the customer to run the modified query and update us with the results. I'll let you know when I get a response. If there's still an issue, I'll set up a meeting to review the job - I'm suspecting there's some issues with it.
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+Company Use
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 20, 2024 2:55 PM
+To: Scott Prigge <priggescottm@johndeere.com<mailto:priggescottm@johndeere.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott, Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below
+
+Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0C5nKY:ref","RE: Netwrix Support Ticket #412503 -  - Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","priggescottm@johndeere.com","Scott Prigge","techsupport@netwrix.com","eric.szymanski@netwrix.com","","false","2024-06-21T13:38:39.000Z","true"
+"02sQk00000BbxUGIAZ","500Qk00000C5nKYIAZ","2024-06-21T15:13:23.000Z","2024-06-21T15:13:23.000Z","Hi Scott,
+
+Thank you for the updated information. The issue may be related to the Deleted USN identifier associated with the data entry in SQL. So we basically need to identify why the older data isn't being identified as such. We could possibly perform a tier 2 data drop or drop the file system tables and re-run the FSAA permissions job again to update the scan data.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/21/2024 8:38 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+
+
+I got feedback from my customer who confirmed the updated query did not resolve the issue, so I just requested a meeting on your calendar. To summarize, the customer is seeing permission data from a folder that does not exist on the filesystem anymore. I suspect the permissions job is not updating the database, but we need some help understanding why that is and what to do about it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 4:57 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for the updated information. Scottie Taylor Technical Support Engineer ____________________________ Cybersecurity That Works For You 6160 Warren Parkway, Suite 100, Frisco, TX 75034 www. netwrix. com --------------- Original 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for the updated information.
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/20/2024 3:40 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - ref:_00D7091pB._500Q000C5nKY:ref - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+ 
+
+
+Thanks for the quick response. I've asked the customer to run the modified query and update us with the results. I'll let you know when I get a response. If there's still an issue, I'll set up a meeting to review the job - I'm suspecting there's some issues with it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 2:55 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0C5nKY:ref","RE: Netwrix Support Ticket #412503 -  - Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com","","false","2024-06-21T15:13:21.000Z","true"
+"02sQk00000Bd0UtIAJ","500Qk00000C5nKYIAZ","2024-06-21T20:16:09.000Z","2024-06-21T20:16:09.000Z","Hi Scott,
+
+Thank you for attending our scheduled meeting today. We provided a modified SQL script to include the DeletedUSN identifier. Please run that script against a target host. We also provided an instant job (FS_LookupUNCPath) which verify entries with the DeletedUSN. Additionally, we also suggested a repair on an FSAA job and demonstrated the process of achieving that. 
+
+Please provide an update on the results of the permission scans.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/21/2024 10:13 AM
+To: priggescottm@johndeere.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott,
+
+Thank you for the updated information. The issue may be related to the Deleted USN identifier associated with the data entry in SQL. So we basically need to identify why the older data isn't being identified as such. We could possibly perform a tier 2 data drop or drop the file system tables and re-run the FSAA permissions job again to update the scan data.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/21/2024 8:38 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+
+
+I got feedback from my customer who confirmed the updated query did not resolve the issue, so I just requested a meeting on your calendar. To summarize, the customer is seeing permission data from a folder that does not exist on the filesystem anymore. I suspect the permissions job is not updating the database, but we need some help understanding why that is and what to do about it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 4:57 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for the updated information. Scottie Taylor Technical Support Engineer ____________________________ Cybersecurity That Works For You 6160 Warren Parkway, Suite 100, Frisco, TX 75034 www. netwrix. com --------------- Original 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for the updated information.
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/20/2024 3:40 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - ref:_00D7091pB._500Q000C5nKY:ref - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+ 
+
+
+Thanks for the quick response. I've asked the customer to run the modified query and update us with the results. I'll let you know when I get a response. If there's still an issue, I'll set up a meeting to review the job - I'm suspecting there's some issues with it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 2:55 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0C5nKY:ref","RE: Netwrix Support Ticket #412503 -  - Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com","","false","2024-06-21T20:16:07.000Z","true"
+"02sQk00000BkkJFIAZ","500Qk00000C5nKYIAZ","2024-06-25T12:37:34.000Z","2024-06-25T12:37:34.000Z","ref:_00D7091pB._500Q000C5nKY:ref
+
+Hello. Yesterday I stopped all running jobs and ran the repair tool against the target host, NPUNPUNASC003.JDNET.DEERE.COM. Unfortunately, it produced the error ""Repair tool could not complete: The given key was not present in the dictionary."". The log file is attached. I went ahead and manually ran the Bulk Import job for the host group, but that doesn't appear to have fixed the issue - I still see the deleted folder in the permissions report. Please review the attachments and advise what you think are the next steps. I imagine we'll probably want to jump on another call.
+
+There is one question I was thinking about - was I supposed to do anything with the ""FSAA Folder CleanUp"" job that you installed when we first got on the phone? I don't think I wrote down anything about it in my notes, so I am hoping I didn't miss a step in the process I was supposed to follow.
+
+Thanks.
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+Company Use
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, June 21, 2024 3:16 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott, Thank you for attending our scheduled meeting today. We provided a modified SQL script to include the DeletedUSN identifier. Please run that script against a target host. We also provided an instant job (FS_LookupUNCPath) which verify
+
+Hi Scott,
+
+Thank you for attending our scheduled meeting today. We provided a modified SQL script to include the DeletedUSN identifier. Please run that script against a target host. We also provided an instant job (FS_LookupUNCPath) which verify entries with the DeletedUSN. Additionally, we also suggested a repair on an FSAA job and demonstrated the process of achieving that.
+
+Please provide an update on the results of the permission scans.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/21/2024 10:13 AM
+To: priggescottm@johndeere.com<mailto:priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott,
+
+Thank you for the updated information. The issue may be related to the Deleted USN identifier associated with the data entry in SQL. So we basically need to identify why the older data isn't being identified as such. We could possibly perform a tier 2 data drop or drop the file system tables and re-run the FSAA permissions job again to update the scan data.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/21/2024 8:38 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+
+I got feedback from my customer who confirmed the updated query did not resolve the issue, so I just requested a meeting on your calendar. To summarize, the customer is seeing permission data from a folder that does not exist on the filesystem anymore. I suspect the permissions job is not updating the database, but we need some help understanding why that is and what to do about it.
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+Company Use
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 20, 2024 4:57 PM
+To: Scott Prigge <priggescottm@johndeere.com<mailto:priggescottm@johndeere.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott, Thank you for the updated information. Scottie Taylor Technical Support Engineer ____________________________ Cybersecurity That Works For You 6160 Warren Parkway, Suite 100, Frisco, TX 75034 www. netwrix. com --------------- Original
+
+Hi Scott,
+
+Thank you for the updated information.
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/20/2024 3:40 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #412503 - ref:_00D7091pB._500Q000C5nKY:ref - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+
+Thanks for the quick response. I've asked the customer to run the modified query and update us with the results. I'll let you know when I get a response. If there's still an issue, I'll set up a meeting to review the job - I'm suspecting there's some issues with it.
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+Company Use
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, June 20, 2024 2:55 PM
+To: Scott Prigge <priggescottm@johndeere.com<mailto:priggescottm@johndeere.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott, Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below
+
+Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0C5nKY:ref","RE: Netwrix Support Ticket #412503 -  - Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","priggescottm@johndeere.com","Scott Prigge","techsupport@netwrix.com","eric.szymanski@netwrix.com; lopezandrew@johndeere.com; parryjohnm@johndeere.com","","true","2024-06-25T12:36:37.000Z","true"
+"02sQk00000BkmwHIAR","500Qk00000C5nKYIAZ","2024-06-25T14:10:50.000Z","2024-06-25T14:10:50.000Z","Hi Scott,
+
+Thank you for the updated information.
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=Sxme1pFN6cUecKWeVzK3N0Mq.UcuFZGjS_oF7MzMqAM-Z&MeetingID=aUDI4d8Mh4GRQUtRaYkMbVSDTtXQMqRkLUltsIxGmqc-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/25/2024 7:36 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; lopezandrew@johndeere.com; parryjohnm@johndeere.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+
+
+Hello. Yesterday I stopped all running jobs and ran the repair tool against the target host, NPUNPUNASC003.JDNET.DEERE.COM. Unfortunately, it produced the error ""Repair tool could not complete: The given key was not present in the dictionary."". The log file is attached. I went ahead and manually ran the Bulk Import job for the host group, but that doesn't appear to have fixed the issue - I still see the deleted folder in the permissions report. Please review the attachments and advise what you think are the next steps. I imagine we'll probably want to jump on another call.
+
+ 
+
+There is one question I was thinking about - was I supposed to do anything with the ""FSAA Folder CleanUp"" job that you installed when we first got on the phone? I don't think I wrote down anything about it in my notes, so I am hoping I didn't miss a step in the process I was supposed to follow.
+
+ 
+
+Thanks.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, June 21, 2024 3:16 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for attending our scheduled meeting today. We provided a modified SQL script to include the DeletedUSN identifier. Please run that script against a target host. We also provided an instant job (FS_LookupUNCPath) which verify 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for attending our scheduled meeting today. We provided a modified SQL script to include the DeletedUSN identifier. Please run that script against a target host. We also provided an instant job (FS_LookupUNCPath) which verify entries with the DeletedUSN. Additionally, we also suggested a repair on an FSAA job and demonstrated the process of achieving that. 
+
+Please provide an update on the results of the permission scans.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/21/2024 10:13 AM
+To: priggescottm@johndeere.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott,
+
+Thank you for the updated information. The issue may be related to the Deleted USN identifier associated with the data entry in SQL. So we basically need to identify why the older data isn't being identified as such. We could possibly perform a tier 2 data drop or drop the file system tables and re-run the FSAA permissions job again to update the scan data.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/21/2024 8:38 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+ 
+
+
+I got feedback from my customer who confirmed the updated query did not resolve the issue, so I just requested a meeting on your calendar. To summarize, the customer is seeing permission data from a folder that does not exist on the filesystem anymore. I suspect the permissions job is not updating the database, but we need some help understanding why that is and what to do about it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 4:57 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for the updated information. Scottie Taylor Technical Support Engineer ____________________________ Cybersecurity That Works For You 6160 Warren Parkway, Suite 100, Frisco, TX 75034 www. netwrix. com --------------- Original 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for the updated information.
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/20/2024 3:40 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - ref:_00D7091pB._500Q000C5nKY:ref - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+ 
+
+
+Thanks for the quick response. I've asked the customer to run the modified query and update us with the results. I'll let you know when I get a response. If there's still an issue, I'll set up a meeting to review the job - I'm suspecting there's some issues with it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 2:55 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0C5nKY:ref","RE: Netwrix Support Ticket #412503 -  - Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com; parryjohnm@johndeere.com; lopezandrew@johndeere.com","","false","2024-06-25T14:10:48.000Z","true"
+"02sQk00000BtJAIIA3","500Qk00000C5nKYIAZ","2024-06-27T20:53:06.000Z","2024-06-27T20:53:06.000Z","Hi Scott,
+
+Thank you for attending our scheduled meeting today.
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=AYnz2ePu5JXU6oqIHZu9WVI3l.aJE8UtHrHDYSkX3rI-Z&MeetingID=TJFUfwOvDhatVvpzlX3TXxGE3qIapcO8FpM1AA1pCDI-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/25/2024 9:10 AM
+To: priggescottm@johndeere.com
+Cc: eric.szymanski@netwrix.com; parryjohnm@johndeere.com; lopezandrew@johndeere.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott,
+
+Thank you for the updated information.
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=Sxme1pFN6cUecKWeVzK3N0Mq.UcuFZGjS_oF7MzMqAM-Z&MeetingID=aUDI4d8Mh4GRQUtRaYkMbVSDTtXQMqRkLUltsIxGmqc-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/25/2024 7:36 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; lopezandrew@johndeere.com; parryjohnm@johndeere.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+
+
+Hello. Yesterday I stopped all running jobs and ran the repair tool against the target host, NPUNPUNASC003.JDNET.DEERE.COM. Unfortunately, it produced the error ""Repair tool could not complete: The given key was not present in the dictionary."". The log file is attached. I went ahead and manually ran the Bulk Import job for the host group, but that doesn't appear to have fixed the issue - I still see the deleted folder in the permissions report. Please review the attachments and advise what you think are the next steps. I imagine we'll probably want to jump on another call.
+
+ 
+
+There is one question I was thinking about - was I supposed to do anything with the ""FSAA Folder CleanUp"" job that you installed when we first got on the phone? I don't think I wrote down anything about it in my notes, so I am hoping I didn't miss a step in the process I was supposed to follow.
+
+ 
+
+Thanks.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, June 21, 2024 3:16 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for attending our scheduled meeting today. We provided a modified SQL script to include the DeletedUSN identifier. Please run that script against a target host. We also provided an instant job (FS_LookupUNCPath) which verify 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for attending our scheduled meeting today. We provided a modified SQL script to include the DeletedUSN identifier. Please run that script against a target host. We also provided an instant job (FS_LookupUNCPath) which verify entries with the DeletedUSN. Additionally, we also suggested a repair on an FSAA job and demonstrated the process of achieving that. 
+
+Please provide an update on the results of the permission scans.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/21/2024 10:13 AM
+To: priggescottm@johndeere.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott,
+
+Thank you for the updated information. The issue may be related to the Deleted USN identifier associated with the data entry in SQL. So we basically need to identify why the older data isn't being identified as such. We could possibly perform a tier 2 data drop or drop the file system tables and re-run the FSAA permissions job again to update the scan data.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/21/2024 8:38 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+ 
+
+
+I got feedback from my customer who confirmed the updated query did not resolve the issue, so I just requested a meeting on your calendar. To summarize, the customer is seeing permission data from a folder that does not exist on the filesystem anymore. I suspect the permissions job is not updating the database, but we need some help understanding why that is and what to do about it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 4:57 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for the updated information. Scottie Taylor Technical Support Engineer ____________________________ Cybersecurity That Works For You 6160 Warren Parkway, Suite 100, Frisco, TX 75034 www. netwrix. com --------------- Original 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for the updated information.
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/20/2024 3:40 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - ref:_00D7091pB._500Q000C5nKY:ref - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+ 
+
+
+Thanks for the quick response. I've asked the customer to run the modified query and update us with the results. I'll let you know when I get a response. If there's still an issue, I'll set up a meeting to review the job - I'm suspecting there's some issues with it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 2:55 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0C5nKY:ref","RE: Netwrix Support Ticket #412503 -  - Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com; parryjohnm@johndeere.com; lopezandrew@johndeere.com","","false","2024-06-27T20:53:05.000Z","true"
+"02sQk00000C8LlHIAV","500Qk00000C5nKYIAZ","2024-07-03T16:24:24.000Z","2024-07-03T16:24:24.000Z","Hi Scott,
+
+Thank you for attending our scheduled meeting today. We discovered that the reason old file system data was not being marked as deleted was that the scanning depth wasn't deep enough to access the files on the listed hosts.
+
+We identified that the sample file gathered was at least 5 levels deep but the configuration of the FSAA system scan was only scanning 3 levels deep. We also suggested a more optimized way of scanning deeper without hyper-extending the system scan times by utilizing the different FSAA scoping options. I have provided documentation below that can assist with the different scenarios that can be used for scoping. 
+
+FSAA: Scoping Options (netwrix.com)
+
+If you require further assistance with configuring scoping options for your FSAA system scan please do not hesitate to create a new ticket and reference this ticket number. 
+
+I am glad that this was able to get your issue resolved. Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. Feel free to leave any feedback via the survey link!
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/27/2024 3:53 PM
+To: priggescottm@johndeere.com
+Cc: eric.szymanski@netwrix.com; parryjohnm@johndeere.com; lopezandrew@johndeere.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott,
+
+Thank you for attending our scheduled meeting today.
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=AYnz2ePu5JXU6oqIHZu9WVI3l.aJE8UtHrHDYSkX3rI-Z&MeetingID=TJFUfwOvDhatVvpzlX3TXxGE3qIapcO8FpM1AA1pCDI-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/25/2024 9:10 AM
+To: priggescottm@johndeere.com
+Cc: eric.szymanski@netwrix.com; parryjohnm@johndeere.com; lopezandrew@johndeere.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott,
+
+Thank you for the updated information.
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=Sxme1pFN6cUecKWeVzK3N0Mq.UcuFZGjS_oF7MzMqAM-Z&MeetingID=aUDI4d8Mh4GRQUtRaYkMbVSDTtXQMqRkLUltsIxGmqc-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/25/2024 7:36 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; lopezandrew@johndeere.com; parryjohnm@johndeere.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+
+
+Hello. Yesterday I stopped all running jobs and ran the repair tool against the target host, NPUNPUNASC003.JDNET.DEERE.COM. Unfortunately, it produced the error ""Repair tool could not complete: The given key was not present in the dictionary."". The log file is attached. I went ahead and manually ran the Bulk Import job for the host group, but that doesn't appear to have fixed the issue - I still see the deleted folder in the permissions report. Please review the attachments and advise what you think are the next steps. I imagine we'll probably want to jump on another call.
+
+ 
+
+There is one question I was thinking about - was I supposed to do anything with the ""FSAA Folder CleanUp"" job that you installed when we first got on the phone? I don't think I wrote down anything about it in my notes, so I am hoping I didn't miss a step in the process I was supposed to follow.
+
+ 
+
+Thanks.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, June 21, 2024 3:16 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for attending our scheduled meeting today. We provided a modified SQL script to include the DeletedUSN identifier. Please run that script against a target host. We also provided an instant job (FS_LookupUNCPath) which verify 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for attending our scheduled meeting today. We provided a modified SQL script to include the DeletedUSN identifier. Please run that script against a target host. We also provided an instant job (FS_LookupUNCPath) which verify entries with the DeletedUSN. Additionally, we also suggested a repair on an FSAA job and demonstrated the process of achieving that. 
+
+Please provide an update on the results of the permission scans.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/21/2024 10:13 AM
+To: priggescottm@johndeere.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+Hi Scott,
+
+Thank you for the updated information. The issue may be related to the Deleted USN identifier associated with the data entry in SQL. So we basically need to identify why the older data isn't being identified as such. We could possibly perform a tier 2 data drop or drop the file system tables and re-run the FSAA permissions job again to update the scan data.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/21/2024 8:38 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+ 
+
+
+I got feedback from my customer who confirmed the updated query did not resolve the issue, so I just requested a meeting on your calendar. To summarize, the customer is seeing permission data from a folder that does not exist on the filesystem anymore. I suspect the permissions job is not updating the database, but we need some help understanding why that is and what to do about it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 4:57 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for the updated information. Scottie Taylor Technical Support Engineer ____________________________ Cybersecurity That Works For You 6160 Warren Parkway, Suite 100, Frisco, TX 75034 www. netwrix. com --------------- Original 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for the updated information.
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Scott Prigge [priggescottm@johndeere.com]
+Sent: 6/20/2024 3:40 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #412503 - ref:_00D7091pB._500Q000C5nKY:ref - Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+ref:_00D7091pB._500Q000C5nKY:ref
+
+ 
+
+
+Thanks for the quick response. I've asked the customer to run the modified query and update us with the results. I'll let you know when I get a response. If there's still an issue, I'll set up a meeting to review the job - I'm suspecting there's some issues with it.
+
+ 
+
+
+
+
+Scott Prigge
+Deere and Company
+400 19th Street
+Moline, IL  61265
+PH: 309.765.3245
+
+
+
+
+ 
+
+ 
+
+Company Use
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 20, 2024 2:55 PM
+To: Scott Prigge <priggescottm@johndeere.com>
+Cc: eric.szymanski@netwrix.com
+Subject: Filesystem permissions report returning historical (old) data [ ref:!00D70091pB.!500Qk0C5nKY:ref ]
+
+
+ 
+
+
+Hi Scott, Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below 
+
+
+
+ 
+
+
+Hi Scott,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. We've made some modifications to the SQL script that you provided to include the Deleted USN parameter. Trying to run the below SQL script and provide an update.
+
+SELECT a.RightsSource AS Permission_Source, b.NetworkPath, a.AllowMaskDescription AS Permission, a.TrusteeTypeDescription AS Trustee_Type,a.TrusteeNTStyleName AS Trustee_Name, SUBSTRING(c.ManagedBy,4,(CHARINDEX(',',c.ManagedBy))-4) AS Group_Owner FROM StealthAudit.dbo.SA_FSAA_PermissionsView AS a JOIN StealthAudit.dbo.SA_FSAA_SharesTraversalView b ON a.HostID = b.HostID AND a.ResourceID = b.ResourceID LEFT JOIN StealthAudit.dbo.SA_GroupMasterExtTbl c ON a.TrusteeSID = c.ObjectSID WHERE a.RightsSource = 'Direct' AND a.HostID = (SELECT ID FROM StealthAudit.dbo.SA_FSAA_Hosts WHERE HOST = '"" +server + ""') AND a.ResourceType = '3' AND b.NetworkPath LIKE '%"" + server + ""%'  AND b.NetworkPath NOT LIKE '%Users%' and NOT a.AllowMaskDescription ='List folder contents' and (len(a.TrusteeNTStyleName) = 13),b.ResourceDeletedUSN IS NULL  ORDER BY b.NetworkPath,a.TrusteeNTStyleName
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=gLeeJbUgX5TvHPDpToykXieglT1dDKJLF9Wjch9KHqE-Z&MeetingID=qZ.0ZXsmdJts3e4_PqtjbnEa3Hga9dK1ubgyzWflSyo-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0C5nKY:ref","RE: Netwrix Support Ticket #412503 -  - Filesystem permissions report returning historical (old) data    [ ref:!00D70091pB.!500Qk0C5nKY:ref ]","techsupport@netwrix.com","Netwrix Support","priggescottm@johndeere.com","eric.szymanski@netwrix.com; parryjohnm@johndeere.com; lopezandrew@johndeere.com","","false","2024-07-03T16:24:23.000Z","true"

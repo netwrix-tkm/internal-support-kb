@@ -1,0 +1,39 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000D8nyXIAR","00415128","Support Ticket","POC - Issues with DB at full capacity","Enterprise auditor is filling the SQL temp DB. We have reviewed running instances and exchange is in progress at the time. We've collected logs for exchange and SharePoint logs as those are the only collections, besides ADI and Entra inventory.","","","","-Current SQL Disk Size Allocation:
+SQL DB 1.54TB
+SQL Transaction 389gb
+SQL Temp DB 1.49TB
+
+-SP_DomainUsers Job, SP_StaleUsers - increased job timeouts from 1440 to 14400
+ 
+-Guidance from Rob:** Set to 1gb (1000mb) instead of 200gb**
+
+-Made changes to the tempdb sizes using the following script:
+-----------------------------------------------------------------
+ALTER DATABASE tempdb
+MODIFY FILE (NAME = tempdev, SIZE = 1GB, FILEGROWTH = 64MB);
+GO
+ALTER DATABASE tempdb
+MODIFY FILE (NAME = temp2, SIZE = 1GB, FILEGROWTH = 64MB);
+GO
+ALTER DATABASE tempdb
+MODIFY FILE (NAME = temp3, SIZE = 1GB, FILEGROWTH = 64MB);
+GO
+ALTER DATABASE tempdb
+MODIFY FILE (NAME = temp4, SIZE = 1GB, FILEGROWTH = 64MB);
+GO
+ALTER DATABASE tempdb
+MODIFY FILE (NAME = temp5, SIZE = 1GB, FILEGROWTH = 64MB);
+GO
+ALTER DATABASE tempdb
+MODIFY FILE (NAME = temp6, SIZE = 1GB, FILEGROWTH = 64MB);
+GO
+ALTER DATABASE tempdb
+MODIFY FILE (NAME = temp7, SIZE = 1GB, FILEGROWTH = 64MB);
+GO
+ALTER DATABASE tempdb
+MODIFY FILE (NAME = tempdev, SIZE = 1GB, FILEGROWTH = 64MB);
+GO
+ALTER DATABASE tempdb
+MODIFY FILE (NAME = tempdev, SIZE = 1GB, FILEGROWTH = 64MB);
+GO","Incorrect configuration: Netwrix server","Kurt Gerth","","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","","14.3","Closed - Resolved","University of Cambridge","Tara Jeffery","2024-07-16T14:25:55.000Z","2024-07-30T21:53:35.000Z"

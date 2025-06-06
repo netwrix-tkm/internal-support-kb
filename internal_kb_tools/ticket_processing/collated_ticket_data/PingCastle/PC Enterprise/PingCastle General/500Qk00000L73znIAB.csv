@@ -1,0 +1,39 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000L73znIAB","00433666","Support Ticket","Issue with the deployment on one of the Domain","Hi Team,
+
+Good day!!
+
+During the deployment of Pingcastle Enterprise on one of our domains we are getting a ""Login failed (The operation has timed out) "" error (while running the Scheduled task) after following all the steps that are mentioned in the document.
+
+Note:: We are using the ""3.2.0.0""  version for the above domain.
+
+we require your immediate attention in this issue.
+
+Please find the attached screenshot for your reference","cmd run in PS : F:PingCastleEnterprisepingcastle.exe --healtcheck --level Full --api-endpoint XXXXXX --log --encrypt --api-key XXXX
+Error for version 3.2.0
+Login Failed (The operation has timed out.)","while trying to access via API the login is failed, needs further investigation
+meeting notes :
+/Tested the API connection using PowerShell.
+/Reviewed how the API communicates between their servers.
+/Checked certificates and verified their validity.
+/Checked the Single Sign-On (SSO) setup. All signs point to SSO authentication issues.
+/Determined that the issue is not related to a firewall.
+/Tested the connection over HTTP, and the results were successful with IIS logs showing all 200 status codes.
+/Encountered issues with HTTPS—received an RST response. It is unclear whether this is caused by the load balancer on the enterprise server.
+/Checked Event Viewer for .NET runtime and application stop errors related to login failures.
+/Troubleshot PowerShell file not working, found that both PowerShell and application are using the same version of .NET, causing compatibility issues.
+/Checked new rule for API on AWS for /swagger
+/Determined that the issue is with the second rule of the load balancer and it goes through SSO process
+/Determined that the CPU is not allocated correctly to services running ( for example monitoring tools ) /it was found out that the certificate was not set properly and that impacted the API connection
+/ technical team has identified some problems related to a lack of response on the firewall.","spoke to client and proposed remote sessionAPI URL:
+URL being tested: https://pce.itaz-g-100.eurofinseu.com/api/release
+Next Steps:
+Awaiting approval for the change request to modify the API path.
+API path modified, tested
+currently reviewing logs to determine the issue
+/ awaiting correction certificate implementation and feedback on API connection
+/checked SSL
+/determined issue is related to TLS and/or certificate mismatch
+/client will investigate further with fortigate
+/api connection works manually, issue isolated to service account
+/awaiting their analysis from fortigate","issue related to fortigate and faulty upgrades, once it is has been solved on their side the API connection worked.","Incorrect configuration: target server software","Iulia Apatachioaei","Error","PingCastle","PC Enterprise","PingCastle General","3.2.0.1","","7.9","Closed - Resolved","Eurofins GSC IT Poland Sp. z.o.o.","Korepu Akhil Kumar","2025-01-27T13:45:45.000Z","2025-02-04T10:45:06.000Z"

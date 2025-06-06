@@ -1,0 +1,54 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LFbb5IAD","00434073","Support Ticket","PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied","Hello Support,
+
+I have two new proxies that I cannot run FS jobs using schedule. The error is below. It works just fine when running the job manually from console (which uses my console login to run the task). I have read that I may need to delete certificates on the proxy, however the service runs as LocalSystem and I cannot deploy psexec. Is there any other troubleshooting that can be done? This was a fresh proxy install a few weeks ago and today was the first time a FS job was run on it. One proxy to one FS host.
+
+FSAA Proxy 11.6.0.35
+NEA 11.6.0.112
+
+29/01/2025 22:51:49DEBUGFILESYSTEMACCESSAccessScanTask""Acquiring certificate exchange lock at D:STEALTHbitsStealthAUDITFSAA<a href='https://fsaa_certificate_exchange.lock' target='_blank'>fsaa_certificate_exchange.lock</a>""MDVNAPPDCExtract789265608968
+29/01/2025 22:51:49DEBUGFILESYSTEMACCESSAccessScanTask""Using certificate authority: Friendly Name = FSAA Certificate Authority 8/2/2024 9:00:27 PM, Thumbprint = DA07169B26215FF6721E49C9EB8DC7F0A5EFA10B""MDVNAPPDCExtract789265608968
+29/01/2025 22:51:49INFOFILESYSTEMACCESSAccessScanTask""Failed to exchange certificates with running proxy service using task credentials, retrying with LocalSystem: Unable to establish secure stream for certificate exchange, requires trusted target domain""MDVNAPPDCExtract789265608968
+29/01/2025 22:51:49DEBUGFILESYSTEMACCESSAccessScanTask""Certificate exchange with running proxy service failed: <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Applet.Client.AppletClientException: Unable to establish secure stream for certificate exchange, requires trusted target domain ---> System.Security.Authentication.AuthenticationException: A call to SSPI failed, see inner exception. ---> System.ComponentModel.Win32Exception: The target principal name is incorrect     --- End of inner exception stack trace ---     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegoState.StartSendAuthResetSignal(LazyAsyncResult lazyResult, Byte[] message, Exception exception)     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegoState.StartSendBlob(Byte[] message, LazyAsyncResult lazyResult)     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegoState.CheckCompletionBeforeNextSend(Byte[] message, LazyAsyncResult lazyResult)     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegoState.ProcessReceivedBlob(Byte[] message, LazyAsyncResult lazyResult)     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegoState.StartReceiveBlob(LazyAsyncResult lazyResult)     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegoState.CheckCompletionBeforeNextReceive(LazyAsyncResult lazyResult)     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegoState.StartSendBlob(Byte[] message, LazyAsyncResult lazyResult)     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegoState.ProcessAuthentication(LazyAsyncResult lazyResult)     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegotiateStream.AuthenticateAsClient(NetworkCredential credential, ChannelBinding binding, String targetName, ProtectionLevel requiredProtectionLevel, TokenImpersonationLevel allowedImpersonationLevel)     at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.NegotiateStream.AuthenticateAsClient(NetworkCredential credential, String targetName)     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Applet.Client.ClientCertificateManager.UseNegotiateStream[TResult](String host, Int32 port, NetworkCredential credentials, String servicePrincipalName, Func`2 action)     --- End of inner exception stack trace ---     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Applet.Client.ClientCertificateManager.UseNegotiateStream[TResult](String host, Int32 port, NetworkCredential credentials, String servicePrincipalName, Func`2 action)     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Applet.Client.ClientCertificateManager.IsServerCertificateValid(String host, Int32 port, X509Certificate2 certificateAuthority, NetworkCredential credentials, String servicePrincipalName, Guid exchangeID)     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Applet.Client.ClientCertificateManager.ExchangeCertificatesRemote(String host, Int32 port, X509Certificate2 certificateAuthority, NetworkCredential credentials, String servicePrincipalName)     at <a href='https://Stealthbits.StealthAUDIT.Da... [The description has been cut, review the attached email for details]","Configure a FSAA scan that uses a new proxy server to collect from a new File server
+-no certs on the proxy yet
+-The schedule account has permissions to the proxy server
+-The default connection profile in the job uses an account that has permission to the file Server, but not the proxy
+
+run the job for the first time","this is working now because the client found a workaround assigning the infostructure account in the Job's properties- so it can laydown the certs
+-changing it back afterwards, the job still works because the certs are already there
+-this workaround worked on all 3 new proxies having the problem
+
+the issue seems to be NEA ignores the schedule account and tries to apply the cert using the account on the job's properties
+
+There is an error in NEA's job log saying it tried and failed to use the ""task account"" so it tries to use local system which also fails
+-makes sense that the NEA server's local system account fails because it doesn't have permissions on the proxy server
+
+---------------
+current versions
+
+FSAA Proxy 11.6.0.37
+NEA 11.6.0.127
+---------------
+
+all one domain
+all using the same service account
+local admin on the proxy
+-domain admin
+
+works on all the other FS proxies
+a dozen of them
+but these were setup a year ago
+the 3 new proxies are all having the same problem
+
+This is the only one they are adding since they upgraded from 11.6.0.35
+
+
+unable to installed PSEXEC so cannot follow KB
+
+all proxies (working and this new one) throw an error about ""invalid principal name""
+-other all still work
+
+---------------","4-18All is working.
+Currently determining if we need to update docs or if there is a misunderstanding in how to configure proper credentials for this.","""The account the scheduled task runs as is not used to select the account for certificate exchange.
+The account that is used will be a Task(domain) credential in the connection profile, or the job credentials.
+The job credentials are picked by core as the first credential that can contact the remote host.","Guidance","Nicholas Zimmer","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.6","127","98.3","Closed - Resolved","Post Holdings, Inc.","Justin Cahill","2025-01-30T06:07:23.000Z","2025-05-08T14:18:37.000Z"

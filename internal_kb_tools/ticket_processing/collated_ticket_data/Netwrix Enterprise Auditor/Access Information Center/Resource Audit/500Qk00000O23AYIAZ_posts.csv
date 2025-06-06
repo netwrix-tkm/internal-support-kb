@@ -1,0 +1,42 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000bpI6ZKAU","500Qk00000O23AYIAZ","TextPost","005Qk000002AJWTIA4","2025-04-14T14:31:38.000Z","Description: AIC is showing old scan date for 1 server. The server is failing scan and bulk import.","","","","005Qk000002AJWTIA4","2025-04-14T14:31:38.000Z"
+"0D5Qk00000bpLJJKA2","500Qk00000O23AYIAZ","TextPost","005Qk000002AJWTIA4","2025-04-14T14:32:08.000Z","Steps to Reproduce Updated: Login to AIC
+Navigate to  resource audit and select file system
+Server 01 shows very old scan date.","","","","005Qk000002AJWTIA4","2025-04-14T14:32:08.000Z"
+"0D5Qk00000bpX6RKAU","500Qk00000O23AYIAZ","TextPost","005Qk000002AJWTIA4","2025-04-14T14:33:13.000Z","What We've Learned Updated: --------
+04/14/2025
+--------
+Opened new ticket for AIC issue. The issue appears to be old info in the T2 database preventing server 01 from running bulk import, so no new data exists for AIC to check which leads to the old scan date being shown.","","","","005Qk000002AJWTIA4","2025-04-14T14:33:13.000Z"
+"0D5Qk00000bpX6SKAU","500Qk00000O23AYIAZ","TextPost","005Qk000002AJWTIA4","2025-04-14T14:33:13.000Z","Next Steps Updated: Cleared T2 database and dropped host, awaiting new scan to complete.","","","","005Qk000002AJWTIA4","2025-04-14T14:33:13.000Z"
+"0D5Qk00000c5sWnKAI","500Qk00000O23AYIAZ","TextPost","005Qk000002AJWTIA4","2025-04-18T20:33:23.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002AJWTIA4","2025-04-18T20:33:23.000Z"
+"0D5Qk00000c5sWoKAI","500Qk00000O23AYIAZ","TextPost","005Qk000002AJWTIA4","2025-04-18T20:33:23.000Z","Invitation updated. Attendees: Ian Ranstrom","","","","005Qk000002AJWTIA4","2025-04-18T20:33:23.000Z"
+"0D5Qk00000c5sWpKAI","500Qk00000O23AYIAZ","TextPost","005Qk000002AJWTIA4","2025-04-18T20:33:24.000Z","Invitation updated. Attendees: Ian Ranstrom, Casey Nialetz","","","","005Qk000002AJWTIA4","2025-04-18T20:33:24.000Z"
+"0D5Qk00000cPkBiKAK","500Qk00000O23AYIAZ","TextPost","0054u000007MiY9AAK","2025-04-22T17:45:38.000Z","Invitation updated. Attendees: , Casey Nialetz","","","","0054u000007MiY9AAK","2025-04-22T17:45:38.000Z"
+"0D5Qk00000cPkBhKAK","500Qk00000O23AYIAZ","TextPost","0054u000007MiY9AAK","2025-04-22T17:45:38.000Z","Invitation updated. Attendees:","","","","0054u000007MiY9AAK","2025-04-22T17:45:38.000Z"
+"0D5Qk00000cUKsCKAW","500Qk00000O23AYIAZ","TextPost","0054u000007oss5AAA","2025-04-23T19:24:14.000Z","<p>plan for meeting:</p><p>check if SVOC-FS01 is on the FSAA_Hosts table</p><p>if it&#39;s there, redrop t1 and t2</p><p>If it&#39;s not there, then just remove (rename) the t2s</p><p> </p><p>Zoom meeting:</p><p>SA v11.5.0.210</p><p> </p><ul><li>checked host list being used by FSAA system scan and bulk import<ul><li>-SVOC-FS01 is on the list</li></ul></li><li>checked FSAA_Hosts table in SQL<ul><li>-SVOC-FS01 is not on that table<ul><li>--this is expected because they dropped the T1s for that host in a previous meeting</li></ul></li></ul></li><li>No proxies being used--all scans run locally</li><li>located and renamed T2 database folder for that host to SVOC-FS01.old0414</li><li>configured host assignment for FSAA scan and bulk import to target only SVOC-FS01</li><li>ran a zero-level scan from schedule</li><li>the scan completed quickly with good data</li><li>ran bulk import interactively</li><li>checked FSAA_Hosts table again<ul><li>-confirmed SVOC-FS01 is now present on the table</li></ul></li><li>Set the scan depth back to 10 levels<ul><li>-will need to be set to full depth after confirming this scan completes</li></ul></li><li>Set host list assignment back to the original host list</li></ul><p> </p><ul><li>kicked off permissions group scan<ul><li>-this will likely take hours</li></ul></li></ul><p> </p><p>client will let us know when and if the scan completes</p><p> </p><p> </p><p> </p>","","","","0054u000007oss5AAA","2025-04-23T19:24:14.000Z"
+"0D5Qk00000cUdxKKAS","500Qk00000O23AYIAZ","TextPost","0054u000007oss5AAA","2025-04-23T19:59:55.000Z","What We've Learned Updated: --------
+04/14/2025
+--------
+Opened new ticket for AIC issue. The issue appears to be old info in the T2 database preventing server 01 from running bulk import, so no new data exists for AIC to check which leads to the old scan date being shown.
+
+---------------
+Zoom meeting on 04/23:
+client running SA 11.5.0.210
+resolved the issue preventing the FSAA bulk import for SVOC-FS01 from completing. The issue seemed to be a sequencing issue were SVOC-FS01 was no longer on the FSAA_Hosts table but still had left over data (Tier2s). The bulk import job was saw the old data and was trying to upload the leftover data before adding SVOC-FS01 back to the host list.
+
+We resolved the issue by deleting/renaming the old T2 data for SVOC-FS01 then running the scan again.","","","","0054u000007oss5AAA","2025-04-23T19:59:55.000Z"
+"0D5Qk00000cUdxLKAS","500Qk00000O23AYIAZ","TextPost","0054u000007oss5AAA","2025-04-23T19:59:55.000Z","Next Steps Updated: wait for 10 level scan to finish
+client should let us know how if completes
+we should then check the AIC for fresh data
+
+assuming it completes without further issue, the client should be reminded to adjust scan depth--likely to full depth","","","","0054u000007oss5AAA","2025-04-23T19:59:55.000Z"
+"0D5Qk00000cUNgWKAW","500Qk00000O23AYIAZ","TextPost","0054u000007oss5AAA","2025-04-23T20:01:57.000Z","Next Steps Updated: wait for 10 level scan to finish
+client should let us know how if completes
+we should then check the AIC for fresh data
+
+assuming it completes without further issue, the client should be reminded to adjust scan depth--likely to full depth
+
+once this is verified as working, the client is expecting to continue with upgrade to 12.0
+-set expectation to upgrade to 11.6 first then upgrade to 12.0","","","","0054u000007oss5AAA","2025-04-23T20:01:57.000Z"
+"0D5Qk00000cXSTRKA4","500Qk00000O23AYIAZ","TextPost","0054u000007MiY9AAK","2025-04-24T15:58:24.000Z","<p>@Ian Ranstrom​ This one is coming back to you. Confirm that the AIC looks as expected, then split off a ticket for the FSAC issue. I&#39;d be willing to bet they&#39;re getting the partial data error on the FSAC import because those hosts are erroring in the scan.</p>","","","","0054u000007MiY9AAK","2025-04-24T15:58:24.000Z"
+"0D5Qk00000cYbzCKAS","500Qk00000O23AYIAZ","TextPost","005Qk000002AJWTIA4","2025-04-24T19:14:29.000Z","<p>FSAC scan issue is resolved and new ticket created and closed for it under 00443126. No remaining action items on this ticket.</p>","","","","005Qk000002AJWTIA4","2025-04-24T19:14:29.000Z"

@@ -1,0 +1,12 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000I9ostIAB","00426677","Support Ticket","ACLs Not Listed for Synced Resource","The customer needs help finding resources when creating a Review in AIC.","","","","[Issue]
+Error on FSAA System Scan and Bulk Import:
+code = Constraint (19), message = System.Data.SQLite.SQLiteException (0x800027AF): constraint failed
+UNIQUE constraint failed: TBL_FSAA_ResourceMap.AccessID
+  at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util.RunInBackground[TResult](Action statusAction, Func`1 execAction)
+  at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util.RunInBackground(Action statusAction, Action execAction)
+  at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+  at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+[Resolution]
+Dropped all FSAA data and rescanned. Restructured the schedule so that FS jobs don't step on each other.","Root Cause Unknown","Tay Caliguiri","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.6","86","56.1","Closed - Resolved","Baldwin Risk Partners","Ryan Oleary","2024-11-11T15:54:23.000Z","2025-01-06T17:24:35.000Z"

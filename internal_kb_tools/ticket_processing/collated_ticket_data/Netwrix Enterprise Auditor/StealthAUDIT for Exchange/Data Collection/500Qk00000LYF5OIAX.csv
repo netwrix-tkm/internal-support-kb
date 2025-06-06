@@ -1,0 +1,14 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LYF5OIAX","00434860","Support Ticket","SQL Table that contains email folder counts only populating a small portion of mailboxes","Hello, 
+
+I'm attempting to build a job that shows all mailboxes and their folder counts. I have identified the table that houses this information [SA_EX_Folderdetails_DEFAULT]. however, its only returning just over 1600 mailboxes, but we have over 3000 mailboxes in our environment. Please help. Thanks","","Currently, the way to get this data is by a PS script
+
+This will be a FR","Asked them some questions to create the FR","1) Today on a call we created a new job that creates the table 'SA_EX_FolderCount' to provide a count of Exchange folders for each Exchange mailbox.
+ 
+IF OBJECT_ID('SA_EX_Perms_EXO_Details_EXO', 'U') IS NOT NULL BEGIN DROP TABLE SA_EX_Perms_EXO_Details_EXO; END;
+
+Select DisplayName, count(*) as FolderCount INTO SA_EX_FolderCount
+from StealthAudit.dbo.[SA_EX_Perms_EXO_Details_EXO]
+where UserName like 'default'
+and EmailAddressSMTP not like 'Departed%'
+group by DisplayName;","Advanced Configuration Change","Mike Candon","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Exchange","Data Collection","11.5","","15.2","Closed - Resolved","Reed Smith LLP","Lenny Jones","2025-02-06T14:21:27.000Z","2025-02-21T18:59:21.000Z"

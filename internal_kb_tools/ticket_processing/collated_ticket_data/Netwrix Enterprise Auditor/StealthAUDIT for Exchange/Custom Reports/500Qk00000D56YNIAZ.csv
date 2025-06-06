@@ -1,0 +1,36 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000D56YNIAZ","00414981","Support Ticket","Distribution List Report not correct #2","Exchange Distribution List Report ""SA_GroupInfo_MailGroupManagerCount"" is showing all zero's","","","","[Issue]
+The custom report SA_GroupInfo_MailGroupManagerCount report was showing 0 groups with managers, and 0 groups without managers.
+
+[Root Cause]
+The SQL analysis script on the job that does the looks to be incorrect.
+
+[Resolution]
+Paul Pitas corrected the script on the job to use the correct tables and columns for counting.
+
+**Updated Script for Analysis 3. Group Summary Count by Type**
+------------------------------------------------------------------+
+IF OBJECT_ID('[SA_GroupInfo_MailGroupManagerCount]','table') IS NULL
+CREATE TABLE [dbo].[SA_GroupInfo_MailGroupManagerCount](
+[Description] [varchar](64) NOT NULL,
+[SecurityGroupCount] INT NULL,
+[DistributionGroupCount] INT NULL,
+[TotalGroupCount] INT NULL
+) ELSE TRUNCATE TABLE SA_GroupInfo_MailGroupManagerCount;
+------------------------------------------------------------------+
+
+INSERT INTO SA_GroupInfo_MailGroupManagerCount
+SELECT DISTINCT
+'Groups Without Manager' as [Description]
+,(SELECT COUNT([GroupSMTP]) FROM SA_GroupInfo_MailGroupListingNoManager WHERE GroupTarget = 'Security') as SecurityGroupCount
+,(SELECT COUNT([GroupSMTP]) FROM SA_GroupInfo_MailGroupListingNoManager WHERE GroupTarget = 'Distribution') as DistributionGroupCount
+,(SELECT COUNT([GroupSMTP]) FROM SA_GroupInfo_MailGroupListingNoManager ) as TotalGroupCount
+
+UNION ALL
+
+SELECT
+'Groups With Manager'
+,(SELECT COUNT([GroupManagerDisplayName]) FROM SA_GroupInfo_MailGroupListingWithManager WHERE [GroupManagerDisplayName] <>'No Manager' AND GroupTarget = 'Security') as SecurityGroupCount
+,(SELECT COUNT([GroupManagerDisplayName]) FROM SA_GroupInfo_MailGroupListingWithManager WHERE [GroupManagerDisplayName] <> 'No Manager' AND GroupTarget = 'Distribution') as DistributionGroupCount
+,(SELECT COUNT([GroupManagerDisplayName]) FROM SA_GroupInfo_MailGroupListingWithManager WHERE [GroupManagerDisplayName] <> 'No Manager' ) as TotalGroupCount
+------------------------------------------------------------------+","Incorrect configuration: Netwrix product","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Exchange","Custom Reports","11.5","","22.1","Closed - Resolved","Federated Hermes","Dennis Nicholson","2024-07-15T13:10:59.000Z","2024-08-06T14:32:49.000Z"

@@ -1,0 +1,11 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000I7zFhIAJ","00426596","Support Ticket","Storage replace","Hi, we planning to move to a new Netapp machine A70.
+The Netapp OS is going to be CDOT 9.15.1
+Is there a special preparation that we need to do or other consideration?
+
+Our current ""Enterprise Auditor"" version is 11.6.0.62","Updating to specified NetApp?
+The Netapp OS is going to be CDOT 9.15.1","Some features are not supported on that version","Answer any questions","The only action you need to take after deploying your new NetApp machine is to update your configurations of Enterprise Auditor, and Activity Monitor if used, to account for your change in infrastructure.
+
+NetApp has deprecated the Resiliency feature in favor of Persistent Store. This feature allows NetApp to 'cache' events if fPolicy were to fail to send events appropriately.  If configured in NetApp, Netwrix Activity Monitor will automatically scan persistent store and collect any events not sent by fPolicy. for more information about configuring Persistent Store please consult with NetApp Support.
+
+https://kb.netapp.com/on-prem/ontap/da/NAS/NAS-KBs/What_is_FPolicy_persistent_store","Guidance","Ilya Kotov","Question","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","","57.1","Closed - Resolved","BDO Israel","Adam deis","2024-11-10T11:38:41.000Z","2025-01-06T14:53:13.000Z"

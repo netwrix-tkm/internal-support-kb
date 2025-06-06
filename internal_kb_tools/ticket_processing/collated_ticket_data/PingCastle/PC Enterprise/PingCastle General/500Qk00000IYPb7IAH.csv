@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IYPb7IAH","00427623","Support Ticket","where can Pingcastle enterprise be downloaded ?","Hello,
+I am part of the windows teams in the Euroclear enterprise.
+We recently acquired a license for Pingcastle enterprise (ref : Netwrix License - Euroclear SA/NV: 60560079)
+However, the only linked to Pingcastle I cand find on the site is for the free basic version. Where can Pingcastle enterprise be downloaded please ?
+
+Regards,
+Thomas Bozzini","","","","ANSWER: You don't need to do anything if you can access the Active Directory environments from the PingCastle enterprise server, you can just use the scheduling feature. Remember you need to change the app pool to local system for scheduling in the web app or you can manually schedule tasks.
+
+The task just needs to run the following:
+PingCastle.exe --healthcheck --level Full --api-endpoint https://pingcastle_enterprise_url --api-key API_Key
+ 
+Relevant doc links:
+https://helpcenter.netwrix.com/bundle/PingCastle_3.3_EnterpriseInstall/page/Post_Installation_Scheduler.html#navPoint_11
+https://helpcenter.netwrix.com/bundle/PingCastle_3.3_EnterpriseInstall/page/PingCastle_agent_deployment.html#navPoint_23
+ 
+You just need to make an ""agent"" with the upload permission and then put the api_key in the command line stuff. Make sure you use -level Full....","Guidance","Ali Asif","","PingCastle","PC Enterprise","PingCastle General","3.3","","2.3","Closed - Resolved","Euroclear SA/NV","Thomas Bozzini","2024-11-20T08:04:09.000Z","2024-11-22T14:23:57.000Z"

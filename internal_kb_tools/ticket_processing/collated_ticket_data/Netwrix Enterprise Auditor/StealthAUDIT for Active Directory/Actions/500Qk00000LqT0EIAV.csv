@@ -1,0 +1,15 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LqT0EIAV","00435749","Support Ticket","AD_ActivityCollection Job","When running the AD_ActivityCollection job it is failing with access denied error. We have checked the documents about setting this up and we think it is setup correctly
+Requires Netwrix Activity Monitor (SAM) API Access
+Requires Read access to the SAM Log Archive location
+
+We are not sure why this is failing","Run AD-ActivityCollection Job.
+Job fails with access error.","AD_ActivityCollection Job was not setup to import logs from anywhere. 
+We copied the settings for the share that was being pulled from in the prod environment as the AD server is the same for both environments.","Awaiting jobs to run overnight and approval to close.","Issue:
+AD_ActivityCollection job is failing with access denied error.
+
+Cause:
+The AD_ActivityCollection job was not setup to import Activity Monitor logs correctly. it was instead trying to import from itself which would not work.
+
+Resolution:
+Reconfigured the job to import Activity Monitor logs and process correctly.","Incorrect configuration: Netwrix product","Ian Ranstrom","Error","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Actions","11.0","","26.0","Closed - Resolved","KPMG Management Services LP","Jason Skidmore","2025-02-13T14:17:57.000Z","2025-03-11T14:01:16.000Z"

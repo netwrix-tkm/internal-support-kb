@@ -1,0 +1,62 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000HWsxxIAD","500Qk00000HjPtWIAV","2024-11-05T19:10:58.000Z","2024-11-05T19:10:58.000Z","Hi Charlie,
+
+Here's the resolution notes for our ticket with the new PF_Entitlements job error for your records.
+
+Symptom
+After upgrade to 11.6 to include fix for ""AIC Import - PF Entitlements"" analysis task in the ""PF_Entitlements"" job receiving error:
+
+""Column, parameter, or variable #5: Cannot find data type dbo.SA_AIC_FlexibleResourceTypesImport. Must declare the table variable ""@resourcetype"". Parameter or variable '@resourcetype' has an invalid data type.""
+
+Cause
+Appears to be related to the ""PF_EntitlementsScan"" job not running before ""PF_Entitlements"" job in order for tables to be properly correlated. This requirement was not mentioned in hotfix notes.
+
+Resolution
+Run the ""PF_EntitlementsScan"" job and ensure success before running the updated """"PF_Entitlements"" job.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+
+Regards,
+
+Kurt Gerth
+Professional Services, Senior System Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/31/2024 1:07 PM
+To: cdavidson@baupost.com
+Subject: After upgrading to 11.6.0.112 to fix issue with PF_Entitlements analysis new error is occurring [ ref:!00D70091pB.!500Qk0HjPtW:ref ]
+
+Hi Charlie,
+
+Hope you're doing well. I've been doing some lab testing for the 'PF_Entitlements' job in my lab. I was unable to reproduce the error we ran across in your environment, however there were some differences in relation to my lab.
+
+I had not previously ran the 'PF_EntitlementsScan' job located in the Exchange > 5. Public Folders > Permissions > Collection group, so I had to get that setup and run before testing.
+
+As I recall, we had just disabled the 'AIC Import - PF Entitlements' analysis task on the PF_Entitlements job, but everything was setup to run on a schedule.
+
+When you have a moment I'd like to have you test with re-enabling the 'AIC Import - PF Entitlements' task and rerun the 'PF_Entitlements' job to see if the error persists. I'm wondering if there was perhaps a dependency on the scan job having run before we performed our test after the upgrade.
+
+Let me know if you have any questions, or once you've had a chance to test this out what results you're seeing.
+
+
+Regards,
+
+Kurt Gerth
+Technical Support Team Lead
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0HjPtW:ref","RE: After upgrading to 11.6.0.112 to fix issue with PF_Entitlements analysis new error is occurring    [ ref:!00D70091pB.!500Qk0HjPtW:ref ]","techsupport@netwrix.com","Netwrix Support","cdavidson@baupost.com","","","false","2024-11-05T19:10:57.000Z","true"

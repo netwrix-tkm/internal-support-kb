@@ -1,0 +1,133 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk0000097l55IAA","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Account ACV has been changed to 450961.84.","0054u000006goLGAAY","2024-09-16T14:27:48.000Z","2024-09-16T14:27:48.000Z","false","false"
+"00aQk0000097p8fIAA","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Account ACV has been changed to 225480.92.","0054u000006goLGAAY","2024-09-16T14:27:51.000Z","2024-09-16T14:27:51.000Z","false","false"
+"00aQk000009HY1iIAG","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-24T14:09:56.000Z","2024-09-24T14:09:56.000Z","false","false"
+"00aQk000009HY1kIAG","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the new comment has been added: Michael Burrofato:
+
+@Salesforce We just did a thorough testing of the CDSA and did not come across this issue. We'll queue this up on the backlog to be investigated 
+
+[DevOps CommentId:10968685]","0054u000006gtWUAAY","2024-09-24T14:09:57.000Z","2024-09-24T14:09:57.000Z","false","false"
+"00aQk000009IFHyIAO","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the new comment has been added: Jordan Wintrode:
+
+@Salesforce 
+The following are screenshots and locations of source data
+that were found in the attached CDSA. The summary page at the beginning of the
+CDSA shows the total number of users and sites that were found in the
+environment and those numbers are used in the calculation of the percentages
+shown in the following slides.
+Weak Passwords
+
+Domain Users =
+
+SELECT COUNT(*) FROM [SA_ADInventory_UsersView] WHERE
+[IsDeleted] = ‘False’
+
+Weak Passwords =
+
+SELECT * FROM SA_AD_WeakPasswords_Summary
+
+Were ADI and the weak passwords jobs both run against the
+same host list? Or is it possible the same host with multiple host names (i.e.
+dc1 and dc1.domain.com) was scanned? According to the data it looks like more
+users (or likely domains or even hosts) were scanned with weak passwords than
+ADI. It is possible to get duplicated results for weak passwords if you scan
+the same host with multiple names or by host name and IP.
+
+SharePoint Open Access
+
+
+Sites = SELECT * FROM [SA_SPAA_SiteCollectionsTraversalView]
+WHERE [ResourceDescription] = ‘Site’
+
+
+Open Access Sites =
+
+SELECT COUNT(DISTINCT [Site URL]) FROM  [SA_SP_OpenAccess_SiteCollectionSummary]
+
+This summarizes open access by Site Collection, one level up
+from sites, and should not be able to be higher than the total sites in the
+TraversalView. Validate data in the SP_OpenAccess job in the
+SP_OpenAccess_SiteCollectionSummary table. Compare the Site Collection and Site
+URLs in this table with the SiteCollectionName and ResourceName columns
+returned from the query of the SA_SPAA_SiteCollectionsTraversalView above.
+Somehow more collections are being returned in the open access table than exist
+in the TraversalView.
+
+[DevOps CommentId:10971523]","0054u000006gtWUAAY","2024-09-24T20:50:35.000Z","2024-09-24T20:50:35.000Z","false","false"
+"00aQk000009IwLNIA0","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the new comment has been added: Doing some quick tests in my lab.  I noticed 
+
+SELECT COUNT(DISTINCT [Site URL]) FROM  [SA_SP_OpenAccess_SiteCollectionSummary] 
+
+is picking up some urls filtered out by ""WHERE [ResourceDescription] = 'Site'"" in 
+SELECT COUNT(*) FROM [SA_SPAA_SiteCollectionsTraversalView]
+
+Attaching screen shots","0054u000006goLGAAY","2024-09-25T14:09:05.000Z","2024-09-25T14:09:05.000Z","false","false"
+"00aQk000009JcR0IAK","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the new comment has been added: Weakpasswords was targeting multiple DC on same domain in customers.  Made that correction.  
+
+verified this is true at customers too.
+SELECT COUNT(DISTINCT [Site URL]) FROM [SA_SP_OpenAccess_SiteCollectionSummary]
+
+is picking up some urls filtered out by ""WHERE [ResourceDescription] = 'Site'"" in
+SELECT COUNT(*) FROM [SA_SPAA_SiteCollectionsTraversalView]
+
+Screen shots and new pdf attached","0054u000006goLGAAY","2024-09-25T20:16:28.000Z","2024-09-25T20:16:28.000Z","false","false"
+"00aQk000009JcSbIAK","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006goLGAAY","2024-09-25T20:17:34.000Z","2024-09-25T20:17:34.000Z","false","false"
+"00aQk000009RnVhIAK","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-02T21:19:31.000Z","2024-10-02T21:19:31.000Z","false","false"
+"00aQk000009RnVjIAK","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the new comment has been added: Ethan Israel:
+
+@Salesforce - the team has reviewed this and identified a bug with how we're calculating open access for sharepoint within the CDSA calculations. We have raised a work item to address this and will pull that onto a sprint as soon as bandwidth allows. This is unlikely to be pulled onto a sprint until late november at the earliest
+
+[DevOps CommentId:11007319]","0054u000006gtWUAAY","2024-10-02T21:19:31.000Z","2024-10-02T21:19:31.000Z","false","false"
+"00aQk000009Xcu9IAC","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006goLGAAY","2024-10-08T13:06:13.000Z","2024-10-08T13:06:13.000Z","false","false"
+"00aQk000009fR77IAE","500Qk00000FkJyJIAV","#EAM --- Dusty 
+R&D 10/2/2024 Ethan Israel added: Bug identified with  calculating open access for SharePoint within the CDSA calculations. 
+Work item raised will pull  onto a sprint when bandwidth allows. 
+This is unlikely to be pulled onto a sprint until late November at the earliest
+
+Current Status:   T1 Support
+Escalation Ticket # 00421120 Status: Awaiting R&D.
+
+----","00570000003KXurAAG","2024-10-15T12:55:05.000Z","2024-10-15T12:55:05.000Z","false","false"
+"00aQk000009fyZLIAY","500Qk00000FkJyJIAV","Will this be included in the current sprint - this was a report promised to a customer that was trying to terminate.","0050g000006QqyEAAS","2024-10-15T19:23:57.000Z","2024-10-15T19:23:57.000Z","false","false"
+"00aQk000009mPjhIAE","500Qk00000FkJyJIAV","#EAM --- Dusty 
+Ticket Origin:  Professional Services
+Current Status: T1 Support
+
+NEA Manager: 10/15 Will this be included in the current sprint - this was a report promised to a customer that was trying to terminate.","00570000003KXurAAG","2024-10-21T16:01:39.000Z","2024-10-21T16:01:39.000Z","false","false"
+"00aQk000009nrCWIAY","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the new comment has been added: This should be prioritized sooner - this report is used heavily in Sales to advanced new deals. and for this customer is a required feature or they will terminate.","0050g000006QqyEAAS","2024-10-22T16:56:54.000Z","2024-10-22T16:56:54.000Z","false","false"
+"00aQk000009qyanIAA","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-24T21:34:08.000Z","2024-10-24T21:34:08.000Z","false","false"
+"00aQk000009qyapIAA","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the new comment has been added: Ethan Israel:
+
+@Salesforce@Helen Randall - this was pulled onto the current dev sprint today. 
+
+[DevOps CommentId:11110274]","0054u000006gtWUAAY","2024-10-24T21:34:08.000Z","2024-10-24T21:34:08.000Z","false","false"
+"00aQk000009vG2rIAE","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Account ACV has been changed to 246913.520000000002.
+Status has been changed to Awaiting R&D.","0054u000006goLGAAY","2024-10-29T13:38:48.000Z","2024-10-29T13:38:48.000Z","false","false"
+"00aQk000009y6N8IAI","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-31T15:41:08.000Z","2024-10-31T15:41:08.000Z","false","false"
+"00aQk000009y6NAIAY","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the new comment has been added: Michael Burrofato:
+
+@Salesforce @Carlos Mejia @Ethan Israel A fix has been made and will be made available in the next CU. A hotfix is also being submitted. Expect link shortly.
+
+[DevOps CommentId:11149923]","0054u000006gtWUAAY","2024-10-31T15:41:09.000Z","2024-10-31T15:41:09.000Z","false","false"
+"00aQk000009yMjeIAE","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the new comment has been added: Hotfix available in this kb article: https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk0000008xcPIAQ/view","0054u000006goGXAAY","2024-10-31T18:09:37.000Z","2024-10-31T18:09:37.000Z","false","false"
+"00aQk00000A7XntIAF","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Status has been changed to Fix Provided.","0054u000006goLGAAY","2024-11-08T20:35:57.000Z","2024-11-08T20:35:57.000Z","false","false"
+"00aQk00000A7W3rIAF","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Status has been changed to Closed.","0054u000006goLGAAY","2024-11-08T20:36:21.000Z","2024-11-08T20:36:21.000Z","false","false"
+"00aQk00000A7XuLIAV","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006goLGAAY","2024-11-08T20:37:09.000Z","2024-11-08T20:37:09.000Z","false","false"
+"00aQk00000A7XuMIAV","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Account ACV has been changed to 493827.040000000004.","0054u000006goLGAAY","2024-11-08T20:37:12.000Z","2024-11-08T20:37:12.000Z","false","false"
+"00aQk00000A7TnWIAV","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Account ACV has been changed to 246913.520000000002.","0054u000006goLGAAY","2024-11-08T20:37:18.000Z","2024-11-08T20:37:19.000Z","false","false"
+"00aQk00000ChptCIAR","500Qk00000FkJyJIAV","On Escalation Ticket # 00421120 the Following Fields have been updated: 
+Account ACV has been changed to 323874.046666666665.","0054u000006gtWUAAY","2025-04-03T13:23:01.000Z","2025-04-03T13:23:01.000Z","false","false"

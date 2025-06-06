@@ -1,0 +1,1500 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000O2HAFIA3","500Qk00000OL6r1IAD","2025-04-22T22:23:08.000Z","2025-04-22T22:23:08.000Z","Hey Holly,
+
+Ian is OOO today but will be back in tomorrow I believe.
+
+In 11.6  AIC we no longer use IIS. We handle the cert binding through powershell.
+
+Here is the command you can run in and Administrator Powershell window on the app server. You will want to take not of the proper Port that you use in the AIC url. Generally ours are 81 or 481, however some customers use more custom ports such as 443 or others.
+
+netsh http show sslcert
+
+
+	
+	Clear out the current certificate from the port using the following PowerShell command:
+
+	
+netsh http delete sslcert ipport=0.0.0.0:481
+
+
+	
+	NOTE: This command assumes that you are using the port 481 for your Access Information Center. Alter the value if you use a different port in your environment.
+	
+	
+	
+	Copy the new certificate thumbprint. Put the value into the following PowerShell script to bind it to the port:
+
+	
+	NOTE: Use the following PowerShell command to list the new certificate:
+
+	
+dir cert:localmachinemy
+
+	Add the value to the $certHash variable below.
+	
+
+	
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" 
+$certHash = ""%new_thumbprint_value%"" # the 'Thumbprint' value 
+$ip = ""0.0.0.0"" # this means all IP addresses 
+$port = ""481"" # the default HTTPS port 
+#build command and pipe to the netsh command 
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh 
+	The output message should confirm the successful application of the certificate. Your AIC port is now ready for use with HTTPS.
+
+If you don't want to attempt this yourself or want any kind of further assistance I have assigned some time for you and Ian with the link below for you to schedule
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=xVNe6eCjoffHBJOmFuzwHzKkRB5hUJ5WBBGRBTd1MuQ-Z&MeetingID=iJeNY18BbAviB1i8to9W6l4z_Fy2UwBnEk7DXjA._yA-Z
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0OL6r1:ref","Access issue  - Access Analyzer 11.6    [ ref:!00D70091pB.!500Qk0OL6r1:ref ]","techsupport@netwrix.com","Netwrix Support","holly.smith@international.com","eric.szymanski@netwrix.com","nicholas.zimmer@netwrix.com","false","2025-04-22T22:23:07.000Z","true"
+"02sQk00000O7G8gIAF","500Qk00000OL6r1IAD","2025-04-24T19:23:57.000Z","2025-04-24T19:23:57.000Z","Hello Holly,
+
+Thank you for taking the time to meet today.
+
+Today we:
+Fixed the AIC link so that it is using port 481 and https.
+We also noticed that the AIC is sending errors trying to access the SQL server and logins were failing.
+We unlocked the default admin account and reconfigured the SQL credentials, but the error remains. After restarting the service we found that the service is not binding to the port properly and I suspect that the issue is tied to some delay in response from the SQL server.
+Our next steps are:
+You will:
+As discussed please restart the server after hours and we can see if this helps the issue at all.
+If not we will try and upgrade the AIC and see if we can get communication with the back end database working correctly.
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/22/2025 6:23 PM
+To: holly.smith@international.com
+Cc: eric.szymanski@netwrix.com
+Subject: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+ 
+Hey Holly,
+
+Ian is OOO today but will be back in tomorrow I believe.
+
+In 11.6  AIC we no longer use IIS. We handle the cert binding through powershell.
+
+Here is the command you can run in and Administrator Powershell window on the app server. You will want to take not of the proper Port that you use in the AIC url. Generally ours are 81 or 481, however some customers use more custom ports such as 443 or others.
+
+netsh http show sslcert
+
+
+	
+	Clear out the current certificate from the port using the following PowerShell command:
+
+	
+netsh http delete sslcert ipport=0.0.0.0:481
+
+
+	
+	NOTE: This command assumes that you are using the port 481 for your Access Information Center. Alter the value if you use a different port in your environment.
+	
+	
+	
+	Copy the new certificate thumbprint. Put the value into the following PowerShell script to bind it to the port:
+
+	
+	NOTE: Use the following PowerShell command to list the new certificate:
+
+	
+dir cert:localmachinemy
+
+	Add the value to the $certHash variable below.
+	
+
+	
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" 
+$certHash = ""%new_thumbprint_value%"" # the 'Thumbprint' value 
+$ip = ""0.0.0.0"" # this means all IP addresses 
+$port = ""481"" # the default HTTPS port 
+#build command and pipe to the netsh command 
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh 
+	The output message should confirm the successful application of the certificate. Your AIC port is now ready for use with HTTPS.
+
+If you don't want to attempt this yourself or want any kind of further assistance I have assigned some time for you and Ian with the link below for you to schedule
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=xVNe6eCjoffHBJOmFuzwHzKkRB5hUJ5WBBGRBTd1MuQ-Z&MeetingID=iJeNY18BbAviB1i8to9W6l4z_Fy2UwBnEk7DXjA._yA-Z
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+ref:!00D70091pB.!500Qk0OL6r1:ref","RE: Access issue  - Access Analyzer 11.6    [ ref:!00D70091pB.!500Qk0OL6r1:ref ]","techsupport@netwrix.com","Netwrix Support","holly.smith@international.com; william.dammeier@navistar.com","eric.szymanski@netwrix.com","ian.ranstrom@netwrix.com","false","2025-04-24T19:23:56.000Z","true"
+"02sQk00000O8vhkIAB","500Qk00000OL6r1IAD","2025-04-25T14:24:37.000Z","2025-04-25T14:24:37.000Z","Hi Holly and William,
+
+I wanted to follow up today to see if the connectivity is behaving any better after the overnight reboot.
+When you get a chance, could you let me know the current status of the AIC login?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/24/2025 3:23 PM
+To: holly.smith@international.com; william.dammeier@navistar.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hello Holly,
+
+Thank you for taking the time to meet today.
+
+Today we:
+Fixed the AIC link so that it is using port 481 and https.
+We also noticed that the AIC is sending errors trying to access the SQL server and logins were failing.
+We unlocked the default admin account and reconfigured the SQL credentials, but the error remains. After restarting the service we found that the service is not binding to the port properly and I suspect that the issue is tied to some delay in response from the SQL server.
+Our next steps are:
+You will:
+As discussed please restart the server after hours and we can see if this helps the issue at all.
+If not we will try and upgrade the AIC and see if we can get communication with the back end database working correctly.
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/22/2025 6:23 PM
+To: holly.smith@international.com
+Cc: eric.szymanski@netwrix.com
+Subject: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hey Holly,
+
+Ian is OOO today but will be back in tomorrow I believe.
+
+In 11.6  AIC we no longer use IIS. We handle the cert binding through powershell.
+
+Here is the command you can run in and Administrator Powershell window on the app server. You will want to take not of the proper Port that you use in the AIC url. Generally ours are 81 or 481, however some customers use more custom ports such as 443 or others.
+
+netsh http show sslcert
+
+
+	
+	Clear out the current certificate from the port using the following PowerShell command:
+
+	
+netsh http delete sslcert ipport=0.0.0.0:481
+
+
+	
+	NOTE: This command assumes that you are using the port 481 for your Access Information Center. Alter the value if you use a different port in your environment.
+	
+	
+	
+	Copy the new certificate thumbprint. Put the value into the following PowerShell script to bind it to the port:
+
+	
+	NOTE: Use the following PowerShell command to list the new certificate:
+
+	
+dir cert:localmachinemy
+
+	Add the value to the $certHash variable below.
+	
+
+	
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" 
+$certHash = ""%new_thumbprint_value%"" # the 'Thumbprint' value 
+$ip = ""0.0.0.0"" # this means all IP addresses 
+$port = ""481"" # the default HTTPS port 
+#build command and pipe to the netsh command 
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh 
+	The output message should confirm the successful application of the certificate. Your AIC port is now ready for use with HTTPS.
+
+If you don't want to attempt this yourself or want any kind of further assistance I have assigned some time for you and Ian with the link below for you to schedule
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=xVNe6eCjoffHBJOmFuzwHzKkRB5hUJ5WBBGRBTd1MuQ-Z&MeetingID=iJeNY18BbAviB1i8to9W6l4z_Fy2UwBnEk7DXjA._yA-Z
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+ref:!00D70091pB.!500Qk0OL6r1:ref","RE: Access issue  - Access Analyzer 11.6    [ ref:!00D70091pB.!500Qk0OL6r1:ref ]","techsupport@netwrix.com","Netwrix Support","holly.smith@international.com; william.dammeier@navistar.com","eric.szymanski@netwrix.com","ian.ranstrom@netwrix.com","false","2025-04-25T14:24:36.000Z","true"
+"02sQk00000O960PIAR","500Qk00000OL6r1IAD","2025-04-25T14:46:42.000Z","2025-04-25T14:54:39.000Z","ref:_00D7091pB._500Q000OL6r1:ref
+
+Hi Ian,
+
+Not too long after we dropped the call yesterday we were able to login without issue. But I noticed on the login page that there is the error message saying Unable to use the SQL database provided
+[cid:image001.png@01DBB5C6.E977DBA0]
+
+After logging in it does look like there’s data there from the last scan so I’m not sure what if anything is missing or if there actually is an issue or not. Not sure if you can provide any clarification.
+
+Thanks
+
+William Dammeier
+Information Security Engineer Lead | IT Security
++1 331 332 4382
+
+International Motors, LLC*
+2701 Navistar Drive, Lisle, IL 60532
+international.com<http://international.com/>
+LinkedIn<https://www.linkedin.com/company/theinternationalmotors/> | Instagram<https://www.instagram.com/theinternationalmotors/> | Facebook<https://www.facebook.com/theinternationaltrucks> | YouTube<https://www.youtube.com/@theinternationalmotors>
+
+[cid:image002.png@01DBB5C6.E977DBA0]
+
+*International Motors, LLC d/b/a International Motors USA LLC in Illinois, Missouri, New Jersey, Ohio, Texas, and Utah.
+
+Disclaimer confidentiality notice:
+Following the recent rebrand and name change to International, this email address will be updated and modified shortly. This email, and any attachments and/or documents linked to this email, are intended for the addressee and may contain information that is privileged, confidential, proprietary, or otherwise protected by law. Any dissemination, distribution, or copying is prohibited. This notice serves as a confidentiality marking for the purpose of any confidentiality or nondisclosure agreement. If you have received this communication in error, please contact the original sender.
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 25, 2025 9:25 AM
+To: Smith, Holly <holly.smith@international.com>; Dammeier, William <william.dammeier@navistar.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+[EXTERNAL EMAIL – If you suspect the validity of this email, do not click any links and use the Report Phish button to report it. If you do not see the Report Phish button, immediately forward it to ReportSpam@navistar.com<mailto:ReportSpam@navistar.com>]
+
+Hi Holly and William,
+
+I wanted to follow up today to see if the connectivity is behaving any better after the overnight reboot.
+When you get a chance, could you let me know the current status of the AIC login?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/24/2025 3:23 PM
+To: holly.smith@international.com<mailto:holly.smith@international.com>; william.dammeier@navistar.com<mailto:william.dammeier@navistar.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hello Holly,
+
+Thank you for taking the time to meet today.
+
+Today we:
+Fixed the AIC link so that it is using port 481 and https.
+We also noticed that the AIC is sending errors trying to access the SQL server and logins were failing.
+We unlocked the default admin account and reconfigured the SQL credentials, but the error remains. After restarting the service we found that the service is not binding to the port properly and I suspect that the issue is tied to some delay in response from the SQL server.
+Our next steps are:
+You will:
+As discussed please restart the server after hours and we can see if this helps the issue at all.
+If not we will try and upgrade the AIC and see if we can get communication with the back end database working correctly.
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/22/2025 6:23 PM
+To: holly.smith@international.com<mailto:holly.smith@international.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hey Holly,
+
+Ian is OOO today but will be back in tomorrow I believe.
+
+In 11.6  AIC we no longer use IIS. We handle the cert binding through powershell.
+
+Here is the command you can run in and Administrator Powershell window on the app server. You will want to take not of the proper Port that you use in the AIC url. Generally ours are 81 or 481, however some customers use more custom ports such as 443 or others.
+
+netsh http show sslcert
+
+  1.  Clear out the current certificate from the port using the following PowerShell command:
+
+2.
+
+3.  netsh http delete sslcert ipport=0.0.0.0:481
+
+NOTE: This command assumes that you are using the port 481 for your Access Information Center. Alter the value if you use a different port in your environment.
+
+  1.  Copy the new certificate thumbprint. Put the value into the following PowerShell script to bind it to the port:
+
+NOTE: Use the following PowerShell command to list the new certificate:
+
+
+
+dir cert:localmachinemy
+
+Add the value to the $certHash variable below.
+
+
+
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8""
+
+$certHash = ""%new_thumbprint_value%"" # the 'Thumbprint' value
+
+$ip = ""0.0.0.0"" # this means all IP addresses
+
+$port = ""481"" # the default HTTPS port
+
+#build command and pipe to the netsh command
+
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh
+The output message should confirm the successful application of the certificate. Your AIC port is now ready for use with HTTPS.
+If you don't want to attempt this yourself or want any kind of further assistance I have assigned some time for you and Ian with the link below for you to schedule
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=xVNe6eCjoffHBJOmFuzwHzKkRB5hUJ5WBBGRBTd1MuQ-Z&MeetingID=iJeNY18BbAviB1i8to9W6l4z_Fy2UwBnEk7DXjA._yA-Z
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+ref:!00D70091pB.!500Qk0OL6r1:ref
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000LaCUr&from=ext]","RE: Netwrix Support Ticket #442831 - ref:_00D7091pB._500Q000OL6r1:ref - Access issue  - Access Analyzer 11.6    [ ref:!00D70091pB.!500Qk0OL6r1:ref ]","william.dammeier@navistar.com","Dammeier, William","techsupport@netwrix.com; holly.smith@international.com","eric.szymanski@netwrix.com","","true","2025-04-25T14:46:28.000Z","true"
+"02sQk00000O9HDZIA3","500Qk00000OL6r1IAD","2025-04-25T15:48:47.000Z","2025-04-25T15:48:47.000Z","Hi William,
+
+The fact that you can now login is much better than it was previously. I suspect the error is related to the SQL timeout errors we were seeing in the logs that indicated that was also stopping the server from binding the ports. I think we should still try and upgrade as there still seems to be some sort of communication issue, but the fact that data is displaying shows that the SQL connection isn't bad, but the startup tasks seem to be the issue as no response to those tasks comes back form the SQL server which leads to the startup delay and the error you are seeing.
+
+Below is a link you can use for to schedule the upgrade, since the AIC doesn't really store much data I think we should try to backup some files and do a full reinstall to the new version to see if we can clear up the startup problem.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dammeier, William [william.dammeier@navistar.com]
+Sent: 4/25/2025 10:46 AM
+To: techsupport@netwrix.com; holly.smith@international.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #442831 - ref:_00D7091pB._500Q000OL6r1:ref - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+ref:_00D7091pB._500Q000OL6r1:ref
+
+
+
+Hi Ian, 
+
+ 
+
+Not too long after we dropped the call yesterday we were able to login without issue. But I noticed on the login page that there is the error message saying Unable to use the SQL database provided
+
+
+
+ 
+
+After logging in it does look like there’s data there from the last scan so I’m not sure what if anything is missing or if there actually is an issue or not. Not sure if you can provide any clarification. 
+
+ 
+
+Thanks 
+
+ 
+
+
+William Dammeier
+
+Information Security Engineer Lead | IT Security
+
++1 331 332 4382
+
+ 
+
+International Motors, LLC*
+
+2701 Navistar Drive, Lisle, IL 60532
+
+international.com
+
+LinkedIn | Instagram | Facebook | YouTube
+
+ 
+
+
+
+ 
+
+*International Motors, LLC d/b/a International Motors USA LLC in Illinois, Missouri, New Jersey, Ohio, Texas, and Utah.
+
+ 
+
+Disclaimer confidentiality notice: 
+
+Following the recent rebrand and name change to International, this email address will be updated and modified shortly. This email, and any attachments and/or documents linked to this email, are intended for the addressee and may contain information that is privileged, confidential, proprietary, or otherwise protected by law. Any dissemination, distribution, or copying is prohibited. This notice serves as a confidentiality marking for the purpose of any confidentiality or nondisclosure agreement. If you have received this communication in error, please contact the original sender.
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 25, 2025 9:25 AM
+To: Smith, Holly <holly.smith@international.com>; Dammeier, William <william.dammeier@navistar.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+
+
+ 
+
+[EXTERNAL EMAIL – If you suspect the validity of this email, do not click any links and use the Report Phish button to report it. If you do not see the Report Phish button, immediately forward it to  ReportSpam@navistar.com]
+
+
+Hi Holly and William,
+
+I wanted to follow up today to see if the connectivity is behaving any better after the overnight reboot.
+When you get a chance, could you let me know the current status of the AIC login?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/24/2025 3:23 PM
+To: holly.smith@international.com; william.dammeier@navistar.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hello Holly,
+
+Thank you for taking the time to meet today.
+
+Today we:
+Fixed the AIC link so that it is using port 481 and https.
+We also noticed that the AIC is sending errors trying to access the SQL server and logins were failing.
+We unlocked the default admin account and reconfigured the SQL credentials, but the error remains. After restarting the service we found that the service is not binding to the port properly and I suspect that the issue is tied to some delay in response from the SQL server.
+Our next steps are:
+You will:
+As discussed please restart the server after hours and we can see if this helps the issue at all.
+If not we will try and upgrade the AIC and see if we can get communication with the back end database working correctly.
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/22/2025 6:23 PM
+To: holly.smith@international.com
+Cc: eric.szymanski@netwrix.com
+Subject: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hey Holly,
+
+Ian is OOO today but will be back in tomorrow I believe.
+
+In 11.6  AIC we no longer use IIS. We handle the cert binding through powershell.
+
+Here is the command you can run in and Administrator Powershell window on the app server. You will want to take not of the proper Port that you use in the AIC url. Generally ours are 81 or 481, however some customers use more custom ports such as 443 or others.
+
+netsh http show sslcert
+
+
+	Clear out the current certificate from the port using the following PowerShell command:
+
+
+
+2.   
+
+
+3.  netsh http delete sslcert ipport=0.0.0.0:481
+
+
+NOTE: This command assumes that you are using the port 481 for your Access Information Center. Alter the value if you use a different port in your environment.
+
+
+
+	Copy the new certificate thumbprint. Put the value into the following PowerShell script to bind it to the port:
+
+
+
+NOTE: Use the following PowerShell command to list the new certificate:
+
+
+
+ 
+
+
+dir cert:localmachinemy
+
+Add the value to the $certHash variable below.
+
+
+
+
+ 
+
+
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" 
+
+
+$certHash = ""%new_thumbprint_value%"" # the 'Thumbprint' value 
+
+
+$ip = ""0.0.0.0"" # this means all IP addresses 
+
+
+$port = ""481"" # the default HTTPS port 
+
+
+#build command and pipe to the netsh command 
+
+
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh 
+
+The output message should confirm the successful application of the certificate. Your AIC port is now ready for use with HTTPS.
+
+If you don't want to attempt this yourself or want any kind of further assistance I have assigned some time for you and Ian with the link below for you to schedule
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=xVNe6eCjoffHBJOmFuzwHzKkRB5hUJ5WBBGRBTd1MuQ-Z&MeetingID=iJeNY18BbAviB1i8to9W6l4z_Fy2UwBnEk7DXjA._yA-Z
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0OL6r1:ref","RE: Netwrix Support Ticket #442831 -  - Access issue  - Access Analyzer 11.6    [ ref:!00D70091pB.!500Qk0OL6r1:ref ]","techsupport@netwrix.com","Netwrix Support","william.dammeier@navistar.com","eric.szymanski@netwrix.com","ian.ranstrom@netwrix.com","true","2025-04-25T15:48:47.000Z","true"
+"02sQk00000O9G1SIAV","500Qk00000OL6r1IAD","2025-04-25T15:49:17.000Z","2025-04-25T15:49:17.000Z","I'm sorry I forgot to put the link in, here is the link for you.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=o31idqf07G5BtRPBvTO2R7FL7df5mj5HDWhh_FrFYnY-Z&MeetingID=5vF1PSMxHWyIOTUaO6S3oZJr_FVIhxGIDZaNK7_T6nQ-Z
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/25/2025 11:48 AM
+To: william.dammeier@navistar.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #442831 - - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hi William,
+
+The fact that you can now login is much better than it was previously. I suspect the error is related to the SQL timeout errors we were seeing in the logs that indicated that was also stopping the server from binding the ports. I think we should still try and upgrade as there still seems to be some sort of communication issue, but the fact that data is displaying shows that the SQL connection isn't bad, but the startup tasks seem to be the issue as no response to those tasks comes back form the SQL server which leads to the startup delay and the error you are seeing.
+
+Below is a link you can use for to schedule the upgrade, since the AIC doesn't really store much data I think we should try to backup some files and do a full reinstall to the new version to see if we can clear up the startup problem.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dammeier, William [william.dammeier@navistar.com]
+Sent: 4/25/2025 10:46 AM
+To: techsupport@netwrix.com; holly.smith@international.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #442831 - ref:_00D7091pB._500Q000OL6r1:ref - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+ref:_00D7091pB._500Q000OL6r1:ref
+
+
+
+Hi Ian, 
+
+ 
+
+Not too long after we dropped the call yesterday we were able to login without issue. But I noticed on the login page that there is the error message saying Unable to use the SQL database provided
+
+
+
+ 
+
+After logging in it does look like there’s data there from the last scan so I’m not sure what if anything is missing or if there actually is an issue or not. Not sure if you can provide any clarification. 
+
+ 
+
+Thanks 
+
+ 
+
+
+William Dammeier
+
+Information Security Engineer Lead | IT Security
+
++1 331 332 4382
+
+ 
+
+International Motors, LLC*
+
+2701 Navistar Drive, Lisle, IL 60532
+
+international.com
+
+LinkedIn | Instagram | Facebook | YouTube
+
+ 
+
+
+
+ 
+
+*International Motors, LLC d/b/a International Motors USA LLC in Illinois, Missouri, New Jersey, Ohio, Texas, and Utah.
+
+ 
+
+Disclaimer confidentiality notice: 
+
+Following the recent rebrand and name change to International, this email address will be updated and modified shortly. This email, and any attachments and/or documents linked to this email, are intended for the addressee and may contain information that is privileged, confidential, proprietary, or otherwise protected by law. Any dissemination, distribution, or copying is prohibited. This notice serves as a confidentiality marking for the purpose of any confidentiality or nondisclosure agreement. If you have received this communication in error, please contact the original sender.
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 25, 2025 9:25 AM
+To: Smith, Holly <holly.smith@international.com>; Dammeier, William <william.dammeier@navistar.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+
+
+ 
+
+[EXTERNAL EMAIL – If you suspect the validity of this email, do not click any links and use the Report Phish button to report it. If you do not see the Report Phish button, immediately forward it to  ReportSpam@navistar.com]
+
+
+Hi Holly and William,
+
+I wanted to follow up today to see if the connectivity is behaving any better after the overnight reboot.
+When you get a chance, could you let me know the current status of the AIC login?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/24/2025 3:23 PM
+To: holly.smith@international.com; william.dammeier@navistar.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hello Holly,
+
+Thank you for taking the time to meet today.
+
+Today we:
+Fixed the AIC link so that it is using port 481 and https.
+We also noticed that the AIC is sending errors trying to access the SQL server and logins were failing.
+We unlocked the default admin account and reconfigured the SQL credentials, but the error remains. After restarting the service we found that the service is not binding to the port properly and I suspect that the issue is tied to some delay in response from the SQL server.
+Our next steps are:
+You will:
+As discussed please restart the server after hours and we can see if this helps the issue at all.
+If not we will try and upgrade the AIC and see if we can get communication with the back end database working correctly.
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/22/2025 6:23 PM
+To: holly.smith@international.com
+Cc: eric.szymanski@netwrix.com
+Subject: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hey Holly,
+
+Ian is OOO today but will be back in tomorrow I believe.
+
+In 11.6  AIC we no longer use IIS. We handle the cert binding through powershell.
+
+Here is the command you can run in and Administrator Powershell window on the app server. You will want to take not of the proper Port that you use in the AIC url. Generally ours are 81 or 481, however some customers use more custom ports such as 443 or others.
+
+netsh http show sslcert
+
+
+	Clear out the current certificate from the port using the following PowerShell command:
+
+
+
+2.   
+
+
+3.  netsh http delete sslcert ipport=0.0.0.0:481
+
+
+NOTE: This command assumes that you are using the port 481 for your Access Information Center. Alter the value if you use a different port in your environment.
+
+
+
+	Copy the new certificate thumbprint. Put the value into the following PowerShell script to bind it to the port:
+
+
+
+NOTE: Use the following PowerShell command to list the new certificate:
+
+
+ 
+
+
+dir cert:localmachinemy
+
+Add the value to the $certHash variable below.
+
+
+
+ 
+
+
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" 
+
+
+$certHash = ""%new_thumbprint_value%"" # the 'Thumbprint' value 
+
+
+$ip = ""0.0.0.0"" # this means all IP addresses 
+
+
+$port = ""481"" # the default HTTPS port 
+
+
+#build command and pipe to the netsh command 
+
+
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh 
+
+The output message should confirm the successful application of the certificate. Your AIC port is now ready for use with HTTPS.
+
+If you don't want to attempt this yourself or want any kind of further assistance I have assigned some time for you and Ian with the link below for you to schedule
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=xVNe6eCjoffHBJOmFuzwHzKkRB5hUJ5WBBGRBTd1MuQ-Z&MeetingID=iJeNY18BbAviB1i8to9W6l4z_Fy2UwBnEk7DXjA._yA-Z
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0OL6r1:ref","RE: Netwrix Support Ticket #442831 -  - Access issue  - Access Analyzer 11.6    [ ref:!00D70091pB.!500Qk0OL6r1:ref ]","techsupport@netwrix.com","Netwrix Support","william.dammeier@navistar.com","eric.szymanski@netwrix.com","ian.ranstrom@netwrix.com","true","2025-04-25T15:49:16.000Z","true"
+"02sQk00000ODxXXIA1","500Qk00000OL6r1IAD","2025-04-28T13:24:43.000Z","2025-04-28T13:41:20.000Z","ref:_00D7091pB._500Q000OL6r1:ref
+
+Hi Ian,
+
+I scheduled a meeting but forgot to add my email to it. Can you please make sure I get added to the meeting?
+
+Thanks
+
+William Dammeier
+Information Security Engineer Lead | IT Security
++1 331 332 4382
+
+International Motors, LLC*
+2701 Navistar Drive, Lisle, IL 60532
+international.com<http://international.com/>
+LinkedIn<https://www.linkedin.com/company/theinternationalmotors/> | Instagram<https://www.instagram.com/theinternationalmotors/> | Facebook<https://www.facebook.com/theinternationaltrucks> | YouTube<https://www.youtube.com/@theinternationalmotors>
+
+[cid:image001.png@01DBB816.F4A2C1A0]
+
+*International Motors, LLC d/b/a International Motors USA LLC in Illinois, Missouri, New Jersey, Ohio, Texas, and Utah.
+
+Disclaimer confidentiality notice:
+Following the recent rebrand and name change to International, this email address will be updated and modified shortly. This email, and any attachments and/or documents linked to this email, are intended for the addressee and may contain information that is privileged, confidential, proprietary, or otherwise protected by law. Any dissemination, distribution, or copying is prohibited. This notice serves as a confidentiality marking for the purpose of any confidentiality or nondisclosure agreement. If you have received this communication in error, please contact the original sender.
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 25, 2025 10:49 AM
+To: Dammeier, William <william.dammeier@navistar.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #442831 - - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+I'm sorry I forgot to put the link in, here is the link for you.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=o31idqf07G5BtRPBvTO2R7FL7df5mj5HDWhh_FrFYnY-Z&MeetingID=5vF1PSMxHWyIOTUaO6S3oZJr_FVIhxGIDZaNK7_T6nQ-Z
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/25/2025 11:48 AM
+To: william.dammeier@navistar.com<mailto:william.dammeier@navistar.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #442831 - - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hi William,
+
+The fact that you can now login is much better than it was previously. I suspect the error is related to the SQL timeout errors we were seeing in the logs that indicated that was also stopping the server from binding the ports. I think we should still try and upgrade as there still seems to be some sort of communication issue, but the fact that data is displaying shows that the SQL connection isn't bad, but the startup tasks seem to be the issue as no response to those tasks comes back form the SQL server which leads to the startup delay and the error you are seeing.
+
+Below is a link you can use for to schedule the upgrade, since the AIC doesn't really store much data I think we should try to backup some files and do a full reinstall to the new version to see if we can clear up the startup problem.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Dammeier, William [william.dammeier@navistar.com]
+Sent: 4/25/2025 10:46 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>; holly.smith@international.com<mailto:holly.smith@international.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #442831 - ref:_00D7091pB._500Q000OL6r1:ref - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+ref:_00D7091pB._500Q000OL6r1:ref
+
+
+Hi Ian,
+
+Not too long after we dropped the call yesterday we were able to login without issue. But I noticed on the login page that there is the error message saying Unable to use the SQL database provided
+[cid:image002.png@01DBB816.F4A2C1A0]
+
+After logging in it does look like there's data there from the last scan so I'm not sure what if anything is missing or if there actually is an issue or not. Not sure if you can provide any clarification.
+
+Thanks
+
+William Dammeier
+Information Security Engineer Lead | IT Security
++1 331 332 4382
+
+International Motors, LLC*
+2701 Navistar Drive, Lisle, IL 60532
+international.com<http://international.com/>
+LinkedIn<https://www.linkedin.com/company/theinternationalmotors/> | Instagram<https://www.instagram.com/theinternationalmotors/> | Facebook<https://www.facebook.com/theinternationaltrucks> | YouTube<https://www.youtube.com/@theinternationalmotors>
+
+[cid:image001.png@01DBB816.F4A2C1A0]
+
+*International Motors, LLC d/b/a International Motors USA LLC in Illinois, Missouri, New Jersey, Ohio, Texas, and Utah.
+
+Disclaimer confidentiality notice:
+Following the recent rebrand and name change to International, this email address will be updated and modified shortly. This email, and any attachments and/or documents linked to this email, are intended for the addressee and may contain information that is privileged, confidential, proprietary, or otherwise protected by law. Any dissemination, distribution, or copying is prohibited. This notice serves as a confidentiality marking for the purpose of any confidentiality or nondisclosure agreement. If you have received this communication in error, please contact the original sender.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, April 25, 2025 9:25 AM
+To: Smith, Holly <holly.smith@international.com<mailto:holly.smith@international.com>>; Dammeier, William <william.dammeier@navistar.com<mailto:william.dammeier@navistar.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+[EXTERNAL EMAIL - If you suspect the validity of this email, do not click any links and use the Report Phish button to report it. If you do not see the Report Phish button, immediately forward it to ReportSpam@navistar.com<mailto:ReportSpam@navistar.com>]
+
+Hi Holly and William,
+
+I wanted to follow up today to see if the connectivity is behaving any better after the overnight reboot.
+When you get a chance, could you let me know the current status of the AIC login?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/24/2025 3:23 PM
+To: holly.smith@international.com<mailto:holly.smith@international.com>; william.dammeier@navistar.com<mailto:william.dammeier@navistar.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hello Holly,
+
+Thank you for taking the time to meet today.
+
+Today we:
+Fixed the AIC link so that it is using port 481 and https.
+We also noticed that the AIC is sending errors trying to access the SQL server and logins were failing.
+We unlocked the default admin account and reconfigured the SQL credentials, but the error remains. After restarting the service we found that the service is not binding to the port properly and I suspect that the issue is tied to some delay in response from the SQL server.
+Our next steps are:
+You will:
+As discussed please restart the server after hours and we can see if this helps the issue at all.
+If not we will try and upgrade the AIC and see if we can get communication with the back end database working correctly.
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/22/2025 6:23 PM
+To: holly.smith@international.com<mailto:holly.smith@international.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hey Holly,
+
+Ian is OOO today but will be back in tomorrow I believe.
+
+In 11.6  AIC we no longer use IIS. We handle the cert binding through powershell.
+
+Here is the command you can run in and Administrator Powershell window on the app server. You will want to take not of the proper Port that you use in the AIC url. Generally ours are 81 or 481, however some customers use more custom ports such as 443 or others.
+
+netsh http show sslcert
+
+  1.  Clear out the current certificate from the port using the following PowerShell command:
+
+2.
+
+3.
+
+4.
+
+5.  netsh http delete sslcert ipport=0.0.0.0:481
+
+NOTE: This command assumes that you are using the port 481 for your Access Information Center. Alter the value if you use a different port in your environment.
+
+  1.  Copy the new certificate thumbprint. Put the value into the following PowerShell script to bind it to the port:
+
+NOTE: Use the following PowerShell command to list the new certificate:
+
+
+
+
+
+
+
+dir cert:localmachinemy
+
+Add the value to the $certHash variable below.
+
+
+
+
+
+
+
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8""
+
+
+
+$certHash = ""%new_thumbprint_value%"" # the 'Thumbprint' value
+
+
+
+$ip = ""0.0.0.0"" # this means all IP addresses
+
+
+
+$port = ""481"" # the default HTTPS port
+
+
+
+#build command and pipe to the netsh command
+
+
+
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh
+The output message should confirm the successful application of the certificate. Your AIC port is now ready for use with HTTPS.
+If you don't want to attempt this yourself or want any kind of further assistance I have assigned some time for you and Ian with the link below for you to schedule
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=xVNe6eCjoffHBJOmFuzwHzKkRB5hUJ5WBBGRBTd1MuQ-Z&MeetingID=iJeNY18BbAviB1i8to9W6l4z_Fy2UwBnEk7DXjA._yA-Z
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+ref:!00D70091pB.!500Qk0OL6r1:ref
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000LaTve&from=ext]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000LaTqW&from=ext]","RE: Netwrix Support Ticket #442831 -  - Access issue  - Access Analyzer 11.6    [ ref:!00D70091pB.!500Qk0OL6r1:ref ]","william.dammeier@navistar.com","Dammeier, William","techsupport@netwrix.com","eric.szymanski@netwrix.com","","true","2025-04-28T13:24:28.000Z","true"
+"02sQk00000OE9qSIAT","500Qk00000OL6r1IAD","2025-04-28T14:24:23.000Z","2025-04-28T14:24:23.000Z","Hello Holly,
+
+I just forwarded the invite over to you, please let me know when you get it.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dammeier, William [william.dammeier@navistar.com]
+Sent: 4/28/2025 9:24 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #442831 - - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+ref:_00D7091pB._500Q000OL6r1:ref
+
+
+
+Hi Ian, 
+
+ 
+
+I scheduled a meeting but forgot to add my email to it. Can you please make sure I get added to the meeting?
+
+ 
+
+Thanks 
+
+ 
+
+
+William Dammeier
+
+Information Security Engineer Lead | IT Security
+
++1 331 332 4382
+
+ 
+
+International Motors, LLC*
+
+2701 Navistar Drive, Lisle, IL 60532
+
+international.com
+
+LinkedIn | Instagram | Facebook | YouTube
+
+ 
+
+
+
+ 
+
+*International Motors, LLC d/b/a International Motors USA LLC in Illinois, Missouri, New Jersey, Ohio, Texas, and Utah.
+
+ 
+
+Disclaimer confidentiality notice: 
+
+Following the recent rebrand and name change to International, this email address will be updated and modified shortly. This email, and any attachments and/or documents linked to this email, are intended for the addressee and may contain information that is privileged, confidential, proprietary, or otherwise protected by law. Any dissemination, distribution, or copying is prohibited. This notice serves as a confidentiality marking for the purpose of any confidentiality or nondisclosure agreement. If you have received this communication in error, please contact the original sender.
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 25, 2025 10:49 AM
+To: Dammeier, William <william.dammeier@navistar.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #442831 - - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+
+
+ 
+
+I'm sorry I forgot to put the link in, here is the link for you.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=o31idqf07G5BtRPBvTO2R7FL7df5mj5HDWhh_FrFYnY-Z&MeetingID=5vF1PSMxHWyIOTUaO6S3oZJr_FVIhxGIDZaNK7_T6nQ-Z
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/25/2025 11:48 AM
+To: william.dammeier@navistar.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #442831 - - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hi William,
+
+The fact that you can now login is much better than it was previously. I suspect the error is related to the SQL timeout errors we were seeing in the logs that indicated that was also stopping the server from binding the ports. I think we should still try and upgrade as there still seems to be some sort of communication issue, but the fact that data is displaying shows that the SQL connection isn't bad, but the startup tasks seem to be the issue as no response to those tasks comes back form the SQL server which leads to the startup delay and the error you are seeing.
+
+Below is a link you can use for to schedule the upgrade, since the AIC doesn't really store much data I think we should try to backup some files and do a full reinstall to the new version to see if we can clear up the startup problem.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dammeier, William [william.dammeier@navistar.com]
+Sent: 4/25/2025 10:46 AM
+To: techsupport@netwrix.com;  holly.smith@international.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #442831 - ref:_00D7091pB._500Q000OL6r1:ref - Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+ref:_00D7091pB._500Q000OL6r1:ref
+
+ 
+
+
+Hi Ian, 
+
+ 
+
+Not too long after we dropped the call yesterday we were able to login without issue. But I noticed on the login page that there is the error message saying Unable to use the SQL database provided
+
+
+
+ 
+
+After logging in it does look like there’s data there from the last scan so I’m not sure what if anything is missing or if there actually is an issue or not. Not sure if you can provide any clarification. 
+
+ 
+
+Thanks 
+
+ 
+
+
+William Dammeier
+
+Information Security Engineer Lead | IT Security
+
++1 331 332 4382
+
+ 
+
+International Motors, LLC*
+
+2701 Navistar Drive, Lisle, IL 60532
+
+international.com
+
+LinkedIn | Instagram | Facebook | YouTube
+
+ 
+
+
+
+ 
+
+*International Motors, LLC d/b/a International Motors USA LLC in Illinois, Missouri, New Jersey, Ohio, Texas, and Utah.
+
+ 
+
+Disclaimer confidentiality notice: 
+
+Following the recent rebrand and name change to International, this email address will be updated and modified shortly. This email, and any attachments and/or documents linked to this email, are intended for the addressee and may contain information that is privileged, confidential, proprietary, or otherwise protected by law. Any dissemination, distribution, or copying is prohibited. This notice serves as a confidentiality marking for the purpose of any confidentiality or nondisclosure agreement. If you have received this communication in error, please contact the original sender.
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 25, 2025 9:25 AM
+To: Smith, Holly <holly.smith@international.com>; Dammeier, William <william.dammeier@navistar.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+
+
+ 
+
+[EXTERNAL EMAIL – If you suspect the validity of this email, do not click any links and use the Report Phish button to report it. If you do not see the Report Phish button, immediately forward it to  ReportSpam@navistar.com]
+
+
+Hi Holly and William,
+
+I wanted to follow up today to see if the connectivity is behaving any better after the overnight reboot.
+When you get a chance, could you let me know the current status of the AIC login?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/24/2025 3:23 PM
+To: holly.smith@international.com; william.dammeier@navistar.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hello Holly,
+
+Thank you for taking the time to meet today.
+
+Today we:
+Fixed the AIC link so that it is using port 481 and https.
+We also noticed that the AIC is sending errors trying to access the SQL server and logins were failing.
+We unlocked the default admin account and reconfigured the SQL credentials, but the error remains. After restarting the service we found that the service is not binding to the port properly and I suspect that the issue is tied to some delay in response from the SQL server.
+Our next steps are:
+You will:
+As discussed please restart the server after hours and we can see if this helps the issue at all.
+If not we will try and upgrade the AIC and see if we can get communication with the back end database working correctly.
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/22/2025 6:23 PM
+To: holly.smith@international.com
+Cc: eric.szymanski@netwrix.com
+Subject: Access issue - Access Analyzer 11.6 [ ref:!00D70091pB.!500Qk0OL6r1:ref ]
+
+Hey Holly,
+
+Ian is OOO today but will be back in tomorrow I believe.
+
+In 11.6  AIC we no longer use IIS. We handle the cert binding through powershell.
+
+Here is the command you can run in and Administrator Powershell window on the app server. You will want to take not of the proper Port that you use in the AIC url. Generally ours are 81 or 481, however some customers use more custom ports such as 443 or others.
+
+netsh http show sslcert
+
+
+	Clear out the current certificate from the port using the following PowerShell command:
+
+
+
+2.   
+
+
+3.   
+
+
+4.   
+
+
+5.  netsh http delete sslcert ipport=0.0.0.0:481
+
+
+NOTE: This command assumes that you are using the port 481 for your Access Information Center. Alter the value if you use a different port in your environment.
+
+
+
+	Copy the new certificate thumbprint. Put the value into the following PowerShell script to bind it to the port:
+
+
+
+NOTE: Use the following PowerShell command to list the new certificate:
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+dir cert:localmachinemy
+
+Add the value to the $certHash variable below.
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" 
+
+
+
+ 
+
+
+$certHash = ""%new_thumbprint_value%"" # the 'Thumbprint' value 
+
+
+
+ 
+
+
+$ip = ""0.0.0.0"" # this means all IP addresses 
+
+
+
+ 
+
+
+$port = ""481"" # the default HTTPS port 
+
+
+
+ 
+
+
+#build command and pipe to the netsh command 
+
+
+
+ 
+
+
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh 
+
+The output message should confirm the successful application of the certificate. Your AIC port is now ready for use with HTTPS.
+
+If you don't want to attempt this yourself or want any kind of further assistance I have assigned some time for you and Ian with the link below for you to schedule
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=xVNe6eCjoffHBJOmFuzwHzKkRB5hUJ5WBBGRBTd1MuQ-Z&MeetingID=iJeNY18BbAviB1i8to9W6l4z_Fy2UwBnEk7DXjA._yA-Z
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0OL6r1:ref","RE: Netwrix Support Ticket #442831 -  - Access issue  - Access Analyzer 11.6    [ ref:!00D70091pB.!500Qk0OL6r1:ref ]","techsupport@netwrix.com","Netwrix Support","william.dammeier@navistar.com","eric.szymanski@netwrix.com","ian.ranstrom@netwrix.com","true","2025-04-28T14:24:23.000Z","true"

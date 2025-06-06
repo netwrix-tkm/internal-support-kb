@@ -1,0 +1,940 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000CVv6NIAT","500Qk00000CzMhUIAV","2024-07-12T11:56:20.000Z","2024-07-12T11:56:20.000Z","ref:_00D7091pB._500Q000CzMhU:ref
+
+Attached a screenshot our DBAs sent me.","Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully","imasgalas@wellspan.org","Ioannis Masgalas","techsupport@netwrix.com","","","false","2024-07-12T11:56:20.000Z","true"
+"02sQk00000CW7nUIAT","500Qk00000CzMhUIAV","2024-07-12T12:58:13.000Z","2024-07-12T12:58:13.000Z","Ioannis,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+I suspect based on the time of the DBMaintenancePlan_Index.Subplan_1 job run at 7:38:31 AM is the same time frame for your Active Directory Inventory (ADI) job is streaming data to the DB in question.
+
+Most of the jobs do have a Drop ""IF  EXISTS ....      DROP"" as part of there analysis.
+
+Please have the DBA send the index query for the one in my lab list DROP_EXISTING = OFF
+
+If the Tables Indexes have not been altered then the task should be default and expected.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ioannis Masgalas [imasgalas@wellspan.org]
+Sent: 7/12/2024 7:56 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully
+
+ref:_00D7091pB._500Q000CzMhU:ref
+
+Attached a screenshot our DBAs sent me.","RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully    [ ref:!00D70091pB.!500Qk0CzMhU:ref ]","techsupport@netwrix.com","Netwrix Support","imasgalas@wellspan.org","","","false","2024-07-12T12:58:11.000Z","true"
+"02sQk00000CWGxBIAX","500Qk00000CzMhUIAV","2024-07-12T13:12:19.000Z","2024-07-12T13:12:19.000Z","ref:_00D7091pB._500Q000CzMhU:ref
+
+Name                                               Version    InstallDate
+----                                               -------    -----------
+Netwrix Activity Monitor                           7.0.2987   20231102
+Netwrix Activity Monitor Agent 64-bit              7.0.2987   20231114
+StealthAUDIT Access Information Center             11.5.0.120 20221209
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.65  20221222
+StealthAUDIT V11.5                                 11.5.0.204 20221129
+
+
+E:Program Files (x86)STEALTHbitsStealthAUDIT
+PS C:Userssvc-sbitsapp>
+
+Please have the DBA send the index query for the one in my lab list DROP_EXISTING = OFF
+Not sure which one you mean by ""for the one in my lab list"". Will the DBA know?
+
+
+[cid:image001.png@01DAD43B.8FC12610]
+John Masgalas, CISSP
+CyberSecurity Engineer, Information Security
+imasgalas@wellspan.org<mailto:imasgalas@wellspan.org>
+717-658-3232 (mobile)
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 8:58 AM
+To: Masgalas, John K <imasgalas@wellspan.org>
+Subject: [External] RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+Attention WellSpan email user: this message is from an external sender. Please exercise caution and report suspicious messages immediately. Do not open links or attachments from unknown senders or unexpected emails.
+________________________________
+Ioannis,
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+I suspect based on the time of the DBMaintenancePlan_Index.Subplan_1 job run at 7:38:31 AM is the same time frame for your Active Directory Inventory (ADI) job is streaming data to the DB in question.
+
+Most of the jobs do have a Drop ""IF  EXISTS ....      DROP"" as part of there analysis.
+
+Please have the DBA send the index query for the one in my lab list DROP_EXISTING = OFF
+
+If the Tables Indexes have not been altered then the task should be default and expected.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!P9ZCGl6x2Q!VWpfkpZ-n4_dKNH6705F55qUE1ojdWpoUDtHCYJK6cyHgoOVezoBV2vJU7Cwzvhw5F4WPgrDDVC97sHZD9iuGON9$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!P9ZCGl6x2Q!VWpfkpZ-n4_dKNH6705F55qUE1ojdWpoUDtHCYJK6cyHgoOVezoBV2vJU7Cwzvhw5F4WPgrDDVC97sHZD9kreGcC$>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ioannis Masgalas [imasgalas@wellspan.org<mailto:imasgalas@wellspan.org>]
+Sent: 7/12/2024 7:56 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully
+
+ref:_00D7091pB._500Q000CzMhU:ref
+
+Attached a screenshot our DBAs sent me.
+
+----------------------------------------------------------------------
+The information contained in this communication, including all attachments, is legally protected information, confidential or proprietary information, or a trade secret intended solely for the use of the intended recipient or otherwise exempt from disclosure under applicable state and federal law, including, but not limited to, privacy standards imposed pursuant to the federal Health Insurance Portability and Accountability Act of 1996 (""HIPAA""). The information may also be subject to legal privilege. If you are not the intended recipient, you are hereby notified that any use, disclosure, dissemination, distribution, forwarding, or copying of this communication is strictly prohibited. If you have received this communication in error, please notify the sender by reply Fax or e-mail stating the communication was ""received in error"" and delete or destroy all copies of this communication, including all attachments.
+
+Message string: KqxfH=TU","RE:  RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully    [ ref:!00D70091pB.!500Qk0CzMhU:ref ]","imasgalas@wellspan.org","Masgalas, John K","techsupport@netwrix.com","","","true","2024-07-12T13:12:05.000Z","true"
+"02sQk00000CWaRYIA1","500Qk00000CzMhUIAV","2024-07-12T15:34:40.000Z","2024-07-12T15:34:40.000Z","Ioannis,
+
+Thank You for the update.
+It would be the settings in the IDX_SA_ADInventory_Principals_Display index for the DBA to send over for review.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Masgalas, John K [imasgalas@wellspan.org]
+Sent: 7/12/2024 9:12 AM
+To: techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+ref:_00D7091pB._500Q000CzMhU:ref
+
+
+
+Name                                               Version    InstallDate
+
+----                                               -------    -----------
+
+Netwrix Activity Monitor                           7.0.2987   20231102   
+
+Netwrix Activity Monitor Agent 64-bit              7.0.2987   20231114   
+
+StealthAUDIT Access Information Center             11.5.0.120 20221209   
+
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.65  20221222   
+
+StealthAUDIT V11.5                                 11.5.0.204 20221129   
+
+ 
+
+ 
+
+E:Program Files (x86)STEALTHbitsStealthAUDIT
+
+PS C:Userssvc-sbitsapp>  
+
+ 
+
+Please have the DBA send the index query for the one in my lab list DROP_EXISTING =  OFF
+
+Not sure which one you mean by “for the one in my lab list”. Will the DBA know?
+
+ 
+
+ 
+
+
+
+
+	
+		
+			
+			
+			
+			
+			John Masgalas, CISSP 
+
+			CyberSecurity Engineer, Information Security 
+
+			imasgalas@wellspan.org 
+
+			717-658-3232 (mobile) 
+			
+		
+	
+
+
+ 
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 8:58 AM
+To: Masgalas, John K <imasgalas@wellspan.org>
+Subject: [External] RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			Attention WellSpan email user: this message is from an external sender. Please exercise caution and report suspicious messages immediately. Do not open links or attachments from unknown senders or unexpected emails.
+			
+		
+	
+
+
+
+
+
+Ioannis,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+I suspect based on the time of the DBMaintenancePlan_Index.Subplan_1 job run at 7:38:31 AM is the same time frame for your Active Directory Inventory (ADI) job is streaming data to the DB in question.
+
+Most of the jobs do have a Drop ""IF  EXISTS ....      DROP"" as part of there analysis.
+
+Please have the DBA send the index query for the one in my lab list DROP_EXISTING =  OFF
+
+If the Tables Indexes have not been altered then the task should be default and expected.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ioannis Masgalas [imasgalas@wellspan.org]
+Sent: 7/12/2024 7:56 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully
+
+ref:_00D7091pB._500Q000CzMhU:ref
+
+Attached a screenshot our DBAs sent me.
+
+
+The information contained in this communication, including all attachments, is legally protected information, confidential or proprietary information, or a trade secret intended solely for the use of the intended recipient or otherwise exempt from disclosure under applicable state and federal law, including, but not limited to, privacy standards imposed pursuant to the federal Health Insurance Portability and Accountability Act of 1996 (""HIPAA""). The information may also be subject to legal privilege. If you are not the intended recipient, you are hereby notified that any use, disclosure, dissemination, distribution, forwarding, or copying of this communication is strictly prohibited. If you have received this communication in error, please notify the sender by reply Fax or e-mail stating the communication was ""received in error"" and delete or destroy all copies of this communication, including all attachments.
+
+Message string: KqxfH=TU","RE:  RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully    [ ref:!00D70091pB.!500Qk0CzMhU:ref ]","techsupport@netwrix.com","Netwrix Support","imasgalas@wellspan.org","","","true","2024-07-12T15:34:39.000Z","true"
+"02sQk00000CbxewIAB","500Qk00000CzMhUIAV","2024-07-15T12:45:28.000Z","2024-07-15T12:45:28.000Z","ref:_00D7091pB._500Q000CzMhU:ref
+
+I am still waiting for the setting we asked for but they sent me this in the meantime. I have no idea what they mean:
+
+
+
+Hi John,
+             While monitoring the index maintenance job on the server,
+
+
+
+  1.  We see SPID 72 running the below SP is running for more than 40 hrs that was too long. When we check for the execution plan for this, we see it is recommending creating the below index highlighted below. Can you please review it.
+
+
+  CREATE PROCEDURE SA_FS_DetermineOwnershipResources @HostID INT,   @NestedLevel INT  AS  IF OBJECT_ID('tempdb..#tmpF') IS NOT NULL  BEGIN   DROP TABLE #tmpF  END;    IF object_id(N'SA_FS_OwnershipResources', 'U') IS NOT NULL  BEGIN   DROP TABLE SA_FS_OwnershipResources  END;    SELECT g.[HOST],   rf.[ResourceID],   rf.NestedLevel  INTO #tmpF  FROM SA_FSAA_Gates g  OUTER APPLY dbo.SA_FSAA_ProbableOwners_RecurseFolders(g.[HOST], g.[FolderID], @NestedLevel) rf  WHERE [HOST] = @hostID   AND GateType = 0   AND g.DeletedUSN IS NULL;    CREATE NONCLUSTERED INDEX IDX_tmpf ON #tmpF (   Host,   ResourceID   ) INCLUDE (NestedLevel);    SELECT tf.[HOST] [HostID],   tf.[ResourceID] [FolderID],   rf.[ResourceID] [ResourceID],   rf.[OwnerID],   tf.NestedLevel,   fs.[FileCount]  INTO SA_FS_OwnershipResources  FROM #tmpF tf  OUTER APPLY dbo.SA_FSAA_ProbableOwners_RecurseFolders(@hostid, tf.[ResourceID], 1000) rf  LEFT JOIN SA_FSAA_FileSizes fs   ON fs.HOST = tf.host    AND fs.ResourceID = rf.[ResourceID]  OPTION (MAXRECURSION 1000);    CREATE NONCLUSTERED INDEX IDX_ownershipResources ON SA_FS_OwnershipResources (ResourceID) INCLUDE (   HostID,   FolderID,   NestedLevel   );
+
+[cid:image001.png@01DAD693.494535A0]
+
+
+
+
+[cid:image002.png@01DAD693.494535A0]
+
+
+/*
+Missing Index Details from ExecutionPlan1.sqlplan
+The Query Processor estimates that implementing the following index could improve the query cost by 94.8282%.
+*/
+
+/*
+USE [StealthAudit]
+GO
+CREATE NONCLUSTERED INDEX [<Name of Missing Index, sysname,>]
+ON [dbo].[SA_FSAA_Resources] ([HOST],[ParentResourceID],[ResourceType])
+INCLUDE ([OwnerID])
+GO
+*/
+
+
+
+
+
+  1.  When checking for the missing index at the database level, we see below index recommendation on SA_FSAA_Resources table which was also called by the below select under the SPID 56 which also ran for more than 8 hours. So, please review this
+
+
+SELECT   [HostID] , [ID] , [ResourceID] , [ResourceType] , [ParentResourceID] , [ProcessID] , [Operation] , [Allow] , [TargetResourceID] , [TargetResourceName] , [TargetParentResourceID] , [TargetPath] , [UserID] , [UserSID] , [UserNTDomain] , [UserType] , [UserPrincipalID] , [UserTypeDescription] , [UserNTStyleName] , [AccessTime] , [UserDisplayName] , [UserNTName] , [HostName] , [Path] , [ResourceName] , [ResourceTypeDescription] , [ProcessName] , [OperationDescription] , [AllowDescription]                         FROM [dbo].[SA_FSAC_ActivityEventsView]                        WHERE ((isnull(CharIndex(N'kcrous04', ""UserNTName""), 0) > 0) And (""AccessTime"" > Cast('20240103' as datetime))) ORDER BY [AccessTime] DESC
+
+
+[cid:image003.png@01DAD693.494535A0]
+
+
+
+CREATE INDEX IX_MI_SA_FSAA_Resources_62_61 ON [StealthAudit].[dbo].[SA_FSAA_Resources] ([HOST], [ParentResourceID],[ResourceType]) INCLUDE ([OwnerID])
+
+
+                  Please let us know in case of any concerns.
+
+
+
+                Thanks & Regards,
+
+[A blue and black logo    Description automatically generated]
+Madhu Mohan
+
+Data Intensity
+Principal Consultant
+T + 91- 9700961688
+E  makomma@dataintensity.com<mailto:makomma@dataintensity.com>
+Follow Data Intensity on Linkedin<https://urldefense.com/v3/__http:/linkedin.com/company/data-intensity__;!!P9ZCGl6x2Q!UW9sQ-hHTesp3bht7ewPLjzI_3n_wtNfdg6fud45O0j7FUq8kgloeCfagKpNaoBMG2iCP92eLqAg1atkCjmwPe0$> [Title: LinkedIn - Description: image of LinkedIn icon] <https://urldefense.com/v3/__http:/linkedin.com/company/data-intensity__;!!P9ZCGl6x2Q!UW9sQ-hHTesp3bht7ewPLjzI_3n_wtNfdg6fud45O0j7FUq8kgloeCfagKpNaoBMG2iCP92eLqAg1atkCjmwPe0$>
+
+
+
+
+
+[cid:image006.png@01DAD693.494535A0]
+John Masgalas, CISSP
+CyberSecurity Engineer, Information Security
+imasgalas@wellspan.org<mailto:imasgalas@wellspan.org>
+717-658-3232 (mobile)
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 11:35 AM
+To: Masgalas, John K <imasgalas@wellspan.org>
+Subject: [External] RE: RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+Attention WellSpan email user: this message is from an external sender. Please exercise caution and report suspicious messages immediately. Do not open links or attachments from unknown senders or unexpected emails.
+________________________________
+Ioannis,
+
+Thank You for the update.
+It would be the settings in the IDX_SA_ADInventory_Principals_Display index for the DBA to send over for review.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!P9ZCGl6x2Q!WBxQsX-bv3380Cz-GaYgmn93xTq5dw_tvIUXXLbWcM7vRTJAuMy0_0nk3TaPXK02kLlrFcEhLKUGa8xG5vAQ1bwG$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!P9ZCGl6x2Q!WBxQsX-bv3380Cz-GaYgmn93xTq5dw_tvIUXXLbWcM7vRTJAuMy0_0nk3TaPXK02kLlrFcEhLKUGa8xG5kDShp5K$>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Masgalas, John K [imasgalas@wellspan.org]
+Sent: 7/12/2024 9:12 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+ref:_00D7091pB._500Q000CzMhU:ref
+
+
+Name                                               Version    InstallDate
+----                                               -------    -----------
+Netwrix Activity Monitor                           7.0.2987   20231102
+Netwrix Activity Monitor Agent 64-bit              7.0.2987   20231114
+StealthAUDIT Access Information Center             11.5.0.120 20221209
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.65  20221222
+StealthAUDIT V11.5                                 11.5.0.204 20221129
+
+
+E:Program Files (x86)STEALTHbitsStealthAUDIT
+PS C:Userssvc-sbitsapp>
+
+Please have the DBA send the index query for the one in my lab list DROP_EXISTING = OFF
+Not sure which one you mean by ""for the one in my lab list"". Will the DBA know?
+
+
+[cid:image006.png@01DAD693.494535A0]
+John Masgalas, CISSP
+CyberSecurity Engineer, Information Security
+imasgalas@wellspan.org<mailto:imasgalas@wellspan.org>
+717-658-3232 (mobile)
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, July 12, 2024 8:58 AM
+To: Masgalas, John K <imasgalas@wellspan.org<mailto:imasgalas@wellspan.org>>
+Subject: [External] RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+Attention WellSpan email user: this message is from an external sender. Please exercise caution and report suspicious messages immediately. Do not open links or attachments from unknown senders or unexpected emails.
+________________________________
+Ioannis,
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+I suspect based on the time of the DBMaintenancePlan_Index.Subplan_1 job run at 7:38:31 AM is the same time frame for your Active Directory Inventory (ADI) job is streaming data to the DB in question.
+
+Most of the jobs do have a Drop ""IF  EXISTS ....      DROP"" as part of there analysis.
+
+Please have the DBA send the index query for the one in my lab list DROP_EXISTING = OFF
+
+If the Tables Indexes have not been altered then the task should be default and expected.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!P9ZCGl6x2Q!VWpfkpZ-n4_dKNH6705F55qUE1ojdWpoUDtHCYJK6cyHgoOVezoBV2vJU7Cwzvhw5F4WPgrDDVC97sHZD9iuGON9$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!P9ZCGl6x2Q!VWpfkpZ-n4_dKNH6705F55qUE1ojdWpoUDtHCYJK6cyHgoOVezoBV2vJU7Cwzvhw5F4WPgrDDVC97sHZD9kreGcC$>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ioannis Masgalas [imasgalas@wellspan.org<mailto:imasgalas@wellspan.org>]
+Sent: 7/12/2024 7:56 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully
+
+ref:_00D7091pB._500Q000CzMhU:ref
+
+Attached a screenshot our DBAs sent me.
+________________________________
+The information contained in this communication, including all attachments, is legally protected information, confidential or proprietary information, or a trade secret intended solely for the use of the intended recipient or otherwise exempt from disclosure under applicable state and federal law, including, but not limited to, privacy standards imposed pursuant to the federal Health Insurance Portability and Accountability Act of 1996 (""HIPAA""). The information may also be subject to legal privilege. If you are not the intended recipient, you are hereby notified that any use, disclosure, dissemination, distribution, forwarding, or copying of this communication is strictly prohibited. If you have received this communication in error, please notify the sender by reply Fax or e-mail stating the communication was ""received in error"" and delete or destroy all copies of this communication, including all attachments.
+
+Message string: KqxfH=TU[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BesbH&from=ext]","RE:  RE:  RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully    [ ref:!00D70091pB.!500Qk0CzMhU:ref ]","imasgalas@wellspan.org","Masgalas, John K","techsupport@netwrix.com","","","true","2024-07-15T12:45:06.000Z","true"
+"02sQk00000CfRQNIA3","500Qk00000CzMhUIAV","2024-07-16T12:36:43.000Z","2024-07-16T12:36:43.000Z","Ioannis,
+
+Thank You for the update.
+  
+Let's schedule a web meeting to take a closer look at this as well as Ticket Number 00414964
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=rYk5FPbTpgIvZqc_Te4iq1ujUpNiUvRNO1hHrLBHnhw-Z&MeetingID=Fp.Y6Gh_6oornAfKncUzvG9uGJrVUC7BvoMtu4HuOJs-Z
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Masgalas, John K [imasgalas@wellspan.org]
+Sent: 7/15/2024 8:45 AM
+To: techsupport@netwrix.com
+Subject: RE: RE: RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+ref:_00D7091pB._500Q000CzMhU:ref
+
+
+
+I am still waiting for the setting we asked for but they sent me this in the meantime. I have no idea what they mean:
+
+ 
+
+ 
+
+ 
+
+Hi John,
+
+             While monitoring the index maintenance job on the server,
+
+ 
+
+ 
+
+
+	We see SPID 72 running the below SP is running for more than 40 hrs that was too long. When we check for the execution plan for this, we see it is recommending creating the below index highlighted below. Can you please review it.
+
+
+ 
+
+ 
+
+  CREATE PROCEDURE SA_FS_DetermineOwnershipResources @HostID INT,   @NestedLevel INT  AS  IF OBJECT_ID('tempdb..#tmpF') IS NOT NULL  BEGIN   DROP TABLE #tmpF  END;    IF object_id(N'SA_FS_OwnershipResources', 'U') IS NOT NULL  BEGIN   DROP TABLE SA_FS_OwnershipResources  END;    SELECT g.[HOST],   rf.[ResourceID],   rf.NestedLevel  INTO #tmpF  FROM SA_FSAA_Gates g  OUTER APPLY dbo.SA_FSAA_ProbableOwners_RecurseFolders(g.[HOST], g.[FolderID], @NestedLevel) rf  WHERE [HOST] = @hostID   AND GateType = 0   AND g.DeletedUSN IS NULL;    CREATE NONCLUSTERED INDEX IDX_tmpf ON #tmpF (   Host,   ResourceID   ) INCLUDE (NestedLevel);    SELECT tf.[HOST] [HostID],   tf.[ResourceID] [FolderID],   rf.[ResourceID] [ResourceID],   rf.[OwnerID],   tf.NestedLevel,   fs.[FileCount]  INTO SA_FS_OwnershipResources  FROM #tmpF tf  OUTER APPLY dbo.SA_FSAA_ProbableOwners_RecurseFolders(@hostid, tf.[ResourceID], 1000) rf  LEFT JOIN SA_FSAA_FileSizes fs   ON fs.HOST = tf.host    AND fs.ResourceID = rf.[ResourceID]  OPTION (MAXRECURSION 1000);    CREATE NONCLUSTERED INDEX IDX_ownershipResources ON SA_FS_OwnershipResources (ResourceID) INCLUDE (   HostID,   FolderID,   NestedLevel   );
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+ 
+
+/*
+
+Missing Index Details from ExecutionPlan1.sqlplan
+
+The Query Processor estimates that implementing the following index could improve the query cost by 94.8282%.
+
+*/
+
+ 
+
+/*
+
+USE [StealthAudit]
+
+GO
+
+CREATE NONCLUSTERED INDEX [<Name of Missing Index, sysname,>]
+
+ON [dbo].[SA_FSAA_Resources] ([HOST],[ParentResourceID],[ResourceType])
+
+INCLUDE ([OwnerID])
+
+GO
+
+*/
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+	When checking for the missing index at the database level, we see below index recommendation on SA_FSAA_Resources table which was also called by the below select under the SPID 56 which also ran for more than 8 hours. So, please review this
+
+
+ 
+
+ 
+
+SELECT   [HostID] , [ID] , [ResourceID] , [ResourceType] , [ParentResourceID] , [ProcessID] , [Operation] , [Allow] , [TargetResourceID] , [TargetResourceName] , [TargetParentResourceID] , [TargetPath] , [UserID] , [UserSID] , [UserNTDomain] , [UserType] , [UserPrincipalID] , [UserTypeDescription] , [UserNTStyleName] , [AccessTime] , [UserDisplayName] , [UserNTName] , [HostName] , [Path] , [ResourceName] , [ResourceTypeDescription] , [ProcessName] , [OperationDescription] , [AllowDescription]                         FROM [dbo].[SA_FSAC_ActivityEventsView]                        WHERE ((isnull(CharIndex(N'kcrous04', ""UserNTName""), 0) > 0) And (""AccessTime"" > Cast('20240103' as datetime))) ORDER BY [AccessTime] DESC
+
+ 
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+CREATE INDEX IX_MI_SA_FSAA_Resources_62_61 ON [StealthAudit].[dbo].[SA_FSAA_Resources] ([HOST], [ParentResourceID],[ResourceType]) INCLUDE ([OwnerID])
+
+ 
+
+ 
+
+                  Please let us know in case of any concerns.
+
+ 
+
+ 
+
+ 
+
+                Thanks & Regards,
+
+
+	
+		
+			
+			 
+
+			
+				
+					
+						
+						
+						
+						
+						Madhu Mohan
+
+						 
+
+						Data Intensity
+
+						Principal Consultant
+
+						T + 91- 9700961688
+
+						E  makomma@dataintensity.com
+
+						Follow Data Intensity on Linkedin   
+						
+					
+				
+			
+
+			 
+			
+			
+			 
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+ 
+
+ 
+
+
+
+
+	
+		
+			
+			
+			
+			
+			John Masgalas, CISSP 
+
+			CyberSecurity Engineer, Information Security 
+
+			imasgalas@wellspan.org 
+
+			717-658-3232 (mobile) 
+			
+		
+	
+
+
+ 
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 11:35 AM
+To: Masgalas, John K <imasgalas@wellspan.org>
+Subject: [External] RE: RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			Attention WellSpan email user: this message is from an external sender. Please exercise caution and report suspicious messages immediately. Do not open links or attachments from unknown senders or unexpected emails.
+			
+		
+	
+
+
+
+
+
+Ioannis,
+
+Thank You for the update.
+It would be the settings in the IDX_SA_ADInventory_Principals_Display index for the DBA to send over for review.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Masgalas, John K [imasgalas@wellspan.org]
+Sent: 7/12/2024 9:12 AM
+To: techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+ref:_00D7091pB._500Q000CzMhU:ref
+
+ 
+
+
+Name                                               Version    InstallDate
+
+----                                               -------    -----------
+
+Netwrix Activity Monitor                           7.0.2987   20231102   
+
+Netwrix Activity Monitor Agent 64-bit              7.0.2987   20231114   
+
+StealthAUDIT Access Information Center             11.5.0.120 20221209   
+
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.65  20221222   
+
+StealthAUDIT V11.5                                 11.5.0.204 20221129   
+
+ 
+
+ 
+
+E:Program Files (x86)STEALTHbitsStealthAUDIT
+
+PS C:Userssvc-sbitsapp>  
+
+ 
+
+Please have the DBA send the index query for the one in my lab list DROP_EXISTING =  OFF
+
+Not sure which one you mean by “for the one in my lab list”. Will the DBA know?
+
+ 
+
+ 
+
+
+
+
+	
+		
+			
+			
+			
+			
+			John Masgalas, CISSP 
+
+			CyberSecurity Engineer, Information Security 
+
+			imasgalas@wellspan.org 
+
+			717-658-3232 (mobile) 
+			
+		
+	
+
+
+ 
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 8:58 AM
+To: Masgalas, John K <imasgalas@wellspan.org>
+Subject: [External] RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully [ ref:!00D70091pB.!500Qk0CzMhU:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			Attention WellSpan email user: this message is from an external sender. Please exercise caution and report suspicious messages immediately. Do not open links or attachments from unknown senders or unexpected emails.
+			
+		
+	
+
+
+
+
+
+Ioannis,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+I suspect based on the time of the DBMaintenancePlan_Index.Subplan_1 job run at 7:38:31 AM is the same time frame for your Active Directory Inventory (ADI) job is streaming data to the DB in question.
+
+Most of the jobs do have a Drop ""IF  EXISTS ....      DROP"" as part of there analysis.
+
+Please have the DBA send the index query for the one in my lab list DROP_EXISTING =  OFF
+
+If the Tables Indexes have not been altered then the task should be default and expected.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ioannis Masgalas [imasgalas@wellspan.org]
+Sent: 7/12/2024 7:56 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully
+
+ref:_00D7091pB._500Q000CzMhU:ref
+
+Attached a screenshot our DBAs sent me.
+
+
+
+
+
+The information contained in this communication, including all attachments, is legally protected information, confidential or proprietary information, or a trade secret intended solely for the use of the intended recipient or otherwise exempt from disclosure under applicable state and federal law, including, but not limited to, privacy standards imposed pursuant to the federal Health Insurance Portability and Accountability Act of 1996 (""HIPAA""). The information may also be subject to legal privilege. If you are not the intended recipient, you are hereby notified that any use, disclosure, dissemination, distribution, forwarding, or copying of this communication is strictly prohibited. If you have received this communication in error, please notify the sender by reply Fax or e-mail stating the communication was ""received in error"" and delete or destroy all copies of this communication, including all attachments.
+
+Message string: KqxfH=TU","RE:  RE:  RE: Netwrix Support Ticket #414859 - MSSQL on Windows: A SQL job failed to complete successfully    [ ref:!00D70091pB.!500Qk0CzMhU:ref ]","techsupport@netwrix.com","Netwrix Support","imasgalas@wellspan.org","","","true","2024-07-16T12:36:42.000Z","true"

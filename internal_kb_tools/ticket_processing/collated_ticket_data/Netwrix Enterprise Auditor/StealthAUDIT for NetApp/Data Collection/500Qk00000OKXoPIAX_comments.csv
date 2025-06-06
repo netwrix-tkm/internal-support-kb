@@ -1,0 +1,102 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000D8B5FIAV","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Account ACV has been changed to 1971319.203333333262.
+Priority has been changed to Medium.","0054u000006gpoAAAQ","2025-04-25T20:49:27.000Z","2025-04-25T20:49:27.000Z","false","false"
+"00aQk00000D8AfSIAV","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Account ACV has been changed to 985659.601666666631.","0054u000006gpoAAAQ","2025-04-25T20:49:29.000Z","2025-04-25T20:49:29.000Z","false","false"
+"00aQk00000DAVpTIAX","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: Confirmed Repair did not work.
+Also customer is on SQL server version 2019.","0054u000006gpoAAAQ","2025-04-28T19:59:23.000Z","2025-04-28T19:59:23.000Z","false","false"
+"00aQk00000DBBqJIAX","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: Michael Burrofato:
+
+@Salesforce Please confirm the priority. This is being shown as a P3 on our side. @Chris Brooks
+
+[DevOps CommentId:11988619]","0054u000006gtWUAAY","2025-04-29T10:33:41.000Z","2025-04-29T10:33:41.000Z","false","false"
+"00aQk00000DBQcQIAX","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Priority has been changed to Critical.","0054u000006gpoAAAQ","2025-04-29T14:19:17.000Z","2025-04-29T14:19:17.000Z","false","false"
+"00aQk00000DBrfqIAD","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: I left it at p3 initially expecting the repair to resolve it in the short term. however no luck. So upped it to critical.","0054u000006gpoAAAQ","2025-04-29T18:32:47.000Z","2025-04-29T18:32:47.000Z","false","false"
+"00aQk00000DCz1qIAD","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: Michael Burrofato:
+
+@Salesforce Dev team has pulled this onto the sprint and is investigating.
+
+[DevOps CommentId:11997555]","0054u000006gtWUAAY","2025-04-30T16:05:39.000Z","2025-04-30T16:05:39.000Z","false","false"
+"00aQk00000DEjCHIA1","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-01T20:35:51.000Z","2025-05-01T20:35:51.000Z","false","false"
+"00aQk00000DEjCJIA1","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: Adam DeSapio:
+
+@Salesforce @WaitingOnEngineer
+
+Can I get the Create Schema job OUTPUT folder?
+
+There is a new log in 12.0 that may be helpful: the Coordination Service log.
+This can be found in %SAINSTALLDIR%SADatabaseLogsCoordinationService on the NAA console.
+Please get all of them.
+
+This situation can come about if there are 2+ rows in the SA_FSAA_ResourceMap table
+that have different IDs, but the same AccessID.
+To test if this scenario applies to them, run the following SQL and report back the results:
+SELECT rm.HOST, rm.AccessID, COUNT(rm.AccessID) as [count]
+FROM SA_FSAA_ResourceMap rm
+INNER JOIN SA_FSAA_Hosts h ON h.ID = rm.HOST
+WHERE h.HOST = 'DRF-ERNIE2'
+GROUP BY rm.HOST, rm.AccessID
+HAVING COUNT(rm.AccessID) > 1;
+
+There could be multiple resources in this situation.
+Then get us a resource's data by choosing 1 AccessID, and plugging it into the following SQL
+so we can figure out why this happened:
+SELECT r.*
+FROM SA_FSAA_Resources r
+INNER JOIN SA_FSAA_Hosts h ON r.HOST = h.ID
+WHERE r.ID = (SELECT MIN(ID) FROM SA_FSAA_ResourceMap WHERE AccessID = <an AccessID from above>)
+AND h.HOST = 'DRF-ERNIE2';
+
+[DevOps CommentId:12000812]","0054u000006gtWUAAY","2025-05-01T20:35:53.000Z","2025-05-01T20:35:53.000Z","false","false"
+"00aQk00000DEmV7IAL","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-05-01T21:17:57.000Z","2025-05-01T21:17:57.000Z","false","false"
+"00aQk00000DJ93LIAT","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: Adam DeSapio:
+
+@Salesforce
+
+An issue has been found and development is working on a fix
+
+[DevOps CommentId:12013028]","0054u000006gtWUAAY","2025-05-06T12:25:02.000Z","2025-05-06T12:25:02.000Z","false","false"
+"00aQk00000DJEJ7IAP","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2025-05-06T13:34:26.000Z","2025-05-06T13:34:26.000Z","false","false"
+"00aQk00000DJQk7IAH","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: Adam DeSapio:
+
+@Salesforce
+
+The previously requested artifacts are not necessary for the newly identified issue.
+
+[DevOps CommentId:12016269]","0054u000006gtWUAAY","2025-05-06T15:33:49.000Z","2025-05-06T15:33:49.000Z","false","false"
+"00aQk00000DNNpHIAX","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: Michael Burrofato:
+
+@Salesforce A fix has been verified by QA. Providing a hotfix today.
+
+[DevOps CommentId:12036416]","0054u000006gtWUAAY","2025-05-09T14:47:59.000Z","2025-05-09T14:47:59.000Z","false","false"
+"00aQk00000DNUFdIAP","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-09T15:29:56.000Z","2025-05-09T15:29:56.000Z","false","false"
+"00aQk00000DNUFfIAP","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: Michael Burrofato:
+
+@Salesforce Hotfix available for download:
+
+https://releases.netwrix.com/products/auditor-enterprise/12.0/auditor-enterprise-hotfix-12.0.0.001.zip
+
+Please have customer drop in the hotfix. Re-run the repair tool and then re-run bulk import.
+
+@WaitingOnEngineer @Adam DeSapio
+
+[DevOps CommentId:12036631]","0054u000006gtWUAAY","2025-05-09T15:29:56.000Z","2025-05-09T15:29:56.000Z","false","false"
+"00aQk00000DNXILIA5","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-05-09T15:58:10.000Z","2025-05-09T15:58:10.000Z","false","false"
+"00aQk00000DNSVaIAP","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-09T15:58:21.000Z","2025-05-09T15:58:21.000Z","false","false"
+"00aQk00000DNocXIAT","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-05-09T19:04:43.000Z","2025-05-09T19:04:43.000Z","false","false"
+"00aQk00000DUcGUIA1","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the new comment has been added: It successfully imported now.
+However we are having all sorts of issues with the scans. Every scan something different is happening. Not sure how to address this.
+I suspect due to their Database not working super well last time  we poked around could be some troubles on that end.|
+
+Waiting to confirm the main server at least imports again.","0054u000006gpoAAAQ","2025-05-15T18:14:02.000Z","2025-05-15T18:14:02.000Z","false","false"
+"00aQk00000DdrszIAB","500Qk00000OKXoPIAX","On Escalation Ticket # 00443287 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2025-05-23T15:03:02.000Z","2025-05-23T15:03:02.000Z","false","false"

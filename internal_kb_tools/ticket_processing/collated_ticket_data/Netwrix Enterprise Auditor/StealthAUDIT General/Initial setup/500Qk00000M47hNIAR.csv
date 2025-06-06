@@ -1,0 +1,33 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000M47hNIAR","00436299","Support Ticket","Remove data for old/decommissioned hosts","Customer would like to perform clean up on a list of hosts that are no longer scanned.","","--------------------
+11.03.2025 
+
+Had a meeting with Alison. 
+
+They would like to remove FSAA related data for hosts that are no longer scanned. 
+I explained that FS_Droptables job will remove absolutely all File System solution data and it is not possible to scope it. 
+But we can remove data for individual hosts using ""remove host data"" query instead. 
+
+Alison said that those hosts which last scan date is older than December 2024 are eligible for data removal. 
+
+As such, we made a static host list by filtering FSAA hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list in ""Hosts"" settings for the ""DropFSHostData"" Job we created using instructions from this KB:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+Currently ""DropFSHostData"" Job is running. 
+Alison will get back to us with results once the job finishes.","Customer will reply back with results of ""DropFSHostData"" job.","To scope the hosts that are eligible for FSAA data removal we made a static host list by filtering FSAA hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+A ""DropFSHostData"" Job was created using instructions from this KB:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+We then configured static host list mentioned above in ""Hosts"" settings for the ""DropFSHostData"" custom job. 
+It was confirmed that job has completed successfully.","Guidance","Artem Naskal","Error","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","","34.7","Closed - Resolved","Allstate Insurance Company","Stealth Audit","2025-02-19T14:40:31.000Z","2025-03-26T08:30:45.000Z"

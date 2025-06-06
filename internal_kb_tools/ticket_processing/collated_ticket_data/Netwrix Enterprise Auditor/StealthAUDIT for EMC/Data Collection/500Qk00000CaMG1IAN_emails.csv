@@ -1,0 +1,2582 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000C6TTRIA3","500Qk00000CaMG1IAN","2024-07-02T21:27:50.000Z","2024-07-02T21:27:50.000Z","Duane, 
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeNTStyleName]
+              ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName = 'Administrators' AND [Membership Path] IS NOT NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0CaMG1:ref","Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","techsupport@netwrix.com","Netwrix Support","duane.jarrett@atlasair.com","","","false","2024-07-02T21:27:49.000Z","true"
+"02sQk00000C6SQwIAN","500Qk00000CaMG1IAN","2024-07-02T21:28:50.000Z","2024-07-02T21:28:50.000Z","Duane, 
+
+Sorry I forgot the AIC Example from my lab:
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeNTStyleName]
+              ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName = 'Administrators' AND [Membership Path] IS NOT NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0CaMG1:ref","RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","techsupport@netwrix.com","Netwrix Support","duane.jarrett@atlasair.com","","","true","2024-07-02T21:28:49.000Z","true"
+"02sQk00000C6T3eIAF","500Qk00000CaMG1IAN","2024-07-02T22:11:02.000Z","2024-07-02T22:11:02.000Z","ref:_00D7091pB._500Q000CaMG1:ref
+
+Dusty,
+
+Do you still need me to run the powershell script?
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 2, 2024 5:28:51 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Subject: EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+
+Duane,
+
+Sorry I forgot the AIC Example from my lab:
+
+[Image_2024-07-02_17-28-25.png]
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeNTStyleName]
+              ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName = 'Administrators' AND [Membership Path] IS NOT NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BG3ej&from=int]
+
+ref:!00D70091pB.!500Qk0CaMG1:ref
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BG3q1&from=ext]
+
+EXTERNAL EMAIL: Please use caution when clicking links or opening attachments.
+________________________________","Re: Netwrix Support Ticket #413806 - ref:_00D7091pB._500Q000CaMG1:ref - EXTERNAL: RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","duane.jarrett@atlasair.com","Jarrett, Duane","techsupport@netwrix.com","","","true","2024-07-02T22:10:43.000Z","true"
+"02sQk00000C7hatIAB","500Qk00000CaMG1IAN","2024-07-03T12:49:09.000Z","2024-07-03T12:49:09.000Z","Duane, 
+
+Yes please that is to update the Technical Support Notes for the account.
+
+Please let me know how the TSQL query completes.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/2/2024 6:10 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #413806 - ref:_00D7091pB._500Q000CaMG1:ref - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+
+Dusty,
+
+ 
+
+Do you still need me to run the powershell script?
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 2, 2024 5:28:51 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Subject: EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ 
+
+
+
+Duane, 
+
+Sorry I forgot the AIC Example from my lab:
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeNTStyleName]
+              ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType  = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName  = 'Administrators' AND [Membership Path]  IS NOT  NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0CaMG1:ref
+
+ 
+
+EXTERNAL EMAIL: Please use caution when clicking links or opening attachments.","Re: Netwrix Support Ticket #413806 -  - EXTERNAL: RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","techsupport@netwrix.com","Netwrix Support","duane.jarrett@atlasair.com","","","true","2024-07-03T12:49:07.000Z","true"
+"02sQk00000CJwFxIAL","500Qk00000CaMG1IAN","2024-07-08T21:47:23.000Z","2024-07-08T21:47:23.000Z","ref:_00D7091pB._500Q000CaMG1:ref
+
+Name                                   Version    InstallDate
+----                                   -------    -----------
+StealthAUDIT Access Information Center 11.5.0.137 20240422
+StealthAUDIT V11.5                     11.5.0.276 20240605
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT Compliance
+
+This is a report from a job in NEA not the AIC.
+
+Msg 4104, Level 16, State 1, Line 2
+The multi-part identifier ""FSPV.HostName"" could not be bound.
+Msg 207, Level 16, State 1, Line 3
+Invalid column name 'ResourcePath'.","Netwrix Support Ticket #413806 - Local Administrator Missing from Folder Reports","duane.jarrett@atlasair.com","Duane Jarrett","techsupport@netwrix.com","","","false","2024-07-08T21:47:23.000Z","true"
+"02sQk00000CLPuHIAX","500Qk00000CaMG1IAN","2024-07-09T12:46:02.000Z","2024-07-09T12:46:02.000Z","Duane,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Duane Jarrett [duane.jarrett@atlasair.com]
+Sent: 7/8/2024 5:47 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #413806 - Local Administrator Missing from Folder Reports
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+Name Version InstallDate
+---- ------- -----------
+StealthAUDIT Access Information Center 11.5.0.137 20240422
+StealthAUDIT V11.5 11.5.0.276 20240605
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT Compliance
+
+This is a report from a job in NEA not the AIC.
+
+Msg 4104, Level 16, State 1, Line 2
+The multi-part identifier ""FSPV.HostName"" could not be bound.
+Msg 207, Level 16, State 1, Line 3
+Invalid column name 'ResourcePath'.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/3/2024 8:49 AM
+To: duane.jarrett@atlasair.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Yes please that is to update the Technical Support Notes for the account.
+
+Please let me know how the TSQL query completes.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/2/2024 6:10 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #413806 - ref:_00D7091pB._500Q000CaMG1:ref - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+
+Dusty,
+
+ 
+
+Do you still need me to run the powershell script?
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 2, 2024 5:28:51 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Subject: EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ 
+
+
+
+Duane, 
+
+Sorry I forgot the AIC Example from my lab:
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeNTStyleName]
+              ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType  = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName  = 'Administrators' AND [Membership Path]  IS NOT  NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0CaMG1:ref
+
+ 
+
+EXTERNAL EMAIL: Please use caution when clicking links or opening attachments.","Re: Netwrix Support Ticket #413806 -  - EXTERNAL: RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","techsupport@netwrix.com","Netwrix Support","duane.jarrett@atlasair.com","","","true","2024-07-09T12:46:01.000Z","true"
+"02sQk00000CXDpEIAX","500Qk00000CaMG1IAN","2024-07-12T19:13:17.000Z","2024-07-12T19:13:17.000Z","Duane, 
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) 11.5.0.276 
+
+We looked at the customer jobs as well as the EMC host via the4 Windows Computer Management screen and confirmed that the Built in Admin group was listed and could see the nested groups within.
+However I’m not 100% sure how the FSAA scan would be able to resolve these groups like a Microsoft host when not a Windows based system.
+
+Please confirm the EMC Celerra Version as well as the following for our service account.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Celerra or VNX Device Configuration > EMC Celerra & VNX Device Configuration for Access Auditing
+Group membership in both of the following groups:
+    Power Users
+    Backup Operators
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Celerra_Config/EMC_Celerra_VNX_Device_Config_Access_Auditing.htm
+
+
+A follow up meeting was set for Monday at 10am ET due to Power cycling issues.
+
+Again I have tagged your Sales Rep James in the case that we need to engage ProServ to look at updating these customer reports.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 8:46 AM
+To: duane.jarrett@atlasair.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Duane Jarrett [duane.jarrett@atlasair.com]
+Sent: 7/8/2024 5:47 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #413806 - Local Administrator Missing from Folder Reports
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+Name Version InstallDate
+---- ------- -----------
+StealthAUDIT Access Information Center 11.5.0.137 20240422
+StealthAUDIT V11.5 11.5.0.276 20240605
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT Compliance
+
+This is a report from a job in NEA not the AIC.
+
+Msg 4104, Level 16, State 1, Line 2
+The multi-part identifier ""FSPV.HostName"" could not be bound.
+Msg 207, Level 16, State 1, Line 3
+Invalid column name 'ResourcePath'.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/3/2024 8:49 AM
+To: duane.jarrett@atlasair.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Yes please that is to update the Technical Support Notes for the account.
+
+Please let me know how the TSQL query completes.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/2/2024 6:10 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #413806 - ref:_00D7091pB._500Q000CaMG1:ref - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+
+Dusty,
+
+ 
+
+Do you still need me to run the powershell script?
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 2, 2024 5:28:51 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Subject: EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ 
+
+
+
+Duane, 
+
+Sorry I forgot the AIC Example from my lab:
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeNTStyleName]
+              ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType  = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName  = 'Administrators' AND [Membership Path]  IS NOT  NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0CaMG1:ref
+
+ 
+
+EXTERNAL EMAIL: Please use caution when clicking links or opening attachments.","Re: Netwrix Support Ticket #413806 -  - EXTERNAL: RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","techsupport@netwrix.com","Netwrix Support","duane.jarrett@atlasair.com","james.sawyer@netwrix.com","","true","2024-07-12T19:13:15.000Z","true"
+"02sQk00000CXw1WIAT","500Qk00000CaMG1IAN","2024-07-12T21:21:55.000Z","2024-07-12T21:21:55.000Z","ref:_00D7091pB._500Q000CaMG1:ref
+
+Dusty,
+
+
+  *   We are using OneFS Version 9.4.0.13
+  *   For over a decade the FSAA scan has been running with this account and scanning the groups and folder permissions.  Even though the system is not Microsoft, it is configured to use Active Directory Services for membership and role authentication.
+  *   The account that being used to run the job is local Administrator group, that access will trump the Powers Users or the Backup Operators group.
+  *   By adding our sales rep, are you suggesting that we may need to be for professional services to build reports?
+
+As I mentioned in the call, nothing has changed in our environment outside of an upgrade of NEA.
+
+
+Jim,
+
+I hope you are doing well and that you are planning to have a good weekend.  I look forward to talking to you on Monday.    Unfortunately, NEA not being able to provide the same data as did in the past, is delaying our response to our auditors.  IT management is getting annoyed because they feel like this is a regular occurrence with this tool.
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 3:13 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Cc: james.sawyer@netwrix.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) 11.5.0.276
+
+We looked at the customer jobs as well as the EMC host via the4 Windows Computer Management screen and confirmed that the Built in Admin group was listed and could see the nested groups within.
+However I'm not 100% sure how the FSAA scan would be able to resolve these groups like a Microsoft host when not a Windows based system.
+
+Please confirm the EMC Celerra Version as well as the following for our service account.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Celerra or VNX Device Configuration > EMC Celerra & VNX Device Configuration for Access Auditing
+Group membership in both of the following groups:
+    Power Users
+    Backup Operators
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Celerra_Config/EMC_Celerra_VNX_Device_Config_Access_Auditing.htm
+
+
+A follow up meeting was set for Monday at 10am ET due to Power cycling issues.
+
+Again I have tagged your Sales Rep James in the case that we need to engage ProServ to look at updating these customer reports.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 8:46 AM
+To: duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank You for the update.
+
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z>
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Duane Jarrett [duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>]
+Sent: 7/8/2024 5:47 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #413806 - Local Administrator Missing from Folder Reports
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+Name Version InstallDate
+---- ------- -----------
+StealthAUDIT Access Information Center 11.5.0.137 20240422
+StealthAUDIT V11.5 11.5.0.276 20240605
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT Compliance
+
+This is a report from a job in NEA not the AIC.
+
+Msg 4104, Level 16, State 1, Line 2
+The multi-part identifier ""FSPV.HostName"" could not be bound.
+Msg 207, Level 16, State 1, Line 3
+Invalid column name 'ResourcePath'.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/3/2024 8:49 AM
+To: duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Yes please that is to update the Technical Support Notes for the account.
+
+Please let me know how the TSQL query completes.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/<https://www.netwrix.com/customer_training.html>
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/2/2024 6:10 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #413806 - ref:_00D7091pB._500Q000CaMG1:ref - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+Dusty,
+
+Do you still need me to run the powershell script?
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, July 2, 2024 5:28:51 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>>
+Subject: EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+
+Duane,
+
+Sorry I forgot the AIC Example from my lab:
+
+[cid:image001.png@01DAD47A.BCAC0660]
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeNTStyleName]
+              ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName = 'Administrators' AND [Membership Path] IS NOT NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0CaMG1:ref
+
+
+EXTERNAL EMAIL: Please use caution when clicking links or opening attachments.
+________________________________
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BHRS6&from=ext]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BUCNH&from=ext]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BfXwB&from=ext]","RE: Netwrix Support Ticket #413806 -  - EXTERNAL: RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","duane.jarrett@atlasair.com","Jarrett, Duane","techsupport@netwrix.com","james.sawyer@netwrix.com","","true","2024-07-12T21:21:38.000Z","true"
+"02sQk00000CcRukIAF","500Qk00000CaMG1IAN","2024-07-15T14:51:52.000Z","2024-07-15T14:51:52.000Z","Duane,
+
+Per our call today we looked at the StealthAUDIT (SA) 11.5.0.276  Host list for the file server in question and adjusted from Celerra to NAS per
+Netwrix StealthAUDlT v11.5 > Solutions > File System Solution > FileSystem Job Group > Recommended Configuration for the File System Solution
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Job_Groups/FS_Job_Group/FileSystem_Job_Group.htm
+
+Noted the custom jobs were created by Matt Squicciarini (no longer with the company)
+
+The Server account was not directly listed in the suspected OneFS management groups however it is applied to the Local Administrator Group Membership but not the BackupAdmin Role Assignment.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Isilon Device Configuration > EMC Isilon Device Configuration for Access Auditing
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Isilon_Config/EMC_Isilon_Device_Config_Access_Auditing.htm
+
+The Service account was added to the BackupAdmin Role during the meeting.
+
+We exported the FileSystem Tree as well as the need SOX (XIE) job group for deeper review.
+
+Kicked off the FileSystem jobs.   Let us know how the FileSystem > 2.Direct Permissions > FS_LocalUsersAndGroups updates with the OSType change.
+
+I’m thinking that with the host OSType being incorrect the scan was not truly running in the most efficient manor, hopefully the logs will note something in relation to this.
+
+The Zipped files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/12/2024 5:21 PM
+To: techsupport@netwrix.com
+Cc: james.sawyer@netwrix.com
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+
+Dusty,
+
+ 
+
+
+	We are using OneFS Version 9.4.0.13
+	For over a decade the FSAA scan has been running with this account and scanning the groups and folder permissions.  Even though the system is not Microsoft, it is configured to use Active Directory Services for membership and role authentication.
+	The account that being used to run the job is local Administrator group, that access will trump the Powers Users or the Backup Operators group.
+	By adding our sales rep, are you suggesting that we may need to be for professional services to build reports?
+
+
+ 
+
+As I mentioned in the call, nothing has changed in our environment outside of an upgrade of NEA.
+
+ 
+
+ 
+
+Jim,
+
+ 
+
+I hope you are doing well and that you are planning to have a good weekend.  I look forward to talking to you on Monday.    Unfortunately, NEA not being able to provide the same data as did in the past, is delaying our response to our auditors.  IT management is getting annoyed because they feel like this is a regular occurrence with this tool. 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 3:13 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Cc: james.sawyer@netwrix.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+
+
+ 
+
+Duane, 
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) 11.5.0.276 
+
+We looked at the customer jobs as well as the EMC host via the4 Windows Computer Management screen and confirmed that the Built in Admin group was listed and could see the nested groups within.
+However I’m not 100% sure how the FSAA scan would be able to resolve these groups like a Microsoft host when not a Windows based system.
+
+Please confirm the EMC Celerra Version as well as the following for our service account.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Celerra or VNX Device Configuration > EMC Celerra & VNX Device Configuration for Access Auditing
+Group membership in both of the following groups:
+    Power Users
+    Backup Operators
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Celerra_Config/EMC_Celerra_VNX_Device_Config_Access_Auditing.htm
+
+
+A follow up meeting was set for Monday at 10am ET due to Power cycling issues.
+
+Again I have tagged your Sales Rep James in the case that we need to engage ProServ to look at updating these customer reports.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 8:46 AM
+To: duane.jarrett@atlasair.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Duane Jarrett [duane.jarrett@atlasair.com]
+Sent: 7/8/2024 5:47 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #413806 - Local Administrator Missing from Folder Reports
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+Name Version InstallDate
+---- ------- -----------
+StealthAUDIT Access Information Center 11.5.0.137 20240422
+StealthAUDIT V11.5 11.5.0.276 20240605
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT Compliance
+
+This is a report from a job in NEA not the AIC.
+
+Msg 4104, Level 16, State 1, Line 2
+The multi-part identifier ""FSPV.HostName"" could not be bound.
+Msg 207, Level 16, State 1, Line 3
+Invalid column name 'ResourcePath'.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/3/2024 8:49 AM
+To: duane.jarrett@atlasair.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Yes please that is to update the  Technical Support Notes for the account.
+
+Please let me know how the TSQL query completes.
+
+Additional reference links you might like:
+New Customer Training   https://www.netwrix.com/
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/2/2024 6:10 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #413806 - ref:_00D7091pB._500Q000CaMG1:ref - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+ 
+
+
+
+Dusty,
+
+
+
+ 
+
+
+
+Do you still need me to run the powershell script?
+
+
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 2, 2024 5:28:51 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Subject: EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+
+ 
+
+
+
+
+Duane, 
+
+Sorry I forgot the AIC Example from my lab:
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+       ,[ResourcePath]
+       --,[ResourceType]
+       ,[ResourceTypeDescription]
+       ,[AllowRights]
+       ,[AllowRightsDescription]
+       ,[DenyRightsDescription]
+       ,[TrusteeSID]
+       ,[TrusteeTypeDescription]
+       ,[TrusteeNTStyleName]
+               ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName  = 'Administrators' AND [Membership Path]  IS NOT  NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0CaMG1:ref
+
+
+ 
+
+
+EXTERNAL EMAIL: Please use caution when clicking links or opening attachments.","RE: Netwrix Support Ticket #413806 -  - EXTERNAL: RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","techsupport@netwrix.com","Netwrix Support","duane.jarrett@atlasair.com","james.sawyer@netwrix.com","","true","2024-07-15T14:51:51.000Z","true"
+"02sQk00000Cjl8pIAB","500Qk00000CaMG1IAN","2024-07-17T16:59:52.000Z","2024-07-17T16:59:52.000Z","ref:_00D7091pB._500Q000CaMG1:ref
+
+Dusty,
+
+I just wanted to inform you that after doing a new scan of the file system, I was still unable to capture the data that I was looking for on the reports.
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, July 15, 2024 10:52 AM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Cc: james.sawyer@netwrix.com
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Per our call today we looked at the StealthAUDIT (SA) 11.5.0.276  Host list for the file server in question and adjusted from Celerra to NAS per
+Netwrix StealthAUDlT v11.5 > Solutions > File System Solution > FileSystem Job Group > Recommended Configuration for the File System Solution
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Job_Groups/FS_Job_Group/FileSystem_Job_Group.htm
+
+Noted the custom jobs were created by Matt Squicciarini (no longer with the company)
+
+The Server account was not directly listed in the suspected OneFS management groups however it is applied to the Local Administrator Group Membership but not the BackupAdmin Role Assignment.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Isilon Device Configuration > EMC Isilon Device Configuration for Access Auditing
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Isilon_Config/EMC_Isilon_Device_Config_Access_Auditing.htm
+
+The Service account was added to the BackupAdmin Role during the meeting.
+
+We exported the FileSystem Tree as well as the need SOX (XIE) job group for deeper review.
+
+Kicked off the FileSystem jobs.   Let us know how the FileSystem > 2.Direct Permissions > FS_LocalUsersAndGroups updates with the OSType change.
+
+I'm thinking that with the host OSType being incorrect the scan was not truly running in the most efficient manor, hopefully the logs will note something in relation to this.
+
+The Zipped files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/12/2024 5:21 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: james.sawyer@netwrix.com<mailto:james.sawyer@netwrix.com>
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+Dusty,
+
+
+  1.  We are using OneFS Version 9.4.0.13
+  2.  For over a decade the FSAA scan has been running with this account and scanning the groups and folder permissions.  Even though the system is not Microsoft, it is configured to use Active Directory Services for membership and role authentication.
+  3.  The account that being used to run the job is local Administrator group, that access will trump the Powers Users or the Backup Operators group.
+  4.  By adding our sales rep, are you suggesting that we may need to be for professional services to build reports?
+
+As I mentioned in the call, nothing has changed in our environment outside of an upgrade of NEA.
+
+
+Jim,
+
+I hope you are doing well and that you are planning to have a good weekend.  I look forward to talking to you on Monday.    Unfortunately, NEA not being able to provide the same data as did in the past, is delaying our response to our auditors.  IT management is getting annoyed because they feel like this is a regular occurrence with this tool.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, July 12, 2024 3:13 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>>
+Cc: james.sawyer@netwrix.com<mailto:james.sawyer@netwrix.com>
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) 11.5.0.276
+
+We looked at the customer jobs as well as the EMC host via the4 Windows Computer Management screen and confirmed that the Built in Admin group was listed and could see the nested groups within.
+However I'm not 100% sure how the FSAA scan would be able to resolve these groups like a Microsoft host when not a Windows based system.
+
+Please confirm the EMC Celerra Version as well as the following for our service account.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Celerra or VNX Device Configuration > EMC Celerra & VNX Device Configuration for Access Auditing
+Group membership in both of the following groups:
+    Power Users
+    Backup Operators
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Celerra_Config/EMC_Celerra_VNX_Device_Config_Access_Auditing.htm
+
+
+A follow up meeting was set for Monday at 10am ET due to Power cycling issues.
+
+Again I have tagged your Sales Rep James in the case that we need to engage ProServ to look at updating these customer reports.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 8:46 AM
+To: duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank You for the update.
+
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z>
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Duane Jarrett [duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>]
+Sent: 7/8/2024 5:47 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #413806 - Local Administrator Missing from Folder Reports
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+Name Version InstallDate
+---- ------- -----------
+StealthAUDIT Access Information Center 11.5.0.137 20240422
+StealthAUDIT V11.5 11.5.0.276 20240605
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT Compliance
+
+This is a report from a job in NEA not the AIC.
+
+Msg 4104, Level 16, State 1, Line 2
+The multi-part identifier ""FSPV.HostName"" could not be bound.
+Msg 207, Level 16, State 1, Line 3
+Invalid column name 'ResourcePath'.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/3/2024 8:49 AM
+To: duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Yes please that is to update the Technical Support Notes for the account.
+
+Please let me know how the TSQL query completes.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/<https://www.netwrix.com/customer_training.html>
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/2/2024 6:10 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #413806 - ref:_00D7091pB._500Q000CaMG1:ref - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+Dusty,
+
+Do you still need me to run the powershell script?
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, July 2, 2024 5:28:51 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>>
+Subject: EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+
+Duane,
+
+Sorry I forgot the AIC Example from my lab:
+
+[cid:image001.png@01DAD849.2C2C6490]
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeNTStyleName]
+              ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName = 'Administrators' AND [Membership Path] IS NOT NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0CaMG1:ref
+
+
+EXTERNAL EMAIL: Please use caution when clicking links or opening attachments.
+________________________________
+
+
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BjQJN&from=ext]","RE: Netwrix Support Ticket #413806 -  - EXTERNAL: RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","duane.jarrett@atlasair.com","Jarrett, Duane","techsupport@netwrix.com","james.sawyer@netwrix.com","","true","2024-07-17T16:59:39.000Z","true"
+"02sQk00000CkNfTIAV","500Qk00000CaMG1IAN","2024-07-17T19:04:36.000Z","2024-07-17T19:04:36.000Z","Duane,
+
+Please refresh when the Host changed from EMC Celerra to EMC Isilon OneFS as these are functionally different Operating Systems.
+
+I'll see if anyone can recall how to get the old Celerra Local details via Isilon like we were able to in the past via computer management.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/17/2024 12:59 PM
+To: techsupport@netwrix.com
+Cc: james.sawyer@netwrix.com
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+
+Dusty,
+
+ 
+
+I just wanted to inform you that after doing a new scan of the file system, I was still unable to capture the data that I was looking for on the reports.
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, July 15, 2024 10:52 AM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Cc: james.sawyer@netwrix.com
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+
+
+ 
+
+Duane,
+
+Per our call today we looked at the StealthAUDIT (SA) 11.5.0.276  Host list for the file server in question and adjusted from  Celerra to NAS per
+Netwrix StealthAUDlT v11.5 > Solutions > File System Solution > FileSystem Job Group > Recommended Configuration for the File System Solution
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Job_Groups/FS_Job_Group/FileSystem_Job_Group.htm
+
+Noted the custom jobs were created by Matt Squicciarini (no longer with the company)
+
+The Server account was not directly listed in the suspected OneFS management groups however it is applied to the Local Administrator Group Membership but not the BackupAdmin Role Assignment.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Isilon Device Configuration > EMC Isilon Device Configuration for Access Auditing
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Isilon_Config/EMC_Isilon_Device_Config_Access_Auditing.htm
+
+The Service account was added to the BackupAdmin Role during the meeting.
+
+We exported the FileSystem Tree as well as the need SOX (XIE) job group for deeper review.
+
+Kicked off the FileSystem  jobs.   Let us know how the FileSystem > 2.Direct Permissions > FS_LocalUsersAndGroups updates with the OSType change.
+
+I’m thinking that with the host OSType being incorrect the scan was not truly running in the most efficient manor, hopefully the logs will note something in relation to this.
+
+The Zipped files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/12/2024 5:21 PM
+To: techsupport@netwrix.com
+Cc: james.sawyer@netwrix.com
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+ 
+
+
+Dusty,
+
+ 
+
+
+	We are using OneFS Version 9.4.0.13
+	For over a decade the FSAA scan has been running with this account and scanning the groups and folder permissions.  Even though the system is not Microsoft, it is configured to use Active Directory Services for membership and role authentication.
+	The account that being used to run the job is local Administrator group, that access will trump the Powers Users or the Backup Operators group.
+	By adding our sales rep, are you suggesting that we may need to be for professional services to build reports?
+
+
+ 
+
+As I mentioned in the call, nothing has changed in our environment outside of an upgrade of NEA.
+
+ 
+
+ 
+
+Jim,
+
+ 
+
+I hope you are doing well and that you are planning to have a good weekend.  I look forward to talking to you on Monday.    Unfortunately, NEA not being able to provide the same data as did in the past, is delaying our response to our auditors.  IT management is getting annoyed because they feel like this is a regular occurrence with this tool. 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 3:13 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Cc: james.sawyer@netwrix.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+
+
+ 
+
+Duane, 
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) 11.5.0.276 
+
+We looked at the customer jobs as well as the EMC host via the4 Windows Computer Management screen and confirmed that the Built in Admin group was listed and could see the nested groups within.
+However I’m not 100% sure how the FSAA scan would be able to resolve these groups like a Microsoft host when not a Windows based system.
+
+Please confirm the EMC Celerra Version as well as the following for our service account.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Celerra or VNX Device Configuration > EMC Celerra & VNX Device Configuration for Access Auditing
+Group membership in both of the following groups:
+    Power Users
+    Backup Operators
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Celerra_Config/EMC_Celerra_VNX_Device_Config_Access_Auditing.htm
+
+
+A follow up meeting was set for Monday at 10am ET due to Power cycling issues.
+
+Again I have tagged your Sales Rep James in the case that we need to engage ProServ to look at updating these customer reports.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 8:46 AM
+To: duane.jarrett@atlasair.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Duane Jarrett [duane.jarrett@atlasair.com]
+Sent: 7/8/2024 5:47 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #413806 - Local Administrator Missing from Folder Reports
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+Name Version InstallDate
+---- ------- -----------
+StealthAUDIT Access Information Center 11.5.0.137 20240422
+StealthAUDIT V11.5 11.5.0.276 20240605
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT Compliance
+
+This is a report from a job in NEA not the AIC.
+
+Msg 4104, Level 16, State 1, Line 2
+The multi-part identifier ""FSPV.HostName"" could not be bound.
+Msg 207, Level 16, State 1, Line 3
+Invalid column name 'ResourcePath'.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/3/2024 8:49 AM
+To: duane.jarrett@atlasair.com
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Yes please that is to update the  Technical Support Notes for the account.
+
+Please let me know how the TSQL query completes.
+
+Additional reference links you might like:
+New Customer Training   https://www.netwrix.com/
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/2/2024 6:10 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #413806 - ref:_00D7091pB._500Q000CaMG1:ref - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+ 
+
+
+
+Dusty,
+
+
+
+ 
+
+
+
+Do you still need me to run the powershell script?
+
+
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 2, 2024 5:28:51 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Subject: EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+
+ 
+
+
+
+
+Duane, 
+
+Sorry I forgot the AIC Example from my lab:
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane, 
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+       ,[ResourcePath]
+       --,[ResourceType]
+       ,[ResourceTypeDescription]
+       ,[AllowRights]
+       ,[AllowRightsDescription]
+       ,[DenyRightsDescription]
+       ,[TrusteeSID]
+       ,[TrusteeTypeDescription]
+       ,[TrusteeNTStyleName]
+               ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName  = 'Administrators' AND [Membership Path]  IS NOT  NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0CaMG1:ref
+
+
+ 
+
+
+EXTERNAL EMAIL: Please use caution when clicking links or opening attachments.","RE: Netwrix Support Ticket #413806 -  - EXTERNAL: RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","techsupport@netwrix.com","Netwrix Support","duane.jarrett@atlasair.com","james.sawyer@netwrix.com","","true","2024-07-17T19:04:35.000Z","true"
+"02sQk00000CkXtJIAV","500Qk00000CaMG1IAN","2024-07-17T19:40:07.000Z","2024-07-17T19:40:07.000Z","ref:_00D7091pB._500Q000CaMG1:ref
+
+Dusty,
+
+It was always a EMC Isilon OneFS device.  I think that StealthAUDIT just picked it up as something else.
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, July 17, 2024 3:05 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com>
+Cc: james.sawyer@netwrix.com
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Please refresh when the Host changed from EMC Celerra to EMC Isilon OneFS as these are functionally different Operating Systems.
+
+I'll see if anyone can recall how to get the old Celerra Local details via Isilon like we were able to in the past via computer management.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/17/2024 12:59 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: james.sawyer@netwrix.com<mailto:james.sawyer@netwrix.com>
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+Dusty,
+
+I just wanted to inform you that after doing a new scan of the file system, I was still unable to capture the data that I was looking for on the reports.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, July 15, 2024 10:52 AM
+To: Jarrett, Duane <duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>>
+Cc: james.sawyer@netwrix.com<mailto:james.sawyer@netwrix.com>
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Per our call today we looked at the StealthAUDIT (SA) 11.5.0.276  Host list for the file server in question and adjusted from Celerra to NAS per
+Netwrix StealthAUDlT v11.5 > Solutions > File System Solution > FileSystem Job Group > Recommended Configuration for the File System Solution
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Job_Groups/FS_Job_Group/FileSystem_Job_Group.htm
+
+Noted the custom jobs were created by Matt Squicciarini (no longer with the company)
+
+The Server account was not directly listed in the suspected OneFS management groups however it is applied to the Local Administrator Group Membership but not the BackupAdmin Role Assignment.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Isilon Device Configuration > EMC Isilon Device Configuration for Access Auditing
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Isilon_Config/EMC_Isilon_Device_Config_Access_Auditing.htm
+
+The Service account was added to the BackupAdmin Role during the meeting.
+
+We exported the FileSystem Tree as well as the need SOX (XIE) job group for deeper review.
+
+Kicked off the FileSystem jobs.   Let us know how the FileSystem > 2.Direct Permissions > FS_LocalUsersAndGroups updates with the OSType change.
+
+I'm thinking that with the host OSType being incorrect the scan was not truly running in the most efficient manor, hopefully the logs will note something in relation to this.
+
+The Zipped files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/12/2024 5:21 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: james.sawyer@netwrix.com<mailto:james.sawyer@netwrix.com>
+Subject: RE: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+Dusty,
+
+
+  1.  We are using OneFS Version 9.4.0.13
+  2.  For over a decade the FSAA scan has been running with this account and scanning the groups and folder permissions.  Even though the system is not Microsoft, it is configured to use Active Directory Services for membership and role authentication.
+  3.  The account that being used to run the job is local Administrator group, that access will trump the Powers Users or the Backup Operators group.
+  4.  By adding our sales rep, are you suggesting that we may need to be for professional services to build reports?
+
+As I mentioned in the call, nothing has changed in our environment outside of an upgrade of NEA.
+
+
+Jim,
+
+I hope you are doing well and that you are planning to have a good weekend.  I look forward to talking to you on Monday.    Unfortunately, NEA not being able to provide the same data as did in the past, is delaying our response to our auditors.  IT management is getting annoyed because they feel like this is a regular occurrence with this tool.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, July 12, 2024 3:13 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>>
+Cc: james.sawyer@netwrix.com<mailto:james.sawyer@netwrix.com>
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) 11.5.0.276
+
+We looked at the customer jobs as well as the EMC host via the4 Windows Computer Management screen and confirmed that the Built in Admin group was listed and could see the nested groups within.
+However I'm not 100% sure how the FSAA scan would be able to resolve these groups like a Microsoft host when not a Windows based system.
+
+Please confirm the EMC Celerra Version as well as the following for our service account.
+
+Netwrix StealthAUDlT v11.5 > Target Environment Configuration > EMC Celerra or VNX Device Configuration > EMC Celerra & VNX Device Configuration for Access Auditing
+Group membership in both of the following groups:
+    Power Users
+    Backup Operators
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/Configuration/EMC_Celerra_Config/EMC_Celerra_VNX_Device_Config_Access_Auditing.htm
+
+
+A follow up meeting was set for Monday at 10am ET due to Power cycling issues.
+
+Again I have tagged your Sales Rep James in the case that we need to engage ProServ to look at updating these customer reports.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 8:46 AM
+To: duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank You for the update.
+
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=RyIXvpuvvnal9NhvHv61ouVhMu7vcCMtCaxeBPyN78Y-Z&MeetingID=pIDglgMVLIL5ojQVTwtHd2ulxOWx51ZxUbCqdvKC_Ms-Z>
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Duane Jarrett [duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>]
+Sent: 7/8/2024 5:47 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #413806 - Local Administrator Missing from Folder Reports
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+Name Version InstallDate
+---- ------- -----------
+StealthAUDIT Access Information Center 11.5.0.137 20240422
+StealthAUDIT V11.5 11.5.0.276 20240605
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT Compliance
+
+This is a report from a job in NEA not the AIC.
+
+Msg 4104, Level 16, State 1, Line 2
+The multi-part identifier ""FSPV.HostName"" could not be bound.
+Msg 207, Level 16, State 1, Line 3
+Invalid column name 'ResourcePath'.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/3/2024 8:49 AM
+To: duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>
+Subject: Re: Netwrix Support Ticket #413806 - - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Yes please that is to update the Technical Support Notes for the account.
+
+Please let me know how the TSQL query completes.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/<https://www.netwrix.com/customer_training.html>
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jarrett, Duane [duane.jarrett@atlasair.com]
+Sent: 7/2/2024 6:10 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #413806 - ref:_00D7091pB._500Q000CaMG1:ref - EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+ref:_00D7091pB._500Q000CaMG1:ref
+
+
+Dusty,
+
+Do you still need me to run the powershell script?
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, July 2, 2024 5:28:51 PM
+To: Jarrett, Duane <duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>>
+Subject: EXTERNAL: RE: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+
+Duane,
+
+Sorry I forgot the AIC Example from my lab:
+
+[cid:image001.png@01DAD85F.7B8B2420]
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/2/2024 5:27 PM
+To: duane.jarrett@atlasair.com<mailto:duane.jarrett@atlasair.com>
+Subject: Local Administrator Missing from Folder Reports [ ref:!00D70091pB.!500Qk0CaMG1:ref ]
+
+Duane,
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Are you noting the NEA report or the AIC?
+
+Netwrix Access Information Center 11.6 > Resource Audit Overview > Audit Interfaces > Resource Audit Interface >>> File System Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/Resource_Audit_Guide/2.Navigate/Resource_Audit_Interface.htm
+
+See if the following TSQL ran in SQL Server Management Studio (SSMS)  list the needed details
+SELECT TOP (10000)
+      FSPV.[HostName]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeNTStyleName]
+              ,[Membership Path]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_ExpandedPermissionsView] FSPV
+  LEFT JOIN SA_SG_LocalAdmins_Details WinG on Wing.Host = FSPV.HostName
+  WHERE ResourceType = 3 AND TrusteeTypeDescription = 'Local Group' AND TrusteeDisplayName = 'Administrators' AND [Membership Path] IS NOT NULL
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0CaMG1:ref
+
+
+EXTERNAL EMAIL: Please use caution when clicking links or opening attachments.
+________________________________","RE: Netwrix Support Ticket #413806 -  - EXTERNAL: RE: Local Administrator Missing from Folder Reports    [ ref:!00D70091pB.!500Qk0CaMG1:ref ]","duane.jarrett@atlasair.com","Jarrett, Duane","techsupport@netwrix.com","james.sawyer@netwrix.com","","true","2024-07-17T19:39:53.000Z","true"

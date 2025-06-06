@@ -1,0 +1,37 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IH9AzIAL","00426978","Support Ticket","1-FSAC System Scan completing with Error","Error noted A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond IP:8767","","Netwrix Enterprise Auditor (NEA) 11.6.0.113 is not able to communicate to the needed host per the following ports
+8767
+8766
+
+Confirmed via TNC
+
+---------------
+client was able to get the report to run
+""Adjusted INBOUND rule for Stealth Audit Applet that allows TCP 8766 - added 8767 for both WYDOC3 and WYDOC4.""","ticket may be good to close
+I'm not sure if there are any other active issues being worked on 
+replied to client but also postponing reply to Monday so Dusty sees it","Symptom:
+
+File System Scan completing with Error: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond IP:87xx
+
+Cause:
+
+3rd party Security tool or Firewall rule is blocking the needed ports for File System Scan to function correctly.
+
+Resolution:
+
+Netwrix Enterprise Auditor (NEA) server must be able to communicate to the audited host per the following ports:
+8767
+8766
+
+Guide References:
+Netwrix Enterprise Auditor vl 1.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+Netwrix Enterprise Auditor v11.6 > Requirements > File System Solution > File System Scan Options > Proxy Mode with Applet Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/ProxyModeAppletPorts.htm  
+
+Netwrix Enterprise Auditor v11.6 > Requirements > File System Solution > File System Scan Options > Proxy Mode as a Service Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/ProxyModeServicePorts.htm
+
+Netwrix Enterprise Auditor v11.6 > Requirements > File System Solution > File System Scan Options > Local Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/LocalModePorts.htm","Incorrect configuration: target server software","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.6","113","8.1","Closed - Resolved","West Yavapai Guidance Clinic, DBA Polara Health","Josh Taylor","2024-11-13T18:56:49.000Z","2024-11-21T22:32:38.000Z"

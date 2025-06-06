@@ -1,0 +1,63 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GqfqkIAB","00423489","Support Ticket","Reports missing current data","We noticed most of our reports do not seem to have current data. 
+1. 6/27/24 last activity in reports https://ntwrxaudit1.lan.sco.idaho.gov:8082/main home > filesystem > Forensics > File Folder Deletions 
+
+2. 5/26/23 last activity in reports https://ntwrxaudit1.lan.sco.idaho.gov:8082/main Home > FileSystem > Activity > Forensics > Permission Changes 
+
+3. No Exchange reports in the last week https://ntwrxaudit1.lan.sco.idaho.gov:8082/main Home > Exchange > Mailboxes > Logons 
+
+4. AD Activity reports are from 1/2023, https://ntwrxaudit1.lan.sco.idaho.gov:8082/main - Possibly when moving from StealthDefend to StealthIntercept agents. Home > Active Directory > Activity","","Symptom:
+FileSystem Activity (FSAC) data within the Netwrix Access Information Center (AIC) is not being updated.
+
+Cause:
+The Network share path for the NAM archives was receiving an access denied error ConfigurationAgent.Grpc.Host.errors, tsv
+However the logs were also not located in the C:Program FilesSTEALTHbitsStealthAUDITFSAC<host-name>_log_.tsv
+
+Resolution:
+We corrected the Service account details within NAM as well as granted the needed access to the Share and NTFs path on the NAM/NEA host.
+Disabled the Proxy option for this jobs as the archived evens will be pushed to the NEA host.
+
+Symptom:
+FileSystem FSAA System Scans noted that a bulk import was needed
+Cause:
+Unknown at this time
+Resolution:
+Qued the needed bulk import
+
+Symptom:
+Main FileSystem SEEK scan errored 
+Cause:
+The copied file name and resulting path was longer than Windows natively allows (254) at 259 characters. 
+Resolution:
+Within the Registry the following was enabled 
+""HKLM:SYSTEMCurrentControlSetControlFileSystem"" -Name ""LongPathsEnabled"" -Value 1 
+
+The host PageFile was also limited to only the Largest Drive ( D:) to mitigate the OS mishandling the needed system controlled expansion that would result in failed scan.
+***NOTE*** For these settings to fully take affect the NEA host will need to be Rebooted.","Awaiting the next scan to confirm settings changes","Symptom:
+FileSystem Activity (FSAC) data within the Netwrix Access Information Center (AIC) is not being updated.
+
+Cause:
+The Network share path for the NAM archives was receiving an access denied error ConfigurationAgent.Grpc.Host.errors, tsv
+However the logs were also not located in the C:Program FilesSTEALTHbitsStealthAUDITFSAC<host-name>_log_.tsv
+
+Resolution:
+We corrected the Service account details within NAM as well as granted the needed access to the Share and NTFs path on the NAM/NEA host.
+Disabled the Proxy option for this jobs as the archived evens will be pushed to the NEA host.
+
+Symptom:
+FileSystem FSAA System Scans noted that a bulk import was needed
+Cause:
+Unknown at this time
+Resolution:
+Qued the needed bulk import
+
+Symptom:
+Main FileSystem SEEK scan errored
+Cause:
+The copied file name and resulting path was longer than Windows natively allows (254) at 259 characters.
+Resolution:
+Within the Registry the following was enabled
+""HKLM:SYSTEMCurrentControlSetControlFileSystem"" -Name ""LongPathsEnabled"" -Value 1
+
+The host PageFile was also limited to only the Largest Drive ( D:) to mitigate the OS mishandling the needed system controlled expansion that would result in failed scan.
+***NOTE*** For these settings to fully take affect the NEA host will need to be Rebooted.","Incorrect configuration: Netwrix product","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.6","61","29.0","Closed - Resolved","Idaho State Controllers Office","Phil Cooks","2024-10-09T21:15:55.000Z","2024-11-07T21:21:35.000Z"

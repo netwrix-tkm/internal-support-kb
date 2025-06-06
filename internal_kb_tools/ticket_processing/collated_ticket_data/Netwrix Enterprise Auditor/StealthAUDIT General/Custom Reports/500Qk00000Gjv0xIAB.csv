@@ -1,0 +1,96 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Gjv0xIAB","00423158","Support Ticket","Running Large Scale Report","Report Type: Large-scale effective access report on the AIC.
+Data Scope: Over 9,000 groups.
+
+Assistance Required:
+ * Clarification on whether you can run the report yourself.
+   ** Or if an engineer needs to run it for you.
+
+Action Needed:
+* Provide the list of group names to be included in the report.","","Needed to Filter out a large amount of Groups to see what Access they have to the environments File Systems(s)","Contact will email Sales directly to confirm we have the correct Licensing.","Symptom:
+Report Type: Large-scale effective access report on the AIC.
+Data Scope: Over 9,000 groups.
+
+Assistance Required:
+ * Clarification on whether you can run the report yourself.
+   ** Or if an engineer needs to run it for you.
+
+Action Needed:
+* Provide the list of group names to be included in the report.
+
+Cause:
+AIC is not able to easily produce this type of report.
+Design is more aligned with looking at a needed Group to then list what it has access to as a Review or request the object owner to update.
+
+Resolution:
+Report Template created to look at the following SQL Views that hold the needed related data.
+SA_FSAA_DirectPermissionsView
+SA_FSAA_PermissionsView
+REF: Netwrix Enterprise Auditor v11.5 > Administration > Reporting > Creating a Report
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Chapters/09.Reporting/Creating_a_Report.htm
+
+As an alternative we looked at the following TSQL query:
+SELECT [DomainCanonicalName]
+      ,[PrincipalId]
+      ,[SamAccountName]
+      ,[NTAccount]
+      ,[DisplayName]
+      ,[IsDeleted]
+      ,[DistinguishedName]
+      ,[GroupScope]
+      ,[GroupTarget]
+      ,[DirectMemberCount]
+  FROM [StealthAUDIT].[dbo].[SA_ADInventory_GroupsView]
+  WHERE [SamAccountName] LIKE  'domain%'   --For this example I get all groups that have the starting name of Domain
+
+REF-IMGEAGE: https://nwxcorp.file.force.com/sfc/servlet.shepherd/version/download/068Qk00000G1lGh?asPdf=false&operationContext=CHATTER 
+
+From this output we can then note the PrincipalId
+
+Now we can edit the needed Report filters for this items counter part of TrusteePrincipalID
+SELECT TOP (10) --[HostID]
+      [HostName]
+      --,[ResourceID]
+      --,[ParentResourceID]
+      --,[ResourceDeletedUSN]
+      ,[ResourcePath]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      --,[AllowRights]
+      --,[DenyRights]
+      --,[AllowList]
+      --,[AllowRead]
+      --,[AllowWrite]
+      --,[AllowDelete]
+      --,[AllowManage]
+      --,[AllowAdmin]
+      --,[DenyList]
+      --,[DenyRead]
+      --,[DenyWrite]
+      --,[DenyDelete]
+      --,[DenyManage]
+      --,[DenyAdmin]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      --,[AllowMask]
+      --,[DenyMask]
+      ,[AllowMaskDescription]
+      ,[DenyMaskDescription]
+      --,[TrusteeID]
+      --,[TrusteeSID]
+      --,[TrusteeType]
+      --,[TrusteeIsHistoricalSID]
+      ,[TrusteePrincipalID]  -- = PrincipalId
+      ,[TrusteeTypeDescription]
+      --,[TrusteeDisplayName]
+      ,[TrusteeDomain]
+      ,[TrusteeNTName]
+      ,[TrusteeNTStyleName]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_DirectPermissionsView]
+  WHERE [TrusteePrincipalID] = 45-- AND ResourceType = 3
+Additional filters
+--ResourceType  0 = Share
+--ResourceType  3 = Folder
+--ResourceType  4 = File
+
+REF-IMGEAGE: https://nwxcorp.file.force.com/sfc/servlet.shepherd/version/download/068Qk00000G1r5u?asPdf=false&operationContext=CHATTER","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","Custom Reports","11.5","196","17.0","Closed - Resolved","American Express","Alex Parsa","2024-10-07T17:32:40.000Z","2024-10-24T18:41:04.000Z"

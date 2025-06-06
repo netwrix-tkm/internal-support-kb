@@ -1,0 +1,32 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008uq49IAA","500Qk00000FKtEFIA1","We identified that the SPAC-Bulk Import job was prompting the below error:
+
+ERROR  SHAREPOINTACCESS  Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute  ""[C:8] Unable to perform bulk import Error: The MERGE statement conflicted with the FOREIGN KEY constraint ""FK_SA_SPAC_GroupMembershipChanges_HOST_ID"". The conflict occurred in database ""StealthAudit"", table ""dbo.SA_SPAC_ActivityEvents"". The statement has been terminated.""  POINT32HEALTH.SHAREPOINT.COM  DCExtract  8640  6516  6284
+
+We investigated the Foreign Key constraint and the columns and table relationships and identified that the SPAA_Hosts table was listed as a compatible table for the JOIN statement. We then updated the USN value of the host within the SPAA_Hosts table using the below SQL command:
+
+UPDATE dbo.SA_SPAA_Hosts
+SET USN = 0
+
+and reran the SPAC Bulk Import job. The changes we made to the USN value did not resolve the bulk import error and it persisted.
+
+We gathered the job jogs and identified that the SPAC T2s were about 28 GBs in size. I will start the escalation process of this issue.
+
+All relevant logs have been uploaded to the ticket.
+
+Please reference ticket 00418793","0054u000007MdqrAAC","2024-09-04T19:46:16.000Z","2024-09-05T14:33:06.000Z","false","false"
+"00aQk000008vg7ZIAQ","500Qk00000FKtEFIA1","Scottie, there is no meeting on this ticket or meeting summary sent?  was your action taken during a call for another ticket?","0050g000006QqyEAAS","2024-09-05T14:18:30.000Z","2024-09-05T14:18:30.000Z","false","false"
+"00aQk0000090GIvIAM","500Qk00000FKtEFIA1","We removed the keys associated with an older SA_SPAC_GroupMembershipChanges table and verified if the SPSEEK scan has recently run. We suggested allowing the SPSEEK scan to run after resetting the USN column in the SA_FSAA_Hosts table to 0. If this job successfully runs allow the SPAC Bulk Import to run and provide an update on the results of that job. If both jobs then we can proceed with a different strategy to resolve this issue.","0054u000007MdqrAAC","2024-09-09T19:39:37.000Z","2024-09-09T19:39:37.000Z","false","false"
+"00aQk0000091IVaIAM","500Qk00000FKtEFIA1","following today's call, validate reasonable steps to reproduce and escalate to R&D","0050g000006QqyEAAS","2024-09-10T16:04:43.000Z","2024-09-10T16:04:43.000Z","false","false"
+"00aQk0000091MVyIAM","500Qk00000FKtEFIA1","Update from customer:
+
+The SPSEEK scan ran successfully. I did confirm that the USN column was updated by the SPSEEK job. I then ran the SPAC Bulk Import, but it failed once again after about 2 minutes. Same error as before.
+
+ 
+
+[C:8] Unable to perform bulk import Error: The MERGE statement conflicted with the FOREIGN KEY constraint ""FK_SA_SPAC_GroupMembershipChanges_HOST_ID"". The conflict occurred in database ""StealthAudit"", table ""dbo.SA_SPAC_ActivityEvents"".
+
+The statement has been terminated.
+
+Will continue further investigation on today's scheduled meeting and attempt to reproduce these issues for possible escalation to R&D.","0054u000007MdqrAAC","2024-09-10T16:15:33.000Z","2024-09-10T16:15:33.000Z","false","false"
+"00aQk0000091jfRIAQ","500Qk00000FKtEFIA1","We removed all SPAA and SPAC tables since there's a 180-day retention period on SP activity. Once all tables were removed from the database we then reran the SPSEEK jobs and verified that the tables were repopulated on the database. We suggest allowing these scans to run and monitor the SPAC bulk import job. If the job fails again then we will proceed with collecting a process dump of the job and exports of the SPAC T2 data.","0054u000007MdqrAAC","2024-09-10T19:44:34.000Z","2024-09-10T19:44:34.000Z","false","false"

@@ -1,0 +1,15 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000C1cSaIAJ","00412317","Support Ticket","Automated mail and activity scan mismatch the report.","Automated mail and activity scan mismatch the report.","","","","Created the custom job JS_JobMessages. It contains a simple JOIN of the SA_Messages table and temporal #SA_Job_Hosts:
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].SA_FS_JobMessages') AND type in (N'U'))
+DROP TABLE SA_FS_JobMessages
+
+GO
+
+SELECT m.HOST, m.SA_HOST, m.JobRunTimeKey, m.MSG_TYPE, m.JobName, m.MESSAGE, m.MessageTimestamp 
+INTO dbo.[SA_FS_JobMessages]
+FROM dbo.[SA_Messages] m
+INNER JOIN #SA_Job_Hosts h ON m.HOST = h.HostName
+--WHERE (m.JobName LIKE '%FSAA%') OR (m.JobName LIKE '%FSAC%')
+
+--^^^UNCOMMENT IF ONLY FSAA AND FSAC JOBS NEEDS TO BE REPORTED!","Data validation / interpretation","Aleksandr Timofeev","","Netwrix Enterprise Auditor","StealthAUDIT General","Custom Reports","11.6","","12.8","Closed - Resolved","Hydro Group Norway","Ramesh R","2024-06-19T10:43:06.000Z","2024-07-02T06:36:10.000Z"

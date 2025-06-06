@@ -1,0 +1,14 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000E76odIAB","00417374","Support Ticket","Update Audited File Systems and Purge old server data","I would like to purge old server data for replaced or decommissioned servers: Atlas, Fipr01, Odysseus, Rew, Wizcard and update the file systems scanned to include new servers: Atlas, Kas and Jwiz","","","","[Issue]
+Customer wants to remove decommissioned file servers and their data from the NEA database
+
+[Resolution]
+1. Create a new job in a sandbox or custom folder and name it something like ""DropFSHosts""
+2. Add a new query using the FILESYSTEMACCESS data collector
+3. In the query settings, on the Query Selection page, select the ""Remove Host Data"" option and select finish
+4. Under the job, navigate to configure > hosts
+5. On the right-side, enter the individual hosts you wish to remove from the database and save
+6. Right-click the job and select the ""Performance"" tab
+7. Uncheck the box labelled ""Skip Hosts that do not respond to PING""
+8. Run the job to drop the file system data for the specified hosts
+9. Remove the decommissioned hosts from the global host management list so they are not re-scanned (or attempted to) in the future","Guidance","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Configuration","11.6","84","15.3","Closed - Resolved","Woodsville Guaranty Savings Bank","Jennifer White","2024-08-07T09:46:55.000Z","2024-08-22T15:53:34.000Z"

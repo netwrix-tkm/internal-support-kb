@@ -1,0 +1,58 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009CVAvIAO","500Qk00000FXCo9IAH","+++++
+2024_0919: Email summarizing meeting today with the customer (Nooshin), Scottie and I:
++++++
+
+When your StealthAUDIT v11.5 (11.5.0.214) Enterprise Manager opens it says ""Testing SQL connection"" and takes a long time to open.  You must reboot the server on which the StealthAUDIT application is hosted in order to open the application.
+
+The server (""pgcoitdata21"") on which your MS SQL Server database is running looks to be under-provisioned.
+
+A) We recommend the following:
+
+1) Increasing your current 4 CPU cores to 8 CPU cores.
+2) Expanding the existing memory from 24 GB to 64 GB or 48 GB of Memory.
+3) Your ""C:"" Drive only has 7-8 GB of free space - ONLY 7.4 GB free of a total 88 GB.
+Your IT Admin would want to add 100-200 GB of disk space to your ""C:"" drive.
+After the ""C:"" drive footprint is increased you may want to review what you are storing/backing up on your ""C:"" drive.
+
+B) This recommendation is based upon the following information:
+
+1) ""pgcoitdata21"" - This is your database server for StealthAUDIT V11.5.
+2) Today in Task Manager we saw that 23.2 GB of 24 GB of memory is being used (95%+ used memory).
+3) Your ""pgcoitdata21"" server only has 4 CPU cores.
+
+C) You are running the following components of StealthAUDIT (NEA)
+
+Azure - requires 16+ GB of RAM all by itself
+FileSystems - requires a minimum of 8 GB of RAM - depending on the size of the data footprint.  (It could be as much as 16-24 GB of required memory.)
+SDD - Sensitive Data - requires at least 4 GB of RAM
+
+Those values add up to a bare minimum of 28-36 GB of memory not including the memory used by MS SQL Server by itself.
+
+Once you have increased the specifications of the server housing your MS SQL Server database as we have recommended above then we can perform the upgrade of StealthAUDIT 11.5 to NEA 11.6.","005Qk00000276ifIAA","2024-09-19T17:44:42.000Z","2024-09-19T17:44:42.000Z","false","false"
+"00aQk000009QVarIAG","500Qk00000FXCo9IAH","Today we:
+
+Did not have the necessary credentials for the SQL authentication account for the AIC and storage profile for the NEA application. 
+
+In order to successfully complete the upgrade the credentials to that account are needed. 
+
+Our next steps are:
+
+You will:
+
+Obtain the credentials to that account or reset those credentials in order to proceed with the upgrade.","0054u000007MdqrAAC","2024-10-01T23:16:57.000Z","2024-10-01T23:16:57.000Z","false","false"
+"00aQk000009ifBxIAI","500Qk00000FXCo9IAH","Symptom
+
+Upgrade from StealthAudit to NEA 11.6
+
+Cause
+
+Proactive Upgrade
+
+Resolution
+
+Performed the upgrade process using the steps presented in the documentation below:
+
+Enterprise Auditor Core Upgrade Instructions (netwrix.com)
+
+Created a new default storage profile for the NEA console using the service account as the Windows authentication to resolve access issues with the current SQL authentication account due to not having the credentials. Gave the service account full dbo rights to the Stealthudit database. Installed the AIC using the service account.","0054u000007MdqrAAC","2024-10-17T16:26:53.000Z","2024-10-17T16:26:53.000Z","false","false"

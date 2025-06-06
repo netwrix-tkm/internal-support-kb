@@ -1,0 +1,75 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000DVzVyIAL","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the Following Fields have been updated: 
+Account ACV has been changed to 13398142.4214097582664.
+Priority has been changed to Medium.","0054u000006goLGAAY","2025-05-16T19:18:16.000Z","2025-05-16T19:18:16.000Z","false","false"
+"00aQk00000DW2dWIAT","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the Following Fields have been updated: 
+Account ACV has been changed to 6699071.2107048791332.","0054u000006goLGAAY","2025-05-16T19:18:18.000Z","2025-05-16T19:18:18.000Z","false","false"
+"00aQk00000DW4NaIAL","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the new comment has been added: Customer has request a dev resource to help us configure this ""to eliminate the back and forth""","0054u000006goLGAAY","2025-05-16T19:20:08.000Z","2025-05-16T19:20:08.000Z","false","false"
+"00aQk00000DXkHXIA1","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-19T11:28:18.000Z","2025-05-19T11:28:18.000Z","false","false"
+"00aQk00000DXkHZIA1","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the new comment has been added: Luke Butcher:
+
+@WaitingOnEngineer @Salesforce 
+I was reviewing the issue and had a few questions that might help us narrow things down a bit more.
+
+Have you had a chance to run the provided commands in your own lab environments and proxy setup?
+
+If so, did you observe the same errors the customer is reporting?
+
+if not, can you please? 
+
+I’m also wondering if it’s possible that the terminal might be targeting the wrong machine, which could explain why the certificates aren't showing.
+
+Appreciate your help!
+
+[DevOps CommentId:12072092]","0054u000006gtWUAAY","2025-05-19T11:28:18.000Z","2025-05-19T11:28:18.000Z","false","false"
+"00aQk00000DXsv0IAD","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the new comment has been added: Have you had a chance to run the provided commands in your own lab environments and proxy setup?
+
+If so, did you observe the same errors the customer is reporting?
+
+if not, can you please? 
+
+I do not have a certificate authority in my lab to test these.  
+
+I’m also wondering if it’s possible that the terminal might be targeting the wrong machine, which could explain why the certificates aren't showing.
+I am not sure what you mean here.","0054u000006goLGAAY","2025-05-19T11:54:18.000Z","2025-05-19T11:54:18.000Z","false","false"
+"00aQk00000DXsAEIA1","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the Following Fields have been updated: 
+Priority has been changed to High.
+Status has been changed to Awaiting R&D.","0054u000006goLGAAY","2025-05-19T11:54:33.000Z","2025-05-19T11:54:33.000Z","false","false"
+"00aQk00000DZB5xIAH","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-20T10:28:27.000Z","2025-05-20T10:28:27.000Z","false","false"
+"00aQk00000DZB5zIAH","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the new comment has been added: Luke Butcher:
+
+im seeing "" Friendly Name = FSAA Server Auth 7b6f4bb5-d87b-45e9-81dd-68874fe61654 3/28/2025 2:08:19 PM"" in the log, is the date thats in the friendly name the expiry date? if so it has passed. also i dont see any cert of that name in the images ?
+
+check the local computer certificates, these should not be present but may be by mistake.
+
+i see on swat you asked 
+""Can we use a CSR file created my IISCert Manager or do we need to do it through FSAACertificateManager.exe?""
+
+i would use FSAACertificateManager.exe for everything to maintain constancy with the provided instructions and avoid unforeseen behaviour.
+
+from atmgr_OeXnaRqdrj.png it looks like there is no certificate in the FSAA Certificate Authority Store?, this would be a manual step where you right click, export  on the desired Certificate Authority this will make a new .cer in some location you specify with a name you specify then copy paste that .cer to the fsaa folder(or wherever the FSAACertificateManager.exe is) on the proxy and then run the command 
+
+`.FSAACertificateManager.exe -storeCertificate -certificate .my_ca.cer -store CertificateAuthority -location CurrentUser `
+
+""Export the CA's root certificate and any required intermediate CA certificates to .cer files. For each certificate, on the NEA console and each proxy, import the certificate into the FSAA Certificate Authority store.""
+
+if this didn't happen then the rest of the instructions probably didn't work as intended ?
+
+to experiment further in your own lab you can create a certificate authority by following steps 1,3,5 under Manual certificate distribution with local CA on FSAA-Manual-Certificate-Guide.md 
+
+some of this might be teaching you to suck eggs sorry if so im not sure what parts of the process you have familiarity with so this is a bit wordy.
+give me (Luke butcher) a call if you need any help in your own labs
+
+@Salesforce@WaitingOnEngineer
+
+[DevOps CommentId:12077888]","0054u000006gtWUAAY","2025-05-20T10:28:28.000Z","2025-05-20T10:28:28.000Z","false","false"
+"00aQk00000Da56YIAR","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the new comment has been added: from atmgr_OeXnaRqdrj.png it looks like there is no certificate in the FSAA Certificate Authority Store?
+That did it.  We stored this in the Certificate Authority not the FSAA Certificate Authority Store.","0054u000006goLGAAY","2025-05-20T20:25:22.000Z","2025-05-20T20:25:22.000Z","false","false"
+"00aQk00000Da6c5IAB","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006goLGAAY","2025-05-20T20:40:08.000Z","2025-05-20T20:40:08.000Z","false","false"
+"00aQk00000Da6c7IAB","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the Following Fields have been updated: 
+Account ACV has been changed to 13398142.4214097582664.","0054u000006goLGAAY","2025-05-20T20:40:12.000Z","2025-05-20T20:40:12.000Z","false","false"
+"00aQk00000Da53KIAR","500Qk00000PGErpIAH","On Escalation Ticket # 00445468 the Following Fields have been updated: 
+Account ACV has been changed to 6699071.2107048791332.","0054u000006goLGAAY","2025-05-20T20:40:20.000Z","2025-05-20T20:40:20.000Z","false","false"

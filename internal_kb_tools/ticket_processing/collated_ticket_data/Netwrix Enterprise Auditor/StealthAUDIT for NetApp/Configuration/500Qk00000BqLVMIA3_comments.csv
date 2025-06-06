@@ -1,0 +1,58 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007LX9pIAG","500Qk00000BqLVMIA3","Your response looks solid. Only thing Id add and you can bring it up on the call but the option to ""Target previously scanned DC"" in the ADI query isn't the worst idea either that will overrule the One DC per Domain changing. Or you can make a custom list with the specific DC in it.","0054u000006gpoAAAQ","2024-06-14T18:50:58.000Z","2024-06-14T18:50:58.000Z","false","false"
+"00aQk000007h28zIAA","500Qk00000BqLVMIA3","[Meeting Notes 7/2/24]
+**Current Issue**
+We are seeing activity events in NAM and the db, however, we can't see it past the share level in AIC.
+
+**Troubleshooting Completed during Meeting**
+- Verified data is being collected
+- Verified data is in the ActivityEvents table
+- Enable UNCs paths and rerun the FSAC group
+
+**Logs/Screenshots Collected**
+N/A
+
+**Next Steps**
+- Verify bulk import completed and check the AIC for activity","0054u000007MiY9AAK","2024-07-02T14:15:42.000Z","2024-07-02T20:07:30.000Z","false","false"
+"00aQk000007iz6zIAA","500Qk00000BqLVMIA3","[Meeting Notes 7/3/24]
+**Current Issue**
+We are seeing activity events in NAM and the db, however, we can't see it past the share level in AIC.
+
+**Troubleshooting Completed during Meeting**
+NetApp 9.12.1P2, Clustered | SAM v6.0.1214
+- Found an Access Denied error on the FSAA scans, provided customer permissions to verify on the NetApp side
+---Verified we were unable to access the shares on the NetApp from Computer Management, customer is going to review necessary permissions with their NetApp admin
+- AIC is missing the ""_dest"" after the share on the path from NAM
+---Sounds like the NetApp was replaced with a new netapp (same ip & name)
+
+**Logs/Screenshots Collected**
+- Screenshot of where data is (NAM)
+
+**Next Steps**
+- Verify the NetApp permissions are correctly in place
+- Verify the shares show correctly in computer management (collect screenshot)
+- Customer prefers to keep old data, if possible (rename?)","0054u000007MiY9AAK","2024-07-03T17:01:26.000Z","2024-07-03T17:01:26.000Z","false","false"
+"00aQk000008HecLIAS","500Qk00000BqLVMIA3","[Meeting Notes 7/31/24]
+**Current Issue**
+We are seeing activity events in NAM and the db, however, we can't see it past the share level in AIC. This is due to the customer spinning up a new NAS and migrating things over that now have a new path.
+
+**Troubleshooting Completed during Meeting**
+--Used CIFS Method 2 Credential Configuration to setup permissions on the new NetApp for FSAA scannning
+--Started a zero level FSAA scan
+
+**Logs/Screenshots Collected**
+N/A
+
+**Next Steps**
+--Backup the Activity table in the database
+--Drop the old activity data","0054u000007MiY9AAK","2024-08-01T14:52:59.000Z","2024-08-01T14:52:59.000Z","false","false"
+"00aQk000008RsyzIAC","500Qk00000BqLVMIA3","[Meeting Notes 8/8/24]
+**Current Issue**
+We need to drop the old permissions so the new NetApp no longer has data from the previous one.
+
+**Troubleshooting Completed during Meeting**
+- Scheduled the DropFSHost job to drop the permissions data of the old NetApp server (Old_HCDATASTORE.HC.HOWARDCOUNTYMD.GOV) in 60 days (10/6/24)
+- Discussed how the File SystemResource Based Groups job is more of a demo to show how the action module can set up resource based groups in an environment and not really a weekly report
+- Disabled the File SystemAd Hoc Audits group since this is the outdated and slower version of data that the AIC now provides
+- Updated the password and then the Connection Profile for HCStealthAudit_FSAPPID
+- Discussed the difference between ""Access Denied"" and ""Path not found"" errors on certain shares and folders","0054u000007MiY9AAK","2024-08-09T21:19:29.000Z","2024-08-09T21:19:29.000Z","false","false"

@@ -1,0 +1,13 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EPM0TIAX","00418047","Support Ticket","Server not listening on port 8082 - published reports unavailable","Published reports does not seem to be working. confirmed in Auditor config under settings > reporting that the URL http://:8082 is specified for report publishing. A netstat shows that the server is not listening on that port.
+
+Turning published reports off/on in the settings in Audit was tried, as was restarting services and restarting the server itself.
+ 
+Please let me know next steps in troubleshooting and resolving this issue.","","","","[Issue]
+Customer is unable to access the Published Reports page via 8082
+
+[Root Cause]
+Customer is using port 443 for the published reports, not 8082. There was also an expired cert on that port.
+
+[Resolution]
+We bound the cert from the AIC (481) to port 443 to also apply to the Published Reports, then restarted the Netwrix Web Server service. We were then able to access both pages correctly.","Incorrect configuration: Netwrix server","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.5","","5.1","Closed - Resolved","CRH Americas Materials","Frank Babcock","2024-08-14T12:00:49.000Z","2024-08-19T14:52:28.000Z"

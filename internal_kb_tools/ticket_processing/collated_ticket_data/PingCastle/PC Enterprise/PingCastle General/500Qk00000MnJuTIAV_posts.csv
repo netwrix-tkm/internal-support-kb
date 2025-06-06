@@ -1,0 +1,29 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000YxsnFKAR","500Qk00000MnJuTIAV","TextPost","0054u000008ARZjAAO","2025-03-11T10:54:44.000Z","Description: We want to implement SAML authentication for our PingCastle Enterprise instance using ""Ping Identity"". 
+
+As this is my first time connecting PingCastle Enteprise to an SAML authentication. I have some questions.
+
+Unfortunately the process is not fully described in the documentation.
+- Which attributes can PingCastle use? I guess Username & Email Address are supported. Are there other attributes PingCastle can use?
+- SAML-Service Provider Metadata. XML File for secure transactions. How do I create this file in PingCastle?","","","","0054u000008ARZjAAO","2025-03-11T10:54:44.000Z"
+"0D5Qk00000ZZ015KAD","500Qk00000MnJuTIAV","TextPost","005Qk000003YNwXIAW","2025-03-17T07:40:33.000Z","Description Updated: We are in the process of configuring SAML authentication for our PingCastle Enterprise instance using Ping Identity as the Identity Provider (IdP). However, the official documentation does not fully cover the integration details. Specifically, we need clarification on supported attributes and the creation of the Service Provider (SP) Metadata XML file.","","","","005Qk000003YNwXIAW","2025-03-17T07:40:33.000Z"
+"0D5Qk00000ZYzOSKA1","500Qk00000MnJuTIAV","TextPost","005Qk000003YNwXIAW","2025-03-17T07:40:42.000Z","Steps to Reproduce Updated: Attempt to configure PingCastle Enterprise to use SAML authentication.
+Check available attributes that PingCastle can utilize (Username, Email, Group Membership).
+Look for an option in PingCastle to generate an SP Metadata XML file automatically.
+Attempt to configure the SAML authentication manually by modifying appsettings.Production.json with the provided Ping Identity metadata URL.
+Restart PingCastle services or perform an IISRESET.
+Attempt a test login via SAML and check for authentication failures.
+Inspect browser developer tools and server logs for potential errors.","","","","005Qk000003YNwXIAW","2025-03-17T07:40:42.000Z"
+"0D5Qk00000ZZ0EUKA1","500Qk00000MnJuTIAV","TextPost","005Qk000003YNwXIAW","2025-03-17T07:40:53.000Z","What We've Learned Updated: PingCastle supports the following attributes:
+Username (sAMAccountName or UPN)
+Email (mail attribute)
+Group Membership (if configured in Ping Identity)
+PingCastle does not generate an SP Metadata XML file automatically. Instead, manual configuration is required by editing appsettings.Production.json.
+The IdPMetadata URL must be accessible from the PingCastle server.
+Claims sent from Ping Identity must match the expected attributes for successful authentication.
+Debugging requires checking logs, browser dev tools, and ensuring correct claim mapping.","","","","005Qk000003YNwXIAW","2025-03-17T07:40:53.000Z"
+"0D5Qk00000ZYwonKAD","500Qk00000MnJuTIAV","TextPost","005Qk000003YNwXIAW","2025-03-17T07:41:01.000Z","Next Steps Updated: Confirm the required attributes are correctly mapped in Ping Identity.
+Ensure the IdPMetadata URL is accessible from the PingCastle server.
+Validate that the correct attributes (Username, Email, Group Membership) are being sent by Ping Identity.
+Restart PingCastle services and retest authentication.
+If issues persist, review logs and browser dev tools for additional troubleshooting.","","","","005Qk000003YNwXIAW","2025-03-17T07:41:01.000Z"

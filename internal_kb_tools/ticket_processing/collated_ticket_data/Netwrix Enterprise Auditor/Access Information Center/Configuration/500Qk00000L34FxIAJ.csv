@@ -1,0 +1,15 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000L34FxIAJ","00433564","Support Ticket","21 Missing Strict Transport Security Headers","Noted that the application doesn’t have HSTS header implemented
+
+Steps to Reproduce:
+Verify the response headers of application for Strict Transport Security header.
+
+11.5 AIC","","HTTP Strict Transport Security Headers (HSTS) are Included in the Published Reports site by default.
+HSTS requires all HTTP requests to be forced over HTTPS this can be enabled for the AIC by editing the web.config by uncommenting the rewrite section.
+For AIC version 11.5.0.137 this includes lines 270 through 296
+
+See past support ticket #368629","The AIC (11.6+) and Webserver (11.0+) adds the ""Strict-Transport-Security"" header to the response if the SSL is enabled.","The AIC (11.6+) and Webserver (11.0+) adds the ""Strict-Transport-Security"" header to the response if the SSL is enabled.
+
+The resolution related the the webserver was addressed in product release notes, the update AIC was never documented.
+
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u0000000I0wCAE.html","Product defect","Brandon West","Unexpected Behavior","Netwrix Enterprise Auditor","Access Information Center","Configuration","11.5","","32.0","Closed - Resolved","Netwrix Technical Support","Catharine Coleman","2025-01-24T20:49:54.000Z","2025-02-25T21:40:38.000Z"

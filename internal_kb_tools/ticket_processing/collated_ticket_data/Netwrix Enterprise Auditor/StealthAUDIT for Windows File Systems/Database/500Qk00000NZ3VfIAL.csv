@@ -1,0 +1,32 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NZ3VfIAL","00440611","Support Ticket","Error during bulk import job, host is failing while repair.","One of our hosts has error while performing bulk import. 
+Erro: Failed to import SA_FSAA_Resources: database disk image is malformed
+database disk image is malformed.
+code = Corrupt (11), message = <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at <a href='https://System.Data.SQLite.SQLite3.Step' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+   at <a href='https://System.Data.SQLite.SQLiteDataReader.Read' target='_blank'>System.Data.SQLite.SQLiteDataReader.Read</a>()
+   at <a href='https://Dapper.WrappedReader.System.Data.IDataReader.Read' target='_blank'>Dapper.WrappedReader.System.Data.IDataReader.Read</a>()
+   at <a href='https://Stealthbits.Common.Database.BatchDataReaderWrapper.Read' target='_blank'>Stealthbits.Common.Database.BatchDataReaderWrapper.Read</a>()
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.ReadFromRowSource()
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.ReadFromRowSourceAsync(CancellationToken cts)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.CopyRowsAsync(Int32 rowsSoFar, Int32 totalRows, CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.CopyBatchesAsyncContinued(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.CopyBatchesAsync(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteToServerInternalRestContinuedAsync(BulkCopySimpleResultSet internalResults, CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteToServerInternalRestAsync(CancellationToken cts, TaskCompletionSource`1 source)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteToServerInternalAsync(CancellationToken ctoken)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteRowSourceToServerAsync(Int32 columnCount, CancellationToken ctoken)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlBulkCopy.WriteToServer(IDataReader reader)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Import.Import.BulkImport(TableDefinition definition, String tempTableName, String mergeSql)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Import.Import.ImportData(TableDefinition definition, String tempTableName, ImportType importType, Object[,] parameters)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.ImportTable(Import import, TableDefinition table, Int32 hostId, TimeSpan strucMapTime)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+While running a repair in maintenance mode for this host there is an error: 
+Repair tool could not complete: 
+One or more errors occurred.","Run bulk import for BREDSNTP008","database disk image is malformed
+^ seen this being fixed by dropping t2","Asking T2 about this
+Waiting PM/R&D response about 'why databases corrupt'","CrowdStrike EPP is suspected to be the case, the weekly rescan fixed the issue, while the customer was notified of exclusions that must be implemented.","Backend Server Fix","Ilya Kotov","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Database","11.5","","23.9","Closed - Resolved","GlaxoSmithKline","Olaf Wiśniewski","2025-04-01T14:53:27.000Z","2025-04-25T13:17:14.000Z"

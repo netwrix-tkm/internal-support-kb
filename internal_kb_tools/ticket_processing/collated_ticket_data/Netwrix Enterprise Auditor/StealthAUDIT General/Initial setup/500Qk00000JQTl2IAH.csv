@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000JQTl2IAH","00429711","Support Ticket","Unable to configure host on a seek job","Reference ticket 00424345...working with previous engineer who assisted with setting up multiple seek jobs with different hosts.  The issue now is that when i configure v2 scan with the noted hosts if replicates to scan_v3 & scan_v4 respectively. even if i switch and configure scan_v3 with a different host it will sync to the other 2 scans that previous engineer walked me thru.","","Cause:
+Unknown, suspect that the .xml files with the copied job would not correctly update thus making the console display the last edited host.","","Symptom:
+Duplicated jobs keep replacing the Individual hosts with the last edited for all prior renamed duplicated jobs.
+Cause:
+Unknown, suspect that the .xml files with the copied job would not correctly update thus making the console display the last edited host.
+Resolution:
+Had to clear out the initial Job copies (deleted from the left menu this also cleared data for these jobs from the SQL back end). 
+1.	Copied the Canned job from the install folder (%sainstalldir%) “E:Program Files (x86)STEALTHbitsStealthAUDITInstantSolutionsGROUP_FileSystemGROUP_0.CollectionJOB_1-SEEK System Scans”
+2.	Closed the Console
+3.	Pasted the JOB_1-SEEK System Scans into the Jobs folder path “E:Program Files (x86)STEALTHbitsStealthAUDITJobsGROUP_FileSystemGROUP_0.Collection”
+4.	Renamed JOB_1-SEEK System Scans with the Regions abbreviation (example JOB_1-SEEK System Scan_NYC)
+5.	Renamed the JOB_1-SEEK System Scans.XML with the Regions abbreviation (example JOB_1-SEEK System Scan_NYC.XML)
+6.	Repeated for the other Cluster host.
+7.	Launched the NEA Console.
+8.	Corrected the Concurrent Worker Threads from the Default 10 to 4 (Dev recommendations) 
+9.	Updated the needed Scoping for the Scan.
+
+References for our meeting:
+Netwrix Enterprise Auditorv11.6 > Administration > Jobs Tree > Jobs > Job Properties > Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector > FSAA: Scoping Options
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/ScopingOptions.htm
+
+Then we were able to utilize an existing report to filter down to the needed Host. (If issues arise we will spin off a new case for this)
+Netwrix Enterprise Auditor v11.6 > Administration > Reporting > Creating a Report > Copy an Existing Report
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Report/Create.htm#copy_an_existing_report","Root Cause Unknown","Dusty Grayson","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","122","19.0","Closed - Resolved","Franklin Templeton Companies, LLC","Damus Aulu","2024-12-12T16:40:16.000Z","2024-12-31T17:44:05.000Z"

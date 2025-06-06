@@ -1,0 +1,24 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008U7gzIAC","500Qk00000EJHoHIAX","Created a job for this that uses the FSAC_ActivityEventsView and filters using the following:
+
+OperationDescription like 'Permission%' -- Filter for Permission Changes
+  
+AND [ResourceTypeDescription] = 'Folder'  -- Filter for folders (customer wants to exclude file-level permission changes)
+ 
+AND (LEN([Path]) - LEN(REPLACE([Path], '', '')) <= 2)  -- Filter for top-level or second-level folders
+
+AND CAST([AccessTime] AS DATE) = CAST(GETDATE() AS DATE) --Only show permission changes that occurred today","0054u000007MiY9AAK","2024-08-12T19:10:15.000Z","2024-08-12T19:10:15.000Z","false","false"
+"00aQk000008fHY9IAM","500Qk00000EJHoHIAX","Met with customer today and implemented a SQLView job that uses the below filter on the FSAC_ActivityEvents table:
+
+OperationDescription like 'Permission%' -- Filter for Permission Changes
+  
+AND [ResourceTypeDescription] = 'Folder'    
+AND (
+        -- Filter for top-level or second-level folders
+        LEN([Path]) - LEN(REPLACE([Path], '', '')) <= 2
+    )
+
+AND CAST([AccessTime] AS DATE) >= CAST(GETDATE() - 7 AS DATE)
+AND CAST([AccessTime] AS DATE) <= CAST(GETDATE() AS DATE)
+
+We couldn't do every day due to FSAC scan and bulk import schedules, but this will pull permission changes on the top 2 levels of folders for the last 7 days","0054u000007MiY9AAK","2024-08-21T20:38:32.000Z","2024-08-21T20:39:14.000Z","false","false"

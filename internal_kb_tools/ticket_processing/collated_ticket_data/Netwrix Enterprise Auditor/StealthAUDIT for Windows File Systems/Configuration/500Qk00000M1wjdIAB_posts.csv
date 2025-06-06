@@ -1,0 +1,24 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000XFLHHKA5","500Qk00000M1wjdIAB","TextPost","00570000003KXurAAG","2025-02-18T18:18:34.000Z","Description: Console setting notes Warning yet Applet log is collection Debug","","","","00570000003KXurAAG","2025-02-18T18:18:34.000Z"
+"0D5Qk00000XFG4qKAH","500Qk00000M1wjdIAB","TextPost","00570000003KXurAAG","2025-02-18T18:33:33.000Z","What We've Learned Updated: For the FSAA applet logging not matching with the Console settings.
+
+R&D notes that the applet server logs default to DEBUG, but even at the DEBUG level, they shouldn't be very large.
+
+The log level for the FSAA_Applet_Server log is controlled by the NLog.config file in the FSAA folder for proxy servers installed as a service, and for automatic deployment, by the NLog.config file on the NEA server under *StealthAUDITPrivateAssembliesFILESYSTEMACCESSApplet.
+
+On the Applet host under install path Example of Default ""C:Program Files (x86)STEALTHbitsStealthAUDITFSAANLog.config""
+
+To edit set the following as needed   options Error, Debug, Info, Warn
+Would not recommend a limit lower than Error.
+<rules>
+<logger name=""*FSAA*"" minlevel=""Debug"" writeTo=""ServerFile"" />
+<logger name=""*Kestrel*"" minlevel=""Info"" writeTo=""ServerFile"" />
+<logger name=""*HttpsConnectionMiddleware*"" minlevel=""Debug"" writeTo=""ServerFile"" />
+<logger name=""*"" minlevel=""Warn"" writeTo=""ServerFile"" />
+</rules>
+***RECOMMNED*** Use Notepad++ or similar simple code editor when making any changes.
+
+This is not the same as the following for the Scans:
+Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector > FSAA: Applet Settings
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/AppletSettings.htm","","","","00570000003KXurAAG","2025-02-18T18:33:33.000Z"
+"0D5Qk00000XFMgaKAH","500Qk00000M1wjdIAB","TextPost","00570000003KXurAAG","2025-02-18T18:33:47.000Z","Next Steps Updated: Awaiting Client reply top the new case.","","","","00570000003KXurAAG","2025-02-18T18:33:47.000Z"

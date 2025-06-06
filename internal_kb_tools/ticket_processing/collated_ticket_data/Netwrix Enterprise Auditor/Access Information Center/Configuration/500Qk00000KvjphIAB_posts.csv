@@ -1,0 +1,79 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000VGnUTKA1","500Qk00000KvjphIAB","TextPost","0054u000008ARZjAAO","2025-01-22T13:25:19.000Z","Description: Dear Support
+Netwrix Access Information Center not working, we tried to upgrade to the latest version but still we are not able to login to the portal.
+Error : Unable to use to the SQL Server Database provided
+Please support us to reinstall fully the Access Information Center.","","","","0054u000008ARZjAAO","2025-01-22T13:25:19.000Z"
+"0D5Qk00000VGiD1KAL","500Qk00000KvjphIAB","TextPost","005Qk000002b4gDIAQ","2025-01-22T13:44:42.000Z","Invitation updated. Attendees: Artem Naskal","","","","005Qk000002b4gDIAQ","2025-01-22T13:44:42.000Z"
+"0D5Qk00000VGiD0KAL","500Qk00000KvjphIAB","TextPost","005Qk000002b4gDIAQ","2025-01-22T13:44:42.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002b4gDIAQ","2025-01-22T13:44:42.000Z"
+"0D5Qk00000VGiD2KAL","500Qk00000KvjphIAB","TextPost","005Qk000002b4gDIAQ","2025-01-22T13:44:43.000Z","Invitation updated. Attendees: Artem Naskal, TBEU ITSupport","","","","005Qk000002b4gDIAQ","2025-01-22T13:44:43.000Z"
+"0D5Qk00000VGcnlKAD","500Qk00000KvjphIAB","TextPost","005Qk000002b4gDIAQ","2025-01-22T13:54:15.000Z","What We've Learned Updated: Tried calling customer on 003228991210 as well as +3228991210. 
+Could not reach them via phone. 
+
+I`ve sent customer a link to the ongoing Zoom meeting as well as a link to schedule meeting at a different time should they prefer to. 
+
+As per description from customer, they are unable to connect to Access Information Center. Connection is failing with this error:
+Error : Unable to use to the SQL Server Database provided
+
+--------------------------------------------------------------
+
+According to information from previous cases - 00425667 - Currently getting a error message ""Unable to use to the SQL Server Database provided"" -  issue was resolved by re-installing AIC on the same server. 
+
+--------------------------------------------------------------
+Also, as per this ticket - 00427395 - NAIC keeps going offline -  to resolve the issue we might need to re-bind the AIC and published reports certificates:
+
+The steps I used to troubleshoot the issue
+1. Uninstall NAIC and Reinstall ( This is works for a day or two before it goes down again.
+2. It's giving a SSL cert error, I checked the SSL cert and nothing has changed since it was up before hand.
+3. Stop and restart the service. ( This generally kills the NAIC client saying it is unable to connect to the SQL database and you will have to uninstall and reinstall to fix this.)
+
+Cause
+
+Needed to re-apply and update SSL certificate bindings for the AIC and Published Reports Web console.
+
+Resolution
+
+With the introduction of 11.6 applying all SSL certificate bindings will be through command prompt with elevated privileges. You will need to use the commands I have provided below as well as the process detailed in the documentation to verify and update those bindings.
+netsh http show sslcert - This command will display all certificate bindings on the application server.
+netsh http del sslcert ipport=0.0.0.0:8082 - This command will remove all certificate bindings targeting the port specified. To target a specific port just simply remove and add the port associated with the desired web application. In this case it will be 481 and 8082.
+netsh http add sslcert ipport=0.0.0.0:8082 appid= certhash= - This command will add the updated certificate bindings. Once you've identified the correct certificate thumbprint you will apply it to the (certhash) value. Once you've identified the application guid you will apply that value to the (appid).
+For more information I have also provided documentation on this process as well.","","","","005Qk000002b4gDIAQ","2025-01-22T13:54:15.000Z"
+"0D5Qk00000VGdrwKAD","500Qk00000KvjphIAB","TextPost","005Qk000002b4gDIAQ","2025-01-22T13:54:50.000Z","Next Steps Updated: Support is waiting for a reply from customer. 
+Support will schedule a meeting with customer to perform troubleshooting on site.","","","","005Qk000002b4gDIAQ","2025-01-22T13:54:50.000Z"
+"0D5Qk00000VGh5rKAD","500Qk00000KvjphIAB","TextPost","005Qk000002b4gDIAQ","2025-01-22T13:55:40.000Z","Steps to Reproduce Updated: Install Access Information Center. 
+Perform upgrade of Netwrix Enterprise Auditor. 
+Access to AIC fails with ""Error : Unable to use to the SQL Server Database provided""","","","","005Qk000002b4gDIAQ","2025-01-22T13:55:40.000Z"
+"0D5Qk00000VGcccKAD","500Qk00000KvjphIAB","TextPost","005Qk000002b4gDIAQ","2025-01-22T13:56:19.000Z","What We've Learned Updated: Tried calling customer on 003228991210 as well as +3228991210. 
+Could not reach them via phone. 
+
+I`ve sent customer a link to the ongoing Zoom meeting as well as a link to schedule meeting at a different time should they prefer to. 
+
+As per description from customer, they are unable to connect to Access Information Center. Connection is failing with this error:
+Error : Unable to use to the SQL Server Database provided
+
+--------------------------------------------------------------
+
+According to information from previous cases - 00425667 - Currently getting a error message ""Unable to use to the SQL Server Database provided"" -  issue was resolved by re-installing AIC on the same server. 
+
+--------------------------------------------------------------
+Also, as per this ticket - 00427395 - NAIC keeps going offline -  to resolve the issue we might need to re-bind the AIC and published reports certificates:
+
+The steps I used to troubleshoot the issue
+1. Uninstall NAIC and Reinstall ( This is works for a day or two before it goes down again.
+2. It's giving a SSL cert error, I checked the SSL cert and nothing has changed since it was up before hand.
+3. Stop and restart the service. ( This generally kills the NAIC client saying it is unable to connect to the SQL database and you will have to uninstall and reinstall to fix this.)
+
+Cause
+
+Needed to re-apply and update SSL certificate bindings for the AIC and Published Reports Web console.
+
+Resolution
+
+With the introduction of 11.6 applying all SSL certificate bindings will be through command prompt with elevated privileges. You will need to use the commands I have provided below as well as the process detailed in the documentation to verify and update those bindings.
+netsh http show sslcert - This command will display all certificate bindings on the application server.
+netsh http del sslcert ipport=0.0.0.0:8082 - This command will remove all certificate bindings targeting the port specified. To target a specific port just simply remove and add the port associated with the desired web application. In this case it will be 481 and 8082.
+netsh http add sslcert ipport=0.0.0.0:8082 appid= certhash= - This command will add the updated certificate bindings. Once you've identified the correct certificate thumbprint you will apply it to the (certhash) value. Once you've identified the application guid you will apply that value to the (appid).
+For more information I have also provided documentation on this process as well:
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm","","","","005Qk000002b4gDIAQ","2025-01-22T13:56:19.000Z"
+"0D5Qk00000VGYLtKAP","500Qk00000KvjphIAB","TextPost","005Qk000002b4gDIAQ","2025-01-22T13:57:34.000Z","<p>If customer has secured their AIC previously, then they might need to re-bind certificates to the NEA AIC and Reporting Module as described in this article to resolve issue:</p><p><a href=""https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm"" alt=""https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm"" target=""_blank"">Securing the Access Information Center</a></p>","","","","005Qk000002b4gDIAQ","2025-01-22T13:57:34.000Z"
+"0D5Qk00000VGg4zKAD","500Qk00000KvjphIAB","TextPost","005Qk000002b4gDIAQ","2025-01-22T14:05:12.000Z","Next Steps Updated: Support has scheduled a meeting with customer to perform troubleshooting on site.","","","","005Qk000002b4gDIAQ","2025-01-22T14:05:12.000Z"

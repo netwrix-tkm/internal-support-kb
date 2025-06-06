@@ -1,0 +1,33 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000XIObyKAH","500Qk00000M47hNIAR","TextPost","005Qk000002b4gDIAQ","2025-02-19T14:40:32.000Z","Description: Customer would like to perform clean up on a list of target hosts that are no longer scanned using FS_DropTables. 
+But FS_DropTables task fails with ""Foreign Key constraint"" error. 
+
+Customer also would like to know how to use ""Remove Host Data"" option in FSAA scan Query for maintenance purposes in the future.","","","","005Qk000002b4gDIAQ","2025-02-19T14:40:32.000Z"
+"0D5Qk00000XIRzjKAH","500Qk00000M47hNIAR","TextPost","0054u000006gpoAAAQ","2025-02-19T15:01:11.000Z","<p>this is how to configure/use the Drop Hosts job.</p><p><a href=""https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html"" alt=""https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html"" target=""_blank"">How to Drop Data for Decommissioned File Servers</a></p><p> </p><p>FS Drop Tables job is meant to drop all FSAA tables if all Analysis are selected.</p><p>This should allow you to drop them all if that is what they want. Confirm they want to drop all FS data before running this below.</p><p>-- Drop the foreign key constraints referencing SA_FSAA_Hosts</p><p>ALTER TABLE dbo.SA_FSAC_ActivityEvents DROP CONSTRAINT FK_SA_FSAC_ActivityEvents_HOST;</p><p>ALTER TABLE dbo.SA_FSAC_DailyActivity DROP CONSTRAINT FK_SA_FSAC_DailyActivity_HOST;</p><p>ALTER TABLE dbo.SA_FSAC_OwnerChanges DROP CONSTRAINT FK_SA_FSAC_OwnerChanges_HOST;</p><p>ALTER TABLE dbo.SA_FSAC_PermissionChanges DROP CONSTRAINT FK_SA_FSAC_PermissionChanges_HOST;</p><p>ALTER TABLE dbo.SA_FSAC_ProcessNames DROP CONSTRAINT FK_SA_FSAC_ProcessNames_HOST;</p><p>ALTER TABLE dbo.SA_FSAC_RenameTargets DROP CONSTRAINT FK_SA_FSAC_RenameTargets_HOST;</p><p>ALTER TABLE dbo.SA_FSDFS_Links DROP CONSTRAINT FK_SA_FSDFS_Links_TargetHostID;</p><p>ALTER TABLE dbo.SA_FSDFS_Namespaces DROP CONSTRAINT FK_SA_FSDFS_Namespaces_Hosts;</p><p>ALTER TABLE dbo.SA_FSDLP_Criteria DROP CONSTRAINT FK_SA_FSDLP_Criteria_HOST;</p><p>ALTER TABLE dbo.SA_FSDLP_ImportHistory DROP CONSTRAINT FK_SA_FSDLP_ImportHistory_HOST;</p><p> </p><p>-- Drop the foreign key constraints referencing SA_FSAA_Resources</p><p>ALTER TABLE dbo.SA_FSAC_ActivityEvents DROP CONSTRAINT FK_SA_FSAC_ActivityEvents_PathID;</p><p>ALTER TABLE dbo.SA_FSAC_DailyActivity DROP CONSTRAINT FK_SA_FSAC_DailyActivity_FolderID;</p><p>ALTER TABLE dbo.SA_FSAC_RenameTargets DROP CONSTRAINT FK_SA_FSAC_RenameTargets_TargetPathID;</p><p>ALTER TABLE dbo.SA_FSDFS_Links DROP CONSTRAINT FK_SA_FSDFS_Links_DfsResourceID;</p><p>ALTER TABLE dbo.SA_FSDFS_Links DROP CONSTRAINT FK_SA_FSDFS_Links_TargetResourceID;</p><p> </p><p>-- Drop the foreign key constraints referencing SA_FSAA_Gates</p><p>ALTER TABLE dbo.SA_FSDFS_Links DROP CONSTRAINT FK_SA_FSDFS_Links_TargetGateID;</p><p>ALTER TABLE dbo.SA_FSDFS_Namespaces DROP CONSTRAINT FK_SA_FSDFS_Namespaces_GateID;</p><p> </p><p>-- Drop the foreign key constraints referencing SA_FSAA_Trustees</p><p>ALTER TABLE dbo.SA_FSAC_ActivityEvents DROP CONSTRAINT FK_SA_FSAC_ActivityEvents_TrusteeID;</p><p>ALTER TABLE dbo.SA_FSAC_DailyActivity DROP CONSTRAINT FK_SA_FSAC_DailyActivity_TrusteeID;</p><p>ALTER TABLE dbo.SA_FSAC_OwnerChanges DROP CONSTRAINT FK_SA_FSAC_OwnerChanges_PreviousOwnerID;</p><p>ALTER TABLE dbo.SA_FSAC_OwnerChanges DROP CONSTRAINT FK_SA_FSAC_OwnerChanges_NewOwnerID;</p><p>ALTER TABLE dbo.SA_FSAC_PermissionChanges DROP CONSTRAINT FK_SA_FSAC_PermissionChanges_TrusteeID;</p><p> </p><p>-- Drop the SA_FSAA_* tables</p><p>DROP TABLE dbo.SA_FSAA_Hosts</p><p>DROP TABLE dbo.SA_FSAA_Resources;</p><p>DROP TABLE dbo.SA_FSAA_Gates</p><p>DROP TABLE dbo.SA_FSAA_Trustees</p><p> </p><p> </p>","","","","0054u000006gpoAAAQ","2025-02-19T15:01:11.000Z"
+"0D5Qk00000YRHG5KAP","500Qk00000M47hNIAR","TextPost","005Qk000002b4gDIAQ","2025-03-06T13:44:13.000Z","Invitation updated. Attendees: Artem Naskal","","","","005Qk000002b4gDIAQ","2025-03-06T13:44:13.000Z"
+"0D5Qk00000YRHG4KAP","500Qk00000M47hNIAR","TextPost","005Qk000002b4gDIAQ","2025-03-06T13:44:13.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002b4gDIAQ","2025-03-06T13:44:13.000Z"
+"0D5Qk00000YRHG6KAP","500Qk00000M47hNIAR","TextPost","005Qk000002b4gDIAQ","2025-03-06T13:44:14.000Z","Invitation updated. Attendees: Artem Naskal, Stealth Audit","","","","005Qk000002b4gDIAQ","2025-03-06T13:44:14.000Z"
+"0D5Qk00000YzjXsKAJ","500Qk00000M47hNIAR","TextPost","005Qk000002b4gDIAQ","2025-03-11T15:37:53.000Z","Description Updated: Customer would like to perform clean up on a list of hosts that are no longer scanned.","","","","005Qk000002b4gDIAQ","2025-03-11T15:37:53.000Z"
+"0D5Qk00000YzldIKAR","500Qk00000M47hNIAR","TextPost","005Qk000002b4gDIAQ","2025-03-11T16:05:05.000Z","What We've Learned Updated: --------------------
+11.03.2025 
+
+Had a meeting with Alison. 
+
+They would like to remove FSAA related data for hosts that are no longer scanned. 
+I explained that FS_Droptables job will remove absolutely all File System solution data and it is not possible to scope it. 
+But we can remove data for individual hosts using ""remove host data"" query instead. 
+
+Alison said that those hosts which last scan date is older than December 2024 are eligible for data removal. 
+
+As such, we made a static host list by filtering FSAA hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list in ""Hosts"" settings for the ""DropFSHostData"" Job we created using instructions from this KB:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+Currently ""DropFSHostData"" Job is running. 
+Alison will get back to us with results once the job finishes.","","","","005Qk000002b4gDIAQ","2025-03-11T16:05:05.000Z"
+"0D5Qk00000Z0EgOKAV","500Qk00000M47hNIAR","TextPost","005Qk000002b4gDIAQ","2025-03-11T16:14:33.000Z","Next Steps Updated: Customer will reply back with results of ""DropFSHostData"" job.","","","","005Qk000002b4gDIAQ","2025-03-11T16:14:33.000Z"

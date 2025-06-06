@@ -1,0 +1,2359 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MSuqhIAD","500Qk00000LEgrKIAT","2025-03-11T13:25:15.000Z","2025-03-11T13:25:15.000Z","Hello Greg,
+
+I was able to review the scrubbed folders from Scott, but it does not provide any insight into any issues.
+I think the problem is that I am still unclear as to what your end goal is with these queries. Are we looking for a query that will provide specific data, are we trying to change IDs for some objects, or are we maybe just looking for information on how these IDs are being created?
+
+I don't see any errors or bad info in the environment at this point so if you could clarify what the end goal of this issue is I would appreciate it as I was under the impression we were trying to make sure we were not getting overlapping sub folders and shares in your queries but that was clearly not correct.
+Can you please try and elaborate on what the end goal of this ticket is currently?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/7/2025 6:29 PM
+To: greg.dieter@bofa.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jackson, Steve [r.steve.jackson@bofa.com]
+Sent: 3/7/2025 3:39 PM
+To: greg.dieter@bofa.com; techsupport@netwrix.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+ 
+
+ Hello Greg,
+
+So in this list of 55 folders, is the issue that the shareID shown here does not reflect the real shareId, or is it that the folderID is overlapping with another folder's shareID?
+Can you tell me what problem this is causing to the NEA system, I'm still not clear what error we're trying to fix in this scenario. Maybe if you could explain what the end goal is and what problem these entries are causing is it would help.
+
+
+ 
+
+Steve Jackson
+
+Assistant Vice President
+Cyber Security Technology
+Phone: Office(980) 386-4578 Mobile: (704) 657-9069
+
+r.steve.jackson@bofa.com
+
+
+
+ 
+
+
+ 
+
+
+
+From: Dieter, Gregory <greg.dieter@bofa.com>
+Sent: Friday, March 7, 2025 3:28 PM
+To: Netwrix Support <techsupport@netwrix.com>; Jackson, Steve <r.steve.jackson@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Ian, I’m going to have Steve Jackson send you the “scrubbed” CSV file for the 55 share issues.
+
+I hope you can understand enough to be helpful.
+
+ 
+
+ 
+
+Greg Dieter
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 8:06 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hi Greg,
+
+If you could provide me the output of the 55 bad files that would help.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/4/2025 3:14 PM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+ 
+
+
+Ian, I agree the IDs do not matter, but Type 3 (Resource IDs) should not be listed at SHAREIDs in the Gates table.
+
+Maybe I should show you this new query and the 55 issues, they are all very similar (if my logic is good, I think this is the pile of “badness” we need to “fix” and determine how to prevent.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 4, 2025 1:11 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+I do remember that the Prepaid_Ops_QA_Overlap share had a folder that had the same folder ID as the share ID we were looking for, and that's' why we introduced the filter to search shares by 0 as it is possible for a folderID and a shareID to be the same and the views table doesn't really take into account that IDs are different types.
+
+I do think we need to narrow the scope of what we're looking at though. I don't think the shares having different IDs is wrong, but I'm still investigating how they get that way.
+What is the ultimate goal in this investigation, I was originally under the impression that the goal was to filter out the overlapping share IDs which the new query did but now we seem to have moved into how the shares get their ID numbers. I want to make sure we're on the same page about what the ultimate resolution to this should be so that We can focus the investigation.
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/3/2025 6:19 PM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com; eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+ 
+
+
+Ian,
+The query is only looking at ShareIds, which you told me “should be ResourceType = 0”.
+I query for SA_FSAA_Gates.ShareID where the SA_FSAA_Resources.ResourceType > 0 (where g.ShareID = r.id and r.ResourceType > 0)
+
+ 
+
+ 
+
+This new query located the GTMO_COE share and all of the Shares that Jonathan Wade provided (before he lost his query).
+
+
+In the case of GTMO_COE, you might recall that the SHAREID associated with it, was for another FOLDER ShareID value (23892) which was part of the Prepaid_Ops_QA_Overlap share.
+
+But there was a ShareID, 23860 that is a ResourceType = 0, and Name is “GTMO_COE” that is NOT associated to the GTMO_COE folder (ShareID = 23893).
+
+
+	
+		
+			
+			 
+			
+		
+		
+			
+			HOST
+			
+			
+			ID
+			
+			
+			ParentResourceID
+			
+			
+			Name
+			
+			
+			ResourceType
+			
+		
+		
+			
+			30435
+			
+			
+			23860
+			
+			
+			NULL
+			
+			
+			GTMO_COE
+			
+			
+			0
+			
+		
+		
+			
+			30435
+			
+			
+			23892
+			
+			
+			19093
+			
+			
+			Calls from data adn reporting sharepoint
+			
+			
+			3
+			
+		
+		
+			
+			30435
+			
+			
+			23893
+			
+			
+			10559
+			
+			
+			GTONNNFS80685316
+			
+			
+			3
+			
+		
+	
+
+
+ 
+
+I did find that many Shares do not have consecutive FolderID and ShareIDs.
+
+So there appears to be updating that is going on, 
+
+
+	
+		
+			
+			HOST
+			
+			
+			ID
+			
+			
+			ShareID
+			
+			
+			FolderID
+			
+			
+			PolicyID
+			
+			
+			DisplayName
+			
+		
+		
+			
+			157940
+			
+			
+			204
+			
+			
+			406
+			
+			
+			6359
+			
+			
+			1
+			
+			
+			WMO_PE_AI_Pricing_PB
+			
+		
+		
+			
+			157940
+			
+			
+			236
+			
+			
+			6355
+			
+			
+			6357
+			
+			
+			1
+			
+			
+			WSSRTC
+			
+		
+	
+
+
+ 
+
+I’m curious to learn if these “problem ShareIDs” are a result of an error, or a bad Database updated, or a corrupted fileshare (improperly modified).
+
+I hope we can figure out how this occurs, and how to fix it – if that’s possible.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 3, 2025 10:47 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+I am still working to determine what we can do here as I don't really see any problems with the data other than the possible shareID being different on the one host.
+As for the share Prepaid_Ops_QA_Overlap crossing over, the reason we saw that is because previously we were not filtering by resource type, the subfolder in Prepaid_Ops_QA_Overlap had the same resource ID as what the COE share was reporting, but since we weren't filtering we were getting both folders and shares with that ID.
+
+Can you share an example with me of the other 55 mismatches you found?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Greg Dieter [greg.dieter@bofa.com]
+Sent: 2/28/2025 6:40 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+Ian,
+It seems like the issue with the “bad” SHARES is somehow the SHAREIDs are NOT ResourceType = 0.
+They are 3s, (a FolderID value), I believe this is what “crosses” the fileshares in our Views (like ‘GTMO_COE’ is referencing subfolder for the ‘Prepaid_Ops_QA_Overlap’ SHARE.
+Does this It seems like the issue with the “bad” SHARES is somehow the SHAREIDs are NOT ResourceType = 0.
+They are 3s, (a FolderID value), I believe this is what “crosses” the fileshares in our Views (like ‘GTMO_COE’ is referencing subfolder for the ‘Prepaid_Ops_QA_Overlap’ SHARE
+I created a query that looks for this issue, and found 55 problem shares (these include the shares Jonathan Wade shared with us back on 02/07/25).
+So I think I can identify the ""problems"", using the Gates, Resources & Hosts tables. I don't trust Views,
+Have you made any headway on Identifying them or what might cause this issue?
+
+
+
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at  http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages:  https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and  https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).
+
+
+
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages:  https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","true","2025-03-11T13:25:13.000Z","true"
+"02sQk00000MgjNWIAZ","500Qk00000LEgrKIAT","2025-03-17T14:49:38.000Z","2025-03-17T15:36:41.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+Yes, it’s still an issue.  I have 55 fileshares that appear to be corrupted. (SA_FSAA_Gates.ShareIDs with SA_FSAA_Resources.ResourceType = 3 (not 0) ).
+Let’s schedule a time to review it again, if you forgot the issue.
+I’m trying to scrub a reminder email, but this takes time.
+
+Greg Dieter
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 8:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+Hello Greg,
+
+I wanted to check in regarding your support ticket 00434054. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!SqpXQNPxJ_TXKueSI9eZA8GYSthQV2CmWEou_DliFKVoXr6wtp87IJ-B7ZwDboyf4x5aKO6xxbf4r0vhFK7Nv0o$>
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+----------------------------------------------------------------------
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue","greg.dieter@bofa.com","Dieter, Gregory","techsupport@netwrix.com","","","false","2025-03-17T14:49:25.000Z","true"
+"02sQk00000MgrxnIAB","500Qk00000LEgrKIAT","2025-03-17T15:39:07.000Z","2025-03-17T15:39:07.000Z","Hello Greg,
+
+Here is a link you can use to schedule a meeting. It may be best to do a call to talk about what's corrupted and broken in the product.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=M_X02xBngkRie_6iXqv31esot43pWFdYcm2_uUD9Y78-Z&MeetingID=1VB9dhuc.PmH8jJ3Iz816ADu3wuLHn6m8fJCR74CKp4-Z
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/17/2025 10:49 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+Yes, it’s still an issue.  I have 55 fileshares that appear to be corrupted. (SA_FSAA_Gates.ShareIDs with SA_FSAA_Resources.ResourceType = 3 (not 0) ).
+Let’s schedule a time to review it again, if you forgot the issue.
+I’m trying to scrub a reminder email, but this takes time.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 8:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+
+ 
+
+Hello Greg,
+
+I wanted to check in regarding your support ticket 00434054. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-17T15:39:06.000Z","true"
+"02sQk00000MhXx6IAF","500Qk00000LEgrKIAT","2025-03-17T19:46:03.000Z","2025-03-17T19:46:03.000Z","Hello Greg,
+
+I'm looking forward to meeting today to discuss this ongoing issue.
+Just to document, this meeting will be to determine what the end goal of this ticket is, along with what corruption you are seeing or how its being used. We need to make sure we get the answers to this as I seem to have misunderstood what the goal of this was from the beginning and I need to make sure we're getting the issue documented clearly so we can better proceed.
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 11:39 AM
+To: greg.dieter@bofa.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+Here is a link you can use to schedule a meeting. It may be best to do a call to talk about what's corrupted and broken in the product.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=M_X02xBngkRie_6iXqv31esot43pWFdYcm2_uUD9Y78-Z&MeetingID=1VB9dhuc.PmH8jJ3Iz816ADu3wuLHn6m8fJCR74CKp4-Z
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/17/2025 10:49 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+Yes, it’s still an issue.  I have 55 fileshares that appear to be corrupted. (SA_FSAA_Gates.ShareIDs with SA_FSAA_Resources.ResourceType = 3 (not 0) ).
+Let’s schedule a time to review it again, if you forgot the issue.
+I’m trying to scrub a reminder email, but this takes time.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 8:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+
+ 
+
+Hello Greg,
+
+I wanted to check in regarding your support ticket 00434054. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com; michael.annechino@netwrix.com","false","2025-03-17T19:46:01.000Z","true"
+"02sQk00000MhrB0IAJ","500Qk00000LEgrKIAT","2025-03-17T20:57:59.000Z","2025-03-17T20:57:59.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+The point of this ticket, was to try to solve the “corruption” and hopefully clean it up.  The GTMO_COE share was the example that led us to the rest.
+
+
+  1.  Is this a “known” StealthAudit bug?  If not, can we prevent this in the future?
+  2.  How old are these issues?
+     *   Is it still occurring or was this a one time “corruption“ of some sort.
+     *   What is the best cleanup solution?
+  3.  Of the 55 issues found, How can we determine if there is a solution? Or just old data we can delete?
+     *   The GTMO_COE fileshare appears to have a “valid” ShareID in Resource ID 23860 (but it seems to be assigned to another Fileshare)…
+
+Do we need to open additional tickets?
+
+Greg Dieter
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 1:46 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+I'm looking forward to meeting today to discuss this ongoing issue.
+Just to document, this meeting will be to determine what the end goal of this ticket is, along with what corruption you are seeing or how its being used. We need to make sure we get the answers to this as I seem to have misunderstood what the goal of this was from the beginning and I need to make sure we're getting the issue documented clearly so we can better proceed.
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!XXdpxg6IT6GHNxTBBknWjoLr0amzvTaopXVALLgvhMTg_GM7e_TDdgxUuErUBhWGBRKFtH19kUrshpbv4D8bydE$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 11:39 AM
+To: greg.dieter@bofa.com<mailto:greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com<mailto:scott.webber@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+Here is a link you can use to schedule a meeting. It may be best to do a call to talk about what's corrupted and broken in the product.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=M_X02xBngkRie_6iXqv31esot43pWFdYcm2_uUD9Y78-Z&MeetingID=1VB9dhuc.PmH8jJ3Iz816ADu3wuLHn6m8fJCR74CKp4-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=M_X02xBngkRie_6iXqv31esot43pWFdYcm2_uUD9Y78-Z&MeetingID=1VB9dhuc.PmH8jJ3Iz816ADu3wuLHn6m8fJCR74CKp4-Z__;!!I2XIyG2ANlwasLbx!XXdpxg6IT6GHNxTBBknWjoLr0amzvTaopXVALLgvhMTg_GM7e_TDdgxUuErUBhWGBRKFtH19kUrshpbviuS0BQw$>
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!XXdpxg6IT6GHNxTBBknWjoLr0amzvTaopXVALLgvhMTg_GM7e_TDdgxUuErUBhWGBRKFtH19kUrshpbv4D8bydE$>
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/17/2025 10:49 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+Yes, it’s still an issue.  I have 55 fileshares that appear to be corrupted. (SA_FSAA_Gates.ShareIDs with SA_FSAA_Resources.ResourceType = 3 (not 0) ).
+Let’s schedule a time to review it again, if you forgot the issue.
+I’m trying to scrub a reminder email, but this takes time.
+
+Greg Dieter
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 17, 2025 8:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com<mailto:greg.dieter@bofa.com>>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+Hello Greg,
+
+I wanted to check in regarding your support ticket 00434054. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!SqpXQNPxJ_TXKueSI9eZA8GYSthQV2CmWEou_DliFKVoXr6wtp87IJ-B7ZwDboyf4x5aKO6xxbf4r0vhFK7Nv0o$>
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+________________________________
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KHduL&from=ext]
+
+----------------------------------------------------------------------
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","greg.dieter@bofa.com","Dieter, Gregory","techsupport@netwrix.com; eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com","scott.webber@netwrix.com","","false","2025-03-17T20:57:43.000Z","true"
+"02sQk00000Mi7xFIAR","500Qk00000LEgrKIAT","2025-03-17T23:04:41.000Z","2025-03-17T23:04:41.000Z","Hello Greg,
+
+Thank you for taking the time to meet today.
+
+Today we:
+Worked to determine what needs to be done in this ticket.
+We created a job to drop the host information for the host that is showing the COE share with the different IDs. After dropping it, on the next FSAA scan we will get a fresh set of data. If the data comes back different we have a cleanup task to do periodically to solve these issues, if the data comes back the same we know the data was correct.
+
+We also determined that regardless of the data, the view that is being used is likley not parsing out data in a way that would prevent subfolders from being shown in the results.
+You will upload these views to the ticket so I can review them to determine what our course of action is to correct this error as well.
+Our next steps are:
+You will:
+Run the host cleanup job and get a new FSAA scan.
+Upload the views custom views to the ticket so I can review.
+I will:
+Review custom views provided to determine how to correct subfolders being presented.
+
+
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/17/2025 4:57 PM
+To: techsupport@netwrix.com; eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+The point of this ticket, was to try to solve the “corruption” and hopefully clean it up.  The GTMO_COE share was the example that led us to the rest.
+
+ 
+
+
+	Is this a “known” StealthAudit bug?  If not, can we prevent this in the future?
+	How old are these issues?
+	
+		Is it still occurring or was this a one time “corruption“ of some sort.
+		What is the best cleanup solution?
+	
+	
+	Of the 55 issues found, How can we determine if there is a solution? Or just old data we can delete?
+	
+		The GTMO_COE fileshare appears to have a “valid” ShareID in Resource ID 23860 (but it seems to be assigned to another Fileshare)…
+	
+	
+
+
+ 
+
+Do we need to open additional tickets?
+
+ 
+
+Greg Dieter
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 1:46 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+I'm looking forward to meeting today to discuss this ongoing issue.
+Just to document, this meeting will be to determine what the end goal of this ticket is, along with what corruption you are seeing or how its being used. We need to make sure we get the answers to this as I seem to have misunderstood what the goal of this was from the beginning and I need to make sure we're getting the issue documented clearly so we can better proceed.
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 11:39 AM
+To: greg.dieter@bofa.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+Here is a link you can use to schedule a meeting. It may be best to do a call to talk about what's corrupted and broken in the product.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=M_X02xBngkRie_6iXqv31esot43pWFdYcm2_uUD9Y78-Z&MeetingID=1VB9dhuc.PmH8jJ3Iz816ADu3wuLHn6m8fJCR74CKp4-Z
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/17/2025 10:49 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+ 
+
+
+Yes, it’s still an issue.  I have 55 fileshares that appear to be corrupted. (SA_FSAA_Gates.ShareIDs with SA_FSAA_Resources.ResourceType = 3 (not 0) ).
+Let’s schedule a time to review it again, if you forgot the issue.
+I’m trying to scrub a reminder email, but this takes time.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 8:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+
+ 
+
+Hello Greg,
+
+I wanted to check in regarding your support ticket 00434054. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+
+
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages:  https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).
+ 
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-17T23:04:40.000Z","true"
+"02sQk00000Mw7CZIAZ","500Qk00000LEgrKIAT","2025-03-24T13:32:29.000Z","2025-03-24T17:13:18.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+I would have sworn that I updated the VIEW logic files last week on 03/20.  Uploading them again.  the file names are:
+SA_FSAMDH_AD_VW_OriginalLogic_20250317.txt
+SA_FSAMDH_ADNTFS_VW_Original_20250317.txt","Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue","greg.dieter@bofa.com","Greg Dieter","techsupport@netwrix.com","","","false","2025-03-24T13:32:29.000Z","true"
+"02sQk00000Mw9RIIAZ","500Qk00000LEgrKIAT","2025-03-24T13:33:35.000Z","2025-03-24T13:51:00.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+I uploaded the VIEW logic files on 03/20/25, I just uploaded them again.
+
+Greg Dieter
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 5:24 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+Hello Greg,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support<https://urldefense.com/v3/__http:/www.netwrix.com/support__;!!I2XIyG2ANlwasLbx!VbflSL6zsm_EOTfx2vJH0gkFZAntrZdnlXTVesMDKWbX1waduBeH4iKPXl1b2yaPet9N7MyIMgK9_vVAjjftdmY$>.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!VbflSL6zsm_EOTfx2vJH0gkFZAntrZdnlXTVesMDKWbX1waduBeH4iKPXl1b2yaPet9N7MyIMgK9_vVAEiRjX-0$>
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+----------------------------------------------------------------------
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue","greg.dieter@bofa.com","Dieter, Gregory","techsupport@netwrix.com","","","false","2025-03-24T13:33:21.000Z","true"
+"02sQk00000Mz198IAB","500Qk00000LEgrKIAT","2025-03-25T13:44:30.000Z","2025-03-25T13:44:30.000Z","Hello Greg,
+
+I am reviewing this creation in my lab to see if there are easy fixes to this or what we need to do so this doesn't provide you bad information.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/24/2025 9:33 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+I uploaded the VIEW logic files on 03/20/25, I just uploaded them again.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 5:24 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+
+ 
+
+Hello Greg,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at  www.netwrix.com/support.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-25T13:44:28.000Z","true"
+"02sQk00000MyxdOIAR","500Qk00000LEgrKIAT","2025-03-25T13:45:07.000Z","2025-03-25T13:45:07.000Z","Hello Greg,
+
+I forgot to ask, after we cleared the FSAA data, on your next scan did it clean up the ID numbers or did they come back the same?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 9:44 AM
+To: greg.dieter@bofa.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+I am reviewing this creation in my lab to see if there are easy fixes to this or what we need to do so this doesn't provide you bad information.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/24/2025 9:33 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+I uploaded the VIEW logic files on 03/20/25, I just uploaded them again.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 5:24 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+
+ 
+
+Hello Greg,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at  www.netwrix.com/support.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-25T13:45:05.000Z","true"
+"02sQk00000N2sYcIAJ","500Qk00000LEgrKIAT","2025-03-26T18:43:15.000Z","2025-03-26T18:43:15.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+Customer has requested update for the ticket 00434054","Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - Customer is requesting update","greg.dieter@bofa.com","Greg Dieter","techsupport@netwrix.com","","","false","2025-03-26T18:43:15.000Z","true"
+"02sQk00000N2wQrIAJ","500Qk00000LEgrKIAT","2025-03-26T18:46:27.000Z","2025-03-26T18:46:27.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+Hey Ian, sorry I tried to email you directly.  I realized I should update the ticket itself.
+I never got the ""CLEAR DATA"" performed on this server.
+Can you remind me of the instructions on how to do this? 
+
+Was the process a simple FSAAScan job for the host, Configure the “File System Scan”, click the MAINTENANCE button, select the RESET HOSTS, choose the server to clear. And run it?","Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue","greg.dieter@bofa.com","Greg Dieter","techsupport@netwrix.com","","","false","2025-03-26T18:46:26.000Z","true"
+"02sQk00000N2mqCIAR","500Qk00000LEgrKIAT","2025-03-26T18:47:09.000Z","2025-03-26T19:57:23.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+our next scan runs on Friday, I'd like to get this done today or tomorrow.","Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue","greg.dieter@bofa.com","Greg Dieter","techsupport@netwrix.com","","","false","2025-03-26T18:47:08.000Z","true"
+"02sQk00000N39vyIAB","500Qk00000LEgrKIAT","2025-03-26T20:06:20.000Z","2025-03-26T20:06:20.000Z","Hello Greg,
+
+I'm reviewing the creation and what tables its trying to reference to build data. This probably needs to be cleaned up to make sure it doesn't return bad info, but as far as the database information goes we do need to see what the data looks like after the next FSAA run to determine if the original data was correct or not because right now there doesn't seem to be any impact on the NEA system.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Greg Dieter [greg.dieter@bofa.com]
+Sent: 3/26/2025 2:47 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+our next scan runs on Friday, I'd like to get this done today or tomorrow.","RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-26T20:06:18.000Z","true"
+"02sQk00000N3BEhIAN","500Qk00000LEgrKIAT","2025-03-26T20:42:56.000Z","2025-03-26T21:00:10.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+Ian, I have not deleted the server data. I want to verify what is the correct process to do this?
+
+Greg
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 2:06 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+I'm reviewing the creation and what tables its trying to reference to build data. This probably needs to be cleaned up to make sure it doesn't return bad info, but as far as the database information goes we do need to see what the data looks like after the next FSAA run to determine if the original data was correct or not because right now there doesn't seem to be any impact on the NEA system.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!StNOjHELiTqR4MMb77NkWGqIyYf-dV9nVwAblT7B7ba_rXgTtHOCD_juCUVCWSR6tOAWBlm7BfBrdmMMKGME3Y8$>
+
+
+--------------- Original Message ---------------
+From: Greg Dieter [greg.dieter@bofa.com<mailto:greg.dieter@bofa.com>]
+Sent: 3/26/2025 2:47 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+our next scan runs on Friday, I'd like to get this done today or tomorrow.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KaxkR&from=ext]
+
+----------------------------------------------------------------------
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","greg.dieter@bofa.com","Dieter, Gregory","techsupport@netwrix.com","scott.webber@netwrix.com","","false","2025-03-26T20:42:44.000Z","true"
+"02sQk00000N3K51IAF","500Qk00000LEgrKIAT","2025-03-26T21:06:16.000Z","2025-03-26T21:06:16.000Z","Hello Greg,
+
+Its the same process we ran through on our last call to drop host data from the FSAA tables.
+ 
+
+	Create a new job --call it something like ""DropFSHost""
+	Under the job > Configure > Hosts, enter the name of the host to be dropped in the individual hosts section
+	Create a query (name and description don't really matter)
+	On the Data Source tab, use the data collector dropdown to select FILESYSTEMACCESS
+	Configure the query by selecting the Remove Host Data
+	Create an analysis for the job (name and description don't really matter) --use the SQLscripting analysis module and make it look like below
+	 Right-click the job and navigate to Properties > Performance and uncheck the ""Skip if fail to respond to Ping"" box
+	Schedule the job and run it from the schedules node
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/26/2025 4:42 PM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+Ian, I have not deleted the server data. I want to verify what is the correct process to do this?
+
+ 
+
+Greg
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 2:06 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+I'm reviewing the creation and what tables its trying to reference to build data. This probably needs to be cleaned up to make sure it doesn't return bad info, but as far as the database information goes we do need to see what the data looks like after the next FSAA run to determine if the original data was correct or not because right now there doesn't seem to be any impact on the NEA system.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Greg Dieter [greg.dieter@bofa.com]
+Sent: 3/26/2025 2:47 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+our next scan runs on Friday, I'd like to get this done today or tomorrow.
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-26T21:06:15.000Z","true"
+"02sQk00000N3N1GIAV","500Qk00000LEgrKIAT","2025-03-26T21:30:22.000Z","2025-03-26T22:18:41.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+Thanks Ian, I forgot about this part of our conversation.
+I recall creating the DROPHOST job.
+
+In your instructions step 6, you mention.
+“Create an analysis for the job (name and description don't really matter) --use the SQLscripting analysis module and make it look like below“
+
+Question #1.
+I don’t understand what “make it look like below”.
+Can you clarify this?
+We didn’t create an Analysis job.
+
+Question #2.
+Can you help me verify how to query the database to verify the  “drop host” job worked?
+Will these tables be a good test? SA_FSAA_Gates, SA_FSAA_Resources, SA_FSAA_Hosts
+I just want to query before I run the DropFSHost job.
+Then afterwards to verify it’s gone.
+Then I can check the “new data” next week.
+Greg Dieter
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 3:06 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+Its the same process we ran through on our last call to drop host data from the FSAA tables.
+
+
+  1.  Create a new job --call it something like ""DropFSHost""
+  2.  Under the job > Configure > Hosts, enter the name of the host to be dropped in the individual hosts section
+  3.  Create a query (name and description don't really matter)
+  4.  On the Data Source tab, use the data collector dropdown to select FILESYSTEMACCESS
+  5.  Configure the query by selecting the Remove Host Data
+  6.  Create an analysis for the job (name and description don't really matter) --use the SQLscripting analysis module and make it look like below
+  7.   Right-click the job and navigate to Properties > Performance and uncheck the ""Skip if fail to respond to Ping"" box
+  8.  Schedule the job and run it from the schedules node
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!R1DeQlVmpCaoLlRLW6383P0Mj0q-DInYyiBPMOfVc9FNoZxSvxR79nn4ofSJZGYQXgFoDXLItC_hl3h7EAXdKwU$>
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/26/2025 4:42 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: scott.webber@netwrix.com<mailto:scott.webber@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+Ian, I have not deleted the server data. I want to verify what is the correct process to do this?
+
+Greg
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 26, 2025 2:06 PM
+To: Dieter, Gregory <greg.dieter@bofa.com<mailto:greg.dieter@bofa.com>>
+Cc: scott.webber@netwrix.com<mailto:scott.webber@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+I'm reviewing the creation and what tables its trying to reference to build data. This probably needs to be cleaned up to make sure it doesn't return bad info, but as far as the database information goes we do need to see what the data looks like after the next FSAA run to determine if the original data was correct or not because right now there doesn't seem to be any impact on the NEA system.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!StNOjHELiTqR4MMb77NkWGqIyYf-dV9nVwAblT7B7ba_rXgTtHOCD_juCUVCWSR6tOAWBlm7BfBrdmMMKGME3Y8$>
+
+
+--------------- Original Message ---------------
+From: Greg Dieter [greg.dieter@bofa.com<mailto:greg.dieter@bofa.com>]
+Sent: 3/26/2025 2:47 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+our next scan runs on Friday, I'd like to get this done today or tomorrow.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KaxkR&from=int]
+________________________________
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).
+
+----------------------------------------------------------------------
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","greg.dieter@bofa.com","Dieter, Gregory","techsupport@netwrix.com","scott.webber@netwrix.com","","false","2025-03-26T21:30:08.000Z","true"
+"02sQk00000N3WCcIAN","500Qk00000LEgrKIAT","2025-03-26T22:37:26.000Z","2025-03-26T22:37:26.000Z","Hello Greg,
+
+I'm sorry, I don't know why that didn't copy everything over correctly there.
+
+For your first point, you don't really need an analysis task, you just need to run ""SELECT * from SA_FSAA_HOSTS"" and note the host name provided in the HOST column.
+You need to make sure that the host you are trying to drop is added in the exact same spelling to the host list to drop data.
+
+For the second, you should be able to query any of the FSAA tables using the host ID of the deleted host. You will see that no information populates any longer for that host ID.
+For example, if you wanted to check the gates table your query would look similar to ""SELECT * from SA_FSAA_Gates where ID = <IDNum>""
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/26/2025 5:30 PM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+Thanks Ian, I forgot about this part of our conversation.
+I recall creating the DROPHOST job.
+
+ 
+
+In your instructions step 6, you mention.
+
+“Create an analysis for the job (name and description don't really matter) --use the SQLscripting analysis module and make it look like below“
+
+ 
+
+Question #1.
+
+I don’t understand what “make it look like below”.
+
+Can you clarify this? 
+
+We didn’t create an Analysis job.
+
+ 
+
+Question #2.
+
+Can you help me verify how to query the database to verify the  “drop host” job worked?
+
+Will these tables be a good test? SA_FSAA_Gates, SA_FSAA_Resources, SA_FSAA_Hosts
+
+I just want to query before I run the DropFSHost job.
+
+Then afterwards to verify it’s gone.
+
+Then I can check the “new data” next week.
+
+Greg Dieter
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 3:06 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+Its the same process we ran through on our last call to drop host data from the FSAA tables.
+ 
+
+
+	Create a new job --call it something like ""DropFSHost""
+	Under the job > Configure > Hosts, enter the name of the host to be dropped in the individual hosts section
+	Create a query (name and description don't really matter)
+	On the Data Source tab, use the data collector dropdown to select FILESYSTEMACCESS
+	Configure the query by selecting the Remove Host Data
+	Create an analysis for the job (name and description don't really matter) --use the SQLscripting analysis module and make it look like below
+	 Right-click the job and navigate to Properties > Performance and uncheck the ""Skip if fail to respond to Ping"" box
+	Schedule the job and run it from the schedules node
+
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/26/2025 4:42 PM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+ 
+
+
+Ian, I have not deleted the server data. I want to verify what is the correct process to do this?
+
+ 
+
+Greg
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 2:06 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+I'm reviewing the creation and what tables its trying to reference to build data. This probably needs to be cleaned up to make sure it doesn't return bad info, but as far as the database information goes we do need to see what the data looks like after the next FSAA run to determine if the original data was correct or not because right now there doesn't seem to be any impact on the NEA system.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Greg Dieter [greg.dieter@bofa.com]
+Sent: 3/26/2025 2:47 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+our next scan runs on Friday, I'd like to get this done today or tomorrow.
+
+
+
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages:  https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-26T22:37:25.000Z","true"
+"02sQk00000NCMlzIAH","500Qk00000LEgrKIAT","2025-03-31T14:22:54.000Z","2025-03-31T14:22:54.000Z","Hello Greg,
+
+I am following up to see if the data has changed at all after cleaning up and re-running your FSAA scans.
+If you've had a chance to look to see if any of the IDs or anything have changed please let me know so I can figure out how we need to proceed with this.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/26/2025 6:37 PM
+To: greg.dieter@bofa.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+I'm sorry, I don't know why that didn't copy everything over correctly there.
+
+For your first point, you don't really need an analysis task, you just need to run ""SELECT * from SA_FSAA_HOSTS"" and note the host name provided in the HOST column.
+You need to make sure that the host you are trying to drop is added in the exact same spelling to the host list to drop data.
+
+For the second, you should be able to query any of the FSAA tables using the host ID of the deleted host. You will see that no information populates any longer for that host ID.
+For example, if you wanted to check the gates table your query would look similar to ""SELECT * from SA_FSAA_Gates where ID = <IDNum>""
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/26/2025 5:30 PM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+Thanks Ian, I forgot about this part of our conversation.
+I recall creating the DROPHOST job.
+
+ 
+
+In your instructions step 6, you mention.
+
+“Create an analysis for the job (name and description don't really matter) --use the SQLscripting analysis module and make it look like below“
+
+ 
+
+Question #1.
+
+I don’t understand what “make it look like below”.
+
+Can you clarify this? 
+
+We didn’t create an Analysis job.
+
+ 
+
+Question #2.
+
+Can you help me verify how to query the database to verify the  “drop host” job worked?
+
+Will these tables be a good test? SA_FSAA_Gates, SA_FSAA_Resources, SA_FSAA_Hosts
+
+I just want to query before I run the DropFSHost job.
+
+Then afterwards to verify it’s gone.
+
+Then I can check the “new data” next week.
+
+Greg Dieter
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 3:06 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+Its the same process we ran through on our last call to drop host data from the FSAA tables.
+ 
+
+
+	Create a new job --call it something like ""DropFSHost""
+	Under the job > Configure > Hosts, enter the name of the host to be dropped in the individual hosts section
+	Create a query (name and description don't really matter)
+	On the Data Source tab, use the data collector dropdown to select FILESYSTEMACCESS
+	Configure the query by selecting the Remove Host Data
+	Create an analysis for the job (name and description don't really matter) --use the SQLscripting analysis module and make it look like below
+	 Right-click the job and navigate to Properties > Performance and uncheck the ""Skip if fail to respond to Ping"" box
+	Schedule the job and run it from the schedules node
+
+
+
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/26/2025 4:42 PM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+ 
+
+
+Ian, I have not deleted the server data. I want to verify what is the correct process to do this?
+
+ 
+
+Greg
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 2:06 PM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+I'm reviewing the creation and what tables its trying to reference to build data. This probably needs to be cleaned up to make sure it doesn't return bad info, but as far as the database information goes we do need to see what the data looks like after the next FSAA run to determine if the original data was correct or not because right now there doesn't seem to be any impact on the NEA system.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Greg Dieter [greg.dieter@bofa.com]
+Sent: 3/26/2025 2:47 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+our next scan runs on Friday, I'd like to get this done today or tomorrow.
+
+
+
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages:  https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-31T14:22:53.000Z","true"
+"02sQk00000NCRliIAH","500Qk00000LEgrKIAT","2025-03-31T14:38:54.000Z","2025-03-31T15:32:30.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+Ian, it looks like the issue may be resolved.
+The GTMO_COE fileshare looks right now.
+I’ve never found a real issue with our fileshares before.
+Is it mostly likely that this “corruption” was due to the July 2024 upgrade from v11.0 to v11.5?
+
+We went from 55 “ShareIDs that are NOT ResourcedType = 0”, to 40.
+The server I DROPPED had 15 issues, like GTMO_COE.
+The remaining 40 issues are on 21 additional servers.
+
+I have been tracking the issues since we discovered the ResourceType problem.
+I have NOT seen any new issues.
+I’ll get these cleaned up and create a weekly task to ensure if any new issues arise, they get resolved quickly.
+
+Greg Dieter
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 7:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+Hello Greg,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!TmEi42M8dztsKzPcqejarfqRuVnb2-f9Q6Ue4TCpLFQa9vn6hLhj7ZZKFDnpJZgA1SRd2RhIn_cwAG_xtLYiIp8$>
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+----------------------------------------------------------------------
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue","greg.dieter@bofa.com","Dieter, Gregory","techsupport@netwrix.com","eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com","","false","2025-03-31T14:38:39.000Z","true"
+"02sQk00000NCiuWIAT","500Qk00000LEgrKIAT","2025-03-31T15:34:17.000Z","2025-03-31T15:34:17.000Z","Hello Greg,
+
+I'd like to keep this ticket open to make sure everything works for you.
+Can you tell me when you'd expect the next run for the other servers to happen so we can ensure it cleans up everything for you? I just don't want this to fall through the cracks on my side so I'd like to have a reminder ready to go.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/31/2025 10:38 AM
+To: techsupport@netwrix.com
+Cc: eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+Ian, it looks like the issue may be resolved.
+The GTMO_COE fileshare looks right now.
+
+I’ve never found a real issue with our fileshares before.
+
+Is it mostly likely that this “corruption” was due to the July 2024 upgrade from v11.0 to v11.5?
+
+ 
+
+We went from 55 “ShareIDs that are NOT ResourcedType = 0”, to 40.
+
+The server I DROPPED had 15 issues, like GTMO_COE.
+The remaining 40 issues are on 21 additional servers.
+
+ 
+
+I have been tracking the issues since we discovered the ResourceType problem.
+I have NOT seen any new issues.
+
+I’ll get these cleaned up and create a weekly task to ensure if any new issues arise, they get resolved quickly.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 7:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+
+ 
+
+Hello Greg,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-31T15:34:15.000Z","true"
+"02sQk00000NCvF1IAL","500Qk00000LEgrKIAT","2025-03-31T16:29:06.000Z","2025-03-31T16:29:06.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+I am trying to coordinate the cleanup of the remaining 21 servers, I would guess in the next two weeks.
+
+Greg Dieter
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 9:34 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+I'd like to keep this ticket open to make sure everything works for you.
+Can you tell me when you'd expect the next run for the other servers to happen so we can ensure it cleans up everything for you? I just don't want this to fall through the cracks on my side so I'd like to have a reminder ready to go.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!RkS54Yk0PnQ1JoxWkf4r7wKipSrxsmrOeGIJfffRI1AvtErfewyz1FynrUyCP93-_BDu6G3LBBLb8utBrCh5VD4$>
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/31/2025 10:38 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.cabrera@bofa.com<mailto:eric.cabrera@bofa.com>; r.steve.jackson@bofa.com<mailto:r.steve.jackson@bofa.com>; gregory.meyer2@bofa.com<mailto:gregory.meyer2@bofa.com>
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+Ian, it looks like the issue may be resolved.
+The GTMO_COE fileshare looks right now.
+I’ve never found a real issue with our fileshares before.
+Is it mostly likely that this “corruption” was due to the July 2024 upgrade from v11.0 to v11.5?
+
+We went from 55 “ShareIDs that are NOT ResourcedType = 0”, to 40.
+The server I DROPPED had 15 issues, like GTMO_COE.
+The remaining 40 issues are on 21 additional servers.
+
+I have been tracking the issues since we discovered the ResourceType problem.
+I have NOT seen any new issues.
+I’ll get these cleaned up and create a weekly task to ensure if any new issues arise, they get resolved quickly.
+
+Greg Dieter
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 31, 2025 7:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com<mailto:greg.dieter@bofa.com>>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+Hello Greg,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!TmEi42M8dztsKzPcqejarfqRuVnb2-f9Q6Ue4TCpLFQa9vn6hLhj7ZZKFDnpJZgA1SRd2RhIn_cwAG_xtLYiIp8$>
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+________________________________
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Kj6vc&from=ext]
+
+----------------------------------------------------------------------
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","greg.dieter@bofa.com","Dieter, Gregory","techsupport@netwrix.com","scott.webber@netwrix.com; eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com","","false","2025-03-31T16:28:45.000Z","true"
+"02sQk00000NCqtpIAD","500Qk00000LEgrKIAT","2025-03-31T16:58:12.000Z","2025-03-31T16:58:12.000Z","Hello Greg,
+
+I'll set a follow up for the 14th to check in and make sure everything worked for you.
+If you have any questions or run into anything before then please let me know and I'd be happy to help.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/31/2025 12:28 PM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com; eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+I am trying to coordinate the cleanup of the remaining 21 servers, I would guess in the next two weeks.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 9:34 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+I'd like to keep this ticket open to make sure everything works for you.
+Can you tell me when you'd expect the next run for the other servers to happen so we can ensure it cleans up everything for you? I just don't want this to fall through the cracks on my side so I'd like to have a reminder ready to go.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/31/2025 10:38 AM
+To: techsupport@netwrix.com
+Cc: eric.cabrera@bofa.com;  r.steve.jackson@bofa.com; gregory.meyer2@bofa.com
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+ 
+
+
+Ian, it looks like the issue may be resolved.
+The GTMO_COE fileshare looks right now.
+
+I’ve never found a real issue with our fileshares before.
+
+Is it mostly likely that this “corruption” was due to the July 2024 upgrade from v11.0 to v11.5?
+
+ 
+
+We went from 55 “ShareIDs that are NOT ResourcedType = 0”, to 40.
+
+The server I DROPPED had 15 issues, like GTMO_COE.
+The remaining 40 issues are on 21 additional servers.
+
+ 
+
+I have been tracking the issues since we discovered the ResourceType problem.
+I have NOT seen any new issues.
+
+I’ll get these cleaned up and create a weekly task to ensure if any new issues arise, they get resolved quickly.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 7:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+
+ 
+
+Hello Greg,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+
+
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages:  https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-03-31T16:58:10.000Z","true"
+"02sQk00000Nk4JVIAZ","500Qk00000LEgrKIAT","2025-04-14T22:04:19.000Z","2025-04-14T22:04:19.000Z","Hello Greg,
+
+I am following up to see if everything ran correctly for you after the cleanup of the remaining servers.
+Can you let me know what the status is after the cleanup and run of the FSAA scans again?
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:58 PM
+To: greg.dieter@bofa.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+Hello Greg,
+
+I'll set a follow up for the 14th to check in and make sure everything worked for you.
+If you have any questions or run into anything before then please let me know and I'd be happy to help.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/31/2025 12:28 PM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com; eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+I am trying to coordinate the cleanup of the remaining 21 servers, I would guess in the next two weeks.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 9:34 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #434054 - - 00434054 - Fileshare ""corruption"" issue [ ref:!00D70091pB.!500Qk0LEgrK:ref ]
+
+
+
+ 
+
+Hello Greg,
+
+I'd like to keep this ticket open to make sure everything works for you.
+Can you tell me when you'd expect the next run for the other servers to happen so we can ensure it cleans up everything for you? I just don't want this to fall through the cracks on my side so I'd like to have a reminder ready to go.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 3/31/2025 10:38 AM
+To: techsupport@netwrix.com
+Cc: eric.cabrera@bofa.com;  r.steve.jackson@bofa.com; gregory.meyer2@bofa.com
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+ 
+
+
+Ian, it looks like the issue may be resolved.
+The GTMO_COE fileshare looks right now.
+
+I’ve never found a real issue with our fileshares before.
+
+Is it mostly likely that this “corruption” was due to the July 2024 upgrade from v11.0 to v11.5?
+
+ 
+
+We went from 55 “ShareIDs that are NOT ResourcedType = 0”, to 40.
+
+The server I DROPPED had 15 issues, like GTMO_COE.
+The remaining 40 issues are on 21 additional servers.
+
+ 
+
+I have been tracking the issues since we discovered the ResourceType problem.
+I have NOT seen any new issues.
+
+I’ll get these cleaned up and create a weekly task to ensure if any new issues arise, they get resolved quickly.
+
+ 
+
+Greg Dieter
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 7:38 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+
+ 
+
+Hello Greg,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+
+
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages:  https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-04-14T22:04:18.000Z","true"
+"02sQk00000NtDKRIA3","500Qk00000LEgrKIAT","2025-04-18T14:42:49.000Z","2025-04-18T14:43:37.000Z","ref:_00D7091pB._500Q000LEgrK:ref
+
+Yes, I think this issue is resolved.
+No new “corruption” issues have occurred since we cleaned the remaining problems several weeks ago.
+Close this ticket,
+
+Greg Dieter
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 18, 2025 8:24 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+Hello Greg,
+
+I wanted to check in regarding your support ticket 00434054. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https:/www.netwrix.com__;!!I2XIyG2ANlwasLbx!WL1xf8qAM8YEEo4odXABnVyDinKq5rs1gA29Eh1QaAobNuBNxI5Xl_s7lVIWVhTdae447_ll66ouVqZFFc5gB6U$>
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+----------------------------------------------------------------------
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue","greg.dieter@bofa.com","Dieter, Gregory","techsupport@netwrix.com; eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com","","","false","2025-04-18T14:42:37.000Z","true"
+"02sQk00000NtM7YIAV","500Qk00000LEgrKIAT","2025-04-18T14:44:58.000Z","2025-04-18T14:44:58.000Z","Hello Greg,
+
+Thank you for your time and patience on this issue and I am glad that we were able to get your issue resolved for you. 
+The following is a summary of the ticket for your records.
+
+Issue:
+Share IDs are returning with unexpected values in the Gates table.
+
+Cause:
+Deleted and modified shares used previous IDs and were not cleaned from the database leading to new IDs having to be used.
+
+Resolution:
+Dropped data for affected hosts from the database and re scanned.
+
+At this time I will be closing your ticket out for you. This case can be re-opened at any time if any related issues return. 
+Please feel free to reach out to the Netwrix team if you have any additional questions or would like assistance with any issues. Following this email, you will receive an automated confirmation that the case has been closed.
+You will also receive a survey link, it would help us greatly to improve our support service if you could provide any feedback that you may have regarding your experience with this case.
+
+Thank you,
+Ian Ranstrom
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Dieter, Gregory [greg.dieter@bofa.com]
+Sent: 4/18/2025 10:42 AM
+To: techsupport@netwrix.com; eric.cabrera@bofa.com; r.steve.jackson@bofa.com; gregory.meyer2@bofa.com
+Subject: RE: Netwrix Support Ticket #434054 - ref:_00D7091pB._500Q000LEgrK:ref - 00434054 - Fileshare ""corruption"" issue
+
+ref:_00D7091pB._500Q000LEgrK:ref
+
+
+
+Yes, I think this issue is resolved.
+No new “corruption” issues have occurred since we cleaned the remaining problems several weeks ago.
+
+Close this ticket,
+
+ 
+
+Greg Dieter
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 18, 2025 8:24 AM
+To: Dieter, Gregory <greg.dieter@bofa.com>
+Subject: RE: 00434054 - Fileshare ""corruption"" issue
+
+
+ 
+
+Hello Greg,
+
+I wanted to check in regarding your support ticket 00434054. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00434054
+Ticket Subject: Fileshare ""corruption"" issue
+Ticket Details: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths. Need help investigating why StealthAudit is reporting fileshares incorrectly.
+
+Thank you!
+
+Ian Ranstrom
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LEgrK:ref
+
+
+This message, and any attachment(s), is for the intended recipient(s) only, may contain information that is privileged, confidential and/or proprietary and subject to important terms and conditions available at http://www.bankofamerica.com/electronic-disclaimer. If you are not the intended recipient, please delete this message. For more information about how Bank of America protects your privacy, including specific rights that may apply, please visit the following pages: https://business.bofa.com/en-us/content/global-privacy-notices.html (which includes global privacy notices) and https://www.bankofamerica.com/security-center/privacy-overview/ (which includes US State specific privacy notices such as the http://www.bankofamerica.com/ccpa-notice).","RE: Netwrix Support Ticket #434054 -  - 00434054 - Fileshare ""corruption"" issue    [ ref:!00D70091pB.!500Qk0LEgrK:ref ]","techsupport@netwrix.com","Netwrix Support","greg.dieter@bofa.com","scott.webber@netwrix.com","ian.ranstrom@netwrix.com","false","2025-04-18T14:44:56.000Z","true"

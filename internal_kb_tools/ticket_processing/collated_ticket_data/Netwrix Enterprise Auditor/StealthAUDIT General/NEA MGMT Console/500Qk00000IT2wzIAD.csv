@@ -1,0 +1,74 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IT2wzIAD","00427419","Support Ticket","Security flag","Our security team has multiple concerns about the product:
+
+The remote service uses an SSL certificate chain that has been signed using a cryptographically weak hashing algorithm (e.g. MD2, MD4, MD5, or SHA1). These signature algorithms are known to be vulnerable to collision attacks. An attacker can exploit this to generate another certificate with the same digital signature, allowing an attacker to masquerade as the affected service.
+
+Note that this plugin reports all SSL certificate chains signed with SHA-1 that expire after January 1, 2017 as vulnerable. This is in accordance with Google's gradual sunsetting of the SHA-1 cryptographic hash algorithm.
+
+Note that certificates in the chain that are contained in the Nessus CA database (<a href='https://known_CA.inc' target='_blank'>known_CA.inc</a>) have been ignored.","","Today we:
+
+Reviewed the vulnerability reported by Tenable.io. We identified the vulnerability as CVE-2024-21409 which is a .NET Privilege Elevation vulnerability. The list of affected software is below:
+ 
+Any .NET 6.0 application running on .NET 6.0.28 or earlier.
+Any .NET 7.0 application running on .NET 7.0.17 or earlier.
+Any .NET 8.0 application running on .NET 8.0.3 or earlier.
+The list of patched versions by .NET  are below:
+6.0.29
+7.0.18
+8.0.4
+
+We discovered that this vulnerability is addressed in a CU by Microsoft. 
+
+We also discussed the SSL ciphers vulnerability that's being reported due to the digest size of the secure hash algorithm being used in the 11.5 application. The digest size that was suggested was SHA-384.
+-------------------------------------------------------
+Today we:
+
+Discussed the a possible plan of action to update all current SSL certificate digital signatures with the SHA-384 digest size for increased encryption. This includes taking a snapshot of the servers we intend to update to provide a revert point for the affected servers.","Our next steps are:
+You will:
+
+Apply required CUs to the servers being pinged by tenable.io for this CVE. 
+
+CVE-2024-21409
+
+I will:
+
+I will test in my lab with the latest version of NEA 11.6 with the increased digest size for verification of any abnormalities with the product after implementing it.
+----------------------------------------------------------
+
+Our next steps are:
+
+You will:
+
+Prepare for the update by taking a snapshot of all servers and configuring a GPO to issue the updated digest size for the digital signature.
+
+I will:
+
+Provide more information to my team for further investigation into possible outcomes when applying this change to an 11.5 web application or proxy scanners.","Symptom
+
+Our security team has multiple concerns about the product:
+
+The remote service uses an SSL certificate chain that has been signed using a cryptographically weak hashing algorithm (e.g. MD2, MD4, MD5, or SHA1). These signature algorithms are known to be vulnerable to collision attacks. An attacker can exploit this to generate another certificate with the same digital signature, allowing an attacker to masquerade as the affected service.
+
+Note that this plugin reports all SSL certificate chains signed with SHA-1 that expire after January 1, 2017 as vulnerable. This is in accordance with Google's gradual sunsetting of the SHA-1 cryptographic hash algorithm.
+
+Note that certificates in the chain that are contained in the Nessus CA database (<a href='https://known_CA.inc' target='_blank'>known_CA.inc</a>) have been ignored.
+
+Cause
+
+ We identified the vulnerability as CVE-2024-21409 which is a .NET Privilege Elevation vulnerability. The list of affected software is below:
+
+Any .NET 6.0 application running on .NET 6.0.28 or earlier.
+Any .NET 7.0 application running on .NET 7.0.17 or earlier.
+Any .NET 8.0 application running on .NET 8.0.3 or earlier.
+The list of patched versions by .NET are below:
+6.0.29
+7.0.18
+8.0.4
+
+We discovered that this vulnerability is addressed in a CU by Microsoft.
+
+We also discussed the SSL ciphers vulnerability that's being reported due to the digest size of the secure hash algorithm being used in the 11.5 application. The digest size that was suggested was SHA-384.
+
+Resolution
+
+Replaced the SHA-256 digest size with SHA-384 using a GPO which did not reproduce the vulnerability being notified by Tenible.io.","Advanced Configuration Change","Scottie Taylor","","Netwrix Enterprise Auditor","StealthAUDIT General","NEA MGMT Console","11.5","","49.0","Closed - Resolved","ConocoPhillips Company","Frank McNickle","2024-11-18T16:58:48.000Z","2025-01-06T16:16:41.000Z"

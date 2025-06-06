@@ -1,0 +1,104 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LoAXxIAN","00435648","Support Ticket","FSAA Scanning for RCH site, reports  partial data","We scanned our RCH facility last Friday.  The host list to scan 30375 servers. The RESULTS, ACCESS table only reports 12453 were scanned.  Need help need to fix this,","","Improve Local File System Permission Scan Performance − Concurrent Scan Operations
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u00000111LlCAI.html
+
++++++
+NEA > FileSystem > 0.Collection > 1-FS Scans US_CAM > 1-FSAA System Scans_RCH
++++++
+TableName = Access
++++++
+
+ERROR - Access: Failed to commit row data
+ERROR - Access: Connection failure
+WARNING: Could not commit job data: Connection failure
+
+Did they not capture the data?
+Or did they just not log it?
+
+00:40 Connection Failure 
+
++++++
+FileShare scanning - 2+ days to complete
++++++
+
++++++
+2025_0214: Meeting
++++++
+TableName = Access
++++++
+
++++++
+2025_0214: BOA Thread count increased from 9 to 20 threads
+only collecting Permissions
++++++
+1-FSAA System Scans_RCH > right-click  and select Properties > Job Properties > Performance TAB > Concurrent Worker Threads - 20 threads
+File System Access Auditor Data Collector Wizard > Applet Settings > 
++++++
+Change thread count per thread in a XML configuration file = 
+1-FSAA System Scans_RCH > Queries > 
+Killing the PID
++++++
+
++++++
+Jobs > FileSystem > 0.Collection > 1-FSAA System Scans > SEE '30 changes' (upper right-hand corner)
++++++
+
++++++
+Jobs > FileSystem > 0.Collection > 1-FSAA System Scans > Configure > Queries > Query Properties > View XML
+View XML
++++++
+<MAXTHREADS> - threads within the applet or per applet
+<MAXFOLDERTHREADS> - threads within the applet or per applet
++++++
+Jobs > FileSystem > 0.Collection > 1-FSAA System Scans > Configure > Queries > Query Properties
++++++
+Jobs > FileSystem > 0.Collection > 1-FSAA System Scans > right-click and ""Explore Folder""
+FOLDER = JOB_1-FSAA System Scans
+'SEE THE' > 'Job.change' file
++++++
+
++++++
+2025_0214_MTG:
+Nick, Greg Dieter, Steve Jackson
++++++
+ERRORs and WARNINGs below due to following possibilities according to Nick
++++++
+1) Network traffic
+2) Backups? (VEEAM is bane of Nick's existence)
++++++
+
++++++
+ERROR - Access: Failed to commit row data
+ERROR - Access: Connection failure
+WARNING: Could not commit job data: Connection failure
++++++
+
+[SA_FSAA_ResourcesView] = DB table
++++++
+select Host, JobRunTimeKey, *
+FROM [StealthAudit].[dbo].[SA_1-FSAA_System_Scans_RCH_Access];
++++++
+
+Did they not capture the data?
+Or did they just not log it?
+
+00:40 Connection Failure 
+
++++++
+FileShare scanning - 2+ days to complete
++++++
+
++++++
+BOA
++++++
+.Active Directory Inventory - 1-AD_Scan-CORP_Combined
++++++
+48 total proxies
++++++
+69000 - scanning that many total servers
++++++","Escalate to Tier 2?","This is not definitely the solution, but BOA did do some tweaking before their run today and we conducted additional analysis today as well:
+
+""Improve Local File System Permission Scan Performance − Concurrent Scan Operations""
+https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk0000001lmTIAQ/view
+
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u00000111LlCAI.html","Guidance","Mike Candon","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.5","","13.8","Closed - Resolved","Bank of America Corporation","Gregory Meyer","2025-02-12T17:44:44.000Z","2025-02-26T13:38:36.000Z"

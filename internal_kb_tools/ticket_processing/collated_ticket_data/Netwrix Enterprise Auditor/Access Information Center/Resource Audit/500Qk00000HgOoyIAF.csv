@@ -1,0 +1,76 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HgOoyIAF","00425583","Support Ticket","Unable to find domain for member errors for expiring access to shares","Our <a href='https://aic.log' target='_blank'>aic.log</a> is overwhelm with errors related to expiring access to particular shares, but the user has already separated from the company (so their AD account no longer exists to remove from the share).
+
+Snippet example of the events
+2024-10-30 10:14:54 -- Info   -- Expiring request #98380
+2024-10-30 10:14:54 -- Info   --   Resource Type: FileSystemShare
+2024-10-30 10:14:54 -- Info   --   Resource Name: \<a href='https://use.wlgore.com' target='_blank'>use.wlgore.com</a>sharedIPDAPNAPN Environmental, Health & Safety
+2024-10-30 10:14:54 -- Info   --   User SID: S-1-5-21-3542245194-2364831464-1968421150-114106
+2024-10-30 10:14:54 -- Info   --   Access type: Modify
+2024-10-30 10:14:54 -- Info   --   Expired on: 2/1/2024 5:00:00 AM
+2024-10-30 10:14:54 -- Info   --   Group SID: S-1-5-21-3542245194-2364831464-1968421150-51558
+2024-10-30 10:14:54 -- Info   -- Executing membership actions
+2024-10-30 10:14:54 -- Info   --  Feature: AccessRequest
+2024-10-30 10:14:54 -- Info   --  Invoker: SYSTEM
+2024-10-30 10:14:54 -- Info   --  Changes: 1
+2024-10-30 10:14:54 -- Info   --   Action 0:  ActiveDirectory
+2024-10-30 10:14:54 -- Info   --    Operation:  Remove
+2024-10-30 10:14:54 -- Info   --    Domain:     <a href='https://use.wlgore.com' target='_blank'>use.wlgore.com</a>
+2024-10-30 10:14:54 -- Info   --    Group:      USEW IPD APN APN Environmental Health & Safety RW
+2024-10-30 10:14:54 -- Info   --    Member:     S-1-5-21-3542245194-2364831464-1968421150-114106 (Unknown)
+2024-10-30 10:14:54 -- Error  -- Exception:
+2024-10-30 10:14:54 -- Error  --  Message: Unable to find domain for member: S-1-5-21-3542245194-2364831464-1968421150-114106
+2024-10-30 10:14:54 -- Error  --  Type:    System.InvalidOperationException
+2024-10-30 10:14:54 -- Error  --  StackTrace:
+   at AccessInformationCenter.Model.Membership.ActiveDirectoryMembership.Execute(StorageDataContext dc, String domainName, MembershipRequest request)
+   at AccessInformationCenter.Model.Membership.MembershipAction.Execute(StorageDataContext dc, String feature, String invokerName, String invokerSid, IEnumerable`1 changes, Nullable`1 changeId)
+2024-10-30 10:14:54 -- Info   --    Updating Tracking
+2024-10-30 10:14:54 -- Error  -- Exception:
+2024-10-30 10:14:54 -- Error  --  Message: An error occurred stopping updates
+2024-10-30 10:14:54 -- Error  --  Type:    System.InvalidOperationException
+2024-10-30 10:14:54 -- Error  --  StackTrace:
+   at AccessInformationCenter.Model.Membership.MembershipAction.Execute(StorageDataContext dc, String feature, String invokerName, String invokerSid, IEnumerable`1 changes, Nullable`1 changeId)
+   at <a href='https://AccessInformationCenter.Model.App' target='_blank'>AccessInformationCenter.Model.App</a>.Request.RemoveExpiredAccess(StorageDataContext dc)
+2024-10-30 10:14:54 -- Error  -- InnerException:
+2024-10-30 10:14:54 -- Error  --  Message: Unable to find domain for member: S-1-5-21-3542245194-2364831464-1968421150-114106
+2024-10-30 10:14:54 -- Error  --  Type:    System.InvalidOperationException
+2024-10-30 10:14:54 -- Error  --  StackTrace:
+   at AccessInformationCenter.Model.Membership.ActiveDirectoryMembership.Execute(StorageDataContext dc, String domainName, MembershipRequest request)
+   at AccessInformationCenter.Model.Membership.MembershipAction.Execute(StorageDataContext dc, String feature, String invokerName, String invokerSid, IEnumerable`1 changes, Nullable`1 changeId)
+2024-10-30 10:19:54 -- Info   -- Expiring request #95735
+2024-10-30 10:19:54 -- Info   --   Resource Type: FileSystemShare
+2024-10-30 10:19:54 -- Info   --   Resource Name: \<a href='https://use.wlgore.com' target='_blank'>use.wlgore.com</a>sharedCORPS4DataMigrationQA
+2024-10-30 10:19:54 -- Info   --   User SID: S-1-5-21-3542245194-2364831464-1968421150-107503
+2024-10-30 10:19:54 -- Info   --   Access type: Modify
+2024-10-30 10:19:54 -- Info   --   Expired on: 12/31/2023 12:00:00 AM
+2024-10-30 10:19:54 -- Info   --   Group SID: S-1-5-21-3542245194-2364831464-1968421150-106735
+2024-10-30 10:19:54 -- Info   -- Executing membership actions
+2024-10-30 10:19:54 -- Info   --  Feature: AccessRequest
+2024-10-30 10:19:54 -- Info   --  Invoker: SYSTEM
+2024-10-30 10:19:54 -- Info   --  Changes: 1
+2024-10-30 10:19:54 -- Info   --   Action 0:  ActiveDirectory
+2024-10-30 10:19:54 -- Info   --    Operation:  Remove
+2024-10-30 10:19:54 -- Info   --    Domain:     <a href='https://use.wlgore.com' target='_blank'>use.wlgore.com</a>
+2024-10-30 10:19:54 -- Info   --    Group:      USEW CORP S4DataMigration QA RW
+2024-10-30 10:19:54 -- Info   --    Member:     S-1-5-21-3542245194-2364831464-1968421150-107503 (Unknown)
+2024-10-30 10:19:54 -- Error  -- Exception:
+2024-10-30 10:19:54 -- Error  --  Message: Unable to find domain for member: S-1-5-21-3542245194-2364831464-1968421150-107503
+2024-10-30 10:19:54 -- Error  --  Type:    System.InvalidOperation... [The description has been cut, review the attached email for details]","Customer granted temporary permissions to a resource in AIC.
+Customer deleted the user account that was granted temporary access.
+Temporary access expired and the AIC is trying to remove access but can't find the user and keeps looping.","The attempt to cleanup permissions occurs every 5 minutes in the current logs.
+We set the ExpirationState to 2 in the SA_AIC_ResourceAccessRequests table for each SID encountering this and monitored for 10 minutes.
+The issue appears to be resolved.","Monitoring the logs for 24 hours to ensure the issue does not return","Symptom
+Logs are rotating quickly due to AIC trying to remove permissions from users that it cannot find a domain for.
+
+2024-10-30 10:14:54 -- Error  -- Exception:
+2024-10-30 10:14:54 -- Error  --  Message: Unable to find domain for member: S-1-5-21-3542245194-2364831464-1968421150-114106
+2024-10-30 10:14:54 -- Error  --  Type:    System.InvalidOperationException
+2024-10-30 10:14:54 -- Error  --  StackTrace:
+   at AccessInformationCenter.Model.Membership.ActiveDirectoryMembership.Execute(StorageDataContext dc, String domainName, MembershipRequest request)
+   at AccessInformationCenter.Model.Membership.MembershipAction.Execute(StorageDataContext dc, String feature, String invokerName, String invokerSid, IEnumerable`1 changes, Nullable`1 changeId)
+
+Cause
+The issue is caused when a user is granted temporary permissions to a resources, but the user is deleted prior to the permission expiring. When the permission expires the AIC console keeps trying to remove the user but cannot find the information for it.
+
+Resolution
+Set the ExpirationState to 2 in the SA_AIC_ResourceAccessRequests table for each SID encountering the problem. This will set the permission state to complete.","Product defect","Ian Ranstrom","","Netwrix Enterprise Auditor","Access Information Center","Resource Audit","11.6","","15.1","Closed - Resolved","W. L. Gore & Associates, Inc.","Connie Liang","2024-10-30T19:15:49.000Z","2024-11-14T21:30:34.000Z"

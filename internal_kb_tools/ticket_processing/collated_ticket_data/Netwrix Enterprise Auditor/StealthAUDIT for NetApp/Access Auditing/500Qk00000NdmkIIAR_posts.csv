@@ -1,0 +1,113 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000awiQZKAY","500Qk00000NdmkIIAR","TextPost","0054u000008ARZjAAO","2025-04-03T08:18:26.000Z","Description: Hi,
+
+Customer is TurkishAirlines,
+
+In our customer's environment we have observed that the file system logs have not been imported into the DB since February 16th.I observed that the FSAC System Scan Job is not functioning properly. Additionally, I observed that we are also receiving some errors with the FSAA System Scan job. After this detection I checked the Certificate 
+Exchange Options Side and I selected Automatic button.Before run FSAA System Scan Job again I cleared all certificates by using <a href='https://FSAACertificateExchangeManager.exe' target='_blank'>FSAACertificateExchangeManager.exe</a> file.After that I ran FSAA system Scan Job but i got error. I detected that StealthAudit and Proxy Server's hostname have more than 15 characters but i can see only 
+first 15 caracters on StealthAudit Console and Activity Monitor Console.(I get NetApp logs from Proxy server which has Activity monitor and agent installed). Because of that i changed Hosts file of StealthAudit Server for access to Proxy server correctly.(I typed ipaddress of Proxy server and first 15 caracters of Proxy Server's hostname.) 
+but result not changed i still get error.I am adding two log files for FSAC and FSAA System Scans jobs results. Can you advice me any solutions for this issue? We cannot see activity logs in StealthAudit DB.
+
+Thanks,
+
+Ibrahim Fil","","","","0054u000008ARZjAAO","2025-04-03T08:18:26.000Z"
+"0D5Qk00000b1wZVKAY","500Qk00000NdmkIIAR","TextPost","005Qk000002b4gDIAQ","2025-04-04T16:15:41.000Z","What We've Learned Updated: -----------
+04.04.2025 
+Customer recently performed an upgrade from 11.5 to 11.6 at 18 Feb. 2025.
+
+They do not see any new activity events in AIC after 16th of February. 
+
+Customer uploaded logs.","","","","005Qk000002b4gDIAQ","2025-04-04T16:15:41.000Z"
+"0D5Qk00000b2By9KAE","500Qk00000NdmkIIAR","TextPost","005Qk000002b4gDIAQ","2025-04-04T16:17:53.000Z","Next Steps Updated: Support will analyze FSAA and FSAC scan logs and will reply to customer.","","","","005Qk000002b4gDIAQ","2025-04-04T16:17:53.000Z"
+"0D5Qk00000bIegFKAS","500Qk00000NdmkIIAR","TextPost","005Qk000002b4gDIAQ","2025-04-07T14:07:51.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002b4gDIAQ","2025-04-07T14:07:51.000Z"
+"0D5Qk00000bIegHKAS","500Qk00000NdmkIIAR","TextPost","005Qk000002b4gDIAQ","2025-04-07T14:07:52.000Z","Invitation updated. Attendees: Artem Naskal, Ibrahim Fil","","","","005Qk000002b4gDIAQ","2025-04-07T14:07:52.000Z"
+"0D5Qk00000bIegGKAS","500Qk00000NdmkIIAR","TextPost","005Qk000002b4gDIAQ","2025-04-07T14:07:52.000Z","Invitation updated. Attendees: Artem Naskal","","","","005Qk000002b4gDIAQ","2025-04-07T14:07:52.000Z"
+"0D5Qk00000bpNynKAE","500Qk00000NdmkIIAR","TextPost","005Qk000002b4gDIAQ","2025-04-14T14:11:47.000Z","What We've Learned Updated: -----------
+04.04.2025 
+Customer recently performed an upgrade from 11.5 to 11.6 at 18 Feb. 2025.
+
+They do not see any new activity events in AIC after 16th of February. 
+
+Customer uploaded logs.
+
+--------------------
+09.04.2025 
+Artem Naskal 
+
+Was on a meeting with customer. 
+We started checking FSAA system scan settings and configurations required for it:
+
+    We ensured that Connection Profile account is added to either Local Administrators or Backup Admins local group on NEA server.
+    We checked the hostlist configured for FSAA system scan job and verified that NetAPP host has correct OS Type (NAS) and OS version (NetAPP).
+    We checked FSAA Applet logs on the NEA server because FSAA system scan is running locally - FSAA Applet logs suggested that NEA server could not secure communication with FSAA Applet (scanning process).
+
+Based on the errors we found in FSAA Applet logs we tried creating FSAA System Scan certificates manually. We then also changed FSAA System Scan query settings and selected ""Manual"" certificates management for FSAA applet.
+
+After this we restarted the jobs. Job failed again, but this time the error message was different FSAA Applet logs now indicate that the issue is with securing communication between NEA host and NetAPP host:
+2025-04-09 12:33:26.5303|DEBUG| 13|Stealthbits.StealthAUDIT.DataCollectors.FSAA.Applet.Server.Program|Selected server certificate: Friendly Name = FSAA_Server_Auth, Thumbprint = 718CD1888257A90F1D8367580AE6EA895C61D4B0
+2025-04-09 12:33:28.5512|DEBUG| 13|Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware|Failed to authenticate HTTPS connection.
+System.IO.IOException:  Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.<FillHandshakeBufferAsync>g__InternalFillHandshakeBufferAsync|189_0[TIOAdapter](TIOAdapter adap, ValueTask`1 task, Int32 minSize)
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)","","","","005Qk000002b4gDIAQ","2025-04-14T14:11:47.000Z"
+"0D5Qk00000c4GZuKAM","500Qk00000NdmkIIAR","TextPost","005Qk000002b4gDIAQ","2025-04-18T12:41:58.000Z","What We've Learned Updated: -----------
+04.04.2025 
+Customer recently performed an upgrade from 11.5 to 11.6 at 18 Feb. 2025.
+
+They do not see any new activity events in AIC after 16th of February. 
+
+Customer uploaded logs.
+
+--------------------
+09.04.2025 
+Artem Naskal 
+
+Was on a meeting with customer. 
+We started checking FSAA system scan settings and configurations required for it:
+
+    We ensured that Connection Profile account is added to either Local Administrators or Backup Admins local group on NEA server.
+    We checked the hostlist configured for FSAA system scan job and verified that NetAPP host has correct OS Type (NAS) and OS version (NetAPP).
+    We checked FSAA Applet logs on the NEA server because FSAA system scan is running locally - FSAA Applet logs suggested that NEA server could not secure communication with FSAA Applet (scanning process).
+
+Based on the errors we found in FSAA Applet logs we tried creating FSAA System Scan certificates manually. We then also changed FSAA System Scan query settings and selected ""Manual"" certificates management for FSAA applet.
+
+After this we restarted the jobs. Job failed again, but this time the error message was different FSAA Applet logs now indicate that the issue is with securing communication between NEA host and NetAPP host:
+2025-04-09 12:33:26.5303|DEBUG| 13|Stealthbits.StealthAUDIT.DataCollectors.FSAA.Applet.Server.Program|Selected server certificate: Friendly Name = FSAA_Server_Auth, Thumbprint = 718CD1888257A90F1D8367580AE6EA895C61D4B0
+2025-04-09 12:33:28.5512|DEBUG| 13|Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware|Failed to authenticate HTTPS connection.
+System.IO.IOException:  Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.<FillHandshakeBufferAsync>g__InternalFillHandshakeBufferAsync|189_0[TIOAdapter](TIOAdapter adap, ValueTask`1 task, Int32 minSize)
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+
+----------------
+18.04.2025 
+Artem Naskal 
+
+Currently it looks like this error is caused due to Stealth Audit server NetBIOS name having more than 15 characters.
+
+To confirm this we did this test today:
+We enabled ""Automatic"" certificates for the local mode scan.
+We targeted windows server instead of NetAPP server.
+
+We got exactly the same error after running FSAA job:
+Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+
+This means that it does not matter which certificates we select, or which target host we select - the error is the same.
+To resolve this issue for FSAA (Permission) System Scan and FSAC (Activity) System Scan I suggest decreasing the length of NetBIOS name for Stealth Audit server and the FSAA Proxy Server.","","","","005Qk000002b4gDIAQ","2025-04-18T12:41:58.000Z"
+"0D5Qk00000c4NYLKA2","500Qk00000NdmkIIAR","TextPost","005Qk000002b4gDIAQ","2025-04-18T12:42:23.000Z","Next Steps Updated: Customer will decrease NetBIOS name for NAA and Proxy hosts and reply with results.","","","","005Qk000002b4gDIAQ","2025-04-18T12:42:23.000Z"
+"0D5Qk00000dhAYyKAM","500Qk00000NdmkIIAR","TextPost","0054u000007ow49AAA","2025-05-09T15:14:35.000Z","<p>Changed to &#39;Awaiting Client&#39; due to customer&#39;s response (going to respond next week)</p>","","","","0054u000007ow49AAA","2025-05-09T15:14:35.000Z"
+"0D5Qk00000f6mQjKAI","500Qk00000NdmkIIAR","TextPost","005Qk000004methIAA","2025-05-23T11:13:10.000Z","Steps to Reproduce Updated: Step 1: Upgrade the Netwrix Enterprise Auditor environment from version 11.5 to 11.6.  
+Step 2: Verify that the FSAA System Scan job is configured to use ""Automatic"" certificate management in the query settings.  
+Step 3: Clear all existing certificates using the FSAACertificateExchangeManager.exe tool.  
+Step 4: Run the FSAA System Scan job and observe the error indicating issues with securing communication between the NEA host and NetAPP host.  
+Step 5: Check the NetBIOS name of the StealthAudit server and FSAA Proxy Server; ensure both names are shorter than 15 characters.  
+Step 6: Update the Hosts file on the StealthAudit server to include the IP address and the first 15 characters of the Proxy Server's hostname.  
+Step 7: Restart the FSAA System Scan job and verify if the error persists.  
+Step 8: If the error persists, decrease the length of the NetBIOS name for both the StealthAudit server and FSAA Proxy Server.  
+Step 9: Rerun the FSAA System Scan job and confirm successful completion.  
+Step 10: Run the FSAC System Scan job and verify if activity logs are imported into the database.
+
+(Requested by Rejaul Uddin)","","","","005Qk000004methIAA","2025-05-23T11:13:10.000Z"

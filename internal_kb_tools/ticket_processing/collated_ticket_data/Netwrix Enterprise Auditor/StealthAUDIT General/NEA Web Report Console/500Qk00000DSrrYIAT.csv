@@ -1,0 +1,13 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DSrrYIAT","00415855","Support Ticket","Access tab of stealthbits not loading","Follow up on ticket 00413190.
+After updating cert using instructions provided in that ticket, I can no longer access the access tab at all.","","","","[Issue]
+The ""Access"" tab on the Published Reports site returns a 500 error instead of taking us to the AIC.
+
+[Root Cause]
+In the WebServer.exe.config file, the value for AdditionalContentTabs was reset to default/missing.
+
+[Resolution]
+1. If both sites are secured, verify they are using the same certificate by comparing the thumbprint
+2. Navigate to %SAInstallDir%Web and edit the WebServer.exe.config file using a notepad editor
+3. On the AdditionalContentTabs line, change the value to  “Access, https://+:481/v2/login?embed”
+4. Restart the StealthAUDIT Web Server service","Incorrect configuration: Netwrix product","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.5","","2.7","Closed - Resolved","CPP Corp","Benjamin Tanner","2024-07-23T23:24:41.000Z","2024-07-26T15:25:20.000Z"

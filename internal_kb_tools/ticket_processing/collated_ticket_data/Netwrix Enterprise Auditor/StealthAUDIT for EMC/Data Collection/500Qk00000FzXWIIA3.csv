@@ -1,0 +1,44 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000FzXWIIA3","00421555","Support Ticket","SEEK Scan Scan not completing, Out of memory error","Problem Statement/Business Impact:
+Trying to complete SEEK scan to provide fresh data to SDD reports
+
+---------------
+
+I am attempting to complete a SEEK scan across our Isilon file storage. The latest scan failed with ""out of memory"" error messages. We just added additional CPU and memory resources to the host (8vCPU, 16GB memory). These issues began after upgrading to 11.6. and we have not been able to complete a scan.","1. Run the Seek scan job
+2. wait about 2 days for scan to run
+3. scan fails with out of memory error","HFs applied and new SEEK scan kicked off
+---
+out of memory error is killing scan after 2+ days
+application server isn't dropping below 40% RAM usage
+adjusted page file to only use one drive
+only scanning 1 host - Isilon
+client confirmed that the Hypervisor is not even coming close to running out of RAM
+
+We were getting the below error on the SEEK System Scan:
+---------------
+Error during processing: Could not load file or assembly 'System.Data.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+---------------
+Updated the Netwrix Sensitive Data Discovery Add-on to v11.6.0.13 --this did not fix our error
+
+Found where the System.Data.SQLite.dll v1.0.117.0 was in the %SAInstallDir%FSAA folder and replaced the 3 outdated System.Data.SQLite.dll v0.0.96 files with it 
+--this fixed our SEEK error
+
+Applied AV exclusions
+-This seemingly had no impact
+
+Scanning
+-1 Host: Isilon
+-4 Threads
+--was reduced by the client but he didn't say how much
+-6 Processes
+Server resources:
+-8 Core CPU
+-16GB RAM
+--Recommended increasing RAM to 32GB based on our guidelines
+----https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem.htm#:~:text=Sensitive%20Data%20Discovery%20Auditing%20Requirement
+--client pushed back saying never goes over 40-60% usage
+
+Confirmed Hypervisor is not running out of RAM
+-""that host is only using 40% of 2TB RAM with 100% allocation to vm guests – plenty of headroom there""","Customer will update us on how the SEEK scan post-hfs goes","There was a memory leak issue that has since been resolved with the below hot fixes (must use both or upgrade past NEA v11.6.0.125+)
+- https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk000000BRo5IAG/view
+- https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk000000BRrJIAW/view","Product defect","Tay Caliguiri","Error","Netwrix Enterprise Auditor","StealthAUDIT for EMC","Data Collection","11.6","","109.2","Closed - Resolved","Hobby Lobby","Kyle Baldwin","2024-09-19T16:02:09.000Z","2025-01-06T21:33:44.000Z"

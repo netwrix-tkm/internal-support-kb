@@ -1,0 +1,4039 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MgTSTIA3","500Qk00000N0KBEIA3","2025-03-17T13:46:14.000Z","2025-03-17T13:46:14.000Z","Mark,
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:  
+
+What steps to troubleshoot the issue have already been taken? 
+
+Is this a new configuration, data collection or report? 
+If no, has anything changed in your environment since the last time it worked? 
+
+When did this issue start?  
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Write-Output ""***** Checking Service StartMode, StartName  *****""
+Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {($_.DisplayName -Like ""Stealth*"" -or $_.DisplayName -like ""Netwrix*"" -or $_.DisplayName -like ""Postg*"")}|
+ForEach-Object {
+    Get-Process -Id $_.ProcessId |
+    Select-Object -Property @{label='Status';expression={$Service.State}},
+                            @{label='Name';expression={$Service.Name}},
+                            @{label='DisplayName';expression={$Service.DisplayName}},
+                            @{label='StartName';expression={$Service.StartName}},
+                            @{label='StartMode';expression={$Service.StartMode}},
+                            StartTime
+ } |Sort-Object |Format-Table  Status,StartMode, DisplayName, StartTime, @{L='Log-on-AS';E={$_.StartName}} -AutoSize 
+
+
+Take a look at the following:
+SA/NEA Console hexadecimal value 0x00, is an invalid character. Line 1  <<<  Internal only right now
+https://nwxcorp.lightning.force.com/lightning/r/ka0Qk000000CnWPIA0/view 
+
+Public facing
+Unable to View Published Reports in Web Console
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000Qs9KAE.html     
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0N0KBE:ref","NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","mark.richmond@netwrix.com","","dusty.grayson@netwrix.com","false","2025-03-17T13:46:13.000Z","true"
+"02sQk00000Mh1H8IAJ","500Qk00000N0KBEIA3","2025-03-17T15:32:16.000Z","2025-03-17T16:11:15.000Z","ref:_00D7091pB._500Q000N0KBE:ref
+
+Hi Team,
+
+Please see comments below in RED
+
+What steps to troubleshoot the issue have already been taken? Repaired the application
+
+Is this a new configuration, data collection or report? This is a new deployment part of a POC
+If no, has anything changed in your environment since the last time it worked?
+
+When did this issue start?  From the start of the POC which was 11th March 2025
+
+What software is currently installed? Netwrix Enterprise Auditor
+[cid:image001.png@01DB9762.792A0DF0]
+
+
+
+
+
+Name                                          Version    InstallDate
+----                                          -------    -----------
+Netwrix Access Information Center             11.6.0.37  20250312
+Netwrix Activity Monitor                      8.0.126    20250312
+Netwrix Activity Monitor Agent 64-bit         8.0.126    20250313
+Netwrix Enterprise Auditor V11.6              11.6.0.137 20250314
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.18  20250312
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+C:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe
+***** Checking Service StartMode, StartName  *****
+
+Status  StartMode DisplayName                              StartTime           Log-on-AS
+------  --------- -----------                              ---------           ---------
+Running Auto      Netwrix Access Information Center        2025/03/12 17:03:22 LocalSystem
+Stopped Manual    Netwrix Logging Service                                      LocalSystem
+Stopped Manual    Netwrix Windows File Monitoring Service                      LocalSystem
+Stopped Auto      Netwrix DNS Service                                          LocalSystem
+Running Auto      Netwrix Activity Monitor Agent Service   2025/03/13 14:59:43 LocalSystem
+Stopped Manual    Netwrix Enterprise Auditor Vault Service                     LocalSystem
+Stopped Manual    Netwrix Enterprise Auditor Survey Server                     LocalSystem
+Running Auto      Netwrix Enterprise Auditor Web Server    2025/03/14 11:59:22 LocalSystem
+
+
+Regards,
+Z
+
+From: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Sent: Monday, 17 March 2025 16:23
+To: Ziyaad Rasool <ziyaadr@dotnext.co.za<mailto:ziyaadr@dotnext.co.za>>; Du Preez Theron <dupreezt@dotnext.co.za<mailto:dupreezt@dotnext.co.za>>
+Subject: FW: NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+@dupreezt@dotnext.co.za<mailto:dupreezt@dotnext.co.za> Please can you perform the following on behalf of Z so we can move forward in this POC
+
+😊
+
+Tx
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, 17 March 2025 5:46 PM
+To: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Subject: NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Mark,
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:
+
+What steps to troubleshoot the issue have already been taken? Un
+
+Is this a new configuration, data collection or report? This is a new deployment part of a POC
+If no, has anything changed in your environment since the last time it worked?
+
+When did this issue start?  From the start of the POC which was 11th March 2025
+
+What software is currently installed? Netwrix Enterprise Auditor
+[cid:image001.png@01DB9762.792A0DF0]
+
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Write-Output ""***** Checking Service StartMode, StartName  *****""
+Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {($_.DisplayName -Like ""Stealth*"" -or $_.DisplayName -like ""Netwrix*"" -or $_.DisplayName -like ""Postg*"")}|
+ForEach-Object {
+    Get-Process -Id $_.ProcessId |
+    Select-Object -Property @{label='Status';expression={$Service.State}},
+                            @{label='Name';expression={$Service.Name}},
+                            @{label='DisplayName';expression={$Service.DisplayName}},
+                            @{label='StartName';expression={$Service.StartName}},
+                            @{label='StartMode';expression={$Service.StartMode}},
+                            StartTime
+ } |Sort-Object |Format-Table  Status,StartMode, DisplayName, StartTime, @{L='Log-on-AS';E={$_.StartName}} -AutoSize
+
+
+
+Take a look at the following:
+SA/NEA Console hexadecimal value 0x00, is an invalid character. Line 1  <<<  Internal only right now
+https://nwxcorp.lightning.force.com/lightning/r/ka0Qk000000CnWPIA0/view
+
+Public facing
+Unable to View Published Reports in Web Console
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000Qs9KAE.html
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0N0KBE:ref
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","ziyaadr@dotnext.co.za","Ziyaad Rasool","techsupport@netwrix.com","mark.richmond@netwrix.com; dupreezt@dotnext.co.za","","true","2025-03-17T15:31:54.000Z","true"
+"02sQk00000Mhv9hIAB","500Qk00000N0KBEIA3","2025-03-17T21:49:02.000Z","2025-03-17T21:49:02.000Z","Mark,
+
+Please let us know how the KBs helped with the issues at hand.
+
+I’m also re-aligning your ticket with an EMEA engineer to assist, and they will reach out with availability as soon as possible. 
+
+I did not see that you and the customer were overseas.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ziyaad Rasool [ziyaadr@dotnext.co.za]
+Sent: 3/17/2025 11:31 AM
+To: techsupport@netwrix.com
+Cc: mark.richmond@netwrix.com; dupreezt@dotnext.co.za
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+Hi Team,
+
+ 
+
+Please see comments below in RED
+
+ 
+
+What steps to troubleshoot the issue have already been taken? Repaired the application 
+
+Is this a new configuration, data collection or report? This is a new deployment part of a POC
+If no, has anything changed in your environment since the last time it worked? 
+
+When did this issue start?  From the start of the POC which was 11th March 2025
+
+What software is currently installed? Netwrix Enterprise Auditor
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Name                                          Version    InstallDate
+
+----                                          -------    -----------
+
+Netwrix Access Information Center             11.6.0.37  20250312   
+
+Netwrix Activity Monitor                      8.0.126    20250312   
+
+Netwrix Activity Monitor Agent 64-bit         8.0.126    20250313   
+
+Netwrix Enterprise Auditor V11.6              11.6.0.137 20250314   
+
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.18  20250312   
+
+ 
+
+ 
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe
+
+***** Checking Service StartMode, StartName  *****
+
+ 
+
+Status  StartMode DisplayName                              StartTime           Log-on-AS  
+
+------  --------- -----------                              ---------           ---------  
+
+Running Auto      Netwrix Access Information Center        2025/03/12 17:03:22 LocalSystem
+
+Stopped Manual    Netwrix Logging Service                                      LocalSystem
+
+Stopped Manual    Netwrix Windows File Monitoring Service                      LocalSystem
+
+Stopped Auto      Netwrix DNS Service                                          LocalSystem
+
+Running Auto      Netwrix Activity Monitor Agent Service   2025/03/13 14:59:43 LocalSystem
+
+Stopped Manual    Netwrix Enterprise Auditor Vault Service                     LocalSystem
+
+Stopped Manual    Netwrix Enterprise Auditor Survey Server                     LocalSystem
+
+Running Auto      Netwrix Enterprise Auditor Web Server    2025/03/14 11:59:22 LocalSystem
+
+ 
+
+ 
+
+
+Regards,
+
+Z
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Monday, 17 March 2025 16:23
+To: Ziyaad Rasool <ziyaadr@dotnext.co.za>; Du Preez Theron <dupreezt@dotnext.co.za>
+Subject: FW: NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+
+	
+		
+			 
+			
+			
+			Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe. 
+			
+			
+		
+	
+
+
+ 
+
+
+@dupreezt@dotnext.co.za Please can you perform the following on behalf of Z so we can move forward in this POC 
+
+ 
+
+😊 
+
+ 
+
+Tx
+
+ 
+
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, 17 March 2025 5:46 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+Mark,
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:  
+
+What steps to troubleshoot the issue have already been taken? Un
+
+Is this a new configuration, data collection or report? This is a new deployment part of a POC
+If no, has anything changed in your environment since the last time it worked? 
+
+When did this issue start?  From the start of the POC which was 11th March 2025
+
+What software is currently installed? Netwrix Enterprise Auditor
+
+
+
+
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Write-Output ""***** Checking Service StartMode, StartName  *****""
+Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {($_.DisplayName -Like ""Stealth*"" -or $_.DisplayName -like ""Netwrix*"" -or $_.DisplayName -like ""Postg*"")}|
+ForEach-Object {
+    Get-Process -Id $_.ProcessId |
+    Select-Object -Property @{label='Status';expression={$Service.State} },
+                            @{label='Name';expression={$Service.Name} },
+                            @{label='DisplayName';expression={$Service.DisplayName} },
+                            @{label='StartName';expression={$Service.StartName} },
+                            @{label='StartMode';expression={$Service.StartMode} },
+                            StartTime
+ } |Sort-Object |Format-Table  Status,StartMode, DisplayName, StartTime, @{L='Log-on-AS';E={$_.StartName} } -AutoSize 
+
+ 
+
+
+
+Take a look at the following:
+SA/NEA Console hexadecimal value 0x00, is an invalid character. Line 1  <<<  Internal only right now
+https://nwxcorp.lightning.force.com/lightning/r/ka0Qk000000CnWPIA0/view 
+
+Public facing
+Unable to View Published Reports in Web Console
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000Qs9KAE.html     
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0N0KBE:ref
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #438927 -  - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","ziyaadr@dotnext.co.za","dupreezt@dotnext.co.za; mark.richmond@netwrix.com","","true","2025-03-17T21:49:01.000Z","true"
+"02sQk00000MjpWMIAZ","500Qk00000N0KBEIA3","2025-03-18T15:24:37.000Z","2025-03-18T15:24:37.000Z","Hi Mark,
+
+1) In your attached ""service.log"", I see the following output which I am sure that you are already aware of:
+
++++++
+2025-03-14 11:59:23,722 DEBUG - Creating SQL objects for usage statistics
+2025-03-14 11:59:52,668 DEBUG - Added domain: lewisgroup.co.za netbios: LEWIS
+2025-03-14 11:59:54,579 DEBUG - Authenticating user: lewisziyaadr
+2025-03-14 11:59:54,581 DEBUG -   Dns: lewisgroup.co.za
+2025-03-14 11:59:54,583 DEBUG -   Container: DC=lewisgroup,DC=co,DC=za
+2025-03-14 11:59:54,606 DEBUG - Directory returned for user: lewisziyaadr
+2025-03-14 11:59:54,606 DEBUG -   userPrincipalName: ZiyaadR@lewisgroup.co.za
+2025-03-14 11:59:54,607 DEBUG -   samAccountName: ZiyaadR
+2025-03-14 11:59:54,620 DEBUG - Authenticating via form: lewisziyaadr
+2025-03-14 11:59:54,674 DEBUG - Running ip discovery for: LewNetwrixAPP
+2025-03-14 11:59:54,677 DEBUG - Local ip address: fe80::3d63:8a7c:8a13:27ce%5
+2025-03-14 11:59:54,678 DEBUG - Local ip address: 10.100.2.187
+2025-03-14 11:59:55,013 ERROR - InitializeRBA: System.Security.SecurityException: The user name or password is incorrect.
+
++++++
+
+2) On your NEA server, which Service Account is running the following services (open Services.msc)?
+
+Netwrix Enterprise Auditor Web Server - this is for reports and the one that I believe you should set the ""Log On As"" account = lewisziyaadr and restart that service
+Netwrix Enterprise Auditor Survey Server
+Netwrix Enterprise Auditor Vault Service
+
+I am saying to only adjust the user for that service, this is because I assume that everything else is working.
+
+This is only based upon the evidence that has been provided in this ticket.
+If that account is already configured to run the Netwrix Enterprise Auditor Web Server then restart the service and/or re-check the password.
+
+3) Here are how my 3 NEA services are configured in my environment:
+
+
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 5:49 PM
+To: ziyaadr@dotnext.co.za
+Cc: dupreezt@dotnext.co.za; mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Mark,
+
+Please let us know how the KBs helped with the issues at hand.
+
+I’m also re-aligning your ticket with an EMEA engineer to assist, and they will reach out with availability as soon as possible. 
+
+I did not see that you and the customer were overseas.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ziyaad Rasool [ziyaadr@dotnext.co.za]
+Sent: 3/17/2025 11:31 AM
+To: techsupport@netwrix.com
+Cc: mark.richmond@netwrix.com; dupreezt@dotnext.co.za
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+Hi Team,
+
+ 
+
+Please see comments below in RED
+
+ 
+
+What steps to troubleshoot the issue have already been taken? Repaired the application 
+
+Is this a new configuration, data collection or report? This is a new deployment part of a POC
+If no, has anything changed in your environment since the last time it worked? 
+
+When did this issue start?  From the start of the POC which was 11th March 2025
+
+What software is currently installed? Netwrix Enterprise Auditor
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Name                                          Version    InstallDate
+
+----                                          -------    -----------
+
+Netwrix Access Information Center             11.6.0.37  20250312   
+
+Netwrix Activity Monitor                      8.0.126    20250312   
+
+Netwrix Activity Monitor Agent 64-bit         8.0.126    20250313   
+
+Netwrix Enterprise Auditor V11.6              11.6.0.137 20250314   
+
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.18  20250312   
+
+ 
+
+ 
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe
+
+***** Checking Service StartMode, StartName  *****
+
+ 
+
+Status  StartMode DisplayName                              StartTime           Log-on-AS  
+
+------  --------- -----------                              ---------           ---------  
+
+Running Auto      Netwrix Access Information Center        2025/03/12 17:03:22 LocalSystem
+
+Stopped Manual    Netwrix Logging Service                                      LocalSystem
+
+Stopped Manual    Netwrix Windows File Monitoring Service                      LocalSystem
+
+Stopped Auto      Netwrix DNS Service                                          LocalSystem
+
+Running Auto      Netwrix Activity Monitor Agent Service   2025/03/13 14:59:43 LocalSystem
+
+Stopped Manual    Netwrix Enterprise Auditor Vault Service                     LocalSystem
+
+Stopped Manual    Netwrix Enterprise Auditor Survey Server                     LocalSystem
+
+Running Auto      Netwrix Enterprise Auditor Web Server    2025/03/14 11:59:22 LocalSystem
+
+ 
+
+ 
+
+
+Regards,
+
+Z
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Monday, 17 March 2025 16:23
+To: Ziyaad Rasool <ziyaadr@dotnext.co.za>; Du Preez Theron <dupreezt@dotnext.co.za>
+Subject: FW: NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+
+	
+		
+			 
+			
+			
+			Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe. 
+			
+			
+		
+	
+
+
+ 
+
+
+@dupreezt@dotnext.co.za Please can you perform the following on behalf of Z so we can move forward in this POC 
+
+ 
+
+😊 
+
+ 
+
+Tx
+
+ 
+
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, 17 March 2025 5:46 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+Mark,
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:  
+
+What steps to troubleshoot the issue have already been taken? Un
+
+Is this a new configuration, data collection or report? This is a new deployment part of a POC
+If no, has anything changed in your environment since the last time it worked? 
+
+When did this issue start?  From the start of the POC which was 11th March 2025
+
+What software is currently installed? Netwrix Enterprise Auditor
+
+
+
+
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Write-Output ""***** Checking Service StartMode, StartName  *****""
+Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {($_.DisplayName -Like ""Stealth*"" -or $_.DisplayName -like ""Netwrix*"" -or $_.DisplayName -like ""Postg*"")}|
+ForEach-Object {
+    Get-Process -Id $_.ProcessId |
+    Select-Object -Property @{label='Status';expression={$Service.State} },
+                            @{label='Name';expression={$Service.Name} },
+                            @{label='DisplayName';expression={$Service.DisplayName} },
+                            @{label='StartName';expression={$Service.StartName} },
+                            @{label='StartMode';expression={$Service.StartMode} },
+                            StartTime
+ } |Sort-Object |Format-Table  Status,StartMode, DisplayName, StartTime, @{L='Log-on-AS';E={$_.StartName} } -AutoSize 
+
+ 
+
+
+
+Take a look at the following:
+SA/NEA Console hexadecimal value 0x00, is an invalid character. Line 1  <<<  Internal only right now
+https://nwxcorp.lightning.force.com/lightning/r/ka0Qk000000CnWPIA0/view 
+
+Public facing
+Unable to View Published Reports in Web Console
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000Qs9KAE.html     
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0N0KBE:ref
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #438927 -  - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","ziyaadr@dotnext.co.za; mark.richmond@netwrix.com","","","true","2025-03-18T15:24:35.000Z","true"
+"02sQk00000MpKHlIAN","500Qk00000N0KBEIA3","2025-03-20T15:41:22.000Z","2025-03-26T18:22:12.000Z","ref:_00D7091pB._500Q000N0KBE:ref
+
+Please find attached Word document and also attached artifacts
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, 20 March 2025 7:38 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - NEA Published Reports :Internal Server Error
+
+Hello Mark,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00438927
+Ticket Subject: NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - NEA Published Reports :Internal Server Error","mark.richmond@netwrix.com","Mark Richmond","techsupport@netwrix.com","","","true","2025-03-20T15:41:06.000Z","true"
+"02sQk00000MpGFpIAN","500Qk00000N0KBEIA3","2025-03-20T15:53:40.000Z","2025-03-20T17:06:14.000Z","ref:_00D7091pB._500Q000N0KBE:ref
+
+NOTE!! We have a executive session scheduled with the customer on Tuesday next week so we really need this working before then. The call has been open for a while (in POC Terms) now
+
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Thursday, 20 March 2025 7:41 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: RE: 00438927 - NEA Published Reports :Internal Server Error
+
+Please find attached Word document and also attached artifacts
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, 20 March 2025 7:38 PM
+To: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Subject: RE: 00438927 - NEA Published Reports :Internal Server Error
+
+Hello Mark,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00438927
+Ticket Subject: NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - NEA Published Reports :Internal Server Error","mark.richmond@netwrix.com","Mark Richmond","techsupport@netwrix.com","","","false","2025-03-20T15:53:33.000Z","true"
+"02sQk00000MpNkRIAV","500Qk00000N0KBEIA3","2025-03-20T17:13:31.000Z","2025-03-20T17:13:31.000Z","Hi Mark,
+
+I am not sure if we should walk through the steps for Securing Published Reports for starters.
+
+I have a number of other artifacts to gather.
+NEA v11.6 - Securing Published Reports Only
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RoleBased/SecureReports.htm
+Here is a meeting invite:
+
+nwxcorp.my.salesforce-sites.com/cts?Id=Pn_jJZOl7cr6KlSXcZhpWNYXv1sXYdCGgYQpvk4I74w-Z&MeetingID=W5PPBjj_HWggZjKScpp1EmjRWl7zOZpimRbZbECxtsg-Z
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/20/2025 11:53 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+NOTE!! We have a executive session scheduled with the customer on Tuesday next week so we really need this working before then. The call has been open for a while (in POC Terms) now
+
+ 
+
+ 
+
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Thursday, 20 March 2025 7:41 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: RE: 00438927 - NEA Published Reports :Internal Server Error
+
+
+
+ 
+
+Please find attached Word document and also attached artifacts  
+
+ 
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, 20 March 2025 7:38 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - NEA Published Reports :Internal Server Error
+
+
+ 
+
+Hello Mark,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00438927
+Ticket Subject: NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 -  - 00438927 - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","mark.richmond@netwrix.com","","","false","2025-03-20T17:13:30.000Z","true"
+"02sQk00000MpckvIAB","500Qk00000N0KBEIA3","2025-03-20T17:20:57.000Z","2025-03-20T21:35:10.000Z","ref:_00D7091pB._500Q000N0KBE:ref
+
+Its not RBA as we had the issue prior to adding any users to the NEA Console for RBA!! This is just  warning.
+
+Sure lets setup  RBA on the call and run all the DB Scripts and create the Roles and then assign users with roles and cross fingers it works!
+
+Personally I am not sure this is going to work myself but hopefully it does 😊
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, 20 March 2025 9:14 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+I am not sure if we should walk through the steps for Securing Published Reports for starters.
+
+I have a number of other artifacts to gather.
+
+NEA v11.6 - Securing Published Reports Only<https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RoleBased/SecureReports.htm>
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RoleBased/SecureReports.htm
+Here is a meeting invite:
+
+nwxcorp.my.salesforce-sites.com/cts?Id=Pn_jJZOl7cr6KlSXcZhpWNYXv1sXYdCGgYQpvk4I74w-Z&MeetingID=W5PPBjj_HWggZjKScpp1EmjRWl7zOZpimRbZbECxtsg-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=Pn_jJZOl7cr6KlSXcZhpWNYXv1sXYdCGgYQpvk4I74w-Z&MeetingID=W5PPBjj_HWggZjKScpp1EmjRWl7zOZpimRbZbECxtsg-Z>
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/20/2025 11:53 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+NOTE!! We have a executive session scheduled with the customer on Tuesday next week so we really need this working before then. The call has been open for a while (in POC Terms) now
+
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Sent: Thursday, 20 March 2025 7:41 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Subject: RE: 00438927 - NEA Published Reports :Internal Server Error
+
+Please find attached Word document and also attached artifacts
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, 20 March 2025 7:38 PM
+To: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Subject: RE: 00438927 - NEA Published Reports :Internal Server Error
+
+Hello Mark,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00438927
+Ticket Subject: NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 -  - 00438927 - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","mark.richmond@netwrix.com","Mark Richmond","techsupport@netwrix.com","","","false","2025-03-20T17:20:48.000Z","true"
+"02sQk00000MwiH0IAJ","500Qk00000N0KBEIA3","2025-03-24T15:48:02.000Z","2025-03-24T15:48:02.000Z","Hi Mark,
+
+These were items that Tier 2 support requested at the end of last week and I should have obtained on the call today:
+
+1) Please attach a screenshot of NEA > ""Settings"" > ""Reporting"" (I do not recall why I did not take the screenshot today on our call).
+2) A copy of the web config file (WebServer.exe.config) found approximately here:
+
+E:Program Files (x86)STEALTHbitsStealthAUDITWeb
+
+3) Have you tried re-creating the Report folder to see if this impacts the permissions issue?
+
+4) We wanted to see a copy of the Windows Application Event Log since we think this might be a .NET error.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/20/2025 1:20 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+
+Its not RBA as we had the issue prior to adding any users to the NEA Console for RBA!! This is just  warning. 
+
+ 
+
+Sure lets setup  RBA on the call and run all the DB Scripts and create the Roles and then assign users with roles and cross fingers it works! 
+
+ 
+
+Personally I am not sure this is going to work myself but hopefully it does 😊 
+
+ 
+
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, 20 March 2025 9:14 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+Hi Mark,
+
+I am not sure if we should walk through the steps for Securing Published Reports for starters.
+
+I have a number of other artifacts to gather.
+
+NEA v11.6 - Securing Published Reports Only
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RoleBased/SecureReports.htm
+
+Here is a meeting invite:
+
+nwxcorp.my.salesforce-sites.com/cts?Id=Pn_jJZOl7cr6KlSXcZhpWNYXv1sXYdCGgYQpvk4I74w-Z&MeetingID=W5PPBjj_HWggZjKScpp1EmjRWl7zOZpimRbZbECxtsg-Z
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/20/2025 11:53 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+ 
+
+
+NOTE!! We have a executive session scheduled with the customer on Tuesday next week so we really need this working before then. The call has been open for a while (in POC Terms) now
+
+ 
+
+ 
+
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Thursday, 20 March 2025 7:41 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: RE: 00438927 - NEA Published Reports :Internal Server Error
+
+
+
+ 
+
+Please find attached Word document and also attached artifacts  
+
+ 
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, 20 March 2025 7:38 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - NEA Published Reports :Internal Server Error
+
+
+ 
+
+Hello Mark,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00438927
+Ticket Subject: NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 -  - 00438927 - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","mark.richmond@netwrix.com","","","false","2025-03-24T15:48:00.000Z","true"
+"02sQk00000N2HCUIA3","500Qk00000N0KBEIA3","2025-03-26T16:06:36.000Z","2025-03-26T16:20:13.000Z","ref:_00D7091pB._500Q000N0KBE:ref
+
+Hi Mike
+
+I emailed this yesterday, please see attached email
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support<http://www.netwrix.com/support>.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error","mark.richmond@netwrix.com","Mark Richmond","techsupport@netwrix.com","mike.candon@netwrix.com","","true","2025-03-26T16:03:57.000Z","true"
+"02sQk00000N3U7ZIAV","500Qk00000N0KBEIA3","2025-03-26T22:01:26.000Z","2025-03-26T22:01:26.000Z","Hi Mark,
+
+It does not appear as though I can reproduce your issue (yet).
+But I am able to configure NEA and a Windows user similar to your setup and I am able to access the NEA Published Reports.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/26/2025 12:03 PM
+To: techsupport@netwrix.com
+Cc: mike.candon@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+Hi Mike 
+
+ 
+
+I emailed this yesterday, please see attached email 
+
+ 
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+ 
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","mark.richmond@netwrix.com","","","false","2025-03-26T22:01:25.000Z","true"
+"02sQk00000NByoTIAT","500Qk00000N0KBEIA3","2025-03-31T10:10:22.000Z","2025-03-31T12:55:07.000Z","ref:_00D7091pB._500Q000N0KBE:ref
+
+Hi Mike
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments.
+
+Hoping this helps you even more
+
+My Best
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: Mike Candon <Mike.Candon@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+Hi Mike
+
+I emailed this yesterday, please see attached email
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support<http://www.netwrix.com/support>.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error","mark.richmond@netwrix.com","Mark Richmond","techsupport@netwrix.com","mike.candon@netwrix.com","","true","2025-03-31T10:10:09.000Z","true"
+"02sQk00000NCvLSIA1","500Qk00000N0KBEIA3","2025-03-31T16:17:47.000Z","2025-03-31T16:17:47.000Z","Hi Mark,
+
+Can you please schedule the meeting for 9 AM EST tomorrow morning?
+Please use the meeting invite below.
+
+I have a Tier 2 who can be on the call at that time so that we can get this issue resolved.
+
+nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/31/2025 6:10 AM
+To: techsupport@netwrix.com
+Cc: mike.candon@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+Hi Mike 
+
+ 
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments. 
+
+ 
+
+Hoping this helps you even more 
+
+ 
+
+
+My Best 
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: Mike Candon <Mike.Candon@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+
+ 
+
+Hi Mike 
+
+ 
+
+I emailed this yesterday, please see attached email 
+
+ 
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+ 
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","mark.richmond@netwrix.com","","","false","2025-03-31T16:17:45.000Z","true"
+"02sQk00000NCuZ4IAL","500Qk00000N0KBEIA3","2025-03-31T16:18:24.000Z","2025-03-31T16:18:24.000Z","That is for 9 AM EST on Tuesday, 01-April-2025.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:17 PM
+To: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+Can you please schedule the meeting for 9 AM EST tomorrow morning?
+Please use the meeting invite below.
+
+I have a Tier 2 who can be on the call at that time so that we can get this issue resolved.
+
+nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/31/2025 6:10 AM
+To: techsupport@netwrix.com
+Cc: mike.candon@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+Hi Mike 
+
+ 
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments. 
+
+ 
+
+Hoping this helps you even more 
+
+ 
+
+
+My Best 
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: Mike Candon <Mike.Candon@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+
+ 
+
+Hi Mike 
+
+ 
+
+I emailed this yesterday, please see attached email 
+
+ 
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+ 
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","mark.richmond@netwrix.com","","mike.candon@netwrix.com","false","2025-03-31T16:18:22.000Z","true"
+"02sQk00000NDhumIAD","500Qk00000N0KBEIA3","2025-03-31T21:09:40.000Z","2025-03-31T21:09:40.000Z","Hi Mark,
+
+A customer has now book at meeting for 9 AM EST on Tuesday, 01-April-2025.
+But Wed and Thursday at 9 AM are currently available.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:18 PM
+To: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+That is for 9 AM EST on Tuesday, 01-April-2025.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:17 PM
+To: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+Can you please schedule the meeting for 9 AM EST tomorrow morning?
+Please use the meeting invite below.
+
+I have a Tier 2 who can be on the call at that time so that we can get this issue resolved.
+
+nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/31/2025 6:10 AM
+To: techsupport@netwrix.com
+Cc: mike.candon@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+Hi Mike 
+
+ 
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments. 
+
+ 
+
+Hoping this helps you even more 
+
+ 
+
+
+My Best 
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: Mike Candon <Mike.Candon@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+
+ 
+
+Hi Mike 
+
+ 
+
+I emailed this yesterday, please see attached email 
+
+ 
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+ 
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","mark.richmond@netwrix.com","","","false","2025-03-31T21:09:39.000Z","true"
+"02sQk00000NHSE0IAP","500Qk00000N0KBEIA3","2025-04-02T08:56:41.000Z","2025-04-07T20:55:54.000Z","ref:_00D7091pB._500Q000N0KBE:ref
+
+Hi Mike
+
+I am currently on leave and the customer has just come back form EID. I have included Ziyaad on the email. Please can you coordinate directly with Ziyaad so you can schedule the next call with the Tier 2 Support team.
+
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, 1 April 2025 1:10 AM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+A customer has now book at meeting for 9 AM EST on Tuesday, 01-April-2025.
+But Wed and Thursday at 9 AM are currently available.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:18 PM
+To: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+That is for 9 AM EST on Tuesday, 01-April-2025.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:17 PM
+To: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+Can you please schedule the meeting for 9 AM EST tomorrow morning?
+Please use the meeting invite below.
+
+I have a Tier 2 who can be on the call at that time so that we can get this issue resolved.
+
+nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z>
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/31/2025 6:10 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: mike.candon@netwrix.com<mailto:mike.candon@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+Hi Mike
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments.
+
+Hoping this helps you even more
+
+My Best
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: Mike Candon <Mike.Candon@netwrix.com<mailto:Mike.Candon@netwrix.com>>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+Hi Mike
+
+I emailed this yesterday, please see attached email
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support<http://www.netwrix.com/support>.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0N0KBE:ref","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","mark.richmond@netwrix.com","Mark Richmond","techsupport@netwrix.com","ziyaadr@dotnext.co.za","","false","2025-04-02T08:56:34.000Z","true"
+"02sQk00000NHWXhIAP","500Qk00000N0KBEIA3","2025-04-02T09:09:59.000Z","2025-04-02T12:53:12.000Z","ref:_00D7091pB._500Q000N0KBE:ref
+
+Hi Mike,
+
+Can we please schedule a session for tomorrow (Thursday, 3 April)?
+
+
+
+Regards,
+Z
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 02 April 2025 10:57
+To: techsupport <techsupport@netwrix.com>
+Cc: Ziyaad Rasool <ziyaadr@dotnext.co.za>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Hi Mike
+
+I am currently on leave and the customer has just come back form EID. I have included Ziyaad on the email. Please can you coordinate directly with Ziyaad so you can schedule the next call with the Tier 2 Support team.
+
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, 1 April 2025 1:10 AM
+To: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+A customer has now book at meeting for 9 AM EST on Tuesday, 01-April-2025.
+But Wed and Thursday at 9 AM are currently available.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:18 PM
+To: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+That is for 9 AM EST on Tuesday, 01-April-2025.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:17 PM
+To: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+Can you please schedule the meeting for 9 AM EST tomorrow morning?
+Please use the meeting invite below.
+
+I have a Tier 2 who can be on the call at that time so that we can get this issue resolved.
+
+nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z>
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/31/2025 6:10 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: mike.candon@netwrix.com<mailto:mike.candon@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+Hi Mike
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments.
+
+Hoping this helps you even more
+
+My Best
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: Mike Candon <Mike.Candon@netwrix.com<mailto:Mike.Candon@netwrix.com>>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+Hi Mike
+
+I emailed this yesterday, please see attached email
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support<http://www.netwrix.com/support>.
+
+If you're experiencing any issues with the upload or need further assistance, please let me know-I'm here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+""Request for Downloading published reports Failed: Internal Server Error""
+In the Web Service ""Service.log"" we see the error ""The user name or password is incorrect.""
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0N0KBE:ref
+
+
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","ziyaadr@dotnext.co.za","Ziyaad Rasool","techsupport@netwrix.com","mark.richmond@netwrix.com","","false","2025-04-02T09:09:38.000Z","true"
+"02sQk00000NHo6SIAT","500Qk00000N0KBEIA3","2025-04-02T13:02:39.000Z","2025-04-02T13:02:39.000Z","Hi Ziyaad,
+
+I have reassigned this case to you so that you can book the meeting.
+Right now for the schedules between myself and one Tier 2 resource, we collectively are not available starting on Monday, 07-April. (I am out on Friday, 04-April-2025.)
+Please do not delay in booking this meeting because those meeting windows may get filled very quickly.
+If we can resolve this case quickly on the call we will move right on to the other case.
+Please use the link below to schedule the meeting for ""Netwrix Support Ticket #00438927"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+nwxcorp.my.salesforce-sites.com/cts?Id=DbB_0Oy7oeEMdOy5tTtz7kvc6kzfzt5SbRuPpSOAq6o-Z&MeetingID=nB2OdtXgpkvAYh9y_tZ58ru7B8FJkz4NyRT71l4ajpM-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Ziyaad Rasool [ziyaadr@dotnext.co.za]
+Sent: 4/2/2025 5:09 AM
+To: techsupport@netwrix.com
+Cc: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+Hi Mike,
+
+ 
+
+
+Can we please schedule a session for tomorrow (Thursday, 3 April)?
+
+ 
+
+ 
+
+ 
+
+Regards,
+
+Z
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 02 April 2025 10:57
+To: techsupport <techsupport@netwrix.com>
+Cc: Ziyaad Rasool <ziyaadr@dotnext.co.za>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+
+	
+		
+			 
+			
+			
+			Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe. 
+			
+			
+		
+	
+
+
+ 
+
+
+Hi Mike 
+
+ 
+
+I am currently on leave and the customer has just come back form EID. I have included Ziyaad on the email. Please can you coordinate directly with Ziyaad so you can schedule the next call with the Tier 2 Support team. 
+
+ 
+
+ 
+
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, 1 April 2025 1:10 AM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+Hi Mark,
+
+A customer has now book at meeting for 9 AM EST on Tuesday, 01-April-2025.
+But Wed and Thursday at 9 AM are currently available.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:18 PM
+To: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+That is for 9 AM EST on Tuesday, 01-April-2025.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:17 PM
+To: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+Can you please schedule the meeting for 9 AM EST tomorrow morning?
+Please use the meeting invite below.
+
+I have a Tier 2 who can be on the call at that time so that we can get this issue resolved.
+
+nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/31/2025 6:10 AM
+To: techsupport@netwrix.com
+Cc: mike.candon@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+ 
+
+
+Hi Mike 
+
+ 
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments. 
+
+ 
+
+Hoping this helps you even more 
+
+ 
+
+
+My Best 
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: Mike Candon <Mike.Candon@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+
+ 
+
+Hi Mike 
+
+ 
+
+I emailed this yesterday, please see attached email 
+
+ 
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+ 
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N0KBE:ref
+
+
+
+ 
+ 
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","ziyaadr@dotnext.co.za","","","false","2025-04-02T13:02:37.000Z","true"
+"02sQk00000NXDywIAH","500Qk00000N0KBEIA3","2025-04-08T22:59:09.000Z","2025-04-08T22:59:09.000Z","Any luck on this front or the other front for permissions?
+
+I am still figuring out our best course of action on my side, but curious if you have had any success checking out permissions between the 2 accounts.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/2/2025 8:02 AM
+To: ziyaadr@dotnext.co.za
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Ziyaad,
+
+I have reassigned this case to you so that you can book the meeting.
+Right now for the schedules between myself and one Tier 2 resource, we collectively are not available starting on Monday, 07-April. (I am out on Friday, 04-April-2025.)
+Please do not delay in booking this meeting because those meeting windows may get filled very quickly.
+If we can resolve this case quickly on the call we will move right on to the other case.
+
+Please use the link below to schedule the meeting for ""Netwrix Support Ticket #00438927"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+nwxcorp.my.salesforce-sites.com/cts?Id=DbB_0Oy7oeEMdOy5tTtz7kvc6kzfzt5SbRuPpSOAq6o-Z&MeetingID=nB2OdtXgpkvAYh9y_tZ58ru7B8FJkz4NyRT71l4ajpM-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Ziyaad Rasool [ziyaadr@dotnext.co.za]
+Sent: 4/2/2025 5:09 AM
+To: techsupport@netwrix.com
+Cc: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+Hi Mike,
+
+ 
+
+
+Can we please schedule a session for tomorrow (Thursday, 3 April)?
+
+ 
+
+ 
+
+ 
+
+Regards,
+
+Z
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 02 April 2025 10:57
+To: techsupport <techsupport@netwrix.com>
+Cc: Ziyaad Rasool <ziyaadr@dotnext.co.za>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+
+	
+		
+			 
+			
+			
+			Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe. 
+			
+			
+		
+	
+
+
+ 
+
+
+Hi Mike 
+
+ 
+
+I am currently on leave and the customer has just come back form EID. I have included Ziyaad on the email. Please can you coordinate directly with Ziyaad so you can schedule the next call with the Tier 2 Support team. 
+
+ 
+
+ 
+
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, 1 April 2025 1:10 AM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+Hi Mark,
+
+A customer has now book at meeting for 9 AM EST on Tuesday, 01-April-2025.
+But Wed and Thursday at 9 AM are currently available.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:18 PM
+To: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+That is for 9 AM EST on Tuesday, 01-April-2025.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:17 PM
+To: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+Can you please schedule the meeting for 9 AM EST tomorrow morning?
+Please use the meeting invite below.
+
+I have a Tier 2 who can be on the call at that time so that we can get this issue resolved.
+
+nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/31/2025 6:10 AM
+To: techsupport@netwrix.com
+Cc: mike.candon@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+ 
+
+
+Hi Mike 
+
+ 
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments. 
+
+ 
+
+Hoping this helps you even more 
+
+ 
+
+
+My Best 
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: Mike Candon <Mike.Candon@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+
+ 
+
+Hi Mike 
+
+ 
+
+I emailed this yesterday, please see attached email 
+
+ 
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+ 
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N0KBE:ref
+
+
+
+ 
+ 
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","ziyaadr@dotnext.co.za","","nicholas.zimmer@netwrix.com","false","2025-04-08T22:59:08.000Z","true"
+"02sQk00000NYTVQIA5","500Qk00000N0KBEIA3","2025-04-09T14:20:38.000Z","2025-04-09T21:05:13.000Z","ref:_00D7091pB._500Q000N0KBE:ref
+
+Hi Nicholas,
+
+We have manged to identify that for the reporting site the issue is indeed permissions and have tested with domain users and are able to access the site:
+
+[cid:image001.png@01DBA964.DBEEDDD0]
+
+
+[cid:image002.jpg@01DBA964.DBEEDDD0]
+
+
+With regards to the permission analyzer job we are still not successful with scanning even though we have a connection profile configured with elevated permissions (same cred we used to run weak password job). Please see error below:
+
+[cid:image003.png@01DBA96B.305A9840]
+
+Please let us know when we can have a session to resolve.
+
+
+
+Regards,
+Z
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 09 April 2025 00:59
+To: Ziyaad Rasool <ziyaadr@dotnext.co.za>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+Any luck on this front or the other front for permissions?
+
+I am still figuring out our best course of action on my side, but curious if you have had any success checking out permissions between the 2 accounts.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/2/2025 8:02 AM
+To: ziyaadr@dotnext.co.za<mailto:ziyaadr@dotnext.co.za>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Ziyaad,
+
+I have reassigned this case to you so that you can book the meeting.
+Right now for the schedules between myself and one Tier 2 resource, we collectively are not available starting on Monday, 07-April. (I am out on Friday, 04-April-2025.)
+Please do not delay in booking this meeting because those meeting windows may get filled very quickly.
+If we can resolve this case quickly on the call we will move right on to the other case.
+
+Please use the link below to schedule the meeting for ""Netwrix Support Ticket #00438927"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+nwxcorp.my.salesforce-sites.com/cts?Id=DbB_0Oy7oeEMdOy5tTtz7kvc6kzfzt5SbRuPpSOAq6o-Z&MeetingID=nB2OdtXgpkvAYh9y_tZ58ru7B8FJkz4NyRT71l4ajpM-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=DbB_0Oy7oeEMdOy5tTtz7kvc6kzfzt5SbRuPpSOAq6o-Z&MeetingID=nB2OdtXgpkvAYh9y_tZ58ru7B8FJkz4NyRT71l4ajpM-Z>
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Ziyaad Rasool [ziyaadr@dotnext.co.za]
+Sent: 4/2/2025 5:09 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+Hi Mike,
+
+Can we please schedule a session for tomorrow (Thursday, 3 April)?
+
+
+
+Regards,
+Z
+
+From: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Sent: Wednesday, 02 April 2025 10:57
+To: techsupport <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: Ziyaad Rasool <ziyaadr@dotnext.co.za<mailto:ziyaadr@dotnext.co.za>>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Hi Mike
+
+I am currently on leave and the customer has just come back form EID. I have included Ziyaad on the email. Please can you coordinate directly with Ziyaad so you can schedule the next call with the Tier 2 Support team.
+
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, 1 April 2025 1:10 AM
+To: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+A customer has now book at meeting for 9 AM EST on Tuesday, 01-April-2025.
+But Wed and Thursday at 9 AM are currently available.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:18 PM
+To: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+That is for 9 AM EST on Tuesday, 01-April-2025.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:17 PM
+To: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+Can you please schedule the meeting for 9 AM EST tomorrow morning?
+Please use the meeting invite below.
+
+I have a Tier 2 who can be on the call at that time so that we can get this issue resolved.
+
+nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z>
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/31/2025 6:10 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: mike.candon@netwrix.com<mailto:mike.candon@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+Hi Mike
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments.
+
+Hoping this helps you even more
+
+My Best
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: Mike Candon <Mike.Candon@netwrix.com<mailto:Mike.Candon@netwrix.com>>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+Hi Mike
+
+I emailed this yesterday, please see attached email
+
+Kind Regards
+
+Mark Richmond
+Pre-Sales Lead EMEA /APAC
+Netwrix Technologies
+
+C: +971585862097
+E: mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>
+W: www.netwrix.com<http://www.netwrix.com/>
+
+Powerful Data Security Made Easy
+
+www.netwrix.com<http://www.netwrix.com/>
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com<mailto:mark.richmond@netwrix.com>>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support<http://www.netwrix.com/support>.
+
+If you're experiencing any issues with the upload or need further assistance, please let me know-I'm here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+""Request for Downloading published reports Failed: Internal Server Error""
+In the Web Service ""Service.log"" we see the error ""The user name or password is incorrect.""
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0N0KBE:ref
+
+
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.
+
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000L1krT&from=ext]","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","ziyaadr@dotnext.co.za","Ziyaad Rasool","techsupport@netwrix.com","dupreezt@dotnext.co.za","","true","2025-04-09T14:20:10.000Z","true"
+"02sQk00000NZU69IAH","500Qk00000N0KBEIA3","2025-04-09T21:13:54.000Z","2025-04-09T21:13:54.000Z","Hi Ziyaad,
+
+I am glad that we (or you) were able to get your issue resolved.
+The following is a summary of the ticket for your records.
+
++++++
+You identified that for the reporting site the issue is indeed permissions and have tested with domain users and you are now able to access the site.
++++++
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Ziyaad Rasool [ziyaadr@dotnext.co.za]
+Sent: 4/9/2025 10:20 AM
+To: techsupport@netwrix.com
+Cc: dupreezt@dotnext.co.za
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+
+
+Hi Nicholas,
+
+ 
+
+We have manged to identify that for the reporting site the issue is indeed permissions and have tested with domain users and are able to access the site:
+
+ 
+
+
+
+ 
+
+ 
+
+
+
+ 
+
+ 
+
+With regards to the permission analyzer job we are still not successful with scanning even though we have a connection profile configured with elevated permissions (same cred we used to run weak password job). Please see error below:
+
+ 
+
+
+
+ 
+
+ 
+
+Please let us know when we can have a session to resolve.
+
+ 
+
+ 
+
+ 
+
+
+Regards,
+
+Z
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 09 April 2025 00:59
+To: Ziyaad Rasool <ziyaadr@dotnext.co.za>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+
+	
+		
+			 
+			
+			
+			Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe. 
+			
+			
+		
+	
+
+
+ 
+
+
+Any luck on this front or the other front for permissions?
+
+I am still figuring out our best course of action on my side, but curious if you have had any success checking out permissions between the 2 accounts.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/2/2025 8:02 AM
+To: ziyaadr@dotnext.co.za
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Ziyaad,
+
+I have reassigned this case to you so that you can book the meeting.
+Right now for the schedules between myself and one Tier 2 resource, we collectively are not available starting on Monday, 07-April. (I am out on Friday, 04-April-2025.)
+Please do not delay in booking this meeting because those meeting windows may get filled very quickly.
+If we can resolve this case quickly on the call we will move right on to the other case.
+
+Please use the link below to schedule the meeting for ""Netwrix Support Ticket #00438927"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+
+nwxcorp.my.salesforce-sites.com/cts?Id=DbB_0Oy7oeEMdOy5tTtz7kvc6kzfzt5SbRuPpSOAq6o-Z&MeetingID=nB2OdtXgpkvAYh9y_tZ58ru7B8FJkz4NyRT71l4ajpM-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Ziyaad Rasool [ziyaadr@dotnext.co.za]
+Sent: 4/2/2025 5:09 AM
+To: techsupport@netwrix.com
+Cc: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+ref:_00D7091pB._500Q000N0KBE:ref
+
+ 
+
+
+Hi Mike,
+
+ 
+
+
+Can we please schedule a session for tomorrow (Thursday, 3 April)?
+
+ 
+
+ 
+
+ 
+
+Regards,
+
+Z
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 02 April 2025 10:57
+To: techsupport <techsupport@netwrix.com>
+Cc: Ziyaad Rasool <ziyaadr@dotnext.co.za>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			 
+			
+			
+			
+			Caution: This email originated from outside of dotNext. Do not click links or open attachments unless you recognize the sender and know the content is safe. 
+			
+			
+		
+	
+
+
+ 
+
+
+Hi Mike 
+
+ 
+
+I am currently on leave and the customer has just come back form EID. I have included Ziyaad on the email. Please can you coordinate directly with Ziyaad so you can schedule the next call with the Tier 2 Support team. 
+
+ 
+
+ 
+
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, 1 April 2025 1:10 AM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+
+
+ 
+
+Hi Mark,
+
+A customer has now book at meeting for 9 AM EST on Tuesday, 01-April-2025.
+But Wed and Thursday at 9 AM are currently available.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:18 PM
+To: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+That is for 9 AM EST on Tuesday, 01-April-2025.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/31/2025 12:17 PM
+To: mark.richmond@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - - 00438927 - POC - NEA Published Reports :Internal Server Error [ ref:!00D70091pB.!500Qk0N0KBE:ref ]
+
+Hi Mark,
+
+Can you please schedule the meeting for 9 AM EST tomorrow morning?
+Please use the meeting invite below.
+
+I have a Tier 2 who can be on the call at that time so that we can get this issue resolved.
+
+nwxcorp.my.salesforce-sites.com/cts?Id=mkHvhdTdJLgGEIxz8bMgwJeuj1iKz_Weh6Q0J5AVZsE-Z&MeetingID=nGEfdrZzejIqT68XrKYCUDEACnBI6HBG1Xy6.bvYEIU-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mark Richmond [mark.richmond@netwrix.com]
+Sent: 3/31/2025 6:10 AM
+To: techsupport@netwrix.com
+Cc: mike.candon@netwrix.com
+Subject: RE: Netwrix Support Ticket #438927 - ref:_00D7091pB._500Q000N0KBE:ref - 00438927 - POC - NEA Published Reports :Internal Server Error
+
+ref:_00D7091pB._500Q000N0KBE:ref
+ 
+
+
+Hi Mike 
+
+ 
+
+I thought I had sent this to help you but it looks like I might not have so I am sending it again. Attached is an email from the partner when I asked him to take screen shots of the trouble shooting we did and not just provide screenshots but add comments. 
+
+ 
+
+Hoping this helps you even more 
+
+ 
+
+
+My Best 
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+
+ 
+
+
+
+From: Mark Richmond <mark.richmond@netwrix.com>
+Sent: Wednesday, 26 March 2025 8:04 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: Mike Candon <Mike.Candon@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+
+ 
+
+Hi Mike 
+
+ 
+
+I emailed this yesterday, please see attached email 
+
+ 
+
+Kind Regards
+
+ 
+
+Mark Richmond
+
+Pre-Sales Lead EMEA /APAC
+
+Netwrix Technologies
+
+ 
+
+C: +971585862097
+
+E: mark.richmond@netwrix.com
+
+W: www.netwrix.com 
+
+ 
+
+Powerful Data Security Made Easy
+
+ 
+
+www.netwrix.com
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 26 March 2025 7:53 PM
+To: Mark Richmond <mark.richmond@netwrix.com>
+Subject: RE: 00438927 - POC - NEA Published Reports :Internal Server Error
+
+
+ 
+
+Hello Mark,
+
+I wanted to follow up on my previous email regarding the files we need from you. Once you have the files ready, you can easily upload them to our Customer Portal at www.netwrix.com/support.
+
+If you’re experiencing any issues with the upload or need further assistance, please let me know—I’m here to help!
+
+Looking forward to your response.
+
+Ticket Number: 00438927
+Ticket Subject: POC - NEA Published Reports :Internal Server Error
+Ticket Details: We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks.
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server.
+Access to the AIC is working fine.
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles
+
+Thank you!
+
+Mike Candon
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N0KBE:ref
+
+
+
+ 
+ 
+
+
+
+Confidentiality notice: This message and attachments included are intended only for the addressee (s). The information contained in this message is confidential and may constitute proprietary or non-public information under international, federal, and/or state laws. Unauthorized forwarding, printing, copying, distribution, or use of such information is strictly prohibited and may be unlawful. If you are not the addressee(s), please promptly delete this message and notify the sender of the delivery error by e-mail.","RE: Netwrix Support Ticket #438927 -  - 00438927 - POC - NEA Published Reports :Internal Server Error    [ ref:!00D70091pB.!500Qk0N0KBE:ref ]","techsupport@netwrix.com","Netwrix Support","ziyaadr@dotnext.co.za; mark.richmond@netwrix.com","","","true","2025-04-09T21:13:52.000Z","true"

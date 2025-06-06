@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IdlZRIAZ","00427859","Support Ticket","Host Management cleanup","Host lists are being updated by discovery queries, but the total host management list contains many outdated targets.  Some Host lists, which appear to be dynamic contain targets that are decommissioned.
+
+--------
+12/12/2024
+--------
+Host lists are being updated with new hosts but old hosts don't get cleaned up. I suspect this is intentional as a server not responding temporarily or being offline we wouldn't want it removed, but this may also be leading to some of our other issues. We discussed cleaning up the stale hosts manually, but decided I would like to keep them temporarily as we will be setting up a clean server with a new database and I would like the current environment as is for comparison in troubleshooting.
+
+
+--------
+23/12/2024
+--------
+Installed and configured NEA host discovery on the new server. Verified that the discovery was running and working, Glenda followed up the following day and confirmed hosts were all discovered and the host list looked much better.","Servers appear to be working as expected. Monitoring during other tickets to ensure servers are populating as expected.","1.	many hosts in the host management view to be offline, but host lists dynamically created from the discovery queries seem to be accurate. The Host Management view can be manually cleaned up to give us a healthy baseline to compare results of future queries.
+
+--------
+23/12/2024
+--------
+Installed and configured NEA host discovery on the new server. Verified that the discovery was running and working, Glenda followed up the following day and confirmed hosts were all discovered and the host list looked much better.
+
+--------
+17/01/2025
+--------
+Glenda confirmed host list looks good and we even have some new hosts discovered that she did not know about. This case appears to be done but we will monitor while working on other cases.","Monitor host lists.","Symptom
+Customer found that too many hosts were being left behind after being decomissioned and need to be cleaned up.
+
+Resolution
+A new NEA server was planned and we moved forward with the deployment to the new server with a clean host list. We verified that the host list was good and that it was detecting new hosts as expected.","Guidance","Ian Ranstrom","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","","69.1","Closed - Resolved","Eglin Federal Credit Union","Glenda Coley","2024-11-21T21:56:29.000Z","2025-01-29T23:21:17.000Z"

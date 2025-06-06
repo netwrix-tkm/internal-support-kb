@@ -1,0 +1,13 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DlAm1IAF","00416540","Support Ticket","FSAM - Input Table is Version 2. Expected Version 1","When executing the File System Action Module it fails - complaining that the input table is version 2, expected version 1.","","","","Issue
+When executing the File System Action Module it fails - complaining that the input table is version 2, expected version 1.
+
+Cause
+The Action Module service expects the exe and libraries to be installed in a certain location but are actually installed in a different location.
+
+To Diagnose compare the ""Path to Execute"" of the Netwrix Enterprise Auditor File System Action Moldule Applet service to the actual installation path %sainstalldir%FileSystemAM
+
+Resolution
+1. Remove the Netwrix Enterprise Auditor File System Action Moldule Applet via the NEA Action Configuration or by executing sc delete StealthAUDITFSAM
+
+2. Execute the configured action via NEA","Incorrect configuration: Netwrix product","Brandon West","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Actions","11.5","","9.0","Closed - Resolved","Allianz Life Insurance Company of North America","Venkata Deepthi Dammalapati","2024-07-30T15:17:25.000Z","2024-08-08T16:01:25.000Z"

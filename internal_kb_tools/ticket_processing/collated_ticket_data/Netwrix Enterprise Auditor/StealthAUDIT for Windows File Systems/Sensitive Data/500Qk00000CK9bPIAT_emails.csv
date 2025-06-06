@@ -1,0 +1,648 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000Bolf3IAB","500Qk00000CK9bPIAT","2024-06-26T15:38:39.000Z","2024-06-26T15:38:39.000Z","James,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""AccessInformationCenter.Service.exe"", """")
+
+To the question at hand, I do not believe so as the Tag would be a modification to the File system object.
+
+I will however confirm with Dev.
+ 
+Please also confirm your correct email address I show the following:
+jaallen@assystem.com
+jaallen-ext@assystem.com
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0CK9bP:ref","Sensitive data -  action module    [ ref:!00D70091pB.!500Qk0CK9bP:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","jaallen@assystem.com","","false","2024-06-26T15:38:37.000Z","true"
+"02sQk00000Br7rTIAR","500Qk00000CK9bPIAT","2024-06-27T07:19:08.000Z","2024-06-27T07:19:08.000Z","ref:_00D7091pB._500Q000CK9bP:ref
+
+Hello Dusty -  good to have you on this ticket  😊
+
+Results are:
+
+
+Name                                               Version    InstallDate
+----                                               -------    -----------
+StealthAUDIT Access Information Center             11.5.0.127 20230620
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.60  20220808
+StealthAUDIT V11.5                                 11.5.0.231 20230620
+Stealthbits Activity Monitor                       6.0.928    20220622
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+C:inetpubwwwrootStealthAUDIT ComplianceBin
+
+PS C:Windowssystem32>
+
+
+Essentially, we are trying to use the sensitive data scan results to tag files depending what the criteria find.  So that’s one thing we’ve not done before -  tagging in an action module -  and so we are cautious!  We do not want to mess up files and crucially do not want to alter the timestamps of files which will then mess up the stale file jobs we run to highlight where data is not being used.
+
+My primary email address is now  jaallen-ext@assystem.com<mailto:jaallen-ext@assystem.com>  but the other one still works.
+
+Thanks
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, June 26, 2024 4:39 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Cc: ALLEN James <jaallen-ext@assystem.com>
+Subject: Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+
+James,
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""AccessInformationCenter.Service.exe"", """")
+
+To the question at hand, I do not believe so as the Tag would be a modification to the File system object.
+
+I will however confirm with Dev.
+
+Please also confirm your correct email address I show the following:
+jaallen@assystem.com<mailto:jaallen@assystem.com>
+jaallen-ext@assystem.com<mailto:jaallen-ext@assystem.com>
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!VdpDHSyr_-vtwFUV4pqFt7mVUwWiDDxDWblAGPSGnFaUzbvMKLbhMna_hAY6pabiqtZu3yjEspdR420E4Oi4M5Y$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!GDyMDYbfvpeH7A!VdpDHSyr_-vtwFUV4pqFt7mVUwWiDDxDWblAGPSGnFaUzbvMKLbhMna_hAY6pabiqtZu3yjEspdR420ER86Vtc0$>
+
+Emailing into support@stealthbits.com has been disabled as well.
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0CK9bP:ref","RE: Netwrix Support Ticket #413112 - ref:_00D7091pB._500Q000CK9bP:ref - Sensitive data -  action module    [ ref:!00D70091pB.!500Qk0CK9bP:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-06-27T07:18:52.000Z","true"
+"02sQk00000BsEVtIAN","500Qk00000CK9bPIAT","2024-06-27T14:54:25.000Z","2024-06-27T14:54:25.000Z","James,
+
+Thank You for the update.
+
+Always happy to help!
+
+Dev’s reply: Correct access and modification times will change.
+This is by design, because modifying the contents of a file while preserving its timestamps may break certain applications and cause data corruption.
+
+Please let me know if any additional assistance is needed for this case.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/customer_training.html
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/27/2024 3:18 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #413112 - ref:_00D7091pB._500Q000CK9bP:ref - Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+ref:_00D7091pB._500Q000CK9bP:ref
+
+
+
+Hello Dusty -  good to have you on this ticket  😊
+
+ 
+
+Results are:
+
+ 
+
+ 
+
+Name                                               Version    InstallDate
+
+----                                               -------    -----------
+
+StealthAUDIT Access Information Center             11.5.0.127 20230620   
+
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.60  20220808   
+
+StealthAUDIT V11.5                                 11.5.0.231 20230620   
+
+Stealthbits Activity Monitor                       6.0.928    20220622   
+
+ 
+
+ 
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT ComplianceBin
+
+ 
+
+PS C:Windowssystem32>  
+
+ 
+
+ 
+
+Essentially, we are trying to use the sensitive data scan results to tag files depending what the criteria find.  So that’s one thing we’ve not done before -  tagging in an action module -  and so we are cautious!  We do not want to mess up files and crucially do not want to alter the timestamps of files which will then mess up the stale file jobs we run to highlight where data is not being used.
+
+ 
+
+My primary email address is now  jaallen-ext@assystem.com  but the other one still works.
+
+ 
+
+Thanks
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, June 26, 2024 4:39 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Cc: ALLEN James <jaallen-ext@assystem.com>
+Subject: Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+
+
+ 
+
+James,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""AccessInformationCenter.Service.exe"", """")
+
+To the question at hand, I do not believe so as the Tag would be a modification to the File system object.
+
+I will however confirm with Dev.
+ 
+Please also confirm your correct email address I show the following:
+jaallen@assystem.com
+jaallen-ext@assystem.com
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+
+ref:!00D70091pB.!500Qk0CK9bP:ref","RE: Netwrix Support Ticket #413112 -  - Sensitive data -  action module    [ ref:!00D70091pB.!500Qk0CK9bP:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-06-27T14:54:24.000Z","true"
+"02sQk00000BryPZIAZ","500Qk00000CK9bPIAT","2024-06-27T15:01:50.000Z","2024-06-27T15:01:50.000Z","ref:_00D7091pB._500Q000CK9bP:ref
+
+Ok,  Thanks Dusty.
+Not quite the answer I wanted,  but that's at least answered the question!
+
+All the best,
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 27, 2024 3:54 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #413112 - - Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+James,
+
+Thank You for the update.
+
+Always happy to help!
+
+Dev's reply: Correct access and modification times will change.
+This is by design, because modifying the contents of a file while preserving its timestamps may break certain applications and cause data corruption.
+
+Please let me know if any additional assistance is needed for this case.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/customer_training.html<https://urldefense.com/v3/__https:/www.netwrix.com/customer_training.html__;!!GDyMDYbfvpeH7A!XuKFxHUkpSTaKxf5OFEbbM8m-tEAbmbMIFIAMHbStAmWJGqVgTFokBrorhSaQuqrPvt8uHi4gFB90epVYFlRKlkC09E$>
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!XuKFxHUkpSTaKxf5OFEbbM8m-tEAbmbMIFIAMHbStAmWJGqVgTFokBrorhSaQuqrPvt8uHi4gFB90epVYFlRJ5-PbQ4$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!GDyMDYbfvpeH7A!XuKFxHUkpSTaKxf5OFEbbM8m-tEAbmbMIFIAMHbStAmWJGqVgTFokBrorhSaQuqrPvt8uHi4gFB90epVYFlRI_Qot5M$>
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/27/2024 3:18 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #413112 - ref:_00D7091pB._500Q000CK9bP:ref - Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+ref:_00D7091pB._500Q000CK9bP:ref
+
+
+Hello Dusty -  good to have you on this ticket  ?
+
+Results are:
+
+
+Name                                               Version    InstallDate
+----                                               -------    -----------
+StealthAUDIT Access Information Center             11.5.0.127 20230620
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.60  20220808
+StealthAUDIT V11.5                                 11.5.0.231 20230620
+Stealthbits Activity Monitor                       6.0.928    20220622
+
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+C:inetpubwwwrootStealthAUDIT ComplianceBin
+
+PS C:Windowssystem32>
+
+
+Essentially, we are trying to use the sensitive data scan results to tag files depending what the criteria find.  So that's one thing we've not done before -  tagging in an action module -  and so we are cautious!  We do not want to mess up files and crucially do not want to alter the timestamps of files which will then mess up the stale file jobs we run to highlight where data is not being used.
+
+My primary email address is now  jaallen-ext@assystem.com<mailto:jaallen-ext@assystem.com>  but the other one still works.
+
+Thanks
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, June 26, 2024 4:39 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Cc: ALLEN James <jaallen-ext@assystem.com>
+Subject: Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+
+James,
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""AccessInformationCenter.Service.exe"", """")
+
+To the question at hand, I do not believe so as the Tag would be a modification to the File system object.
+
+I will however confirm with Dev.
+
+Please also confirm your correct email address I show the following:
+jaallen@assystem.com<mailto:jaallen@assystem.com>
+jaallen-ext@assystem.com<mailto:jaallen-ext@assystem.com>
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!VdpDHSyr_-vtwFUV4pqFt7mVUwWiDDxDWblAGPSGnFaUzbvMKLbhMna_hAY6pabiqtZu3yjEspdR420E4Oi4M5Y$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!GDyMDYbfvpeH7A!VdpDHSyr_-vtwFUV4pqFt7mVUwWiDDxDWblAGPSGnFaUzbvMKLbhMna_hAY6pabiqtZu3yjEspdR420ER86Vtc0$>
+
+Emailing into support@stealthbits.com has been disabled as well.
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0CK9bP:ref
+[Image removed by sender.]","RE: Netwrix Support Ticket #413112 -  - Sensitive data -  action module    [ ref:!00D70091pB.!500Qk0CK9bP:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-06-27T15:01:34.000Z","true"
+"02sQk00000BsDOaIAN","500Qk00000CK9bPIAT","2024-06-27T15:30:54.000Z","2024-06-27T15:30:54.000Z","James,
+
+I'm not sure there is any method to mod a file object that will not change those attributes.
+
+I will close out this ticket for us.
+
+We have 30days to reopen once the closure email is received.
+
+To reopen we can just reply to that email to bring the case back into my queue.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. 
+
+Feel free to leave any feedback via the survey link.
+
+Have a great weekend.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/27/2024 11:01 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #413112 - - Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+ref:_00D7091pB._500Q000CK9bP:ref
+
+
+
+Ok,  Thanks Dusty.
+
+Not quite the answer I wanted,  but that’s at least answered the question!
+
+ 
+
+All the best,
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 27, 2024 3:54 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #413112 - - Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+
+
+ 
+
+James,
+
+Thank You for the update.
+
+Always happy to help!
+
+Dev’s reply: Correct access and modification times will change.
+This is by design, because modifying the contents of a file while preserving its timestamps may break certain applications and cause data corruption.
+
+Please let me know if any additional assistance is needed for this case.
+
+Additional reference links you might like:
+New Customer Training   https://www.netwrix.com/customer_training.html
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/27/2024 3:18 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #413112 - ref:_00D7091pB._500Q000CK9bP:ref - Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+ref:_00D7091pB._500Q000CK9bP:ref
+
+ 
+
+
+Hello Dusty -  good to have you on this ticket  ?
+
+ 
+
+Results are:
+
+ 
+
+ 
+
+Name                                               Version    InstallDate
+
+----                                               -------    -----------
+
+StealthAUDIT Access Information Center             11.5.0.127 20230620   
+
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.60  20220808   
+
+StealthAUDIT V11.5                                 11.5.0.231 20230620   
+
+Stealthbits Activity Monitor                       6.0.928    20220622   
+
+ 
+
+ 
+
+C:Program Files (x86)STEALTHbitsStealthAUDIT
+
+C:inetpubwwwrootStealthAUDIT ComplianceBin
+
+ 
+
+PS C:Windowssystem32>  
+
+ 
+
+ 
+
+Essentially, we are trying to use the sensitive data scan results to tag files depending what the criteria find.  So that’s one thing we’ve not done before -  tagging in an action module -  and so we are cautious!  We do not want to mess up files and crucially do not want to alter the timestamps of files which will then mess up the stale file jobs we run to highlight where data is not being used.
+
+ 
+
+My primary email address is now  jaallen-ext@assystem.com  but the other one still works.
+
+ 
+
+Thanks
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, June 26, 2024 4:39 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Cc: ALLEN James <jaallen-ext@assystem.com>
+Subject: Sensitive data - action module [ ref:!00D70091pB.!500Qk0CK9bP:ref ]
+
+
+
+ 
+
+James,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""AccessInformationCenter.Service.exe"", """")
+
+To the question at hand, I do not believe so as the Tag would be a modification to the File system object.
+
+I will however confirm with Dev.
+ 
+Please also confirm your correct email address I show the following:
+jaallen@assystem.com
+jaallen-ext@assystem.com
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+
+ref:!00D70091pB.!500Qk0CK9bP:ref","RE: Netwrix Support Ticket #413112 -  - Sensitive data -  action module    [ ref:!00D70091pB.!500Qk0CK9bP:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-06-27T15:30:52.000Z","true"
+"02sQk00000Bs7nrIAB","500Qk00000CK9bPIAT","2024-06-27T15:31:19.000Z","2024-06-27T15:31:19.000Z","ref:_00D7091pB._500Q000CK9bP:ref
+
+Hello - I will be back on Monday 1st July 2024
+
+Please note that my primary email address has changed.
+It is now  jaallen-ext@assystem.com","Automatic reply: Netwrix Support Ticket #413112 -  - Sensitive data -  action module    [ ref:!00D70091pB.!500Qk0CK9bP:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","false","2024-06-27T15:31:07.000Z","true"

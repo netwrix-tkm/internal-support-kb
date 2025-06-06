@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OqVupIAF","00444209","Support Ticket","Sites in SharePoint Online not present in AIC","I am auditing site permissions and see that there are multiple sharePoint online sites that are listed in SharePoint online which do not appear in the Resource Audit of the enterprise auditor. I am running version 11.6 of the application.","review SP resource in AIC
+15 sites are missing","SPSEEK scan wasn't suffcient because it was scoped for a particular site
+
+removed scoping limitation
+dropped all SP data and scanned fresh with just the SPSEEK job (SPAA disabled)
+
+now the sites are showing properly in the AIC
+requested the client extend the scan depth from 4 to full
+
+client still having issue with a few user AD accounts not appearing consistently accross AD and entra ID reports - needs a new ticket
+
+new Issue - SHAREPOINTACCESS	Stealthbits.StealthAUDIT.DataCollectors.SPAA.Tasks.ScanSharePointAccessTask.InternalProcessRecord	""[C:32] Unable to parse tags from temp file D:Program Files (x86)STEALTHbitsStealthAUDITJobsSA_CommonDataSHAREPOINTACCESS<<path_to_filename.xls>> for file <<FileName.xls>> Error:Not enough memory resources are available to process this command""	BERWIND.SHAREPOINT.COM	DCExtract	5384	9540	5480","creating ticket for AD user account issue","Issue: The customer reported that multiple SharePoint Online sites listed in SharePoint Online were not appearing in the Resource Audit of Netwrix Enterprise Auditor (AIC). They were using version 11.6 of the application.
+
+Cause: The issue was caused by the SPSEEK scan being scoped to a single SharePoint site, which prevented other sites from being included in the audit. Additionally, the SPAA scan had been disabled for a long time due to an expired certificate, and the database contained outdated or incomplete data.
+
+Resolution: 
+1. A new self-signed certificate was created and uploaded to the Azure App registration. The connection profile in Netwrix Enterprise Auditor was updated to use the new certificate.
+2. The inclusion filter for the SPSEEK scan was removed to ensure all sites were scanned.
+3. All existing SPSEEK and SPAA data were dropped from the SQL database, and the local copy was renamed to start with a clean slate.
+4. A fresh SPSEEK scan was run, initially with a depth of 2 levels, and later increased to 4 levels. The scan successfully updated the missing sites in the AIC.
+5. The customer was advised to increase the scan depth further by unchecking the ""Limit scanned depth to:"" option for a complete scan.
+6. The logging level was reduced to ""Warning"" to prevent log bloat and memory resource errors during subsequent scans.
+7. The customer confirmed that the sites were now visible in the AIC, resolving the primary issue. However, a separate ticket was created to address inconsistencies in user account reporting across Active Directory and Entra ID.
+
+(Requested by Brandon West)","Incorrect configuration: Netwrix product","Joshua Sexton","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Data Collection","11.6","139","24.1","Closed - Resolved","Berwind","Chan Pin","2025-05-06T14:44:20.000Z","2025-05-30T17:00:23.000Z"

@@ -1,0 +1,28 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000O23AYIAZ","00441939","Support Ticket","AIC showing old scan dates","AIC is showing old scan date for 1 server. The server is failing scan and bulk import.","Login to AIC
+Navigate to  resource audit and select file system
+Server 01 shows very old scan date.","--------
+04/14/2025
+--------
+Opened new ticket for AIC issue. The issue appears to be old info in the T2 database preventing server 01 from running bulk import, so no new data exists for AIC to check which leads to the old scan date being shown.
+
+---------------
+Zoom meeting on 04/23:
+client running SA 11.5.0.210
+resolved the issue preventing the FSAA bulk import for SVOC-FS01 from completing. The issue seemed to be a sequencing issue were SVOC-FS01 was no longer on the FSAA_Hosts table but still had left over data (Tier2s). The bulk import job was saw the old data and was trying to upload the leftover data before adding SVOC-FS01 back to the host list.
+
+We resolved the issue by deleting/renaming the old T2 data for SVOC-FS01 then running the scan again.","wait for 10 level scan to finish
+client should let us know how if completes
+we should then check the AIC for fresh data
+
+assuming it completes without further issue, the client should be reminded to adjust scan depth--likely to full depth
+
+once this is verified as working, the client is expecting to continue with upgrade to 12.0
+-set expectation to upgrade to 11.6 first then upgrade to 12.0","Issue:
+FSAA job is failing bulk import.
+
+Cause:
+T2 database is holding stale information about hosts that are no longer available.
+
+Resolution:
+Cleared T2 database and rescanned environment. Bulk import succeeded on new scan.","Corrupt/Invalid Data","Ian Ranstrom","Error","Netwrix Enterprise Auditor","Access Information Center","Resource Audit","11.5","","10.2","Closed - Resolved","Bank of New Hampshire","Casey Nialetz","2025-04-14T14:31:37.000Z","2025-04-24T20:29:36.000Z"

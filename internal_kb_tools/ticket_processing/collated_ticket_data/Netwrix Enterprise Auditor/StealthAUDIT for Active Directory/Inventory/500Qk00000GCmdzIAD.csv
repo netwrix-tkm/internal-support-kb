@@ -1,0 +1,9 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GCmdzIAD","00421977","Support Ticket","ADI job erroring out almost immediately with strange error","ADI errors out. See screenshot for reference and let me know next steps. At first glance it seems like there could be an issue with a specific user having too many permissions in AD (too large a token maybe?) and causing the data collector to error out.","","","","[Issue]
+Error on the Active Directory Inventory1-AD_Scan: REDACTED USER DN 'Length of the access control list exceed the allowed maximum.
+
+[Cause]
+This issue occurs when you reach the maximum size of the access control list (ACL). The size of an ACL varies with the number and size of its access control entries (ACEs). The maximum size of an ACL is 64 kilobytes (KB), or approximately 1,820 ACEs. However, for performance reasons, the maximum size isn't practical.
+
+[Resolution]
+auditor-enterprise-hotfix-11.6.0.053 was deployed (also included in CU NEA v11.6.0.114+). This hotfix changes the exception handling so the error does not immediately kill the scan upon finding this issue. It instead will log a warning about the user not being scanned due to this issue.","Missing functionality / Feature request","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Inventory","11.6","","35.8","Closed - Resolved","Hillsborough County Clerk of the Court","Bill Stater","2024-09-24T19:10:42.000Z","2024-10-30T15:17:18.000Z"

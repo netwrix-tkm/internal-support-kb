@@ -1,0 +1,1211 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MVwJDIA1","500Qk00000MHjIeIAL","2025-03-12T12:46:29.000Z","2025-03-12T12:46:29.000Z","Hello atif,
+
+I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436938
+Ticket Subject: Hardened Paths have been modified to lower the security level
+Ticket Details: Hi,I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.Please let me know your availability for Thursday 27th February.Kind Regards,Atif Rashid
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/3/2025 5:51 AM
+To: atif.rashid@barrattplc.co.uk
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+Dear Atif,
+
+Following up on our meeting, I am providing further details regarding the findings related to Hardened UNC Paths and Protected Users, along with the recommended mitigation steps.
+
+	Hardened Paths Have Been Modified to Lower the Security Level
+
+This finding indicates that the Hardened UNC Paths policy has been altered, reducing protection for SYSVOL and NETLOGON shares. This increases the risk of unauthorized access and potential manipulation of Group Policy settings.
+
+-To mitigate this, the policy should be correctly enforced through Group Policy Management:
+Navigate to Computer Configuration > Policies > Administrative Templates > Network > Network Provider > Hardened UNC Paths
+-Apply the following values:
+\*SYSVOL  RequireMutualAuthentication=1, RequireIntegrity=1  
+\*NETLOGON  RequireMutualAuthentication=1, RequireIntegrity=1  
+-Run gpupdate /force and verify access controls.
+
+	Number of Users Not in Protected Users
+
+The Protected Users group enhances security by enforcing stricter authentication policies, preventing NTLM usage, and restricting credential caching. Users not in this group remain more susceptible to authentication-based attacks.
+
+To mitigate this, privileged accounts should be added to the Protected Users group:
+-Open Active Directory Users and Computers (ADUC)
+-Locate and modify the Protected Users group
+-Add the necessary accounts and enforce a Group Policy update
+
+Please let me know if you need any further clarification in implementing these changes.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Atif Rashid [atif.rashid@barrattplc.co.uk]
+Sent: 3/3/2025 4:41 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436938 - ref:_00D7091pB._500Q000MHjIe:ref - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+ref:_00D7091pB._500Q000MHjIe:ref
+
+
+
+Hi Luila,
+
+ 
+
+Thank you for your time on Thursday.
+
+ 
+
+As per the discussion, we agreed that you would send us recommendation on how best to solve the below risks identified by Pingcastle?
+
+
+	Hardened Paths have been modified to lower the security level
+	Number of users not in Protected Users.
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Kind Regards,
+
+ 
+
+Atif Rashid
+
+IT Security Analyst
+Barratt Redrow plc
+
+ 
+
+Email: Atif.Rashid@barrattredrow.co.uk
+Mobile: 07721607162
+
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 25 February 2025 16:34
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+
+ 
+
+
+Dear Atif, Thank you for reaching out regarding the risk identified by PingCastle related to ""Hardened Paths being modified to lower the security level. "" Ahead of our meeting, I’m sharing the relevant Microsoft support article
+
+
+
+ 
+
+
+Dear Atif,
+
+Thank you for reaching out regarding the risk identified by PingCastle related to ""Hardened Paths being modified to lower the security level.""
+
+Ahead of our meeting, I’m sharing the relevant Microsoft support article  here . The section on ""Minimum recommended configuration for domain-joined computers"" provides guidance on properly securing Group Policy paths, which is the focus of PingCastle’s detection.
+
+I am available to meet on Thursday between 10:00 AM CET and 6:00 PM CET. Please let me know the most suitable time for you.
+
+Looking forward to your confirmation.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MHjIe:ref
+
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our ‘Email Addendum v2.0’ at www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.","RE: Netwrix Support Ticket #436938 -  - *EXTERNAL:Hardened Paths have been modified to lower the security level    [ ref:!00D70091pB.!500Qk0MHjIe:ref ]","techsupport@netwrix.com","Netwrix Support","atif.rashid@barrattplc.co.uk","","iulia.apatachioaei@netwrix.com","true","2025-03-12T12:46:28.000Z","true"
+"02sQk00000MVtTOIA1","500Qk00000MHjIeIAL","2025-03-12T12:51:46.000Z","2025-03-12T13:08:39.000Z","ref:_00D7091pB._500Q000MHjIe:ref
+
+Hi Luila,
+
+We are currently reviewing the recommendations.
+
+I will update you once this is complete.
+
+
+
+
+
+Kind Regards,
+
+Atif Rashid
+IT Security Analyst
+Barratt Redrow plc
+
+Email: Atif.Rashid@barrattredrow.co.uk<mailto:Atif.Rashid@barrattredrow.co.uk>
+Mobile: 07721607162
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 12 March 2025 12:47
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+Hello atif, I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue. If you’re still experiencing problems or have any
+
+Hello atif,
+
+I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436938
+Ticket Subject: Hardened Paths have been modified to lower the security level
+Ticket Details: Hi,
+
+I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.
+
+The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.
+
+Please let me know your availability for Thursday 27th February.
+
+Kind Regards,
+
+Atif Rashid
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!CbnuSKVWDws!1UoDdTOcUs_gkgHvr8Utdb2hvqN8Ta4U3UOQ-N8c6KtIQO2IojL23uXNlscHCWYpVI25j2rFkji1ZdJ7SW6FkOT5e4RqmEjT$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/3/2025 5:51 AM
+To: atif.rashid@barrattplc.co.uk<mailto:atif.rashid@barrattplc.co.uk>
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+Dear Atif,
+
+Following up on our meeting, I am providing further details regarding the findings related to Hardened UNC Paths and Protected Users, along with the recommended mitigation steps.
+
+  *   Hardened Paths Have Been Modified to Lower the Security Level
+This finding indicates that the Hardened UNC Paths policy has been altered, reducing protection for SYSVOL and NETLOGON shares. This increases the risk of unauthorized access and potential manipulation of Group Policy settings.
+
+-To mitigate this, the policy should be correctly enforced through Group Policy Management:
+Navigate to Computer Configuration > Policies > Administrative Templates > Network > Network Provider > Hardened UNC Paths
+-Apply the following values:
+\*SYSVOL<file://*/SYSVOL>  RequireMutualAuthentication=1, RequireIntegrity=1
+\*NETLOGON<file://*/NETLOGON>  RequireMutualAuthentication=1, RequireIntegrity=1
+-Run gpupdate /force and verify access controls.
+
+  *   Number of Users Not in Protected Users
+The Protected Users group enhances security by enforcing stricter authentication policies, preventing NTLM usage, and restricting credential caching. Users not in this group remain more susceptible to authentication-based attacks.
+
+To mitigate this, privileged accounts should be added to the Protected Users group:
+-Open Active Directory Users and Computers (ADUC)
+-Locate and modify the Protected Users group
+-Add the necessary accounts and enforce a Group Policy update
+
+Please let me know if you need any further clarification in implementing these changes.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!CbnuSKVWDws!1UoDdTOcUs_gkgHvr8Utdb2hvqN8Ta4U3UOQ-N8c6KtIQO2IojL23uXNlscHCWYpVI25j2rFkji1ZdJ7SW6FkOT5e4RqmEjT$>
+
+
+--------------- Original Message ---------------
+From: Atif Rashid [atif.rashid@barrattplc.co.uk]
+Sent: 3/3/2025 4:41 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #436938 - ref:_00D7091pB._500Q000MHjIe:ref - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+ref:_00D7091pB._500Q000MHjIe:ref
+
+
+Hi Luila,
+
+Thank you for your time on Thursday.
+
+As per the discussion, we agreed that you would send us recommendation on how best to solve the below risks identified by Pingcastle?
+
+  1.  Hardened Paths have been modified to lower the security level
+  2.  Number of users not in Protected Users.
+
+
+
+
+
+Kind Regards,
+
+Atif Rashid
+IT Security Analyst
+Barratt Redrow plc
+
+Email: Atif.Rashid@barrattredrow.co.uk<mailto:Atif.Rashid@barrattredrow.co.uk>
+Mobile: 07721607162
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: 25 February 2025 16:34
+To: Atif Rashid <atif.rashid@barrattplc.co.uk<mailto:atif.rashid@barrattplc.co.uk>>
+Subject: *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+Dear Atif, Thank you for reaching out regarding the risk identified by PingCastle related to ""Hardened Paths being modified to lower the security level. "" Ahead of our meeting, I’m sharing the relevant Microsoft support article
+
+Dear Atif,
+
+Thank you for reaching out regarding the risk identified by PingCastle related to ""Hardened Paths being modified to lower the security level.""
+
+Ahead of our meeting, I’m sharing the relevant Microsoft support article here<https://urldefense.com/v3/__https://support.microsoft.com/en-us/topic/ms15-011-vulnerability-in-group-policy-could-allow-remote-code-execution-february-10-2015-91b4bda2-945d-455b-ebbb-01d1ec191328__;!!CbnuSKVWDws!36yYVr-J-IvNfipWvKkssusTcpWHMS2IdvRkyz_akxkwDxDQyIhGS5BPP8c6rFChldRoFfAZ8PL_R5dk7LR49UPZPkfZiJBL$> . The section on ""Minimum recommended configuration for domain-joined computers"" provides guidance on properly securing Group Policy paths, which is the focus of PingCastle’s detection.
+
+I am available to meet on Thursday between 10:00 AM CET and 6:00 PM CET. Please let me know the most suitable time for you.
+
+Looking forward to your confirmation.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!CbnuSKVWDws!36yYVr-J-IvNfipWvKkssusTcpWHMS2IdvRkyz_akxkwDxDQyIhGS5BPP8c6rFChldRoFfAZ8PL_R5dk7LR49UPZPukn49Vb$>[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0MHjIe:ref
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our ‘Email Addendum v2.0’ at www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a<https://urldefense.com/v3/__http://www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a__;!!CbnuSKVWDws!1UoDdTOcUs_gkgHvr8Utdb2hvqN8Ta4U3UOQ-N8c6KtIQO2IojL23uXNlscHCWYpVI25j2rFkji1ZdJ7SW6FkOT5exi8h83g$> for further details.
+
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our ‘Email Addendum v2.0’ at www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.","RE: Netwrix Support Ticket #436938 -  - *EXTERNAL:Hardened Paths have been modified to lower the security level    [ ref:!00D70091pB.!500Qk0MHjIe:ref ]","atif.rashid@barrattplc.co.uk","Atif Rashid","techsupport@netwrix.com","","","true","2025-03-12T12:51:30.000Z","true"
+"02sQk00000MW1u1IAD","500Qk00000MHjIeIAL","2025-03-12T13:09:31.000Z","2025-03-12T13:09:31.000Z","Hi Atif,
+
+Thanks for the update. I appreciate you reviewing the recommendations, and I’ll wait for your findings. Let me know if you need any clarifications or further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Atif Rashid [atif.rashid@barrattplc.co.uk]
+Sent: 3/12/2025 8:51 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+ref:_00D7091pB._500Q000MHjIe:ref
+
+
+
+Hi Luila, 
+
+ 
+
+We are currently reviewing the recommendations.
+
+ 
+
+I will update you once this is complete.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Kind Regards,
+
+ 
+
+Atif Rashid
+
+IT Security Analyst
+Barratt Redrow plc
+
+ 
+
+Email: Atif.Rashid@barrattredrow.co.uk
+Mobile: 07721607162
+
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 12 March 2025 12:47
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+
+ 
+
+
+Hello atif, I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue. If you’re still experiencing problems or have any
+
+
+
+ 
+
+
+Hello atif,
+
+I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436938
+Ticket Subject: Hardened Paths have been modified to lower the security level
+Ticket Details: Hi,
+
+I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.
+
+The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.
+
+Please let me know your availability for Thursday 27th February.
+
+Kind Regards,
+
+Atif Rashid
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/3/2025 5:51 AM
+To: atif.rashid@barrattplc.co.uk
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+Dear Atif,
+
+Following up on our meeting, I am providing further details regarding the findings related to Hardened UNC Paths and Protected Users, along with the recommended mitigation steps.
+
+
+	Hardened Paths Have Been Modified to Lower the Security Level
+
+
+This finding indicates that the Hardened UNC Paths policy has been altered, reducing protection for SYSVOL and NETLOGON shares. This increases the risk of unauthorized access and potential manipulation of Group Policy settings.
+
+-To mitigate this, the policy should be correctly enforced through Group Policy Management:
+Navigate to Computer Configuration > Policies > Administrative Templates > Network > Network Provider > Hardened UNC Paths
+-Apply the following values:
+\*SYSVOL  RequireMutualAuthentication=1, RequireIntegrity=1  
+\*NETLOGON  RequireMutualAuthentication=1, RequireIntegrity=1  
+-Run gpupdate /force and verify access controls.
+
+
+	Number of Users Not in Protected Users
+
+
+The Protected Users group enhances security by enforcing stricter authentication policies, preventing NTLM usage, and restricting credential caching. Users not in this group remain more susceptible to authentication-based attacks.
+
+To mitigate this, privileged accounts should be added to the Protected Users group:
+-Open Active Directory Users and Computers (ADUC)
+-Locate and modify the Protected Users group
+-Add the necessary accounts and enforce a Group Policy update
+
+Please let me know if you need any further clarification in implementing these changes.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Atif Rashid [atif.rashid@barrattplc.co.uk]
+Sent: 3/3/2025 4:41 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436938 - ref:_00D7091pB._500Q000MHjIe:ref - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+ref:_00D7091pB._500Q000MHjIe:ref
+
+ 
+
+
+Hi Luila,
+
+ 
+
+Thank you for your time on Thursday.
+
+ 
+
+As per the discussion, we agreed that you would send us recommendation on how best to solve the below risks identified by Pingcastle?
+
+
+	Hardened Paths have been modified to lower the security level
+	Number of users not in Protected Users.
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Kind Regards,
+
+ 
+
+Atif Rashid
+
+IT Security Analyst
+Barratt Redrow plc
+
+ 
+
+Email: Atif.Rashid@barrattredrow.co.uk
+Mobile: 07721607162
+
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 25 February 2025 16:34
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+
+ 
+
+
+Dear Atif, Thank you for reaching out regarding the risk identified by PingCastle related to ""Hardened Paths being modified to lower the security level. "" Ahead of our meeting, I’m sharing the relevant Microsoft support article
+
+
+
+ 
+
+
+Dear Atif,
+
+Thank you for reaching out regarding the risk identified by PingCastle related to ""Hardened Paths being modified to lower the security level.""
+
+Ahead of our meeting, I’m sharing the relevant Microsoft support article  here . The section on ""Minimum recommended configuration for domain-joined computers"" provides guidance on properly securing Group Policy paths, which is the focus of PingCastle’s detection.
+
+I am available to meet on Thursday between 10:00 AM CET and 6:00 PM CET. Please let me know the most suitable time for you.
+
+Looking forward to your confirmation.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MHjIe:ref
+
+
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our ‘Email Addendum v2.0’ at  www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.
+ 
+
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our ‘Email Addendum v2.0’ at www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.","RE: Netwrix Support Ticket #436938 -  - *EXTERNAL:Hardened Paths have been modified to lower the security level    [ ref:!00D70091pB.!500Qk0MHjIe:ref ]","techsupport@netwrix.com","Netwrix Support","atif.rashid@barrattplc.co.uk","","iulia.apatachioaei@netwrix.com","true","2025-03-12T13:09:29.000Z","true"
+"02sQk00000Mg81KIAR","500Qk00000MHjIeIAL","2025-03-17T08:29:08.000Z","2025-03-17T08:29:08.000Z","Hello atif,
+
+I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436938
+Ticket Subject: Hardened Paths have been modified to lower the security level
+Ticket Details: Hi,I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.Please let me know your availability for Thursday 27th February.Kind Regards,Atif Rashid
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 9:09 AM
+To: atif.rashid@barrattplc.co.uk
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+Hi Atif,
+
+Thanks for the update. I appreciate you reviewing the recommendations, and I’ll wait for your findings. Let me know if you need any clarifications or further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Atif Rashid [atif.rashid@barrattplc.co.uk]
+Sent: 3/12/2025 8:51 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+ref:_00D7091pB._500Q000MHjIe:ref
+
+
+
+Hi Luila, 
+
+ 
+
+We are currently reviewing the recommendations.
+
+ 
+
+I will update you once this is complete.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Kind Regards,
+
+ 
+
+Atif Rashid
+
+IT Security Analyst
+Barratt Redrow plc
+
+ 
+
+Email: Atif.Rashid@barrattredrow.co.uk
+Mobile: 07721607162
+
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 12 March 2025 12:47
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+
+ 
+
+
+Hello atif, I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue. If you’re still experiencing problems or have any
+
+
+
+ 
+
+
+Hello atif,
+
+I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436938
+Ticket Subject: Hardened Paths have been modified to lower the security level
+Ticket Details: Hi,
+
+I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.
+
+The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.
+
+Please let me know your availability for Thursday 27th February.
+
+Kind Regards,
+
+Atif Rashid
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/3/2025 5:51 AM
+To: atif.rashid@barrattplc.co.uk
+Subject: RE: Netwrix Support Ticket #436938 - - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+Dear Atif,
+
+Following up on our meeting, I am providing further details regarding the findings related to Hardened UNC Paths and Protected Users, along with the recommended mitigation steps.
+
+
+	Hardened Paths Have Been Modified to Lower the Security Level
+
+
+This finding indicates that the Hardened UNC Paths policy has been altered, reducing protection for SYSVOL and NETLOGON shares. This increases the risk of unauthorized access and potential manipulation of Group Policy settings.
+
+-To mitigate this, the policy should be correctly enforced through Group Policy Management:
+Navigate to Computer Configuration > Policies > Administrative Templates > Network > Network Provider > Hardened UNC Paths
+-Apply the following values:
+\*SYSVOL  RequireMutualAuthentication=1, RequireIntegrity=1  
+\*NETLOGON  RequireMutualAuthentication=1, RequireIntegrity=1  
+-Run gpupdate /force and verify access controls.
+
+
+	Number of Users Not in Protected Users
+
+
+The Protected Users group enhances security by enforcing stricter authentication policies, preventing NTLM usage, and restricting credential caching. Users not in this group remain more susceptible to authentication-based attacks.
+
+To mitigate this, privileged accounts should be added to the Protected Users group:
+-Open Active Directory Users and Computers (ADUC)
+-Locate and modify the Protected Users group
+-Add the necessary accounts and enforce a Group Policy update
+
+Please let me know if you need any further clarification in implementing these changes.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Atif Rashid [atif.rashid@barrattplc.co.uk]
+Sent: 3/3/2025 4:41 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436938 - ref:_00D7091pB._500Q000MHjIe:ref - *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+ref:_00D7091pB._500Q000MHjIe:ref
+
+ 
+
+
+Hi Luila,
+
+ 
+
+Thank you for your time on Thursday.
+
+ 
+
+As per the discussion, we agreed that you would send us recommendation on how best to solve the below risks identified by Pingcastle?
+
+
+	Hardened Paths have been modified to lower the security level
+	Number of users not in Protected Users.
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Kind Regards,
+
+ 
+
+Atif Rashid
+
+IT Security Analyst
+Barratt Redrow plc
+
+ 
+
+Email: Atif.Rashid@barrattredrow.co.uk
+Mobile: 07721607162
+
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 25 February 2025 16:34
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: *EXTERNAL:Hardened Paths have been modified to lower the security level [ ref:!00D70091pB.!500Qk0MHjIe:ref ]
+
+
+ 
+
+
+Dear Atif, Thank you for reaching out regarding the risk identified by PingCastle related to ""Hardened Paths being modified to lower the security level. "" Ahead of our meeting, I’m sharing the relevant Microsoft support article
+
+
+
+ 
+
+
+Dear Atif,
+
+Thank you for reaching out regarding the risk identified by PingCastle related to ""Hardened Paths being modified to lower the security level.""
+
+Ahead of our meeting, I’m sharing the relevant Microsoft support article  here . The section on ""Minimum recommended configuration for domain-joined computers"" provides guidance on properly securing Group Policy paths, which is the focus of PingCastle’s detection.
+
+I am available to meet on Thursday between 10:00 AM CET and 6:00 PM CET. Please let me know the most suitable time for you.
+
+Looking forward to your confirmation.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MHjIe:ref
+
+
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our ‘Email Addendum v2.0’ at  www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.
+ 
+
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our ‘Email Addendum v2.0’ at www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.","RE: Netwrix Support Ticket #436938 -  - *EXTERNAL:Hardened Paths have been modified to lower the security level    [ ref:!00D70091pB.!500Qk0MHjIe:ref ]","techsupport@netwrix.com","Netwrix Support","atif.rashid@barrattplc.co.uk","","iulia.apatachioaei@netwrix.com","true","2025-03-17T08:29:07.000Z","true"
+"02sQk00000Mr5xrIAB","500Qk00000MHjIeIAL","2025-03-21T11:10:07.000Z","2025-03-21T12:05:35.000Z","ref:_00D7091pB._500Q000MHjIe:ref
+
+Hi Luila,
+
+This is still in review with our architect team to understand the risk impact of implementing these changes. I should be receiving an update later today.
+
+
+
+
+
+Kind Regards,
+
+Atif Rashid
+IT Security Analyst
+Barratt Redrow plc
+
+Email: Atif.Rashid@barrattredrow.co.uk<mailto:Atif.Rashid@barrattredrow.co.uk>
+Mobile: 07721607162
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 21 March 2025 11:08
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level
+
+Hello atif, I wanted to check in regarding your support ticket 00436938. We haven't heard from you in a while, and I just wanted to see if you still need assistance with this issue. If you're still experiencing problems or have any updates to
+
+Hello atif,
+
+I wanted to check in regarding your support ticket 00436938. We haven't heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you're still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We're here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436938
+Ticket Subject: Hardened Paths have been modified to lower the security level
+Ticket Details: Hi,
+
+I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.
+
+The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.
+
+Please let me know your availability for Thursday 27th February.
+
+Kind Regards,
+
+Atif Rashid
+
+Thank you!
+
+Iulia Apatachioaei
+
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https://www.netwrix.com__;!!CbnuSKVWDws!0LvTdXlve0x-04nOoEms7O1fyOTVG6WapD0nKxlSD7uBJ4HRm91li1oEsjD3NlAEenyRMeGlPfi1Z0UYps30yb093m0rwj1G$>
+
+ref:!00D70091pB.!500Qk0MHjIe:ref
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our 'Email Addendum v2.0' at www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.","RE: Netwrix Support Ticket #436938 - ref:_00D7091pB._500Q000MHjIe:ref - *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level","atif.rashid@barrattplc.co.uk","Atif Rashid","techsupport@netwrix.com","","","false","2025-03-21T11:09:51.000Z","true"
+"02sQk00000MrBS9IAN","500Qk00000MHjIeIAL","2025-03-21T12:10:52.000Z","2025-03-21T12:10:52.000Z","Hello Atif,
+
+No problem, please let us know when you have an update so we can further assist you if needed.
+
+Thank you!
+Regards,
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Atif Rashid [atif.rashid@barrattplc.co.uk]
+Sent: 3/21/2025 8:09 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436938 - ref:_00D7091pB._500Q000MHjIe:ref - *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level
+
+ref:_00D7091pB._500Q000MHjIe:ref
+
+
+
+Hi Luila,
+
+ 
+
+This is still in review with our architect team to understand the risk impact of implementing these changes. I should be receiving an update later today.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Kind Regards,
+
+ 
+
+Atif Rashid
+
+IT Security Analyst
+Barratt Redrow plc
+
+ 
+
+Email: Atif.Rashid@barrattredrow.co.uk
+Mobile: 07721607162
+
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 21 March 2025 11:08
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level
+
+
+ 
+
+
+Hello atif, I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue. If you’re still experiencing problems or have any updates to
+
+
+
+ 
+
+
+Hello atif,
+
+I wanted to check in regarding your support ticket 00436938. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436938
+Ticket Subject: Hardened Paths have been modified to lower the security level
+Ticket Details: Hi,
+
+I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.
+
+The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.
+
+Please let me know your availability for Thursday 27th February.
+
+Kind Regards,
+
+Atif Rashid
+
+Thank you!
+
+Iulia Apatachioaei
+
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MHjIe:ref
+
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our ‘Email Addendum v2.0’ at www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.","RE: Netwrix Support Ticket #436938 -  - *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level    [ ref:!00D70091pB.!500Qk0MHjIe:ref ]","techsupport@netwrix.com","Netwrix Support","atif.rashid@barrattplc.co.uk","","emiliano.krainuk@netwrix.com","false","2025-03-21T12:10:50.000Z","true"
+"02sQk00000NKAkMIAX","500Qk00000MHjIeIAL","2025-04-03T08:15:16.000Z","2025-04-03T08:15:16.000Z","ref:_00D7091pB._500Q000MHjIe:ref
+
+Hi,
+
+This can now be closed, thank you.
+
+
+
+
+
+Kind Regards,
+
+Atif Rashid
+IT Security Analyst
+Barratt Redrow plc
+
+Email: Atif.Rashid@barrattredrow.co.uk<mailto:Atif.Rashid@barrattredrow.co.uk>
+Mobile: 07721607162
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 02 April 2025 19:39
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level
+
+Hello atif, I'm reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven't heard back from you, so I wanted to check if everything is working smoothly now or if you still need further
+
+Hello atif,
+
+I'm reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven't heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you're all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don't hesitate to reach out-I'm here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00436938
+Ticket Subject: Hardened Paths have been modified to lower the security level
+Ticket Details: Hi,
+
+I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.
+
+The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.
+
+Please let me know your availability for Thursday 27th February.
+
+Kind Regards,
+
+Atif Rashid
+
+Thank you!
+
+Emiliano Krainuk
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https://www.netwrix.com__;!!CbnuSKVWDws!3FNH_V7ZrA9Yd8Q9uiCzkbUrCtx5-gr_rIXAer2Ua4MkicKEHBGcw5YIVBnVmmMfsid2zAO2bYsatlxyCRiMCFdUPNaIIQro$>
+
+ref:!00D70091pB.!500Qk0MHjIe:ref
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our 'Email Addendum v2.0' at www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.","RE: Netwrix Support Ticket #436938 - ref:_00D7091pB._500Q000MHjIe:ref - *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level","atif.rashid@barrattplc.co.uk","Atif Rashid","techsupport@netwrix.com","","","false","2025-04-03T08:15:00.000Z","true"
+"02sQk00000NKOgtIAH","500Qk00000MHjIeIAL","2025-04-03T11:57:58.000Z","2025-04-03T11:57:58.000Z","Hello Atif,
+
+Thanks for your confirmation.
+
+I will proceed and close this case now. Feel free to re-open it or create a new one if you need assistance with anything else.
+
+Thank you!
+Have a great day!
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Atif Rashid [atif.rashid@barrattplc.co.uk]
+Sent: 4/3/2025 5:15 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436938 - ref:_00D7091pB._500Q000MHjIe:ref - *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level
+
+ref:_00D7091pB._500Q000MHjIe:ref
+
+
+
+Hi,
+
+ 
+
+This can now be closed, thank you.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Kind Regards,
+
+ 
+
+Atif Rashid
+
+IT Security Analyst
+Barratt Redrow plc
+
+ 
+
+Email: Atif.Rashid@barrattredrow.co.uk
+Mobile: 07721607162
+
+Barratt Redrow plc | Barratt House, Cartwright Way, Coalville, LE67 1UF
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 02 April 2025 19:39
+To: Atif Rashid <atif.rashid@barrattplc.co.uk>
+Subject: *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level
+
+
+ 
+
+
+Hello atif, I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further
+
+
+
+ 
+
+
+Hello atif,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00436938
+Ticket Subject: Hardened Paths have been modified to lower the security level
+Ticket Details: Hi,
+
+I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.
+
+The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.
+
+Please let me know your availability for Thursday 27th February.
+
+Kind Regards,
+
+Atif Rashid
+
+Thank you!
+
+Emiliano Krainuk
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MHjIe:ref
+
+The sender of this e-mail is a member of the Barratt Redrow plc group of companies, the ultimate parent of which is Barratt Redrow plc (company number 00604574). Barratt Redrow plc is registered in England and Wales with its registered office at Barratt House, Cartwright Way, Forest Business Park, Bardon Hill, Coalville, Leicestershire LE67 1UF, together with its principal subsidiaries BDW Trading Limited (03018173), and Wilson Bowden Developments Limited (00948402). Its other principal subsidiaries, Redrow plc (02877315) and Redrow Homes Limited (01990710) have their registered address at Redrow House, St Davids Park, Flintshire, CH5 3RX. Barratt Homes, Barratt London and David Wilson Homes are trading names of BDW Trading Limited. This e-mail message is meant only for use by the intended addressee and may contain privileged and/or confidential information. If you have received this message in error please notify us and remove it from your system. Please view our ‘Email Addendum v2.0’ at www.barrattcommercialsupport.co.uk/barratt-developments-plc-email-a for further details.","RE: Netwrix Support Ticket #436938 -  - *EXTERNAL:RE: 00436938 - Hardened Paths have been modified to lower the security level    [ ref:!00D70091pB.!500Qk0MHjIe:ref ]","techsupport@netwrix.com","Netwrix Support","atif.rashid@barrattplc.co.uk","","emiliano.krainuk@netwrix.com","false","2025-04-03T11:57:57.000Z","true"

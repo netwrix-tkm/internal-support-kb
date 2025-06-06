@@ -1,0 +1,2095 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000CM156IAD","500Qk00000Cq5ZQIAZ","2024-07-09T15:50:04.000Z","2024-07-09T15:50:04.000Z","James,
+
+To update our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Database > Database Sizing
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_sizing
+
+Collector recommendations: Netwrix Enterprise Auditor vl 1.6 > Requirements > SQL Server Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Overview.htm#sql_server_requirements
+
+
+Was your DBA able to spot any issues that would have resulted in the long running job?
+
+Could we get a CSV export of the following query for the NEA DB?
+
+/*
+Get size of all tables in database
+*/
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+    SUM(a.total_pages) * 8 AS TotalSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+    SUM(a.used_pages) * 8 AS UsedSpaceKB,
+    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN     
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE 'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255 
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB DESC, t.name
+
+
+Files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0Cq5ZQ:ref","Database usage much higher than usual and job was stalled    [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]","techsupport@netwrix.com","Netwrix Support","james.foreman@osaic.com","jared.harris@netwrix.com","","false","2024-07-09T15:50:03.000Z","true"
+"02sQk00000CNBQUIA5","500Qk00000Cq5ZQIAZ","2024-07-09T19:23:38.000Z","2024-07-09T19:23:38.000Z","ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Tracking down a DBA to run that query, but the first one seems to have some issues.  It just kicks back an error message
+
+
+You cannot call a method on a null-valued expression.
+At line:11 char:1
++ (Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAcce ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+
+
+
+[Logo with link to Osaic]<https://www.osaic.com/>
+osaic.com<https://www.osaic.com/>
+[Logo with link to Facebook]<https://www.facebook.com/OsaicInc/>  [Logo with link to Instagram] <https://www.instagram.com/osaic_inc/>   [Logo with link to LinkedIn] <https://www.linkedin.com/company/91359962>   [Logo with link to Twitter] <https://twitter.com/osaic_inc>
+James Foreman
+Active Directory Architect
+James.Foreman@osaic.com<mailto:James.Foreman@osaic.com>
+Central Time
+C: 4802948714
+12325 Port Grace Blvd. | La Vista, NE 68128
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 9, 2024 10:50 AM
+To: Foreman, James
+Cc: jared.harris@netwrix.com
+Subject: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+CAUTION: External Email. Do not click links or open attachments unless you recognize the sender and consider the content to be safe.
+
+James,
+
+To update our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Database > Database Sizing
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_sizing
+
+Collector recommendations: Netwrix Enterprise Auditor vl 1.6 > Requirements > SQL Server Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Overview.htm#sql_server_requirements
+
+
+Was your DBA able to spot any issues that would have resulted in the long running job?
+
+Could we get a CSV export of the following query for the NEA DB?
+
+/*
+Get size of all tables in database
+*/
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+    SUM(a.total_pages) * 8 AS TotalSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+    SUM(a.used_pages) * 8 AS UsedSpaceKB,
+    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE 'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB DESC, t.name
+
+
+Files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Cq5ZQ:ref
+
+Securities and investment advisory services are offered through the firms: Osaic Wealth, Inc., Triad Advisors, LLC, and Osaic Institutions, Inc., Osaic FA Inc., and Osaic FS, Inc., a broker-dealers, registered investment advisers, and members of FINRA and SIPC. Securities are offered through American Portfolios Financial Services, Inc., a broker-dealer and member of FINRA and SIPC. Advisory services are offered through Arbor Point Advisors, LLC, Ladenburg Thalmann Asset Management, Inc., Osaic Advisory Services, LLC, and American Portfolios Advisors, Inc., registered investment advisers. Advisory programs offered by Osaic Wealth, Inc. are sponsored by VISION2020 Wealth Management Corp., an affiliated registered investment adviser. Osaic, Inc. is an affiliate of these firms. This message and any attachments hereto contain information that is confidential and intended for use only by the addressee. If you are not the intended recipient, or the employee or agent of the intended recipient responsible for delivering the message, you are notified that any review, copying, distribution or use of this transmission is strictly prohibited. If you have received this transmission in error, please (i) notify the sender immediately by email or by telephone and (ii) destroy all copies of this message.","RE: Netwrix Support Ticket #414497 - ref:_00D7091pB._500Q000Cq5ZQ:ref - Database usage much higher than usual and job was stalled    [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]","james.foreman@osaic.com","Foreman, James","techsupport@netwrix.com","jared.harris@netwrix.com","","true","2024-07-09T19:23:21.000Z","true"
+"02sQk00000CN7Q7IAL","500Qk00000Cq5ZQIAZ","2024-07-09T19:25:45.000Z","2024-07-09T19:25:45.000Z","ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Disregard.  Uploading the results shortly and the DBA portion once I can find one to run it.
+
+
+[Logo with link to Osaic]<https://www.osaic.com/>
+osaic.com<https://www.osaic.com/>
+[Logo with link to Facebook]<https://www.facebook.com/OsaicInc/>  [Logo with link to Instagram] <https://www.instagram.com/osaic_inc/>   [Logo with link to LinkedIn] <https://www.linkedin.com/company/91359962>   [Logo with link to Twitter] <https://twitter.com/osaic_inc>
+James Foreman
+Active Directory Architect
+James.Foreman@osaic.com<mailto:James.Foreman@osaic.com>
+Central Time
+C: 4802948714
+12325 Port Grace Blvd. | La Vista, NE 68128
+
+
+From: Foreman, James <james.foreman@osaic.com>
+Sent: Tuesday, July 9, 2024 2:23 PM
+To: Netwrix Support
+Cc: jared.harris@netwrix.com
+Subject: RE: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+Tracking down a DBA to run that query, but the first one seems to have some issues.  It just kicks back an error message
+
+
+You cannot call a method on a null-valued expression.
+At line:11 char:1
++ (Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAcce ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+
+
+
+
+[Logo with link to Osaic]<https://www.osaic.com/>
+osaic.com<https://www.osaic.com/>
+[Logo with link to Facebook]<https://www.facebook.com/OsaicInc/>  [Logo with link to Instagram] <https://www.instagram.com/osaic_inc/>   [Logo with link to LinkedIn] <https://www.linkedin.com/company/91359962>   [Logo with link to Twitter] <https://twitter.com/osaic_inc>
+James Foreman
+Active Directory Architect
+James.Foreman@osaic.com<mailto:James.Foreman@osaic.com>
+Central Time
+C: 4802948714
+12325 Port Grace Blvd. | La Vista, NE 68128
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, July 9, 2024 10:50 AM
+To: Foreman, James
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+CAUTION: External Email. Do not click links or open attachments unless you recognize the sender and consider the content to be safe.
+
+James,
+
+To update our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Database > Database Sizing
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_sizing
+
+Collector recommendations: Netwrix Enterprise Auditor vl 1.6 > Requirements > SQL Server Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Overview.htm#sql_server_requirements
+
+
+Was your DBA able to spot any issues that would have resulted in the long running job?
+
+Could we get a CSV export of the following query for the NEA DB?
+
+/*
+Get size of all tables in database
+*/
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+    SUM(a.total_pages) * 8 AS TotalSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+    SUM(a.used_pages) * 8 AS UsedSpaceKB,
+    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE 'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB DESC, t.name
+
+
+Files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Cq5ZQ:ref
+
+Securities and investment advisory services are offered through the firms: Osaic Wealth, Inc., Triad Advisors, LLC, and Osaic Institutions, Inc., Osaic FA Inc., and Osaic FS, Inc., a broker-dealers, registered investment advisers, and members of FINRA and SIPC. Securities are offered through American Portfolios Financial Services, Inc., a broker-dealer and member of FINRA and SIPC. Advisory services are offered through Arbor Point Advisors, LLC, Ladenburg Thalmann Asset Management, Inc., Osaic Advisory Services, LLC, and American Portfolios Advisors, Inc., registered investment advisers. Advisory programs offered by Osaic Wealth, Inc. are sponsored by VISION2020 Wealth Management Corp., an affiliated registered investment adviser. Osaic, Inc. is an affiliate of these firms. This message and any attachments hereto contain information that is confidential and intended for use only by the addressee. If you are not the intended recipient, or the employee or agent of the intended recipient responsible for delivering the message, you are notified that any review, copying, distribution or use of this transmission is strictly prohibited. If you have received this transmission in error, please (i) notify the sender immediately by email or by telephone and (ii) destroy all copies of this message.","RE: Netwrix Support Ticket #414497 - ref:_00D7091pB._500Q000Cq5ZQ:ref - Database usage much higher than usual and job was stalled    [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]","james.foreman@osaic.com","Foreman, James","techsupport@netwrix.com","jared.harris@netwrix.com","","true","2024-07-09T19:25:34.000Z","true"
+"02sQk00000CN8vfIAD","500Qk00000Cq5ZQIAZ","2024-07-09T19:27:41.000Z","2024-07-09T19:27:41.000Z","ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Attached results of the powershell.  Will attach and update when the DBA can run the query","Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled","james.foreman@osaic.com","James Foreman","techsupport@netwrix.com","","","false","2024-07-09T19:27:41.000Z","true"
+"02sQk00000CN0i2IAD","500Qk00000Cq5ZQIAZ","2024-07-09T19:28:33.000Z","2024-07-09T19:28:33.000Z","ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+This is the query they said was causing the issue. 
+
+select [tr].[Group],
+              [tr].[Scan Type] + char(10) + substring(
+                     (select char(10)  + [dbo].[SA_AD_GroupStamping_tmp].[Resource]
+                     from [dbo].[SA_AD_GroupStamping_tmp] 
+                     where [SA_AD_GroupStamping_tmp].[Group] = tr.[Group]
+                     and [dbo].[SA_AD_GroupStamping_tmp].[Scan Type] = tr.[Scan Type]
+                     for xml path('')),2,2000000) as tmpResults
+into
+       [SA_AD_GroupStamping_tmp2]
+from [dbo].[SA_AD_GroupStamping_tmp] as [tr]","Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled","james.foreman@osaic.com","James Foreman","techsupport@netwrix.com","","","false","2024-07-09T19:28:32.000Z","true"
+"02sQk00000CNAEIIA5","500Qk00000Cq5ZQIAZ","2024-07-09T19:30:24.000Z","2024-07-09T19:30:24.000Z","ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Added screen cap they provided Sunday on the tables that were causing the space issues during the job","Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled","james.foreman@osaic.com","James Foreman","techsupport@netwrix.com","","","false","2024-07-09T19:30:24.000Z","true"
+"02sQk00000CNVDtIAP","500Qk00000Cq5ZQIAZ","2024-07-09T20:42:14.000Z","2024-07-09T20:42:14.000Z","James,
+
+That PowerShell error is in relation to Access Information Center (AIC) not being installed on the host the is GET running on.
+
+I will take a look a the uploaded details as soon as I can see them.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 3:30 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Added screen cap they provided Sunday on the tables that were causing the space issues during the job
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 3:28 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+This is the query they said was causing the issue.
+
+select [tr].[Group],
+[tr].[Scan Type] + char(10) + substring(
+(select char(10) + [dbo].[SA_AD_GroupStamping_tmp].[Resource]
+from [dbo].[SA_AD_GroupStamping_tmp]
+where [SA_AD_GroupStamping_tmp].[Group] = tr.[Group]
+and [dbo].[SA_AD_GroupStamping_tmp].[Scan Type] = tr.[Scan Type]
+for xml path('')),2,2000000) as tmpResults
+into
+[SA_AD_GroupStamping_tmp2]
+from [dbo].[SA_AD_GroupStamping_tmp] as [tr]
+
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 3:27 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Attached results of the powershell. Will attach and update when the DBA can run the query
+
+
+
+
+--------------- Original Message ---------------
+From: Foreman, James [james.foreman@osaic.com]
+Sent: 7/9/2024 3:25 PM
+To: techsupport@netwrix.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #414497 - ref:_00D7091pB._500Q000Cq5ZQ:ref - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+
+
+Disregard.  Uploading the results shortly and the DBA portion once I can find one to run it.  
+
+ 
+
+
+
+	
+		
+			
+			
+			 
+
+			
+				
+					
+						
+						
+							
+								
+									
+									
+									
+								
+								
+									
+									osaic.com
+									
+								
+								
+									
+									      
+									
+								
+							
+						
+						
+						
+						
+							
+								
+									
+									James Foreman   
+									
+								
+								
+									
+									Active Directory Architect 
+									
+								
+								
+									
+									James.Foreman@osaic.com 
+									
+								
+								
+									
+									Central Time 
+									
+								
+								
+									
+									C: 4802948714   
+									
+								
+								
+									
+									12325 Port Grace Blvd. | La Vista, NE 68128 
+									
+								
+							
+						
+						
+					
+				
+			
+
+			 
+			
+			
+		
+	
+
+
+
+ 
+
+
+
+From: Foreman, James <james.foreman@osaic.com>
+Sent: Tuesday, July 9, 2024 2:23 PM
+To: Netwrix Support
+Cc: jared.harris@netwrix.com
+Subject: RE: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+
+
+ 
+
+Tracking down a DBA to run that query, but the first one seems to have some issues.  It just kicks back an error message 
+
+ 
+
+ 
+
+You cannot call a method on a null-valued expression.
+
+At line:11 char:1
+
++ (Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAcce ...
+
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+	
+		
+			
+			
+			 
+
+			
+				
+					
+						
+						
+							
+								
+									
+									
+									
+								
+								
+									
+									osaic.com
+									
+								
+								
+									
+									      
+									
+								
+							
+						
+						
+						
+						
+							
+								
+									
+									James Foreman   
+									
+								
+								
+									
+									Active Directory Architect 
+									
+								
+								
+									
+									James.Foreman@osaic.com 
+									
+								
+								
+									
+									Central Time 
+									
+								
+								
+									
+									C: 4802948714   
+									
+								
+								
+									
+									12325 Port Grace Blvd. | La Vista, NE 68128 
+									
+								
+							
+						
+						
+					
+				
+			
+
+			 
+			
+			
+		
+	
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 9, 2024 10:50 AM
+To: Foreman, James
+Cc: jared.harris@netwrix.com
+Subject: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+
+
+ 
+
+
+CAUTION: External Email. Do not click links or open attachments unless you recognize the sender and consider the content to be safe.
+
+
+ 
+
+
+James,
+
+To update our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Database > Database Sizing
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_sizing
+
+Collector recommendations: Netwrix Enterprise Auditor vl 1.6 > Requirements > SQL Server Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Overview.htm#sql_server_requirements
+
+
+Was your DBA able to spot any issues that would have resulted in the long running job?
+
+Could we get a CSV export of the following query for the NEA DB?
+
+/*
+Get size of all tables in database
+*/
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+     SUM(a.total_pages) * 8 AS TotalSpaceKB,
+     CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+     SUM(a.used_pages) * 8 AS UsedSpaceKB,
+     CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+     CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN     
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE  'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255 
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB  DESC, t.name
+
+
+Files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Cq5ZQ:ref
+
+
+
+Securities and investment advisory services are offered through the firms: Osaic Wealth, Inc., Triad Advisors, LLC, and Osaic Institutions, Inc., Osaic FA Inc., and Osaic FS, Inc., a broker-dealers, registered investment advisers, and members of FINRA and SIPC. Securities are offered through American Portfolios Financial Services, Inc., a broker-dealer and member of FINRA and SIPC. Advisory services are offered through Arbor Point Advisors, LLC, Ladenburg Thalmann Asset Management, Inc., Osaic Advisory Services, LLC, and American Portfolios Advisors, Inc., registered investment advisers. Advisory programs offered by Osaic Wealth, Inc. are sponsored by VISION2020 Wealth Management Corp., an affiliated registered investment adviser. Osaic, Inc. is an affiliate of these firms. This message and any attachments hereto contain information that is confidential and intended for use only by the addressee. If you are not the intended recipient, or the employee or agent of the intended recipient responsible for delivering the message, you are notified that any review, copying, distribution or use of this transmission is strictly prohibited. If you have received this transmission in error, please (i) notify the sender immediately by email or by telephone and (ii) destroy all copies of this message.","RE: Netwrix Support Ticket #414497 -  - Database usage much higher than usual and job was stalled    [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]","techsupport@netwrix.com","Netwrix Support","james.foreman@osaic.com","jared.harris@netwrix.com","","true","2024-07-09T20:42:12.000Z","true"
+"02sQk00000CNShUIAX","500Qk00000Cq5ZQIAZ","2024-07-09T20:52:10.000Z","2024-07-09T20:52:10.000Z","ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Results of database query attached","Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled","james.foreman@osaic.com","James Foreman","techsupport@netwrix.com","","","false","2024-07-09T20:52:09.000Z","true"
+"02sQk00000CPPhAIAX","500Qk00000Cq5ZQIAZ","2024-07-10T15:19:24.000Z","2024-07-10T15:19:24.000Z","James,
+
+Thank You for the update.
+
+Let's schedule a web meeting to take a closer look.
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=L6RlrW2gXERV6Bi1T6ijJHEesK7LwMsGuSovJjBhZLU-Z&MeetingID=qBAIhctv8JBF656WEEb9WIMPm15JyJnqQDspl567f9A-Z
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 4:52 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Results of database query attached
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 4:42 PM
+To: james.foreman@osaic.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #414497 - - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+James,
+
+That PowerShell error is in relation to Access Information Center (AIC) not being installed on the host the is GET running on.
+
+I will take a look a the uploaded details as soon as I can see them.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 3:30 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Added screen cap they provided Sunday on the tables that were causing the space issues during the job
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 3:28 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+This is the query they said was causing the issue.
+
+select [tr].[Group],
+[tr].[Scan Type] + char(10) + substring(
+(select char(10) + [dbo].[SA_AD_GroupStamping_tmp].[Resource]
+from [dbo].[SA_AD_GroupStamping_tmp]
+where [SA_AD_GroupStamping_tmp].[Group] = tr.[Group]
+and [dbo].[SA_AD_GroupStamping_tmp].[Scan Type] = tr.[Scan Type]
+for xml path('')),2,2000000) as tmpResults
+into
+[SA_AD_GroupStamping_tmp2]
+from [dbo].[SA_AD_GroupStamping_tmp] as [tr]
+
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 3:27 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Attached results of the powershell. Will attach and update when the DBA can run the query
+
+
+
+
+--------------- Original Message ---------------
+From: Foreman, James [james.foreman@osaic.com]
+Sent: 7/9/2024 3:25 PM
+To: techsupport@netwrix.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #414497 - ref:_00D7091pB._500Q000Cq5ZQ:ref - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+
+
+Disregard.  Uploading the results shortly and the DBA portion once I can find one to run it.  
+
+ 
+
+
+
+	
+		
+			
+			
+			 
+
+			
+				
+					
+						
+						
+							
+								
+									
+									
+									
+								
+								
+									
+									osaic.com
+									
+								
+								
+									
+									      
+									
+								
+							
+						
+						
+						
+						
+							
+								
+									
+									James Foreman   
+									
+								
+								
+									
+									Active Directory Architect 
+									
+								
+								
+									
+									James.Foreman@osaic.com 
+									
+								
+								
+									
+									Central Time 
+									
+								
+								
+									
+									C: 4802948714   
+									
+								
+								
+									
+									12325 Port Grace Blvd. | La Vista, NE 68128 
+									
+								
+							
+						
+						
+					
+				
+			
+
+			 
+			
+			
+		
+	
+
+
+
+ 
+
+
+
+From: Foreman, James <james.foreman@osaic.com>
+Sent: Tuesday, July 9, 2024 2:23 PM
+To: Netwrix Support
+Cc: jared.harris@netwrix.com
+Subject: RE: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+
+
+ 
+
+Tracking down a DBA to run that query, but the first one seems to have some issues.  It just kicks back an error message 
+
+ 
+
+ 
+
+You cannot call a method on a null-valued expression.
+
+At line:11 char:1
+
++ (Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAcce ...
+
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+	
+		
+			
+			
+			 
+
+			
+				
+					
+						
+						
+							
+								
+									
+									
+									
+								
+								
+									
+									osaic.com
+									
+								
+								
+									
+									      
+									
+								
+							
+						
+						
+						
+						
+							
+								
+									
+									James Foreman   
+									
+								
+								
+									
+									Active Directory Architect 
+									
+								
+								
+									
+									James.Foreman@osaic.com 
+									
+								
+								
+									
+									Central Time 
+									
+								
+								
+									
+									C: 4802948714   
+									
+								
+								
+									
+									12325 Port Grace Blvd. | La Vista, NE 68128 
+									
+								
+							
+						
+						
+					
+				
+			
+
+			 
+			
+			
+		
+	
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 9, 2024 10:50 AM
+To: Foreman, James
+Cc: jared.harris@netwrix.com
+Subject: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+
+
+ 
+
+
+CAUTION: External Email. Do not click links or open attachments unless you recognize the sender and consider the content to be safe.
+
+
+ 
+
+
+James,
+
+To update our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Database > Database Sizing
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_sizing
+
+Collector recommendations: Netwrix Enterprise Auditor vl 1.6 > Requirements > SQL Server Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Overview.htm#sql_server_requirements
+
+
+Was your DBA able to spot any issues that would have resulted in the long running job?
+
+Could we get a CSV export of the following query for the NEA DB?
+
+/*
+Get size of all tables in database
+*/
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+     SUM(a.total_pages) * 8 AS TotalSpaceKB,
+     CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+     SUM(a.used_pages) * 8 AS UsedSpaceKB,
+     CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+     CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN     
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE  'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255 
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB  DESC, t.name
+
+
+Files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Cq5ZQ:ref
+
+
+
+Securities and investment advisory services are offered through the firms: Osaic Wealth, Inc., Triad Advisors, LLC, and Osaic Institutions, Inc., Osaic FA Inc., and Osaic FS, Inc., a broker-dealers, registered investment advisers, and members of FINRA and SIPC. Securities are offered through American Portfolios Financial Services, Inc., a broker-dealer and member of FINRA and SIPC. Advisory services are offered through Arbor Point Advisors, LLC, Ladenburg Thalmann Asset Management, Inc., Osaic Advisory Services, LLC, and American Portfolios Advisors, Inc., registered investment advisers. Advisory programs offered by Osaic Wealth, Inc. are sponsored by VISION2020 Wealth Management Corp., an affiliated registered investment adviser. Osaic, Inc. is an affiliate of these firms. This message and any attachments hereto contain information that is confidential and intended for use only by the addressee. If you are not the intended recipient, or the employee or agent of the intended recipient responsible for delivering the message, you are notified that any review, copying, distribution or use of this transmission is strictly prohibited. If you have received this transmission in error, please (i) notify the sender immediately by email or by telephone and (ii) destroy all copies of this message.","RE: Netwrix Support Ticket #414497 -  - Database usage much higher than usual and job was stalled    [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]","techsupport@netwrix.com","Netwrix Support","james.foreman@osaic.com","jared.harris@netwrix.com","","true","2024-07-10T15:19:22.000Z","true"
+"02sQk00000CSmqnIAD","500Qk00000Cq5ZQIAZ","2024-07-11T13:16:53.000Z","2024-07-11T13:16:53.000Z","ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+I'm scheduling something now, I just need to coordinate with a DBA for the SQL access.
+
+
+[Logo with link to Osaic]<https://www.osaic.com/>
+osaic.com<https://www.osaic.com/>
+[Logo with link to Facebook]<https://www.facebook.com/OsaicInc/>  [Logo with link to Instagram] <https://www.instagram.com/osaic_inc/>   [Logo with link to LinkedIn] <https://www.linkedin.com/company/91359962>   [Logo with link to Twitter] <https://twitter.com/osaic_inc>
+James Foreman
+Active Directory Architect
+James.Foreman@osaic.com<mailto:James.Foreman@osaic.com>
+Central Time
+C: 4802948714
+12325 Port Grace Blvd. | La Vista, NE 68128
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, July 10, 2024 10:19 AM
+To: Foreman, James
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #414497 - - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+CAUTION: External Email. Do not click links or open attachments unless you recognize the sender and consider the content to be safe.
+
+James,
+
+Thank You for the update.
+
+Let's schedule a web meeting to take a closer look.
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=L6RlrW2gXERV6Bi1T6ijJHEesK7LwMsGuSovJjBhZLU-Z&MeetingID=qBAIhctv8JBF656WEEb9WIMPm15JyJnqQDspl567f9A-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=L6RlrW2gXERV6Bi1T6ijJHEesK7LwMsGuSovJjBhZLU-Z&MeetingID=qBAIhctv8JBF656WEEb9WIMPm15JyJnqQDspl567f9A-Z>
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com<mailto:james.foreman@osaic.com>]
+Sent: 7/9/2024 4:52 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Results of database query attached
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 4:42 PM
+To: james.foreman@osaic.com<mailto:james.foreman@osaic.com>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: Netwrix Support Ticket #414497 - - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+James,
+
+That PowerShell error is in relation to Access Information Center (AIC) not being installed on the host the is GET running on.
+
+I will take a look a the uploaded details as soon as I can see them.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com<mailto:james.foreman@osaic.com>]
+Sent: 7/9/2024 3:30 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Added screen cap they provided Sunday on the tables that were causing the space issues during the job
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com<mailto:james.foreman@osaic.com>]
+Sent: 7/9/2024 3:28 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+This is the query they said was causing the issue.
+
+select [tr].[Group],
+[tr].[Scan Type] + char(10) + substring(
+(select char(10) + [dbo].[SA_AD_GroupStamping_tmp].[Resource]
+from [dbo].[SA_AD_GroupStamping_tmp]
+where [SA_AD_GroupStamping_tmp].[Group] = tr.[Group]
+and [dbo].[SA_AD_GroupStamping_tmp].[Scan Type] = tr.[Scan Type]
+for xml path('')),2,2000000) as tmpResults
+into
+[SA_AD_GroupStamping_tmp2]
+from [dbo].[SA_AD_GroupStamping_tmp] as [tr]
+
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com<mailto:james.foreman@osaic.com>]
+Sent: 7/9/2024 3:27 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Attached results of the powershell. Will attach and update when the DBA can run the query
+
+
+
+
+--------------- Original Message ---------------
+From: Foreman, James [james.foreman@osaic.com]
+Sent: 7/9/2024 3:25 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: Netwrix Support Ticket #414497 - ref:_00D7091pB._500Q000Cq5ZQ:ref - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+
+Disregard.  Uploading the results shortly and the DBA portion once I can find one to run it.
+
+
+[Logo with link to Osaic]<https://www.osaic.com/>
+osaic.com<https://www.osaic.com/>
+[Logo with link to Facebook]<https://www.facebook.com/OsaicInc/>  [Logo with link to Instagram] <https://www.instagram.com/osaic_inc/>   [Logo with link to LinkedIn] <https://www.linkedin.com/company/91359962>   [Logo with link to Twitter] <https://twitter.com/osaic_inc>
+James Foreman
+Active Directory Architect
+James.Foreman@osaic.com<mailto:James.Foreman@osaic.com>
+Central Time
+C: 4802948714
+12325 Port Grace Blvd. | La Vista, NE 68128
+
+
+From: Foreman, James <james.foreman@osaic.com<mailto:james.foreman@osaic.com>>
+Sent: Tuesday, July 9, 2024 2:23 PM
+To: Netwrix Support
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+Tracking down a DBA to run that query, but the first one seems to have some issues.  It just kicks back an error message
+
+
+You cannot call a method on a null-valued expression.
+At line:11 char:1
++ (Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAcce ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+
+
+
+
+[Logo with link to Osaic]<https://www.osaic.com/>
+osaic.com<https://www.osaic.com/>
+[Logo with link to Facebook]<https://www.facebook.com/OsaicInc/>  [Logo with link to Instagram] <https://www.instagram.com/osaic_inc/>   [Logo with link to LinkedIn] <https://www.linkedin.com/company/91359962>   [Logo with link to Twitter] <https://twitter.com/osaic_inc>
+James Foreman
+Active Directory Architect
+James.Foreman@osaic.com<mailto:James.Foreman@osaic.com>
+Central Time
+C: 4802948714
+12325 Port Grace Blvd. | La Vista, NE 68128
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, July 9, 2024 10:50 AM
+To: Foreman, James
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+CAUTION: External Email. Do not click links or open attachments unless you recognize the sender and consider the content to be safe.
+
+James,
+
+To update our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Database > Database Sizing
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_sizing
+
+Collector recommendations: Netwrix Enterprise Auditor vl 1.6 > Requirements > SQL Server Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Overview.htm#sql_server_requirements
+
+
+Was your DBA able to spot any issues that would have resulted in the long running job?
+
+Could we get a CSV export of the following query for the NEA DB?
+
+/*
+Get size of all tables in database
+*/
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+    SUM(a.total_pages) * 8 AS TotalSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+    SUM(a.used_pages) * 8 AS UsedSpaceKB,
+    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE 'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB DESC, t.name
+
+
+Files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Cq5ZQ:ref
+
+Securities and investment advisory services are offered through the firms: Osaic Wealth, Inc., Triad Advisors, LLC, and Osaic Institutions, Inc., Osaic FA Inc., and Osaic FS, Inc., a broker-dealers, registered investment advisers, and members of FINRA and SIPC. Securities are offered through American Portfolios Financial Services, Inc., a broker-dealer and member of FINRA and SIPC. Advisory services are offered through Arbor Point Advisors, LLC, Ladenburg Thalmann Asset Management, Inc., Osaic Advisory Services, LLC, and American Portfolios Advisors, Inc., registered investment advisers. Advisory programs offered by Osaic Wealth, Inc. are sponsored by VISION2020 Wealth Management Corp., an affiliated registered investment adviser. Osaic, Inc. is an affiliate of these firms. This message and any attachments hereto contain information that is confidential and intended for use only by the addressee. If you are not the intended recipient, or the employee or agent of the intended recipient responsible for delivering the message, you are notified that any review, copying, distribution or use of this transmission is strictly prohibited. If you have received this transmission in error, please (i) notify the sender immediately by email or by telephone and (ii) destroy all copies of this message.
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BWG05&from=ext]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000BY6W9&from=ext]
+
+Securities and investment advisory services are offered through the firms: Osaic Wealth, Inc., Triad Advisors, LLC, and Osaic Institutions, Inc., Osaic FA Inc., and Osaic FS, Inc., a broker-dealers, registered investment advisers, and members of FINRA and SIPC. Securities are offered through American Portfolios Financial Services, Inc., a broker-dealer and member of FINRA and SIPC. Advisory services are offered through Arbor Point Advisors, LLC, Ladenburg Thalmann Asset Management, Inc., Osaic Advisory Services, LLC, and American Portfolios Advisors, Inc., registered investment advisers. Advisory programs offered by Osaic Wealth, Inc. are sponsored by VISION2020 Wealth Management Corp., an affiliated registered investment adviser. Osaic, Inc. is an affiliate of these firms. This message and any attachments hereto contain information that is confidential and intended for use only by the addressee. If you are not the intended recipient, or the employee or agent of the intended recipient responsible for delivering the message, you are notified that any review, copying, distribution or use of this transmission is strictly prohibited. If you have received this transmission in error, please (i) notify the sender immediately by email or by telephone and (ii) destroy all copies of this message.","RE: Netwrix Support Ticket #414497 -  - Database usage much higher than usual and job was stalled    [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]","james.foreman@osaic.com","Foreman, James","techsupport@netwrix.com","jared.harris@netwrix.com","","true","2024-07-11T13:16:36.000Z","true"
+"02sQk00000CdUovIAF","500Qk00000Cq5ZQIAZ","2024-07-15T19:03:18.000Z","2024-07-15T19:03:18.000Z","Team,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)                                                                11.5.0.257
+Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC)      11.5.0.136
+
+Looked at the Database Sizing which we seem well whit in for current usage.
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Install_Guides/SA_Install/2.StealthAUDIT_Database.htm#database_sizing
+
+
+
+Noted that the Transaction log is over 400GB with 100% of the space now listed as unused
+Recover is set to Full << recommend this be set to Simple for all Netwrix/Stealthbits related DBs  
+
+SQL Server is a failover
+
+Ran the following to clean up the bloated Tmp tables
+            truncate table [dbo].[SA_AD_GroupStamping_tmp3]
+            truncate table [dbo].[SA_AD_GroupStamping_tmp2]
+            truncate table [dbo].[SA_AD_GroupStamping_tmp]
+           
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SA_AD_GroupStamping_tmp3]') AND type in (N'U'))
+            DROP TABLE [SA_AD_GroupStamping_tmp3]
+           
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SA_AD_GroupStamping_tmp2]') AND type in (N'U'))
+            DROP TABLE [SA_AD_GroupStamping_tmp2]
+           
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SA_AD_GroupStamping_tmp]') AND type in (N'U'))
+            DROP TABLE [SA_AD_GroupStamping_tmp]
+
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].SA_AD_GroupStamping_Log') AND type in (N'U'))
+             DROP TABLE SA_AD_GroupStamping_Log
+
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].SA_AD_GroupStamping_DailyActions') AND type in (N'U'))
+            DROP TABLE SA_AD_GroupStamping_DailyActions
+
+Reached out to Bridget Comito to correct the license.
+
+License update job check Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=Ml_iE8ynOmjGT_BjXJKV8mJzsMCr9vuGDt_yP8F5Ig8-Z&MeetingID=8MvdGIix1fM_hN4rg5CvojwBmG6eCW4hQKb9yr.ZVoY-Z
+
+For this meeting, we will want to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+**I was not able to add Kerry.sellmeyer@osaic.com directly to the meeting invite please forward as needed for the follow-up meeting time.
+
+Again, thank You for your time.
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Foreman, James [james.foreman@osaic.com]
+Sent: 7/11/2024 9:16 AM
+To: techsupport@netwrix.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #414497 - - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+
+
+I’m scheduling something now, I just need to coordinate with a DBA for the SQL access.    
+
+ 
+
+
+
+	
+		
+			
+			
+			 
+
+			
+				
+					
+						
+						
+							
+								
+									
+									
+									
+								
+								
+									
+									osaic.com
+									
+								
+								
+									
+									      
+									
+								
+							
+						
+						
+						
+						
+							
+								
+									
+									James Foreman   
+									
+								
+								
+									
+									Active Directory Architect 
+									
+								
+								
+									
+									James.Foreman@osaic.com 
+									
+								
+								
+									
+									Central Time 
+									
+								
+								
+									
+									C: 4802948714   
+									
+								
+								
+									
+									12325 Port Grace Blvd. | La Vista, NE 68128 
+									
+								
+							
+						
+						
+					
+				
+			
+
+			 
+			
+			
+		
+	
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, July 10, 2024 10:19 AM
+To: Foreman, James
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #414497 - - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+
+
+ 
+
+
+CAUTION: External Email. Do not click links or open attachments unless you recognize the sender and consider the content to be safe.
+
+
+ 
+
+
+James,
+
+Thank You for the update.
+
+Let's schedule a web meeting to take a closer look.
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=L6RlrW2gXERV6Bi1T6ijJHEesK7LwMsGuSovJjBhZLU-Z&MeetingID=qBAIhctv8JBF656WEEb9WIMPm15JyJnqQDspl567f9A-Z
+
+For this meeting, we will need to have a Full Admin access to the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 4:52 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Results of database query attached
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 4:42 PM
+To: james.foreman@osaic.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #414497 - - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+James,
+
+That PowerShell error is in relation to Access Information Center (AIC) not being installed on the host the is GET running on.
+
+I will take a look a the uploaded details as soon as I can see them.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 3:30 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Added screen cap they provided Sunday on the tables that were causing the space issues during the job
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 3:28 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+This is the query they said was causing the issue.
+
+select [tr].[Group],
+[tr].[Scan Type] + char(10) + substring(
+(select char(10) + [dbo].[SA_AD_GroupStamping_tmp].[Resource]
+from [dbo].[SA_AD_GroupStamping_tmp]
+where [SA_AD_GroupStamping_tmp].[Group] = tr.[Group]
+and [dbo].[SA_AD_GroupStamping_tmp].[Scan Type] = tr.[Scan Type]
+for xml path('')),2,2000000) as tmpResults
+into
+[SA_AD_GroupStamping_tmp2]
+from [dbo].[SA_AD_GroupStamping_tmp] as [tr]
+
+--------------- Original Message ---------------
+From: James Foreman [james.foreman@osaic.com]
+Sent: 7/9/2024 3:27 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #414497 - Database usage much higher than usual and job was stalled
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+Attached results of the powershell. Will attach and update when the DBA can run the query
+
+
+
+
+--------------- Original Message ---------------
+From: Foreman, James [james.foreman@osaic.com]
+Sent: 7/9/2024 3:25 PM
+To: techsupport@netwrix.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #414497 - ref:_00D7091pB._500Q000Cq5ZQ:ref - Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+ref:_00D7091pB._500Q000Cq5ZQ:ref
+
+ 
+
+
+Disregard.  Uploading the results shortly and the DBA portion once I can find one to run it.  
+
+ 
+
+
+
+	
+		
+			
+			
+			 
+
+			
+				
+					
+						
+						
+							
+								
+									
+									
+									
+								
+								
+									
+									osaic.com
+									
+								
+								
+									
+									      
+									
+								
+							
+						
+						
+						
+						
+							
+								
+									
+									James Foreman   
+									
+								
+								
+									
+									Active Directory Architect 
+									
+								
+								
+									
+									James.Foreman@osaic.com 
+									
+								
+								
+									
+									Central Time 
+									
+								
+								
+									
+									C: 4802948714   
+									
+								
+								
+									
+									12325 Port Grace Blvd. | La Vista, NE 68128 
+									
+								
+							
+						
+						
+					
+				
+			
+
+			 
+			
+			
+		
+	
+
+
+
+ 
+
+
+
+From: Foreman, James <james.foreman@osaic.com>
+Sent: Tuesday, July 9, 2024 2:23 PM
+To: Netwrix Support
+Cc: jared.harris@netwrix.com
+Subject: RE: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+
+
+ 
+
+Tracking down a DBA to run that query, but the first one seems to have some issues.  It just kicks back an error message 
+
+ 
+
+ 
+
+You cannot call a method on a null-valued expression.
+
+At line:11 char:1
+
++ (Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAcce ...
+
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    + CategoryInfo          : InvalidOperation: (:) [], RuntimeException
+
+    + FullyQualifiedErrorId : InvokeMethodOnNull
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+	
+		
+			
+			
+			 
+
+			
+				
+					
+						
+						
+							
+								
+									
+									
+									
+								
+								
+									
+									osaic.com
+									
+								
+								
+									
+									      
+									
+								
+							
+						
+						
+						
+						
+							
+								
+									
+									James Foreman   
+									
+								
+								
+									
+									Active Directory Architect 
+									
+								
+								
+									
+									James.Foreman@osaic.com 
+									
+								
+								
+									
+									Central Time 
+									
+								
+								
+									
+									C: 4802948714   
+									
+								
+								
+									
+									12325 Port Grace Blvd. | La Vista, NE 68128 
+									
+								
+							
+						
+						
+					
+				
+			
+
+			 
+			
+			
+		
+	
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 9, 2024 10:50 AM
+To: Foreman, James
+Cc: jared.harris@netwrix.com
+Subject: Database usage much higher than usual and job was stalled [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]
+
+
+
+ 
+
+
+CAUTION: External Email. Do not click links or open attachments unless you recognize the sender and consider the content to be safe.
+
+
+ 
+
+
+James,
+
+To update our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Database > Database Sizing
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_sizing
+
+Collector recommendations: Netwrix Enterprise Auditor vl 1.6 > Requirements > SQL Server Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Overview.htm#sql_server_requirements
+
+
+Was your DBA able to spot any issues that would have resulted in the long running job?
+
+Could we get a CSV export of the following query for the NEA DB?
+
+/*
+Get size of all tables in database
+*/
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+     SUM(a.total_pages) * 8 AS TotalSpaceKB,
+     CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+     SUM(a.used_pages) * 8 AS UsedSpaceKB,
+     CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+     CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN     
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE  'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255 
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB  DESC, t.name
+
+
+Files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Cq5ZQ:ref
+
+
+
+Securities and investment advisory services are offered through the firms: Osaic Wealth, Inc., Triad Advisors, LLC, and Osaic Institutions, Inc., Osaic FA Inc., and Osaic FS, Inc., a broker-dealers, registered investment advisers, and members of FINRA and SIPC. Securities are offered through American Portfolios Financial Services, Inc., a broker-dealer and member of FINRA and SIPC. Advisory services are offered through Arbor Point Advisors, LLC, Ladenburg Thalmann Asset Management, Inc., Osaic Advisory Services, LLC, and American Portfolios Advisors, Inc., registered investment advisers. Advisory programs offered by Osaic Wealth, Inc. are sponsored by VISION2020 Wealth Management Corp., an affiliated registered investment adviser. Osaic, Inc. is an affiliate of these firms. This message and any attachments hereto contain information that is confidential and intended for use only by the addressee. If you are not the intended recipient, or the employee or agent of the intended recipient responsible for delivering the message, you are notified that any review, copying, distribution or use of this transmission is strictly prohibited. If you have received this transmission in error, please (i) notify the sender immediately by email or by telephone and (ii) destroy all copies of this message.
+
+
+ 
+
+
+
+Securities and investment advisory services are offered through the firms: Osaic Wealth, Inc., Triad Advisors, LLC, and Osaic Institutions, Inc., Osaic FA Inc., and Osaic FS, Inc., a broker-dealers, registered investment advisers, and members of FINRA and SIPC. Securities are offered through American Portfolios Financial Services, Inc., a broker-dealer and member of FINRA and SIPC. Advisory services are offered through Arbor Point Advisors, LLC, Ladenburg Thalmann Asset Management, Inc., Osaic Advisory Services, LLC, and American Portfolios Advisors, Inc., registered investment advisers. Advisory programs offered by Osaic Wealth, Inc. are sponsored by VISION2020 Wealth Management Corp., an affiliated registered investment adviser. Osaic, Inc. is an affiliate of these firms. This message and any attachments hereto contain information that is confidential and intended for use only by the addressee. If you are not the intended recipient, or the employee or agent of the intended recipient responsible for delivering the message, you are notified that any review, copying, distribution or use of this transmission is strictly prohibited. If you have received this transmission in error, please (i) notify the sender immediately by email or by telephone and (ii) destroy all copies of this message.","RE: Netwrix Support Ticket #414497 -  - Database usage much higher than usual and job was stalled    [ ref:!00D70091pB.!500Qk0Cq5ZQ:ref ]","techsupport@netwrix.com","Netwrix Support","james.foreman@osaic.com","jared.harris@netwrix.com; Kerry.sellmeyer@osaic.com; luke.brisso@osaic.com; michael.sandoval@osaic.com","","true","2024-07-15T19:03:17.000Z","true"

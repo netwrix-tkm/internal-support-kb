@@ -1,0 +1,37 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NmY5QIAV","00441192","Support Ticket","Cannot add host in Host Management","I am trying to add a new file server to the Host Management or to a host list and I get an error of Host List Messages: Could not add hosts from list. 
+I am trying to add it manually through the wizard","","+++++
+2025_0407: Customer is running NEA v11.6.0.88 or so?? (far behind 11.6.0.139)
++++++
+0) Only 1 of these 3 jobs normally takes days to run:
+
+1) .Active Directory Inv running for 6 days and 10 hours
+ 
+2) Active Directory running for 6 days 13 hours 
+ 
+3) Active Directory Advanced - 3d 5 hours
+
+4) They were running at the same time and locking each other out
+
+Error found in the SADebug.TSV log = ""Failed to add host <HOSTNAME> to master: The transaction log for database 'StealthAudit' is full due to 'ACTIVE_TRANSACTION'.
+
+This is because one "".AD Inventory"" and 2 AD jobs were running (not successfully) at the same time.
+
+5) Killed the 2 AD jobs and 1 .AD Inv job and now he was able to add the host name successfully.","All 3 jobs will kick off tomorrow and it they run in acceptable timelines they may all complete.","+++++
+2025_0407: Customer is running NEA v11.6.0.88 or so?? (far behind 11.6.0.139)
++++++
+0) Only 1 of these 3 jobs normally takes days to run:
+
+1) .Active Directory Inv running for 6 days and 10 hours
+ 
+2) Active Directory running for 6 days 13 hours 
+ 
+3) Active Directory Advanced - 3d 5 hours
+
+4) They were running at the same time and locking each other out
+
+Error found in the SADebug.TSV log = ""Failed to add host <HOSTNAME> to master: The transaction log for database 'StealthAudit' is full due to 'ACTIVE_TRANSACTION'.
+
+This is because one "".AD Inventory"" and 2 AD jobs were running (not successfully) at the same time.
+
+5) Killed the 2 AD jobs and 1 .AD Inv job and now he was able to add the host name successfully.","Guidance","Mike Candon","Error","Netwrix Enterprise Auditor","StealthAUDIT General","NEA MGMT Console","11.6","","7.9","Closed - Resolved","KPMG Management Services LP","Jason Skidmore","2025-04-07T16:58:14.000Z","2025-04-15T14:23:56.000Z"

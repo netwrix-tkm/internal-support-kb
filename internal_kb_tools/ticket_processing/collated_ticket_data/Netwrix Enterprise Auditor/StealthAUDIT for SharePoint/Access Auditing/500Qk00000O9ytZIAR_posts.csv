@@ -1,0 +1,37 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000c10o5KAA","500Qk00000O9ytZIAR","TextPost","0054u000008ARZjAAO","2025-04-17T13:59:28.000Z","Description: I am getting an error on trying to fun the RegisterAzureappAuth for Sharepoint. I get these errors
+
+###
+
+Connect-MgGraph : The type initializer for 'Azure.Identity.AuthenticationRecord' threw an exception.
+At line:85 char:13
++ $userAuth = Connect-MgGraph -TenantId $tenantId -Scopes 'Application. ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ : Could not connect to MS Graph API
+at , : line 91
+Connect-MgGraph : The type initializer for 'Azure.Identity.AuthenticationRecord' threw an exception.
+At line:89 char:17
++     $userAuth = Connect-MgGraph -TenantId $tenantId
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+## I have set up a connection account which has 2 credentials, 1 called ""newapp"" set as Task (Local) and another containing a Entra ID Account which is a Global Admin. 
+
+When I run the task it pops up a login box for my admin account which I log into. First time it ran it also asked me to authorise access to the Graph API which I did for that user. 
+
+Its targeted to my Sharepoint Online Tenant.","","","","0054u000008ARZjAAO","2025-04-17T13:59:28.000Z"
+"0D5Qk00000c12QlKAI","500Qk00000O9ytZIAR","TextPost","005Qk000002b4gDIAQ","2025-04-17T15:12:32.000Z","What We've Learned Updated: -----------
+17.04.2025 
+Artem Naskal 
+
+Customer tried using RegisterAzureappAuth to set up Entra ID app for SharePoint online access auditing. 
+
+It seems app was not registered properly and it is missing Graph API permissions. 
+
+Suggested the following as solution:
+configure application for SharePoint Online access auditing follow these steps from the top of the article:
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/Config/SharePointOnline/Access.htm
+
+Once you have SharePoint Online application set up and once you copy all necessary information (The comma delimited string containing the path to the certificate PFX file, certificate password, and the Microsoft Entra ID environment identifier ( CertPath,CertPassword,AzureEnvironment)) - use this information to create a separate Connection Profile of Account Type > Azure Active Directory as described here:
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Admin/Settings/Connection/Profile/EntraID.htm","","","","005Qk000002b4gDIAQ","2025-04-17T15:12:32.000Z"
+"0D5Qk00000c1A4lKAE","500Qk00000O9ytZIAR","TextPost","005Qk000002b4gDIAQ","2025-04-17T15:12:55.000Z","Next Steps Updated: Customer will attempt configuring entra ID app for SharePoint online access auditing manually and reply back.","","","","005Qk000002b4gDIAQ","2025-04-17T15:12:55.000Z"

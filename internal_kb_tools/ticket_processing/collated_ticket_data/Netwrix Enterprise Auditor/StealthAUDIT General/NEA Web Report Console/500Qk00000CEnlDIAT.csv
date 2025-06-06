@@ -1,0 +1,39 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CEnlDIAT","00412847","Support Ticket","publish reports page can't be reached","(I am a partner supporting a paid client, The Fresh Market)
+We just installed NEA but we went to use published reports for the first time and the browser says it can't be reached.  We added local firewall rules for port 8082 but no change.  We changed the web server service to run as a service account and restarted, but not change.  The service is up and running.  
+
+I need some ideas on what to look at next.  I forget where the log file might be that could potentially tell us any issues with the web server.  Anything else you can think of to try, please also let send me.
+
+I need to meet with this customer tomorrow and try to get that web page working, so there is some urgency.
+
+Note:  For context, I am experienced user of the product and used to work in both support and professional service for this exact product at Stealthbits.","","","","confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) 11.6.0.79
+
+The issue with the URL was that the service account was not a local admin and was getting Access Denied post starting the Service.
+Once this was corrected we were able to load the URL without issue.
+
+
+Reference the following for moving to HTTPS
+Clear-Host
+#Check Current cert details 
+netsh http show sslcert
+Get-ChildItem -Path Cert:LocalMachineMy |Select-Object -Property * |Sort-Object NotAfter |Sort-Object NotAfter -Descending |
+Format-Table Thumbprint,Subject,FriendlyName, NotAfter -AutoSize 
+
+##netsh update SSL Cert
+
+netsh http delete sslcert ipport=0.0.0.0:8082
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" # This will be the same for all installations because it is a GUID from the built-in webserver application
+$certHash = ""INSERT THUMBNAIL VALUE FROM STEP 2 BETWEEN QUOTES""
+$ip = ""0.0.0.0"" # this means all IP addresses
+$port = ""8082"" # the default HTTPS port
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh
+
+## AIC 11.6+
+netsh http delete sslcert ipport=0.0.0.0:481
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" # This will be the same for all installations because it is a GUID from the built-in webserver application
+$certHash = ""INSERT THUMBNAIL VALUE FROM STEP 2 BETWEEN QUOTES""
+$ip = ""0.0.0.0"" # this means all IP addresses
+$port = ""481"" # the default HTTPS port
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh","Incorrect configuration: Netwrix server","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.6","79","3.9","Closed - Resolved","The Fresh Market","robert parsons","2024-06-24T20:37:06.000Z","2024-06-28T18:59:59.000Z"

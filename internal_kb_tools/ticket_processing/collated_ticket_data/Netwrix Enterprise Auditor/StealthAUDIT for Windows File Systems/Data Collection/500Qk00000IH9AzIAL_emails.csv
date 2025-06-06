@@ -1,0 +1,689 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000HsbthIAB","500Qk00000IH9AzIAL","2024-11-13T19:02:23.000Z","2024-11-13T19:02:23.000Z","Team,
+Per our call today we confirmed that the current version of Netwrix Enterprise Auditor (NEA) 11.6.0.113 was not able to communicate to the needed host per the following ports
+8767
+8766
+
+If we could confirm that the network or 3rd party Security tool is nor blocking this connection between the needed servers.
+
+REF: Netwrix Enterprise Auditor vl 1.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0IH9Az:ref","1-FSAC System Scan completing with Error    [ ref:!00D70091pB.!500Qk0IH9Az:ref ]","techsupport@netwrix.com","Netwrix Support","josh.taylor@polarahealth.com; i.gallegos@polarahealth.com","","","false","2024-11-13T19:02:21.000Z","true"
+"02sQk00000HweusIAB","500Qk00000IH9AzIAL","2024-11-14T22:08:02.000Z","2024-11-15T17:01:10.000Z","ref:_00D7091pB._500Q000IH9Az:ref
+
+There was a firewall rule turned off on WYDOC4 for Inbound traffic - this was already enabled on wydoc3.
+Rule = ""Netwrix Activity Monitor SBFileMonAgentSvc Allow TCP SBFileMonAgentSvc""
+---This was turned on.  Since WYDOC3 and WYDOC4 are a failover cluster, this may be why it erred for all three (wydoc3, wydoc4, documentsdtc).
+
+I ran the FSAC job again- same failed results.
+
+I'll reach out to security manager for these ports to be opened between our 10.30.x.x subnet and our Performive private cloud network on 10.100.x.x
+
+-Josh Taylor
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 13, 2024 12:02 PM
+To: Josh Taylor <josh.taylor@polarahealth.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+***WARNING: Non-Polara Health Email. Please DO NOT CLICK links or Download attachments unless you know the content is safe.***
+
+Team,
+Per our call today we confirmed that the current version of Netwrix Enterprise Auditor (NEA) 11.6.0.113 was not able to communicate to the needed host per the following ports
+8767
+8766
+
+If we could confirm that the network or 3rd party Security tool is nor blocking this connection between the needed servers.
+
+REF: Netwrix Enterprise Auditor vl 1.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000GEQpc&from=ext]
+
+ref:!00D70091pB.!500Qk0IH9Az:ref","Re: Netwrix Support Ticket #426978 - ref:_00D7091pB._500Q000IH9Az:ref - [External]1-FSAC System Scan completing with Error    [ ref:!00D70091pB.!500Qk0IH9Az:ref ]","josh.taylor@polarahealth.com","Josh Taylor","i.gallegos@polarahealth.com; techsupport@netwrix.com","","","false","2024-11-14T22:07:31.000Z","true"
+"02sQk00000Hx0lTIAR","500Qk00000IH9AzIAL","2024-11-15T00:20:04.000Z","2024-11-15T16:35:04.000Z","ref:_00D7091pB._500Q000IH9Az:ref
+
+I was able to get job to run.
+
+Adjusted INBOUND rule for Stealth Audit Applet that allows TCP 8766 - added 8767 for both WYDOC3 and WYDOC4.
+
+________________________________
+From: Josh Taylor <josh.taylor@polarahealth.com>
+Sent: Thursday, November 14, 2024 3:07 PM
+To: Netwrix Support <techsupport@netwrix.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: Re: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+There was a firewall rule turned off on WYDOC4 for Inbound traffic - this was already enabled on wydoc3.
+Rule = ""Netwrix Activity Monitor SBFileMonAgentSvc Allow TCP SBFileMonAgentSvc""
+---This was turned on.  Since WYDOC3 and WYDOC4 are a failover cluster, this may be why it erred for all three (wydoc3, wydoc4, documentsdtc).
+
+I ran the FSAC job again- same failed results.
+
+I'll reach out to security manager for these ports to be opened between our 10.30.x.x subnet and our Performive private cloud network on 10.100.x.x
+
+-Josh Taylor
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 13, 2024 12:02 PM
+To: Josh Taylor <josh.taylor@polarahealth.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+***WARNING: Non-Polara Health Email. Please DO NOT CLICK links or Download attachments unless you know the content is safe.***
+
+Team,
+Per our call today we confirmed that the current version of Netwrix Enterprise Auditor (NEA) 11.6.0.113 was not able to communicate to the needed host per the following ports
+8767
+8766
+
+If we could confirm that the network or 3rd party Security tool is nor blocking this connection between the needed servers.
+
+REF: Netwrix Enterprise Auditor vl 1.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000GEQpc&from=ext]
+
+ref:!00D70091pB.!500Qk0IH9Az:ref","Re: Netwrix Support Ticket #426978 - ref:_00D7091pB._500Q000IH9Az:ref - [External]1-FSAC System Scan completing with Error    [ ref:!00D70091pB.!500Qk0IH9Az:ref ]","josh.taylor@polarahealth.com","Josh Taylor","i.gallegos@polarahealth.com; techsupport@netwrix.com","","","false","2024-11-15T00:19:46.000Z","true"
+"02sQk00000HywDuIAJ","500Qk00000IH9AzIAL","2024-11-15T17:01:07.000Z","2024-11-15T17:01:07.000Z","Hello Josh,
+
+Thank you for the update. Dusty is out-of-office today, and I'm not sure if there was anything other active issues being troubleshooted on this ticket. I will make sure he gets your update on Monday.
+
+Please let us know if you have any other question and if you're comfortable closing this ticket.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Josh Taylor [josh.taylor@polarahealth.com]
+Sent: 11/14/2024 7:19 PM
+To: i.gallegos@polarahealth.com; techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #426978 - ref:_00D7091pB._500Q000IH9Az:ref - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ref:_00D7091pB._500Q000IH9Az:ref
+
+
+I was able to get job to run.
+
+ 
+
+Adjusted INBOUND rule for Stealth Audit Applet that allows TCP 8766 - added 8767 for both WYDOC3 and WYDOC4.
+
+ 
+
+ 
+
+
+From: Josh Taylor <josh.taylor@polarahealth.com>
+Sent: Thursday, November 14, 2024 3:07 PM
+To: Netwrix Support <techsupport@netwrix.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: Re: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ 
+
+
+There was a firewall rule turned off on WYDOC4 for Inbound traffic - this was already enabled on wydoc3.
+
+Rule = ""Netwrix Activity Monitor SBFileMonAgentSvc Allow TCP SBFileMonAgentSvc""
+
+---This was turned on.  Since WYDOC3 and WYDOC4 are a failover cluster, this may be why it erred for all three (wydoc3, wydoc4, documentsdtc).
+
+ 
+
+I ran the FSAC job again- same failed results.
+
+ 
+
+I'll reach out to security manager for these ports to be opened between our 10.30.x.x subnet and our Performive private cloud network on 10.100.x.x
+
+ 
+
+-Josh Taylor
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 13, 2024 12:02 PM
+To: Josh Taylor <josh.taylor@polarahealth.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ 
+
+
+***WARNING: Non-Polara Health Email. Please DO NOT CLICK links or Download attachments unless you know the content is safe.***
+ 
+
+Team,
+Per our call today we confirmed that the current version of Netwrix Enterprise Auditor (NEA) 11.6.0.113 was not able to communicate to the needed host per the following ports
+8767
+8766
+
+If we could confirm that the network or 3rd party Security tool is nor blocking this connection between the needed servers.
+
+REF: Netwrix Enterprise Auditor vl 1.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0IH9Az:ref","Re: Netwrix Support Ticket #426978 -  - [External]1-FSAC System Scan completing with Error    [ ref:!00D70091pB.!500Qk0IH9Az:ref ]","techsupport@netwrix.com","Netwrix Support","josh.taylor@polarahealth.com","","joshua.sexton@netwrix.com","false","2024-11-15T17:01:06.000Z","true"
+"02sQk00000I5UO5IAN","500Qk00000IH9AzIAL","2024-11-18T19:53:40.000Z","2024-11-18T19:53:40.000Z","Team,
+
+I wanted to follow up to see if any additional assistance is needed for this issue.
+
+Please let me know.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/15/2024 12:01 PM
+To: josh.taylor@polarahealth.com
+Subject: Re: Netwrix Support Ticket #426978 - - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+Hello Josh,
+
+Thank you for the update. Dusty is out-of-office today, and I'm not sure if there was anything other active issues being troubleshooted on this ticket. I will make sure he gets your update on Monday.
+
+Please let us know if you have any other question and if you're comfortable closing this ticket.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Josh Taylor [josh.taylor@polarahealth.com]
+Sent: 11/14/2024 7:19 PM
+To: i.gallegos@polarahealth.com; techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #426978 - ref:_00D7091pB._500Q000IH9Az:ref - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ref:_00D7091pB._500Q000IH9Az:ref
+
+
+I was able to get job to run.
+
+ 
+
+Adjusted INBOUND rule for Stealth Audit Applet that allows TCP 8766 - added 8767 for both WYDOC3 and WYDOC4.
+
+ 
+
+ 
+
+
+From: Josh Taylor <josh.taylor@polarahealth.com>
+Sent: Thursday, November 14, 2024 3:07 PM
+To: Netwrix Support <techsupport@netwrix.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: Re: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ 
+
+
+There was a firewall rule turned off on WYDOC4 for Inbound traffic - this was already enabled on wydoc3.
+
+Rule = ""Netwrix Activity Monitor SBFileMonAgentSvc Allow TCP SBFileMonAgentSvc""
+
+---This was turned on.  Since WYDOC3 and WYDOC4 are a failover cluster, this may be why it erred for all three (wydoc3, wydoc4, documentsdtc).
+
+ 
+
+I ran the FSAC job again- same failed results.
+
+ 
+
+I'll reach out to security manager for these ports to be opened between our 10.30.x.x subnet and our Performive private cloud network on 10.100.x.x
+
+ 
+
+-Josh Taylor
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 13, 2024 12:02 PM
+To: Josh Taylor <josh.taylor@polarahealth.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ 
+
+
+***WARNING: Non-Polara Health Email. Please DO NOT CLICK links or Download attachments unless you know the content is safe.***
+ 
+
+Team,
+Per our call today we confirmed that the current version of Netwrix Enterprise Auditor (NEA) 11.6.0.113 was not able to communicate to the needed host per the following ports
+8767
+8766
+
+If we could confirm that the network or 3rd party Security tool is nor blocking this connection between the needed servers.
+
+REF: Netwrix Enterprise Auditor vl 1.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0IH9Az:ref","Re: Netwrix Support Ticket #426978 -  - [External]1-FSAC System Scan completing with Error    [ ref:!00D70091pB.!500Qk0IH9Az:ref ]","techsupport@netwrix.com","Netwrix Support","josh.taylor@polarahealth.com","i.gallegos@polarahealth.com","","false","2024-11-18T19:53:38.000Z","true"
+"02sQk00000I5xwOIAR","500Qk00000IH9AzIAL","2024-11-18T22:34:01.000Z","2024-11-18T22:34:01.000Z","ref:_00D7091pB._500Q000IH9Az:ref
+
+Not at this time, though after 11/22 meeting, when we will hopefully have resolved all connections/jobs for Entra, Exchange online, Sharepoint online, I'd like to revist/ensure those jobs are running smoothly on a schedule.
+
+
+Additionally, the ultimate goal of all these updates is to have the Distribution report (in the sandbox) running / pulling data from Exchange online, to accurately reflect all Distribution traffic.
+
+-Josh
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 18, 2024 12:53 PM
+To: Josh Taylor <josh.taylor@polarahealth.com>
+Cc: Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: Re: Netwrix Support Ticket #426978 - - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+Team,
+
+I wanted to follow up to see if any additional assistance is needed for this issue.
+
+Please let me know.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/15/2024 12:01 PM
+To: josh.taylor@polarahealth.com
+Subject: Re: Netwrix Support Ticket #426978 - - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+Hello Josh,
+
+Thank you for the update. Dusty is out-of-office today, and I'm not sure if there was anything other active issues being troubleshooted on this ticket. I will make sure he gets your update on Monday.
+
+Please let us know if you have any other question and if you're comfortable closing this ticket.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Josh Taylor [josh.taylor@polarahealth.com]
+Sent: 11/14/2024 7:19 PM
+To: i.gallegos@polarahealth.com; techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #426978 - ref:_00D7091pB._500Q000IH9Az:ref - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ref:_00D7091pB._500Q000IH9Az:ref
+
+I was able to get job to run.
+
+Adjusted INBOUND rule for Stealth Audit Applet that allows TCP 8766 - added 8767 for both WYDOC3 and WYDOC4.
+
+
+________________________________
+From: Josh Taylor <josh.taylor@polarahealth.com>
+Sent: Thursday, November 14, 2024 3:07 PM
+To: Netwrix Support <techsupport@netwrix.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: Re: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+There was a firewall rule turned off on WYDOC4 for Inbound traffic - this was already enabled on wydoc3.
+Rule = ""Netwrix Activity Monitor SBFileMonAgentSvc Allow TCP SBFileMonAgentSvc""
+---This was turned on.  Since WYDOC3 and WYDOC4 are a failover cluster, this may be why it erred for all three (wydoc3, wydoc4, documentsdtc).
+
+I ran the FSAC job again- same failed results.
+
+I'll reach out to security manager for these ports to be opened between our 10.30.x.x subnet and our Performive private cloud network on 10.100.x.x
+
+-Josh Taylor
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 13, 2024 12:02 PM
+To: Josh Taylor <josh.taylor@polarahealth.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+***WARNING: Non-Polara Health Email. Please DO NOT CLICK links or Download attachments unless you know the content is safe.***
+
+Team,
+Per our call today we confirmed that the current version of Netwrix Enterprise Auditor (NEA) 11.6.0.113 was not able to communicate to the needed host per the following ports
+8767
+8766
+
+If we could confirm that the network or 3rd party Security tool is nor blocking this connection between the needed servers.
+
+REF: Netwrix Enterprise Auditor vl 1.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000GEQpc&from=int]
+
+ref:!00D70091pB.!500Qk0IH9Az:ref
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000GJwOr&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000GOY49&from=ext]","Re: Netwrix Support Ticket #426978 -  - [External]1-FSAC System Scan completing with Error    [ ref:!00D70091pB.!500Qk0IH9Az:ref ]","josh.taylor@polarahealth.com","Josh Taylor","techsupport@netwrix.com","i.gallegos@polarahealth.com","","false","2024-11-18T22:33:47.000Z","true"
+"02sQk00000I7PSOIA3","500Qk00000IH9AzIAL","2024-11-19T14:11:32.000Z","2024-11-19T14:11:32.000Z","Josh,
+
+Thank You for the update.
+
+That Distribution report should be corrected with the data collection update being worked in Ticket Number 00425035
+ 
+I will close out this 1-FSAC System Scan ticket for us.
+
+We have 30days to reopen once the closure email is received.
+
+To reopen we can just reply to that email to bring the case back into my queue.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. 
+
+Feel free to leave any feedback via the survey link.
+
+Have a great week.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Josh Taylor [josh.taylor@polarahealth.com]
+Sent: 11/18/2024 5:33 PM
+To: techsupport@netwrix.com
+Cc: i.gallegos@polarahealth.com
+Subject: Re: Netwrix Support Ticket #426978 - - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ref:_00D7091pB._500Q000IH9Az:ref
+
+
+Not at this time, though after 11/22 meeting, when we will hopefully have resolved all connections/jobs for Entra, Exchange online, Sharepoint online, I'd like to revist/ensure those jobs are running smoothly on a schedule.
+
+ 
+
+ 
+
+Additionally, the ultimate goal of all these updates is to have the Distribution report (in the sandbox) running / pulling data from Exchange online, to accurately reflect all Distribution traffic.
+
+ 
+
+-Josh
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 18, 2024 12:53 PM
+To: Josh Taylor <josh.taylor@polarahealth.com>
+Cc: Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: Re: Netwrix Support Ticket #426978 - - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ 
+
+
+Team,
+
+I wanted to follow up to see if any additional assistance is needed for this issue.
+
+Please let me know.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/15/2024 12:01 PM
+To: josh.taylor@polarahealth.com
+Subject: Re: Netwrix Support Ticket #426978 - - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+Hello Josh,
+
+Thank you for the update. Dusty is out-of-office today, and I'm not sure if there was anything other active issues being troubleshooted on this ticket. I will make sure he gets your update on Monday.
+
+Please let us know if you have any other question and if you're comfortable closing this ticket.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Josh Taylor [josh.taylor@polarahealth.com]
+Sent: 11/14/2024 7:19 PM
+To: i.gallegos@polarahealth.com; techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #426978 - ref:_00D7091pB._500Q000IH9Az:ref - [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ref:_00D7091pB._500Q000IH9Az:ref
+ 
+
+
+I was able to get job to run.
+
+ 
+
+Adjusted INBOUND rule for Stealth Audit Applet that allows TCP 8766 - added 8767 for both WYDOC3 and WYDOC4.
+
+ 
+
+ 
+
+
+From: Josh Taylor <josh.taylor@polarahealth.com>
+Sent: Thursday, November 14, 2024 3:07 PM
+To: Netwrix Support <techsupport@netwrix.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: Re: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ 
+
+
+There was a firewall rule turned off on WYDOC4 for Inbound traffic - this was already enabled on wydoc3.
+
+Rule = ""Netwrix Activity Monitor SBFileMonAgentSvc Allow TCP SBFileMonAgentSvc""
+
+---This was turned on.  Since WYDOC3 and WYDOC4 are a failover cluster, this may be why it erred for all three (wydoc3, wydoc4, documentsdtc).
+
+ 
+
+I ran the FSAC job again- same failed results.
+
+ 
+
+I'll reach out to security manager for these ports to be opened between our 10.30.x.x subnet and our Performive private cloud network on 10.100.x.x
+
+ 
+
+-Josh Taylor
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 13, 2024 12:02 PM
+To: Josh Taylor <josh.taylor@polarahealth.com>; Isaac Gallegos <i.gallegos@polarahealth.com>
+Subject: [External]1-FSAC System Scan completing with Error [ ref:!00D70091pB.!500Qk0IH9Az:ref ]
+
+ 
+
+
+***WARNING: Non-Polara Health Email. Please DO NOT CLICK links or Download attachments unless you know the content is safe.***
+ 
+
+Team,
+Per our call today we confirmed that the current version of Netwrix Enterprise Auditor (NEA) 11.6.0.113 was not able to communicate to the needed host per the following ports
+8767
+8766
+
+If we could confirm that the network or 3rd party Security tool is nor blocking this connection between the needed servers.
+
+REF: Netwrix Enterprise Auditor vl 1.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0IH9Az:ref","Re: Netwrix Support Ticket #426978 -  - [External]1-FSAC System Scan completing with Error    [ ref:!00D70091pB.!500Qk0IH9Az:ref ]","techsupport@netwrix.com","Netwrix Support","josh.taylor@polarahealth.com","i.gallegos@polarahealth.com","dusty.grayson@netwrix.com","false","2024-11-19T14:11:31.000Z","true"

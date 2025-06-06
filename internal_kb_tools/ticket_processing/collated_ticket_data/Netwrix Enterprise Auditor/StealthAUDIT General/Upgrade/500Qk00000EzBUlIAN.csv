@@ -1,0 +1,69 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EzBUlIAN","00419252","Support Ticket","Netwrix Enterprise Auditor APP Server Version Upgrade (Formerly  StealthAUDIT)","Hello, 
+I need to upgrade the Netwrix Enterprise Auditor APP Server (Formerly  StealthAUDIT) to the newer version, specifically from 11.6.0.49 to 0.90. This software upgrade will resolve any known bugs within the StealthAUDIT application and enhance its overall performance.","","","","Upgraded the current version of Stealth application(s) running in the Environment:
+
+FROM:
+Netwrix Enterprise Auditor (NEA)                11.6.0.49
+Netwrix Access Information Center (AIC)    11.6.0.7
+Stealth Activity Monitor (SAM)                    6.0.928
+
+TO:
+Netwrix Enterprise Auditor (NEA)                11.6.0.92
+Netwrix Access Information Center (AIC)    11.6.0.23
+NEA Sensitive Data (SDD)                            11.6.0.13
+Netwrix Activity Monitor (NAM)                 7.1.165
+
+
+NEA: Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Console Upgrade > Enterprise Auditor Core Upgrade Instructions
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Wizard.htm
+Netwrix Enterprise Auditor v11.6 > Installation > File System Proxy as a Service Overview > Upgrade Proxy Service Procedure
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/FileSystemProxy/Upgrade.htm
+AIC: Netwrix Access Information Center 11.6 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+NAM: Netwrix Activity Monitor v7.1 > Installation > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/ActivityMonitor_7.1/page/Content/ActivityMonitor/Install/Upgrade.htm
+
+Removed IIS from the Roles and Features via Windows Server Manager.
+
+Noted that the Cert for the NEA and AIC URLs is set to expire on 11/1/2024
+
+Once we have the new DigCert should be able to run the following:
+Clear-Host
+#Check Current cert details 
+netsh http show sslcert
+Get-ChildItem -Path Cert:LocalMachineMy |Select-Object -Property * |Sort-Object NotAfter |Sort-Object NotAfter -Descending |
+Format-Table Thumbprint,Subject,FriendlyName, NotAfter -AutoSize
+##  ^^^^  Copy the new Thumbprint
+
+##  Past below then run the netsh update SSL Cert
+
+netsh http delete sslcert ipport=0.0.0.0:443
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" # This will be the same for all installations because it is a GUID from the built-in webserver application
+$certHash = ""INSERT THUMBPRINT VALUE FROM STEP 2 BETWEEN QUOTES""
+$ip = ""0.0.0.0"" # this means all IP addresses
+$port = ""443"" # the default HTTPS port
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh
+
+## AIC 11.6+
+netsh http delete sslcert ipport=0.0.0.0:481
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" # This will be the same for all installations because it is a GUID from the built-in webserver application
+$certHash = ""INSERT THUMBPRINT VALUE FROM STEP 2 BETWEEN QUOTES""
+$ip = ""0.0.0.0"" # this means all IP addresses
+$port = ""481"" # the default HTTPS port
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh
+
+
+Noted to confirm the following: Antivirus Exclusions for Netwrix Enterprise Auditor
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u000000TsxHCAS.html
+
+Looked at the following 
+AADI_RegisterAzureAppAuth  currently no Guide for this however the job does have good details
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Instant Job Wizard > SP_RegisterAzureAppAuth Job
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/InstantJobs/SP_RegisterAzureAppAuth.htm
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Instant Job Wizard > EX RegisterAzureAppAuth Job
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/InstantJobs/EX_RegisterAzureAppAuth.htm
+
+The new Certs will need to be installed the Host Certs store under personal path via the control panels Manage computer certificates.
+
+Please note that this is outside of NEA supports scope.
+Example Image if needed: https://nwxcorp.file.force.com/sfc/servlet.shepherd/version/download/068Qk00000F8Lpr?asPdf=false&operationContext=CHATTER","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","Upgrade","11.6","49","30.1","Closed - Resolved","Virginia Lottery","James Monteria","2024-08-27T13:29:50.000Z","2024-09-26T15:18:44.000Z"

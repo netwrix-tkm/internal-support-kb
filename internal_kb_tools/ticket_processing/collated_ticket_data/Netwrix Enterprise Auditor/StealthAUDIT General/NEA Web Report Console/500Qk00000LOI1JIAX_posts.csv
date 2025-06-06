@@ -1,0 +1,39 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000W02AgKAJ","500Qk00000LOI1JIAX","TextPost","0054u000008ARZjAAO","2025-02-03T10:25:12.000Z","Description: Hi Team,
+
+We are facing issues in accessing the AIC console and getting IIS error. We tried restarting the IIS service but still he error is same.
+
+Please help.","","","","0054u000008ARZjAAO","2025-02-03T10:25:12.000Z"
+"0D5Qk00000W5K6MKAV","500Qk00000LOI1JIAX","TextPost","0054u000007ow49AAA","2025-02-04T15:32:50.000Z","Steps to Reproduce Updated: Have 11.5 with IIS and try to access the link","","","","0054u000007ow49AAA","2025-02-04T15:32:50.000Z"
+"0D5Qk00000W5fg6KAB","500Qk00000LOI1JIAX","TextPost","0054u000007ow49AAA","2025-02-04T15:33:17.000Z","What We've Learned Updated: IIS in use, 11.5, suggested to check the prerequisites and upgrade","","","","0054u000007ow49AAA","2025-02-04T15:33:17.000Z"
+"0D5Qk00000W5gFZKAZ","500Qk00000LOI1JIAX","TextPost","0054u000007ow49AAA","2025-02-04T15:33:34.000Z","Next Steps Updated: Awaiting customer's choice on the path forward","","","","0054u000007ow49AAA","2025-02-04T15:33:34.000Z"
+"0D5Qk00000XAIO3KAP","500Qk00000LOI1JIAX","TextPost","0054u000007ow49AAA","2025-02-17T14:10:59.000Z","What We've Learned Updated: IIS in use, 11.5, suggested to check the prerequisites and upgrade
+The customer wants 'a meeting to decide on an upgrade' - waste of time but nothing can be done","","","","0054u000007ow49AAA","2025-02-17T14:10:59.000Z"
+"0D5Qk00000XAS6tKAH","500Qk00000LOI1JIAX","TextPost","0054u000007ow49AAA","2025-02-17T14:11:52.000Z","Next Steps Updated: Awaiting customer's choice on the path forward
+Meeting plan:
+1) Listen to Praveen's questions
+2) Insist on the upgrade
+3) (probably) perform the upgrade","","","","0054u000007ow49AAA","2025-02-17T14:11:52.000Z"
+"0D5Qk00000XATUVKA5","500Qk00000LOI1JIAX","TextPost","0054u000007ow49AAA","2025-02-17T14:14:02.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007ow49AAA","2025-02-17T14:14:02.000Z"
+"0D5Qk00000XATUWKA5","500Qk00000LOI1JIAX","TextPost","0054u000007ow49AAA","2025-02-17T14:14:02.000Z","Invitation updated. Attendees:","","","","0054u000007ow49AAA","2025-02-17T14:14:02.000Z"
+"0D5Qk00000XATUXKA5","500Qk00000LOI1JIAX","TextPost","0054u000007ow49AAA","2025-02-17T14:14:03.000Z","Invitation updated. Attendees: , Praveen Huilgol","","","","0054u000007ow49AAA","2025-02-17T14:14:03.000Z"
+"0D5Qk00000XAOzLKAX","500Qk00000LOI1JIAX","TextPost","0054u000007ow49AAA","2025-02-17T14:14:29.000Z","Next Steps Updated: Awaiting customer's choice on the path forward
+Since I'm OOO this week, I'm sending a podlink.
+Meeting plan:
+1) Listen to Praveen's questions
+2) Insist on the upgrade
+3) (probably) perform the upgrade","","","","0054u000007ow49AAA","2025-02-17T14:14:29.000Z"
+"0D5Qk00000XHzxGKAT","500Qk00000LOI1JIAX","TextPost","005Qk000002b4gDIAQ","2025-02-19T12:07:21.000Z","What We've Learned Updated: IIS in use, 11.5, suggested to check the prerequisites and upgrade
+The customer wants 'a meeting to decide on an upgrade' - waste of time but nothing can be done
+-------------
+19.02.2025 
+
+We started by checking the IIS configuration on the StealthAudit server and we noticed that there was an old binding for port 8443 configured for Default Web Site. 
+We removed it because AIC has its own StealthAudit site in IIS and the binding was for an expired certificate. 
+
+Then, we added a new certificate binding for port 8443 for StealthAudit AIC site using latest certificate. 
+And finally, we updated ""WebServer.exe.config"" file within the Web folder of the StealthAUDIT installation directory using these values:
+<add key=""AdditionalContentTabs"" value=""Access Information Center, https://+:/V2/Login?embed""/>
+<add key=""BindingUrl"" value=""https://+:8443"">
+
+This resolved the issue and we could access AIC over the FQDN of StealthAudit server using port 8443. We could access AIC page over https and certificate validation was successful.","","","","005Qk000002b4gDIAQ","2025-02-19T12:07:21.000Z"

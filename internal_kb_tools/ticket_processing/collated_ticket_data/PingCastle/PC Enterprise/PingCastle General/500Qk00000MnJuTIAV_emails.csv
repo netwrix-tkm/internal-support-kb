@@ -1,0 +1,192 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MTujoIAD","500Qk00000MnJuTIAV","2025-03-11T17:46:29.000Z","2025-03-11T17:46:29.000Z","Dear Corvin,
+
+Thank you for your inquiry regarding SAML authentication with Ping Identity for PingCastle Enterprise. Below are the key steps to configure it:
+
+PingCastle supports:
+
+	Username (sAMAccountName or UPN)
+	Email Address (mail attribute)
+	Group Membership (if configured in Ping Identity)
+
+PingCastle does not generate an SP metadata XML automatically. Instead, configure your IdP manually with the correct endpoints:
+
+
+	Obtain the IdP Metadata URL from Ping Identity.
+	Edit appsettings.Production.json and add:
+
+""Saml2"": {
+    ""Issuer"": ""https://your-IdP-issuer-url"",
+    ""IdPMetadata"": ""https://your-IdP-metadata-url""
+}
+
+	Ensure the IdPMetadata URL is reachable from the PingCastle server.
+	Restart PingCastle services or perform an IISRESET to apply changes.
+	Verify that the IdPMetadata tag is correct.
+	Ensure Ping Identity is sending the expected claims (Username, Email).
+	Test login and check for errors in browser dev tools or server logs.
+
+For reference, the full setup guide is available here:
+PingCastle SAML Setup
+
+Let me know if you need further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+ref:!00D70091pB.!500Qk0MnJuT:ref","SAML Authentication    [ ref:!00D70091pB.!500Qk0MnJuT:ref ]","techsupport@netwrix.com","Netwrix Support","corvin.schmid@wuerth-it.com","","iulia.apatachioaei@netwrix.com","false","2025-03-11T17:46:28.000Z","true"
+"02sQk00000MbkQbIAJ","500Qk00000MnJuTIAV","2025-03-14T14:03:01.000Z","2025-03-14T14:53:29.000Z","ref:_00D7091pB._500Q000MnJuT:ref
+
+I have configured SAML2, but get an HTTP/500 error afterwards.
+So I guess I have an error in my configuration.
+
+As the Server is not able to reach the IdP directly, I have configured not the ""simple"" but the ""advanced"" SAML2 configuration. Like explained in the short guide.
+
+Can we have a short call to review the configuration?","Netwrix Support Ticket #438367 - SAML Authentication","corvin.schmid@wuerth-it.com","Corvin Schmid","techsupport@netwrix.com","","","false","2025-03-14T14:03:01.000Z","true"
+"02sQk00000MblEcIAJ","500Qk00000MnJuTIAV","2025-03-14T14:15:25.000Z","2025-03-14T14:53:29.000Z","ref:_00D7091pB._500Q000MnJuT:ref
+
+Please disregard my last message, I found the mission quote in my config.","Netwrix Support Ticket #438367 - SAML Authentication","corvin.schmid@wuerth-it.com","Corvin Schmid","techsupport@netwrix.com","","","false","2025-03-14T14:15:25.000Z","true"
+"02sQk00000Mg4KIIAZ","500Qk00000MnJuTIAV","2025-03-17T07:44:03.000Z","2025-03-17T07:44:03.000Z","Hi Corvin,
+
+I hope you're doing well.
+
+Thank you for the confirmation.Please let me know if you need any further assistance or if there are any outstanding issues. Otherwise, I’ll proceed with closing the ticket.
+
+Looking forward to your confirmation.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Corvin Schmid [corvin.schmid@wuerth-it.com]
+Sent: 3/14/2025 10:15 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #438367 - SAML Authentication
+
+ref:_00D7091pB._500Q000MnJuT:ref
+
+Please disregard my last message, I found the mission quote in my config.","RE: Netwrix Support Ticket #438367 - SAML Authentication    [ ref:!00D70091pB.!500Qk0MnJuT:ref ]","techsupport@netwrix.com","Netwrix Support","corvin.schmid@wuerth-it.com","","iulia.apatachioaei@netwrix.com","false","2025-03-17T07:44:02.000Z","true"
+"02sQk00000MgEA0IAN","500Qk00000MnJuTIAV","2025-03-17T09:53:54.000Z","2025-03-17T13:39:13.000Z","ref:_00D7091pB._500Q000MnJuT:ref
+
+Dear Iulia,
+
+I have another question, how is the email address from the IdP used in PingCastle Enterprise?
+
+Is it possible to use JIT user creation? When a user is loggen in for the first time, that PingCastle automatically creates an account, and I have just to provide privileges?
+
+There is also a bug in PingCastle Enterprise, when trying to create a user without an email address, the system crashes to an internal exception.
+
+Error message: Object reference not set to an instance of an object.
+
+Type: System.NullReferenceExceptio
+
+Stacktrace:
+
+   at PingCastleEnterprise.Controllers.UsersAdminController.Create(RegisterViewModel userViewModel, String[] selectedRoles)
+   at lambda_method504(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+   at PingCastleEnterprise.Extensions.AzureWebAppIntegratedSSOMiddleware.InvokeAsync(HttpContext context, UserManager`1 userManager, SignInManager`1 signInManager)
+   at PingCastleEnterprise.Extensions.SecurityHeadersMiddleware.InvokeAsync(HttpContext ctx, IPingCastleLicenseService licenseService)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)","Netwrix Support Ticket #438367 - SAML Authentication","corvin.schmid@wuerth-it.com","Corvin Schmid","techsupport@netwrix.com","","","false","2025-03-17T09:53:54.000Z","true"
+"02sQk00000Mlp42IAB","500Qk00000MnJuTIAV","2025-03-19T10:21:47.000Z","2025-03-19T10:21:47.000Z","Hello Corvin,
+
+I have split your questions into 3 separate tickets so we can track them accordingly. I will close this ticket but follow the new tickets that have been created.
+
+Thank you,
+
+Rej Uddin
+
+Technical Support Team Lead
+
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+
+____________________ __________
+
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+Netwrix | Cybersecurity that works for you.
+Easily identify sensitive, regulated and mission-critical information in your data stores and focus on the information that truly requires protection.
+
+
+--------------- Original Message ---------------
+From: Corvin Schmid [corvin.schmid@wuerth-it.com]
+Sent: 3/17/2025 5:53 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #438367 - SAML Authentication
+
+ref:_00D7091pB._500Q000MnJuT:ref
+
+Dear Iulia,
+
+I have another question, how is the email address from the IdP used in PingCastle Enterprise?
+
+Is it possible to use JIT user creation? When a user is loggen in for the first time, that PingCastle automatically creates an account, and I have just to provide privileges?
+
+There is also a bug in PingCastle Enterprise, when trying to create a user without an email address, the system crashes to an internal exception.
+
+Error message: Object reference not set to an instance of an object.
+
+Type: System.NullReferenceExceptio
+
+Stacktrace:
+
+at PingCastleEnterprise.Controllers.UsersAdminController.Create(RegisterViewModel userViewModel, String[] selectedRoles)
+at lambda_method504(Closure, Object)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+at Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware.Invoke(HttpContext context)
+at Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware.Invoke(HttpContext context)
+at PingCastleEnterprise.Extensions.AzureWebAppIntegratedSSOMiddleware.InvokeAsync(HttpContext context, UserManager`1 userManager, SignInManager`1 signInManager)
+at PingCastleEnterprise.Extensions.SecurityHeadersMiddleware.InvokeAsync(HttpContext ctx, IPingCastleLicenseService licenseService)
+at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)","RE: Netwrix Support Ticket #438367 - SAML Authentication    [ ref:!00D70091pB.!500Qk0MnJuT:ref ]","techsupport@netwrix.com","Netwrix Support","corvin.schmid@wuerth-it.com","","rejaul.uddin@netwrix.com","false","2025-03-19T10:21:46.000Z","true"

@@ -1,0 +1,105 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000cPcylKAC","500Qk00000OKXoPIAX","TextPost","0054u000008ARZjAAO","2025-04-22T17:03:29.000Z","Description: I am getting an error message with the Bulk Import: The MERGE statement attempted to UPDATE or DELETE the same row more than once.  This is only happening with one host. I am not sure how to go about finding what row in the database is causing this. The error is happening during the FSAA Bulk Import. Looking at the log, I don't know if other records for this host are getting imported or if the job fails at this point.","","","","0054u000008ARZjAAO","2025-04-22T17:03:29.000Z"
+"0D5Qk00000cPtK4KAK","500Qk00000OKXoPIAX","TextPost","0054u000006gpoAAAQ","2025-04-22T18:37:59.000Z","<p>21/04/2025 22:42:17	ERROR	FILESYSTEMACCESS	Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute	&quot;Netwrix.CoordinationLibrary.Processes.FSAABulkImportProcess|Failed to import SA_FSAA_Resources: The MERGE statement attempted to UPDATE or DELETE the same row more than once. This happens when a target row matches more than one source row. A MERGE statement cannot UPDATE/DELETE the same row of the target table multiple times. Refine the ON clause to ensure a target row matches at most one source row, or use the GROUP BY clause to group the source rows.&quot;	DRF-ERNIE2	DCExtract	17120	11324	12156</p><p> </p><p>This is not great. I think we are going to have to escalate based on the message. It was importing data into our new 12.0 table </p><p> SA_FSAA_ResourcesScanTypeDetails</p><p> </p><p>If customer is willing and able to bundle up all logs associated with scan / import including Logs on proxy and if possible the T2 database folder in its entirety. We can escalate.</p><p> </p><p>After grabbing all available artifacts, I would recommend a repair.</p>","","","","0054u000006gpoAAAQ","2025-04-22T18:37:59.000Z"
+"0D5Qk00000cYl26KAC","500Qk00000OKXoPIAX","TextPost","0054u000007oss5AAA","2025-04-24T19:26:22.000Z","<p>client uploaded files and I reorganized them</p><p>-FSAA scan and bulk import job exports</p><p>-Proxy logs</p><p>-T2s</p>","","","","0054u000007oss5AAA","2025-04-24T19:26:22.000Z"
+"0D5Qk00000cbnnPKAQ","500Qk00000OKXoPIAX","TextPost","0054u000007oss5AAA","2025-04-25T15:41:59.000Z","What We've Learned Updated: merge error while importing data into our new 12.0 table, SA_FSAA_ResourcesScanTypeDetails
+
+Partnered with T2 and would like to escalate
+its likely a repair will fix the issue, but still want to escalate to identify root cause
+
+---------------
+
+gathered logs and attached to ticket
+-FSAA System Scan job export
+-FSAA Bulk Import job export
+-Proxy logs
+-T2s from Proxy
+
+---------------
+
+copied T2s and client's bulk import job to my lab, targeted the host having issues (DRF-ERNIE2) and ran it
+bulk imported without issue
+
+Provided client with instructions to repair the database for that host","","","","0054u000007oss5AAA","2025-04-25T15:41:59.000Z"
+"0D5Qk00000cbnXVKAY","500Qk00000OKXoPIAX","TextPost","0054u000007oss5AAA","2025-04-25T15:42:13.000Z","Next Steps Updated: escalate ticket","","","","0054u000007oss5AAA","2025-04-25T15:42:13.000Z"
+"0D5Qk00000cbpt2KAA","500Qk00000OKXoPIAX","TextPost","0054u000007oss5AAA","2025-04-25T15:52:13.000Z","Next Steps Updated: escalate ticket
+waiting to hear if the repair resolved the issue","","","","0054u000007oss5AAA","2025-04-25T15:52:13.000Z"
+"0D5Qk00000cboTVKAY","500Qk00000OKXoPIAX","TextPost","0054u000007oss5AAA","2025-04-25T15:53:12.000Z","What We've Learned Updated: merge error while importing data into our new 12.0 table, SA_FSAA_ResourcesScanTypeDetails
+
+""21/04/2025 22:42:17 ERROR FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""Netwrix.CoordinationLibrary.Processes.FSAABulkImportProcess|Failed to import SA_FSAA_Resources: The MERGE statement attempted to UPDATE or DELETE the same row more than once. This happens when a target row matches more than one source row. A MERGE statement cannot UPDATE/DELETE the same row of the target table multiple times. Refine the ON clause to ensure a target row matches at most one source row, or use the GROUP BY clause to group the source rows."" DRF-ERNIE2 DCExtract 17120 11324 12156""
+
+Partnered with T2 and would like to escalate
+its likely a repair will fix the issue, but still want to escalate to identify root cause
+
+---------------
+
+gathered logs and attached to ticket
+-FSAA System Scan job export
+-FSAA Bulk Import job export
+-Proxy logs
+-T2s from Proxy
+
+---------------
+
+copied T2s and client's bulk import job to my lab, targeted the host having issues (DRF-ERNIE2) and ran it
+bulk imported without issue
+
+Provided client with instructions to repair the database for that host","","","","0054u000007oss5AAA","2025-04-25T15:53:12.000Z"
+"0D5Qk00000cbmGRKAY","500Qk00000OKXoPIAX","TextPost","0054u000007oss5AAA","2025-04-25T15:58:23.000Z","<p>asked client to clarify what kind of FS DRF-ERNIE2 is (e.g., Windows, NetApp, Dell EMC)</p><p>Also asked for build number</p>","","","","0054u000007oss5AAA","2025-04-25T15:58:23.000Z"
+"0D5Qk00000ccb9jKAA","500Qk00000OKXoPIAX","TextPost","0054u000007oss5AAA","2025-04-25T18:13:48.000Z","Steps to Reproduce Updated: run the FSAA bulk import job","","","","0054u000007oss5AAA","2025-04-25T18:13:48.000Z"
+"0D5Qk00000ccdchKAA","500Qk00000OKXoPIAX","TextPost","0054u000007oss5AAA","2025-04-25T18:15:23.000Z","What We've Learned Updated: merge error while importing data into our new 12.0 table, SA_FSAA_ResourcesScanTypeDetails
+
+NetApp server having the issue, but other NetApp servers are not having the issue
+
+""21/04/2025 22:42:17 ERROR FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""Netwrix.CoordinationLibrary.Processes.FSAABulkImportProcess|Failed to import SA_FSAA_Resources: The MERGE statement attempted to UPDATE or DELETE the same row more than once. This happens when a target row matches more than one source row. A MERGE statement cannot UPDATE/DELETE the same row of the target table multiple times. Refine the ON clause to ensure a target row matches at most one source row, or use the GROUP BY clause to group the source rows."" DRF-ERNIE2 DCExtract 17120 11324 12156""
+
+Partnered with T2 and would like to escalate
+its likely a repair will fix the issue, but still want to escalate to identify root cause
+
+---------------
+
+gathered logs and attached to ticket
+-FSAA System Scan job export
+-FSAA Bulk Import job export
+-Proxy logs
+-T2s from Proxy
+
+---------------
+
+copied T2s and client's bulk import job to my lab, targeted the host having issues (DRF-ERNIE2) and ran it
+bulk imported without issue
+
+Provided client with instructions to repair the database for that host","","","","0054u000007oss5AAA","2025-04-25T18:15:23.000Z"
+"0D5Qk00000d6eRSKAY","500Qk00000OKXoPIAX","TextPost","0054u000006gpoAAAQ","2025-05-01T21:16:35.000Z","<p>Hey  Steven,</p><p> </p><p>When you get a chance lets grab the log from the Create Schema Job. Just the standard job log at this time.</p><p> </p><p>There is also a new log in 12.0 that may be helpful: the Coordination Service log.</p><p>This can be found in %SAINSTALLDIR%SADatabaseLogsCoordinationService on the NAA console.</p><p> </p><p>As far as further diagnosis if you can provide the below results as well that would be excellent.</p><p> </p><p>This situation can come about if there are 2+ rows in the SA_FSAA_ResourceMap table</p><p>that have different IDs, but the same AccessID.</p><p>To test if this scenario applies, run the following SQL and report back the results:</p><p>SELECT rm.HOST, rm.AccessID, COUNT(rm.AccessID) as [count]</p><p>FROM SA_FSAA_ResourceMap rm</p><p>INNER JOIN SA_FSAA_Hosts h ON h.ID = rm.HOST</p><p>WHERE h.HOST = &#39;DRF-ERNIE2&#39;</p><p>GROUP BY rm.HOST, rm.AccessID</p><p>HAVING COUNT(rm.AccessID) &gt; 1;</p><p> </p><p>There could be multiple resources in this situation.</p><p>Then get us a resource&#39;s data by choosing 1 AccessID, and plugging it into the following SQL</p><p>so we can figure out why this happened:</p><p> </p><p>SELECT r.*</p><p>FROM SA_FSAA_Resources r</p><p>INNER JOIN SA_FSAA_Hosts h ON r.HOST = h.ID</p><p>WHERE r.ID = (SELECT MIN(ID) FROM SA_FSAA_ResourceMap WHERE AccessID = &lt;an AccessID from above&gt;)</p><p>AND h.HOST = &#39;DRF-ERNIE2&#39;;</p>","","","","0054u000006gpoAAAQ","2025-05-01T21:16:35.000Z"
+"0D5Qk00000dchKhKAI","500Qk00000OKXoPIAX","TextPost","005Qk0000018eMHIAY","2025-05-08T15:35:32.000Z","<p>08May: Per today&#39;s escalation meeting: R&amp;D found another issue within this which is currently under review.</p>","","","","005Qk0000018eMHIAY","2025-05-08T15:35:32.000Z"
+"0D5Qk00000djBPGKA2","500Qk00000OKXoPIAX","TextPost","0054u000006gpoAAAQ","2025-05-10T01:16:26.000Z","<p>This was discussed on the call today and why I brough up management escalation.</p><p> </p><p>Persistent issues since upgrading to version 12.0.</p><p>Frequent timeouts affecting various jobs (e.g., DLP scans, permission scans).</p><p>Unreliability in job completion, with successful runs followed by failures.</p><p> </p><p>one appears to be a race condition with bulk imports</p><p>It was set to 4 threads. And just based on the timing it appears that the imports would finish and then the thread would attempt to start a new one too early and it would give a complaint that the thread was busy. Then the rest would fail as well. </p><p> </p><p>one appears to be an issue just starting scans for SDD. they all just timeout at the start. Unsure what specifically would cause that. </p><p> </p><p>Effective access just doesn&#39;t load in aic or the view in the database.</p><p>Verified console running no jobs and light aic usage. No matter which folder you looked at no effective access would return. Instantly loads 0 rows.</p><p>In the database attempting to pull from the SA_FSAA_EffectiveAccessView would hang. Twice it ran for 30 minutes with no results. other tables like Resources view pull instantly. </p><p> </p>","","","","0054u000006gpoAAAQ","2025-05-10T01:16:26.000Z"
+"0D5Qk00000dj6nvKAA","500Qk00000OKXoPIAX","TextPost","0054u000006gpoAAAQ","2025-05-10T01:18:05.000Z","Next Steps Updated: escalate ticket
+waiting to hear if the repair resolved the issue
+
+5-9 waiting on results of Import after hotfix.","","","","0054u000006gpoAAAQ","2025-05-10T01:18:05.000Z"
+"0D5Qk00000dj6nuKAA","500Qk00000OKXoPIAX","TextPost","0054u000006gpoAAAQ","2025-05-10T01:18:05.000Z","What We've Learned Updated: 5-9   Applied hotfix today from development.
+Repair ran successfully. Bulk Import started but was taking a long time. over 30 minutes on Merging resources alone. 
+
+merge error while importing data into our new 12.0 table, SA_FSAA_ResourcesScanTypeDetails
+
+NetApp server having the issue, but other NetApp servers are not having the issue
+
+""21/04/2025 22:42:17 ERROR FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""Netwrix.CoordinationLibrary.Processes.FSAABulkImportProcess|Failed to import SA_FSAA_Resources: The MERGE statement attempted to UPDATE or DELETE the same row more than once. This happens when a target row matches more than one source row. A MERGE statement cannot UPDATE/DELETE the same row of the target table multiple times. Refine the ON clause to ensure a target row matches at most one source row, or use the GROUP BY clause to group the source rows."" DRF-ERNIE2 DCExtract 17120 11324 12156""
+
+Partnered with T2 and would like to escalate
+its likely a repair will fix the issue, but still want to escalate to identify root cause
+
+---------------
+
+gathered logs and attached to ticket
+-FSAA System Scan job export
+-FSAA Bulk Import job export
+-Proxy logs
+-T2s from Proxy
+
+---------------
+
+copied T2s and client's bulk import job to my lab, targeted the host having issues (DRF-ERNIE2) and ran it
+bulk imported without issue
+
+Provided client with instructions to repair the database for that host","","","","0054u000006gpoAAAQ","2025-05-10T01:18:05.000Z"

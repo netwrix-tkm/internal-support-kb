@@ -1,0 +1,901 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000BO493IAD","500Qk00000Bv17VIAR","2024-06-17T10:16:59.000Z","2024-06-17T10:16:59.000Z","Hi James,
+
+Thank you for reaching out to Netwrix support.
+
+This job is a simple inner join of SA_FSDLP_MatchesView and SA_FSAA_ResourcesView. The execution time may proportionally increase when you have a lot of Sensitive Data Criteria matches. 
+
+Can you count the rows of the join results by running the query below in SQL Server Management Studio and share the results?
+
+Make sure the correct Database is selected or you can add USE ""change_to_your_StealthAUDIT_database_name"" before the SELECT statement:
+
+SELECT COUNT (*)
+FROM (select res.* from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.* from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0Bv17V:ref","Active Sensitive Data job as supplied by Netwrix -  Slow Thread    [ ref:!00D70091pB.!500Qk0Bv17V:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","aleksandr.timofeev@netwrix.com","false","2024-06-17T10:16:58.000Z","true"
+"02sQk00000BODKMIA5","500Qk00000Bv17VIAR","2024-06-17T10:41:22.000Z","2024-06-17T10:41:22.000Z","ref:_00D7091pB._500Q000Bv17V:ref
+
+Here is the result
+
+[cid:image001.png@01DAC0AB.45700200]
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 11:17 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+Hi James,
+
+Thank you for reaching out to Netwrix support.
+
+This job is a simple inner join of SA_FSDLP_MatchesView and SA_FSAA_ResourcesView. The execution time may proportionally increase when you have a lot of Sensitive Data Criteria matches.
+
+Can you count the rows of the join results by running the query below in SQL Server Management Studio and share the results?
+
+Make sure the correct Database is selected or you can add USE ""change_to_your_StealthAUDIT_database_name"" before the SELECT statement:
+
+SELECT COUNT (*)
+FROM (select res.* from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.* from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!UUuQ3qFNFHz-RonaDqSl4H7YvVNTewtgTQs5SXg9YPCk21WJhpN0na2JEPHfmNfHQ8ej0kgfG9mKbkAL8GBrAiEwOA8$>
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0Bv17V:ref","RE: Netwrix Support Ticket #412058 - ref:_00D7091pB._500Q000Bv17V:ref - Active Sensitive Data job as supplied by Netwrix -  Slow Thread    [ ref:!00D70091pB.!500Qk0Bv17V:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-06-17T10:41:08.000Z","true"
+"02sQk00000BONpzIAH","500Qk00000Bv17VIAR","2024-06-17T12:51:04.000Z","2024-06-17T12:51:04.000Z","Hi James,
+
+Thank you for the reply.
+
+How many hosts are reporting for the Actual Sensitive Data job?
+
+Can you try to run this rewritten query in SSMS directly? How long it will take?
+
+SELECT mv.[HostName], mv.[CriteriaName], mv.[FileName], mv.[FilePath], mv.[MatchCount]
+FROM dbo.SA_FSDLP_MatchesView mv
+JOIN dbo.SA_FSAA_ResourcesView rv ON mv.ResourceID = rv.ID
+WHERE rv.DeletedUSN IS NULL
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/17/2024 2:41 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - ref:_00D7091pB._500Q000Bv17V:ref - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+
+
+Here is the result
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 11:17 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+
+ 
+
+Hi James,
+
+Thank you for reaching out to Netwrix support.
+
+This job is a simple inner join of SA_FSDLP_MatchesView and SA_FSAA_ResourcesView. The execution time may proportionally increase when you have a lot of Sensitive Data Criteria matches. 
+
+Can you count the rows of the join results by running the query below in SQL Server Management Studio and share the results?
+
+Make sure the correct Database is selected or you can add USE ""change_to_your_StealthAUDIT_database_name"" before the SELECT statement:
+
+SELECT COUNT (*)
+FROM (select res.* from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.* from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Bv17V:ref","RE: Netwrix Support Ticket #412058 -  - Active Sensitive Data job as supplied by Netwrix -  Slow Thread    [ ref:!00D70091pB.!500Qk0Bv17V:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","aleksandr.timofeev@netwrix.com","true","2024-06-17T12:51:03.000Z","true"
+"02sQk00000BRcshIAD","500Qk00000Bv17VIAR","2024-06-18T10:37:52.000Z","2024-06-18T10:37:52.000Z","ref:_00D7091pB._500Q000Bv17V:ref
+
+There are 8 servers in the host list
+
+It runs in 47 minutes:
+
+[cid:image001.png@01DAC171.CDB38350]
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 1:51 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+Hi James,
+
+Thank you for the reply.
+
+How many hosts are reporting for the Actual Sensitive Data job?
+
+Can you try to run this rewritten query in SSMS directly? How long it will take?
+
+SELECT mv.[HostName], mv.[CriteriaName], mv.[FileName], mv.[FilePath], mv.[MatchCount]
+FROM dbo.SA_FSDLP_MatchesView mv
+JOIN dbo.SA_FSAA_ResourcesView rv ON mv.ResourceID = rv.ID
+WHERE rv.DeletedUSN IS NULL
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!SGn6Gs4S_mumtmMxOYrGNnPf4dy940oHRieVEmud3XaqU58hP26nzzDW7c8lt4D_scWStkxhwUAiJv9fAgNrj_gAV2Y$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/17/2024 2:41 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - ref:_00D7091pB._500Q000Bv17V:ref - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+
+Here is the result
+
+[cid:image002.png@01DAC171.CDB38350]
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 11:17 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+Hi James,
+
+Thank you for reaching out to Netwrix support.
+
+This job is a simple inner join of SA_FSDLP_MatchesView and SA_FSAA_ResourcesView. The execution time may proportionally increase when you have a lot of Sensitive Data Criteria matches.
+
+Can you count the rows of the join results by running the query below in SQL Server Management Studio and share the results?
+
+Make sure the correct Database is selected or you can add USE ""change_to_your_StealthAUDIT_database_name"" before the SELECT statement:
+
+SELECT COUNT (*)
+FROM (select res.* from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.* from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!UUuQ3qFNFHz-RonaDqSl4H7YvVNTewtgTQs5SXg9YPCk21WJhpN0na2JEPHfmNfHQ8ej0kgfG9mKbkAL8GBrAiEwOA8$>
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0Bv17V:ref
+[Image removed by sender.]","RE: Netwrix Support Ticket #412058 -  - Active Sensitive Data job as supplied by Netwrix -  Slow Thread    [ ref:!00D70091pB.!500Qk0Bv17V:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-06-18T10:37:34.000Z","true"
+"02sQk00000BUtolIAD","500Qk00000Bv17VIAR","2024-06-19T07:26:30.000Z","2024-06-19T07:26:30.000Z","Hi James,
+
+Thank you for the reply.
+
+As you have a lot of Sensitive Data matches the the result query may be running a bit long.
+
+Can you try this job copy? You can download it here: Assystem.
+
+I've changed the SQL Analysis including the script I sent you yesterday. Please run this job and check if you see the ""Slow Thread"" message again.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/18/2024 2:37 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+
+
+There are 8 servers in the host list
+
+ 
+
+It runs in 47 minutes:
+
+ 
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 1:51 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+
+ 
+
+Hi James,
+
+Thank you for the reply.
+
+How many hosts are reporting for the Actual Sensitive Data job?
+
+Can you try to run this rewritten query in SSMS directly? How long it will take?
+
+SELECT mv.[HostName], mv.[CriteriaName], mv.[FileName], mv.[FilePath], mv.[MatchCount]
+FROM dbo.SA_FSDLP_MatchesView mv
+JOIN dbo.SA_FSAA_ResourcesView rv ON mv.ResourceID = rv.ID
+WHERE rv.DeletedUSN IS NULL
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/17/2024 2:41 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - ref:_00D7091pB._500Q000Bv17V:ref - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+ 
+
+
+Here is the result
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 11:17 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+
+ 
+
+Hi James,
+
+Thank you for reaching out to Netwrix support.
+
+This job is a simple inner join of SA_FSDLP_MatchesView and SA_FSAA_ResourcesView. The execution time may proportionally increase when you have a lot of Sensitive Data Criteria matches. 
+
+Can you count the rows of the join results by running the query below in SQL Server Management Studio and share the results?
+
+Make sure the correct Database is selected or you can add USE ""change_to_your_StealthAUDIT_database_name"" before the SELECT statement:
+
+SELECT COUNT (*)
+FROM (select res.* from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.* from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Bv17V:ref","RE: Netwrix Support Ticket #412058 -  - Active Sensitive Data job as supplied by Netwrix -  Slow Thread    [ ref:!00D70091pB.!500Qk0Bv17V:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","aleksandr.timofeev@netwrix.com","true","2024-06-19T07:26:29.000Z","true"
+"02sQk00000BVJRRIA5","500Qk00000Bv17VIAR","2024-06-19T12:01:56.000Z","2024-06-19T12:01:56.000Z","ref:_00D7091pB._500Q000Bv17V:ref
+
+Hello
+
+Well I am not sure what you changed  but that new job ran in 29 seconds!!  It still returns 642016 rows.
+
+Thank you
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, June 19, 2024 8:27 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+Hi James,
+
+Thank you for the reply.
+
+As you have a lot of Sensitive Data matches the the result query may be running a bit long.
+
+Can you try this job copy? You can download it here: Assystem<https://urldefense.com/v3/__https:/nwxcorp-my.sharepoint.com/:f:/g/personal/aleksandr_timofeev_netwrix_com/Eqdxp9TqKlpFhDhnMhMSSqkBQtURAs6Vms8VH6OVsZP4Sg?email=jaallen-ext*40assystem.com&e=i5hiyL__;JQ!!GDyMDYbfvpeH7A!UQUPDuQBMqZdOrre4LI5zH4ruju2KQHjN4_aExaEkTXyqwMUHbb1m7StueUkW8m5SmQkKKIjzrQL8DSkEqUjnB_AX_Q$>.
+
+I've changed the SQL Analysis including the script I sent you yesterday. Please run this job and check if you see the ""Slow Thread"" message again.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!UQUPDuQBMqZdOrre4LI5zH4ruju2KQHjN4_aExaEkTXyqwMUHbb1m7StueUkW8m5SmQkKKIjzrQL8DSkEqUj5pxe0sk$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/18/2024 2:37 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+
+There are 8 servers in the host list
+
+It runs in 47 minutes:
+
+[cid:image001.png@01DAC247.F80B7D20]
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 1:51 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+Hi James,
+
+Thank you for the reply.
+
+How many hosts are reporting for the Actual Sensitive Data job?
+
+Can you try to run this rewritten query in SSMS directly? How long it will take?
+
+SELECT mv.[HostName], mv.[CriteriaName], mv.[FileName], mv.[FilePath], mv.[MatchCount]
+FROM dbo.SA_FSDLP_MatchesView mv
+JOIN dbo.SA_FSAA_ResourcesView rv ON mv.ResourceID = rv.ID
+WHERE rv.DeletedUSN IS NULL
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!SGn6Gs4S_mumtmMxOYrGNnPf4dy940oHRieVEmud3XaqU58hP26nzzDW7c8lt4D_scWStkxhwUAiJv9fAgNrj_gAV2Y$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/17/2024 2:41 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - ref:_00D7091pB._500Q000Bv17V:ref - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+
+Here is the result
+
+[cid:image002.png@01DAC247.F80B7D20]
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 11:17 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+Hi James,
+
+Thank you for reaching out to Netwrix support.
+
+This job is a simple inner join of SA_FSDLP_MatchesView and SA_FSAA_ResourcesView. The execution time may proportionally increase when you have a lot of Sensitive Data Criteria matches.
+
+Can you count the rows of the join results by running the query below in SQL Server Management Studio and share the results?
+
+Make sure the correct Database is selected or you can add USE ""change_to_your_StealthAUDIT_database_name"" before the SELECT statement:
+
+SELECT COUNT (*)
+FROM (select res.* from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.* from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!UUuQ3qFNFHz-RonaDqSl4H7YvVNTewtgTQs5SXg9YPCk21WJhpN0na2JEPHfmNfHQ8ej0kgfG9mKbkAL8GBrAiEwOA8$>
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0Bv17V:ref
+[Image removed by sender.]
+[Image removed by sender.]","RE: Netwrix Support Ticket #412058 -  - Active Sensitive Data job as supplied by Netwrix -  Slow Thread    [ ref:!00D70091pB.!500Qk0Bv17V:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-06-19T12:01:38.000Z","true"
+"02sQk00000BVIooIAH","500Qk00000Bv17VIAR","2024-06-19T12:38:38.000Z","2024-06-19T12:38:38.000Z","Hi James,
+
+Thank you for the reply.
+
+I've optimized the script excluding the subqueries, and added the DROP VIEW of SA_Active_Sensitive_Data_Result before generating a new one.
+
+The original SQL script was:
+
+CREATE VIEW [SA_Active_Sensitive_Data_Result] AS
+SELECT   [SourceTable1].[HostName], [SourceTable1].[CriteriaName], [SourceTable1].[FileName], [SourceTable1].[FilePath], [SourceTable1].[MatchCount]
+FROM (select res.*  from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.*  from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+I've changed it to:
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].SA_Active_Sensitive_Data_Result') AND type in (N'V'))
+DROP VIEW SA_Active_Sensitive_Data_Result
+
+GO
+
+CREATE VIEW [SA_Active_Sensitive_Data_Result] AS
+SELECT mv.[HostName], mv.[CriteriaName], mv.[FileName], mv.[FilePath], mv.[MatchCount]
+FROM dbo.SA_FSDLP_MatchesView mv
+JOIN dbo.SA_FSAA_ResourcesView rv ON mv.ResourceID = rv.ID
+WHERE rv.DeletedUSN IS NULL
+
+Glad to see that works faster now.
+
+If you don't have any questions I will mark this ticket for closure.
+You can always open a new ticket or respond to this within 30 days if any related issues return.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/19/2024 4:01 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+
+
+
+Hello
+
+ 
+
+Well I am not sure what you changed  but that new job ran in 29 seconds!!  It still returns 642016 rows.
+
+ 
+
+Thank you
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, June 19, 2024 8:27 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+
+ 
+
+Hi James,
+
+Thank you for the reply.
+
+As you have a lot of Sensitive Data matches the the result query may be running a bit long.
+
+Can you try this job copy? You can download it here: Assystem.
+
+I've changed the SQL Analysis including the script I sent you yesterday. Please run this job and check if you see the ""Slow Thread"" message again.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/18/2024 2:37 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+ 
+
+
+There are 8 servers in the host list
+
+ 
+
+It runs in 47 minutes:
+
+ 
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 1:51 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+
+ 
+
+Hi James,
+
+Thank you for the reply.
+
+How many hosts are reporting for the Actual Sensitive Data job?
+
+Can you try to run this rewritten query in SSMS directly? How long it will take?
+
+SELECT mv.[HostName], mv.[CriteriaName], mv.[FileName], mv.[FilePath], mv.[MatchCount]
+FROM dbo.SA_FSDLP_MatchesView mv
+JOIN dbo.SA_FSAA_ResourcesView rv ON mv.ResourceID = rv.ID
+WHERE rv.DeletedUSN IS NULL
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/17/2024 2:41 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - ref:_00D7091pB._500Q000Bv17V:ref - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+ 
+
+
+Here is the result
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 11:17 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+
+ 
+
+Hi James,
+
+Thank you for reaching out to Netwrix support.
+
+This job is a simple inner join of SA_FSDLP_MatchesView and SA_FSAA_ResourcesView. The execution time may proportionally increase when you have a lot of Sensitive Data Criteria matches. 
+
+Can you count the rows of the join results by running the query below in SQL Server Management Studio and share the results?
+
+Make sure the correct Database is selected or you can add USE ""change_to_your_StealthAUDIT_database_name"" before the SELECT statement:
+
+SELECT COUNT (*)
+FROM (select res.* from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.* from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Bv17V:ref","RE: Netwrix Support Ticket #412058 -  - Active Sensitive Data job as supplied by Netwrix -  Slow Thread    [ ref:!00D70091pB.!500Qk0Bv17V:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","aleksandr.timofeev@netwrix.com","true","2024-06-19T12:38:37.000Z","true"
+"02sQk00000Bb7iXIAR","500Qk00000Bv17VIAR","2024-06-21T08:17:32.000Z","2024-06-21T08:17:32.000Z","ref:_00D7091pB._500Q000Bv17V:ref
+
+Nice one  -  thank you  😊
+
+J
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, June 19, 2024 1:39 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+Hi James,
+
+Thank you for the reply.
+
+I've optimized the script excluding the subqueries, and added the DROP VIEW of SA_Active_Sensitive_Data_Result before generating a new one.
+
+The original SQL script was:
+
+CREATE VIEW [SA_Active_Sensitive_Data_Result] AS
+SELECT   [SourceTable1].[HostName], [SourceTable1].[CriteriaName], [SourceTable1].[FileName], [SourceTable1].[FilePath], [SourceTable1].[MatchCount]
+FROM (select res.*  from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.*  from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+I've changed it to:
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].SA_Active_Sensitive_Data_Result') AND type in (N'V'))
+DROP VIEW SA_Active_Sensitive_Data_Result
+
+GO
+
+CREATE VIEW [SA_Active_Sensitive_Data_Result] AS
+SELECT mv.[HostName], mv.[CriteriaName], mv.[FileName], mv.[FilePath], mv.[MatchCount]
+FROM dbo.SA_FSDLP_MatchesView mv
+JOIN dbo.SA_FSAA_ResourcesView rv ON mv.ResourceID = rv.ID
+WHERE rv.DeletedUSN IS NULL
+
+Glad to see that works faster now.
+
+If you don't have any questions I will mark this ticket for closure.
+You can always open a new ticket or respond to this within 30 days if any related issues return.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!SIso0mBoYFHYF_qi4GvDWdDpS3ZkokS79quS6fZoIgYl_V1Y8nmNBv6VDnNZzpfyZBXLQ0TpIR1uzP0QRVTNjN7HDxc$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/19/2024 4:01 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+
+Hello
+
+Well I am not sure what you changed  but that new job ran in 29 seconds!!  It still returns 642016 rows.
+
+Thank you
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, June 19, 2024 8:27 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+Hi James,
+
+Thank you for the reply.
+
+As you have a lot of Sensitive Data matches the the result query may be running a bit long.
+
+Can you try this job copy? You can download it here: Assystem<https://urldefense.com/v3/__https:/nwxcorp-my.sharepoint.com/:f:/g/personal/aleksandr_timofeev_netwrix_com/Eqdxp9TqKlpFhDhnMhMSSqkBQtURAs6Vms8VH6OVsZP4Sg?email=jaallen-ext*40assystem.com&e=i5hiyL__;JQ!!GDyMDYbfvpeH7A!UQUPDuQBMqZdOrre4LI5zH4ruju2KQHjN4_aExaEkTXyqwMUHbb1m7StueUkW8m5SmQkKKIjzrQL8DSkEqUjnB_AX_Q$>.
+
+I've changed the SQL Analysis including the script I sent you yesterday. Please run this job and check if you see the ""Slow Thread"" message again.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!UQUPDuQBMqZdOrre4LI5zH4ruju2KQHjN4_aExaEkTXyqwMUHbb1m7StueUkW8m5SmQkKKIjzrQL8DSkEqUj5pxe0sk$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/18/2024 2:37 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+
+There are 8 servers in the host list
+
+It runs in 47 minutes:
+
+[cid:image001.png@01DAC3BB.CB673410]
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 1:51 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #412058 - - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+Hi James,
+
+Thank you for the reply.
+
+How many hosts are reporting for the Actual Sensitive Data job?
+
+Can you try to run this rewritten query in SSMS directly? How long it will take?
+
+SELECT mv.[HostName], mv.[CriteriaName], mv.[FileName], mv.[FilePath], mv.[MatchCount]
+FROM dbo.SA_FSDLP_MatchesView mv
+JOIN dbo.SA_FSAA_ResourcesView rv ON mv.ResourceID = rv.ID
+WHERE rv.DeletedUSN IS NULL
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!SGn6Gs4S_mumtmMxOYrGNnPf4dy940oHRieVEmud3XaqU58hP26nzzDW7c8lt4D_scWStkxhwUAiJv9fAgNrj_gAV2Y$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 6/17/2024 2:41 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #412058 - ref:_00D7091pB._500Q000Bv17V:ref - Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+ref:_00D7091pB._500Q000Bv17V:ref
+
+
+Here is the result
+
+[cid:image002.png@01DAC3BB.CB673410]
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, June 17, 2024 11:17 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: Active Sensitive Data job as supplied by Netwrix - Slow Thread [ ref:!00D70091pB.!500Qk0Bv17V:ref ]
+
+
+Hi James,
+
+Thank you for reaching out to Netwrix support.
+
+This job is a simple inner join of SA_FSDLP_MatchesView and SA_FSAA_ResourcesView. The execution time may proportionally increase when you have a lot of Sensitive Data Criteria matches.
+
+Can you count the rows of the join results by running the query below in SQL Server Management Studio and share the results?
+
+Make sure the correct Database is selected or you can add USE ""change_to_your_StealthAUDIT_database_name"" before the SELECT statement:
+
+SELECT COUNT (*)
+FROM (select res.* from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.* from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!UUuQ3qFNFHz-RonaDqSl4H7YvVNTewtgTQs5SXg9YPCk21WJhpN0na2JEPHfmNfHQ8ej0kgfG9mKbkAL8GBrAiEwOA8$>
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0Bv17V:ref
+[Image removed by sender.]
+[Image removed by sender.]
+[Image removed by sender.]","RE: Netwrix Support Ticket #412058 -  - Active Sensitive Data job as supplied by Netwrix -  Slow Thread    [ ref:!00D70091pB.!500Qk0Bv17V:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-06-21T08:16:58.000Z","true"

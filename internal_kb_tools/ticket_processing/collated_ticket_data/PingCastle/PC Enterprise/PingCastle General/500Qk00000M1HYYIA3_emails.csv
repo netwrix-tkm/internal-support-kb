@@ -1,0 +1,688 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MYeJMIA1","500Qk00000M1HYYIA3","2025-03-13T12:59:06.000Z","2025-03-13T12:59:06.000Z","Hi David,
+
+PingCastle now fully supports SAML2 authentication and is claims-aware, meaning it can use claims passed from your Identity Provider (IdP) to provision access.
+
+Matching Logic for User Accounts:
+
+	PingCastle matches user accounts based on the following SAML claims:
+
+http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
+preferred_username
+http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name
+http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress
+
+	Metadata Requirements:
+
+The Service Provider (SP) metadata is not something PingCastle generates.
+You should use the IdP Metadata URL provided by your SAML Identity Provider (such as Okta, Ping Identity, ADFS, etc.).
+
+	Configuration Steps:
+
+You need to add the following section to the appsettings.json file on your PingCastle server:
+
+""SAML2"": {
+    ""IdPMetadataUrl"": ""https://your-idp-metadata-url"",
+    ""Issuer"": ""PingCastle"",
+    ""SignatureAlgorithm"": ""http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"",
+    ""AudienceRestricted"": true,
+    ""RevocationMode"": ""NoCheck""
+}
+
+	Ensure the Single Sign-On URL is set correctly in your IdP:
+
+https://yourPingCastleServer/Saml2/AssertionConsumerService
+
+
+	Next Steps:
+
+Could you confirm which IdP you’re using (Okta, Ping Identity, ADFS, etc.)?
+If you don’t have the IdP Metadata URL, you’ll need to retrieve it from your Identity Provider’s settings.
+
+Once you configure these settings and restart PingCastle, the SAML2 authentication option will appear on the login screen.
+
+Let us know if you need further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 11:46 AM
+To: david.jimenez@cdc-habitat.fr
+Subject: RE: Netwrix Support Ticket #436182 - - Repports doesn't received anymore after upgrade product from version pro to version Entreprise [ ref:!00D70091pB.!500Qk0M1HYY:ref ]
+
+Dear David,
+
+We will be discussing internally whether we can provide a more in-depth solution for this integration and will get back to you once we have further updates.
+
+Please let us know if you have any specific requirements or details that would help us better understand your use case.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: JIMENEZ David [david.jimenez@cdc-habitat.fr]
+Sent: 3/3/2025 11:26 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436182 - - Repports doesn't received anymore after upgrade product from version pro to version Entreprise [ ref:!00D70091pB.!500Qk0M1HYY:ref ]
+
+ref:_00D7091pB._500Q000M1HYY:ref
+
+
+
+Hello,
+
+Do you have any news?
+
+ 
+
+I found a temporary solution that allows me to receive an email again with the summary of the report, as well as a link to the full report.
+
+To do this:
+
+ 
+
+- I added my users to an AD security group. 
+
+- Saved the SID of this security group in the configuration file: appsettings.Production.json (after ""WindowsGroup"") 
+
+- I then added the users present in the group one by one in the application, entering their Username, SID and Email for each of them. 
+
+- Finally, I assigned them the role ""ManageReport"", Viewer at the entity level and viewer (view the domain reports) at the level of the domains present in the entity.
+
+ 
+
+A bit cumbersome as a process, would you have a simpler solution to submit to me?
+
+Ideally a detailed solution for SAML integration with my WorkspaceOne IDP ?
+
+ 
+
+Sincerely,
+
+ 
+
+
+David JIMENEZ
+Chargé d'études informatiques
+GIE Systèmes d'Information et Numérique - Pôle Infrastructures
+
+Direction Infrastructures & Services
+
+Pôle S2 Core
+Immeuble CASSIOPEE
+
+60 rue Emile Matan
+
+34090 Montpellier
+david.jimenez@cdc-habitat.fr
+https://groupe-cdc-habitat.com
+https://www.cdc-habitat.fr
+
+
+
+ 
+
+
+De : Netwrix Support <techsupport@netwrix.com>
+Envoyé : jeudi 20 février 2025 13:28
+À : JIMENEZ David <David.JIMENEZ@cdc-habitat.fr>
+Objet : RE: Netwrix Support Ticket #436182 - - Repports doesn't received anymore after upgrade product from version pro to version Entreprise [ ref:!00D70091pB.!500Qk0M1HYY:ref ]
+
+
+ 
+
+
+Dear David, Thank you for sharing the details. We will review this internally and get back to you as soon as possible. If you need any further assistance in the meantime, please feel free to reach out. Best regards, Iulia Apatachioaei Sr. Support
+
+
+
+ZjQcmQRYFpfptBannerStart
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									Ce message provient d'un expéditeur externe 
+									
+								
+								
+									
+									Soyez vigilant lors de son ouverture, ne cliquez sur un lien et n'ouvrez de pièces jointes que si vous êtes certains à 100% qu'ils proviennent d'une source sûre. 
+									
+								
+							
+						
+
+						
+							
+								
+									
+									    Signaler ce message comme suspect    ‌ 
+									
+								
+							
+						
+						
+					
+				
+			
+			
+		
+	
+
+
+
+ZjQcmQRYFpfptBannerEnd
+
+
+Dear David,
+
+Thank you for sharing the details. We will review this internally and get back to you as soon as possible.
+
+If you need any further assistance in the meantime, please feel free to reach out.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com [netwrix.com]
+
+
+--------------- Original Message ---------------
+From: JIMENEZ David [david.jimenez@cdc-habitat.fr]
+Sent: 2/19/2025 9:46 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436182 - ref:_00D7091pB._500Q000M1HYY:ref - Repports doesn't received anymore after upgrade product from version pro to version Entreprise [ ref:!00D70091pB.!500Qk0M1HYY:ref ]
+
+ref:_00D7091pB._500Q000M1HYY:ref
+
+ 
+
+
+Hello Iulia,
+
+I think no need to log file…
+
+ 
+
+Tthe infrastructure has not changed, I am on the same servers.
+
+I simply followed the recommendations of your colleague.
+
+ 
+
+- Uninstalling the Pro version 
+
+- Installing: dotnet-hosting-8.0.12-win.exe 
+
+- Installing: pingcastle-enterprise-setup-3.3.0.3.msi the software points to the initial database and in IIS I reused the initial service account.
+
+ 
+
+Finally, I configured the file: c:pingcastleEntrepriseappsettings.Production.json with the settings as below:
+
+ 
+
+
+
+ 
+
+And the setting on the file: PingCastle.exe.config
+
+ 
+
+
+
+ 
+
+ 
+
+When I log on to the website, I find my data. Moreover, when I execute my scheduled tasks, example bellow:
+
+ 
+
+
+
+ 
+
+ 
+
+the reports go back well to the product.
+
+ 
+
+I have two types of API AGENT associated with scheduled tasks by domain (I have to domain scheduled for the moment, so 4 tasks)
+
+ 
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+1.      2 tasks for “Upload report only” è with this kind of command:
+
+ 
+
+
+
+ 
+
+! Report still Uploaded, but mail doesn’t received anymore !
+
+ 
+
+2.      2 tasks for Read-only è with this kind of command:
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+No problem with this the reports is well sent to the address.
+
+ 
+
+So, it’s just this kind of mail that was sent on “Upload reports”  that are no more received.
+
+ 
+
+
+
+ 
+
+ 
+
+Hope it more clear for you. My problem is just that I didn’t receive anymore mail on task type: Upload report only
+
+Brgds,
+
+ 
+
+ 
+
+ 
+
+
+David JIMENEZ
+Chargé d'études informatiques
+GIE Systèmes d'Information et Numérique - Pôle Infrastructures
+
+Direction Infrastructures & Services
+
+Pôle S2 Core
+Immeuble CASSIOPEE
+
+60 rue Emile Matan
+
+34090 Montpellier
+david.jimenez@cdc-habitat.fr
+https://groupe-cdc-habitat.com
+https://www.cdc-habitat.fr
+
+[twitter.com] [linkedin.com] [youtube.com]
+
+ 
+
+
+De : Netwrix Support <techsupport@netwrix.com>
+Envoyé : mardi 18 février 2025 17:50
+À : JIMENEZ David <David.JIMENEZ@cdc-habitat.fr>
+Objet : Repports doesn't received anymore after upgrade product from version pro to version Entreprise [ ref:!00D70091pB.!500Qk0M1HYY:ref ]
+
+
+ 
+
+
+Hi David, My name is Iulia and I am happy to assist you today. The issue might be related to the email configuration or changes from the recent upgrade. Common causes include: Incorrect or reset SMTP settings (server, port, credentials). Changes
+
+
+
+ZjQcmQRYFpfptBannerStart
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									Ce message provient d'un expéditeur externe 
+									
+								
+								
+									
+									Soyez vigilant lors de son ouverture, ne cliquez sur un lien et n'ouvrez de pièces jointes que si vous êtes certains à 100% qu'ils proviennent d'une source sûre. 
+									
+								
+							
+						
+
+						
+							
+								
+									
+									    Signaler ce message comme suspect    ‌ 
+									
+								
+							
+						
+						
+					
+				
+			
+			
+		
+	
+
+
+
+ZjQcmQRYFpfptBannerEnd
+
+
+Hi David,
+
+My name is Iulia and I am happy to assist you today.
+
+The issue might be related to the email configuration or changes from the recent upgrade. Common causes include:
+
+
+	Incorrect or reset SMTP settings (server, port, credentials).
+	Changes in authentication requirements (e.g., OAuth).
+	Incorrect or unread appsettings.Production.json file.
+	Email delivery blocked by the provider (e.g., spam filters or IP blocklisting).
+
+
+Could you please run PingCastle.exe --log a and share the logs with us? This will help us investigate further.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com [netwrix.com]
+
+ref:!00D70091pB.!500Qk0M1HYY:ref","RE: Netwrix Support Ticket #436182 -  - Repports doesn't received anymore after upgrade product from version pro to version Entreprise    [ ref:!00D70091pB.!500Qk0M1HYY:ref ]","techsupport@netwrix.com","Netwrix Support","david.jimenez@cdc-habitat.fr","","iulia.apatachioaei@netwrix.com","true","2025-03-13T12:59:05.000Z","true"
+"02sQk00000NEW9IIAX","500Qk00000M1HYYIA3","2025-04-01T06:00:51.000Z","2025-04-01T07:37:52.000Z","ref:_00D7091pB._500Q000M1HYY:ref
+
+Hello, As mentioned previously, I managed to get my reports to work again by email.
+I haven't had time to test setting up SAML authentication with my Workspace One IDP.
+But I invite you to close this ticket.
+Sincerely,
+
+
+[cid:image001.gif@01DBA2DC.270EAE60]
+David JIMENEZ
+Chargé d'études informatiques
+GIE Systèmes d'Information et Numérique - Pôle Infrastructures
+Direction Infrastructures & Services
+Pôle S2 Core
+Immeuble CASSIOPEE
+60 rue Emile Matan
+34090 Montpellier
+david.jimenez@cdc-habitat.fr<mailto:david.jimenez@cdc-habitat.fr>
+https://groupe-cdc-habitat.com<https://groupe-cdc-habitat.com/>
+https://www.cdc-habitat.fr<https://www.cdc-habitat.fr/>
+
+[cid:image002.gif@01DBA2DC.270EAE60]<https://twitter.com/CDC_Habitat>[cid:image003.gif@01DBA2DC.270EAE60]<https://www.linkedin.com/company/27223679/>[cid:image004.gif@01DBA2DC.270EAE60]<https://www.youtube.com/channel/UC506PHlpXBdXIJP15lTn1nQ>
+
+De : Netwrix Support <techsupport@netwrix.com>
+Envoyé : lundi 31 mars 2025 18:09
+À : JIMENEZ David <David.JIMENEZ@cdc-habitat.fr>
+Objet : RE: 00436182 - Repports doesn't received anymore after upgrade product from version pro to version Entreprise
+
+Hello Jimenez, I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need
+ZjQcmQRYFpfptBannerStart
+Ce message provient d'un expéditeur externe
+Soyez vigilant lors de son ouverture, ne cliquez sur un lien et n'ouvrez de pièces jointes que si vous êtes certains à 100% qu'ils proviennent d'une source sûre.
+    Signaler ce message comme suspect  <https://us-phishalarm-ewt.proofpoint.com/EWT/v1/OgZxOmQO!Y-gGJElYqEStCeG2uUpxY5cntQ8IaDmhia8UtXbsC7fFITfBT3HMHD2I8-EY3g7DEmgTEMfIVbeFC8RIvuXE26VMkJyNnhNV-a-sU-Lp0K4nqEIA-FIEYamI$>   ‌
+ZjQcmQRYFpfptBannerEnd
+Hello Jimenez,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00436182
+Ticket Subject: Repports doesn't received anymore after upgrade product from version pro to version Entreprise
+Ticket Details: Hi, i have just finished the upgrade of my server.
+Hi have followed the good advices received by your service from Ticket#428974
+Anyway, all seams ok, I have my scheduled AGENT TASK that still work fine.
+When I execute one of them, the total of received report is well incremented.
+But I still have one problem, I didn’t receive the reports by mail anymore.
+Yet I have correctly configured the configuration file: ""<a href='https://appsettings.Production.json [appsettings.production.json]<https://urldefense.com/v3/__https:/appsettings.Production.json__;!!OgZxOmQO!tNYFf-giSQPsyWEWVGCdgUvq-dlk0QNhy3el1i_Xe4tw92L6nYA3HQW-ZGZ2teE4l2LYfYo_4a7OucygYClObOc-Bh_M6Sey-w$>' target='_blank'>appsettings.Production.json</a>"" but nothing to do I do not receive the emails.
+Can you help me on the subject, please?
+
+Thank you!
+
+Shaheryar Ali Tahir
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com [netwrix.com]<https://urldefense.com/v3/__https:/www.netwrix.com__;!!OgZxOmQO!tNYFf-giSQPsyWEWVGCdgUvq-dlk0QNhy3el1i_Xe4tw92L6nYA3HQW-ZGZ2teE4l2LYfYo_4a7OucygYClObOc-Bh9HQ_hneQ$>
+
+ref:!00D70091pB.!500Qk0M1HYY:ref","RE: Netwrix Support Ticket #436182 - ref:_00D7091pB._500Q000M1HYY:ref - 00436182 - Repports doesn't received anymore after upgrade product from version pro to version Entreprise","david.jimenez@cdc-habitat.fr","JIMENEZ David","techsupport@netwrix.com","","","true","2025-04-01T06:00:37.000Z","true"
+"02sQk00000NEcplIAD","500Qk00000M1HYYIA3","2025-04-01T07:40:05.000Z","2025-04-01T07:40:05.000Z","Hello Jimenez,
+
+I am glad that we were able to help you with your query.
+Following this email, you will receive an automated confirmation that the case is closed. In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+Thank you,
+
+Rej Uddin
+
+Technical Support Team Lead
+
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+
+____________________ __________
+
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+Netwrix | Cybersecurity that works for you.
+Easily identify sensitive, regulated and mission-critical information in your data stores and focus on the information that truly requires protection.
+
+Thank you,
+
+Rej Uddin
+
+Technical Support Team Lead
+
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+
+____________________ __________
+
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+Netwrix | Cybersecurity that works for you.
+Easily identify sensitive, regulated and mission-critical information in your data stores and focus on the information that truly requires protection.
+
+
+--------------- Original Message ---------------
+From: JIMENEZ David [david.jimenez@cdc-habitat.fr]
+Sent: 4/1/2025 2:00 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #436182 - ref:_00D7091pB._500Q000M1HYY:ref - 00436182 - Repports doesn't received anymore after upgrade product from version pro to version Entreprise
+
+ref:_00D7091pB._500Q000M1HYY:ref
+
+
+
+Hello, As mentioned previously, I managed to get my reports to work again by email. 
+
+I haven't had time to test setting up SAML authentication with my Workspace One IDP. 
+
+But I invite you to close this ticket. 
+
+Sincerely,
+
+ 
+
+ 
+
+
+David JIMENEZ
+Chargé d'études informatiques
+GIE Systèmes d'Information et Numérique - Pôle Infrastructures
+
+Direction Infrastructures & Services
+
+Pôle S2 Core
+Immeuble CASSIOPEE
+
+60 rue Emile Matan
+
+34090 Montpellier
+david.jimenez@cdc-habitat.fr
+https://groupe-cdc-habitat.com
+https://www.cdc-habitat.fr
+
+
+
+ 
+
+
+De : Netwrix Support <techsupport@netwrix.com>
+Envoyé : lundi 31 mars 2025 18:09
+À : JIMENEZ David <David.JIMENEZ@cdc-habitat.fr>
+Objet : RE: 00436182 - Repports doesn't received anymore after upgrade product from version pro to version Entreprise
+
+
+ 
+
+
+Hello Jimenez, I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need
+
+
+
+ZjQcmQRYFpfptBannerStart
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									Ce message provient d'un expéditeur externe 
+									
+								
+								
+									
+									Soyez vigilant lors de son ouverture, ne cliquez sur un lien et n'ouvrez de pièces jointes que si vous êtes certains à 100% qu'ils proviennent d'une source sûre. 
+									
+								
+							
+						
+
+						
+							
+								
+									
+									    Signaler ce message comme suspect    ‌ 
+									
+								
+							
+						
+						
+					
+				
+			
+			
+		
+	
+
+
+
+ZjQcmQRYFpfptBannerEnd
+
+
+Hello Jimenez,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00436182
+Ticket Subject: Repports doesn't received anymore after upgrade product from version pro to version Entreprise
+Ticket Details: Hi, i have just finished the upgrade of my server.
+Hi have followed the good advices received by your service from Ticket#428974
+Anyway, all seams ok, I have my scheduled AGENT TASK that still work fine.
+When I execute one of them, the total of received report is well incremented.
+But I still have one problem, I didn’t receive the reports by mail anymore.
+Yet I have correctly configured the configuration file: ""<a href='https://appsettings.Production.json [appsettings.production.json]' target='_blank'>appsettings.Production.json</a>"" but nothing to do I do not receive the emails.
+Can you help me on the subject, please?
+
+Thank you!
+
+Shaheryar Ali Tahir
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com [netwrix.com]
+
+ref:!00D70091pB.!500Qk0M1HYY:ref","RE: Netwrix Support Ticket #436182 -  - 00436182 - Repports doesn't received anymore after upgrade product from version pro to version Entreprise    [ ref:!00D70091pB.!500Qk0M1HYY:ref ]","techsupport@netwrix.com","Netwrix Support","david.jimenez@cdc-habitat.fr","","rejaul.uddin@netwrix.com","true","2025-04-01T07:40:03.000Z","true"

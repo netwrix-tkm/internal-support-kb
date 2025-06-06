@@ -1,0 +1,33 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007KWyzIAG","500Qk00000BpV1pIAF","based on #384936","0054u000008AYYTAA4","2024-06-14T02:28:57.000Z","2024-06-14T02:28:57.000Z","false","false"
+"00aQk000008UY2rIAG","500Qk00000BpV1pIAF","Problem Statement/Business Impact:
+The customer has a Published reports (11.6.0.72) configured with windows authentication. But becasue of known issue - they have to provide AD credentials each time to enter PublishReports. The web service is running by local system account
+
+Desired Outcome:
+They want to use Windows Authentication without need to enter credentials each time
+
+Steps to Reproduce:
+Enable windows authentication for NEA v11.6
+
+Reliably Repro'd in Customer Envi
+
+Troubleshooting completed/Notes: 
+During the meeting I tried the Workaround we have:
+1. Setspn –S HTTP/NETBIOS_NAME_OF_NEA_SERVER domainusername
+Setspn –S HTTP/FQDN_OF_NEA_SERVER domainusername
+
+We tried FQDN, server name, service name for ""FQDN_OF_NEA_SERVER"" but every time we have the same error: 
+""Unknown parametr HTTP/ops...-nea01.au.thalesgroup.local. Please, check your usage""
+
+2. Also, we tried to use the following script on the NEA console server:
+ 
+$targetname = ""ops...-nea01"" #Name of the computer you need to add the HTTP record to
+
+$TRecord  = ""HTTP/""+(get-adcomputer $targetname ).DNSHostName + "" "" +  $env:USERDOMAIN+""""+$targetname+""""$"""""
+"00aQk000008VEJpIAO","500Qk00000BpV1pIAF","Just curious if the customer reached out, outside of the ticket?  I don't see a reply to your last email to them since July.
+We are thinking a quick call with you and Andy might be best to get fully back up to speed.","0054u000006gpoAAAQ","2024-08-13T15:43:42.000Z","2024-08-13T15:43:42.000Z","false","false"
+"00aQk000008bI2zIAE","500Qk00000BpV1pIAF","Meeting on 8/19 
+The customer was not able to join","0054u000008AYYTAA4","2024-08-19T07:21:55.000Z","2024-08-19T07:21:55.000Z","false","false"
+"00aQk000008bquHIAQ","500Qk00000BpV1pIAF","Has customer added the sites to Intranet Trusted Sites?
+
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u0000000IK2CAM.html","0054u000007MiY9AAK","2024-08-19T15:48:32.000Z","2024-08-19T15:48:32.000Z","false","false"

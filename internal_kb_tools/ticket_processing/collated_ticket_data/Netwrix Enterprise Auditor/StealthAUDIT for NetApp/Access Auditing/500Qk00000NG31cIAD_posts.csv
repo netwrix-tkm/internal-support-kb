@@ -1,0 +1,132 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000aD66lKAC","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-24T13:13:56.000Z","Description: The FSAA System Scan failed with ""System.OutOfMemoryException"" error. 
+FSAA System scan failed when there were 6 hosts left to scan.","","","","005Qk000002b4gDIAQ","2025-03-24T13:13:56.000Z"
+"0D5Qk00000aD8rpKAC","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-24T13:43:05.000Z","Steps to Reproduce Updated: N/A as of now. Clarifying details first.","","","","005Qk000002b4gDIAQ","2025-03-24T13:43:05.000Z"
+"0D5Qk00000aCtHpKAK","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-24T13:46:45.000Z","What We've Learned Updated: -----------
+24.03.2025 
+Customer reported that their FSAA System scan has failed for their NAS hosts with System.OutOfMemoryException error. 
+
+Job finished processing almost all NAS hosts except for the last 6 hosts. 
+
+Scan for these last 6 hosts failed with this error as seen in the job log:
+19/03/2025 23:51:58	DEBUG	StealthAUDIT(TDispatch)	TDispatch.ExecuteJob	""Thread is waiting for work""	GL-9185-WNAS67P		5	11680	12872
+20/03/2025 02:22:16	DEBUG	FILESYSTEMACCESS	AccessScanTask	""Scanned 5921k Objects [99.9%]""	MW-0775-WNAS20P	DCExtract	11812	11680	12872
+20/03/2025 04:00:40	DEBUG	FILESYSTEMACCESS	AccessScanTask	""Exception of type 'System.OutOfMemoryException' was thrown.""	JX-0245-WNAS00P	DCExtract	8992	11680	12872
+
+this error then appears for each of the last 6 hosts. 
+
+It looks like that the server which was selected as a Scanning Host simply run out of RAM while doing scan. 
+If I remember correctly, all state uses Local Scan mode for File System. 
+As such, most probably it was NEA server that run out of memory. 
+
+Asked customer to provide additional details about FSAA job configuration and upload Windows Application events, Job Logs, Job Messages, and SADatabase logs folder from NEA server.","","","","005Qk000002b4gDIAQ","2025-03-24T13:46:45.000Z"
+"0D5Qk00000aDOW1KAO","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-24T13:47:29.000Z","Next Steps Updated: Customer will provide additional information about FSAA System Scan Job configuration as well as collect and upload artifacts.","","","","005Qk000002b4gDIAQ","2025-03-24T13:47:29.000Z"
+"0D5Qk00000aGiJwKAK","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-25T10:31:27.000Z","Steps to Reproduce Updated: Have 11.6.0.113 NEA installed. 
+8 CPUs and 24 RAM on NEA server. 
+Configure Host list for 120 NAS hosts. 
+Scan this host list with FSAA system scan with 10 concurrent threads. 
+Job failed with Out Of memory exception.","","","","005Qk000002b4gDIAQ","2025-03-25T10:31:27.000Z"
+"0D5Qk00000aGwMfKAK","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-25T11:16:34.000Z","What We've Learned Updated: -----------
+24.03.2025 
+Customer reported that their FSAA System scan has failed for their NAS hosts with System.OutOfMemoryException error. 
+
+Job finished processing almost all NAS hosts except for the last 6 hosts. 
+
+Scan for these last 6 hosts failed with this error as seen in the job log:
+19/03/2025 23:51:58	DEBUG	StealthAUDIT(TDispatch)	TDispatch.ExecuteJob	""Thread is waiting for work""	GL-9185-WNAS67P		5	11680	12872
+20/03/2025 02:22:16	DEBUG	FILESYSTEMACCESS	AccessScanTask	""Scanned 5921k Objects [99.9%]""	MW-0775-WNAS20P	DCExtract	11812	11680	12872
+20/03/2025 04:00:40	DEBUG	FILESYSTEMACCESS	AccessScanTask	""Exception of type 'System.OutOfMemoryException' was thrown.""	JX-0245-WNAS00P	DCExtract	8992	11680	12872
+
+this error then appears for each of the last 6 hosts. 
+
+It looks like that the server which was selected as a Scanning Host simply run out of RAM while doing scan. 
+If I remember correctly, all state uses Local Scan mode for File System. 
+As such, most probably it was NEA server that run out of memory. 
+
+Asked customer to provide additional details about FSAA job configuration and upload Windows Application events, Job Logs, Job Messages, and SADatabase logs folder from NEA server.
+
+-----------
+25.03.2025 
+
+Customer upload windows application event logs from 18th of March instead of 20th of March when issue took place. 
+Asked customer to re-upload. 
+
+Also, asked customer to lower number of FSAA concurrent threads, then restart the FSAA system scan job for NAS hosts.","","","","005Qk000002b4gDIAQ","2025-03-25T11:16:34.000Z"
+"0D5Qk00000aGlY1KAK","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-25T11:17:03.000Z","What We've Learned Updated: -----------
+24.03.2025 
+Customer reported that their FSAA System scan has failed for their NAS hosts with System.OutOfMemoryException error. 
+
+Job finished processing almost all NAS hosts except for the last 6 hosts. 
+
+Scan for these last 6 hosts failed with this error as seen in the job log:
+19/03/2025 23:51:58	DEBUG	StealthAUDIT(TDispatch)	TDispatch.ExecuteJob	""Thread is waiting for work""	GL-9185-WNAS67P		5	11680	12872
+20/03/2025 02:22:16	DEBUG	FILESYSTEMACCESS	AccessScanTask	""Scanned 5921k Objects [99.9%]""	MW-0775-WNAS20P	DCExtract	11812	11680	12872
+20/03/2025 04:00:40	DEBUG	FILESYSTEMACCESS	AccessScanTask	""Exception of type 'System.OutOfMemoryException' was thrown.""	JX-0245-WNAS00P	DCExtract	8992	11680	12872
+
+this error then appears for each of the last 6 hosts. 
+
+It looks like that the server which was selected as a Scanning Host simply run out of RAM while doing scan. 
+If I remember correctly, all state uses Local Scan mode for File System. 
+As such, most probably it was NEA server that run out of memory. 
+
+Asked customer to provide additional details about FSAA job configuration and upload Windows Application events, Job Logs, Job Messages, and SADatabase logs folder from NEA server.
+
+-----------
+25.03.2025 
+
+Affected NEA server is - A0775-APP2356-S. 
+
+Customer upload windows application event logs from 18th of March instead of 20th of March when issue took place. 
+Asked customer to re-upload. 
+
+Also, asked customer to lower number of FSAA concurrent threads, then restart the FSAA system scan job for NAS hosts.","","","","005Qk000002b4gDIAQ","2025-03-25T11:17:03.000Z"
+"0D5Qk00000aGlY2KAK","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-25T11:17:03.000Z","Next Steps Updated: Customer will export Application event","","","","005Qk000002b4gDIAQ","2025-03-25T11:17:03.000Z"
+"0D5Qk00000aGqhMKAS","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-25T11:17:36.000Z","Next Steps Updated: Customer will export Application event logs from A0775-APP2356-S server for 20th of March then upload to ticket. 
+
+Customer will lower number of FSAA system scan threads to 5, then restart job and let us know results.","","","","005Qk000002b4gDIAQ","2025-03-25T11:17:36.000Z"
+"0D5Qk00000aUlbeKAC","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-28T15:37:24.000Z","Invitation updated. Attendees: Artem Naskal, Stealth Audit","","","","005Qk000002b4gDIAQ","2025-03-28T15:37:24.000Z"
+"0D5Qk00000aUlbcKAC","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-28T15:37:24.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002b4gDIAQ","2025-03-28T15:37:24.000Z"
+"0D5Qk00000aUlbdKAC","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-03-28T15:37:24.000Z","Invitation updated. Attendees: Artem Naskal","","","","005Qk000002b4gDIAQ","2025-03-28T15:37:24.000Z"
+"0D5Qk00000anHMhKAM","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-04-01T09:40:34.000Z","What We've Learned Updated: -----------
+24.03.2025 
+Customer reported that their FSAA System scan has failed for their NAS hosts with System.OutOfMemoryException error. 
+
+Job finished processing almost all NAS hosts except for the last 6 hosts. 
+
+Scan for these last 6 hosts failed with this error as seen in the job log:
+19/03/2025 23:51:58	DEBUG	StealthAUDIT(TDispatch)	TDispatch.ExecuteJob	""Thread is waiting for work""	GL-9185-WNAS67P		5	11680	12872
+20/03/2025 02:22:16	DEBUG	FILESYSTEMACCESS	AccessScanTask	""Scanned 5921k Objects [99.9%]""	MW-0775-WNAS20P	DCExtract	11812	11680	12872
+20/03/2025 04:00:40	DEBUG	FILESYSTEMACCESS	AccessScanTask	""Exception of type 'System.OutOfMemoryException' was thrown.""	JX-0245-WNAS00P	DCExtract	8992	11680	12872
+
+this error then appears for each of the last 6 hosts. 
+
+It looks like that the server which was selected as a Scanning Host simply run out of RAM while doing scan. 
+If I remember correctly, all state uses Local Scan mode for File System. 
+As such, most probably it was NEA server that run out of memory. 
+
+Asked customer to provide additional details about FSAA job configuration and upload Windows Application events, Job Logs, Job Messages, and SADatabase logs folder from NEA server.
+
+-----------
+25.03.2025 
+
+Affected NEA server is - A0775-APP2356-S. 
+
+Customer upload windows application event logs from 18th of March instead of 20th of March when issue took place. 
+Asked customer to re-upload. 
+
+Also, asked customer to lower number of FSAA concurrent threads, then restart the FSAA system scan job for NAS hosts.
+
+--------------
+01.04.2025 
+Artem Naskal 
+
+We checked pagefile.sys settings for the A0775-APP2356-S and settings were set to default which means that page file was configured to be on C: drive.
+
+We changed it to D: drive with ""System Managed"" settings and disabled page file for C: drive. We did the same for one more Netwrix Enterprise Auditor server too.
+
+Customer will get back to us with results of the next FSAA system scan.","","","","005Qk000002b4gDIAQ","2025-04-01T09:40:34.000Z"
+"0D5Qk00000anVabKAE","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-04-01T09:41:24.000Z","Next Steps Updated: Customer will test FSAA system scan job after we changed page file settings and will get back to us with results.","","","","005Qk000002b4gDIAQ","2025-04-01T09:41:24.000Z"
+"0D5Qk00000bMAjmKAG","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-04-08T12:50:22.000Z","Next Steps Updated: Customer will test FSAA system scan job after we changed page file settings and will get back to us with results.
+Placing ticket into postponed reply to give customer additional time. Support will follow up with customer on Thursday, 10th of April.","","","","005Qk000002b4gDIAQ","2025-04-08T12:50:22.000Z"
+"0D5Qk00000bUqfbKAC","500Qk00000NG31cIAD","TextPost","005Qk000002b4gDIAQ","2025-04-10T15:09:32.000Z","Next Steps Updated: Customer will test FSAA system scan job after we changed page file settings and will get back to us with results.
+Placing ticket into postponed reply to give customer additional time. Support will follow up with customer on Monday, 14th of April.","","","","005Qk000002b4gDIAQ","2025-04-10T15:09:32.000Z"

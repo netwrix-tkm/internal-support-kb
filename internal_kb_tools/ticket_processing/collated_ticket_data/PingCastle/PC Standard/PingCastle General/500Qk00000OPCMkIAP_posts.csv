@@ -1,0 +1,23 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000cX9bdKAC","500Qk00000OPCMkIAP","TextPost","0054u000008ARZjAAO","2025-04-24T13:27:52.000Z","Description: We have two user accounts whose passwords were previously synchronized with a RODC. We have added them to a group, itself added to the msDS-NeverRevealGroup and changed their passwords, but the accounts are still reported after several months.
+
+Could you please provide some additional information regarding that test to help us troubleshoot?
+* Is the information taken from the msDS-RevealedUsers attribute only?
+* Once a user has been added to the denied list for password replication to the RODC, are there other actions that should be taken to remove them from the finding?
+* Are there other ways to reverify that test?","","","","0054u000008ARZjAAO","2025-04-24T13:27:52.000Z"
+"0D5Qk00000dg2roKAA","500Qk00000OPCMkIAP","TextPost","005Qk000004DRJRIA4","2025-05-09T08:36:14.000Z","<p>Joe has been working on replicating this.</p><p>He has managed to develop a PS script and is refining to be shared with the end user.</p>","","","","005Qk000004DRJRIA4","2025-05-09T08:36:14.000Z"
+"0D5Qk00000eZPFsKAO","500Qk00000OPCMkIAP","TextPost","005Qk000004methIAA","2025-05-19T07:24:15.000Z","Steps to Reproduce Updated: Step 1: Identify two user accounts whose passwords were previously synchronized with a Read-Only Domain Controller (RODC).  
+Step 2: Add these user accounts to a group that is part of the msDS-NeverRevealGroup attribute.  
+Step 3: Change the passwords for the identified user accounts.  
+Step 4: Wait several months and verify if the accounts are still reported as synchronized with the RODC.","","","","005Qk000004methIAA","2025-05-19T07:24:15.000Z"
+"0D5Qk00000eZI6TKAW","500Qk00000OPCMkIAP","TextPost","005Qk000004methIAA","2025-05-19T07:24:44.000Z","What We've Learned Updated: - The issue involves two user accounts whose passwords were previously synchronized with a Read-Only Domain Controller (RODC). Despite being added to a group included in the `msDS-NeverRevealGroup` attribute and having their passwords changed, these accounts are still reported as synchronized with the RODC after several months.
+- It is unclear whether the information about these accounts is derived solely from the `msDS-RevealedUsers` attribute or if other sources are involved.
+- There is uncertainty about whether additional actions are required to fully remove these accounts from being reported, beyond adding them to the denied list for password replication and changing their passwords.
+- The customer has raised questions about alternative methods to verify the test results and ensure the accounts are no longer flagged.
+- The support team is working on replicating the issue and has developed a PowerShell script to assist in troubleshooting, which is currently being refined for sharing with the customer.
+- The customer is evaluating the potential use of the `rODCPurgeAccount` change but has expressed caution due to limited documentation in standard RODC resources, with references only found in low-level protocol documentation.
+- The root cause of why the accounts remain reported as synchronized with the RODC after remediation steps is still undetermined.","","","","005Qk000004methIAA","2025-05-19T07:24:44.000Z"
+"0D5Qk00000eZKGSKA4","500Qk00000OPCMkIAP","TextPost","005Qk000004methIAA","2025-05-19T07:37:04.000Z","Next Steps Updated: 1. Joe will finalize the PowerShell script and share it with the customer to assist in troubleshooting the issue.  
+2. The customer will evaluate the feasibility of implementing the `rODCPurgeAccount` change and provide feedback once their internal review is complete.  
+3. The support team will continue testing the issue internally to identify the root cause of why the accounts remain reported as synchronized with the RODC after remediation steps.  
+4. The support team will provide an update to the customer once the PowerShell script is ready or if new findings emerge from internal testing.","","","","005Qk000004methIAA","2025-05-19T07:37:04.000Z"

@@ -1,0 +1,34 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GUfMNIA1","00422573","Support Ticket","FSAA Scan Errors","We are seeing the following error on almost every server FSAA scan on our secondary console server.
+
+System.InvalidOperationException: Sequence contains more than one element
+   at <a href='https://System.Linq' target='_blank'>System.Linq</a>.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.ThrowMultipleRows(Row row)
+   at Dapper.SqlMapper.QueryRowImpl[T](IDbConnection cnn, Row row, CommandDefinition& command, Type effectiveType)
+   at Dapper.SqlMapper.QuerySingleOrDefault[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier1.IsSchemaCurrent()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.AccessScanTask.d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.AccessScanTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()","","","","Please see the 2 attached screenshots.
+
+1) If you drill down into NEA > Jobs > FileSystem > 0.Collection > 0-Create Schema, right-click 
+and select ""Run Job"" are you able to run the job successfully as indicated by the ""Job Statistics"" 
+that I have additionally highlighted in the attached screenshot = ""SS01_NEA_FileSystem_0.Collection_0-Create_Schema_Run_Job_SS_2024-10-01_134716.png""
+
+2) In the second attached screenshot, if you drill down to ""Results"" > ""FSAA_DirectPremissionsView"" this should display one example of data that may also indicate that the job is running successfully.
+
+""SS02_NEA_FS_Results_FSAA_DirectPermissionsView_SS_2024-10-01_135141.png""
+
+
++++++
+Scenarios for why we need to run ""Create Schema"" standalone.
++++++
+
+1) Typically it's only necessary after an upgrade or if you drop all the file system data in order to create the file system schema.
+
+2) There are changes that occur between versions as well where it has been required also.
+
+3) It used to be only necessary when upgrading to a major release, however we have had many cases where we've had to run it after a ""cumulative update"" installation because there were schema changes.  Cumulative Updates are the the update releases that come out roughly each week.","Guidance","Mike Candon","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.6","","16.2","Closed - Resolved","W.R. Berkley Corporation","Eric Van Brocklibn","2024-10-01T15:16:22.000Z","2024-10-17T20:10:16.000Z"

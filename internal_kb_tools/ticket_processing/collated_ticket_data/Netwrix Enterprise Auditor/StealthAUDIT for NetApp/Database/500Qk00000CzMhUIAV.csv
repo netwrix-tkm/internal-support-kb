@@ -1,0 +1,9 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CzMhUIAV","00414859","Support Ticket","MSSQL on Windows: A SQL job failed to complete successfully","Our DBA group sent me this but I am not sure how to answer. This is for our MS SQL Server that hosts the StealthAudit database. The server is dedicated only for StealthAudit.
+
+We received an alert indicating that the “DBMaintenancePlan_Index.Subplan_1” job failed on the server <a href='https://sbitssql01.wellspan.org' target='_blank'>sbitssql01.wellspan.org</a>. Upon review, we discovered that the job failed during its run at 7:38:31 AM on 7/10/2024.
+When verifying the logs, we found the following error message reported, indicating that the job failed on this particular index. 
+
+Executing the query ""ALTER INDEX [IDX_SA_ADInventory_Principals_Display..."" failed with the following error: ""Cannot find index 'IDX_SA_ADInventory_Principals_DisplayName'.""
+
+ Upon investigating, we found that a DROP operation was performed on the index “IDX_SA_ADInventory_Principals_DisplayName” on the server. We also noticed many ALTER operations being performed. Was this intentional? Please look into it and let us know. Alternatively, do you want us to monitor the job to ensure it completes in the next scheduled execution run?","","","","Issue was with the TempDB causing a failed job so the clean up was not occurring","Incorrect configuration: Netwrix server","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Database","11.5","204","39.1","Closed - Resolved","WellSpan Health","John Masgalas","2024-07-12T11:55:27.000Z","2024-08-20T13:57:09.000Z"

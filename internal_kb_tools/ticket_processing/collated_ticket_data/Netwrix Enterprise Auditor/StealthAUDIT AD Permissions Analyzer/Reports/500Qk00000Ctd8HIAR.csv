@@ -1,0 +1,39 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Ctd8HIAR","00414656","Support Ticket","weak passwords job - what exactly is ""trusted for delegation""","One of the findings in the weak passwords job can say the account is Delegatable Admins.  What exactly is this checking against?  How do I see whatever it is in AD itself as a cross-check?  And how is this related to the attributes for users we collect (in ADI) called ""Trusted_For_Delegation"" and ""Not_Delegated""?  I need this information to finish a customer finding audit, so there is medium urgency to get this information back.  I just need to understand how we check this, and what the risk is if this is found.","","","","The following was referenced:
+
+Dev for our inquiry.
+
+Essentially accounts that are administrators (i believe it just checks admincount = 1) and are not marked as 'sensitive and cannot be delegated' Admin accounts should not be delegated as they can be abused in a ton of ways, that is why that setting in AD exists
+ https://specopssoft.com/blog/securing-authentication-tokens-by-preventing-delegation-of-admin-accounts/    
+^^*NOTE** THIS IS A LINK TO OUR COMPETITOR CHECK WITH DEV PRIOR TO SENDING **NOTE*^^
+
+Securing authentication tokens by preventing delegation of admin accounts
+Recommended settings in Active Directory that mitigate the risk associated with account delegation on insecure computers and administrator accounts.
+ 
+Security implications of delegable admins
+Using freely available tools, attackers only need to compromise a client and access a standard account. Once they have their foot in the door, they can use tools like Meterpreter to list the available delegate tokens. Privileged accounts with delegation tokens available can lead to the attacker being able to steal a privileged user token, such as a domain admin account. Once the attacker has a domain admin-level account, the possibilities are endless.
+Once they have high-level privileged accounts, they often go after backup files that may contain prized targets, such as backups of the NTDS.DIT database of Active Directory. If found, they can copy the database offsite and run an offline tool to compromise accounts in the organization further.
+ 
+The “Account is sensitive and cannot be delegated” setting
+Microsoft has provided a setting in Active Directory Domain Services that can help mitigate the issue. In addition, an Active Directory setting is recommended to be enabled for privileged accounts in the domain. The setting is “account is sensitive and cannot be delegated” within the account properties.
+When configured, this setting strips the delegate-level token from the user, removing the user credentials. When configured, the logon becomes an ANONYMOUS login with no resource permissions.
+REF-IMAGE: https://nwxcorp.lightning.force.com/servlet/servlet.FileDownload?file=00PQk000008Ppqs
+
+
+The following was also provided: 
+Active Directory: How to View or Delete Delegated Permissions
+https://learn.microsoft.com/en-us/archive/technet-wiki/6477.active-directory-how-to-view-or-delete-delegated-permissions      
+
+Detecting Delegated Permissions in Active Directory
+https://blog.netwrix.com/2016/10/27/detecting-delegated-permissions-in-active-directory/  
+
+Active Directory Delegation Overview
+https://blog.netwrix.com/2022/11/14/active_directory_delegation/#:~:text=How%20do%20I%20check%20delegation%20in%20Active%20Directory%3F,the%20Security%20tab%20to%20view%20the%20delegated%20permissions  
+
+Netwrix Enterprise Auditor v11.6 > Solutions > Active Directory Solution > Active Directory Job Group > 2.Users Job Group > AD_WeakPasswords Job:
+Delegable Admins – Administrator account is allowed to be delegated to a service
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/ActiveDirectory/Users/AD_WeakPasswords.htm
+
+Netwrix Enterprise Auditor v11.6 > Solutions > Active Directory Solution > 2.1Jsers Job Group > AD_UserDelegation Job
+The AD_Delegation Job highlights user accounts which are trusted for delegation.
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/ActiveDirectory/Users/AD_UserDelegation.htm","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT AD Permissions Analyzer","Reports","11.6","","0.9","Closed - Resolved","Optiv","robert parsons","2024-07-10T16:08:04.000Z","2024-07-11T14:52:17.000Z"

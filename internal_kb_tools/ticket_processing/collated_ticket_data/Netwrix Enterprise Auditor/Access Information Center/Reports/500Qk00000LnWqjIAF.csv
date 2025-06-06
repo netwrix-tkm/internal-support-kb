@@ -1,0 +1,58 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LnWqjIAF","00435621","Support Ticket","Nasuni activity showing in AIC with C: paths instead of UNC paths","00429163 needs to be linked.
+
+Activity Monitor is monitoring Nasuni activity for multiple filers fine and also resolving UNC paths for them (as can be seen in attached Activity Monitor exports for a couple of those filers). However, in AIC as can be seen in attached aicactivity.png, it shows the activity in the C: format instead of the UNC format. This makes it extremely difficult from a user perspective to use that activity data since all activity from each filer is being stored under the same host in AIC (AZR-NWXAPPSRV in this case which is the app server with SA installed). I've attached debug logs from the FSAC job, the screenshot of what we see in AIC, the tier 2 files from the AZR-NWXAPPSRV host, and the exports from Activity Monitor.","N/A","Today we:
+
+Discovered that the host list and query settings for the FSAC and FSAA jobs were pointing to incorrect hosts and configured to use the default SQL query for host mapping. 
+
+We targeted the activity monitor agent that is being used as a proxy within the FSAA and FSAC system scan query settings. We also modified the hosts list to target all Nasuni host. We also adjusted the Bulk Import host lists for each scan to target the Nasuni hosts as well. 
+
+We then ran the scans and monitored the status of each scan and identified that the scans were successfully scanning each Nasuni filer. 
+
+On the FSAA system scan we adjusted the file scan depth to 0 for testing purposes. Once this scan successfully completes you may then log into the AIC to view the new file structure that has been constructed with a 0 level scan.
+
+We also returned the file level depth back to 10 for the next scheduled and full FSAA scan.
+---------------------------------------------------------
+
+Today we:
+
+Divided the FSAA System scans and Bulk Import into to different job groups targeting different Nasuni hosts lists to better streamline the scan and bulk import process. 
+
+We resolved the bulk import T2 database mismatch and T1 GUID mismatch errors by removing the host data for the individual Nasuni hosts. This process was performed by using a custom job and selecting the Remove host option and targeting the Nasuni hosts. 
+
+Once the host data was removed we then reconfigured the FSAA system scan job to target local host and use the Static Nasuni host list. We were then able to successfully get a fully 0 level scan on a test host. Once this was confirmed we then reset the level back to 10 and added the full Static Nasuni host list back and re-ran the system scan.
+
+We then added then update the FSAC system scan with the same host list and ran the job against all Nasuni filers and we successfully completed a system and Bulk Import. We then verified that the activity details were displayed under each Nasuni filer within the AIC as requested. 
+
+We also identified that the UNC path displayed in the AIC is a requirement of StealthAudit when configuring the monitored hosts in Activity Monitor. This is to ensure that StealthAudit can properly identify and enumerate the shares to build the file structure within AIC.","Our next steps are:
+
+You will:
+
+Allow for the current FSAA and FSAC scans to successfully complete. 
+
+View the file structure within the AIC for testing purposes. 
+
+Allow the next full scheduled scan to run and monitor the scan process for the FSAA and FSAC system scans. This can be done within the running instances node. 
+
+Once the second full scheduled scans and bulk import have completed you may view the collected data within the AIC. The original issue of the UNC paths should be resolved when navigating to the Nasuni Filer itself within the AIC.
+------------------------------------------------------
+
+Our next steps are:
+
+You will:
+
+Monitor the FSAC and FSAA Bulk Imports and system scans and provide an update on the results of those scans. 
+
+I will:
+
+Keep the ticket open and check back in with requests for status updates. Putting ticket into postponed reply.","ymptom
+
+Activity Monitor is monitoring Nasuni activity for multiple filers fine and also resolving UNC paths for them (as can be seen in attached Activity Monitor exports for a couple of those filers). However, in AIC as can be seen in attached aicactivity.png, it shows the activity in the C: format instead of the UNC format. This makes it extremely difficult from a user perspective to use that activity data since all activity from each filer is being stored under the same host in AIC (AZR-NWXAPPSRV in this case which is the app server with SA installed). I've attached debug logs from the FSAC job, the screenshot of what we see in AIC, the tier 2 files from the AZR-NWXAPPSRV host, and the exports from Activity Monitor.
+
+Cause
+
+Nasuni FSAC system scans were configured to use a host query method to point to a singular host. This method caused the file system activity to be displayed all under one host in the AIC without a file system structure for all Nasuni hosts. 
+
+Resolution
+
+Modified the query settings to point to the NAM agent that's being used as a proxy host and selected all Nasuni files within the host list assignment to be targeted. Once these settings were configured we were successfully able to scan all Nasuni host and collect permissions and activity data on those hosts. Additionally, with this new modification we were also successfully able to display a file structure for each Nasuni host in the AIC. This process now makes it more accessible to view when performing a search within the AIC for desired Nasuni host.","Advanced Configuration Change","Scottie Taylor","Unexpected Behavior","Netwrix Enterprise Auditor","Access Information Center","Reports","11.5","SA: 11.5.0.267; AIC: 11.5.0.137; NAM: 7.0.3074","20.3","Closed - Resolved","Crestron Electronics","Dean Bardowell","2025-02-12T15:49:57.000Z","2025-03-04T22:00:31.000Z"

@@ -1,0 +1,19 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HfJL3IAN","00425496","Support Ticket","POC - SharePoint Job- Error on Bulk Import on A0775-APP2357-S and Y0185-APP0443-S","On running the SP Bulk Import Job we are encountering the following error :
+We are seeing this error on both Y443 Dev server and on Production. 
+(similar to a previous Ticket 370928) 
+
+[C:23] Unable to perform bulk import Error: The MERGE statement conflicted with the FOREIGN KEY SAME TABLE constraint ""FK_SA_SPAA_Resources_ParentId"". The conflict occurred in database ""J4D_STEALTHAUDIT_AEM_SP"", table ""dbo.SA_SPAA_Resources"".
+The statement has been terminated.
+
+We planned to drop the SP tables and then rerun the scan and Bulk Import on the Production server.
+However we are unable to drop the tables on the Production server - see attachment","Couldn't reproduce","Level 3 scan against 20 sites completed successfully. Customer initaited scan to 4 levels on 20 sites.
+
+Allstate recognizes one reason for this is the dev environment is not performance provisioned as well as PROD.. But still, its long for only 400 sites.","Stop the level 3 scan --> apply the new license --> reduce scope from 400 to 20 sites in order to get Level 3 scan complete in reasonable time. 
+
+we will be able to bring in partial data via bulk import from existing scan into the new scan and see if there are any results to look at.","Cause
+Root Cause Unknown
+Allstate recognized one reason for this is the dev environment is not performance provisioned as well as PROD
+
+Resolution
+Resolved after running SP_DropTables job and running scan again","Root Cause Unknown","Damir Akhmatshin","","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Data Collection","11.6","11.6.0.113","34.0","Closed - Resolved","Allstate Insurance Company","Stealth Audit","2024-10-30T12:44:52.000Z","2024-12-03T12:45:26.000Z"

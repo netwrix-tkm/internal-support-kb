@@ -1,0 +1,29 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000I9TLOIA3","00426647","Support Ticket","3 FSAA scans are reporting status ""Running"" with zero duration","Post 11.6 upgrade (ticket 00421116)
+multiple FSAA scans are in ""running"" status, but don't seem to have ever started to scan.
+It was 6 servers, but we cleared the running.lck file from the job's folder and restarted the job
+
+Now only 3 servers seem stuck in running status","running FSAA jobs","The servers that are hung in ""running"" status are:
+AM-PBRFS-S121
+ML-PI3RCRD-S121
+SHQFL001
+
+---------------
+investigating the bulk imports, it seems like the servers are actually finishing and uploading
+this might just be a UI issue
+
+We ran a test on ML-P13RCRD-S121
+-it seems to be working
+
+client will kick off the FSAA scan again when the current SEEK scan finishes
+27 days and counting
+-this is expected","wait for SEEK scan to finish then kick off FSAA scan again
+client will let us know when SEEK finishes","initial issue seemed to have been caused by scheduling conflicts with overlapping jobs
+
+Cleared the Running.lck files for the scans stuck in running status
+some still report no run time, but are running, finishing, and bulk importing
+
+seems to be just a UI issue
+
+The ticket age is mostly due to how long each test scan takes
+~22 days","Incorrect configuration: Netwrix product","Joshua Sexton","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.6","113","52.3","Closed - Resolved","Freedom Mortgage","David Grom","2024-11-11T13:59:13.000Z","2025-01-02T20:46:16.000Z"

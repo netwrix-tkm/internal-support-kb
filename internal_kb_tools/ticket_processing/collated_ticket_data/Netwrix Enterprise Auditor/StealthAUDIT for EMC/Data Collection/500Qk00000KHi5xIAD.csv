@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KHi5xIAD","00431273","Support Ticket","SEEK - Unable to cast COM object & illegal operation on registry key","Seeing the following errors in the logs after the scan is about 22% through HISILON01
+
+ 
+
+27/12/2024 08:54:38 ERROR FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""System.InvalidCastException: Unable to cast COM object of type 'System.__ComObject' to interface type 'Stealthbits.StealthAUDIT.DataCollectors.ISADCTaskHost'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{D921D431-43E4-4750-93C9-577AE47C86AC}' failed due to the following error: Could not read key from registry (Exception from HRESULT: 0x80040150 (REGDB_E_READREGDB)).   at System.StubHelpers.StubHelpers.GetCOMIPFromRCW(Object objSrc, IntPtr pCPCMD, IntPtr& ppTarget, Boolean& pfNeedsRelease)   at Stealthbits.StealthAUDIT.DataCollectors.ISADCTaskHost.WriteInformation(String scope, String message)   at Stealthbits.StealthAUDIT.DataCollectors.Logging.DCLogWriter.Write(TraceEventType severity, String methodName, String message)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Log.Write(TraceEventType type, String message)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Log.Info(String message)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.AccessScanTask.<InternalProcessRecordAsync>d__2.MoveNext() --- End of stack trace from previous location where exception was thrown ---   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.AccessScanTask.<InternalProcessRecordAsync>d__2.MoveNext() --- End of stack trace from previous location where exception was thrown ---   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.AccessScanTask.InternalProcessRecord()   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()"" HLISILON01 DCExtract 5092 1556 1808
+
+ 
+
+ERROR SAJobEngine TSPADOJobTaskStatisticsThread.Execute ""Illegal operation attempted on a registry key that has been marked for deletion"" (There are about 8 of these)","1. Deploy both of the below hotfixes:
+- auditor-enterprise-hotfix-11.6.0.059
+- auditor-enterprise-sdd-hotfix-11.6.0.002
+2. Run FS SEEK System Scan
+3. Get errors","Last session we performed a clean upgrade with reboot as Dev recommended but the issue persists
+
+---
+Issue began after applying the below patches for the memory leak issue:
+- https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk000000BRo5IAG/view
+- https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk000000BRrJIAW/view","Issue persists post-clean upgrade and reboot","1. Uninstalled the NEA console and SDD component
+2. Rebooted the NEA server
+3. Installed NEA v11.6.0.130 and SDD v11.6.0.17
+4. Ran the 0-CreateSchema job
+5. Kicked off the SEEK job group and verified it had begun scanning","Incorrect configuration: Netwrix server","Tay Caliguiri","Error","Netwrix Enterprise Auditor","StealthAUDIT for EMC","Data Collection","11.6","130","69.8","Closed - Resolved","Hobby Lobby","Kyle Baldwin","2025-01-06T21:20:34.000Z","2025-03-17T16:22:55.000Z"

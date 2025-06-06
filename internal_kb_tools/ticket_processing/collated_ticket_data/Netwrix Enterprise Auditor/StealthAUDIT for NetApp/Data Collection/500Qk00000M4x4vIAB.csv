@@ -1,0 +1,40 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000M4x4vIAB","00436351","Support Ticket","Permission scan issue","“Detected Tier 2 databases on remote applet server are newer than local databases. Retrieving databases and skipping scan”","Issues seems to have resulted from improper Scan completion (job termination) corrupting the Tier2 DBs.
+
+Contact noted a 2nd item adding to the issue was a PowerShell Script that copies the main host between host for DR.","Confirmed that the last Ernie2 FSAA Scan completed as expected (11+hrs) from the manual kick off will see how the 2:30am auto run reports in the morning.
+This should prove that the FSAADBs were updated on both host, as well see good time stamps on the files
+We found that the Ernie2 folder was re-created at 1:45am Today (03062025) however we were not able to isolate which job created the empty folder.
+Let me know if the Security Event log list out any of the folder modification.
+
+Re-confirmed that the Proxy was induvial listed in each of the Groups scans
+
+Confirmed within the SA_FSAA_Hosts table still list the LastScanHost as our expected Proxy.
+Temp set the Run as in the schedule task as the domainService account (not other job have this).
+If needed we can try for another meeting tomorrow after noon to drop all Ernie2 Tier 2 data and then rescan.
+
+Prior: When a manual scan is kicked off via the scheduled task the job runs as expected.
+
+When the next scheduled run auto starts we get the T2 is newer than on the NEA host even after removing the DBs on the Proxy.
+
+Post SEEK T2 DB clean up and Proxy change for ERNIE2 the original work FSAA jobs is now posting  “Detected Tier 2 databases on remote applet server are newer than local databases. Retrieving databases and skipping scan”","The DRF-ERNIE2 permission scan job today and looks like it is running like it should. 
+
+Contact renamed the ERNIE2 folder on the old proxy to see if a new one gets created on the next scan on Wednesday. 
+ ***NOTE*** This folder is blank an it is unclear as to why/how it is getting created.","Archived the Tier 2s on the Proxy for the host in question for the Scans to push back over the local Tier 2s from the NEA server.
+
+For the FSAA Scan for ERNIE2.
+
+Again noting that the Current Proxy is the Scn02 host.
+
+Renamed the Tier 2s on the Scn Proxy for the host in question
+Copied the only file that was not in sync for the Scan on proxy Scn02 over the local Tier 2s on the NEA server.
+
+Temp set the Proxy host will want to set back to the Proxy host list  and disable the Affinity.
+
+Scan completed as expected (11+hrs) from the manual kick off will see how the 2:30am auto run reports in the morning.
+This should prove that the FSAADBs were updated on both host, as well see good time stamps on the files
+
+Re-confirmed that the Proxy was induvial listed in each of the Groups scans
+
+Confirmed within the SA_FSAA_Hosts table still list the LastScanHost as our expected Proxy.
+
+Temp set the Run as in the schedule task as the domainService account (not other job have this).","Third-party system failure","Dusty Grayson","Error","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Data Collection","11.6","129","40.1","Closed - Resolved","Hawaii Pacific Health","Steven Schiesl","2025-02-19T19:48:41.000Z","2025-03-31T21:47:26.000Z"

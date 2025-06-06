@@ -1,0 +1,96 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009WskrIAC","500Qk00000GaYOZIA3","preflight meeting
+
+client currently has a POC license while they work out something with sales
+-not a problem for me
+-just means everything is licensed but not everything is being used
+
+-no FS
+-no SDD
+-no sharepoint
+-no azure
+
+actively using
+AD
+SQL
+Windows
+
+AIC is currently broken and is being worked on another ticket 00420182
+-still going to upgrade
+
+preflight:
+gathered screenshots
+gathered logs
+
+		Netwrix Enterprise Auditor (formerly StealthAUDIT)	
+		%SAInstallDir%StealthAUDIT.lic	NEA License file
+		%SAInstallDir%SADatabaseViews	Host List definitions
+		%SAInstallDir%SecurityMap	All connection profiles
+		%SAInstallDir%GlobalOptions.xml	Global Options/Settings
+		%SAInstallDir%SPProfiles.xml	Connection Profiles
+		%SAInstallDir%rba.conf	RBA Configuration
+		%SAInstallDir%rba-reporting.conf	Reporting RBA Configuration
+		%SAInstallDir%WebWebServer.exe.config	Published Reports configuration
+		%SAInstallDir%Jobs	Backup jobs if the the environment is complicated 
+		   SSH output
+
+Will need to re-add the SSL Certs to Pub. Reporting and the AIC
+
+plan for next meeting:
+upgrade NEA
+upgrade the AIC
+upgrade NAM
+if time, upgrade NRAD","0054u000007oss5AAA","2024-10-07T19:58:41.000Z","2024-10-07T19:58:41.000Z","false","false"
+"00aQk000009avAfIAI","500Qk00000GaYOZIA3","zoom meeting
+
+downloading
+
+
+error running AIC install
+
+install error logonuser failed with error 1385
+service account wasn't allowed to logon interactively
+removing restriction from that account resolved the issue and AIC upgrade without issue
+
+restarted AIC service
+it works
+
+published reports works
+
+NAM upgrade completed without issue
+upgraded agent on one DC without issue
+client will upgrade rest on his own
+
+installing NRAD upgrade
+
+currently backing up MOTADCPRRTPV011
+
+failed to install 2.6
+
+error:
+Module E:Program FilesNetwrixRecovery for Active DirectorySmtpNotification.comhost.dll failed to register.
+HRESULT -2147450749. Contact your support personnel.
+
+confirmed accounts and permissions
+still failing
+
+2.5 was already removed by the installer so no NRAD on system now
+
+re-installing 2.5 throws an error as well:
+
+error:
+Service 'Netwrix Recovery Server'
+(NetwrixRecoveryServer) could not be installed. Verify that you have sufficient privileges to install system services.
+
+confirmed the account we were running the installer as had permission to logon as a service and batch job
+
+resolved the issue:
+we were entering the windows account to connect to SQL server without the domain in front
+once we added that, it installed
+
+We tried that on the 2.6 installer and it still failed with the same .dll registration error as before
+
+will continue to troubleshoot NRAD install on a dedicated ticket after other installs
+
+next step is to upgrade NTM","0054u000007oss5AAA","2024-10-10T18:47:27.000Z","2024-10-10T18:47:27.000Z","false","false"
+"00aQk000009fRqIIAU","500Qk00000GaYOZIA3","continuing to work on upgrades on another ticket. Will close this ticket assuming no issues with next meeting on ticket 00423937","0054u000007oss5AAA","2024-10-15T13:30:33.000Z","2024-10-15T13:30:33.000Z","false","false"

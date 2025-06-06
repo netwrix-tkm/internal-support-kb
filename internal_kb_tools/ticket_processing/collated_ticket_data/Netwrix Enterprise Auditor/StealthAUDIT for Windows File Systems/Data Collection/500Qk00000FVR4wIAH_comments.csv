@@ -1,0 +1,24 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009J5urIAC","500Qk00000FVR4wIAH","Found an issue with in the AIC host install for Netwrix Enterprise Auditor (NEA) where the FSAC bulk import was set to Remove all the host.
+
+Recommended adding a FS MAINTENANCE job to the zSandbox Group for when we need to drop collected data.
+
+Being that this Host is truly only needed for Teams to add removed access to the File Systems it only needs to run the ADI and FSAA jobs to correctly populate the AIC Web UI.
+
+
+Q: Can both Prod and Test point to the same Activity Monitor                               
+A: Not recommended, however, is possible if all builds are the same.
+
+Q: Should they be managed by Intercept or Audit, what is the diff
+A: File Serves can be managed by either however only the NAM collected details will feed into NEA
+
+Q: I wanted to see how we set the word reset in the table based on the article I sent you for the table mismatch – seems less destructive than dropping tables
+A: Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector > FSAA: Query Selection > Maintenance Wizard
+Reset Hosts – Resets the Access GUID column value in the SA_FSAA_Hosts table for the Hosts selected. Allows data to be bulk imported when there is a GUID mismatch..
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/QuerySelection.htm
+
+Q: Not a question but the article you sent on turning off the VSS did not resemble what we saw in the environment.  Maybe I was off on what was supposed to be done
+A: This is only possible in NAM file output not managed by SI/NTP
+
+We noted that Netwrix Threat Prevention (NTP) formally StealthINTERCEPT Server (SI) would be the better tool to track AD activity and reporting can be set up via the new Netwrix Threat Manager (NTM) Reporting Module for NTP its license is include with your SI install.
+Note this is not the same as the full Netwrix Threat Manager (NTM)","00570000003KXurAAG","2024-09-25T15:04:06.000Z","2024-09-25T15:04:06.000Z","false","false"

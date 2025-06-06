@@ -1,0 +1,47 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KeZWbIAN","00432286","Support Ticket","AIC Unable to use SQL DB","Between all of the support tickets I've had recently, we've made a lot of StealthAudit database changes.  Today I am unable to login/use AIC.  I will attach the AIC tables I have in my database currently.  I have a backup dated Jan 6th but honestly I'm not sure if AIC was working at that time or not.  I think I logged in on Jan 7th, but can't be sure.
+
+00431040 Database - old data cleanup
+100s of tables removed (I think on the 8th), but I swear we opened AIC and it did not have a SQL error showing after our work","","some AIC tables were dropped as part of another ticket's clean up
+
+client has backup from week ago
+
+was able to restore AIC tables from backup
+
+After restoring the tables the client notices duplicate entries for resource owners. One of each duplicate is greyed out and unable to be removed.
+
+Planned to meet to investigate this, however, in the meantime, the AuditEvents table went missing again
+
+I don't understand what would delete the table.
+can no longer login to the AIC. The original error is back:
+""Unable to use the SQL Server Database provided""
+
+Compairing the screenshot provided of the AIC tables with my Lab, only the SA_AIC_AuditEvents table is missing
+
+
+you can see in the logs that she logged in successfully on 01/23 then on 01/24, it throws the error
+
+---------------
+discussed on TKS
+
+need to pull timestamps from the video and upload meeting recording to ticket
+then escalate
+
+priority for the client
+
+---------------
+uploaded the meeting recoding and timestamp .txt file
+for escalation","escalate","Issue:
+logging into AIC site fails with error:
+""Unable to use SQL database provided""
+
+symptom:
+error in AIC logs:
+Failed to insert into table SA_AIC_AuditEvents, value cannot be ""null""
+
+resolution:
+deleted table SA_AIC_AuditEvents then logged into AIC
+
+---------------
+
+This ticket also involved restoring old AIC tables from backup of SA SQL DB","Advanced Configuration Change","Nicholas Zimmer","Error","Netwrix Enterprise Auditor","Access Information Center","Database","11.6","32","51.1","Closed - Resolved","Nexidia","Angie Sawyer","2025-01-15T16:53:04.000Z","2025-03-07T20:00:33.000Z"

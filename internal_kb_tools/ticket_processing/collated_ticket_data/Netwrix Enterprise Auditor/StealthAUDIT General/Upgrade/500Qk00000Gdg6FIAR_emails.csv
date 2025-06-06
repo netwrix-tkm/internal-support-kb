@@ -1,0 +1,306 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000HYn6AIAT","500Qk00000Gdg6FIAR","2024-11-06T13:28:06.000Z","2024-11-06T13:28:06.000Z","Hi Jeremy,
+
+I am glad that we were able to get your issue resolved.
+The following is a summary of the ticket for your records.
+
+Here is a rough outline of the steps we followed in order to reconfigure NEA after exporting and importing the NEA database to a new physical MS SQL Server database server:
+
++++++
+Here are the steps to migrate the NEA database to a new MS SQL Server instance.
+On your end you will coordinate disabling all of the NEA scheduled jobs, taking the NEA database backup and restoring it to the new MS SQL Server instance (probably prior to our meeting).
++++++
+
+1) Stop all Jobs in NEA - Schedules > CRTL_SHIFT and select all ""Enabled"" jobs, Right-click and select ""Disable""
+2) Migrate SQL Server DB (or take backup and restore to the new DB server).
+3) Restart NEA services
+4) NEA > global Settings > Storage - point existing NEA v11.6 to new Server Name using Windows Auth or SQL Auth (Windows Auth preferred)
+5) You save it and then click ""Set as default"" to set it as the new default profile.
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm
+
+6) Find the StealthAUDIT installation directory from a CMD prompt:
+
+%SAInstallDir%
+
+Navigate to the DIR = %sainstalldir%web and open the file, Webserver.exe.config
+ 
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.exe.config
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.lic
+
+7) AIC Upgrade - appwiz.cpl - Uninstalled AIC - we had to uninstall the existing AIC application in order to also point it to the new database instance.
+8) %SAInstallDir%
+9) PS - dir Cert:LocalMachineMy
+10) PS - netsh http show sslcert
+11) ""AccessInformationCenter.Service.exe.Config""
+
+""https://+:481""
+
+C:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe.Config
+
++++++
++++++
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/28/2024 1:34 PM
+To: jkaiser@woodmenlife.org
+Cc: zarish.khan@netwrix.com
+Subject: RE: Netwrix Support Ticket #422968 - - [EXTERNAL] SQL Server Upgrade for StealthAudit and StealthIntercept application servers [ ref:!00D70091pB.!500Qk0Gdg6F:ref ]
+
+Hi Jeremy,
+
+Here is a rough outline of the steps we followed in order to reconfigure NEA after exporting and importing the NEA database to a new physical MS SQL Server database server:
+
+
++++++
+Here are the steps to migrate the NEA database to a new MS SQL Server instance.
+On your end you will coordinate disabling all of the NEA scheduled jobs, taking the NEA database backup and restoring it to the new MS SQL Server instance (probably prior to our meeting).
++++++
+
+1) Stop all Jobs in NEA - Schedules > CRTL_SHIFT and select all ""Enabled"" jobs, Right-click and select ""Disable""
+2) Migrate SQL Server DB (or take backup and restore to the new DB server).
+3) Restart NEA services
+4) NEA > global Settings > Storage - point existing NEA v11.6 to new Server Name using Windows Auth or SQL Auth (Windows Auth preferred)
+5) You save it and then click ""Set as default"" to set it as the new default profile.
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm
+
+6) Find the StealthAUDIT installation directory from a CMD prompt:
+
+%SAInstallDir%
+
+Navigate to the DIR = %sainstalldir%web and open the file, Webserver.exe.config
+ 
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.exe.config
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.lic
+
+7) AIC Upgrade - appwiz.cpl - Uninstalled AIC - we had to uninstall the existing AIC application in order to also point it to the new database instance.
+8) %SAInstallDir%
+9) PS - dir Cert:LocalMachineMy
+10) PS - netsh http show sslcert
+11) ""AccessInformationCenter.Service.exe.Config""
+
+""https://+:481""
+
+C:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe.Config
+
++++++
++++++
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/14/2024 8:20 AM
+To: jkaiser@woodmenlife.org
+Subject: RE: Netwrix Support Ticket #422968 - - [EXTERNAL] SQL Server Upgrade for StealthAudit and StealthIntercept application servers [ ref:!00D70091pB.!500Qk0Gdg6F:ref ]
+
+Hi Jeremy,
+
+You are correct. 
+The Zoom meeting is on my calendar for Monday, 21-Oct-2024 at 11 AM.
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeremy Kaiser [jkaiser@woodmenlife.org]
+Sent: 10/13/2024 11:38 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #422968 - - [EXTERNAL] SQL Server Upgrade for StealthAudit and StealthIntercept application servers [ ref:!00D70091pB.!500Qk0Gdg6F:ref ]
+
+ref:_00D7091pB._500Q000Gdg6F:ref
+
+
+
+Yeah.  I think I scheduled a meeting for next Monday?
+
+ 
+
+
+Jeremy J Kaiser
+Security Systems Engineer
+Phone: 402-449-7740
+Fax: 402-449-7708
+jkaiser@woodmen.org
+ 
+
+
+ 
+
+ 
+WoodmenLife Internal Data
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, October 11, 2024 2:53 PM
+To: Jeremy Kaiser <jkaiser@woodmenlife.org>
+Subject: RE: Netwrix Support Ticket #422968 - - [EXTERNAL] SQL Server Upgrade for StealthAudit and StealthIntercept application servers [ ref:!00D70091pB.!500Qk0Gdg6F:ref ]
+
+
+
+ 
+
+
+
+
+
+
+	
+		
+			
+			SECURITY ALERT:  Do not click links or open attachments unless you recognize the sender and know the content is safe.
+			
+		
+	
+
+
+ 
+
+
+Hi Jeremy,
+
+I sent a meeting link out on 04-Sep-2024.
+Are you still working on getting your new DB Server configured?
+
+Thanks and regards,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/4/2024 3:43 PM
+To: jkaiser@woodmenlife.org
+Subject: RE: Netwrix Support Ticket #422968 - - [EXTERNAL] SQL Server Upgrade for StealthAudit and StealthIntercept application servers [ ref:!00D70091pB.!500Qk0Gdg6F:ref ]
+
+Hi Jeremy,
+
+We will have to meet in order to coordinate the effort for migrating the database for each of these applications: StealthAUDIT and StealthINTERCEPT.
+
+Here is a meeting link:
+
+nwxcorp.my.salesforce-sites.com/cts?Id=jKmJ6G5ajOEfwXr3mDIsTwUoWq5OKnOetlH_MJNg56M-Z&MeetingID=olihhLsRIzvFzJqVGeoXmR3WzEtYfVh02Hd85okzkk4-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeremy Kaiser [jkaiser@woodmenlife.org]
+Sent: 10/4/2024 9:30 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #422968 - ref:_00D7091pB._500Q000Gdg6F:ref - [EXTERNAL] SQL Server Upgrade for StealthAudit and StealthIntercept application servers [ ref:!00D70091pB.!500Qk0Gdg6F:ref ]
+
+ref:_00D7091pB._500Q000Gdg6F:ref
+
+ 
+
+
+1 DB Servers.  We will beef it up similar to the current configuration
+
+ 
+
+
+Jeremy J Kaiser
+Security Systems Engineer
+Phone: 402-449-7740
+Fax: 402-449-7708
+jkaiser@woodmen.org
+ 
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, October 4, 2024 8:29 AM
+To: Jeremy Kaiser <jkaiser@woodmenlife.org>
+Subject: [EXTERNAL] SQL Server Upgrade for StealthAudit and StealthIntercept application servers [ ref:!00D70091pB.!500Qk0Gdg6F:ref ]
+
+
+
+ 
+
+
+
+
+
+
+	
+		
+			
+			SECURITY ALERT:  Do not click links or open attachments unless you recognize the sender and know the content is safe.
+			
+		
+	
+
+
+ 
+
+
+Hi Jeremy,
+
+Do you have one (1) new MS SQL Server 2022 database server that you want to migrate the database for each of the following products to and then point the application at the new database server?  Or is it 2 different database servers?
+
+StealthAUDIT (NEA)
+SteathINTERCEPT (NTP)
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0Gdg6F:ref
+
+
+
+
+1700 Farnam Street
+Omaha, NE 68102-2025
+1-800-225-3108
+woodmenlife.org
+
+
+
+Woodmen of the World Life Insurance Society: Omaha, NE
+This communication along with any attachments is covered by federal and state law governing electronic communications and may contain confidential and proprietary information protected by applicable law. If you are not the intended recipient you are notified that any distribution, use or copying of this message is strictly prohibited. If you have received this in error, please reply immediately to the sender and delete this message. Before replying to this email please use a secured (encrypted) connection for any email which contains sensitive or personally identifiable data. Please contact your email provider for information on using a secured (encrypted) connection when sending email if you are not familiar with the process.","RE: Netwrix Support Ticket #422968 -  - [EXTERNAL] SQL Server Upgrade for StealthAudit and StealthIntercept application servers    [ ref:!00D70091pB.!500Qk0Gdg6F:ref ]","techsupport@netwrix.com","Netwrix Support","jkaiser@woodmenlife.org","zarish.khan@netwrix.com","","false","2024-11-06T13:28:05.000Z","true"

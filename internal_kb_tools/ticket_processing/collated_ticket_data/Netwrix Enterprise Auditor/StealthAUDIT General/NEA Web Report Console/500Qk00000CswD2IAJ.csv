@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CswD2IAJ","00414639","Support Ticket","Secure web issue","kindly I have an issue with our customer FABMISR when tried to secure the web I faced ""refused to connect"".
+
+Your fast support is highly appreciated","","","","I found this error in your logs. It means that there is an application actively listening on 8082 port already:
+
+2024-07-11 23:39:04,918 ERROR - Inner Exception
+2024-07-11 23:39:04,918 ERROR - System.Net.HttpListenerException (0x80004005): Failed to listen on prefix 'https://+:8082/' because it conflicts with an existing registration on the machine.
+
+1. You would need to delete the prefix that uses 8082 port. Run this command in CMD on your NEA host below to retrieve all reserved URLs:
+
+netsh http show urlacl
+
+2. Then find what is using 8082 port. It may be http://+:8082, but may be different in your case. Once found please run this command below, changing the url to Reserved URL value of 8082:
+
+netsh http delete urlacl url=<value of ""Reserved URL"" in the output of netsh http show urlacl>
+
+You will get ""URL reservation successfully deleted"" output.
+
+3. Run netsh http show sslcert command and ensure the certificate is bound to 8082 port.
+
+4. If you cannot find the bind to 8082 port then please follow this article:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Reports/Secure.htm","Third-party system failure","Aleksandr Timofeev","","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.6","","4.6","Closed - Resolved","FAB Misr","Ahmed Shabam","2024-07-10T14:22:42.000Z","2024-07-15T05:37:14.000Z"

@@ -1,0 +1,40 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MfywQIAR","00438076","Support Ticket","Assistance Upgrading Products","I want to schedule a time to get assistance with upgrading StealthAudit, StealthDefend, and StealthIntercept.
+
+I would also like to review the certificate used for StealthDefend and possibly create a new certificate with our internal certificate authority.","N/A","Today we:
+
+Performed the pre-flight process in preparation for the official NEA upgrade to 11.6. The pre-flight included the following:
+Take screenshots of the global settings and custom job settings
+Full backups of the Jobs folder, GlobalOptions and SPProfiles.xml. 
+Backups of the SSLCert Bindings for all web applications.","Our next steps are:
+
+You will:
+
+For the official upgrade the below will need to be performed:
+Snapshot of the application server.
+Backup of the StealthAudit database.
+You will need to download the latest version of the installer from your netwrix.com customer account as well as verify that the installer has been unblocked. The latest installers needed are:
+Netwrix Enterprise Auditor Management Platform
+Sensitive Data Discovery
+Access Information Center
+Ensure no scheduled jobs are running or will run during the upgrade process.","Symptom
+
+I want to schedule a time to get assistance with upgrading StealthAudit, StealthDefend, and StealthIntercept.
+
+I would also like to review the certificate used for StealthDefend and possibly create a new certificate with our internal certificate authority
+
+Cause
+
+Proactive Upgrade
+
+Resolution
+
+Upgraded the StealthAudit 11.5 console and all associated applications to NEA 11.6.0.137 using the process described in the document below:
+ 
+Enterprise Auditor Core Upgrade Instructions
+Also updated the ssl certificate bindings for both the AIC and Published Reports. During this process I discovered that the currently used certificate was not installed on the application server and may have possibly been expired. Due to this a new certificate will need to be generated and applied to the applications using the steps below:
+Run CMD - netsh http del sslcert ipport=0.0.0.0:8082 to delete current cert
+ 
+To add new cert run CMD - netsh http add sslcert ipport=0.0.0.0:8082 appid= certhash=
+ 
+Changing the port numbers to target both the AIC (481) and the Published Reports (8082) to apply these changes as well as including the updated cert hash when adding the new binding.","Proactive Upgrade","Scottie Taylor","Request","Netwrix Enterprise Auditor","StealthAUDIT General","Upgrade","11.6","","13.0","Closed - Resolved","Howard County, MD","Frank Salah","2025-03-07T15:41:52.000Z","2025-03-20T15:50:11.000Z"

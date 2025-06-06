@@ -1,0 +1,86 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MNMZXIA5","00437260","Support Ticket","Multiple issues with new implementation","Error trying to run job 4.Group Policy - PrepareTask for DC 'LDAP' for task 'Fine-grained Policies' failed: Unspecified error
+
+All reports under that group are blank.
+
+Job AD_WeakPasswords fails : Could not update dictionary: System.AggregateException: One or more errors occurred. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: The underlying connection was closed: An unexpected error occurred on a send. ---> <a href='https://System.IO' target='_blank'>System.IO</a>.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+   --- End of inner exception stack trace ---
+   at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.CallProcessAuthentication(Object state)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.ProcessAuthentication(LazyAsyncResult result)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.PooledStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.ConnectStream.WriteHeaders(Boolean async)
+   --- End of inner exception stack trace ---
+   at <a href='https://System.Net' target='_blank'>System.Net</a>.HttpWebRequest.GetResponse()
+   at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.DownloadDictionary(CancellationToken cancelToken)
+   at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.UpdateDictionary(String finalPath, CancellationToken cancelToken)
+   at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.c__DisplayClass5_0.b__6()
+   at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.InnerInvoke()
+   at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.Execute()
+   --- End of inner exception stack trace ---
+   at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(TimeSpan timeout)
+   at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.InternalProcessRecord()
+---> (Inner Exception #0) <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: ... [The description has been cut, review the attached email for details]","","","","Symptom
+
+Error trying to run job 4.Group Policy - PrepareTask for DC 'LDAP' for task 'Fine-grained Policies' failed: Unspecified error
+
+All reports under that group are blank.
+
+Job AD_WeakPasswords fails : Could not update dictionary: System.AggregateException: One or more errors occurred. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: The underlying connection was closed: An unexpected error occurred on a send. ---> <a href='https://System.IO' target='_blank'>System.IO</a>.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.CallProcessAuthentication(Object state)
+at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.ProcessAuthentication(LazyAsyncResult result)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.PooledStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.ConnectStream.WriteHeaders(Boolean async)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net' target='_blank'>System.Net</a>.HttpWebRequest.GetResponse()
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.DownloadDictionary(CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.UpdateDictionary(String finalPath, CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.c__DisplayClass5_0.b__6()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.InnerInvoke()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.Execute()
+--- End of inner exception stack trace ---
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(TimeSpan timeout)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.InternalProcessRecord()
+---> (Inner Exception #0) <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: ... [The description has been cut, review the attached email for details]
+
+Cause
+
+No internet connection on the application server for dictionary update. Requires domain admin privileges to successfully configure and run the AD_PasswordsPolicies since this uses the LDAP Data Collector and it targets a DC.
+
+Resolution
+
+Manually downloaded the dictionary for the AD_WeakPasswords job to resolve the error below:
+
+ob AD_WeakPasswords fails : Could not update dictionary: System.AggregateException: One or more errors occurred. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: The underlying connection was closed: An unexpected error occurred on a send.
+
+Utilizing a connection profile with a credential that has domain admin privileges to resolve the ""Can't connect to the (Named DC)"" errors presented in the AD_PasswordsPolicies.","Guidance","Scottie Taylor","Error","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","","18.3","Closed - Resolved","Bexar County, TX","Steve Young","2025-02-27T16:16:08.000Z","2025-03-17T22:18:47.000Z"

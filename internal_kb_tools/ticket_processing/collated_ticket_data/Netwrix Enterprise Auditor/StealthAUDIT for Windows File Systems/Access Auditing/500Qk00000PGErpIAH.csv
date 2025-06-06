@@ -1,0 +1,69 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000PGErpIAH","00445461","Support Ticket","FSAA self signed cert process is not working","working with paul pitas to try and get self signed certs working for fsaa scans. opening this ticket per his request","Step 1: Export the CA's root certificate and any required intermediate CA certificates to .cer files.  
+Step 2: Import the exported certificates into the FSAA Certificate Authority store on the NEA console and each proxy.  
+Step 3: On the NEA console, create a client Certificate Signing Request (CSR) using the FSAACertificateManager.exe tool, ensuring the CN matches the fully qualified domain name (FQDN) of the NEA console.  
+Step 4: Sign the NEA console's CSR with the desired CA to create a signed client certificate, and copy the signed certificate to the NEA console.  
+Step 5: Import the signed client certificate into the certificate store on the NEA console using the FSAACertificateManager.exe tool.  
+Step 6: On each proxy, create a server CSR using the FSAACertificateManager.exe tool, ensuring the CN matches the FQDN of the proxy host.  
+Step 7: Sign the proxy's CSR with the desired CA to create a signed server certificate, and copy the signed certificate to the proxy.  
+Step 8: Import the signed server certificate into the FSAA managed certificate store on the proxy using the FSAACertificateManager.exe tool.  
+Step 9: Remove all generated files (e.g., PFX, CER, and Key files) from their output destinations.  
+Step 10: Update FSAA queries to use the Manual certificate exchange option in the FSAA job configuration UI under Applet Settings.  
+
+(Requested by user 0050g000006QqyE)","- The issue was caused by an incorrect configuration where the certificate was stored in the general Certificate Authority store instead of the FSAA Certificate Authority store, as required by the FSAA setup process.
+- The absence of the certificate in the FSAA Certificate Authority store prevented the FSAA scans from functioning correctly.
+- The resolution involved manually exporting the correct certificate from the Certificate Authority, importing it into the FSAA Certificate Authority store, and ensuring all steps were performed using the appropriate user accounts for the NEA console and proxy scanner service.
+- The use of the FSAACertificateManager.exe tool was critical to maintaining consistency with the documented process and avoiding unforeseen behavior.
+- The documentation for the manual certificate distribution process was followed to resolve the issue, and no additional updates to the documentation were deemed necessary.
+- It remains unclear why the initial configuration error occurred, but the resolution steps have been documented to prevent recurrence.
+
+(Requested by user 0050g000006QqyE)","No next steps documented.
+
+(Requested by user 0050g000006QqyE)","### Manual certificate distribution with external CA
+
+1. Export the CA's root certificate and any required intermediate CA certificates to .cer files. For each certificate, on the NEA console and each proxy, import the certificate into the FSAA Certificate Authority store. On the console,  make sure to run the following command as the user that runs the NEA console, and on the proxies, make sure to run the following command as the user that runs the proxy scanner service (FSAAAppletServer.exe). On the proxies, you will need to copy FSAACertificateManager.exe to the FSAA folder before running the command.
+    * Host: NEA Console and each proxy
+    * Example input:
+        `.FSAACertificateManager.exe -storeCertificate -certificate .my_ca.cer -store CertificateAuthority -location CurrentUser`
+    * Example output:
+        `Successfully added My Certificate Authority to CertificateAuthority
+
+2. Create a client Certificate Signing Request for the NEA console. The CN for the client certificate should be the fully qualified domain name (FQDN) of the NEA console. The short name for the NEA console should be added as an alternate subject name.
+    * Host: NEA Console
+    * Example input:
+	    `.FSAACertificateManager.exe -createCertificateSigningRequest -subjectDN CN=NEAConsole.my.domain.com -subjectAlternativeNames NEAConsole -outputPath . -name NEAConsole`
+	* Example output:
+	    `Successfully wrote certificate signing request to .NEAConsole.csr`
+        `Successfully wrote certificate key to .NEAConsole.key`
+
+3. Create a signed certificate from the NEAConsole.csr file, signed by the desired CA. Ensure that the certificate purposes include Client Authentication. Copy the signed certificate as a .cer file to the Console.
+
+4. Import the signed client certificate for the NEA Console into the certificate store on the Console system, making sure to run the command as the user that runs the NEA console.
+    * Host: NEA Console
+    * Example input:
+	    `.FSAACertificateManager.exe -storeCertificate -certificate .NEAConsole.cer -key .NEAConsole.key -store Client -location CurrentUser`
+    * Example output:
+        `Successfully added NEAConsole to Client`
+
+5. Generating the server certificate signing request on the proxy host. On the proxy host run the following command out of the FSAA folder where FSAACertificateManager.exe was copied to. For the server certificate the CN should be the FQDN of the proxy host. The short name should be added as an alternate subject name. The following will create a server certificate signing request along with a key and store them in the same directory as FSAACertificateManager.exe on the proxy host.
+    * Host: Proxy
+    * Example input:
+	    `.FSAACertificateManager.exe -createCertificateSigningRequest -subjectDN CN=proxy01.my.domain.com -subjectAlternativeNames proxy01 -outputPath . -name Proxy01`
+	* Example output:
+	    `Successfully wrote certificate signing request to .Proxy01.csr`
+        `Successfully wrote certificate key to .Proxy01.key`
+
+6. Create a signed certificate from the proxy .csr file, signed by the desired CA. Ensure that the certificate purposes include Server Authentication. Copy the signed certificate as a .cer file to the proxy.
+
+7. Storing the server certificate on the proxy host. Make sure to run the following command as the user that runs the proxy scanner, FSAAAppletServer.exe. The following command will store the server certificate on the proxy host in an FSAA managed certificate store.
+    * Host: Proxy
+    * Example input:
+	    `.FSAACertificateManager.exe -storeCertificate -certificate .Proxy01.cer -key .Proxy01.key -friendlyName FSAA_Server_Auth -store Server -location CurrentUser`
+    * Example output:
+        `Successfully added FSAA_Server_Auth to Server`
+
+Note: Steps 5-7 will need to be repeated for each proxy host.
+		
+8. Removing generated files. Now that all the certificates are stored in FSAA managed certificate stores, they can be removed from their output destinations. All PFX files, CER files, and Key files generated and copied in previous steps can be deleted.
+
+9. Make sure to configure FSAA scans correctly. Now that all FSAA certificates have been stored in FSAA managed certificate stores, the FSAA queries need to be updated to use the Manual certificate exchange option. This options can be found under _Applet_ _Settings_ in the FSAA job configuration UI.","Incorrect configuration: Netwrix product","Paul Pitas","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.6","11.6.0.368","4.1","Closed - Resolved","Royal Bank of Canada (RBC)","Justin Olson","2025-05-16T18:57:36.000Z","2025-05-20T20:40:07.000Z"

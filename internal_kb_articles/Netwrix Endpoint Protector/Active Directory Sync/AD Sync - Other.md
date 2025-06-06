@@ -1,107 +1,139 @@
-# Netwrix Endpoint Protector: Active Directory Sync - Troubleshooting Guide
+# Netwrix Endpoint Protector Knowledge Base Reference Guide  
+## Active Directory Sync - Other  
 
-## Overview
-The Active Directory (AD) Sync feature in Netwrix Endpoint Protector (EPP) enables seamless integration with on-premise or cloud-based Active Directory environments, allowing for user and group synchronization. This feature is critical for managing user access, applying policies, and maintaining accurate device and user data. However, various issues can arise during configuration, synchronization, or operation, leading to challenges such as stale data, failed syncs, or misconfigured settings.
+### **Overview**  
+Active Directory (AD) Sync is a critical feature of Netwrix Endpoint Protector (EPP) that enables seamless integration with Active Directory environments, including Azure AD and on-premise AD. This functionality allows administrators to synchronize user accounts, groups, and devices, ensuring accurate policy enforcement and streamlined management. Understanding and troubleshooting issues in this category is essential for maintaining system integrity, minimizing downtime, and ensuring compliance with organizational policies.  
 
-This guide provides a comprehensive overview of common issues, troubleshooting steps, root causes, and tested solutions for resolving problems related to the AD Sync feature.
+### **Technical Background**  
+#### **Key Concepts**  
+- **Active Directory Sync**: A feature that connects EPP to AD environments to import users, groups, and devices for policy application and reporting.  
+- **Synchronization Frequency**: Sync intervals can vary, with Azure AD sync often configured to occur every 15 minutes.  
+- **Primary Groups**: Microsoft restricts syncing users from primary groups like "Domain Users."  
+- **Multi-Tenant Platform (MTP)**: A setting that enables AD authentication in multi-tenant environments.  
 
----
+#### **Terminology**  
+- **Distinguished Name (DN)**: The unique identifier for objects in AD, e.g., `CN=GroupName,DC=Domain,DC=com`.  
+- **LDAP/LDAPS Ports**: Common ports for AD communication (389 for LDAP, 636 for LDAPS).  
+- **sf_guard_user Table**: A database table in EPP that stores user account information.  
 
-## Issue Summary Table
-
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| Stale devices reappearing in EPP | Deleted devices reappear after sync | Verify server version and sync settings | Upgrade server and apply hotfixes | [Stale Devices Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Ctc8zIAB/view) |
-| AD binding fails due to invalid credentials | "Bind to Active Directory failed" error | Verify credentials and connection ports | Correct credentials and retry | [AD Binding Failure](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000CUFltIAH/view) |
-| AD group not found during sync | "Group not found or no users present in group!" error | Verify domain name format and group syntax | Correct domain name format | [Group Not Found](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DElduIAD/view) |
-| Unable to apply group filter | All groups are synced instead of filtered ones | Verify filter syntax and documentation | Use correct filter syntax | [Group Filter Syntax Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000E79xmIAB/view) |
-| Azure AD sync stops granting access | Security group members lose access | Check MTP settings and AD authentication | Re-enable MTP and reconfigure settings | [Azure AD Sync Access Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EjEtBIAV/view) |
-| "Domain Users" group not syncing | Group not visible in user list | Verify group type and sync settings | Use custom classes for access | [Domain Users Sync Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EqcAoIAJ/view) |
-| AD connection fails for admin import | Connection works for machines but not admins | Verify group name and connection syntax | Correct group name in settings | [Admin Import Connection Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FPPiXIAX/view) |
-| AD authentication fails | Users cannot authenticate | Verify AD location and group names | Correct location and group settings | [AD Authentication Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FPTMNIA5/view) |
-| Deleted users cannot be re-added | Sync fails for previously deleted users | Check database for deleted user entries | Clear deleted entries from database | [Deleted Users Sync Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000G9IhIIAV/view) |
-| SSL certificate setup confusion | No CSR option in DLP server | Confirm SSL certificate limitations | Generate CSR externally and import | [SSL Certificate Setup](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GaDqLIAV/view) |
-| Manual policy application inefficiency | Policies not applied automatically | Review Azure AD sync configuration | Configure auto-policy application | [Policy Automation Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GAqvPIAT/view) |
-| AD Admin Group sync fails | Admin group not syncing correctly | Verify group name and configuration | Correct configuration and retry | [Admin Group Sync Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GBKOpIAP/view) |
-| SaaS integration with on-prem AD | Customer unsure about integration | Confirm connector requirement | Use on-prem connector for sync | [SaaS Integration](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HBzJLIA1/view) |
-| Password expired error during login | Users cannot log in despite valid passwords | Check appliance password policy | Disable enforced password change | [Password Expired Error](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HfBvPIAV/view) |
-| Unable to add new EPP admin via AD Sync | Error adding new admin to AD group | Verify sync settings and permissions | Correct configuration and retry | [Add New Admin Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JdzDZIAZ/view) |
-| Missing user in admin panel | User not visible after sync | Check database flags for user | Update database flags to active | [Missing User Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MIcyHIAT/view) |
-| New AD group not syncing | Group not appearing in Device Control | Recreate AD sync configuration | Delete and recreate sync settings | [New Group Sync Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000O35VFIAZ/view) |
-| New AD admins not appearing | New admins not visible after sync | Check for duplicate database entries | Remove duplicates and retry sync | [New Admins Sync Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000O8l0kIAB/view) |
+#### **System Context**  
+Netwrix Endpoint Protector integrates with AD environments to enforce policies based on group memberships, synchronize devices, and manage administrative roles. Proper configuration of AD Sync settings is crucial for ensuring accurate data synchronization and avoiding stale or missing entries.  
 
 ---
 
-## Detailed Issues
+### **Issue Recognition & Triage**  
+#### **Symptoms**  
+- Stale devices reappearing in the EPP console after deletion.  
+- Failed AD binding due to invalid credentials or misconfigured settings.  
+- Missing users or groups in the EPP interface after synchronization.  
+- Errors related to group filters or incorrect domain name formats.  
+- Authentication failures despite successful sync tests.  
 
-### Stale Devices Reappearing in EPP
-**Symptoms:** Deleted devices reappear in the EPP console after synchronization.  
-**Troubleshooting Steps:**
-1. Verify if the EPP agent was uninstalled from the deleted devices.
-2. Check the "Last seen" column in the Device Control -> Computers section.
-3. Confirm synchronization settings with Azure AD.
-4. Investigate server version and applied hotfixes.  
-**Root Cause:** Outdated server version caused improper handling of device removal.  
-**Solution:** Upgrade the EPP server to the latest version and apply hotfixes.  
-**Source Ticket:** [Stale Devices Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Ctc8zIAB/view)
-
----
-
-### AD Binding Fails Due to Invalid Credentials
-**Symptoms:** Error message: "Bind to Active Directory failed. Check the login credentials and/or server details."  
-**Troubleshooting Steps:**
-1. Verify credentials used for AD binding.
-2. Test connection using ports 389 (LDAP) and 636 (LDAPS).
-3. Confirm AD settings and retry binding.  
-**Root Cause:** Incorrect login credentials or misconfigured settings.  
-**Solution:** Correct the credentials and ensure proper configuration.  
-**Source Ticket:** [AD Binding Failure](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000CUFltIAH/view)
+#### **Priority Assessment**  
+- **High Priority**: Issues affecting authentication, admin access, or policy enforcement.  
+- **Medium Priority**: Problems with stale data or missing groups that do not immediately impact functionality.  
+- **Low Priority**: Configuration inquiries or requests for clarification on system capabilities.  
 
 ---
 
-### AD Group Not Found During Sync
-**Symptoms:** Error message: "Group not found or no users present in group!"  
-**Troubleshooting Steps:**
-1. Verify group name syntax (pure name, Canonical Name, Distinguished Name).
-2. Check domain name format in AD authentication settings.  
-**Root Cause:** Incorrect domain name format in AD settings.  
-**Solution:** Update domain name format to "DC=domain,DC=com".  
-**Source Ticket:** [Group Not Found](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DElduIAD/view)
+### **Diagnostic Methodology**  
+#### **Systematic Approach**  
+1. **Verify Sync Settings**: Check synchronization frequency, connection ports, and authentication settings.  
+2. **Test Connectivity**: Use the "Test" button in the AD Sync interface to confirm successful connection.  
+3. **Review Logs**: Examine system logs for error messages related to synchronization or authentication.  
+4. **Database Inspection**: Query the `sf_guard_user` table for deleted or inactive entries.  
+5. **Replicate the Issue**: Attempt to reproduce the problem in a controlled environment.  
+6. **Check Permissions**: Ensure the AD account used for synchronization has sufficient privileges.  
+
+#### **Decision Points**  
+- If sync tests fail, focus on credentials and connection settings.  
+- If users or groups are missing, inspect database flags and group configurations.  
+- If stale data persists, verify server version and apply updates or hotfixes.  
 
 ---
 
-### Unable to Apply Group Filter
-**Symptoms:** All groups are synced instead of filtered ones.  
-**Troubleshooting Steps:**
-1. Verify filter syntax in Directory Services settings.
-2. Consult documentation for correct syntax examples.  
-**Root Cause:** Incorrect or unclear filter syntax.  
-**Solution:** Use the correct syntax for group filtering.  
-**Source Ticket:** [Group Filter Syntax Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000E79xmIAB/view)
+### **Information Collection**  
+#### **Customer Questions**  
+- What version of Netwrix Endpoint Protector are you using?  
+- Are you using Azure AD or on-premise AD?  
+- Have there been any recent changes to your AD environment or EPP configuration?  
+- What error messages are you seeing?  
+
+#### **Logs and Data to Collect**  
+- **Sync Logs**: Export logs from the AD Sync interface.  
+- **Database Queries**: Run SQL commands to inspect the `sf_guard_user` table.  
+- **Screenshots**: Capture configuration settings and error messages.  
+- **Network Details**: Confirm ports and protocols used for AD communication.  
 
 ---
 
-## Best Practices
-- **Regular Updates:** Keep the EPP server updated to the latest version to benefit from bug fixes and improvements.
-- **Verify Settings:** Double-check all AD sync configurations, including credentials, group names, and domain formats.
-- **Monitor Sync Logs:** Regularly review synchronization logs for errors or warnings.
-- **Database Maintenance:** Periodically clean up deleted entries in the database to prevent conflicts.
-- **Documentation:** Refer to official documentation for syntax examples and configuration guidelines.
+### **Common Scenarios & Solutions**  
+#### **Scenario 1: Stale Devices Reappearing**  
+- **Symptoms**: Deleted devices reappear in the EPP console after sync events.  
+- **Solution**: Upgrade the EPP server to the latest version and apply hotfixes. Ensure EPP agents are uninstalled from removed devices.  
+- **Reference Case**: [500Qk00000Ctc8zIAB](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Ctc8zIAB/view)  
+
+#### **Scenario 2: Failed AD Binding**  
+- **Symptoms**: Binding fails with "invalid credentials" error.  
+- **Solution**: Verify credentials, connection ports, and domain name format. Update to the latest server version if necessary.  
+- **Reference Case**: [500Qk00000CUFltIAH](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000CUFltIAH/view)  
+
+#### **Scenario 3: Missing Groups or Users**  
+- **Symptoms**: Groups or users do not appear in the EPP interface after sync.  
+- **Solution**: Correct domain name format and ensure group names are accurately defined. Check for duplicate database entries.  
+- **Reference Case**: [500Qk00000DElduIAD](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DElduIAD/view)  
+
+#### **Scenario 4: Authentication Failures**  
+- **Symptoms**: AD accounts fail to authenticate despite successful sync tests.  
+- **Solution**: Disable enforced password change policies in the appliance settings.  
+- **Reference Case**: [500Qk00000HfBvPIAV](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HfBvPIAV/view)  
 
 ---
 
-## Advanced Topics
-### Handling Duplicate Database Entries
-If duplicate entries in the database prevent synchronization:
-1. Query the database for duplicates:
-   ```sql
-   SELECT * FROM sf_guard_user WHERE deleted = 1;
-   DELETE FROM sf_guard_user WHERE deleted = 1;
-   ```
-2. Restart the MySQL service and retry synchronization.
+### **Detailed Case Studies**  
+#### **Case Study 1: Stale Devices Reappearing**  
+- **Ticket ID**: [500Qk00000Ctc8zIAB](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Ctc8zIAB/view)  
+- **Symptoms**: Stale devices reappeared in the EPP console after deletion.  
+- **Diagnostic Steps**: Verified sync settings, server version, and agent uninstallation status.  
+- **Resolution**: Upgraded the server and applied hotfixes.  
+- **Key Takeaways**: Regular updates prevent stale data issues.  
 
-### Integrating SaaS with On-Prem AD
-For cloud-hosted EPP integration with on-prem AD:
-- Deploy an on-prem connector to facilitate synchronization.
-- Follow the provided documentation for setup and configuration.
+#### **Case Study 2: Failed AD Binding**  
+- **Ticket ID**: [500Qk00000CUFltIAH](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000CUFltIAH/view)  
+- **Symptoms**: Binding failed due to invalid credentials.  
+- **Diagnostic Steps**: Tested connection ports and credentials.  
+- **Resolution**: Corrected credentials and updated server version.  
+- **Key Takeaways**: Always verify credentials and domain name formats.  
 
+#### **Case Study 3: Missing Groups**  
+- **Ticket ID**: [500Qk00000DElduIAD](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DElduIAD/view)  
+- **Symptoms**: Groups failed to sync due to incorrect domain name format.  
+- **Diagnostic Steps**: Tested various group name formats.  
+- **Resolution**: Corrected domain name format in AD settings.  
+- **Key Takeaways**: Proper syntax is critical for successful synchronization.  
+
+---
+
+### **Best Practices & Tips**  
+1. **Regular Updates**: Keep the EPP server updated to the latest version to benefit from bug fixes and improvements.  
+2. **Database Maintenance**: Periodically check for deleted or inactive entries in the `sf_guard_user` table.  
+3. **Documentation**: Provide customers with clear instructions on configuration settings and syntax requirements.  
+4. **Testing**: Always test sync configurations after making changes to ensure proper functionality.  
+5. **Customer Communication**: Use screenshots and logs to clarify issues and solutions during troubleshooting.  
+
+---
+
+### **Escalation Guidelines**  
+#### **Criteria for Escalation**  
+- Persistent issues after applying standard troubleshooting steps.  
+- Errors related to server-side limitations or bugs requiring R&D intervention.  
+- Requests for new features or enhancements.  
+
+#### **Escalation Procedure**  
+1. Document all troubleshooting steps and findings.  
+2. Attach relevant logs, screenshots, and database queries.  
+3. Submit a detailed escalation ticket to the R&D team with priority status.  
+4. Communicate escalation status to the customer and provide updates as available.  
+
+---  
+End of Document.  

@@ -1,0 +1,23 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000b2XLzKAM","500Qk00000Nhb0qIAB","TextPost","0054u000008ARZjAAO","2025-04-04T17:35:04.000Z","Description: Hello,
+
+The SP_TrusteeAudit scan for SharePoint Online is causing the tempDB on our SQL Server to fill up rapidly. Please see the attached screenshots for details.
+
+The scan executes a large SELECT INTO operation, creating and populating multiple temp tables such as #SIDFilter and SA_SP_TrusteeAudit_DirectPermissions. It pulls data from views including:
+
+SA_ADInventory_UsersView
+SA_ADInventory_GroupsView
+SA_SPAA_DirectPermissionsView
+SA_SPAA_SiteCollectionsTraversalView
+
+During a test run, the scan consumed over 100 GB of tempDB in just 27 minutes. I've attached screenshots for your reference.","","","","0054u000008ARZjAAO","2025-04-04T17:35:04.000Z"
+"0D5Qk00000bpRaOKAU","500Qk00000Nhb0qIAB","TextPost","005Qk000002AJWTIA4","2025-04-14T14:04:28.000Z","Steps to Reproduce Updated: Run SP_TrsuteeAudit job.
+When running temp SQL DB fill completely and hits error due to space issue.","","","","005Qk000002AJWTIA4","2025-04-14T14:04:28.000Z"
+"0D5Qk00000bpMHeKAM","500Qk00000Nhb0qIAB","TextPost","005Qk000002AJWTIA4","2025-04-14T14:05:25.000Z","What We've Learned Updated: ----------
+04/14/2025
+----------
+The issue appears to be the size of the Sharepoint environment uses the full space when running analysis jobs. The query is selecting so much information to run the analysis that it causes the DB to fill completely.","","","","005Qk000002AJWTIA4","2025-04-14T14:05:25.000Z"
+"0D5Qk00000bpMHfKAM","500Qk00000Nhb0qIAB","TextPost","005Qk000002AJWTIA4","2025-04-14T14:05:25.000Z","Next Steps Updated: Awaiting customer to try implementing limited users to scan against.","","","","005Qk000002AJWTIA4","2025-04-14T14:05:25.000Z"
+"0D5Qk00000cZKyuKAG","500Qk00000Nhb0qIAB","TextPost","005Qk000002AJWTIA4","2025-04-24T22:13:45.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002AJWTIA4","2025-04-24T22:13:45.000Z"
+"0D5Qk00000cZKyvKAG","500Qk00000Nhb0qIAB","TextPost","005Qk000002AJWTIA4","2025-04-24T22:13:46.000Z","Invitation updated. Attendees: Ian Ranstrom","","","","005Qk000002AJWTIA4","2025-04-24T22:13:46.000Z"
+"0D5Qk00000cZKywKAG","500Qk00000Nhb0qIAB","TextPost","005Qk000002AJWTIA4","2025-04-24T22:13:46.000Z","Invitation updated. Attendees: Ian Ranstrom, Sahil Umatia","","","","005Qk000002AJWTIA4","2025-04-24T22:13:46.000Z"

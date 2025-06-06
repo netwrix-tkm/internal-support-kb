@@ -1,0 +1,76 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000FjjbSIAR","00421006","Support Ticket","Access token","Hello Netwrix team,
+
+ I have a vendor(Saviynt) that's looking to connect our Stealthaudit and they are asking about hostname and port that we can use to generate the access token.  I'm not exactly sure what they are asking for.","","","","Symptom:
+Unable to pull data from the Netwrix Enterprise Auditor (NEA) API
+
+Cause:
+The 3rd party tool was trying to use the Netwrix Access Information Center (AIC) Port which does not support API calls
+
+Resolution:
+Confirmed that the rest API with the created Access was working, and limited it to the needed details via the following"" 
+
+Netwrix Enterprise Auditor v11.6 > Administration > Global Settings > Access > Web Service REST API for Applications Accessing Data Remotely >
+Assign Application Access through the Web Service
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RESTAPI/AssignAppAccess.htm
+
+logged into SSMS to run the following to list our all the ShearPoint (SPAA) views
+
+ SELECT
+    SCHEMA_NAME(schema_id) AS schema_name,
+    name AS view_name
+FROM
+    sys.views
+WHERE
+    name LIKE '%SPAA%';
+With the needed table/view names noted we tested the API call and noted we could pull the needed data via the following.
+Clear-Host
+$body = @{
+  client_id=""****REDACTED***""
+  client_secret=""****REDACTED***""
+  grant_type=""client_credentials""
+}
+ 
+$response = Invoke-WebRequest -Method POST -uri https://TSUK2DAC01.ict.kerryad.com:8082/api/v1/token -Body $body -ContentType ""application/json""
+$content = $response.Content | ConvertFrom-Json
+ 
+$access_token = $content.access_token;
+#$access_token
+$refresh_token = $content.refresh_token;
+#$refresh_token
+
+$headers = @{  
+Authorization=""Bearer $access_token""
+}
+$response = Invoke-WebRequest -Method GET -uri https://TSUK2DAC01.ict.kerryad.com:8082/api/v1/data/SA_SPAA_DirectPermissionsView/rows -Headers $headers
+$content = $response.Content | ConvertFrom-Json
+
+$content 
+Netwrix Enterprise Auditor v11.6 > Administration > Global Settings > Access > Web Service REST API for Applications Accessing Data Remotely > PowerShell Commands for the REST API
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RESTAPI/PowerShellCommands.htm
+
+Had the Cloud Utility correct to the needed port (8082).
+
+Noted the ""RightsDescription"": ""RWD"",
+Would be Read, Write, Delete.
+
+Would look a the same objects within the Netwrix Access Information Center (AIC) URL to confirm.
+ 
+Netwrix Access Information Center 11.6 > Resource Audit Overview > SharePoint Reports
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/ResourceAudit/SharePoint/Overview.htm
+
+
+Symptom:
+Customer was not able to log into the AIC
+
+Cause:
+Partial SSO configuration.
+
+Resolution:
+Fixed the configuration error in the AIC that was partially set up for SSO
+
+Netwrix Access Information Center 11.6 > Installation Overview > Securing the Access Information Center > Enable Single Sign-On
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm#enable_single_signon 
+
+This must also be set in the Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Reports via the Web Console > Enable Single Sign-On
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Reports/SSO.htm","Incorrect configuration: Netwrix product","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.6","92","83.2","Closed - Resolved","Kerry Group Services International Limited","Cameron Bowlds","2024-09-13T16:14:35.000Z","2024-12-05T21:21:53.000Z"

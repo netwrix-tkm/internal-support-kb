@@ -1,0 +1,1604 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MqJLFIA3","500Qk00000N92beIAB","2025-03-20T21:38:02.000Z","2025-03-20T21:38:02.000Z","Hello Frank,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help. Thank you for providing the screen shots. You are correct, having ""Collect only updates since the last scan"" disabled in the scan query configuration does result in a full scan. The warnings you are seeing are common and coming from the default ""custom attributes"" settings in that same query configuration. Not all environments have those custom attributes. It will continue to throw those warnings until those attributes are added to your AD Schema or you remove them from the ""Custom Attributes"" section of that query.
+
+I do see there are some errors reported on that Messages table, as well. Those look to be more problematic than the warnings.
+
+Please perform the follow steps and upload the resulting Artifacts:
+ 
+Enable Debug Logging for that job
+-Right click on the AD_Scan job and select properties
+
+
+-Set Log Level to Debug
+
+
+Rerun AD_Scan job to collect logs in full detail. Return Log level to warning afterwards.
+ 
+Please provide logs from the following locations: 
+Enterprise Auditor Console: %SAInstallDir%SADatabaseLogsApplication 
+ 
+Export of Job – note jobs may be nested under multiple Groups:
+Right click on the Job and select Export. This creates .zip file containing all logs and configuration settings of your jobs that we can import and review.
+
+
+ 
+You can find the resulting .zip file quicky by right-clicking the job and selecting Explore Folder
+
+
+
+Please attach the files to the ticket.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0N92be:ref","Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","techsupport@netwrix.com","Netwrix Support","frank.babcock@na.crh.com","eric.szymanski@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-20T21:38:01.000Z","true"
+"02sQk00000MrPdDIAV","500Qk00000N92beIAB","2025-03-21T13:36:27.000Z","2025-03-21T13:36:27.000Z","ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank","Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan","frank.babcock@na.crh.com","Frank Babcock","techsupport@netwrix.com","","","false","2025-03-21T13:36:27.000Z","true"
+"02sQk00000MsZlkIAF","500Qk00000N92beIAB","2025-03-21T20:47:32.000Z","2025-03-21T20:47:32.000Z","Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank","RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","techsupport@netwrix.com","Netwrix Support","frank.babcock@na.crh.com","eric.szymanski@netwrix.com","joshua.sexton@netwrix.com","false","2025-03-21T20:47:30.000Z","true"
+"02sQk00000MxIysIAF","500Qk00000N92beIAB","2025-03-24T19:50:18.000Z","2025-03-24T19:50:18.000Z","Hello Frank,
+
+Thank you for meeting with me today. In our session we investigated the warnings and errors coming from your AD_Scan job. Below is a breakdown of the messages and the relavent steps we took.
+
+The custom attributes you have enabled in the AD_Scan job's query is throwing warning messages. This is because not all audited domains have all of the custom attributes. The warning messages call out the domains by DomainID, so we used the ADInventory_UsersView to match the DomainID to the domain name. We didn't make any changes for this issue, because we want to continue to collect that data from the other domains.
+
+Three of the AD_Scan's analysis tasks were throwing errors because the default SQL queries were still calling out a placeholder. Those tasked are not enabled by default, so we needed to manually update the SQL queries to include the actual name of the associated table.
+
+One of your Domains is throwing an ""LDAP server unavailable"" error. We found this is because the DC Netwrix Enterprise Auditor is trying to connect to has the LDAP ports blocked. You already have a custom job you are using to create dynamic host lists. You started working on it during the meeting, but ultimately, you just need to make sure that job is filtering that domain's DCs down to only ones where the LDAP query ports are open.
+
+The final error you are seeing is not one that I am familiar with. The error reads like a SQL query is returning more than one result, but it's then trying to use that with an operation that requires a single result. Like we discussed, I will do some research and let you know when I have additional questions or next steps.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 4:47 PM
+To: frank.babcock@na.crh.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+ 
+Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank","RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","techsupport@netwrix.com","Netwrix Support","frank.babcock@na.crh.com","eric.szymanski@netwrix.com","joshua.sexton@netwrix.com","false","2025-03-24T19:50:17.000Z","true"
+"02sQk00000NCaVWIA1","500Qk00000N92beIAB","2025-03-31T14:32:15.000Z","2025-03-31T14:32:15.000Z","Hello Frank,
+
+Thank you for your patience on this ticket. The next step is to drop the ADI data from the domain called out in the error, omg.crhomg.com, then complete a full AD Inventory. We have a KB on this process, Remove Domain Audit Data from Reports − Drop Domains, but I'd be happy to work through this with you over a remote session.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 3:50 PM
+To: frank.babcock@na.crh.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank,
+
+Thank you for meeting with me today. In our session we investigated the warnings and errors coming from your AD_Scan job. Below is a breakdown of the messages and the relavent steps we took.
+
+The custom attributes you have enabled in the AD_Scan job's query is throwing warning messages. This is because not all audited domains have all of the custom attributes. The warning messages call out the domains by DomainID, so we used the ADInventory_UsersView to match the DomainID to the domain name. We didn't make any changes for this issue, because we want to continue to collect that data from the other domains.
+
+Three of the AD_Scan's analysis tasks were throwing errors because the default SQL queries were still calling out a placeholder. Those tasked are not enabled by default, so we needed to manually update the SQL queries to include the actual name of the associated table.
+
+One of your Domains is throwing an ""LDAP server unavailable"" error. We found this is because the DC Netwrix Enterprise Auditor is trying to connect to has the LDAP ports blocked. You already have a custom job you are using to create dynamic host lists. You started working on it during the meeting, but ultimately, you just need to make sure that job is filtering that domain's DCs down to only ones where the LDAP query ports are open.
+
+The final error you are seeing is not one that I am familiar with. The error reads like a SQL query is returning more than one result, but it's then trying to use that with an operation that requires a single result. Like we discussed, I will do some research and let you know when I have additional questions or next steps.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 4:47 PM
+To: frank.babcock@na.crh.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+ 
+Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank","RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","techsupport@netwrix.com","Netwrix Support","frank.babcock@na.crh.com","eric.szymanski@netwrix.com","joshua.sexton@netwrix.com","false","2025-03-31T14:32:13.000Z","true"
+"02sQk00000NCRFPIA5","500Qk00000N92beIAB","2025-03-31T14:49:16.000Z","2025-03-31T14:49:40.000Z","ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+I’ve viewed the article and have no issue setting it up or running, but before I do, I wanted to make sure I understood what gets removed when running this. The reason is, this domain is not an ‘old domain’, it’s an active one.
+
+Frank
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 10:32 AM
+To: Babcock, Frank <frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you are expecting this email and know the contents are safe. If you believe this email may be phishing or malicious, please use the Report Phish button.
+Hello Frank,
+
+Thank you for your patience on this ticket. The next step is to drop the ADI data from the domain called out in the error, omg.crhomg.com, then complete a full AD Inventory. We have a KB on this process, Remove Domain Audit Data from Reports − Drop Domains<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000R3RKAU.html__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4kWtXCrF$>, but I'd be happy to work through this with you over a remote session.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4mix_WVj$>
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 3:50 PM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank,
+
+Thank you for meeting with me today. In our session we investigated the warnings and errors coming from your AD_Scan job. Below is a breakdown of the messages and the relavent steps we took.
+
+The custom attributes you have enabled in the AD_Scan job's query is throwing warning messages. This is because not all audited domains have all of the custom attributes. The warning messages call out the domains by DomainID, so we used the ADInventory_UsersView to match the DomainID to the domain name. We didn't make any changes for this issue, because we want to continue to collect that data from the other domains.
+
+Three of the AD_Scan's analysis tasks were throwing errors because the default SQL queries were still calling out a placeholder. Those tasked are not enabled by default, so we needed to manually update the SQL queries to include the actual name of the associated table.
+
+One of your Domains is throwing an ""LDAP server unavailable"" error. We found this is because the DC Netwrix Enterprise Auditor is trying to connect to has the LDAP ports blocked. You already have a custom job you are using to create dynamic host lists. You started working on it during the meeting, but ultimately, you just need to make sure that job is filtering that domain's DCs down to only ones where the LDAP query ports are open.
+
+The final error you are seeing is not one that I am familiar with. The error reads like a SQL query is returning more than one result, but it's then trying to use that with an operation that requires a single result. Like we discussed, I will do some research and let you know when I have additional questions or next steps.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 4:47 PM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4qATvuNz$>
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank
+
+
+
+ATTENTION: Ce courriel vient de l'exterieur de l'entreprise. Ne cliquez pas sur les liens, et n'ouvrez pas les pièces jointes, à moins que vous ne connaissiez l'expéditeur du courriel et savez que le contenu est sécuritaire. Si vous pensez qu’il s’agit d’un courriel d’hameçonnage ou malveillant, veuillez cliquer sur le bouton Signaler une tentative d’hameçonnage.","RE: [EXT]     RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","frank.babcock@crh.com","Babcock, Frank","frank.babcock@na.crh.com; techsupport@netwrix.com","eric.szymanski@netwrix.com","","false","2025-03-31T14:47:02.000Z","true"
+"02sQk00000NCmDJIA1","500Qk00000N92beIAB","2025-03-31T15:29:36.000Z","2025-03-31T15:29:36.000Z","Hello Frank,
+
+That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by looking at the results tables in the AD Inventory job:
+
+
+
+Those will be repopulated by the subsequent AD Inventory scan. Some other jobs rely on those tables, so I recommend stopping any running jobs before dropping the tables and allowing the fresh AD Inventory to scan to complete before resuming other scans. You can check how long your AD Inventories scans normally take be selecting the 1-AD_Scan job in the job tree. From the logs provided previously, it seems like they take less than 30 minutes.
+
+Please let me know if you have any other question.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 10:47 AM
+To: frank.babcock@na.crh.com; techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+
+
+
+Hi Joshua,
+
+ 
+
+I’ve viewed the article and have no issue setting it up or running, but before I do, I wanted to make sure I understood what gets removed when running this. The reason is, this domain is not an ‘old domain’, it’s an active one.
+
+ 
+
+Frank
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 10:32 AM
+To: Babcock, Frank <frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+
+ 
+
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you are expecting this email and know the contents are safe. If you believe this email may be phishing or malicious, please use the Report Phish button.
+
+
+
+
+Hello Frank,
+
+Thank you for your patience on this ticket. The next step is to drop the ADI data from the domain called out in the error, omg.crhomg.com, then complete a full AD Inventory. We have a KB on this process, Remove Domain Audit Data from Reports − Drop Domains, but I'd be happy to work through this with you over a remote session.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 3:50 PM
+To: frank.babcock@na.crh.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank,
+
+Thank you for meeting with me today. In our session we investigated the warnings and errors coming from your AD_Scan job. Below is a breakdown of the messages and the relavent steps we took.
+
+The custom attributes you have enabled in the AD_Scan job's query is throwing warning messages. This is because not all audited domains have all of the custom attributes. The warning messages call out the domains by DomainID, so we used the ADInventory_UsersView to match the DomainID to the domain name. We didn't make any changes for this issue, because we want to continue to collect that data from the other domains.
+
+Three of the AD_Scan's analysis tasks were throwing errors because the default SQL queries were still calling out a placeholder. Those tasked are not enabled by default, so we needed to manually update the SQL queries to include the actual name of the associated table.
+
+One of your Domains is throwing an ""LDAP server unavailable"" error. We found this is because the DC Netwrix Enterprise Auditor is trying to connect to has the LDAP ports blocked. You already have a custom job you are using to create dynamic host lists. You started working on it during the meeting, but ultimately, you just need to make sure that job is filtering that domain's DCs down to only ones where the LDAP query ports are open.
+
+The final error you are seeing is not one that I am familiar with. The error reads like a SQL query is returning more than one result, but it's then trying to use that with an operation that requires a single result. Like we discussed, I will do some research and let you know when I have additional questions or next steps.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 4:47 PM
+To: frank.babcock@na.crh.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+ 
+
+Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank
+
+
+ 
+ 
+
+
+
+
+ATTENTION: Ce courriel vient de l'exterieur de l'entreprise. Ne cliquez pas sur les liens, et n'ouvrez pas les pièces jointes, à moins que vous ne connaissiez l'expéditeur du courriel et savez que le contenu est sécuritaire. Si vous pensez qu’il s’agit d’un courriel d’hameçonnage ou malveillant, veuillez cliquer sur le bouton Signaler une tentative d’hameçonnage.","RE: [EXT]     RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","techsupport@netwrix.com","Netwrix Support","frank.babcock@crh.com","eric.szymanski@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-31T15:29:35.000Z","true"
+"02sQk00000NCn1JIAT","500Qk00000N92beIAB","2025-03-31T15:33:50.000Z","2025-03-31T16:06:38.000Z","ref:_00D7091pB._500Q000N92be:ref
+
+Makes sense, wanted to be sure that I would only be dropping data that could be repopulated.
+
+I’ll drop the domain and rerun the inventory and let you know the results.
+
+Frank
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 11:30 AM
+To: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank, That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by
+
+Hello Frank,
+
+That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by looking at the results tables in the AD Inventory job:
+
+[cid:image001.png@01DBA230.B6FC4E80]
+
+Those will be repopulated by the subsequent AD Inventory scan. Some other jobs rely on those tables, so I recommend stopping any running jobs before dropping the tables and allowing the fresh AD Inventory to scan to complete before resuming other scans. You can check how long your AD Inventories scans normally take be selecting the 1-AD_Scan job in the job tree. From the logs provided previously, it seems like they take less than 30 minutes.
+
+Please let me know if you have any other question.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!FvQ41Ltj2fnEVm3qNFixYzXaDKCjtiM9wAwX-BEIEhm29hGiS_IUoAZlogFXRZV9iap0T3WAyaGoGNreML9-iQR-$>
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 10:47 AM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+
+
+Hi Joshua,
+
+I’ve viewed the article and have no issue setting it up or running, but before I do, I wanted to make sure I understood what gets removed when running this. The reason is, this domain is not an ‘old domain’, it’s an active one.
+
+Frank
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 31, 2025 10:32 AM
+To: Babcock, Frank <frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you are expecting this email and know the contents are safe. If you believe this email may be phishing or malicious, please use the Report Phish button.
+Hello Frank,
+
+Thank you for your patience on this ticket. The next step is to drop the ADI data from the domain called out in the error, omg.crhomg.com, then complete a full AD Inventory. We have a KB on this process, Remove Domain Audit Data from Reports − Drop Domains<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000R3RKAU.html__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4kWtXCrF$>, but I'd be happy to work through this with you over a remote session.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4mix_WVj$>
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 3:50 PM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank,
+
+Thank you for meeting with me today. In our session we investigated the warnings and errors coming from your AD_Scan job. Below is a breakdown of the messages and the relavent steps we took.
+
+The custom attributes you have enabled in the AD_Scan job's query is throwing warning messages. This is because not all audited domains have all of the custom attributes. The warning messages call out the domains by DomainID, so we used the ADInventory_UsersView to match the DomainID to the domain name. We didn't make any changes for this issue, because we want to continue to collect that data from the other domains.
+
+Three of the AD_Scan's analysis tasks were throwing errors because the default SQL queries were still calling out a placeholder. Those tasked are not enabled by default, so we needed to manually update the SQL queries to include the actual name of the associated table.
+
+One of your Domains is throwing an ""LDAP server unavailable"" error. We found this is because the DC Netwrix Enterprise Auditor is trying to connect to has the LDAP ports blocked. You already have a custom job you are using to create dynamic host lists. You started working on it during the meeting, but ultimately, you just need to make sure that job is filtering that domain's DCs down to only ones where the LDAP query ports are open.
+
+The final error you are seeing is not one that I am familiar with. The error reads like a SQL query is returning more than one result, but it's then trying to use that with an operation that requires a single result. Like we discussed, I will do some research and let you know when I have additional questions or next steps.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 4:47 PM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4qATvuNz$>
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank
+
+
+
+ATTENTION: Ce courriel vient de l'exterieur de l'entreprise. Ne cliquez pas sur les liens, et n'ouvrez pas les pièces jointes, à moins que vous ne connaissiez l'expéditeur du courriel et savez que le contenu est sécuritaire. Si vous pensez qu’il s’agit d’un courriel d’hameçonnage ou malveillant, veuillez cliquer sur le bouton Signaler une tentative d’hameçonnage.","RE: [EXT]     RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","frank.babcock@crh.com","Babcock, Frank","techsupport@netwrix.com","eric.szymanski@netwrix.com","","true","2025-03-31T15:33:26.000Z","true"
+"02sQk00000NDK5QIAX","500Qk00000N92beIAB","2025-03-31T18:47:35.000Z","2025-03-31T19:03:44.000Z","ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+That seemed to do the trick. After clearing things out and re-running the AD-scan, I don’t see that error for that object any longer. All I have now are those warning that we discussed are expected.
+
+[cid:image002.png@01DBA24B.CA33A230]
+
+
+Thanks for your help on this!
+
+Frank
+
+From: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com>
+Sent: Monday, March 31, 2025 11:33 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Makes sense, wanted to be sure that I would only be dropping data that could be repopulated.
+
+I’ll drop the domain and rerun the inventory and let you know the results.
+
+Frank
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 31, 2025 11:30 AM
+To: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com<mailto:frank.babcock@crh.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank, That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by
+
+Hello Frank,
+
+That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by looking at the results tables in the AD Inventory job:
+
+[cid:image003.png@01DBA24B.CA33A230]
+
+Those will be repopulated by the subsequent AD Inventory scan. Some other jobs rely on those tables, so I recommend stopping any running jobs before dropping the tables and allowing the fresh AD Inventory to scan to complete before resuming other scans. You can check how long your AD Inventories scans normally take be selecting the 1-AD_Scan job in the job tree. From the logs provided previously, it seems like they take less than 30 minutes.
+
+Please let me know if you have any other question.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!FvQ41Ltj2fnEVm3qNFixYzXaDKCjtiM9wAwX-BEIEhm29hGiS_IUoAZlogFXRZV9iap0T3WAyaGoGNreML9-iQR-$>
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 10:47 AM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+I’ve viewed the article and have no issue setting it up or running, but before I do, I wanted to make sure I understood what gets removed when running this. The reason is, this domain is not an ‘old domain’, it’s an active one.
+
+Frank
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 31, 2025 10:32 AM
+To: Babcock, Frank <frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you are expecting this email and know the contents are safe. If you believe this email may be phishing or malicious, please use the Report Phish button.
+Hello Frank,
+
+Thank you for your patience on this ticket. The next step is to drop the ADI data from the domain called out in the error, omg.crhomg.com, then complete a full AD Inventory. We have a KB on this process, Remove Domain Audit Data from Reports − Drop Domains<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000R3RKAU.html__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4kWtXCrF$>, but I'd be happy to work through this with you over a remote session.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4mix_WVj$>
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 3:50 PM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank,
+
+Thank you for meeting with me today. In our session we investigated the warnings and errors coming from your AD_Scan job. Below is a breakdown of the messages and the relavent steps we took.
+
+The custom attributes you have enabled in the AD_Scan job's query is throwing warning messages. This is because not all audited domains have all of the custom attributes. The warning messages call out the domains by DomainID, so we used the ADInventory_UsersView to match the DomainID to the domain name. We didn't make any changes for this issue, because we want to continue to collect that data from the other domains.
+
+Three of the AD_Scan's analysis tasks were throwing errors because the default SQL queries were still calling out a placeholder. Those tasked are not enabled by default, so we needed to manually update the SQL queries to include the actual name of the associated table.
+
+One of your Domains is throwing an ""LDAP server unavailable"" error. We found this is because the DC Netwrix Enterprise Auditor is trying to connect to has the LDAP ports blocked. You already have a custom job you are using to create dynamic host lists. You started working on it during the meeting, but ultimately, you just need to make sure that job is filtering that domain's DCs down to only ones where the LDAP query ports are open.
+
+The final error you are seeing is not one that I am familiar with. The error reads like a SQL query is returning more than one result, but it's then trying to use that with an operation that requires a single result. Like we discussed, I will do some research and let you know when I have additional questions or next steps.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 4:47 PM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4qATvuNz$>
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank
+
+
+
+ATTENTION: Ce courriel vient de l'exterieur de l'entreprise. Ne cliquez pas sur les liens, et n'ouvrez pas les pièces jointes, à moins que vous ne connaissiez l'expéditeur du courriel et savez que le contenu est sécuritaire. Si vous pensez qu’il s’agit d’un courriel d’hameçonnage ou malveillant, veuillez cliquer sur le bouton Signaler une tentative d’hameçonnage.","RE: [EXT]     RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","frank.babcock@crh.com","Babcock, Frank","techsupport@netwrix.com","eric.szymanski@netwrix.com","","true","2025-03-31T18:47:15.000Z","true"
+"02sQk00000NDShHIAX","500Qk00000N92beIAB","2025-03-31T19:47:12.000Z","2025-03-31T19:47:12.000Z","Hello Frank,
+
+I'm glad to hear it! Please let me know if you have any questions and if you are comfortable closing this ticket.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 2:47 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+
+
+
+Hi Joshua,
+
+ 
+
+That seemed to do the trick. After clearing things out and re-running the AD-scan, I don’t see that error for that object any longer. All I have now are those warning that we discussed are expected.
+
+ 
+
+
+
+ 
+
+ 
+
+Thanks for your help on this!
+
+ 
+
+Frank
+
+ 
+
+
+
+From: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com>
+Sent: Monday, March 31, 2025 11:33 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+
+ 
+
+Makes sense, wanted to be sure that I would only be dropping data that could be repopulated.
+
+ 
+
+I’ll drop the domain and rerun the inventory and let you know the results.
+
+ 
+
+Frank
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 11:30 AM
+To: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+ 
+
+
+Hello Frank, That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by
+
+
+
+ 
+
+
+Hello Frank,
+
+That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by looking at the results tables in the AD Inventory job:
+
+
+
+Those will be repopulated by the subsequent AD Inventory scan. Some other jobs rely on those tables, so I recommend stopping any running jobs before dropping the tables and allowing the fresh AD Inventory to scan to complete before resuming other scans. You can check how long your AD Inventories scans normally take be selecting the 1-AD_Scan job in the job tree. From the logs provided previously, it seems like they take less than 30 minutes.
+
+Please let me know if you have any other question.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 10:47 AM
+To: frank.babcock@na.crh.com; techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+ 
+
+
+Hi Joshua,
+
+ 
+
+I’ve viewed the article and have no issue setting it up or running, but before I do, I wanted to make sure I understood what gets removed when running this. The reason is, this domain is not an ‘old domain’, it’s an active one.
+
+ 
+
+Frank
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 10:32 AM
+To: Babcock, Frank <frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+
+ 
+
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you are expecting this email and know the contents are safe. If you believe this email may be phishing or malicious, please use the Report Phish button.
+
+
+
+
+Hello Frank,
+
+Thank you for your patience on this ticket. The next step is to drop the ADI data from the domain called out in the error, omg.crhomg.com, then complete a full AD Inventory. We have a KB on this process, Remove Domain Audit Data from Reports − Drop Domains, but I'd be happy to work through this with you over a remote session.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 3:50 PM
+To: frank.babcock@na.crh.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank,
+
+Thank you for meeting with me today. In our session we investigated the warnings and errors coming from your AD_Scan job. Below is a breakdown of the messages and the relavent steps we took.
+
+The custom attributes you have enabled in the AD_Scan job's query is throwing warning messages. This is because not all audited domains have all of the custom attributes. The warning messages call out the domains by DomainID, so we used the ADInventory_UsersView to match the DomainID to the domain name. We didn't make any changes for this issue, because we want to continue to collect that data from the other domains.
+
+Three of the AD_Scan's analysis tasks were throwing errors because the default SQL queries were still calling out a placeholder. Those tasked are not enabled by default, so we needed to manually update the SQL queries to include the actual name of the associated table.
+
+One of your Domains is throwing an ""LDAP server unavailable"" error. We found this is because the DC Netwrix Enterprise Auditor is trying to connect to has the LDAP ports blocked. You already have a custom job you are using to create dynamic host lists. You started working on it during the meeting, but ultimately, you just need to make sure that job is filtering that domain's DCs down to only ones where the LDAP query ports are open.
+
+The final error you are seeing is not one that I am familiar with. The error reads like a SQL query is returning more than one result, but it's then trying to use that with an operation that requires a single result. Like we discussed, I will do some research and let you know when I have additional questions or next steps.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 4:47 PM
+To: frank.babcock@na.crh.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+ 
+
+Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank
+
+
+ 
+ 
+
+
+
+
+ATTENTION: Ce courriel vient de l'exterieur de l'entreprise. Ne cliquez pas sur les liens, et n'ouvrez pas les pièces jointes, à moins que vous ne connaissiez l'expéditeur du courriel et savez que le contenu est sécuritaire. Si vous pensez qu’il s’agit d’un courriel d’hameçonnage ou malveillant, veuillez cliquer sur le bouton Signaler une tentative d’hameçonnage.","RE: [EXT]     RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","techsupport@netwrix.com","Netwrix Support","frank.babcock@crh.com","eric.szymanski@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-31T19:47:11.000Z","true"
+"02sQk00000NDSXbIAP","500Qk00000N92beIAB","2025-03-31T19:59:53.000Z","2025-03-31T20:09:13.000Z","ref:_00D7091pB._500Q000N92be:ref
+
+Thanks. You should be good to close.
+
+Frank
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 3:47 PM
+To: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank, I'm glad to hear it! Please let me know if you have any questions and if you are comfortable closing this ticket. Thank you, Joshua Sexton Technical Support Engineer Tier 1 ____________________ ______ Cybersecurity That Works
+
+Hello Frank,
+
+I'm glad to hear it! Please let me know if you have any questions and if you are comfortable closing this ticket.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!CE9JUv_IEoi-34y0zGPCwtp0yFqbRQtMEOXquTLfJYLQZFqVniQQt02KHo34TWyQME1PJQHw5Z6cSFTwP33Fm87s$>
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 2:47 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+
+
+Hi Joshua,
+
+That seemed to do the trick. After clearing things out and re-running the AD-scan, I don’t see that error for that object any longer. All I have now are those warning that we discussed are expected.
+
+[cid:image001.png@01DBA255.E3E3AB30]
+
+
+Thanks for your help on this!
+
+Frank
+
+From: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com<mailto:frank.babcock@crh.com>>
+Sent: Monday, March 31, 2025 11:33 AM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Makes sense, wanted to be sure that I would only be dropping data that could be repopulated.
+
+I’ll drop the domain and rerun the inventory and let you know the results.
+
+Frank
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 31, 2025 11:30 AM
+To: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com<mailto:frank.babcock@crh.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank, That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by
+
+Hello Frank,
+
+That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by looking at the results tables in the AD Inventory job:
+
+[cid:image002.png@01DBA255.E3E3AB30]
+
+Those will be repopulated by the subsequent AD Inventory scan. Some other jobs rely on those tables, so I recommend stopping any running jobs before dropping the tables and allowing the fresh AD Inventory to scan to complete before resuming other scans. You can check how long your AD Inventories scans normally take be selecting the 1-AD_Scan job in the job tree. From the logs provided previously, it seems like they take less than 30 minutes.
+
+Please let me know if you have any other question.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!FvQ41Ltj2fnEVm3qNFixYzXaDKCjtiM9wAwX-BEIEhm29hGiS_IUoAZlogFXRZV9iap0T3WAyaGoGNreML9-iQR-$>
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 10:47 AM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+I’ve viewed the article and have no issue setting it up or running, but before I do, I wanted to make sure I understood what gets removed when running this. The reason is, this domain is not an ‘old domain’, it’s an active one.
+
+Frank
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 31, 2025 10:32 AM
+To: Babcock, Frank <frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you are expecting this email and know the contents are safe. If you believe this email may be phishing or malicious, please use the Report Phish button.
+Hello Frank,
+
+Thank you for your patience on this ticket. The next step is to drop the ADI data from the domain called out in the error, omg.crhomg.com, then complete a full AD Inventory. We have a KB on this process, Remove Domain Audit Data from Reports − Drop Domains<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000R3RKAU.html__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4kWtXCrF$>, but I'd be happy to work through this with you over a remote session.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4mix_WVj$>
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 3:50 PM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank,
+
+Thank you for meeting with me today. In our session we investigated the warnings and errors coming from your AD_Scan job. Below is a breakdown of the messages and the relavent steps we took.
+
+The custom attributes you have enabled in the AD_Scan job's query is throwing warning messages. This is because not all audited domains have all of the custom attributes. The warning messages call out the domains by DomainID, so we used the ADInventory_UsersView to match the DomainID to the domain name. We didn't make any changes for this issue, because we want to continue to collect that data from the other domains.
+
+Three of the AD_Scan's analysis tasks were throwing errors because the default SQL queries were still calling out a placeholder. Those tasked are not enabled by default, so we needed to manually update the SQL queries to include the actual name of the associated table.
+
+One of your Domains is throwing an ""LDAP server unavailable"" error. We found this is because the DC Netwrix Enterprise Auditor is trying to connect to has the LDAP ports blocked. You already have a custom job you are using to create dynamic host lists. You started working on it during the meeting, but ultimately, you just need to make sure that job is filtering that domain's DCs down to only ones where the LDAP query ports are open.
+
+The final error you are seeing is not one that I am familiar with. The error reads like a SQL query is returning more than one result, but it's then trying to use that with an operation that requires a single result. Like we discussed, I will do some research and let you know when I have additional questions or next steps.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 4:47 PM
+To: frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4qATvuNz$>
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!LcE3fNvU!DqoUBc2Le7YbAu7HN19rw-aM3uHpkNdfa6kT1cxABFSXcOFFhBUF3AM1c9iY0desHzpZMNfPhjf0bIsc4pLy4iVa$>
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com<mailto:frank.babcock@na.crh.com>]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank
+
+
+
+ATTENTION: Ce courriel vient de l'exterieur de l'entreprise. Ne cliquez pas sur les liens, et n'ouvrez pas les pièces jointes, à moins que vous ne connaissiez l'expéditeur du courriel et savez que le contenu est sécuritaire. Si vous pensez qu’il s’agit d’un courriel d’hameçonnage ou malveillant, veuillez cliquer sur le bouton Signaler une tentative d’hameçonnage.","RE: [EXT]     RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","frank.babcock@crh.com","Babcock, Frank","techsupport@netwrix.com","eric.szymanski@netwrix.com","","true","2025-03-31T19:59:33.000Z","true"
+"02sQk00000NDVDkIAP","500Qk00000N92beIAB","2025-03-31T20:29:13.000Z","2025-03-31T20:29:13.000Z","Hello Frank,
+
+I'll close this ticket, but if you have any questions, just reply to this email within the next 30 days, and it will reopen. It was a pleasure working with you.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 3:59 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+
+
+
+Thanks. You should be good to close.
+
+ 
+
+Frank
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 3:47 PM
+To: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+ 
+
+
+Hello Frank, I'm glad to hear it! Please let me know if you have any questions and if you are comfortable closing this ticket. Thank you, Joshua Sexton Technical Support Engineer Tier 1 ____________________ ______ Cybersecurity That Works
+
+
+
+ 
+
+
+Hello Frank,
+
+I'm glad to hear it! Please let me know if you have any questions and if you are comfortable closing this ticket.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 2:47 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+
+ 
+
+
+Hi Joshua,
+
+ 
+
+That seemed to do the trick. After clearing things out and re-running the AD-scan, I don’t see that error for that object any longer. All I have now are those warning that we discussed are expected.
+
+ 
+
+
+
+ 
+
+ 
+
+Thanks for your help on this!
+
+ 
+
+Frank
+
+ 
+
+
+
+From: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com>
+Sent: Monday, March 31, 2025 11:33 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+
+ 
+
+Makes sense, wanted to be sure that I would only be dropping data that could be repopulated.
+
+ 
+
+I’ll drop the domain and rerun the inventory and let you know the results.
+
+ 
+
+Frank
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 11:30 AM
+To: Babcock, Frank (CRH Americas Materials) <frank.babcock@crh.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+ 
+
+
+Hello Frank, That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by
+
+
+
+ 
+
+
+Hello Frank,
+
+That will clear out the AD inventory tables for that specific domain in NEA's database. This includes the tables that NEA stores the AD objects and their attributes specific to that domain. You can see an example of this by looking at the results tables in the AD Inventory job:
+
+
+
+Those will be repopulated by the subsequent AD Inventory scan. Some other jobs rely on those tables, so I recommend stopping any running jobs before dropping the tables and allowing the fresh AD Inventory to scan to complete before resuming other scans. You can check how long your AD Inventories scans normally take be selecting the 1-AD_Scan job in the job tree. From the logs provided previously, it seems like they take less than 30 minutes.
+
+Please let me know if you have any other question.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Babcock, Frank [frank.babcock@crh.com]
+Sent: 3/31/2025 10:47 AM
+To: frank.babcock@na.crh.com; techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+ref:_00D7091pB._500Q000N92be:ref
+ 
+
+
+Hi Joshua,
+
+ 
+
+I’ve viewed the article and have no issue setting it up or running, but before I do, I wanted to make sure I understood what gets removed when running this. The reason is, this domain is not an ‘old domain’, it’s an active one.
+
+ 
+
+Frank
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 31, 2025 10:32 AM
+To: Babcock, Frank <frank.babcock@na.crh.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+
+
+ 
+
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you are expecting this email and know the contents are safe. If you believe this email may be phishing or malicious, please use the Report Phish button.
+
+
+
+
+Hello Frank,
+
+Thank you for your patience on this ticket. The next step is to drop the ADI data from the domain called out in the error, omg.crhomg.com, then complete a full AD Inventory. We have a KB on this process, Remove Domain Audit Data from Reports − Drop Domains, but I'd be happy to work through this with you over a remote session.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OCcU0dNXXicO20x0ssc9er8XAzhvDfpk_ix.3mC0Mu0-Z&MeetingID=glMAD7aNfsmHtH6fW3L_KWNDNbq30vzmKsOrV1n1b6U-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/24/2025 3:50 PM
+To: frank.babcock@na.crh.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+
+Hello Frank,
+
+Thank you for meeting with me today. In our session we investigated the warnings and errors coming from your AD_Scan job. Below is a breakdown of the messages and the relavent steps we took.
+
+The custom attributes you have enabled in the AD_Scan job's query is throwing warning messages. This is because not all audited domains have all of the custom attributes. The warning messages call out the domains by DomainID, so we used the ADInventory_UsersView to match the DomainID to the domain name. We didn't make any changes for this issue, because we want to continue to collect that data from the other domains.
+
+Three of the AD_Scan's analysis tasks were throwing errors because the default SQL queries were still calling out a placeholder. Those tasked are not enabled by default, so we needed to manually update the SQL queries to include the actual name of the associated table.
+
+One of your Domains is throwing an ""LDAP server unavailable"" error. We found this is because the DC Netwrix Enterprise Auditor is trying to connect to has the LDAP ports blocked. You already have a custom job you are using to create dynamic host lists. You started working on it during the meeting, but ultimately, you just need to make sure that job is filtering that domain's DCs down to only ones where the LDAP query ports are open.
+
+The final error you are seeing is not one that I am familiar with. The error reads like a SQL query is returning more than one result, but it's then trying to use that with an operation that requires a single result. Like we discussed, I will do some research and let you know when I have additional questions or next steps.
+
+Thank you,
+
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 4:47 PM
+To: frank.babcock@na.crh.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan [ ref:!00D70091pB.!500Qk0N92be:ref ]
+ 
+
+Hello Frank,
+
+Thank you for the logs. I've been reviewing them and found the cause of the ""invalid tablename"" errors. They are coming from the analysis tasks in your AD_Scan job. That is not an important task and only used to expose some of the results tables in the NEA console. I can help fix those over a remote session. The ""LDAP server is unavailable"" error is more serious, but it seems to have been just a momentary connection issue. Shortly after it continues to collect the needed data. I'd be interested to see if you get that error consistently during subsequent scans.
+
+Either way, we can look at it together over a remote session. Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=aa7aPUSuWcA9jZ1yzIJTMK8g0xMi.wCZVc3p0h6WOvM-Z&MeetingID=3AW26KR7NVO15sSRsflfnN77w7bXQcuQQl.zNRgZMds-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Frank Babcock [frank.babcock@na.crh.com]
+Sent: 3/21/2025 9:36 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan
+
+ref:_00D7091pB._500Q000N92be:ref
+
+Hi Joshua,
+
+i've switched the job to debug and rerun. i've attached zips of both logs for review.
+
+thanks,
+Frank
+
+
+ 
+ 
+
+
+
+
+ATTENTION: Ce courriel vient de l'exterieur de l'entreprise. Ne cliquez pas sur les liens, et n'ouvrez pas les pièces jointes, à moins que vous ne connaissiez l'expéditeur du courriel et savez que le contenu est sécuritaire. Si vous pensez qu’il s’agit d’un courriel d’hameçonnage ou malveillant, veuillez cliquer sur le bouton Signaler une tentative d’hameçonnage.","RE: [EXT]     RE: Netwrix Support Ticket #439500 - Assistance needed to resolve warning and errors on AD Inventory Scan    [ ref:!00D70091pB.!500Qk0N92be:ref ]","techsupport@netwrix.com","Netwrix Support","frank.babcock@crh.com","eric.szymanski@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-31T20:29:13.000Z","true"

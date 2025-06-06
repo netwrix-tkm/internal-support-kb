@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000G86FAIAZ","00421780","Support Ticket","StealthAudit Report - Weak Password Checks","StealthAudit Report - Weak Password Checks is not pulling in NA domain data. It is pulling in other domains, but NA has no information populating.","","","","Symptom
+
+StealthAudit Report - Weak Password Checks
+
+StealthAudit Report - Weak Password Checks is not pulling in NA domain data. It is pulling in other domains, but NA has no information populating.
+
+Cause
+
+The host list assigned to the AD Weak Passwords job displayed a connection profile error. 
+
+ the Active Directory parent job group did not have a host list assigned to it but the AD Weak Passwords job was only targeting the ""One Domain Controller Per Domain"" host list.
+
+Resolution
+
+Identified that the host list assigned for the AD Weak Passwords job threw a job connection profile error. We then verified the correct profile that needs to be used and configured the job to use that connection profile to properly scan the hosts to populate data for their NA domain.
+
+We then identified that the Active Directory parent job group did not have a host list assigned to it but the AD Weak Passwords job was only targeting the ""One Domain Controller Per Domain"" host list. To maintain continuity across the ADI and AD parent groups we targeted the same ADI host list for the AD parent group as the ADI parent group. Once this change was made we then ran the AD Weak Passwords job again and were successfully able to populate the most recent data in the Weak Passwords Checks report. 
+
+We then verified that this information was also accessible in the Published Reports console and demonstrated how to access the AD Weak Passwords Checks.","Incorrect configuration: audit settings","Scottie Taylor","","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.5","","25.2","Closed - Resolved","International Paper Company","Meredith Johnson","2024-09-23T13:35:25.000Z","2024-10-18T17:18:28.000Z"

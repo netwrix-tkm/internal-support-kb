@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EQlPqIAL","00418104","Support Ticket","FSAA Scan Errors","After upgrading to 11.5 we are seeing a ton of these errors
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Session 1261 went away     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.ScanTaskBase.GetScanStatusAndVerifyCompletion(ScanSession session)     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.AccessScanTask.InternalProcessRecord()     at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()","","","","Issue
+
+FSAA Scan Errors
+
+After upgrading to 11.5 we are seeing a ton of these errors
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Session 1261 went away at <a
+
+Cause
+
+Discovered that some of the FSAA proxies were running an older version.
+
+Discovered too many simultaneous connections to proxy hosts.
+
+These two variables were discovered as the root causes of this issue.
+
+Resolution
+
+Performed an upgrade to all FSAA proxy hosts to the latest 11.5 proxy. 
+
+Performed a test FSAA system scan of only one of the affected hosts and was successful in scanning that host. 
+
+Suggested tweaking the performance settings for the FSAA system scan job by lowering the thread count if this error resurfaces.","Guidance","Scottie Taylor","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Proxy","11.5","","12.1","Closed - Resolved","Bank of America Corporation","Gregory Meyer","2024-08-14T18:55:03.000Z","2024-08-26T20:27:13.000Z"

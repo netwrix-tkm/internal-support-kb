@@ -1,85 +1,118 @@
-# Netwrix Endpoint Protector: Content-Aware Protection - Client Requests
+# Netwrix Endpoint Protector Knowledge Base: Handling Client Requests for Specific Operating System Installers
 
 ## Overview
-Netwrix Endpoint Protector's Content-Aware Protection feature enables organizations to safeguard sensitive data across endpoints. A common request in this category involves obtaining specific installers for various operating systems. This article provides a structured approach to handling such requests, troubleshooting steps, and solutions.
 
-## Issue Summary Table
+This guide addresses the process of handling customer requests for specific operating system installers for the Netwrix Endpoint Protector product. These requests often involve providing the appropriate client software for a particular environment, such as Amazon Linux 2. Understanding this category of issues is critical to ensuring timely and accurate responses, maintaining customer satisfaction, and reducing resolution times.
 
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| Installer Request for Amazon Linux 2 | Customer requests the Endpoint Protector client installer for Amazon Linux 2 | Verify installer availability for the requested OS | Provide the download link for the compatible installer | [Installer Request for Amazon Linux 2](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000PKbxwIAD/view) |
+## Technical Background
 
----
+Netwrix Endpoint Protector is a data loss prevention (DLP) solution that includes features such as Content-Aware Protection. The product requires client software to be installed on endpoints, and compatibility with the operating system is essential for proper functionality. 
 
-## Detailed Issues
+### Key Concepts:
+- **Content-Aware Protection**: A feature that monitors and controls sensitive data transfers based on predefined policies.
+- **Client Software**: The endpoint agent that enforces DLP policies on the operating system.
+- **Supported Operating Systems**: A list of operating systems for which the client software is available. This list must be kept up-to-date to ensure accurate responses to customer requests.
 
-### Installer Request for Amazon Linux 2
+### Terminology:
+- **Installer**: The software package required to install the Endpoint Protector client on a specific operating system.
+- **Amazon Linux 2**: A Linux distribution optimized for Amazon Web Services (AWS) environments.
 
-#### Description
-The customer requested the Endpoint Protector client installer specifically for the Amazon Linux 2 operating system. This was not a technical malfunction but a request for software that was not readily available to the customer.
+## Issue Recognition & Triage
 
-#### Symptoms
-- Customer explicitly requests an installer for a specific operating system (Amazon Linux 2 in this case).
-- No technical errors or malfunctions reported.
+### Identifying the Issue:
+- **Customer Report**: The customer explicitly requests an installer for a specific operating system.
+- **Symptoms**: No technical malfunction is reported; the issue is a request for software availability.
+- **Priority Assessment**: These requests are typically low to medium priority unless the customer indicates urgency.
 
-#### Troubleshooting Procedure
-1. **Verify Installer Availability**  
-   - Check the Netwrix Endpoint Protector documentation or internal resources for a list of supported operating systems and their corresponding client installers.  
-   - Confirm whether the requested installer is available for Amazon Linux 2.
+### Categorization:
+- **Category**: Client Requests
+- **Component**: Content-Aware Protection
+- **Feature**: Installer Availability
 
-2. **Locate the Installer**  
-   - If the installer is available, retrieve the download link from the internal repository or documentation.
+## Diagnostic Methodology
 
-3. **Provide the Installer**  
-   - Share the download link with the customer via email or the support ticket system.
+1. **Verify the Request**:
+   - Confirm the operating system and version for which the installer is required.
+   - Check if the customer has provided sufficient details about their environment.
 
-#### Root Cause
-The customer required the Endpoint Protector client installer for Amazon Linux 2, which was not readily accessible to them.
+2. **Check Installer Availability**:
+   - Refer to the internal list of supported operating systems and corresponding client versions.
+   - Verify if the requested installer is available for the specified operating system.
 
-#### Solution
-The issue was resolved by providing the customer with the appropriate download link for the Endpoint Protector client compatible with Amazon Linux 2.
+3. **Respond to the Customer**:
+   - If the installer is available, provide the download link.
+   - If the installer is not available, escalate the issue to the product team for further investigation.
 
-#### Warnings or Considerations
-- Ensure the installer version matches the customer's product version (in this case, version 19.05).
-- Verify that the customer’s environment meets the system requirements for the installer.
+## Information Collection
 
-#### Source Ticket
-**Source Ticket:** [Installer Request for Amazon Linux 2](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000PKbxwIAD/view)
+When handling these requests, gather the following information from the customer:
+- **Operating System Details**: Name and version (e.g., Amazon Linux 2).
+- **Product Version**: The version of Netwrix Endpoint Protector in use.
+- **Environment Details**: Any relevant information about the deployment environment (e.g., AWS, on-premises).
+- **Urgency**: Whether the request is time-sensitive.
 
----
+## Common Scenarios & Solutions
 
-## Best Practices
+### Scenario 1: Installer is Available
+- **Symptoms**: Customer requests an installer for a supported operating system.
+- **Resolution**:
+  1. Verify the availability of the installer.
+  2. Provide the customer with the download link.
+  3. Confirm receipt and successful download with the customer.
 
-1. **Maintain an Updated List of Supported Operating Systems**  
-   - Regularly update documentation to include all supported operating systems and their corresponding client installers. This ensures quick access to relevant resources during support requests.
+### Scenario 2: Installer is Not Available
+- **Symptoms**: Customer requests an installer for an unsupported or unverified operating system.
+- **Resolution**:
+  1. Inform the customer that the installer is not currently available.
+  2. Escalate the request to the product team for evaluation.
+  3. Provide an estimated timeline for follow-up, if possible.
 
-2. **Promptly Address Installer Requests**  
-   - When a customer requests an installer, immediately verify its availability and provide the download link without delay.
+## Detailed Case Studies
 
-3. **Version Compatibility Checks**  
-   - Always confirm that the installer version aligns with the customer's product version to avoid compatibility issues.
+### Case Study 1: Request for Amazon Linux 2 Installer
+- **Ticket ID**: [500Qk00000PKbxwIAD](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000PKbxwIAD/view)
+- **Initial Symptoms**: The customer requested the Endpoint Protector client installer for Amazon Linux 2.
+- **Diagnostic Steps**:
+  1. Verified the operating system details provided by the customer.
+  2. Checked the internal list of supported operating systems.
+  3. Confirmed the availability of the installer for Amazon Linux 2.
+- **Key Information**: The installer for Amazon Linux 2 was available in the product repository.
+- **Resolution**:
+  1. Provided the customer with the download link for the installer.
+  2. Confirmed that the customer successfully downloaded the installer.
+- **Key Takeaways**:
+  - Maintain an up-to-date list of supported operating systems.
+  - Ensure prompt responses to similar requests to improve customer satisfaction.
+- **Efficiency Improvements**:
+  - Automate the process of checking installer availability using a centralized database or tool.
 
-4. **Communicate System Requirements**  
-   - Inform customers of any prerequisites or system requirements for the installer to ensure successful deployment.
+## Best Practices & Tips
 
----
+1. **Maintain Updated Documentation**:
+   - Regularly update the list of supported operating systems and corresponding client versions.
+   - Ensure all support engineers have access to this information.
 
-## Advanced Topics
+2. **Streamline Communication**:
+   - Use templates for responding to common requests to save time and ensure consistency.
+   - Clearly communicate next steps if the installer is not available.
 
-### Handling Unsupported Operating Systems
-If a customer requests an installer for an unsupported operating system:
-1. **Verify Support Status**  
-   - Check the official documentation or internal resources to confirm whether the operating system is supported.
+3. **Proactive Escalation**:
+   - Escalate requests for unsupported operating systems to the product team promptly.
+   - Track escalations to ensure timely follow-up.
 
-2. **Escalate the Request**  
-   - If the operating system is not supported, escalate the request to the product team for further evaluation.
+4. **Customer-Centric Approach**:
+   - Confirm receipt of the installer and follow up to ensure successful deployment.
+   - Provide clear instructions or documentation if needed.
 
-3. **Provide Alternatives**  
-   - Suggest alternative supported operating systems or configurations that meet the customer’s needs.
+## Escalation Guidelines
 
-4. **Document the Request**  
-   - Record the unsupported OS request for future consideration in product updates.
+### When to Escalate:
+- The requested installer is not available for the specified operating system.
+- The customer indicates urgency or critical business impact.
+- Additional technical assistance is required to address compatibility issues.
 
----
+### How to Escalate:
+1. Document the request details, including the operating system, product version, and customer environment.
+2. Submit the escalation to the product team with a clear description of the issue.
+3. Provide the customer with an estimated timeline for updates and follow up as needed.
 
-End of Article.

@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EQxyvIAD","00418124","Support Ticket","Sharepoint scanning assistance and Upgrade assistance.","Hello Netwrix team,
+
+I'm looking for assistance for due to a StealthAudit sharepoint scan getting the following errors
+
+C:12] Unable to create SharePoint App Authentication context: Token request failed. The remote server returned an error: (400) Bad Request.
+
+PrepareTask for DC 'SHAREPOINTACCESS' for task 'Scan SharePoint' failed: Unspecified error
+
+And it looks like we are on a older version and looking on help to upgrade to the newer version.
+
+Thanks,","","","","Issue
+
+Sharepoint scanning assistance and Upgrade assistance.
+
+C:12] Unable to create SharePoint App Authentication context: Token request failed. The remote server returned an error: (400) Bad Request.
+
+PrepareTask for DC 'SHAREPOINTACCESS' for task 'Scan SharePoint' failed: Unspecified error
+
+Cause
+
+Originally Azure Client ID was not able to properly authenticate. 
+
+Resolution
+
+We were able to get the SP_RegisterAzureAppAuth Job to run successfully. We retrofitted an existing Azure client ID and verified the account's API permissions. We then applied the generated spaa.cert to the Azure client ID. We then used the temporary password to the certificate file path and configured the path. We then added that path as a password to the connection profile of the SPAA job, dropped the scan depth to 0 level, and monitored the scan until it progressed past the initializing step.","Guidance","Scottie Taylor","","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Configuration","","","29.0","Closed - Resolved","Kerry Group Services International Limited","Cameron Bowlds","2024-08-14T21:10:20.000Z","2024-09-12T21:21:00.000Z"

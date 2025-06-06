@@ -1,121 +1,170 @@
-# Netwrix Endpoint Protector Knowledge Base: EPP Client - Other
+# Netwrix Endpoint Protector Knowledge Base: EPP Client - Other  
 
-## Overview
-The Netwrix Endpoint Protector (EPP) Client is a critical component for endpoint security, offering features such as Data Loss Prevention (DLP), Deep Packet Inspection (DPI), device control, and content-aware protection. This article consolidates common issues, troubleshooting procedures, root cause analyses, and tested solutions related to the EPP Client across various environments, including Windows, macOS, and Linux. It also includes best practices and advanced topics to help support engineers resolve issues efficiently and prevent recurring problems.
+## **Overview**  
+This guide provides a comprehensive reference for troubleshooting and resolving issues related to the "EPP Client - Other" feature of the Netwrix Endpoint Protector (EPP). It is designed to help support engineers systematically diagnose, resolve, and escalate issues, ensuring consistent and effective customer support. This category encompasses a wide range of client-side issues, including installation, configuration, compatibility, network connectivity, and operational challenges.  
 
----
+### **Purpose**  
+- To streamline the resolution of EPP Client-related issues.  
+- To provide a structured framework for identifying root causes and implementing solutions.  
+- To enhance customer satisfaction through efficient and accurate support.  
 
-## Issue Summary Table
-
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| USB keyboards blocked on Windows 11 | USB keyboards blocked by EPP on new PCs | Verify Minifilter settings and reinstall EPP client | Enable Minifilter option in EPP settings | [USB Keyboards Blocked](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BjzfJIAR/view) |
-| Rufus fails to format USB sticks | Formatting fails with EPP installed | Test formatting after uninstalling EPP; check "Unknown Device" settings | Allow "Unknown Device" category in EPP settings | [Rufus Formatting Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BpeI2IAJ/view) |
-| Mac screenshot and AWS CLI issues | Screenshots and AWS CLI fail on macOS | Confirm compatibility and check configurations | Update macOS and verify EPP settings | [Mac Screenshot Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BPpVdIAL/view) |
-| Excess licensed computers | More computers licensed than expected | Investigate backend processes and inactive computers | Execute SQL commands to clean up licenses | [Excess Licensed Computers](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BU329IAD/view) |
-| Logs missing for encrypted USB devices | File transfer logs not retrieved | Test with new client build; collect logs | Deploy updated client build | [Encrypted USB Logs Missing](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BvuOzIAJ/view) |
-| External storage blocked after OTP approval | Drives not detected after OTP approval | Check MDM settings and disk access permissions | Disable MDM restrictions; enable full disk access | [External Storage Blocked](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BXa4pIAD/view) |
-| Content Integrity Fail events | Frequent integrity fail logs | Verify permissions, certificates, and configurations | Ensure full disk access and proper configurations | [Content Integrity Fail](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000C4mLiIAJ/view) |
-| DPI blocks Android Studio and Maven | Applications fail with DPI enabled | Test with Stealthy DPI; disable MTP | Enable Stealthy DPI feature | [DPI Blocking Applications](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000CclyIIAR/view) |
-| Tamper mode bypassed | EPP service stops despite tamper mode | Collect logs and monitor affected endpoints | Update EPP agent and monitor endpoints | [Tamper Mode Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000CFrGPIA1/view) |
-| Content Aware Protection missing | Feature not visible on outdated OS | Verify OS compatibility | Upgrade operating system | [Content Aware Protection Missing](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000CfWQ1IAN/view) |
-| Workstation name conflict | Endpoint Protector console alternates between two workstation names | Enable logging and update policies | Enable the virtual desktop clone feature | [Workstation Name Conflict](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FwFNqIAN/view) |
-| File uploads blocked despite whitelisting | Files fail to upload with "Web Upload*[JS_ENABLED_FLAG]" error | Review policy settings and file types | Deselect "Unidentified File type" in policy settings | [File Uploads Blocked](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FYkRBIA1/view) |
-| Endpoint connectivity issues | Endpoints show "NO" status for Windows and macOS clients | Check network connectivity and firewall settings | Resolve network configuration issues | [Endpoint Connectivity Issues](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GDdokIAD/view) |
-| Compatibility with macOS 15 | Uncertainty about client compatibility with macOS 15 Sequoia | Review documentation and confirm compatibility | Confirm compatibility with macOS 15 Sequoia | [macOS Compatibility Inquiry](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GcFXtIAN/view) |
-| Linux client request | Customer requested Linux client builds | Verify availability of Linux builds | Provide requested Linux builds | [Linux Client Request](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Gdp1aIAB/view) |
-| Screen blinking on macOS | Screen flickers on macOS endpoints | Remove EPP client and monitor behavior | Update EPP client to resolve compatibility issues | [Screen Blinking on macOS](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GuoCFIAZ/view) |
-| Bluetooth devices disabled | Bluetooth peripherals stop working after server upgrade | Check Bluetooth driver status and logs | Update EPP client to latest version | [Bluetooth Devices Disabled](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HINE8IAP/view) |
-| VPN profile installation error | VPN profile fails to install via Jamf | Remove conflicting VPN services | Remove existing VPN services and retry | [VPN Profile Installation Error](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JhbRDIAZ/view) |
-| Excessive notifications | Frequent pop-ups after DLP policy changes | Refine Content Aware Protection settings | Remove unnecessary monitored URL categories | [Excessive Notifications](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Kgj5FIAR/view) |
-| OTP functionality failure | OTP feature returns invalid error | Test OTP functionality and upgrade client | Upgrade to EPP client version 6.2.4.2000 | [OTP Functionality Failure](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Ks8hsIAB/view) |
+### **Scope**  
+This guide focuses on issues involving the EPP Client, including installation, configuration, compatibility, connectivity, and functionality across various operating systems.  
 
 ---
 
-## Detailed Issues
+## **Technical Background**  
 
-### USB Keyboards Blocked on Windows 11
-**Symptoms:** USB keyboards are blocked by EPP on new PCs running Windows 11.  
-**Solution:** Enable the Minifilter option in EPP settings.  
+### **Key Concepts**  
+- **Netwrix Endpoint Protector (EPP):** A data loss prevention (DLP) solution designed to secure endpoints by controlling device access, monitoring data transfers, and enforcing security policies.  
+- **EPP Client:** The software installed on endpoint devices to enforce policies and communicate with the EPP server.  
+- **Content Aware Protection (CAP):** A DLP feature that scans files for sensitive data and enforces policies based on predefined rules.  
+- **Deep Packet Inspection (DPI):** Analyzes network traffic to enforce security policies, which may cause compatibility issues with certain applications.  
+- **Device Control:** Manages access to external devices like USB drives.  
+- **Tamper Mode:** A security feature that prevents unauthorized modifications to the EPP client.  
+- **Stealthy DPI Driver:** A feature that minimizes interference with third-party applications while maintaining DPI functionality.  
 
----
+### **Terminology**  
+- **Minifilter:** A driver-level setting that intercepts file system operations for enhanced control.  
+- **Shadowing:** The process of creating copies of files for auditing purposes.  
+- **Advanced Scanning Exceptions:** A configuration list that excludes specific processes or applications from EPP scanning.  
+- **Policy Interval Refresh Rate:** The frequency at which the EPP client retrieves updated policies from the server.  
+- **Debug Logging:** A mode that captures detailed logs for troubleshooting purposes.  
 
-### Rufus Fails to Format USB Sticks
-**Symptoms:** Rufus fails to format USB sticks when EPP is installed.  
-**Solution:** Set "Unknown Device" category to "Allow Access" in EPP settings.  
-
----
-
-### Mac Screenshot and AWS CLI Issues
-**Symptoms:** Screenshots fail and AWS CLI does not function properly on macOS.  
-**Solution:** Update macOS and verify EPP settings.  
-
----
-
-### Excess Licensed Computers
-**Symptoms:** More computers are licensed than expected.  
-**Solution:** Execute SQL commands to clean up licenses:  
-```sql
-DELETE FROM certificate;
-UPDATE license SET assigned_to = NULL;
-UPDATE clientmachine SET reregister = 1, trialversion = NULL WHERE deleted = 0;
-```
+### **System Context**  
+- **Client-Server Communication:** The EPP client communicates with the server to receive policies, report logs, and enforce configurations.  
+- **Supported Platforms:** Windows, macOS, and Linux (specific distributions and versions vary).  
+- **Third-Party Interactions:** The EPP client may interact with other software, such as VPNs, antivirus programs, and browsers, which can lead to compatibility challenges.  
 
 ---
 
-### Logs Missing for Encrypted USB Devices
-**Symptoms:** Logs for file transfers from encrypted USB devices are not retrieved.  
-**Solution:** Deploy updated client build.  
+## **Issue Recognition & Triage**  
+
+### **Identifying Issues**  
+- **Symptoms:** Common symptoms include blocked access to websites, failed installations, policy enforcement errors, application conflicts, and network connectivity issues (e.g., certificate errors, WebSocket failures).  
+- **Customer Reports:** Look for keywords like "offline," "blocked," "not recognized," or "error message."  
+- **Logs and Screenshots:** Request logs and screenshots to confirm the reported behavior and identify patterns.  
+
+### **Categorizing Issues**  
+1. **Connectivity Issues:** Clients not appearing online or failing to communicate with the server.  
+2. **Policy Enforcement Errors:** Issues where policies are not applied as expected.  
+3. **Compatibility Challenges:** Conflicts with operating systems, third-party software, or hardware.  
+4. **Installation/Uninstallation Errors:** Problems during setup or removal of the EPP Client.  
+5. **Performance Issues:** Delays, crashes, or excessive notifications.  
+
+### **Assessing Priority**  
+- **High Priority:** Issues affecting multiple users, critical business functions, or security vulnerabilities.  
+- **Medium Priority:** Isolated incidents or non-critical functionality issues.  
+- **Low Priority:** Informational requests or minor inconveniences.  
 
 ---
 
-### External Storage Blocked After OTP Approval
-**Symptoms:** Drives not detected after OTP approval.  
-**Solution:** Disable MDM restrictions and enable full disk access.  
+## **Diagnostic Methodology**  
+
+### **Systematic Approach**  
+1. **Understand the Problem:**  
+   - Gather detailed information from the customer.  
+   - Confirm the environment details (OS, EPP version, network setup).  
+2. **Reproduce the Issue:**  
+   - Attempt to replicate the problem in a controlled environment.  
+   - Use logs and screenshots to verify the reported behavior.  
+3. **Analyze Logs:**  
+   - Review debug logs, CAP logs, and system logs for errors or anomalies.  
+4. **Test Solutions:**  
+   - Apply potential fixes incrementally, testing after each change.  
+5. **Document Findings:**  
+   - Record the steps taken, observations, and outcomes for future reference.  
+
+### **Decision Points**  
+- **Connectivity Issue:** Check firewall rules, server certificates, and network routes.  
+- **Policy Issue:** Review CAP/DLP settings and whitelist configurations.  
+- **Compatibility Issue:** Verify supported OS versions and dependencies.  
+- **Installation Issue:** Use offline installation packages and ensure compatibility with the OS version.  
 
 ---
 
-### Content Integrity Fail Events
-**Symptoms:** Frequent integrity fail logs.  
-**Solution:** Ensure full disk access and proper configurations.  
+## **Information Collection**  
+
+### **Questions to Ask Customers**  
+1. What is the affected operating system and version?  
+2. What version of the EPP Client and server are in use?  
+3. What specific error messages or symptoms are observed?  
+4. Are there any recent changes (e.g., upgrades, policy updates)?  
+5. Is the issue isolated to specific endpoints or widespread?  
+
+### **Logs and Data to Collect**  
+- **EPP Logs:** `eppclient.log`, `eppsupporttool.log` (Windows: `%ProgramFiles%\Netwrix Endpoint Protector\Logs`, Linux: `/var/log/epp-client/`).  
+- **Server Logs:** Policy update logs, device exception logs.  
+- **System Logs:** Event Viewer (Windows), Console logs (macOS).  
+- **Network Logs:** Ping, traceroute, and telnet results.  
 
 ---
 
-### DPI Blocks Android Studio and Maven
-**Symptoms:** Applications fail with DPI enabled.  
-**Solution:** Enable Stealthy DPI feature.  
+## **Common Scenarios & Solutions**  
+
+### **Scenario 1: USB Devices Blocked**  
+- **Symptoms:** USB keyboards or external drives are blocked.  
+- **Solution:** Enable the Minifilter option in EPP settings or adjust device control policies.  
+
+### **Scenario 2: Application Conflicts**  
+- **Symptoms:** Applications like Microsoft Teams or Outlook fail to function.  
+- **Solution:** Add affected applications to the Advanced Scanning Exceptions list.  
+
+### **Scenario 3: Network Connectivity Issues**  
+- **Symptoms:** Certificate errors or WebSocket failures during browsing.  
+- **Solution:** Disable DPI temporarily or install a test build with DPI fixes.  
+
+### **Scenario 4: Excessive Temporary File Generation**  
+- **Symptoms:** Thousands of `.tmp` files accumulate in the temp directory.  
+- **Solution:** Update the EPP client to a version with a fixed `libevent` library.  
+
+### **Scenario 5: Logging Discrepancies**  
+- **Symptoms:** Missing file transfer logs for encrypted USB devices.  
+- **Solution:** Deploy a test build that resolves logging issues for encrypted partitions.  
 
 ---
 
-### Tamper Mode Bypassed
-**Symptoms:** EPP service stops despite tamper mode.  
-**Solution:** Update EPP agent and monitor endpoints.  
+## **Detailed Case Studies**  
+
+### **Case Study 1: USB Devices Blocked on Windows 11**  
+- **Symptoms:** USB keyboards blocked on Windows 11.  
+- **Resolution:** Enabled Minifilter in EPP settings.  
+- **Key Takeaway:** Ensure compatibility checks during OS upgrades.  
+
+### **Case Study 2: DPI Interfering with Web Browsing**  
+- **Symptoms:** WebSocket failures and browsing issues.  
+- **Resolution:** Installed a test build with DPI fixes.  
+- **Key Takeaway:** Monitor DPI settings for compatibility with web applications.  
+
+### **Case Study 3: VPN Access Blocked**  
+- **Symptoms:** SSO sign-in to Proton VPN failed with the EPP client installed.  
+- **Resolution:** Enabled the Stealthy DPI Driver to resolve the conflict.  
+- **Key Takeaway:** Adjust DPI settings for compatibility with VPNs.  
 
 ---
 
-### Content Aware Protection Missing
-**Symptoms:** Feature not visible on outdated OS.  
-**Solution:** Upgrade operating system.  
+## **Best Practices & Tips**  
+1. **Regular Updates:** Keep the EPP Client and server updated to the latest versions.  
+2. **Pre-Deployment Testing:** Test policies and configurations in a controlled environment before rollout.  
+3. **Clear Communication:** Provide detailed instructions and follow up with customers to confirm resolution.  
+4. **Documentation:** Maintain updated guides for common tasks like installation, uninstallation, and policy configuration.  
+5. **Proactive Monitoring:** Use alerts and logs to identify issues before they escalate.  
 
 ---
 
-## Best Practices
-1. **Regular Updates:** Keep EPP clients and servers updated.  
-2. **Policy Review:** Regularly review and refine DLP and Content Aware Protection policies.  
-3. **Compatibility Checks:** Verify OS compatibility before deploying EPP clients.  
-4. **Testing Environment:** Test changes in a controlled environment before production deployment.  
+## **Escalation Guidelines**  
 
----
+### **When to Escalate**  
+- Issues involving widespread outages or critical functionality.  
+- Problems unresolved after applying standard troubleshooting steps.  
+- Cases requiring R&D team involvement (e.g., unidentified bugs).  
 
-## Advanced Topics
+### **How to Escalate**  
+1. Collect all relevant logs and customer details.  
+2. Document steps already taken and their outcomes.  
+3. Submit a detailed escalation request to the appropriate team.  
+4. Follow up regularly to ensure timely resolution and communicate updates to the customer.  
 
-### Debug Logging Management
-- Use the `eppclient_append.log` file for persistent logs.  
-- Disable debug mode and reboot to refresh logs.  
+---  
 
-### DPI Configuration for VPN Compatibility
-- Enable the "Stealthy DPI Driver" to resolve VPN conflicts.  
-
----
-
-End of Article.
+This guide serves as a comprehensive reference for handling EPP Client-related issues, ensuring consistent and effective support delivery.  

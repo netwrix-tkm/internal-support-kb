@@ -1,0 +1,108 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009LkQrIAK","500Qk00000GExqGIAT","+++++
+2024_0927: Perhaps Ryan is referring to the ""AD inventory summary count"" 
++++++","005Qk00000276ifIAA","2024-09-27T12:56:47.000Z","2024-09-27T12:56:47.000Z","false","false"
+"00aQk000009LrKHIA0","500Qk00000GExqGIAT","+++++
+2024_0927: PowerShell script from Dusty for ""get-aduser"" with output to TXT file
++++++
+
+get-aduser -filter * -Properties * | where {$_.enabled -eq ""True""} | Sort-Object DistinguishedName | FT Name, DistinguishedName, Enabled -AutoSize | Tee-Object ""c:tempEnabled_AD_Users_per_OU_2024_0927.txt""","005Qk00000276ifIAA","2024-09-27T14:14:49.000Z","2024-09-27T14:14:49.000Z","false","false"
+"00aQk000009M19xIAC","500Qk00000GExqGIAT","+++++
+2024_0927: Also a PowerShell Script from Dusty to ""get-aduser"" counts of Active, Inactive and Total AD Users
++++++
+
+# +++++
+# PowerShell ISE - need a server with AD Tools installed
+# +++++
+
+Clear-Host
+##Import-Module ActiveDirectory
+$enabled = (get-aduser -filter *|where {$_.enabled -eq ""True""}).count
+Write-host ""Enabled users total =  $enabled"" -f green
+$disabled = (get-aduser -filter *|where {$_.enabled -ne ""False""}).count
+Write-host ""Disabled users total =  $disabled"" -f yellow
+$TotalADCount = (get-aduser -Filter *).count
+Write-host ""All users total = $TotalADCount"" -f red","005Qk00000276ifIAA","2024-09-27T15:50:06.000Z","2024-10-01T17:18:04.000Z","false","false"
+"00aQk000009Lz6ZIAS","500Qk00000GExqGIAT","+++++
+2024_0927: PowerShell script - ""Get-ADOrganizationalUnit"" counts and names - Josh and Dusty
++++++
+
+# Get all Organizational Units
+$OUs = Get-ADOrganizationalUnit -Filter *
+
+# Initialize an array to store the results
+$results = @()
+
+foreach ($OU in $OUs) {
+    # Get the distinguished name of the OU
+    $OUName = $OU.DistinguishedName
+
+    # Count active users in the OU
+    $activeUsers = Get-ADUser -Filter {Enabled -eq $true} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Count disabled users in the OU
+    $disabledUsers = Get-ADUser -Filter {Enabled -eq $false} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Add the results to the array
+    $results += [PSCustomObject]@{
+        OUName        = $OUName
+        ActiveUsers   = $activeUsers
+        DisabledUsers = $disabledUsers
+    }
+}
+
+# Output the results
+$results | Format-Table -AutoSize","005Qk00000276ifIAA","2024-09-27T15:52:13.000Z","2024-09-27T15:52:13.000Z","false","false"
+"00aQk000009M1ptIAC","500Qk00000GExqGIAT","+++++
+2024_0927: Rough summary of your meeting today with Kevin Fraser and Ryan Tyson:
++++++
+
++++++
+2024_0927: This ticket is mostly about obtaining/confirming AD-User  counts for the purpose of licensing with Sales and the customer renewing their licenses.
++++++
+CASE SUBJECT: Live session required to review Sealthbits application compliance objects to review the count
++++++
+Central Bank of Trinidad and Tobago participants:
++++++
+Kevin Fraser
+Ryan Tyson
++++++
+Dusty
+Josh
+ 
+
++++++
+When we count the AD objects - Exchange Help Mail boxes count as well.
++++++
+Account Manager = Paul Staz
+650 user count - licensed for this perhaps at this time???
++++++
+Enabled users total = 926
+Disabled user total = 207
+TOTAL = 1133
++++++
+Users = 1133
+Groups = 1996
+Computers = 1425
++++++
+Best for NEA to look at the Report under 
+Jobs  >> .Active Directory Inventory >> 1-AD_Scan > Active Directory Summary
++++++
+I think some of the issue is that they are NEA users 
+with Admin rights to the NEA server but are not Sysadmins. 
++++++
+
++++++
+FROM Dusty:
++++++
+If I recall:
+1) NEA/AIC Licenses are based on Active user count.
+2) SI Licenses are based on servers
+3) SAM/NAM will use the NEA Lic.
+4) I'm pretty sure NEA is licensed by active user accounts, but that AD inventory includes all accounts. 
+Licensing does count mailboxes and other non-user user accounts, but doesn't include disabled accounts
+Would need to confirm with Sales.
++++++
+
+Josh prior to the meeting: Perhaps Ryan is referring to the ""AD inventory summary count"" 
++++++","005Qk00000276ifIAA","2024-09-27T15:58:04.000Z","2024-09-27T15:58:04.000Z","false","false"

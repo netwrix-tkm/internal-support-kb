@@ -1,0 +1,61 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000K4EKDIA3","00430935","Support Ticket","IEHP - After Upgrade FSAA Not Completing","Customer: IEHP
+
+Hello Support Team,
+
+After upgrading customer to latest versions as of 12/20/2024, FSAA is now not completing, and the rest of the jobs do not even start past bulk import. We upgraded to resolve issue described in case 00422386, seems to be still related however now affecting FSAA. The logs do not appear to show anything much. Task scheduler says exit code 0 returned after bulk import attempts. FSAA system scan time is 0 seconds (typically see this if the job is terminated unexpectedly).
+
+I'm not really sure where to start with this one, it's super strange and hard to follow since we have a proxy involved, lots of servers, and some of those servers have millions+ files.
+
+Server,Software,Version
+ConsoleServer,Netwrix Enterprise Auditor V11.6,11.6.0.125
+ConsoleServer,Netwrix Access Information Center,11.6.0.25
+ConsoleServer,Netwrix Activity Monitor Agent 64-bit,7.1.234
+ConsoleServer,Netwrix Activity Monitor,7.1.234
+ConsoleServer,Netwrix Sensitive Data Discovery Add-On V11.6,11.6.0.14
+ProxyServer,Netwrix Enterprise Auditor File System Scanning Proxy,11.6.0.36
+ProxyServer,Netwrix Sensitive Data Discovery Add-On V11.6,11.6.0.14
+
+Please let me know best next steps.
+
+Thank you,
+Justin.","","Successful FileSystem collection run with FSAA/FSAC/SEEK enabled after making the following changes:
+1. Add FSAAScanHost.exe to AV exclusions
+2. Limit FSAA to only scan two hosts at a time
+3. HSP1M1 file server, add scoping to skip a few paths since those files rapidly change on a daily basis
+---
+We found a running lock (*.lck) file in the following directory, this was manually deleted.
+0.CollectionGROUP_0.CollectionGROUP_FSAAJOB_1-FSAA System Scans
+
+Job kicked off during the meeting 
+Looks to have gotten stuck at transferring the compressed DBs back to NEA server, got to 2.86GB (of the 10.03 GB FS archive) and that was last log entry. ( Job Aborted)
+
+Awaiting details of any issues from a Networking or Hypervisor perspective. ""may have had resource contention""
+
+Last update from the case contact
+limited HSP1M1 to level 1, ran successfully bulk as well
+HSP1M1 set to unlimited levels, ran successfully bulk as well
+Ran original host list (31 servers) and job failed like it has been previously
+Limited job to run against 3 hosts at a time versus 5 hosts, scan is still running at unlimited and all 31 servers","Last Customer Follow-Up: 2/18
+
+Scans are still running, waiting to see the status of the scans","Confirmed that the current version of application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA)      11.6.0.125
+NEA FS Proxy                                     11.6.0.36
+
+We found a running lock (*.lck) file in the following directory, this was manually deleted.
+0.CollectionGROUP_0.CollectionGROUP_FSAAJOB_1-FSAA System Scans
+
+The FSAA Scan was set to a temporary depth of 1 and the scheduled task was kicked off.
+
+The problem host (HS1MP1) was still ""verifying database"" at the end of the call (almost an hour after starting based on the log).
+We will need to set the Depth back to full by unchecking the box “Limit sub-folder scan depth to:”
+
+REF: Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector > FSAA: Default Scoping Options
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/DefaultScopingOptions.htm
+
+Contact noted the following additional changes 
+Successful FileSystem collection run with FSAA/FSAC/SEEK enabled after making the following changes:
+1. Add FSAAScanHost.exe to AV exclusions
+2. Limit FSAA to only scan two hosts at a time
+3. HSP1M1 file server, add scoping to skip a few paths since those files rapidly change on a daily basis","Insufficient hardware resources","Dusty Grayson","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.6","125","49.6","Closed - Resolved","Inland Empire Health Plan","Justin Cahill","2024-12-31T04:48:51.000Z","2025-02-18T19:51:07.000Z"

@@ -1,0 +1,775 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000I56LlIAJ","500Qk00000IT2wzIAD","2024-11-18T18:00:16.000Z","2024-11-18T18:00:16.000Z","Hi Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. Can you please provide more information on which web applications are being used with an SSL certificate?
+
+Can you also run the below PowerShell command to provide the current versions of the Netwrix applications that you're specifically using?
+
+#Netwrix/Stealth, PostgreSQL, Python application versions: 
+Get-CimInstance -Class Win32_Product | 
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue | 
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize  
+
+The latest versions of our NEA application utilizes a secure hash algorithm sha256 which is part of the SHA-2 family. This is for the web applications and the locally installed NEA application. If you have an AV software that is detecting outdated SHA-1 cryptographic functions on the SA application itself then upgrading to the latest should resolve that vulnerability detection. If it is just the web applications then changing the secure hash algorithm wouldn't cause issues with the web application since its bound to the port communicating to the application server and not the application server itself.
+
+Please let me know if you have any additional questions.
+
+Thank you,
+
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0IT2wz:ref","Security flag    [ ref:!00D70091pB.!500Qk0IT2wz:ref ]","techsupport@netwrix.com","Netwrix Support","frank.a.mcnickle@conocophillips.com","sean.comiskey@netwrix.com; zarish.khan@netwrix.com","","false","2024-11-18T18:00:14.000Z","true"
+"02sQk00000I51CXIAZ","500Qk00000IT2wzIAD","2024-11-18T18:10:26.000Z","2024-11-18T18:14:40.000Z","ref:_00D7091pB._500Q000IT2wz:ref
+
+Hello Scottie - thanks for the quick response.
+
+Unfortunately I have several security issues and would really like to schedule some time to review them as they are probably related to our SAM agents, but may overlap into the StealthIntercept or SteallthDefend apps.
+
+I'm pulling a list and grouping these issues to help us expedite the fix(s).
+
+A couple of issues so far:
+Issue 1
+The remote host supports the use of SSL ciphers that offer medium strength encryption. Nessus regards medium strength as any encryption that uses key lengths at least 64 bits and less than 112 bits, or else that uses the 3DES encryption suite. Note that it is considerably easier to circumvent medium strength encryption if the attacker is on the same physical network.
+Threat
+The remote service supports the use of medium strength SSL ciphers.
+Remediation Notes
+Reconfigure the affected application if possible to avoid use of medium strength ciphers.
+
+Issue 2
+The remote service uses an SSL certificate chain that has been signed using a cryptographically weak hashing algorithm (e.g. MD2, MD4, MD5, or SHA1). These signature algorithms are known to be vulnerable to collision attacks. An attacker can exploit this to generate another certificate with the same digital signature, allowing an attacker to masquerade as the affected service. Note that this plugin reports all SSL certificate chains signed with SHA-1 that expire after January 1, 2017 as vulnerable. This is in accordance with Google's gradual sunsetting of the SHA-1 cryptographic hash algorithm. Note that certificates in the chain that are contained in the Nessus CA database (known_CA.inc) have been ignored.
+Threat
+An SSL certificate in the certificate chain has been signed using a weak hash algorithm.
+Remediation Notes
+Contact the Certificate Authority to have the SSL certificate reissued.
+
+
+
+
+Is it possible to set up a meeting to further discuss these?
+Thanks
+Frank
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 18, 2024 12:00 PM
+To: McNickle, Frank A <Frank.A.McNickle@conocophillips.com>
+Cc: sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+CAUTION:This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+
+Hi Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. Can you please provide more information on which web applications are being used with an SSL certificate?
+
+Can you also run the below PowerShell command to provide the current versions of the Netwrix applications that you're specifically using?
+
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+The latest versions of our NEA application utilizes a secure hash algorithm sha256 which is part of the SHA-2 family. This is for the web applications and the locally installed NEA application. If you have an AV software that is detecting outdated SHA-1 cryptographic functions on the SA application itself then upgrading to the latest should resolve that vulnerability detection. If it is just the web applications then changing the secure hash algorithm wouldn't cause issues with the web application since its bound to the port communicating to the application server and not the application server itself.
+
+Please let me know if you have any additional questions.
+
+Thank you,
+
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+[https://lp.netwrix.com/rs/130-MAN-089/images/email-banner-nwx-connect-20240805.png]<https://try.netwrix.com/netwrix_connect_us_2024>
+
+ref:!00D70091pB.!500Qk0IT2wz:ref","RE: Netwrix Support Ticket #427419 - ref:_00D7091pB._500Q000IT2wz:ref - [EXTERNAL]Security flag    [ ref:!00D70091pB.!500Qk0IT2wz:ref ]","frank.a.mcnickle@conocophillips.com","McNickle, Frank A","techsupport@netwrix.com","taylor.caliguiri@netwrix.com; sean.comiskey@netwrix.com; zarish.khan@netwrix.com","","false","2024-11-18T18:10:10.000Z","true"
+"02sQk00000I51u0IAB","500Qk00000IT2wzIAD","2024-11-18T18:17:26.000Z","2024-11-18T18:17:26.000Z","Hi Frank,
+
+Thank you for the updated information. I will include this in the ticket.
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=a_3YYmeeIsDiHx9U4LuOOAU68J0f4aNKQmIsw4.Mous-Z&MeetingID=6OIk_8p_VyYN0goDemjWuOxrsJbA1x2NSv9awkteVQ8-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+
+--------------- Original Message ---------------
+From: McNickle, Frank A [frank.a.mcnickle@conocophillips.com]
+Sent: 11/18/2024 12:10 PM
+To: techsupport@netwrix.com
+Cc: taylor.caliguiri@netwrix.com; sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: RE: Netwrix Support Ticket #427419 - ref:_00D7091pB._500Q000IT2wz:ref - [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+ref:_00D7091pB._500Q000IT2wz:ref
+
+
+
+Hello Scottie – thanks for the quick response.
+
+ 
+
+Unfortunately I have several security issues and would really like to schedule some time to review them as they are probably related to our SAM agents, but may overlap into the StealthIntercept or SteallthDefend apps.
+
+ 
+
+I’m pulling a list and grouping these issues to help us expedite the fix(s).
+
+ 
+
+A couple of issues so far:
+
+Issue 1
+
+
+	
+		
+			
+			The remote host supports the use of SSL ciphers that offer medium strength encryption. Nessus regards medium strength as any encryption that uses key lengths at least 64 bits and less than 112 bits, or else that uses the 3DES encryption suite. Note that it is considerably easier to circumvent medium strength encryption if the attacker is on the same physical network.
+			
+		
+		
+			 
+		
+		
+			
+			Threat
+			
+		
+		
+			
+			The remote service supports the use of medium strength SSL ciphers. 
+			
+		
+		
+			
+			Remediation Notes
+			
+		
+		
+			
+			Reconfigure the affected application if possible to avoid use of medium strength ciphers.
+			
+		
+	
+
+
+ 
+
+Issue 2
+
+The remote service uses an SSL certificate chain that has been signed using a cryptographically weak hashing algorithm (e.g. MD2, MD4, MD5, or SHA1). These signature algorithms are known to be vulnerable to collision attacks. An attacker can exploit this to generate another certificate with the same digital signature, allowing an attacker to masquerade as the affected service. Note that this plugin reports all SSL certificate chains signed with SHA-1 that expire after January 1, 2017 as vulnerable. This is in accordance with Google's gradual sunsetting of the SHA-1 cryptographic hash algorithm. Note that certificates in the chain that are contained in the Nessus CA database (known_CA.inc) have been ignored.
+
+Threat
+
+An SSL certificate in the certificate chain has been signed using a weak hash algorithm.
+
+Remediation Notes
+
+Contact the Certificate Authority to have the SSL certificate reissued.
+
+ 
+
+ 
+
+ 
+
+ 
+
+Is it possible to set up a meeting to further discuss these?
+
+Thanks
+
+Frank
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 18, 2024 12:00 PM
+To: McNickle, Frank A <Frank.A.McNickle@conocophillips.com>
+Cc: sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			CAUTION:This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+
+Hi Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. Can you please provide more information on which web applications are being used with an SSL certificate?
+
+Can you also run the below PowerShell command to provide the current versions of the Netwrix applications that you're specifically using?
+
+#Netwrix/Stealth, PostgreSQL, Python application versions: 
+Get-CimInstance -Class Win32_Product | 
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue | 
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize  
+
+The latest versions of our NEA application utilizes a secure hash algorithm sha256 which is part of the SHA-2 family. This is for the web applications and the locally installed NEA application. If you have an AV software that is detecting outdated SHA-1 cryptographic functions on the SA application itself then upgrading to the latest should resolve that vulnerability detection. If it is just the web applications then changing the secure hash algorithm wouldn't cause issues with the web application since its bound to the port communicating to the application server and not the application server itself.
+
+Please let me know if you have any additional questions.
+
+Thank you,
+
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0IT2wz:ref","RE: Netwrix Support Ticket #427419 -  - [EXTERNAL]Security flag    [ ref:!00D70091pB.!500Qk0IT2wz:ref ]","techsupport@netwrix.com","Netwrix Support","frank.a.mcnickle@conocophillips.com","sean.comiskey@netwrix.com; zarish.khan@netwrix.com","","false","2024-11-18T18:17:25.000Z","true"
+"02sQk00000IBaU1IAL","500Qk00000IT2wzIAD","2024-11-20T17:39:00.000Z","2024-11-20T17:39:00.000Z","Hi Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you.
+
+Thank you for taking the time to meet today.
+
+Today we:
+
+Reviewed the vulnerability reported by Tenable.io. We identified the vulnerability as CVE-2024-21409 which is a .NET Privilege Elevation vulnerability. The list of affected software is below:
+ 
+
+	Any .NET 6.0 application running on .NET 6.0.28 or earlier.
+	Any .NET 7.0 application running on .NET 7.0.17 or earlier.
+	Any .NET 8.0 application running on .NET 8.0.3 or earlier.
+
+The list of patched versions by .NET  are below:
+
+
+	6.0.29
+	7.0.18
+	8.0.4
+
+
+We discovered that this vulnerability is addressed in a CU by Microsoft. 
+
+We also discussed the SSL ciphers vulnerability that's being reported due to the digest size of the secure hash algorithm being used in the 11.5 application. The digest size that was suggested was SHA-384. 
+
+
+Our next steps are:
+You will:
+
+Apply required CUs to the servers being pinged by tenable.io for this CVE. 
+
+CVE-2024-21409
+
+I will:
+
+I will test in my lab with the latest version of NEA 11.6 with the increased digest size for verification of any abnormalities with the product after implementing it.
+
+
+Please use this link to schedule our next meeting at your convenience
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.v.DID.BzlXdKIfPbC1.Dtiogg2eNCHwjbq_uIV260w-Z&MeetingID=jnVBPOe.3LFwjI4YAhjMUTM7vvn0ZG3Mk8eklmw15_8-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/18/2024 12:17 PM
+To: frank.a.mcnickle@conocophillips.com
+Cc: sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: RE: Netwrix Support Ticket #427419 - - [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+Hi Frank,
+
+Thank you for the updated information. I will include this in the ticket.
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=a_3YYmeeIsDiHx9U4LuOOAU68J0f4aNKQmIsw4.Mous-Z&MeetingID=6OIk_8p_VyYN0goDemjWuOxrsJbA1x2NSv9awkteVQ8-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+
+--------------- Original Message ---------------
+From: McNickle, Frank A [frank.a.mcnickle@conocophillips.com]
+Sent: 11/18/2024 12:10 PM
+To: techsupport@netwrix.com
+Cc: taylor.caliguiri@netwrix.com; sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: RE: Netwrix Support Ticket #427419 - ref:_00D7091pB._500Q000IT2wz:ref - [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+ref:_00D7091pB._500Q000IT2wz:ref
+
+
+
+Hello Scottie – thanks for the quick response.
+
+ 
+
+Unfortunately I have several security issues and would really like to schedule some time to review them as they are probably related to our SAM agents, but may overlap into the StealthIntercept or SteallthDefend apps.
+
+ 
+
+I’m pulling a list and grouping these issues to help us expedite the fix(s).
+
+ 
+
+A couple of issues so far:
+
+Issue 1
+
+
+	
+		
+			
+			The remote host supports the use of SSL ciphers that offer medium strength encryption. Nessus regards medium strength as any encryption that uses key lengths at least 64 bits and less than 112 bits, or else that uses the 3DES encryption suite. Note that it is considerably easier to circumvent medium strength encryption if the attacker is on the same physical network.
+			
+		
+		
+			 
+		
+		
+			
+			Threat
+			
+		
+		
+			
+			The remote service supports the use of medium strength SSL ciphers. 
+			
+		
+		
+			
+			Remediation Notes
+			
+		
+		
+			
+			Reconfigure the affected application if possible to avoid use of medium strength ciphers.
+			
+		
+	
+
+
+ 
+
+Issue 2
+
+The remote service uses an SSL certificate chain that has been signed using a cryptographically weak hashing algorithm (e.g. MD2, MD4, MD5, or SHA1). These signature algorithms are known to be vulnerable to collision attacks. An attacker can exploit this to generate another certificate with the same digital signature, allowing an attacker to masquerade as the affected service. Note that this plugin reports all SSL certificate chains signed with SHA-1 that expire after January 1, 2017 as vulnerable. This is in accordance with Google's gradual sunsetting of the SHA-1 cryptographic hash algorithm. Note that certificates in the chain that are contained in the Nessus CA database (known_CA.inc) have been ignored.
+
+Threat
+
+An SSL certificate in the certificate chain has been signed using a weak hash algorithm.
+
+Remediation Notes
+
+Contact the Certificate Authority to have the SSL certificate reissued.
+
+ 
+
+ 
+
+ 
+
+ 
+
+Is it possible to set up a meeting to further discuss these?
+
+Thanks
+
+Frank
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 18, 2024 12:00 PM
+To: McNickle, Frank A <Frank.A.McNickle@conocophillips.com>
+Cc: sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			CAUTION:This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+
+Hi Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. Can you please provide more information on which web applications are being used with an SSL certificate?
+
+Can you also run the below PowerShell command to provide the current versions of the Netwrix applications that you're specifically using?
+
+#Netwrix/Stealth, PostgreSQL, Python application versions: 
+Get-CimInstance -Class Win32_Product | 
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue | 
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize  
+
+The latest versions of our NEA application utilizes a secure hash algorithm sha256 which is part of the SHA-2 family. This is for the web applications and the locally installed NEA application. If you have an AV software that is detecting outdated SHA-1 cryptographic functions on the SA application itself then upgrading to the latest should resolve that vulnerability detection. If it is just the web applications then changing the secure hash algorithm wouldn't cause issues with the web application since its bound to the port communicating to the application server and not the application server itself.
+
+Please let me know if you have any additional questions.
+
+Thank you,
+
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0IT2wz:ref","RE: Netwrix Support Ticket #427419 -  - [EXTERNAL]Security flag    [ ref:!00D70091pB.!500Qk0IT2wz:ref ]","techsupport@netwrix.com","Netwrix Support","frank.a.mcnickle@conocophillips.com","sean.comiskey@netwrix.com; zarish.khan@netwrix.com","","false","2024-11-20T17:38:59.000Z","true"
+"02sQk00000IQwiqIAD","500Qk00000IT2wzIAD","2024-11-26T17:47:24.000Z","2024-11-26T17:47:24.000Z","Hi Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you.
+
+Thank you for taking the time to meet today.
+
+Today we:
+
+Discussed the a possible plan of action to update all current SSL certificate digital signatures with the SHA-384 digest size for increased encryption. This includes taking a snapshot of the servers we intend to update to provide a revert point for the affected servers. 
+
+Can you also provide the CVE number that is present within the tenable.io vulnerability scanner for more information as we further test this change?
+
+Our next steps are:
+
+You will:
+
+Prepare for the update by taking a snapshot of all servers and configuring a GPO to issue the updated digest size for the digital signature.
+
+I will:
+
+Provide more information to my team for further investigation into possible outcomes when applying this change to an 11.5 web application or proxy scanners.
+
+
+Please use this link to schedule our next meeting at your convenience
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=oNegIe.6gE6SV8ZxjCvLG1JgA79gpFfxF0mT_6Sd1rY-Z&MeetingID=FHiNxrSn7fDa2F2T31.PEDR26krfdbH0kApRSzT.53c-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/20/2024 11:38 AM
+To: frank.a.mcnickle@conocophillips.com
+Cc: sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: RE: Netwrix Support Ticket #427419 - - [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+Hi Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you.
+
+Thank you for taking the time to meet today.
+
+Today we:
+
+Reviewed the vulnerability reported by Tenable.io. We identified the vulnerability as CVE-2024-21409 which is a .NET Privilege Elevation vulnerability. The list of affected software is below:
+ 
+
+	Any .NET 6.0 application running on .NET 6.0.28 or earlier.
+	Any .NET 7.0 application running on .NET 7.0.17 or earlier.
+	Any .NET 8.0 application running on .NET 8.0.3 or earlier.
+
+The list of patched versions by .NET  are below:
+
+
+	6.0.29
+	7.0.18
+	8.0.4
+
+
+We discovered that this vulnerability is addressed in a CU by Microsoft. 
+
+We also discussed the SSL ciphers vulnerability that's being reported due to the digest size of the secure hash algorithm being used in the 11.5 application. The digest size that was suggested was SHA-384. 
+
+
+Our next steps are:
+You will:
+
+Apply required CUs to the servers being pinged by tenable.io for this CVE. 
+
+CVE-2024-21409
+
+I will:
+
+I will test in my lab with the latest version of NEA 11.6 with the increased digest size for verification of any abnormalities with the product after implementing it.
+
+
+Please use this link to schedule our next meeting at your convenience
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.v.DID.BzlXdKIfPbC1.Dtiogg2eNCHwjbq_uIV260w-Z&MeetingID=jnVBPOe.3LFwjI4YAhjMUTM7vvn0ZG3Mk8eklmw15_8-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/18/2024 12:17 PM
+To: frank.a.mcnickle@conocophillips.com
+Cc: sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: RE: Netwrix Support Ticket #427419 - - [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+Hi Frank,
+
+Thank you for the updated information. I will include this in the ticket.
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=a_3YYmeeIsDiHx9U4LuOOAU68J0f4aNKQmIsw4.Mous-Z&MeetingID=6OIk_8p_VyYN0goDemjWuOxrsJbA1x2NSv9awkteVQ8-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+
+--------------- Original Message ---------------
+From: McNickle, Frank A [frank.a.mcnickle@conocophillips.com]
+Sent: 11/18/2024 12:10 PM
+To: techsupport@netwrix.com
+Cc: taylor.caliguiri@netwrix.com; sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: RE: Netwrix Support Ticket #427419 - ref:_00D7091pB._500Q000IT2wz:ref - [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+ref:_00D7091pB._500Q000IT2wz:ref
+
+
+
+Hello Scottie – thanks for the quick response.
+
+ 
+
+Unfortunately I have several security issues and would really like to schedule some time to review them as they are probably related to our SAM agents, but may overlap into the StealthIntercept or SteallthDefend apps.
+
+ 
+
+I’m pulling a list and grouping these issues to help us expedite the fix(s).
+
+ 
+
+A couple of issues so far:
+
+Issue 1
+
+
+	
+		
+			
+			The remote host supports the use of SSL ciphers that offer medium strength encryption. Nessus regards medium strength as any encryption that uses key lengths at least 64 bits and less than 112 bits, or else that uses the 3DES encryption suite. Note that it is considerably easier to circumvent medium strength encryption if the attacker is on the same physical network.
+			
+		
+		
+			 
+		
+		
+			
+			Threat
+			
+		
+		
+			
+			The remote service supports the use of medium strength SSL ciphers. 
+			
+		
+		
+			
+			Remediation Notes
+			
+		
+		
+			
+			Reconfigure the affected application if possible to avoid use of medium strength ciphers.
+			
+		
+	
+
+
+ 
+
+Issue 2
+
+The remote service uses an SSL certificate chain that has been signed using a cryptographically weak hashing algorithm (e.g. MD2, MD4, MD5, or SHA1). These signature algorithms are known to be vulnerable to collision attacks. An attacker can exploit this to generate another certificate with the same digital signature, allowing an attacker to masquerade as the affected service. Note that this plugin reports all SSL certificate chains signed with SHA-1 that expire after January 1, 2017 as vulnerable. This is in accordance with Google's gradual sunsetting of the SHA-1 cryptographic hash algorithm. Note that certificates in the chain that are contained in the Nessus CA database (known_CA.inc) have been ignored.
+
+Threat
+
+An SSL certificate in the certificate chain has been signed using a weak hash algorithm.
+
+Remediation Notes
+
+Contact the Certificate Authority to have the SSL certificate reissued.
+
+ 
+
+ 
+
+ 
+
+ 
+
+Is it possible to set up a meeting to further discuss these?
+
+Thanks
+
+Frank
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 18, 2024 12:00 PM
+To: McNickle, Frank A <Frank.A.McNickle@conocophillips.com>
+Cc: sean.comiskey@netwrix.com; zarish.khan@netwrix.com
+Subject: [EXTERNAL]Security flag [ ref:!00D70091pB.!500Qk0IT2wz:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			CAUTION:This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+
+Hi Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. Can you please provide more information on which web applications are being used with an SSL certificate?
+
+Can you also run the below PowerShell command to provide the current versions of the Netwrix applications that you're specifically using?
+
+#Netwrix/Stealth, PostgreSQL, Python application versions: 
+Get-CimInstance -Class Win32_Product | 
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue | 
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize  
+
+The latest versions of our NEA application utilizes a secure hash algorithm sha256 which is part of the SHA-2 family. This is for the web applications and the locally installed NEA application. If you have an AV software that is detecting outdated SHA-1 cryptographic functions on the SA application itself then upgrading to the latest should resolve that vulnerability detection. If it is just the web applications then changing the secure hash algorithm wouldn't cause issues with the web application since its bound to the port communicating to the application server and not the application server itself.
+
+Please let me know if you have any additional questions.
+
+Thank you,
+
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0IT2wz:ref","RE: Netwrix Support Ticket #427419 -  - [EXTERNAL]Security flag    [ ref:!00D70091pB.!500Qk0IT2wz:ref ]","techsupport@netwrix.com","Netwrix Support","frank.a.mcnickle@conocophillips.com","sean.comiskey@netwrix.com; zarish.khan@netwrix.com","","false","2024-11-26T17:47:22.000Z","true"

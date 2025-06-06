@@ -1,0 +1,4446 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MQiiNIAT","500Qk00000MXLYtIAP","2025-03-10T16:57:51.000Z","2025-03-10T18:18:18.000Z","ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:e3d850dd-9b45-43ee-a443-01eda4efa448]
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed.
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:698f34c5-30db-4ebd-a7f4-c9c42d187c45@Image_0_]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jr3mV&from=int]
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Ju47f&from=int]
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jw85V&from=ext]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jya8v&from=ext]","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","nathan.funk@ardenthealth.com","Nathan Funk","techsupport@netwrix.com","john.hilsher@netwrix.com","","true","2025-03-10T16:57:37.000Z","true"
+"02sQk00000MRBCZIA5","500Qk00000MXLYtIAP","2025-03-10T18:26:55.000Z","2025-03-10T18:26:55.000Z","Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+
+Good Afternoon,
+
+ 
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+ 
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed. 
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+ 
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+ 
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","techsupport@netwrix.com","Netwrix Support","nathan.funk@ardenthealth.com","john.hilsher@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-10T18:26:53.000Z","true"
+"02sQk00000MgnSoIAJ","500Qk00000MXLYtIAP","2025-03-17T15:50:47.000Z","2025-03-17T15:50:47.000Z","Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+
+Good Afternoon,
+
+ 
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+ 
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed. 
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+ 
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+ 
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","techsupport@netwrix.com","Netwrix Support","nathan.funk@ardenthealth.com","john.hilsher@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-17T15:50:45.000Z","true"
+"02sQk00000MhSR4IAN","500Qk00000MXLYtIAP","2025-03-17T18:32:54.000Z","2025-03-17T20:11:55.000Z","ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:2e22c870-54c5-4d65-9aa9-d834b94c7c85@Image_0_]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed.
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:f0c40f23-f7d9-4687-a1de-e513f7f4108a@Image_1_]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jr3mV&from=int]
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Ju47f&from=int]
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jw85V&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jya8v&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000K3aeY&from=ext]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KGtWa&from=ext]","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","nathan.funk@ardenthealth.com","Nathan Funk","techsupport@netwrix.com","john.hilsher@netwrix.com","","true","2025-03-17T18:32:37.000Z","true"
+"02sQk00000MjNrrIAF","500Qk00000MXLYtIAP","2025-03-18T14:04:23.000Z","2025-03-18T14:04:23.000Z","Hello Nathan,
+
+Did you set the logs to DEBUG over the weekend? The previous logs didn't report so much as an error. I'm hoping the debug logs will reveal more. Please attach them to the ticket for review.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/17/2025 2:32 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+
+Good Afternoon,
+
+ 
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+ 
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+ 
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed. 
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+ 
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+ 
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","techsupport@netwrix.com","Netwrix Support","nathan.funk@ardenthealth.com","john.hilsher@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-18T14:04:22.000Z","true"
+"02sQk00000MrSuLIAV","500Qk00000MXLYtIAP","2025-03-21T13:10:55.000Z","2025-03-21T15:00:18.000Z","ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Morning,
+
+I failed to do so. Lets run the test back again this weekend now that the log levels are set to DEBUG.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 18, 2025 9:04 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Did you set the logs to DEBUG over the weekend? The previous logs didn't report so much as an error. I'm hoping the debug logs will reveal more. Please attach them to the ticket for review.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/17/2025 2:32 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:2634e941-4803-4f20-8f9f-4b6956843090@Image_0_]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed.
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:ba19f202-8130-443a-a433-4cecf59a3e2f@Image_1_]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jr3mV&from=int]
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Ju47f&from=int]
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jw85V&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jya8v&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000K3aeY&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KGtWa&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KJE2C&from=ext]","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","nathan.funk@ardenthealth.com","Nathan Funk","techsupport@netwrix.com","john.hilsher@netwrix.com","","true","2025-03-21T13:10:39.000Z","true"
+"02sQk00000MrsaIIAR","500Qk00000MXLYtIAP","2025-03-21T16:44:58.000Z","2025-03-21T16:44:58.000Z","Hello Nathan,
+
+Sounds good. Please let me know if the Sunday report picks up the change and attach the debug logs when they are available.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/21/2025 9:10 AM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+
+Good Morning,
+
+ 
+
+I failed to do so. Lets run the test back again this weekend now that the log levels are set to DEBUG.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 18, 2025 9:04 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+Did you set the logs to DEBUG over the weekend? The previous logs didn't report so much as an error. I'm hoping the debug logs will reveal more. Please attach them to the ticket for review.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/17/2025 2:32 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+ 
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+ 
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed. 
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+ 
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+ 
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","techsupport@netwrix.com","Netwrix Support","nathan.funk@ardenthealth.com","john.hilsher@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-21T16:44:57.000Z","true"
+"02sQk00000Mx0VaIAJ","500Qk00000MXLYtIAP","2025-03-24T17:13:00.000Z","2025-03-24T20:08:39.000Z","ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+Sunday's report did show Ereyes01 in the MSHDNSAdmins group. I've attached the log files to the ticket.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:45 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Sounds good. Please let me know if the Sunday report picks up the change and attach the debug logs when they are available.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/21/2025 9:10 AM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Morning,
+
+I failed to do so. Lets run the test back again this weekend now that the log levels are set to DEBUG.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 18, 2025 9:04 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Did you set the logs to DEBUG over the weekend? The previous logs didn't report so much as an error. I'm hoping the debug logs will reveal more. Please attach them to the ticket for review.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/17/2025 2:32 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:c925f15c-3ddf-4d06-91b6-9b22bdec5b66@Image_0_]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed.
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:7805e31f-6cf0-4cf6-92a0-7a2da4ae61e2@Image_1_]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jr3mV&from=int]
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Ju47f&from=int]
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jw85V&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jya8v&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000K3aeY&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KGtWa&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KJE2C&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KRFU5&from=ext]","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","nathan.funk@ardenthealth.com","Nathan Funk","techsupport@netwrix.com","john.hilsher@netwrix.com","","true","2025-03-24T17:12:45.000Z","true"
+"02sQk00000Mxd8kIAB","500Qk00000MXLYtIAP","2025-03-24T20:24:17.000Z","2025-03-24T20:24:17.000Z","Hello Nathan,
+
+Thank you for the fresh logs. Just to be clear, you did add the user to the group this past Friday then remove them again today, right? Have you had chance to run the report again manually after removing the user from the group today? Does it still show the user in the group? I'm just trying to establish a timeline. It seems like the scheduled report is reporting the data from the previous week but is current when you run it manually. I still need to review the logs and see if I can find any evidence of this or other issues.
+
+I will review the logs and let you know if I find anything. 
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/24/2025 1:12 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+
+Good Afternoon,
+
+ 
+
+Sunday's report did show Ereyes01 in the MSHDNSAdmins group. I've attached the log files to the ticket.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:45 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+Sounds good. Please let me know if the Sunday report picks up the change and attach the debug logs when they are available.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/21/2025 9:10 AM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Morning,
+
+ 
+
+I failed to do so. Lets run the test back again this weekend now that the log levels are set to DEBUG.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 18, 2025 9:04 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+Did you set the logs to DEBUG over the weekend? The previous logs didn't report so much as an error. I'm hoping the debug logs will reveal more. Please attach them to the ticket for review.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/17/2025 2:32 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+ 
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+ 
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed. 
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+ 
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+ 
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","techsupport@netwrix.com","Netwrix Support","nathan.funk@ardenthealth.com","john.hilsher@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-24T20:24:15.000Z","true"
+"02sQk00000MyxgTIAR","500Qk00000MXLYtIAP","2025-03-25T12:23:40.000Z","2025-03-25T16:54:36.000Z","ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Morning,
+
+Ereyes01 was added to the MSHDnsAdmins group on Friday, then removed on Monday. Today I refreshed the Active Directory Inventory and then ran the Sensitive Group Membership report. Ereyes01 is still listed on this report as being a member of the MSHDnsAdmins group.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 3:24 PM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Thank you for the fresh logs. Just to be clear, you did add the user to the group this past Friday then remove them again today, right? Have you had chance to run the report again manually after removing the user from the group today? Does it still show the user in the group? I'm just trying to establish a timeline. It seems like the scheduled report is reporting the data from the previous week but is current when you run it manually. I still need to review the logs and see if I can find any evidence of this or other issues.
+
+I will review the logs and let you know if I find anything.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/24/2025 1:12 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+Sunday's report did show Ereyes01 in the MSHDNSAdmins group. I've attached the log files to the ticket.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:45 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Sounds good. Please let me know if the Sunday report picks up the change and attach the debug logs when they are available.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/21/2025 9:10 AM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Morning,
+
+I failed to do so. Lets run the test back again this weekend now that the log levels are set to DEBUG.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 18, 2025 9:04 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Did you set the logs to DEBUG over the weekend? The previous logs didn't report so much as an error. I'm hoping the debug logs will reveal more. Please attach them to the ticket for review.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/17/2025 2:32 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+
+[Ardent Resource Team]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:3ddfe224-0221-4133-9497-5caaf2e41f35@Image_0_]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed.
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:67dbebd7-99bd-43ba-be3e-94c59907a969@Image_1_]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jr3mV&from=int]
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Ju47f&from=int]
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jw85V&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jya8v&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000K3aeY&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KGtWa&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KJE2C&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KRFU5&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KVsGj&from=ext]","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","nathan.funk@ardenthealth.com","Nathan Funk","techsupport@netwrix.com","john.hilsher@netwrix.com","","true","2025-03-25T12:23:24.000Z","true"
+"02sQk00000Mzc5MIAR","500Qk00000MXLYtIAP","2025-03-25T16:14:36.000Z","2025-03-25T17:59:58.000Z","ref:_00D7091pB._500Q000MXLYt:ref
+
+Hey Team,
+
+Could the path to gain membership of the MSHDnsAdmins group be something that is tripping us up here? Just trying to understand this and potential ways to resolve this.
+
+Thanks,
+
+John Hilsher
+Enterprise Customer Success Manager
+1-210-288-6587
+____________________ __________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+https://community.netwrix.com/invites/fQPEW4gFUD
+
+From: Nathan Funk <nathan.funk@ardenthealth.com>
+Sent: Tuesday, March 25, 2025 7:23 AM
+To: techsupport <techsupport@netwrix.com>
+Cc: John Hilsher <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Good Morning,
+
+Ereyes01 was added to the MSHDnsAdmins group on Friday, then removed on Monday. Today I refreshed the Active Directory Inventory and then ran the Sensitive Group Membership report. Ereyes01 is still listed on this report as being a member of the MSHDnsAdmins group.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+[Ardent Resource Team]
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 24, 2025 3:24 PM
+To: Nathan Funk <nathan.funk@ardenthealth.com<mailto:nathan.funk@ardenthealth.com>>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com> <john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+Hello Nathan,
+
+Thank you for the fresh logs. Just to be clear, you did add the user to the group this past Friday then remove them again today, right? Have you had chance to run the report again manually after removing the user from the group today? Does it still show the user in the group? I'm just trying to establish a timeline. It seems like the scheduled report is reporting the data from the previous week but is current when you run it manually. I still need to review the logs and see if I can find any evidence of this or other issues.
+
+I will review the logs and let you know if I find anything.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/24/2025 1:12 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+
+Good Afternoon,
+
+Sunday's report did show Ereyes01 in the MSHDNSAdmins group. I've attached the log files to the ticket.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+[Ardent Resource Team]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 21, 2025 11:45 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com<mailto:nathan.funk@ardenthealth.com>>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com> <john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+Hello Nathan,
+
+Sounds good. Please let me know if the Sunday report picks up the change and attach the debug logs when they are available.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/21/2025 9:10 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Morning,
+
+I failed to do so. Lets run the test back again this weekend now that the log levels are set to DEBUG.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+[Ardent Resource Team]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 18, 2025 9:04 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com<mailto:nathan.funk@ardenthealth.com>>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com> <john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+Hello Nathan,
+
+Did you set the logs to DEBUG over the weekend? The previous logs didn't report so much as an error. I'm hoping the debug logs will reveal more. Please attach them to the ticket for review.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/17/2025 2:32 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com<https://ardenthealth.com/>
+[Ardent Resource Team]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com<mailto:nathan.funk@ardenthealth.com>>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com> <john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com<mailto:nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:image001.png@01DB9D77.12FCAD60]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com<mailto:nathan.funk@ardenthealth.com>>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com> <john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed.
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com<mailto:nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+Good Afternoon,
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+Thank you,
+Nathan Funk
+Information Security Analyst
+
+[cid:image001.png@01DB9D77.12FCAD60]
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com<mailto:nathan.funk@ardenthealth.com>>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com> <john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com<mailto:nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com<mailto:john.hilsher@netwrix.com>
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Jr3mV&from=int]
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.","RE: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","john.hilsher@netwrix.com","John Hilsher","techsupport@netwrix.com; nathan.funk@ardenthealth.com","","","true","2025-03-25T16:14:30.000Z","true"
+"02sQk00000MzyHfIAJ","500Qk00000MXLYtIAP","2025-03-25T19:08:48.000Z","2025-03-25T19:08:48.000Z","Hello Nathan,
+
+Thank you for the additional information, and I appreciate your patience while we look through all of this. There are some additional tests I would like to perform over a remote session. Please use this link to schedule a remote session at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=hjG3kgDG3oKl0ltJbgz4CzKsmHvi16NSWRt8EwenbXY-Z&MeetingID=v3PUQ0od3uOtd.IS.u6P86nSdeQwwTsE.2rIepIWPlE-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/25/2025 8:23 AM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+
+Good Morning,
+
+ 
+
+Ereyes01 was added to the MSHDnsAdmins group on Friday, then removed on Monday. Today I refreshed the Active Directory Inventory and then ran the Sensitive Group Membership report. Ereyes01 is still listed on this report as being a member of the MSHDnsAdmins group.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 3:24 PM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+Thank you for the fresh logs. Just to be clear, you did add the user to the group this past Friday then remove them again today, right? Have you had chance to run the report again manually after removing the user from the group today? Does it still show the user in the group? I'm just trying to establish a timeline. It seems like the scheduled report is reporting the data from the previous week but is current when you run it manually. I still need to review the logs and see if I can find any evidence of this or other issues.
+
+I will review the logs and let you know if I find anything. 
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/24/2025 1:12 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+Sunday's report did show Ereyes01 in the MSHDNSAdmins group. I've attached the log files to the ticket.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:45 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+Sounds good. Please let me know if the Sunday report picks up the change and attach the debug logs when they are available.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/21/2025 9:10 AM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Morning,
+
+ 
+
+I failed to do so. Lets run the test back again this weekend now that the log levels are set to DEBUG.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 18, 2025 9:04 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+Did you set the logs to DEBUG over the weekend? The previous logs didn't report so much as an error. I'm hoping the debug logs will reveal more. Please attach them to the ticket for review.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/17/2025 2:32 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+ 
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+ 
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed. 
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+ 
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+ 
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","techsupport@netwrix.com","Netwrix Support","nathan.funk@ardenthealth.com","john.hilsher@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-25T19:08:46.000Z","true"
+"02sQk00000N1spHIAR","500Qk00000MXLYtIAP","2025-03-26T14:29:17.000Z","2025-03-26T14:29:17.000Z","Hello Nathan,
+
+Thank you for meeting with me again today. In our session we identified the root of the issue was the timing of the report versus when the referenced tables were updated. While your AD Inventory ran every morning, the job that updated the SensitiveSecurityGroups_Membership table was only running Monday mornings. This resulted in Sunday's Sensitive Security Group Membership report to show the previous week's membership data.
+
+We resolved this issue by scheduling the job that updates SensitiveSecurityGroups_Membership table to run on Sundays at 5AM.
+
+Like we discussed, I'll close this ticket, but if you have any questions, just reply to this email within the next 30 days, and it will reopen.
+
+Thank you,
+   
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 3:08 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the additional information, and I appreciate your patience while we look through all of this. There are some additional tests I would like to perform over a remote session. Please use this link to schedule a remote session at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=hjG3kgDG3oKl0ltJbgz4CzKsmHvi16NSWRt8EwenbXY-Z&MeetingID=v3PUQ0od3uOtd.IS.u6P86nSdeQwwTsE.2rIepIWPlE-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/25/2025 8:23 AM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+
+
+Good Morning,
+
+ 
+
+Ereyes01 was added to the MSHDnsAdmins group on Friday, then removed on Monday. Today I refreshed the Active Directory Inventory and then ran the Sensitive Group Membership report. Ereyes01 is still listed on this report as being a member of the MSHDnsAdmins group.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 3:24 PM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+Thank you for the fresh logs. Just to be clear, you did add the user to the group this past Friday then remove them again today, right? Have you had chance to run the report again manually after removing the user from the group today? Does it still show the user in the group? I'm just trying to establish a timeline. It seems like the scheduled report is reporting the data from the previous week but is current when you run it manually. I still need to review the logs and see if I can find any evidence of this or other issues.
+
+I will review the logs and let you know if I find anything. 
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/24/2025 1:12 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+Sunday's report did show Ereyes01 in the MSHDNSAdmins group. I've attached the log files to the ticket.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 11:45 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+Sounds good. Please let me know if the Sunday report picks up the change and attach the debug logs when they are available.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/21/2025 9:10 AM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Morning,
+
+ 
+
+I failed to do so. Lets run the test back again this weekend now that the log levels are set to DEBUG.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 18, 2025 9:04 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+Did you set the logs to DEBUG over the weekend? The previous logs didn't report so much as an error. I'm hoping the debug logs will reveal more. Please attach them to the ticket for review.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/17/2025 2:32 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+We added ereyes01 to the mshDNSAdmins group on Friday and removed him from the group this afternoon.
+
+ 
+
+He does not show up on the Sunday weekly report for Sensitive Group Membership.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+Information Security Analyst
+615-296-3322 office
+
+ardenthealth.com
+
+
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:50 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I'm just following up. Were you able to make the test change before the weekend, and did the report on Sunday pickup that change? Please let me know how it looks.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/10/2025 2:26 PM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for checking the log levels. It would be helpful having the log level for those two jobs set to DEBUG over the weekend. Then you can return them to ERROR on Monday. Please let me know how the report looks after the test change this weekend.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/10/2025 12:57 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I was out unexpectedly on Friday so I was not able to make the test change. I can plan to make the test this Friday.
+
+ 
+
+The log level for both reports is set to ""Use Global Setting (ERROR)""
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 7:42 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+Hello Nathan,
+
+I've been reviewing the logs and configuration of the jobs and have been unable to find any issues. Unfortunately, the logs themselves were mostly empty. It looks like the log level is likely set too low to capture much information. You can right-click on a job and select properties to view/set the log level. Even if it's set to only record errors, the fact that there aren't any in the logs for those jobs suggests that it's collecting and processing the events properly. That said, I still cannot explain why the report emailed on 03/02/25 seems to have data from the previous report. All of the data I could see shows successful collection and reporting.
+
+Issues that can't be easily recreated are the hardest to troubleshoot. It will take some time, but I'd like to test the report over time. Are you able to make a test change and leave it in place over the weekend? I would like to add and account, then let the report run on its own on Sunday, check if the account is on the report, then remove the account and let it run again the following Sunday, and then check the report again to see if it's been removed. 
+
+Could you please also confirm the log level of the jobs?
+Right-click on a job and select properties to view the log level.
+
+Thank  you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 9:12 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for the files. I'll review and discuss internally, then let you know when I have next steps. I'm sorry for the delay.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Nathan Funk [nathan.funk@ardenthealth.com]
+Sent: 3/5/2025 1:03 PM
+To: techsupport@netwrix.com
+Cc: john.hilsher@netwrix.com
+Subject: Re: Netwrix Support Ticket #437638 - ref:_00D7091pB._500Q000MXLYt:ref - Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ref:_00D7091pB._500Q000MXLYt:ref
+ 
+
+
+
+Good Afternoon,
+
+ 
+
+I've attached the requested exports to the ticket. I also included the original email from Stealth containing the report from Sunday. If for some reason you cannot access the email, I attached both Sunday and the second report from Monday.
+
+ 
+
+I confirmed that the report generated on 3/2 contains the entries that were removed on 2/24.
+
+ 
+
+
+Thank you,
+
+Nathan Funk
+
+Information Security Analyst
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 5, 2025 11:15 AM
+To: Nathan Funk <nathan.funk@ardenthealth.com>
+Cc: john.hilsher@netwrix.com <john.hilsher@netwrix.com>
+Subject: RE: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+ 
+
+
+
+
+Security Warning - External Message. Please use PhishAlert button to report suspicious messages.
+
+
+
+Hello Nathan,
+
+Thank you for meeting with me today. In our session we investigated the removal of two users from the DnsAdmins group. We found that Netwrix Threat Prevention is successfully collecting group membership changes for that group and those users.
+
+The problem is more likely to be a timing issue with the report than a problem with detection. Is it possible the report you were looking at that showed the users were still part of the group was from a week prior, Sunday, 02/24 and not Sunday, 03/02?
+
+Our investigation showed that Netwrix Threat Prevention detected the users were removed from that group on 02/24/25 at 4:50PM and the report from that day was ran at 7:11AM. So the users would still show on the report as members of the DnsAdmins group.
+
+To investigate further, I'd like to take a closer look at the two NEA jobs involved. In Netwrix Enterprise Auditor, please right-click on the jobs and select ""Export"", then attach the files to the ticket. I know you have a lot of jobs and different domains, but please include the ones that are targeting the MSH domain.
+
+NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/4/2025 10:27 AM
+To: nathan.funk@ardenthealth.com
+Cc: john.hilsher@netwrix.com
+Subject: Errors found in report [ ref:!00D70091pB.!500Qk0MXLYt:ref ]
+
+Hello Nathan,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+I'm curious about the timing on the report that showed the members in the DnsAdmin group. For example, maybe somebody was doing maintenance and were only temporarily added to the group. Either way, I'd like to take a look to see if I can find the activity where the members were added and removed.
+
+Please use this link to schedule at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=ta3Sg74dA8jEndIiZISqyRQXmgqSUr7fFKGGgb54JRw-Z&MeetingID=yIIcltFJ7jNINgy3kSAOmr1_e2qN.rmoM9nfU1MTCJo-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MXLYt:ref
+
+ 
+
+DISCLAIMER: This communication, along with any documents, files or attachments, is intended only for the use of the addressee and may contain legally privileged and confidential information. If you are not the intended recipient, you are hereby notified that any dissemination, distribution or copying of any information contained in or attached to this communication is strictly prohibited. If you have received this message in error, please notify the sender immediately and destroy the original communication and its attachments without reading, printing or saving in any manner. Please consider the environment before printing this e-mail.","Re: Netwrix Support Ticket #437638 -  - Errors found in report    [ ref:!00D70091pB.!500Qk0MXLYt:ref ]","techsupport@netwrix.com","Netwrix Support","nathan.funk@ardenthealth.com","john.hilsher@netwrix.com","joshua.sexton@netwrix.com","true","2025-03-26T14:29:16.000Z","true"

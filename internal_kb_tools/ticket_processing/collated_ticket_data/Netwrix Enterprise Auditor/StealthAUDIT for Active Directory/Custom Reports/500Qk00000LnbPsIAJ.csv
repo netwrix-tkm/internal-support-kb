@@ -1,0 +1,102 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LnbPsIAJ","00435617","Support Ticket","Need a help in creating the Jobs","Updated Description:
+
+The customer wants to know why All Groups report does not contain groups from certain OUs.
+
+The customer wants to create a job that will generate a report containing the following fields for user accounts in AD:
+
+    DomainName,
+    SamAccountName,
+    DisplayName,
+    DistinguishedName,
+    IsDeleted,
+    EmployeeId,
+    WhenCreated,
+    WhenChanged,
+    LastLogonTimestamp,
+    AccountExpires,
+    PwdLastSetDate,
+    ACCOUNTDISABLE,
+    OU","There is no issue in the product. Steps to reproduce is irrelevant in this case.","The customer has custom reports that fetch data via SQL view from a database table. That database table contains data from AD about Active Directory Groups and their types. They were under impression that data is not coming up properly. However, data was not present in the first place in AD.
+
+---------------------------------------
+Saqib Sharif: I had a meeting with the customer today (20/02/2025). They wanted to create a job that would generate a report containing the following fields for user accounts in AD:
+
+DomainName,
+SamAccountName,
+DisplayName,
+DistinguishedName,
+IsDeleted,
+EmployeeId,
+WhenCreated,
+WhenChanged,
+LastLogonTimestamp,
+AccountExpires,
+PwdLastSetDate,
+ACCOUNTDISABLE,
+OU
+---------------------------------------------
+Since OU is not readily available, we had to create a new SQL view. The data is now available for the customer.
+---------------------------------------------","The boss of the customer is not available in this week. He will be available by Tuesday. I will follow up with him on Tuesday.","Problem
+In an All-Groups report, you were unable to find any group present in certain OUs. Also, you wanted to create an all Users report that shows the OUs they are part of.
+
+
+Resolution
+For the first query, we investigated internally with the AD team and found out that there were no AD groups (Security or Distribution) present inside those OUs. Hence, the report came out empty.
+
+For the second query, we created a custom report and created an SQL view that populated the OU of the user object
+
+Steps for Resolution
+
+Create a SQL View using the following command:
+CREATE VIEW SA_ADInventory_UsersView_Custom AS
+
+SELECT
+
+  DomainName,
+
+  SamAccountName,
+
+  DisplayName,
+
+  DistinguishedName,
+
+  IsDeleted,
+
+  EmployeeId,
+
+  WhenCreated,
+
+  WhenChanged,
+
+  LastLogonTimestamp,
+
+  AccountExpires,
+
+  PwdLastSetDate,
+
+  ACCOUNTDISABLE,
+
+  REPLACE(SUBSTRING(DistinguishedName, CHARINDEX('OU=', DistinguishedName), LEN(DistinguishedName)), 'DN=', '') AS OU
+
+FROM
+
+  [StealthAudit].[dbo].[SA_ADInventory_UsersView];
+
+ 
+
+Once the view is created, in Job Analysis Part, create another script with following data:
+IF EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID('SA_ADInventory_UsersView_Custom'))
+
+BEGIN
+
+  DROP VIEW SA_ADInventory_UsersView_Custom;
+
+END
+
+ 
+
+Create a report based on the data.
+ 
+
+Rearrange the job tasks by setting the drop view to 1st, Create view to 2nd and create report to 3rd.","Guidance","Saqib Sharif","Request","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Custom Reports","11.6","11.6.0.47","11.6","Closed - Resolved","Fair Isaac Corporation (FICO)","Chandan Trikha","2025-02-12T15:39:01.000Z","2025-02-24T06:01:13.000Z"

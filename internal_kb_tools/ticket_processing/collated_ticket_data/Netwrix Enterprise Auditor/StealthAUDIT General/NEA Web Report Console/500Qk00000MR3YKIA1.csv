@@ -1,0 +1,43 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MR3YKIA1","00437439","Support Ticket","NEA Published Reports not running, 500 error","I'm trying to get the AD user account for renewal of license.
+NEA Published Reports - cannot access","","+++++
+NEA Published Reports
++++++
+1) Reset the password for the user configured to run the ""Netwrix Enterprise Auditor Web Server"" service in ""Services.msc"".
+
+2) In NEA > Settings > Access, end user must be granted at least ""Report Viewer"" Role.  I do not believe that a user configured in NEA with the ""Report Viewer"" Role needs to be a WINDOWS_USER on the SA/NEA database or even needs database access.
+
++++++
++++++
+
+Unable to View Published Reports in Web Console
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000Qs9KAE.html","+++++
+A) Follow the following KB:
++++++
+
+Unable to View Published Reports in Web Console
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000Qs9KAE.html
+
+B) Once the customer can log into the NEA Published Reports successfully, they will be able to open the "".Active Directory Inventory"" > ""Active Directory Summary"" report to obtain the same information that we obtained on the last call (03-March-2025) by opening SA (or NEA) and navigating to: NEA > Jobs > "".Active Directory Inventory"" > ""1-AD_Scan"" > Results > ""Active Direcotry Summary""","+++++
+A) Followed the following KB:
++++++
+
+Unable to View Published Reports in Web Console
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000Qs9KAE.html
+
+B) After the customer logged into the NEA Published Reports successfully, they opened the "".Active Directory Inventory"" > ""Active Directory Summary"" report to obtain the same information that we obtained on the last call (03-March-2025) by opening SA (or NEA) and navigating to: NEA > Jobs > "".Active Directory Inventory"" > ""1-AD_Scan"" > Results > ""Active Direcotry Summary""
+
+C) Reminder for when you may not have access to NEA Published Reports for any number of reasons, here is the way in SA/NEA to access the ""Active Direcotry Summary"" that the Netwrix Account and Renewals Managers need for NEA re-licensing purposes.
+
+NEA > Jobs > "".Active Directory Inventory"" > ""1-AD_Scan"" > Results > ""Active Direcotry Summary""
+
++++++
++++++
+
+1) In reviewing our Zoom Meeting recording from 03-March-2025, the same account that is used for the SA AIC (Access Information Center) service should be used for the SA Web Server Service (""Log On As"" value).
+
+I do not see that we changed this configuration during our meeting.
+
+2) SA AIC - I assume that this works for you on your NEA server when you try to access it.  The SA Web Server service in 'Services.msc' should be configured to use the same Windows Authentication account.
+
+3) And then you should be able to access SA Published Reports using your own account (CORPVALA424971) if you are configured under SA > ""Settings"" > ""Access"" as I am confident you were when we checked during our last meeting.","Incorrect configuration: Netwrix product","Mike Candon","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.5","","12.7","Closed - Resolved","Valvoline (formerly Ashland on behalf of Valvoline)","Lamare Adams","2025-02-28T21:42:08.000Z","2025-03-13T13:54:01.000Z"

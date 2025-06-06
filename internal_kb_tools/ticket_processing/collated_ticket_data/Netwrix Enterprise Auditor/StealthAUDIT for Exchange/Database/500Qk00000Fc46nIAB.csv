@@ -1,0 +1,44 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Fc46nIAB","00420653","Support Ticket","TempDB is full on SQL Server","This has been an ongoing issue with our installation of Netwrix Enterprise Auditor. (James Freeman, Carlos Mejia and Mark Richmond are aware of this issue)","","We've ran following queries to determine tempdb file size and usage:
+
+SELECT name AS [File Name], size * 8 / 1024 AS [Size (MB)], size * 8 / 1024 - CAST(FILEPROPERTY(name, 'SpaceUsed') AS INT) * 8 / 1024 AS [Available Space (MB)], growth * 8 / 1024 AS [Growth (MB)], max_size AS [Max Size] FROM sys.master_files WHERE database_id = DB_ID('tempdb');
+
+
+SELECT 
+    s.session_id, 
+    s.login_name, 
+    s.host_name, 
+    t.[text] AS [Query Text],
+    r.total_elapsed_time, 
+    r.wait_time, 
+    r.wait_type,
+    (r.total_elapsed_time / 1000) AS [Elapsed Time (sec)],
+    (r.wait_time / 1000) AS [Wait Time (sec)],
+    u.user_objects_alloc_page_count AS [User Object Alloc Pages],
+    u.internal_objects_alloc_page_count AS [Internal Object Alloc Pages]
+FROM sys.dm_exec_sessions s
+INNER JOIN sys.dm_exec_requests r ON s.session_id = r.session_id
+INNER JOIN sys.dm_db_session_space_usage u ON s.session_id = u.session_id
+CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) t
+WHERE u.user_objects_alloc_page_count + u.internal_objects_alloc_page_count > 0;
+
+I've took screenshots of database settings, and you've provided me with csv files with output.
+
+Andy Watson had a meeting with customer.
+
+Comment from Andy Watson:
+
+So it looks as though it hadn't blown out the tempdb last week but did have an issue with a path being truncated so I think we are definitely in a better place but I'd keep the ticket open for monitoring until we've had a good number of run throughs without the tempdb blowing up. There is more code to update as some of the other sections of code in the direct permissions and other jobs definitely need to be rewritten to stop trying to calculate everything in one go
+
+Update from 11.11.2024
+
+Running into issues with SQL Deadlocking when either ADI or EntraADI is running. Running it again today to see if it dies overnight, if so I'm going to tweak the code so it puts the data it needs into custom tables so we can avoid the deadlock","Waiting for customer to confirm if issue is resolved.
+
+Andy provided custom version of SP_DomainUsers job, waiting for feedback","Symptom
+Temp DB filling up when JOB_SP_DomainUsers is running
+
+Cause
+SQL Deadlocking when either ADI or Entra ADI is running
+
+Resolution
+Resolved by providing a modified version of JOB_SP_DomainUsers job","Product defect","Damir Akhmatshin","","Netwrix Enterprise Auditor","StealthAUDIT for Exchange","Database","11.6","11.6.0.110","119.1","Closed - Resolved","University of Cambridge","Tara Jeffery","2024-09-11T09:51:16.000Z","2025-01-08T12:48:41.000Z"

@@ -1,0 +1,28 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GeLz0IAF","00423000","Support Ticket","Upgrade - StealthAudit and Stealthbits Activity Monitor","We need to update out StealthAudit and Stealthbits Activity Monitor","","upgraded NEA, and AIC, but upgrading NAM broke their Nasumi sources in NAM
+getting this error:
+
+10/30/2024 9:37:16 AM Error SYSLOG: UDP://NPNETWRIXSD101:10000 - npnfiler102: QuerySysInfo failed. An item with the same key has already been added. npnfiler102: UpdateVolumeIds failed. An item with the same key has already been added. npnfiler102: UpdateAccessPoints failed. An item with the same key has already been added. npnfiler102: SetupAmqpDestinationSettings failed. An item with the same key has already been added.
+
+tried new API keys
+-same error
+
+Tay talked with Dev and they requested escalation
+She took ownership of other ticket (the one for just upgrading NAM - 00423204)
+escalating that ticket
+
+rolled back client to revert NAM changes
+had to then re-upgrade NAM because we already ran the new FS create schema job
+re-upgraded the AIC
+
+Also rolled back the proxyserver because of updated NAM agent that needed reverted
+re-upgraded FSproxy service
+
+confirmed that NAM was working
+ NAM is back to version 6","sent 3 emails trying to confirm ticket is good to close
+failed to get a response, so I'm closing the ticket","Upgraded NEA to latest version: 11.6.115
+upgraded AIC and Proxy server service on 1 file server
+
+ran into issues with upgrading NAM, but that's been split off and escalated on its own ticket: 00423204
+
+client failed to respond to 3 follow-up emails trying to confirm closure of this ticket for NEA, AIC, and FSProxy upgrade","Proactive Upgrade","Joshua Sexton","","Netwrix Enterprise Auditor","StealthAUDIT General","Upgrade","11.6","115","38.0","Closed - Resolved","The Doctors Company","Chad Fontanini","2024-10-04T16:25:04.000Z","2024-11-11T15:28:10.000Z"

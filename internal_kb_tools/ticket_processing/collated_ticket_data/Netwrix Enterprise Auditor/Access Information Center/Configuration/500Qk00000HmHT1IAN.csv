@@ -1,0 +1,21 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HmHT1IAN","00425827","Support Ticket","AIC will not bind to a port","AIC will not bind to any port, the service also appears to be stuck and cannot be restarted without taskkill in cmd prompt.","","Bound the AIC to port 481 with the same cert used by Published Reports. We then restarted the service but we were unable to actually start the service due to timeout. After rebooting the server, the service is running again.
+
+Looks like the ADI scan has been erroring lately which matches up with the ""Unable to enumerate domain"" error we are seeing in the AIC log.
+
+Set the ADI scan to use a different DC (LDAP errors on the one chosen by 1DCperDomain). This looked to be running successfully, but customer has 338k+ users so the job will take at least a couple of hours.
+
+---
+AIC will not bind to a port and the service appears to be stuck. No errors in event viewer related to the service.","Customer will try accessing the AIC after the ADI scan is done running and let us know if they are still unable to access it.","1. Customer imported the certificate to the local machine store
+
+2. AdminPS ISE run:
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" 
+$certHash = ""%new_thumbprint_value%"" # the 'Thumbprint' value 
+$ip = ""0.0.0.0"" # this means all IP addresses 
+$port = ""481"" # the default HTTPS port 
+#build command and pipe to the netsh command 
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh 
+
+3. Adjusted the ""BindingURL"" value to ""https://+481"" in the %Program Files%STEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe.Config and saved
+
+4. Restarted the Netwrix Access Information Center service in Windows Services","Incorrect configuration: Netwrix server","Tay Caliguiri","","Netwrix Enterprise Auditor","Access Information Center","Configuration","11.6","","17.2","Closed - Resolved","International Motors, LLC","William Dammeier","2024-11-01T17:53:00.000Z","2024-11-18T23:15:38.000Z"

@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000O285LIAR","00441936","Support Ticket","Migrate Dev NEA 11.6 to new 2022 servers","Need assistance with migrating Enterprise Auditor 11.6 to new set of Windows servers 2022.
+- recap, we are getting cert errors on jobs using the file system proxy (which is dedicated to scanning for sensitive data on Netapp.  
+- Working with support enigneer Ian Ranstrom, we don't know if the errors are related to either the in-place OS upgrade or upgrading from StealthAudit 11.5 to NEA 11.6","","Due to some issues caused by the in-place OS upgrade, the customer has to migrate from the old 2022 server to a new 2022 build server.","I will verify that the service account can communicate with the new proxy.
+I will drop the data and rescan the file system.","Issue: The customer requested assistance with migrating Netwrix Enterprise Auditor (NEA) version 11.6 to a new set of Windows Server 2022 machines. During the migration, they encountered certificate errors on jobs using the file system proxy, which is dedicated to scanning sensitive data on NetApp. The errors were suspected to be related to either the in-place OS upgrade or the upgrade from StealthAudit 11.5 to NEA 11.6.
+
+Cause: The migration issues were caused by complications stemming from the in-place OS upgrade, necessitating a move from the old Windows Server 2022 environment to a new build of Windows Server 2022.
+
+Resolution: 
+1. Installed Netwrix Enterprise Auditor on the new server and migrated data from the old server to the new one.
+2. Installed the proxy and Sensitive Data Add-on on the new proxy server.
+3. Coordinated with the customer's DBA to run an SQL script to update the server name in the database.
+4. Launched the application, updated the host list with the new proxy server, and installed the Access Information Center (AIC).
+5. Manually recreated job schedules after the imported schedules failed to work.
+6. Verified the service account's communication with the new proxy and rescanned the file system.
+7. Addressed errors in Netwrix Analyzer by fixing job configurations and validating job functionality on the new server.
+8. Created a separate ticket to resolve Activity Monitor errors related to NetApp connectivity.
+9. Uploaded log files for further analysis and scheduled follow-up meetings to address remaining issues before moving to production.
+
+(Requested by Frantz Baptiste)","Product defect","Frantz Baptiste","Request","Netwrix Enterprise Auditor","StealthAUDIT General","Migration","11.6","","44.3","Closed - Resolved","EverBank","Bradley Dickinson","2025-04-14T14:29:22.000Z","2025-05-28T21:53:53.000Z"

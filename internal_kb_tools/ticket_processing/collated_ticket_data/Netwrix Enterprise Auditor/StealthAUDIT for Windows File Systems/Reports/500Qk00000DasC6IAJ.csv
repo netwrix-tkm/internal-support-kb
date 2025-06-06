@@ -1,0 +1,35 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DasC6IAJ","00416236","Support Ticket","FSAA Scan not picking up updated permission changes","On one of my hosts, there is a folder that has broken inheritance with both direct and inherited permissions.
+
+We have remediated the broken inheritance on the folder and confirmed directly that it's fixed. 
+
+After running a full fsaa scan against the same host 3 times, AIC still shows both direct and inherited permissions.
+
+When looking at SA_FSAA_Resources against the folder in question, 
+accesslastseen is up to date.","","","","Requested:
+Any Issues noted under the FSAC job that is collecting the File System in question.
+Are we using a FSAA Proxy to pull the data?
+
+Netwrix Enterprise Auditor v11.6 > Solutions > File System Solution > 0.CollectionJob Group > 1-FSAC System Scans Job
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/FileSystem/Collection/1-FSAC_System_Scans.htm
+ 
+Are there any Errors in the NAM console for the host in question?
+Which Operations are enabled?
+
+Netwrix Activity Monitor v7.0 > Administration > Output Types > Operations Tab
+https://helpcenter.netwrix.com/bundle/ActivityMonitor_7.0/page/Content/ActivityMonitor/Admin/Outputs/Operations.htm
+
+Where was the Permissions change made on the Share or NTFS level?      I'm assuming NTFS based on the Description.
+
+Do we see the Events in question in the NAM console?
+
+Netwrix Activity Monitorv7.0 > Administration > Search Feature
+https://helpcenter.netwrix.com/bundle/ActivityMonitor_7.0/page/Content/ActivityMonitor/Admin/Search/Overview.htm
+
+Contact noted:
+Looks like resetting the host under FSAA query > configure > maintenance, and then bulk import might have resolved it.
+
+Before reset:
+https://nwxcorp.file.force.com/servlet/servlet.FileDownload?file=00PQk000008s3fS
+After reset:
+https://nwxcorp.file.force.com/servlet/servlet.FileDownload?file=00PQk000008s3fT","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Reports","11.5","214","5.0","Closed - Resolved","MUFG Bank, LTD.","Michael Kong","2024-07-26T13:43:20.000Z","2024-07-31T12:31:34.000Z"

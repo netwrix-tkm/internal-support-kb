@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Hud6YIAR","00426085","Support Ticket","Assistance creating a new report.","I need a report that will give me a AD group – members of the group- and the groups each users is a member of.  security, distro groups ext…","","Created a new job with the following analysis.
+
+--Create table
+SELECT * into SA_Custom_Group_Membership from (Select GroupSamAccountName, MemberSamAccountName from dbo.SA_ADInventory_GroupMembersView where MemberSamAccountName in (Select MemberSamAccountName from dbo.SA_ADInventory_GroupMembersView where GroupSamAccountName = 'Domain Admins')) as tmp;
+
+--Clear table contents
+truncate table SA_Custom_Group_Membership;
+
+--Populate table
+insert into SA_Custom_Group_Membership SELECT * from (Select GroupSamAccountName, MemberSamAccountName from dbo.SA_ADInventory_GroupMembersView where MemberSamAccountName in (Select MemberSamAccountName from dbo.SA_ADInventory_GroupMembersView where GroupSamAccountName = 'Domain Admins')) as tmp;","","Symptom
+Customer requesting assistance on creating a custom report that shows group membership in NEA
+
+
+Resolution
+Assisted creating the script using existing documentation.
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Report/Create.htm","Guidance","Ian Ranstrom","","Netwrix Enterprise Auditor","StealthAUDIT General","Custom Reports","","","20.9","Closed - Resolved","Pension Boards United Church of Christ","Johnnie Lopez","2024-11-05T16:00:05.000Z","2024-11-26T13:24:31.000Z"

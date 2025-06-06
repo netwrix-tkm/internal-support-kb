@@ -1,0 +1,73 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NLFwWIAX","00439997","Support Ticket","Create Schema job fails with ""Could not create constraint or index"" after upgrade to 11.6.0.137","Create schema job started to fail with the following errors:
+""Column A is not the same data type as referencing column B in foreign Key X. Could not create constraint or index.""
+
+Errors appeared after upgrade from 11.5.0.200 NEA to 11.6.0.137 NEA.","Have NEA 11.5.0.200. 
+Do not run ""Migrate Schema"" previously. 
+Upgrade to 11.6.0.137. 
+Run Create Schema job. 
+Create schema fails with: ""Column A is not the same data type as referencing column B in foreign Key X. Could not create constraint or index""","-------------
+31.03.2025 
+
+Customer is on 11.6.0.137. 
+Create Schema job started to fail after upgrade to 11.6.0.137 with these errors:
+(From this log file:
+https://nwxcorp.sharepoint.com/:u:/r/sites/CustomerSupportFiles/Data/00439997/0-Create%20Schema.zip?csf=1&web=1&e=JqBvrx) 
+26/03/2025 12:32:55	ERROR	DataAnalysis:SQLScripting	ExecuteNonQuery	""Column 'dbo.SA_FSDLP_MatchHits.FileId' is not the same data type as referencing column 'SA_FSDLP_MatchHits_SubjectProfile.FileId' in foreign key 'FK_SA_FSDLP_MatchHits_SubjectProfile'.  Could not create constraint or index. See previous errors.""			6060	7460	8068
+
+26/03/2025 12:32:55	ERROR	DataAnalysis:SQLScripting	ExecuteNonQuery	""Column 'dbo.SA_FSAA_Resources.ID' is not the same data type as referencing column 'SA_FSAC_ActivityEvents.PathID' in foreign key 'FK_SA_FSAC_ActivityEvents_PathID'.  Could not create constraint or index. See previous errors.""			3412	7460	8068
+
+26/03/2025 12:32:55	ERROR	DataAnalysis:SQLScripting	ExecuteNonQuery	""Column 'dbo.SA_FSAA_Resources.ID' is not the same data type as referencing column 'SA_FSAC_DailyActivity.FolderID' in foreign key 'FK_SA_FSAC_DailyActivity_FolderID'.  Could not create constraint or index. See previous errors.""			7736	7460	8068
+
+
+
+We tried running Migrate Schema instant job to see if updating Data Types for File System solution related tables and views resolves this issue. 
+But Migrate schema failed with these errors:
+(From this log file:
+https://nwxcorp.sharepoint.com/:u:/r/sites/CustomerSupportFiles/Data/00439997/JOB_FS_MigrateSchema%20-%20Copy.zip?csf=1&web=1&e=VqGHyT) 
+28/03/2025 12:06:02	ERROR	DataAnalysis:SQLScripting	ExecuteNonQuery	""The ALTER TABLE statement conflicted with the FOREIGN KEY constraint ""FK_SA_FSAC_ActivityEvents_HOST"". The conflict occurred in database ""StealthAUDIT"", table ""dbo.SA_FSAA_Hosts"", column 'ID'.  Caution: Changing any part of an object name could break scripts and stored procedures.  Caution: Changing any part of an object name could break scripts and stored procedures.""			8848	7460	8068
+
+28/03/2025 12:06:04	ERROR	DataAnalysis:SQLScripting	ExecuteNonQuery	""The ALTER TABLE statement conflicted with the FOREIGN KEY constraint ""FK_SA_FSAC_DailyActivity_HOST"". The conflict occurred in database ""StealthAUDIT"", table ""dbo.SA_FSAA_Hosts"", column 'ID'.  Caution: Changing any part of an object name could break scripts and stored procedures.""			5284	7460	8068
+
+28/03/2025 12:06:04	ERROR	DataAnalysis:SQLScripting	ExecuteNonQuery	""The ALTER TABLE statement conflicted with the FOREIGN KEY constraint ""FK_SA_FSAC_RenameTargets_HOST"". The conflict occurred in database ""StealthAUDIT"", table ""dbo.SA_FSAA_Hosts"", column 'ID'.  Caution: Changing any part of an object name could break scripts and stored procedures.  Caution: Changing any part of an object name could break scripts and stored procedures.""			3988	7460	8068
+
+
+After this we tried running Repair maintenance task from FSAA System Scan query. We started repair for all active hosts. 
+Repair took around 7 hours to complete and repair logs suggest that changes were made. 
+
+Once repair has completed, we re-started Create Schema job and it now fails with slightly different errors:
+(From this log file:
+https://nwxcorp.sharepoint.com/:u:/r/sites/CustomerSupportFiles/Data/00439997/CreateSchema_31_03.zip?csf=1&web=1&e=KJqcqi)
+No item by the name of 'FK_SA_FSAC_ActivityEvents_New_HOST' could be found in the current database 'StealthAUDIT', given that @itemtype was input as '(null)'.
+No item by the name of 'FK_SA_FSAC_ActivityEvents_New_PathID' could be found in the current database 'StealthAUDIT', given that @itemtype was input as '(null)'.
+No item by the name of 'FK_SA_FSAC_ActivityEvents_New_ProcessID' could be found in the current database 'StealthAUDIT', given that @itemtype was input as '(null)'.
+No item by the name of 'FK_SA_FSAC_ActivityEvents_New_TrusteeID' could be found in the current database 'StealthAUDIT', given that @itemtype was input as '(null)'.
+Caution: Changing any part of an object name could break scripts and stored procedures.
+Caution: Changing any part of an object name could break scripts and stored procedures.
+
+The ALTER TABLE statement conflicted with the FOREIGN KEY constraint ""FK_SA_FSAC_ActivityEvents_PathID"". The conflict occurred in database ""StealthAUDIT"", table ""dbo.SA_FSAA_Resources"".
+
+Column 'dbo.SA_FSAA_Resources.ID' is not the same data type as referencing column 'SA_FSAC_DailyActivity.FolderID' in foreign key 'FK_SA_FSAC_DailyActivity_FolderID'.
+Could not create constraint or index. See previous errors.
+
+We checked SA_FSAC_DailyActivity and SA_FSAC_ActivityEvents tables and noticed that both tables do not have any Foreign Keys, only Primary Keys are present. 
+This can be seen on this screenshot:
+https://nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00439997/FK_are_missing_inFSAC_DailyActivity.jpg?csf=1&web=1&e=38G7FF
+
+Latest Create Schema logs are located in this archive:
+https://nwxcorp.sharepoint.com/:u:/r/sites/CustomerSupportFiles/Data/00439997/CreateSchema_31_03.zip?csf=1&web=1&e=KJqcqi
+
+04/14/2025
+
+The ActivityEvents and DailyActivity tables are in an invalid state.
+Prior to upgrade/CreateSchema/MigrateSchema, these tables would have had a FK on the Hosts table. 
+We can see this was not the case because there are hosts ids in these activity tables that are not in the Hosts table. 
+
+To ensure there are not other problems, run:
+
+SELECT HOST, ID
+FROM SA_FSAA_Resources
+WHERE HOST in (24, 25, 27);
+
+This query returned nothing.","Waiting for next steps from R&D to progress with investifation.","Resolution
+Development team provided queries to clean up affected tables","Corrupt/Invalid Data","Damir Akhmatshin","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Configuration","11.6","11.6.0.137","56.9","Closed - Resolved","Porsche Cars GB Ltd","Richard Ward","2025-03-26T10:07:22.000Z","2025-05-22T08:29:27.000Z"

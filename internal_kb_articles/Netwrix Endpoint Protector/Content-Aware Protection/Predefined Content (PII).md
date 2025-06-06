@@ -1,101 +1,162 @@
-# Netwrix Endpoint Protector Knowledge Base: Content-Aware Protection (Predefined Content - PII)
+# Comprehensive Knowledge Base Guide: Troubleshooting Content-Aware Protection (Predefined Content - PII)
 
 ## Overview
-Netwrix Endpoint Protector's Content-Aware Protection (CAP) feature enables organizations to detect, block, and remediate sensitive data transfers based on predefined content policies. This includes Personally Identifiable Information (PII) such as Social Security Numbers (SSNs), credit card numbers, and regional identification formats like Brazilian CPF or Turkish ID numbers. Common issues include misconfigurations, detection limitations, false positives, and compatibility challenges with specific applications or environments.
 
-This article provides a structured guide to troubleshooting and resolving issues related to CAP's predefined content functionality.
+Content-Aware Protection (CAP) with Predefined Content (PII) in Netwrix Endpoint Protector is a critical feature designed to prevent unauthorized sharing or exposure of sensitive data. This feature enables organizations to detect and block Personally Identifiable Information (PII) across various endpoints and communication channels. Understanding and troubleshooting issues in this category is essential to ensure compliance with data protection regulations and to maintain the integrity of sensitive information.
 
----
-
-## Issue Summary Table
-
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| Email alerts not received | Alerts not triggered for PII-related WhatsApp messages; SMTP errors | Verify email server settings, check logs, reconfigure sender address | Change sender email to valid address, adjust folder ownership | [Email Alerts Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BjpstIAB/view) |
-| Sensitive data not detected in WhatsApp | PII not flagged when copied/pasted into WhatsApp | Adjust threat threshold, create "Report Only" policy | Lower threshold to 1 for detection | [WhatsApp Detection Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BTF29IAH/view) |
-| Report discrepancies | Reports show more flagged files than actual detections | Review CAP and eDiscovery configurations | Adjust scanning/reporting settings | [Report Discrepancies](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BxJLFIA3/view) |
-| Twitter access blocked | CAP policy incorrectly flags Twitter requests | Review logs, whitelist domain, test build | Ignore flagged requests via custom build | [Twitter Blocking Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DFptzIAD/view) |
-| Missing remediation logs | "Content Remediation Session Active" not logged | Test file transfer post-remediation | Clarify logging behavior | [Remediation Logs Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DHTuBIAX/view) |
-| False positives for Brazilian CPF | Non-CPF data flagged as PII | Analyze detection patterns, enable "Ignore Trust" | Adjust detection algorithm via custom build | [Brazilian CPF False Positives](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000KwZTOIA3/view) |
-| OCR not functioning for SSNs | OCR fails to detect SSNs in text/images | Verify OCR settings, test configurations | Adjust OCR settings, install EPP certificate | [OCR Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000LCuvCIAT/view) |
-| Daily block report setup | Unable to generate automated block reports | Configure reporting and email notifications | Enable report generation and email settings | [Daily Block Report Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000LNsTSIA1/view) |
-| Printing blocked | Unable to print email due to outdated client | Upgrade EPP client, reboot system | Update client to latest version | [Printing Block Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MaYEiIAN/view) |
-| Trial license expired | Unable to back up policies after trial expiration | Export policies before expiration | Provide backup instructions | [Trial License Expiration](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MX4WPIA1/view) |
-| Blocking JPG files | OCR detects PNG but not JPG files | Verify CAP policy settings, test file uploads | Configure CAP to include JPG files | [JPG Blocking Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NJ08jIAD/view) |
-| URL-specific PII blocking | Unable to restrict PII uploads to specific websites | Enable DPI, configure URL categories | Use URL categories in CAP policies | [URL-Specific Blocking](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NWyGmIAL/view) |
-| Turkish ID detection in emails | TCIDs in email body not detected | Test old vs. new Outlook, enable debug mode | Use old Outlook until new client release | [Turkish ID Detection](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000ORVnDIAX/view) |
+This guide provides a systematic approach to diagnosing and resolving issues related to CAP with Predefined Content (PII). It includes technical background, diagnostic methodologies, common scenarios, and best practices to empower support engineers to handle these cases effectively.
 
 ---
 
-## Detailed Issues
+## Technical Background
 
-### Email Alerts Not Received
-**Symptoms:** Alerts not triggered for PII-related WhatsApp messages; SMTP errors due to invalid sender address.  
-**Troubleshooting Steps:**  
-1. Verify email server settings and sender address (`root@eppserver`).  
-2. Check mail logs for errors like "unable to qualify my own domain name."  
-3. Change ownership of the Mailer folder to `www-data`.  
-4. Clear pending emails from the database and restart mailer alerts.  
-**Root Cause:** Invalid sender email address rejected by SMTP server.  
-**Solution:**  
-- Reconfigure sender email to a valid address.  
-- Adjust folder ownership to `www-data`.  
-**Source Ticket:** [Email Alerts Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BjpstIAB/view)
+### Key Concepts
+- **Content-Aware Protection (CAP):** A feature that scans data in motion (e.g., file transfers, email attachments) and at rest (e.g., local files) to detect sensitive content.
+- **Predefined Content:** Pre-configured patterns for detecting specific types of sensitive data, such as Social Security Numbers (SSNs), credit card numbers, or regional identification formats (e.g., Brazilian CPF, UK bank accounts).
+- **Deep Packet Inspection (DPI):** A technology used to analyze data packets for sensitive content.
+- **Optical Character Recognition (OCR):** A feature that scans text within images or PDFs to detect sensitive information.
+
+### System Context
+- **Server-Client Architecture:** The Netwrix Endpoint Protector server manages policies, while the client enforces them on endpoints.
+- **Policy Configuration:** CAP policies define what content to monitor, block, or report, and can include logical operators (AND/OR) for complex rules.
+- **Exit Points:** Channels where data can leave the organization, such as email, web uploads, or external devices.
 
 ---
 
-### Sensitive Data Not Detected in WhatsApp
-**Symptoms:** PII not flagged when copied/pasted into WhatsApp Web/Desktop.  
-**Troubleshooting Steps:**  
-1. Verify CAP policy settings and threat threshold.  
-2. Create a "Report Only" policy to monitor file transfers.  
-3. Lower threat threshold to 1 for detection.  
-**Root Cause:** Threshold set too high, preventing detection of sensitive data.  
-**Solution:** Adjust threat threshold to 1 to flag any sensitive data.  
-**Source Ticket:** [WhatsApp Detection Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BTF29IAH/view)
+## Issue Recognition & Triage
+
+### Symptoms of CAP Issues
+- Alerts not being triggered for sensitive data transfers.
+- False positives or false negatives in PII detection.
+- Inconsistent behavior across file types or communication channels.
+- Issues with email alerts or reporting functionality.
+- Compatibility problems with specific applications (e.g., Outlook, WhatsApp).
+
+### Priority Assessment
+- **High Priority:** Data leakage risks, such as undetected sensitive data transfers or inability to block critical PII.
+- **Medium Priority:** False positives affecting productivity or minor reporting discrepancies.
+- **Low Priority:** Configuration inquiries or feature clarifications.
 
 ---
 
-### Report Discrepancies
-**Symptoms:** Reports show more flagged files than actual detections.  
-**Troubleshooting Steps:**  
-1. Review CAP and eDiscovery configurations.  
-2. Test file uploads and regex expressions for false positives.  
-**Root Cause:** Misconfigured CAP settings affecting detection accuracy.  
-**Solution:** Adjust scanning and reporting configurations.  
-**Source Ticket:** [Report Discrepancies](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BxJLFIA3/view)
+## Diagnostic Methodology
+
+### Systematic Approach
+1. **Understand the Problem:**
+   - Gather detailed information from the customer about the issue.
+   - Identify the affected components (e.g., email alerts, file uploads, specific applications).
+
+2. **Verify Configuration:**
+   - Check CAP policy settings, including predefined content patterns, thresholds, and exit points.
+   - Ensure DPI and OCR features are enabled if required.
+
+3. **Reproduce the Issue:**
+   - Attempt to replicate the problem in a controlled environment using test data.
+
+4. **Analyze Logs:**
+   - Review relevant logs (e.g., CAP logs, mail logs) for errors or anomalies.
+
+5. **Test Solutions:**
+   - Apply configuration changes or updates incrementally and test their impact.
+
+6. **Escalate if Necessary:**
+   - If the issue persists, escalate to R&D with detailed logs and findings.
 
 ---
 
-### Turkish ID Detection in Emails
-**Symptoms:** TCIDs in email body not detected in new Outlook; attachments detected correctly.  
-**Troubleshooting Steps:**  
-1. Test detection in old vs. new Outlook.  
-2. Enable debug mode and gather logs.  
-**Root Cause:** Known limitation in EPP client with new Outlook.  
-**Solution:** Use old Outlook until new client release (expected May).  
-**Source Ticket:** [Turkish ID Detection](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000ORVnDIAX/view)
+## Information Collection
+
+### Questions to Ask Customers
+- What specific data or file types are not being detected or blocked?
+- Which applications or channels are affected (e.g., email, web uploads)?
+- Are there any recent changes to the environment (e.g., upgrades, policy changes)?
+- What is the expected behavior versus the observed behavior?
+
+### Logs and Data to Collect
+- CAP logs and mail logs.
+- Screenshots or recordings of the issue.
+- Policy configuration exports.
+- Sample data that reproduces the issue (e.g., test files, email formats).
 
 ---
 
-## Best Practices
-- **Email Alerts:** Always configure valid sender addresses to avoid SMTP rejections.  
-- **CAP Policies:** Regularly review and adjust threat thresholds to align with organizational needs.  
-- **OCR Settings:** Test OCR functionality for all relevant file types (e.g., PNG, JPG, PDF).  
-- **Client Updates:** Ensure EPP clients are updated to maintain compatibility with server versions.  
-- **Policy Backups:** Export policies before license expiration to preserve configurations.  
-- **URL Categories:** Enable DPI when applying URL-specific CAP policies.  
+## Common Scenarios & Solutions
+
+### Scenario 1: Email Alerts Not Received
+- **Root Cause:** Invalid sender email address or misconfigured SMTP settings.
+- **Solution:** Reconfigure the email server with a valid sender address and verify SMTP relay settings. [Example Case](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BjpstIAB/view)
+
+### Scenario 2: False Positives in PII Detection
+- **Root Cause:** Overly broad detection patterns or algorithm limitations.
+- **Solution:** Refine detection rules and use custom regex patterns to minimize false positives. [Example Case](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000F0SIEIA3/view)
+
+### Scenario 3: Undetected Sensitive Data in Specific Formats
+- **Root Cause:** Unsupported file types or incorrect data formats.
+- **Solution:** Update CAP policies to include the specific file types and ensure OCR is enabled. [Example Case](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NJ08jIAD/view)
+
+### Scenario 4: Compatibility Issues with Applications
+- **Root Cause:** Limitations in client functionality with newer application versions.
+- **Solution:** Use older application versions or test custom builds provided by R&D. [Example Case](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000ORVnDIAX/view)
 
 ---
 
-## Advanced Topics
+## Detailed Case Studies
 
-### Custom Builds for Regional PII Detection
-For cases involving regional identification formats (e.g., Brazilian CPF, Turkish ID), custom builds may be required to refine detection algorithms. These builds should be tested on limited machines before deployment. Monitor logs for bypass events and validate detection accuracy.
+### Case Study 1: Email Alerts Not Triggered
+- **Ticket ID:** [500Qk00000BjpstIAB](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BjpstIAB/view)
+- **Symptoms:** Alerts not received after implementing a WhatsApp blocking policy.
+- **Diagnostic Steps:** Verified SMTP settings, reinstalled EPP software, and analyzed mail logs.
+- **Resolution:** Changed the sender email address and folder ownership, ensuring alerts were sent successfully.
+- **Key Takeaways:** Always use valid email addresses and verify mail server configurations.
 
-### Debugging DPI and Text Inspection
-When CAP fails to detect sensitive data in specific applications (e.g., new Outlook), enable debug mode and collect extended logs. This helps identify limitations in DPI or text inspection capabilities.
+### Case Study 2: False Positives for Brazilian CPF
+- **Ticket ID:** [500Qk00000KwZTOIA3](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000KwZTOIA3/view)
+- **Symptoms:** Non-CPF content flagged as sensitive.
+- **Diagnostic Steps:** Reviewed detection patterns and engaged R&D for a custom build.
+- **Resolution:** Deployed a custom build with refined CPF detection rules.
+- **Key Takeaways:** Tailor detection algorithms to regional data formats to reduce false positives.
+
+### Case Study 3: Undetected TCIDs in Email Body
+- **Ticket ID:** [500Qk00000ORVnDIAX](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000ORVnDIAX/view)
+- **Symptoms:** TCIDs in email bodies not detected in the new Outlook application.
+- **Diagnostic Steps:** Tested detection across different Outlook versions and formats.
+- **Resolution:** Advised using the old Outlook version until a new client release.
+- **Key Takeaways:** Monitor application compatibility and communicate known limitations to customers.
 
 ---
 
-End of Article.
+## Best Practices & Tips
+
+1. **Policy Configuration:**
+   - Regularly review and update CAP policies to align with organizational needs.
+   - Use logical operators (AND/OR) for complex detection criteria.
+
+2. **Testing and Validation:**
+   - Test policies with real-world data to ensure accuracy.
+   - Validate detection capabilities across all relevant file types and formats.
+
+3. **Customer Communication:**
+   - Provide clear instructions and examples for testing.
+   - Set realistic expectations regarding feature limitations and timelines for fixes.
+
+4. **Proactive Monitoring:**
+   - Monitor logs for anomalies and address issues before they escalate.
+   - Stay informed about new releases and updates to the Netwrix Endpoint Protector.
+
+---
+
+## Escalation Guidelines
+
+### When to Escalate
+- Issues persist after applying standard troubleshooting steps.
+- Detection failures involve critical data or high-risk scenarios.
+- Compatibility issues with widely used applications (e.g., Outlook, Chrome).
+
+### How to Escalate
+- Collect comprehensive logs, screenshots, and test data.
+- Document all troubleshooting steps taken and their outcomes.
+- Submit a detailed escalation request to R&D, referencing relevant case IDs.
+
+---
+
+This guide serves as a definitive reference for troubleshooting Content-Aware Protection (Predefined Content - PII) issues, enabling support engineers to resolve cases efficiently and consistently.

@@ -1,0 +1,80 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000Y9pPnKAJ","500Qk00000MXLYtIAP","TextPost","0054u000008ARZjAAO","2025-03-04T13:17:44.000Z","Description: We pull a Sensitive Group Membership report on Sundays. This week the report showed that 2 users were part of the DnsAdmins group, however upon further investigation these users were not actually members. 
+
+I refreshed the report and the users were no longer listed. We then tried to determine when the group membership changed, but this activity is not found in any of the reports.
+
+How can we trust this data? Help me find the discrepancy or log showing the membership change.","","","","0054u000008ARZjAAO","2025-03-04T13:17:44.000Z"
+"0D5Qk00000Y9p27KAB","500Qk00000MXLYtIAP","TextPost","0054u000006gpoAAAQ","2025-03-04T14:18:22.000Z","<p>I would see if they can officially confirm at whatever time that job last ran, that the users were not in there.</p><p>Say it happened overnight and someone was doing maintenance which required the change.</p><p> </p><p>Do they have SI or NAM set up to track ad activity to help determine if they were added and removed.</p>","","","","0054u000006gpoAAAQ","2025-03-04T14:18:22.000Z"
+"0D5Qk00000YA1bDKAT","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-04T15:26:45.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007oss5AAA","2025-03-04T15:26:45.000Z"
+"0D5Qk00000YA1bFKAT","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-04T15:26:46.000Z","Invitation updated. Attendees: Joshua Sexton, Nathan Funk","","","","0054u000007oss5AAA","2025-03-04T15:26:46.000Z"
+"0D5Qk00000YA1bEKAT","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-04T15:26:46.000Z","Invitation updated. Attendees: Joshua Sexton","","","","0054u000007oss5AAA","2025-03-04T15:26:46.000Z"
+"0D5Qk00000YMhphKAD","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-05T15:22:00.000Z","<p>report on Sunday 6:00AM showed 2 users on DNSAdmin group</p><p>manually ran on monday 2:00PM</p><p> </p><p>checked NTP policies</p><p>two different policies should have caught the change:</p><p>All AD changes</p><p>AD Group Memebership Changes</p><p> </p><p>Both Policies show lots of events for group membership changes but I don&#39;t see anything for that</p><p> </p><p>Event Filtering: Exclude AD DNS Events is enabled</p><p>-don&#39;t think this should affect this group but noted</p><p> </p><p>found events where the accounts were removed on 02/24</p><p> </p><p>it looks like the only activity for those accounts and that group are removing the accounts from the group on 02/24</p><p> </p><p>test added one of those uses to the group again and removed it again</p><p>NTP reported both without issue</p><p> </p><p>DB Maintenance keeps AD events for 6 months</p><p> </p><p>NEA: AD inventory runs successfully</p><p>-need to further research this</p><p>-would like a copy of the AD inventory collection job for this domain</p><p>-and a copy of the sensitive group report job for this domain</p><p>--may be including everything from past week</p><p> </p><p> </p><p> </p><p> </p>","","","","0054u000007oss5AAA","2025-03-05T15:22:00.000Z"
+"0D5Qk00000YtOrAKAV","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-10T18:36:08.000Z","What We've Learned Updated: NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+AD inventory runs every day
+Sensitive Group Memebership runs every sunday
+
+on 03/02 the Sensitive Group Membersip report showed 2 users in a particular sensitive group but manually running the report shows those users are not in that group
+
+Confirmed Netwrix Threat Prevention is successfully collecting these events
+According to NTP the users were removed from the group on 02/24.
+No other activity on those accounts and groups since
+
+test change is correctly reported by NTP
+
+I can't find any errors in the logs but they were set to ERROR level
+
+The report from 03/02 seems to have the data from 02/24
+
+Client is going to make test change this weekend and see if the report picks it up","","","","0054u000007oss5AAA","2025-03-10T18:36:08.000Z"
+"0D5Qk00000Z5HkJKAV","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-12T19:46:58.000Z","Next Steps Updated: waiting to hear from client after report runs this weekend","","","","0054u000007oss5AAA","2025-03-12T19:46:58.000Z"
+"0D5Qk00000aIuSSKA0","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-25T19:06:58.000Z","Invitation updated. Attendees: Joshua Sexton, Tay Caliguiri","","","","0054u000007oss5AAA","2025-03-25T19:06:58.000Z"
+"0D5Qk00000aIuSTKA0","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-25T19:06:58.000Z","Invitation updated. Attendees: Joshua Sexton, Tay Caliguiri, Nathan Funk","","","","0054u000007oss5AAA","2025-03-25T19:06:58.000Z"
+"0D5Qk00000aIpG4KAK","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-25T19:21:09.000Z","What We've Learned Updated: NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+AD inventory runs every day
+Sensitive Group Memebership runs every sunday
+
+on 03/02 the Sensitive Group Membersip report showed 2 users in a particular sensitive group but manually running the report shows those users are not in that group
+
+Confirmed Netwrix Threat Prevention is successfully collecting these events
+According to NTP the users were removed from the group on 02/24.
+No other activity on those accounts and groups since
+
+test change is correctly reported by NTP
+
+I can't find any errors in the logs but they were set to ERROR level
+
+The report from 03/02 seems to have the data from 02/24
+
+Client is going to make test change this weekend and see if the report picks it up
+
+---------------
+
+
+another test change over the weekend:
+User Ereyes01 was added to the MSHDnsAdmins group on Friday
+Report ran automatically as schedule with AD Inventory on Sunday
+Removed user from group on Monday
+
+The report from Sunday shows the user is in the group
+
+Ran the report manually on Tuesday
+-Still shows the user is a member of the group
+-this is different the previously observed behavior
+
+Debug Log Review from the Sunday run
+-no issues observed
+
+closest thing to an issue is an info line about a SID conflict, but it's for a different group.
+
+24/03/2025 02:03:43	INFO	ADINVENTORY	Stealthbits.StealthAUDIT.DataCollectors.ADInventory2.Tasks.ADInventoryScanTask.InternalProcessRecord	""Could not reconcile whether SamAccountName: M365 Level 4 User with ObjectSid: S-1-5-21-1851695309-2848023948-3570784906-42839, or object with ObjectSid: S-1-5-21-1851695309-2848023948-3570784906-42840 occupies DN: CN=M365 Level 4 User,OU=Groups,DC=MSH,DC=LOCAL in domain 2- M365 Level 4 User will be rescanned on the next differential scan""	NDCPMSHFSMO01A.MSH.LOCAL	DCExtract	5052	6480	8792
+
+
+scheduling a meeting for further review
+-should try full scan instead of dif
+
+need to check groupmembership view table","","","","0054u000007oss5AAA","2025-03-25T19:21:09.000Z"
+"0D5Qk00000aLkMxKAK","500Qk00000MXLYtIAP","TextPost","0054u000007oss5AAA","2025-03-26T14:29:31.000Z","Next Steps Updated: close ticket","","","","0054u000007oss5AAA","2025-03-26T14:29:31.000Z"

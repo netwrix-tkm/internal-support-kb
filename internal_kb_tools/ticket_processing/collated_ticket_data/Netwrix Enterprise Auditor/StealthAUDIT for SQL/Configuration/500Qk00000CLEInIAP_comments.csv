@@ -1,0 +1,100 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007l7GXIAY","500Qk00000CLEInIAP","[Tiger Team]
+**Problem Statement/Business Impact**
+Customer has the Databases0.CollectionSQL4-SQL_ServerLogons scheduled to run every 1-2 minutes to scrape the SQL logs for logon activity. They also have the Databases group scheduled to run every night. When the 2-SQL_PermissionsScan is running, the 4-SQL_ServerLogons job does not behave correctly. It will either not start, or be very slow/laggy, but only while the 2-SQL_PermissionsScan is running.
+
+**Desired Outcome**
+Customer would like the 4-SQL_ServerLogons to run on a fairly consistent schedule even while the 2-SQL_PermissionsScan is running.
+
+**Steps to Reproduce**
+1. Schedule the Database job group (or the Database0.CollectionSQL group)
+2. Schedule the 4-SQL_ServerLogons job to run every minute
+3. Kick off the database group from the schedule
+
+**Troubleshooting Completed/Notes**
+- 4-SQL_ServerLogons runs for about 3-4 minutes
+- 2-SQL_PermissionsScan
+
+**Logs Uploaded**
+- 4-SQL_ServerLogons JobStats1 & 2
+- Schedule for 4-SQL_ServerLogons & the Database group","0054u000007MiY9AAK","2024-07-05T16:01:49.000Z","2024-07-05T16:11:26.000Z","false","false"
+"00aQk0000080wCHIAY","500Qk00000CLEInIAP","[Meeting Notes 7/18/2024]
+**Current Issue**
+The SQL_ServerLogons job lags when the SQL_Permissions job is running, causing the customer to lose logon activity (lots of SQL servers with logs that roll over VERY quickly).
+
+**Troubleshooting Completed during Meeting**
+Verified customer is using a customer sql script to gather data:
+Select loginame, db_name(dbid) as dbname,hostname,  max(last_batch) login_time_max from sys.sysprocesses with (nolock) where loginame<>'sa' and  loginame<>'' group by loginame, hostname,db_name(dbid)
+
+**Logs/Screenshots Collected**
+--SQL_ServerLogons_NormalRun
+--SQL_ServerLogon_ConflictedRun
+
+**Next Steps**
+Discuss with the behavior with the product owner (James Anderson)","0054u000007MiY9AAK","2024-07-18T19:35:10.000Z","2024-07-18T19:55:59.000Z","false","false"
+"00aQk000008MHlZIAW","500Qk00000CLEInIAP","Found a function that appears to be the lock. 
+SA_SQLSERVER_BinarySIDToString
+
+attached logs and screenshots for tiger team review","0054u000006gpoAAAQ","2024-08-05T22:13:15.000Z","2024-08-05T22:13:15.000Z","false","false"
+"00aQk000008P9zZIAS","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Account ACV has been changed to 277784.6400000000068.","0054u000006gpoAAAQ","2024-08-07T22:55:39.000Z","2024-08-07T22:55:39.000Z","false","false"
+"00aQk000008PA1BIAW","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Account ACV has been changed to 138892.3200000000034.","0054u000006gpoAAAQ","2024-08-07T22:55:48.000Z","2024-08-07T22:55:48.000Z","false","false"
+"00aQk000008fje5IAA","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-22T08:18:24.000Z","2024-08-22T08:18:24.000Z","false","false"
+"00aQk000008fje7IAA","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the new comment has been added: Helen Randall:
+
+@Salesforce this one remains on the backlog awaiting dev bandwidth.
+
+[DevOps CommentId:10817833]","0054u000006gtWUAAY","2024-08-22T08:18:24.000Z","2024-08-22T08:18:24.000Z","false","false"
+"00aQk000008veCFIAY","500Qk00000CLEInIAP","We are encouraging the customer to move to NAM to capture logon and activity for SQL.
+
+Need AE to confirm they are engaged if additional licensing is required.","0050g000006QqyEAAS","2024-09-05T14:37:12.000Z","2024-09-05T14:37:12.000Z","false","false"
+"00aQk0000091SrVIAU","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-09-10T17:04:51.000Z","2024-09-10T17:04:51.000Z","false","false"
+"00aQk000009DWcnIAG","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-09-20T13:19:15.000Z","2024-09-20T13:19:15.000Z","false","false"
+"00aQk000009Tk0gIAC","500Qk00000CLEInIAP","PM here, is there an update on when R&D will be ready? Ticket is currently blocking project close.","0054u000008F7eUAAS","2024-10-04T13:41:12.000Z","2024-10-04T13:41:12.000Z","false","false"
+"00aQk000009W8oTIAS","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-07T11:13:17.000Z","2024-10-07T11:13:17.000Z","false","false"
+"00aQk000009W8oVIAS","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the new comment has been added: Helen Randall:
+
+@Salesforce this one is in the backlog and will probably be looked at towards the end of November.
+
+[DevOps CommentId:11021617]","0054u000006gtWUAAY","2024-10-07T11:13:17.000Z","2024-10-07T11:13:17.000Z","false","false"
+"00aQk000009YN6gIAG","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-10-08T21:19:17.000Z","2024-10-08T21:19:17.000Z","false","false"
+"00aQk00000A6QDNIA3","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-07T23:03:20.000Z","2024-11-07T23:03:20.000Z","false","false"
+"00aQk00000A6QDPIA3","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the new comment has been added: Ethan Israel:
+
+@Salesforce - i see the associated support ticket was Closed-By Client. Is the customer still experiencing this issue or are we good to close the escalation?
+
+[DevOps CommentId:11187460]","0054u000006gtWUAAY","2024-11-07T23:03:21.000Z","2024-11-07T23:03:21.000Z","false","false"
+"00aQk00000A6iS2IAJ","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the new comment has been added: James Anderson:
+
+@Ethan Israel I think it will be because I switched them out to use the same server logins job I created for Oak Hill to collect login data from RDS. This job does not suffer from the issue described here. I still need to confirm that it fulfils all of their needs. I was planning to close this one when I had that. @Salesforce
+
+[DevOps CommentId:11190452]","0054u000006gtWUAAY","2024-11-08T08:46:48.000Z","2024-11-08T08:46:48.000Z","false","false"
+"00aQk00000ATUxqIAH","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the new comment has been added: Helen Randall:
+
+@James Anderson @Salesforce any update on whether the new login job is now working?
+
+[DevOps CommentId:11289658]","0054u000006gtWUAAY","2024-11-28T10:55:19.000Z","2024-11-28T10:55:19.000Z","false","false"
+"00aQk00000ATVCMIA5","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the new comment has been added: James Anderson:
+
+@Helen Randall @Salesforce New job tested by support yesterday and they plan to deploy to customer very soon
+
+[DevOps CommentId:11289708]","0054u000006gtWUAAY","2024-11-28T11:00:20.000Z","2024-11-28T11:00:20.000Z","false","false"
+"00aQk00000ATcVaIAL","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-11-28T13:27:46.000Z","2024-11-28T13:27:46.000Z","false","false"
+"00aQk00000AaQELIA3","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2024-12-05T14:58:07.000Z","2024-12-05T14:58:07.000Z","false","false"
+"00aQk00000AaQENIA3","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Account ACV has been changed to 277784.6400000000068.","0054u000006gpoAAAQ","2024-12-05T14:58:11.000Z","2024-12-05T14:58:11.000Z","false","false"
+"00aQk00000AaNegIAF","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Account ACV has been changed to 138892.3200000000034.","0054u000006gtWUAAY","2024-12-05T14:58:20.000Z","2024-12-05T14:58:20.000Z","false","false"
+"00aQk00000CZdpBIAT","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Account ACV has been changed to 305945.1900000000034.","0054u000006gtWUAAY","2025-03-27T13:12:27.000Z","2025-03-27T13:12:27.000Z","false","false"
+"00aQk00000DLlIzIAL","500Qk00000CLEInIAP","On Escalation Ticket # 00417507 the Following Fields have been updated: 
+Account ACV has been changed to 321329.0300000000034.","0054u000006gtWUAAY","2025-05-08T09:19:23.000Z","2025-05-08T09:19:23.000Z","false","false"

@@ -1,0 +1,51 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000Zfq6aKAB","500Qk00000N5MQsIAN","TextPost","0054u000008ARZjAAO","2025-03-19T03:10:05.000Z","Description: When running a PingCastle scan against our dev domain, it now always gets stuck at the step “Gathering gpo data”. I left one scan running overnight and it still hadn’t got past that step the next morning.
+Today, I have enabled logging for each scan and all of them are getting stuck at “Gathering gpo data”. We were running version 3.2.0.1 when I saw the issue, but even when running 3.3.0.1 I get the same issue.
+
+Please see below for the relevant trace log extracts. It looks like it’s scanning GPOs for MSIs and timing out but then starting the scan all over again when it reconnects. The strange thing is that we have never had this issue before and our monthly scan on 1st March ran successfully.
+
+Done insert file
+LdapQuery.BaseObject=DC=aurdev,DC=national,DC=com,DC=au
+LdapQuery.Filter=(objectClass=packageRegistration)
+[11:35:55 AM] Running enumeration
+[11:35:55 AM]Enumeration successful
+Enumeration expires at 2025-03-19T01:05:55.0780343Z
+Enumeration context is de817911-2c29-4f3f-be2d-6c8a5bbc7e13
+[11:35:55 AM]Getting Enumerate page 0
+[11:35:55 AM]Pull successful
+[11:35:57 AM]Getting Enumerate page 1
+[11:35:57 AM]Pull successful
+[11:35:58 AM]Getting Enumerate page 2
+[11:35:58 AM]Pull successful
+[11:36:02 AM]Getting Enumerate page 3
+[11:36:02 AM]Pull successful
+[12:12:11 PM]Renewing the enumeration (expiration)
+Exception: The socket connection was aborted. This could be caused by an error processing your message or a receive timeout being exceeded by the remote host, or an underlying network resource issue. Local socket timeout was '00:01:00'.
+StackTrace: 
+Server stack trace: 
+   at System.ServiceModel.Channels.StreamConnection.Write(Byte[] buffer, Int32 offset, Int32 size, Boolean immediate, TimeSpan timeout)
+   at System.ServiceModel.Channels.StreamConnection.Write(Byte[] buffer, Int32 offset, Int32 size, Boolean immediate, TimeSpan timeout, BufferManager bufferManager)
+   at System.ServiceModel.Channels.FramingDuplexSessionChannel.OnSendCore(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.TransportDuplexSessionChannel.OnSend(Message message, TimeSpan timeout)
+   at <a href='https://System.ServiceModel.Channels.OutputChannel.Send' target='_blank'>System.ServiceModel.Channels.OutputChannel.Send</a>(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.DuplexChannelBinder.Request(Message message, TimeSpan timeout)
+   at <a href='https://System.ServiceModel.Channels.ServiceChannel.Call' target='_blank'>System.ServiceModel.Channels.ServiceChannel.Call</a>(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at Search.Renew(RenewRequest request)
+   at <a href='https://PingCastle.ADWS' target='_blank'>PingCastle.ADWS</a>.ADWSConnection.EnumerateInternalWithADWS(String distinguishedName, String filter, String[] properties, String scope, ReceiveItems callback) in c:gitPingCastleADWS<a href='https://ADWSConnection.cs' target='_blank'>ADWSConnection.cs</a>:line 352
+   at <a href='https://PingCastle.ADWS' target='_blank'>PingCastle.ADWS</a>.ADWebService.Enumerate(Action preambleWithReentry, String distinguishedName, String filter, String[] properties, WorkOnReturnedObjectByADWS callback, String scope) in c:gitPingCastleADWS<a href='https://ADWebService.cs' target='_blank'>ADWebService.cs</a>:line 289
+[12:12:11 PM] Running ldap enumeration
+BaseObject=Subtree
+Filter=(objectClass=packageRegistration)
+[12:12:11 PM]Calling FindAll","","","","0054u000008ARZjAAO","2025-03-19T03:10:05.000Z"
+"0D5Qk00000ZkXnVKAV","500Qk00000N5MQsIAN","TextPost","005Qk000003cQkXIAU","2025-03-20T08:39:22.000Z","What We've Learned Updated: PingCastle scans were getting stuck at ""Gathering GPO data"". After enabling logging for each scan, all were still stuck in the same situation.
+
+Occurs in versions 3.2.0.1 and 3.3.0.1","","","","005Qk000003cQkXIAU","2025-03-20T08:39:22.000Z"
+"0D5Qk00000ZkbYJKAZ","500Qk00000N5MQsIAN","TextPost","005Qk000003cQkXIAU","2025-03-20T08:40:17.000Z","Next Steps Updated: Check trace logs to see if there are specific areas where its delayed/stuck.
+Make sure DFS paths are disabled correctly.","","","","005Qk000003cQkXIAU","2025-03-20T08:40:17.000Z"
+"0D5Qk00000ZkgeQKAR","500Qk00000N5MQsIAN","TextPost","005Qk000003cQkXIAU","2025-03-20T08:41:30.000Z","Steps to Reproduce Updated: Have DFS paths not disabled/not disabled correctly to reproduce this issue.","","","","005Qk000003cQkXIAU","2025-03-20T08:41:30.000Z"

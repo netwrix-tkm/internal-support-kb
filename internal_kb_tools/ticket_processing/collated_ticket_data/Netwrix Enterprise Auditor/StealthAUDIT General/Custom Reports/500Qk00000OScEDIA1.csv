@@ -1,0 +1,82 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OScEDIA1","00443254","Support Ticket","A custom report that shows passwords that never expire is not returning full results","A bunch of accounts with passwords not expiring are missing from this report. The SQL Query for the job is below. 
+DROP TABLE [StealthAudit].[dbo].[SA_RS_PassNeverExpires]
+
+SELECT  [uv].[PrincipalId] AS [PrincipalId]
+          ,ISNULL([uv].[DisplayName],[uv].[NTAccount]) AS [User]
+          ,[uv].[DistinguishedName] AS [Distinguished Name]
+    ,[epv].[canonicalName] as [Canoncial Name]
+    ,[uv].[Title] AS [Title]
+          ,[epv].[physicaldeliveryofficename] AS [Office]
+    ,[uv].[NTAccount] AS [NT Account]
+    ,[uv].[Description] AS [Decription]
+,[uv].IsDeleted
+    ,[epv].[Info] AS [Notes]
+     ,[uv].Mail
+    ,uv.[PwdLastSetDate] as [Last Set]
+,[epv].[extensionAttribute4] as [Owner]
+          ,CAST([uv].[LastLogonTimestamp] AS date) AS [Last Logon]
+          ,CAST([uv].[WhenCreated] AS date) AS [Created On]
+          ,DATEDIFF(dd,[uv].[lastLogonTimeStamp],GETUTCDATE()) AS [Days since last Logon]
+          ,CASE WHEN [uv].[AccountExpires] < GETDATE() THEN 'True'
+                ELSE 'False'
+           END AS [Account Expired]
+          ,CASE WHEN [uv].[ACCOUNTDISABLE] = 0 then 'False'
+                ELSE 'True'
+           END AS [Disabled],
+        DATEDIFF(dd, UV.PwdLastSetDate, GETUTCDATE()) AS [Password Age],
+  CASE WHEN UV.PASSWD_NOTREQD = 1 THEN 'True' ELSE 'False' END AS [Not Required],
+        CASE WHEN UV.PASSWD_CANT_CHANGE = 1 THEN 'True' ELSE 'False' End AS [Can't Change],
+        CASE WHEN UV.DONT_EXPIRE_PASSWORD = 1 THEN 'True' ELSE 'False' End AS [Never Expire]
+
+INTO [StealthAudit].[dbo].[SA_RS_PassNeverExpires]
+  FROM [StealthAudit].[dbo].[SA_ADInventory_UsersView] as [uv]
+inner join [StealthAudit].[dbo].[SA_ADInventory_ExtendedAttributesPivotView] as [epv] on [uv].PrincipalID = [epv].PrincipalID
+
+ where [uv].IsDeleted = 0 and  [uv].SamAccountName not like '%healthmailbox%' 
+and [uv].DONT_EXPIRE_PASSWORD = 1 and [uv].Mail not like  '<a href='https://%company.com' target='_blank'>%company.com</a>%' and [uv].Mail not like '%departed%' and [uv].DomainId = 1","N/A","N/A","N/A","Symptom
+
+A bunch of accounts with passwords not expiring are missing from this report. The SQL Query for the job is below.
+DROP TABLE [StealthAudit].[dbo].[SA_RS_PassNeverExpires]
+
+SELECT [uv].[PrincipalId] AS [PrincipalId]
+,ISNULL([uv].[DisplayName],[uv].[NTAccount]) AS [User]
+,[uv].[DistinguishedName] AS [Distinguished Name]
+,[epv].[canonicalName] as [Canoncial Name]
+,[uv].[Title] AS [Title]
+,[epv].[physicaldeliveryofficename] AS [Office]
+,[uv].[NTAccount] AS [NT Account]
+,[uv].[Description] AS [Decription]
+,[uv].IsDeleted
+,[epv].[Info] AS [Notes]
+,[uv].Mail
+,uv.[PwdLastSetDate] as [Last Set]
+,[epv].[extensionAttribute4] as [Owner]
+,CAST([uv].[LastLogonTimestamp] AS date) AS [Last Logon]
+,CAST([uv].[WhenCreated] AS date) AS [Created On]
+,DATEDIFF(dd,[uv].[lastLogonTimeStamp],GETUTCDATE()) AS [Days since last Logon]
+,CASE WHEN [uv].[AccountExpires] < GETDATE() THEN 'True'
+ELSE 'False'
+END AS [Account Expired]
+,CASE WHEN [uv].[ACCOUNTDISABLE] = 0 then 'False'
+ELSE 'True'
+END AS [Disabled],
+DATEDIFF(dd, UV.PwdLastSetDate, GETUTCDATE()) AS [Password Age],
+CASE WHEN UV.PASSWD_NOTREQD = 1 THEN 'True' ELSE 'False' END AS [Not Required],
+CASE WHEN UV.PASSWD_CANT_CHANGE = 1 THEN 'True' ELSE 'False' End AS [Can't Change],
+CASE WHEN UV.DONT_EXPIRE_PASSWORD = 1 THEN 'True' ELSE 'False' End AS [Never Expire]
+
+INTO [StealthAudit].[dbo].[SA_RS_PassNeverExpires]
+FROM [StealthAudit].[dbo].[SA_ADInventory_UsersView] as [uv]
+inner join [StealthAudit].[dbo].[SA_ADInventory_ExtendedAttributesPivotView] as [epv] on [uv].PrincipalID = [epv].PrincipalID
+
+where [uv].IsDeleted = 0 and [uv].SamAccountName not like '%healthmailbox%'
+and [uv].DONT_EXPIRE_PASSWORD = 1 and [uv].Mail not like '<a href='https://%company.com' target='_blank'>%company.com</a>%' and [uv].Mail not like '%departed%' and [uv].DomainId = 1
+
+Cause
+
+Issues with a table referenced in the custom report.
+
+Resolution
+
+DB team identified an issue with a problematic table.","Inefficient Query/Process","Scottie Taylor","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","Custom Reports","11.6","","10.9","Closed - Resolved","Reed Smith LLP","Lenny Jones","2025-04-25T16:47:01.000Z","2025-05-06T14:12:21.000Z"

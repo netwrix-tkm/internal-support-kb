@@ -1,0 +1,316 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000NbA1aIAF","500Qk00000NthdOIAR","2025-04-10T13:56:26.000Z","2025-04-10T13:56:26.000Z","Hello Maurice,
+
+Thank you for contacting Netwrix Technical Support. My name is Emiliano and I’ll be the engineer assisting you with this ticket.
+
+I'm checking the log and the GPResult you sent, so I will be back to you as soon as I get an update and the next steps for this.
+
+Thank you!
+Regards,
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0NthdO:ref","""The LAN Manager Authentication Level allows the use of NTLMv1 or LM' / ""Hardened Paths have been mo    [ ref:!00D70091pB.!500Qk0NthdO:ref ]","techsupport@netwrix.com","Netwrix Support","windows.server@belastingdienst.nl","","emiliano.krainuk@netwrix.com","false","2025-04-10T13:56:25.000Z","true"
+"02sQk00000NbccLIAR","500Qk00000NthdOIAR","2025-04-10T18:18:29.000Z","2025-04-10T18:18:29.000Z","Hello Maurice,
+
+After checking the information, It looks as it is configured but there are some potential reasons why this may be picked up, so you can verify them:
+
+	Is the GPO Located in a parent domain but linked to this domain? - This is a current limitation of the tool due to us specifically using SYSVOL to interogate the direct group policy files. In this case the registry.pol
+	Is the Security filtering applied to GPO_S_WSWMODC_113 stopping the PingCastle account from accessing the files? You may need to grant ""read"" access on the group policy for the PingCastle account (If using the scheduler with SYSTEM then this would be the computer account)
+	Does Pingcastle.exe have access to \dmz.belastingdienst.nlsysvol? Is the firewall locked down for file access or similar?
+
+Thank you in advance.
+Regards.
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/10/2025 10:56 AM
+To: windows.server@belastingdienst.nl
+Subject: ""The LAN Manager Authentication Level allows the use of NTLMv1 or LM' / ""Hardened Paths have been mo [ ref:!00D70091pB.!500Qk0NthdO:ref ]
+
+Hello Maurice,
+
+Thank you for contacting Netwrix Technical Support. My name is Emiliano and I’ll be the engineer assisting you with this ticket.
+
+I'm checking the log and the GPResult you sent, so I will be back to you as soon as I get an update and the next steps for this.
+
+Thank you!
+Regards,
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0NthdO:ref","RE: ""The LAN Manager Authentication Level allows the use of NTLMv1 or LM' / ""Hardened Paths have been mo    [ ref:!00D70091pB.!500Qk0NthdO:ref ]","techsupport@netwrix.com","Netwrix Support","windows.server@belastingdienst.nl","","emiliano.krainuk@netwrix.com","false","2025-04-10T18:18:27.000Z","true"
+"02sQk00000NkoMNIAZ","500Qk00000NthdOIAR","2025-04-15T11:41:47.000Z","2025-04-15T12:01:06.000Z","ref:_00D7091pB._500Q000NthdO:ref
+
+Hello Emiliano,
+
+It turned out that the System (Computer) account, used by the PingCastle
+schedule, did not have read permissions on some of the Grouppolicy Objects.
+We solved this issue and now we get the correct result from PingCastle. you
+can close this issue.
+                                                                                  
+          Met vriendelijke groet,                                                 
+                                                                                  
+          Team Windows Server                                                     
+                                                                                  
+          Info, uitleg en FAQ op ons klantenportaal                               
+                http://windowsserver.belastingdienst.nl                           
+          ....................................................................... 
+                                                                                  
+          Belastingdienst Datacenter Services                                     
+          Hosting- en Integratiediensten                                          
+          Dutch Tax and Customs Administration                                    
+                                                                                  
+          Laan van Westenenk 494                                                  
+          Quintax Oost A6                                                         
+          7334 DS Apeldoorn                                                       
+          The Netherlands                                                         
+          ....................................................................... 
+          E-mail windows.server@belastingdienst.nl                                
+          Mattermost DCS:Windows Server                                           
+                                                                                  
+
+
+
+
+
+
+Van:	""Netwrix Support"" <techsupport@netwrix.com>
+Aan:	""windows.server@belastingdienst.nl""
+            <windows.server@belastingdienst.nl>
+Datum:	10-04-2025 20:18
+Onderwerp:	RE: ""The LAN Manager Authentication Level allows the use of
+            NTLMv1 or LM' / ""Hardened Paths have been mo
+            [ ref:!00D70091pB.!500Qk0NthdO:ref ]
+
+
+
+[EXTERNE E-MAIL] Dit bericht is afkomstig van een externe afzender. Wees
+voorzichtig met het openen van linkjes en bijlagen.
+
+Hello Maurice,
+
+After checking the information, It looks as it is configured but there are
+some potential reasons why this may be picked up, so you can verify them:
+      Is the GPO Located in a parent domain but linked to this domain? -
+      This is a current limitation of the tool due to us specifically using
+      SYSVOL to interogate the direct group policy files. In this case the
+      registry.pol
+      Is the Security filtering applied to GPO_S_WSWMODC_113 stopping the
+      PingCastle account from accessing the files? You may need to grant
+      ""read"" access on the group policy for the PingCastle account (If
+      using the scheduler with SYSTEM then this would be the computer
+      account)
+      Does Pingcastle.exe have access to \dmz.belastingdienst.nlsysvol?
+      Is the firewall locked down for file access or similar?
+Thank you in advance.
+Regards.
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/10/2025 10:56 AM
+To: windows.server@belastingdienst.nl
+Subject: ""The LAN Manager Authentication Level allows the use of NTLMv1 or
+LM' / ""Hardened Paths have been mo [ ref:!00D70091pB.!500Qk0NthdO:ref ]
+
+Hello Maurice,
+
+Thank you for contacting Netwrix Technical Support. My name is Emiliano and
+I’ll be the engineer assisting you with this ticket.
+
+I'm checking the log and the GPResult you sent, so I will be back to you as
+soon as I get an update and the next steps for this.
+
+Thank you!
+Regards,
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0NthdO:ref
+
+
+------------------------------------------------------------------------
+De Belastingdienst stelt e-mail niet open voor aanvragen, aangiften, bezwaarschriften, verzoeken, klachten, ingebrekestellingen en soortgelijke formele berichten.
+Dit bericht is uitsluitend bestemd voor de geadresseerde. Het bericht kan vertrouwelijke informatie bevatten waarvoor de fiscale geheimhoudingsplicht geldt. Als u dit bericht per abuis hebt ontvangen, wordt u verzocht het te verwijderen en de afzender te informeren.
+
+The Dutch Tax Administration does not accept filings, requests, appeals, complaints, notices of default or similar formal notices, sent by email.
+This message is solely intended for the addressee. It may contain information that is confidential and legally privileged. If you are not the intended recipient please delete this message and notify the sender.","Netwrix Support Ticket #441552 - ref:_00D7091pB._500Q000NthdO:ref - Betr: RE: ""The LAN Manager Authentication Level allows the use of NTLMv1 or LM' / ""Hardened Paths have been mo    [ ref:!00D70091pB.!500Qk0NthdO:ref ]","windows.server@belastingdienst.nl","","techsupport@netwrix.com","","","true","2025-04-15T11:38:18.000Z","true"
+"02sQk00000NkxMYIAZ","500Qk00000NthdOIAR","2025-04-15T12:03:06.000Z","2025-04-15T12:03:06.000Z","Hello,
+
+Thanks for letting me know what was causing the issue! It's great to read that is working fine now.
+
+I will proceed and close this case now. Feel free to re-open it or create a new one if you need assistance with anything else.
+
+Thank you!
+Have a great day!
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: [windows.server@belastingdienst.nl]
+Sent: 4/15/2025 8:38 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #441552 - ref:_00D7091pB._500Q000NthdO:ref - Betr: RE: ""The LAN Manager Authentication Level allows the use of NTLMv1 or LM' / ""Hardened Paths have been mo [ ref:!00D70091pB.!500Qk0NthdO:ref ]
+
+ref:_00D7091pB._500Q000NthdO:ref
+ 
+Hello Emiliano,
+
+It turned out that the System (Computer) account, used by the PingCastle schedule, did not have read permissions on some of the Grouppolicy Objects. We solved this issue and now we get the correct result from PingCastle. you can close this issue.
+
+
+	
+		
+			
+			
+			
+			
+			 
+			
+			
+			
+			Met vriendelijke groet,
+			
+			Team Windows Server
+			
+			Info, uitleg en FAQ op ons klantenportaal
+			      http://windowsserver.belastingdienst.nl
+			.......................................................................
+			
+			Belastingdienst Datacenter Services
+			Hosting- en Integratiediensten
+			Dutch Tax and Customs Administration
+			
+			Laan van Westenenk 494
+			Quintax Oost A6
+			7334 DS Apeldoorn
+			The Netherlands
+			.......................................................................
+			E-mail windows.server@belastingdienst.nl
+			Mattermost DCS:Windows Server
+		
+	
+
+
+
+
+
+
+
+
+""Netwrix Support"" ---10-04-2025 20:18:34---[EXTERNE E-MAIL] Dit bericht is afkomstig van een externe afzender. Wees voorzichtig met het openen
+
+Van: ""Netwrix Support"" <techsupport@netwrix.com>
+Aan: ""windows.server@belastingdienst.nl"" <windows.server@belastingdienst.nl>
+Datum: 10-04-2025 20:18
+Onderwerp: RE: ""The LAN Manager Authentication Level allows the use of NTLMv1 or LM' / ""Hardened Paths have been mo    [ ref:!00D70091pB.!500Qk0NthdO:ref ]
+
+
+
+
+[EXTERNE E-MAIL] Dit bericht is afkomstig van een externe afzender. Wees voorzichtig met het openen van linkjes en bijlagen.
+
+Hello Maurice,
+
+After checking the information, It looks as it is configured but there are some potential reasons why this may be picked up, so you can verify them: 
+
+
+	Is the GPO Located in a parent domain but linked to this domain? - This is a current limitation of the tool due to us specifically using SYSVOL to interogate the direct group policy files. In this case the registry.pol
+	Is the Security filtering applied to GPO_S_WSWMODC_113 stopping the PingCastle account from accessing the files? You may need to grant ""read"" access on the group policy for the PingCastle account (If using the scheduler with SYSTEM then this would be the computer account)
+	Does Pingcastle.exe have access to \dmz.belastingdienst.nlsysvol? Is the firewall locked down for file access or similar?
+
+Thank you in advance.
+Regards.
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/10/2025 10:56 AM
+To: windows.server@belastingdienst.nl
+Subject: ""The LAN Manager Authentication Level allows the use of NTLMv1 or LM' / ""Hardened Paths have been mo [ ref:!00D70091pB.!500Qk0NthdO:ref ]
+
+Hello Maurice,
+
+Thank you for contacting Netwrix Technical Support. My name is Emiliano and I’ll be the engineer assisting you with this ticket.
+
+I'm checking the log and the GPResult you sent, so I will be back to you as soon as I get an update and the next steps for this.
+
+Thank you!
+Regards,
+
+Emiliano Kraiñuk
+Technical Support Engineer
+1-949-407-5125
+____________________ __________
+Cybersecurity That Works for You
+
+Netwrix | 6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0NthdO:ref
+
+ 
+
+------------------------------------------------------------------------
+De Belastingdienst stelt e-mail niet open voor aanvragen, aangiften, bezwaarschriften, verzoeken, klachten, ingebrekestellingen en soortgelijke formele berichten.
+Dit bericht is uitsluitend bestemd voor de geadresseerde. Het bericht kan vertrouwelijke informatie bevatten waarvoor de fiscale geheimhoudingsplicht geldt. Als u dit bericht per abuis hebt ontvangen, wordt u verzocht het te verwijderen en de afzender te informeren.
+
+The Dutch Tax Administration does not accept filings, requests, appeals, complaints, notices of default or similar formal notices, sent by email.
+This message is solely intended for the addressee. It may contain information that is confidential and legally privileged. If you are not the intended recipient please delete this message and notify the sender.","RE: Netwrix Support Ticket #441552 -  - Betr: RE: ""The LAN Manager Authentication Level allows the use of NTLMv1 or LM' / ""Hardened Paths have been mo    [ ref:!00D70091pB.!500Qk0NthdO:ref ]","techsupport@netwrix.com","Netwrix Support","windows.server@belastingdienst.nl","","emiliano.krainuk@netwrix.com","true","2025-04-15T12:03:04.000Z","true"

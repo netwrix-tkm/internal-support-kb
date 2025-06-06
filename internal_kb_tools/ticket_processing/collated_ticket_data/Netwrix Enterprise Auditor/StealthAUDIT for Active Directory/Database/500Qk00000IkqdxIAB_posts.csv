@@ -1,0 +1,35 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000RhMx7KAF","500Qk00000IkqdxIAB","TextPost","0054u000008ARZjAAO","2024-11-25T09:53:46.000Z","Description: Hello
+Please can you tell me how to change the criteria of number of days since last login  from 60 to 30  so  the report shows user accounts not used for the last 30 days.","","","","0054u000008ARZjAAO","2024-11-25T09:53:46.000Z"
+"0D5Qk00000RmOM6KAN","500Qk00000IkqdxIAB","TextPost","005Qk000002b4gDIAQ","2024-11-26T08:26:48.000Z","Description Updated: Customer needs to see users for whom ""days since last logon"" is 30 in AD_StaleUsers report.","","","","005Qk000002b4gDIAQ","2024-11-26T08:26:48.000Z"
+"0D5Qk00000RmpXZKAZ","500Qk00000IkqdxIAB","TextPost","005Qk000002b4gDIAQ","2024-11-26T13:39:01.000Z","Description Updated: Customer needs AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60.","","","","005Qk000002b4gDIAQ","2024-11-26T13:39:01.000Z"
+"0D5Qk00000Rn2u2KAB","500Qk00000IkqdxIAB","TextPost","005Qk000002b4gDIAQ","2024-11-26T13:40:06.000Z","What We've Learned Updated: Customer needs AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60.
+
+In contrast with AWS solution, where the AWS_StaleUsers Job has a customizable analysis task:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm#Customiz
+the AD_StaleUsers Job analysis task does not have similar threshold parameters configuration in its SQL query, as such, we can not modify the analysis query according to customer needs.","","","","005Qk000002b4gDIAQ","2024-11-26T13:40:06.000Z"
+"0D5Qk00000RmpuYKAR","500Qk00000IkqdxIAB","TextPost","005Qk000002b4gDIAQ","2024-11-26T13:40:31.000Z","Next Steps Updated: Support will clarify how to fine tune the AD_StaleUsers job and report to meet customers requirement.","","","","005Qk000002b4gDIAQ","2024-11-26T13:40:31.000Z"
+"0D5Qk00000Rvf2GKAR","500Qk00000IkqdxIAB","TextPost","005Qk000002b4gDIAQ","2024-11-28T13:53:51.000Z","What We've Learned Updated: ""AD_StaleUsers"" job > ""User Details"" analysis SQL query is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD. 
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table. 
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+To summarize, in order to change criteria for the data that gets written to the ""AD_StaleUsers"" job report, perform these steps:
+
+1. Navigate to "".Active Directory Inventory"" solution > ""3-AD_Exceptions"" job > ""Analysis"" > select ""Stale Users"" analysis. 
+
+2. Select ""Analysis Configuration"" 
+
+3. Scroll the variables list until you find @STALE_THRESHOLD
+
+4. Change the value from 60 to 30 - this will make ""3-AD_Exceptions"" job treat users who haven`t logged on for more than or equal to 30 days as stale users (instead of default 60 days). 
+
+5. Let the "".Active Directory Inventory"" and ""Active Directory"" solutions run and complete.
+Afterward, inspect the ""AD_StaleUsers"" job report and let me know the results.","","","","005Qk000002b4gDIAQ","2024-11-28T13:53:51.000Z"
+"0D5Qk00000RvlCVKAZ","500Qk00000IkqdxIAB","TextPost","005Qk000002b4gDIAQ","2024-11-28T13:54:46.000Z","Next Steps Updated: Support provided customer with instructions to modify the Stale users` threshold. 
+Customer will reply back on Monday,  2nd of December, with results.","","","","005Qk000002b4gDIAQ","2024-11-28T13:54:46.000Z"

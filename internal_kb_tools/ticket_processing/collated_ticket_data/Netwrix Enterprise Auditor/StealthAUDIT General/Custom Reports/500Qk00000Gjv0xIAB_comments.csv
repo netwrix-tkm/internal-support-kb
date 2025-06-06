@@ -1,0 +1,102 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009b9GsIAI","500Qk00000Gjv0xIAB","Looked at the options for Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) and Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) to pull File server permissions for groups that need to be reviews by the Object Owner(s).
+
+For examples we built out two test reports that look at the NEA DBs SA_FSAA_DirectPermissionsView
+REF: Netwrix Enterprise Auditor v11.5 > Administration > Reporting > Creating a Report
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Chapters/09.Reporting/Creating_a_Report.htm
+
+With the first report built our we were able to us the Copy an Existing Report noted on this page then update the needed filter(s) and the naming of the report.
+
+Referenced a similar query that can be ran within SQL Server Management Studio (SSMS) TSQL Query option this can then be exported or copied with the headers.
+https://learn.microsoft.com/en-us/answers/questions/1194052/export-query-results-as-csv-with-headers
+
+SELECT TOP (1000) -- The TOP (1000) Can be removed or extended if needed
+      [HostName]
+      ,[ResourcePath]
+      ,[ResourceTypeDescription]
+      ,[AllowRightsDescription]
+      ,[AllowMaskDescription]
+      ,[DenyRightsDescription]
+      ,[DenyMaskDescription]
+      ,[TrusteeSID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeDisplayName]
+      ,[TrusteeNTStyleName]
+  FROM [StealthAUDIT].[dbo].[SA_FSAA_DirectPermissionsView]
+  WHERE TrusteeType = 5      -- TrusteeType = 5  = TrusteeTypeDescription = 'Domain Group'
+  --  Optional
+  --  WHERE HostName = '2019App.DGlab.local' AND TrusteeType = 5
+  --  WHERE TrusteeNTName = 'FS_Modify' AND TrusteeType = 5
+
+Recommendation would be to have the Owners perform the needed Review on the Group within AIC.
+Netwrix Access Information Center 11.6 > Resource Ownership with the Access Information Center > Owners & Resource Reviews
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/ResourceReviews/PendingReviews.htm
+
+Netwrix Access Information Center 11.6 > Resource Ownership with the Access Information Center > Owners & Resource Reviews > Perform an Access Review
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/ResourceReviews/Review/Access.htm
+
+Netwrix Access Information Center 11.6 > Resource Ownership with the Access Information Center > Owners & Resource Reviews > Perform a Permissions Review
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/ResourceReviews/Review/Permissions.htm
+
+I will CC the Account Rep Michael Riemma to reach out to set up a Demo of this and other AIC features.
+
+If the search takes more than 15min to return data we might need to look at the AuthSessionTimeout value.
+REF: Netwrix Access Information Center 11.6 > Administrator Overview > Additional Configuration Options > Timeout Parameter
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Admin/AdditionalConfig/TimeoutParameter.htm","00570000003KXurAAG","2024-10-10T21:29:51.000Z","2024-10-10T21:29:51.000Z","false","false"
+"00aQk000009ijHBIAY","500Qk00000Gjv0xIAB","customer requested meeting for today however original engineer does not have availability so provided POD scheduling link","0054u000006goFUAAY","2024-10-17T17:11:25.000Z","2024-10-17T17:11:25.000Z","false","false"
+"00aQk000009k5ifIAA","500Qk00000Gjv0xIAB","Today we:
+
+Discovered that the reports being generated were targeting a Direct PermissionsView table that displays the correct information but missing some resource paths that the AIC is able to view. 
+
+We then identified that the original analysis task for the job was performing a join to the SA_FSAA_TraversalsView table from the SA_FSAA_PermissionsView table. This table could potential have the desired information and ran a query ordered by the resource path. The query is below:
+
+SELECT [HostID]
+      ,[HostName]
+      ,[ResourceID]
+      ,[ParentResourceID]
+      ,[ResourceDeletedUSN]
+      ,[ResourcePath]
+      ,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[AllowRights]
+      ,[DenyRights]
+      ,[AllowList]
+      ,[AllowRead]
+      ,[AllowWrite]
+      ,[AllowDelete]
+      ,[AllowManage]
+      ,[AllowAdmin]
+      ,[DenyList]
+      ,[DenyRead]
+      ,[DenyWrite]
+      ,[DenyDelete]
+      ,[DenyManage]
+      ,[DenyAdmin]
+      ,[AllowRightsDescription]
+      ,[DenyRightsDescription]
+      ,[AllowMask]
+      ,[DenyMask]
+      ,[AllowMaskDescription]
+      ,[DenyMaskDescription]
+      ,[TrusteeID]
+      ,[TrusteeSID]
+      ,[TrusteeType]
+      ,[TrusteeIsHistoricalSID]
+      ,[TrusteePrincipalID]
+      ,[TrusteeTypeDescription]
+      ,[TrusteeDisplayName]
+      ,[TrusteeDomain]
+      ,[TrusteeNTName]
+      ,[TrusteeNTStyleName]
+  FROM [Netwrix Enterprise Auditor].[dbo].[SA_FSAA_DirectPermissionsView]
+  Where ResourcePath = 'Group16'
+
+The query was still in an execution state before verification.
+
+We then modified the existing reports to include an additional element that will display the SA_FSAA_PermissionsView table. This will allow you to view both tables in one report in case data is not visible in one table but the other. 
+
+Our next steps are:
+
+You will:
+
+Verify the security resource path is visible in the SA_FSAA_PermissionsView table and the modified report.","0054u000007MdqrAAC","2024-10-18T16:34:46.000Z","2024-10-18T16:34:46.000Z","false","false"

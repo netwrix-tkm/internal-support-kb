@@ -1,0 +1,150 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000cUc76KAC","500Qk00000ONmxOIAT","TextPost","0054u000008ARZjAAO","2025-04-23T20:17:21.000Z","Description: after upgradingn to 11.6.137 our colleciton job is stuck in commiting state","","","","0054u000008ARZjAAO","2025-04-23T20:17:21.000Z"
+"0D5Qk00000cUqsyKAC","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-23T21:07:21.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007oss5AAA","2025-04-23T21:07:21.000Z"
+"0D5Qk00000cUqt0KAC","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-23T21:07:22.000Z","Invitation updated. Attendees: Joshua Sexton, Jim Callison","","","","0054u000007oss5AAA","2025-04-23T21:07:22.000Z"
+"0D5Qk00000cUqszKAC","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-23T21:07:22.000Z","Invitation updated. Attendees: Joshua Sexton","","","","0054u000007oss5AAA","2025-04-23T21:07:22.000Z"
+"0D5Qk00000cUqqeKAC","500Qk00000ONmxOIAT","TextPost","0054u000006gpoAAAQ","2025-04-23T22:20:19.000Z","<p>Couple things.</p><ol><li>If possible when having them generate a new debug log try to have them target 1 or just a handful of servers. Makes the log much nicer to work with. I know you didn&#39;t ask him to do that and he just sent his log, but future reference.</li><li>Important relevent errors. Below lead me to believe a few things need to be checked by the customer or you if you meet them.</li></ol><p>a. SVC_SQLDM_P should be the name of the connection profile. I&#39;d make sure that it is the correct one and that the credential within WPACDWBSQL01SVC_SQLDM_P is correct and working.</p><p>b. Being SQL I would confirm what the connection screen looks like.   SQL permission job &gt; COnfigure &gt; Query &gt; Open query &gt; Configure Button &gt; Then go to Filters page &gt; Click connections.</p><p>Verify the connection for this server exists and tests successfully. WPACDWBSQL01</p><p>Then depends on if we make changes we can go from there. </p><p>3/04/2025 16:52:26	WARNING	StealthAUDIT	THostConnection.RecordConnectionAttempt	&quot;Connecting to WPACDWBSQL01 using SVC_SQLDM_P: ACCESS DENIED&quot;			-1	15076	15576</p><p>23/04/2025 16:52:26	INFO	StealthAUDIT	TConnectionMgr.RecordConnectionResults	&quot;WPACDWBSQL01SVC_SQLDM_PACCESS DENIED profile: SVC_SQLDM_P&quot;			-1	15076	15576</p><p>23/04/2025 16:52:26	INFO	SQL	Stealthbits.StealthAUDIT.DataCollectors.ExtractBase.PrepareForTask	&quot;Stealthbits.StealthAUDIT.DataCollectors.SQL.Exceptions.SqlDcCriticalException: A severe exception was returned from the target server: &#39;A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - The wait operation timed out.)&#39;. Stopping to try credentials for this host. ---&gt; System.Data.SqlClient.SqlException: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - The wait operation timed out.) ---&gt; System.ComponentModel.Win32Exception: The wait operation timed out   --- End of inner exception stack trace ---   at Stealthbits.StealthAUDIT.DataCollectors.SQL.Common.SQLServer.Providers.SqlServerDbFactory.OpenSqlConnection(SqlConnectionContext connection, CancellationToken token)   at Stealthbits.StealthAUDIT.DataCollectors.SQL.Common.SQLServer.Providers.SqlServerDbFactory.GetConnection(SqlConnectionStringBuilder connectionStringBuilder, NetworkCredential validCreds, CancellationToken token, SqlServerInstance instance, SqlServerDatabase database, Boolean openConnection)   at Stealthbits.StealthAUDIT.DataCollectors.SQL.Common.SQLServer.Providers.SqlServerDbFactory.GetConnection(String connectionString, NetworkCredential validCreds, CancellationToken token, SqlServerInstance instance, SqlServerDatabase database, Boolean poolingEnabled, Boolean openConnection)   at Stealthbits.StealthAUDIT.DataCollectors.SQL.Common.SQLServer.SqlServerTaskBase.ValidateDataSource(ISqlDataSource dataSource, NetworkCredential jobCredential)   --- End of inner exception stack trace ---   at Stealthbits.StealthAUDIT.DataCollectors.ExtractBase.CheckConnection()   at Stealthbits.StealthAUDIT.DataCollectors.ExtractBase.PrepareForTask(String xmlTask, ISADataPipe dataPipe)&quot;	WPACDWBSQL01	DCExtract	18444	15076	15576</p><p>23/04/2025 16:52:26	ERROR	SQL	TManagedDCExtractItf.PrepareForTask	&quot;A severe exception was returned from the target server: &#39;A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 0 - The wait operation timed out.)&#39;. Stopping to try credentials for this host&quot;	WPACDWBSQL01	DCExtract	18444	15076	15576</p><p> </p>","","","","0054u000006gpoAAAQ","2025-04-23T22:20:19.000Z"
+"0D5Qk00000cYRHeKAO","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-24T17:10:58.000Z","<p>zoom meeting</p><p>plan for meeting:</p><p>check on the connection profile and it&#39;s permissions to the SQL database</p><p> </p><p>connection is correct</p><p>test connections work</p><p> </p><p>There are some old SQL servers in the list that are no longer there</p><p>but the job just moves on to the next</p><p> </p><p>The issue seems to be the final commit set in the SQL process</p><p>We used SQL Management Studio to identify the query that is running while the job hangs</p><p> </p><p>It does eventually complete</p><p>but it takes 5+ hours per SQL server and there are over 100 servers</p><p>Before the upgrade, the entire job (so all servers combined) took only about 6 hours</p><p> </p><p>It seemed like the test environment was working fine after upgrade, but we discovered that the transaction log was out of space on that server. When we cleared space for it, the SQL permissions job started behaving the same as the Prod environment</p><p>-that is to say that it seemingly hangs on the final committing step</p><p> </p><p>The SQL query is attached to the ticket</p><p> </p><p> </p><p> </p><p> </p>","","","","0054u000007oss5AAA","2025-04-24T17:10:58.000Z"
+"0D5Qk00000cYBN5KAO","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-24T17:11:16.000Z","Steps to Reproduce Updated: run the SQL Permissions scan","","","","0054u000007oss5AAA","2025-04-24T17:11:16.000Z"
+"0D5Qk00000cXnS2KAK","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-24T17:12:20.000Z","What We've Learned Updated: connection profile is correct
+test connections to the SQL servers work
+-from the connection wizard in the job's filters
+
+There are some old SQL servers in the list that are no longer there
+
+but the job just moves on to the next
+
+ 
+
+The issue seems to be the final commit set in the SQL process
+
+We used SQL Management Studio to identify the query that is running while the job hangs
+
+ 
+
+It does eventually complete
+
+but it takes 5+ hours per SQL server and there are over 100 servers
+
+Before the upgrade, the entire job (so all servers combined) took only about 6 hours
+
+ 
+
+It seemed like the test environment was working fine after upgrade, but we discovered that the transaction log was out of space on that server. When we cleared space for it, the SQL permissions job started behaving the same as the Prod environment
+
+-that is to say that it seemingly hangs on the final committing step
+
+ 
+
+The SQL query is attached to the ticket","","","","0054u000007oss5AAA","2025-04-24T17:12:20.000Z"
+"0D5Qk00000cYSpmKAG","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-24T18:28:35.000Z","Next Steps Updated: research internally
+reaching out to T2 for thoughts","","","","0054u000007oss5AAA","2025-04-24T18:28:35.000Z"
+"0D5Qk00000cbrSeKAI","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-25T15:25:41.000Z","Invitation updated. Attendees: Joshua Sexton, Nicholas Zimmer, Jim Callison","","","","0054u000007oss5AAA","2025-04-25T15:25:41.000Z"
+"0D5Qk00000cbrSdKAI","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-25T15:25:41.000Z","Invitation updated. Attendees: Joshua Sexton, Nicholas Zimmer","","","","0054u000007oss5AAA","2025-04-25T15:25:41.000Z"
+"0D5Qk00000cbdn4KAA","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-25T15:35:21.000Z","What We've Learned Updated: connection profile is correct
+test connections to the SQL servers work
+-from the connection wizard in the job's filters
+
+There are some old SQL servers in the list that are no longer there
+but the job just moves on to the next
+
+The issue seems to be the final commit set in the SQL process
+We used SQL Management Studio to identify the query that is running while the job hangs
+
+It does eventually complete
+but it takes 5+ hours per SQL server and there are over 100 servers
+Before the upgrade, the entire job (so all servers combined) took only about 6 hours
+
+It seemed like the test environment was working fine after upgrade, but we discovered that the transaction log was out of space on that server. When we cleared space for it, the SQL permissions job started behaving the same as the Prod environment
+-that is to say that it seemingly hangs on the final committing step
+
+The SQL query is attached to the ticket
+---------------
+
+The client is experienced with SQL and has been reviewing the query that seems to be the issue. Here is what he said:
+
+""Looks like there is no WHERE clause on this call.   Meaning for EVERY server, you are running against the entire database.  It SHOULD only be running for the server data it just gathered.
+
+Probably this is your issue.""
+
+""It seems like the query is using terribly inefficient nested views.  It joins many tables to views, unions, and the views have many internal table joins.
+
+If you have any real amount of data this will not run well.  What would have changed related to this for the .137 upgrade?
+
+As the issue started immediately after that, it seems the data would not have changed, but the logic of how it is handled might?
+
+Another thought.  As this data technically should be wiped and re-loaded every time….. we don’t care about history.""
+
+---------------
+
+I've provided directions for clearing the permissions data
+client would like this treated as a production outage and escalate to the highest level
+-I've been working with T2 Nicholas Zimmer
+
+Client wants to rollback. He has DB backups and maybe server backups to facilitate. I'm trying to confirm if he has a full snapshot or just folders.
+
+sent meeting invite","","","","0054u000007oss5AAA","2025-04-25T15:35:21.000Z"
+"0D5Qk00000cbhCdKAI","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-25T15:35:55.000Z","Next Steps Updated: need to review fresh logs for escalation
+client wants to roll back
+sent meeting invite","","","","0054u000007oss5AAA","2025-04-25T15:35:55.000Z"
+"0D5Qk00000cdIX4KAM","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-25T20:52:59.000Z","<p>looks like version 11.6.140fixed this issue</p><p>-not positive, but good chance</p><p> </p><p>upgrading to 11.6.0.141</p><p> </p><p>running scan</p><p> </p><p>test environment is still having issue but is reporting it as a &quot;slow thread&quot; - didn&#39;t do that before</p><p>-at the end of call, 15 minutes and still working on the one server</p><p> </p><p>Prod seems to be working great after the upgrade</p><p>set up a batch of 25 servers and it was completing each in 3-5 minutes</p><p>10 threads running 10 servers at once was tearing through the test</p><p> </p><p>client is going to let full scan running over the weekend and let me know how it looks on Monday</p>","","","","0054u000007oss5AAA","2025-04-25T20:52:59.000Z"
+"0D5Qk00000cdN26KAE","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-25T21:13:20.000Z","Next Steps Updated: client is letting full scan run over the weekend
+he will let me know how it looks on Monday","","","","0054u000007oss5AAA","2025-04-25T21:13:20.000Z"
+"0D5Qk00000cdEk9KAE","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-25T21:17:13.000Z","What We've Learned Updated: connection profile is correct
+test connections to the SQL servers work
+-from the connection wizard in the job's filters
+
+There are some old SQL servers in the list that are no longer there
+but the job just moves on to the next
+
+The issue seems to be the final commit set in the SQL process
+We used SQL Management Studio to identify the query that is running while the job hangs
+
+It does eventually complete
+but it takes 5+ hours per SQL server and there are over 100 servers
+Before the upgrade, the entire job (so all servers combined) took only about 6 hours
+
+It seemed like the test environment was working fine after upgrade, but we discovered that the transaction log was out of space on that server. When we cleared space for it, the SQL permissions job started behaving the same as the Prod environment
+-that is to say that it seemingly hangs on the final committing step
+
+The SQL query is attached to the ticket
+---------------
+
+The client is experienced with SQL and has been reviewing the query that seems to be the issue. Here is what he said:
+
+""Looks like there is no WHERE clause on this call.   Meaning for EVERY server, you are running against the entire database.  It SHOULD only be running for the server data it just gathered.
+
+Probably this is your issue.""
+
+""It seems like the query is using terribly inefficient nested views.  It joins many tables to views, unions, and the views have many internal table joins.
+
+If you have any real amount of data this will not run well.  What would have changed related to this for the .137 upgrade?
+
+As the issue started immediately after that, it seems the data would not have changed, but the logic of how it is handled might?
+
+Another thought.  As this data technically should be wiped and re-loaded every time….. we don’t care about history.""
+
+---------------
+
+I've provided directions for clearing the permissions data
+client would like this treated as a production outage and escalate to the highest level
+-I've been working with T2 Nicholas Zimmer
+
+Client wants to rollback. He has DB backups and maybe server backups to facilitate. I'm trying to confirm if he has a full snapshot or just folders.
+
+sent meeting invite
+
+---------------
+
+met with client and upgraded test and prod environments to NEA 11.6.0.141
+-looks like it includes a fix for the SQL Permissions scan
+
+it seems to have fixed the issue in Prod.
+Test is still running slow but it does not identify it as a ""Slow Thread""
+-client is less concerned with that, at the moment, because at least prod is up and going.
+
+he will let it run a full SQL permissions scan over the weekend and let me know how it looks on Monday.","","","","0054u000007oss5AAA","2025-04-25T21:17:13.000Z"
+"0D5Qk00000cvgRUKAY","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-04-29T14:28:09.000Z","Next Steps Updated: Prod SQL Permissions scan is working again
+asked client if good to close or if he wants to wait until Test issue is resolved","","","","0054u000007oss5AAA","2025-04-29T14:28:09.000Z"
+"0D5Qk00000e3I26KAE","500Qk00000ONmxOIAT","TextPost","0054u000007oss5AAA","2025-05-13T20:31:47.000Z","Next Steps Updated: client failed to respond about test environment
+proceeding with ticket closure","","","","0054u000007oss5AAA","2025-05-13T20:31:47.000Z"

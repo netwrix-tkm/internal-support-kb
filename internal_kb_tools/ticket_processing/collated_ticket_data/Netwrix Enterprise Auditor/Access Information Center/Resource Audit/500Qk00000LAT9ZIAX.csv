@@ -1,0 +1,28 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LAT9ZIAX","00433857","Support Ticket","Access Information Center expected permissions view","Activity information is displaying for only one nasuni device.","Check activity for nasuni heavy in the AIC.
+No activity is reported.","- Removed the host mapping feature from the FSAC System Scan- this appears to resolve the issue of NEA querying every host against every agent
+--- Once we did this, we had a successful scan- minus the one host who does not have an agent configured for monitoring yet
+--- We also see the activity data correlating to the correct hosts in the AIC
+
+- Removed the analysis tasks from various weekly reports as the table is already being created when the job runs, these jobs are just used to create a filtered report from the already collected data. This should increase their speed.
+
+-Removed the Group Usage group from File System Activity and moved it to the AD Activity group where it belongs
+
+-Found AIC Effective Access Report was still not displaying for deeper than the first couple of folder levels, but this looks to be caused by the fact we don’t have rights to read permissions on the deeper levels.
+
+-Removed a second DC from the ADI scan that was within the same domain already being scanned.","Customer must adjust permissions for the account scanning the Nasuni filers. We are currently seeing Access Denied errors for several of the Filers in FSAA System Scan. We also need rights to at least read permissions in order for the effective access report to populate.","Issue:
+Activity Information only showing for one Nasuni device.
+
+
+Resolution:
+- Removed the host mapping feature from the FSAC System Scan- this appears to resolve the issue of NEA querying every host against every agent
+--- Once we did this, we had a successful scan- minus the one host who does not have an agent configured for monitoring yet
+--- We also see the activity data correlating to the correct hosts in the AIC
+
+- Removed the analysis tasks from various weekly reports as the table is already being created when the job runs, these jobs are just used to create a filtered report from the already collected data. This should increase their speed.
+
+-Removed the Group Usage group from File System Activity and moved it to the AD Activity group where it belongs
+
+-Found AIC Effective Access Report was still not displaying for deeper than the first couple of folder levels, but this looks to be caused by the fact we don’t have rights to read permissions on the deeper levels.
+
+-Removed a second DC from the ADI scan that was within the same domain already being scanned.","Incorrect configuration: audit settings","Ian Ranstrom","Unexpected Behavior","Netwrix Enterprise Auditor","Access Information Center","Resource Audit","10.7","","50.2","Closed - Resolved","MYR Group","Michael Lindahl","2025-01-28T15:47:12.000Z","2025-03-19T21:12:42.000Z"

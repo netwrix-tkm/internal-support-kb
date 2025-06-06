@@ -1,0 +1,19 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LyNCAIA3","00436038","Support Ticket","Check if privileged users have been revealed on RODC issue - cant remove user","The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.","Reset the admin account password multiple times.
+Execute the RODCPurgeAccount command to clear the user from the RODC cache.
+Wait for a period of time.
+Observe that the admin user reappears in the msDS-RevealedUsers attribute on the RODC.","","","After speaking to the PingCastle team, there are no other options at this point. User has been notified in case they want to go ahead with RODC rebuild,.","Advanced Configuration Change","Shaheryar Ali Tahir","Question","PingCastle","PC Professional","PingCastle General","3.3","","53.0","Closed - Resolved","Rhenus Assets & Services GmbH & Co. KG","Tim Buntrock","2025-02-17T12:41:23.000Z","2025-04-11T11:39:48.000Z"

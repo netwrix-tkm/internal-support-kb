@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Nhb0qIAB","00441025","Support Ticket","SP_TrusteeAudit scan fills up TempDB on SQL","Hello,
+
+The SP_TrusteeAudit scan for SharePoint Online is causing the tempDB on our SQL Server to fill up rapidly. Please see the attached screenshots for details.
+
+The scan executes a large SELECT INTO operation, creating and populating multiple temp tables such as #SIDFilter and SA_SP_TrusteeAudit_DirectPermissions. It pulls data from views including:
+
+SA_ADInventory_UsersView
+SA_ADInventory_GroupsView
+SA_SPAA_DirectPermissionsView
+SA_SPAA_SiteCollectionsTraversalView
+
+During a test run, the scan consumed over 100 GB of tempDB in just 27 minutes. I've attached screenshots for your reference.","Run SP_TrsuteeAudit job.
+When running temp SQL DB fill completely and hits error due to space issue.","----------
+04/14/2025
+----------
+The issue appears to be the size of the Sharepoint environment uses the full space when running analysis jobs. The query is selecting so much information to run the analysis that it causes the DB to fill completely.","Awaiting customer to try implementing limited users to scan against.","Issue:
+TempDB is filling up when running the sharepoint job SP_TrusteeAudit
+
+Cause:
+Large amount of sharepoint data leads to the tempDB filling during analysis.
+
+Resolution:
+Reduced the scope of the report to specific users which allowed the task to run successfully.","Database Configuration/Capacity","Ian Ranstrom","Error","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Database","11.6","","33.1","Closed - Resolved","Jayman Built","Sahil Umatia","2025-04-04T17:35:03.000Z","2025-05-07T21:08:36.000Z"

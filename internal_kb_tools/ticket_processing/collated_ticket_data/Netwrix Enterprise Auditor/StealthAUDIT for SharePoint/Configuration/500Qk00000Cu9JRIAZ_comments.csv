@@ -1,0 +1,16 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007qtqnIAA","500Qk00000Cu9JRIAZ","COPILOT reply to  token request failed X cetera
+
+“Token request failed” in SharePoint typically indicates an issue with authentication or permissions. Here are some common reasons and potential solutions:
+
+Outdated .NET Framework: If you’re using a console application with .NET Framework 4.5.2, consider upgrading to a more recent version. Older frameworks may not support the required security protocols. Check which TLS and ciphers are used in your application.
+https://techcommunity.microsoft.com/t5/microsoft-sharepoint-blog/provider-hosted-app-pha-application-errors-tls-errors-and-401/ba-p/2273611
+
+Invalid Resource: When requesting an OAuth 2.0 token, ensure that the resource URL matches the registered app in SharePoint. The error message you received indicates an invalid resource. Verify that your app registration includes the correct resource (e.g., https://mysharepoint.sharepoint.com).
+https://mycallbackurl/default.aspx?error=access_denied&error_description=AADSTS650057%3a+Invalid+resource.+The+client+has+requested+access+to+a+resource+which+is+not+listed+in+the+requested+permissions+in+the+client%27s+application+registration.+Client+app+ID%3a+6fb73d33-59df-4a69-8b6b-299b616f2ad1
+
+Client Secret Lifetime: The client secret (Client Secret ID) may have expired. You can extend its duration via PowerShell or recreate the app in SharePoint.
+https://portal.microfocus.com/s/article/KM000004298?language=en_US
+
+Permissions and Connection: Double-check the account used for the connection. Ensure it has sufficient permissions to access the SharePoint list. If using Power Automate, verify the connection settings.
+https://powerusers.microsoft.com/t5/Building-Power-Apps/Connection-issue-with-sharepoint-token/td-p/200660","00570000003KXurAAG","2024-07-10T18:43:19.000Z","2024-07-10T18:43:19.000Z","false","false"

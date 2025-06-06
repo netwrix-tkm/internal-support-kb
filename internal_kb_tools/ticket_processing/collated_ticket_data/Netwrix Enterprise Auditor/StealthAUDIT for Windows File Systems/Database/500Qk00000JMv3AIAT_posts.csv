@@ -1,0 +1,27 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000SjxFSKAZ","500Qk00000JMv3AIAT","TextPost","0054u000008ARZjAAO","2024-12-11T14:48:25.000Z","Description: Hello
+
+The <a href='https://StealthAUDIT.sql' target='_blank'>StealthAUDIT.sql</a> file size is above 250GB
+I have ""Root element is missing"" error mostly everywhere in the steathaudit app","","","","0054u000008ARZjAAO","2024-12-11T14:48:25.000Z"
+"0D5Qk00000SwpdgKAB","500Qk00000JMv3AIAT","TextPost","005Qk000002b4gDIAQ","2024-12-13T15:39:32.000Z","What We've Learned Updated: Customer`s primary concern is the cost of the NEA server hosting. They would like to start by decreasing the currently occupied space on disk by NEA database. 
+
+We checked the disk usage by Table on the SQL server and found that most of the space was occupied by this table:
+StealthAUDIT.dbo.SA_FS_TagsMapped
+
+This table is created by the  4.Content > Tags > FS_FileTags job. We disabled this job for both of the File System storages that are configured for auditing in StealthAudit. 
+
+We then truncated contents of this table using this SQL command:
+truncate table StealthAUDIT.dbo.SA_FS_TagsMapped;
+
+This freed up space inside the database container itself, however the disk space is not reclaimed after this. 
+According to the information we got from SSMS - after truncating that table the database container now has 46% of space available. 
+
+As an attempt to free up disk space we started database shrinking from SSMS. 
+We agreed with customer to keep shrinking operation running and then continue troubleshooting on Monday.","","","","005Qk000002b4gDIAQ","2024-12-13T15:39:32.000Z"
+"0D5Qk00000SwhnJKAR","500Qk00000JMv3AIAT","TextPost","005Qk000002b4gDIAQ","2024-12-13T15:40:50.000Z","Next Steps Updated: Support will schedule next meeting with customer on Monday, 16th of December. 
+Depending on the result of the NEA db shrinking, we will either continue dropping/truncating existing tables. 
+Since customer does not care about data stored in NEA db - deleting everything and re-installing software is also an option for them as a last resort.","","","","005Qk000002b4gDIAQ","2024-12-13T15:40:50.000Z"
+"0D5Qk00000SwecRKAR","500Qk00000JMv3AIAT","TextPost","005Qk000002b4gDIAQ","2024-12-13T15:41:14.000Z","Next Steps Updated: Support will schedule next meeting with customer on Monday, 16th of December. 
+Depending on the result of the NEA db shrinking, we will either continue dropping/truncating existing tables or try different NEA Db. 
+Since customer does not care about data stored in NEA db - deleting everything and re-installing software is also an option for them as a last resort.","","","","005Qk000002b4gDIAQ","2024-12-13T15:41:14.000Z"
+"0D5Qk00000T5xBrKAJ","500Qk00000JMv3AIAT","TextPost","005Qk000002b4gDIAQ","2024-12-16T08:58:45.000Z","Next Steps Updated: Customer will monitor the DB shrinking and will let support know the results tomorrow.","","","","005Qk000002b4gDIAQ","2024-12-16T08:58:45.000Z"

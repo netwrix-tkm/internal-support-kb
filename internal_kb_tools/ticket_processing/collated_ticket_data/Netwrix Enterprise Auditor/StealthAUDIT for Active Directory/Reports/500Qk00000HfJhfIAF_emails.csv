@@ -1,0 +1,225 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000HtJcwIAF","500Qk00000HfJhfIAF","2024-11-13T22:04:12.000Z","2024-11-13T22:04:12.000Z","Hello Rick,
+
+Thank you for meeting with me today. In our session we investigated your daily File Server activity report that's scoped to one particular HR folder. The expected behavior is that the report should only return activity from the previous day. You showed me that the reports on 10/25 and 10/30 both reported the same activity that occurred on 10/23.
+
+I reviewed the configuration Netwrix Activity Monitor and confirmed that it's correctly collecting activity from that share. We reviewed the logs and found fresh data from that share. I also reviewed the analysis task which creates a filtered table based on the SQL view, SA_FSAC_DailyActivityView. That view has fresh data, but the filtered table is blank. This is actually expected because there was no activity meeting the filter requirements and SQL views cleared each time it's run.
+
+I've been discussing this internally and reviewing the way the analysis task is filtering the data. I think we've identified the issue. Please let me know how it looks tomorrow, and the next day. In the meantime, I'd like to schedule another meeting where we tweak that filter to improve the reliability of the results.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=WYXVDR8wPspB.DmNRfR0UiZETLsJihhRdfkWAL3NQLc-Z&MeetingID=RrEghTAndLGxUox1AUIMQFpESmgp6WiCGrCAVUSfcs8-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/1/2024 9:57 AM
+To: rschaktman@camcapital.com
+Cc: william.lavary@netwrix.com
+Subject: RE: Netwrix Support Ticket #425507 - - [EXT] 24 hour report sending stale data [ ref:!00D70091pB.!500Qk0HfJhf:ref ]
+
+Hello Rick,
+
+Thank you for providing the extra details and logs. I've looked through them and it looks like the Netwrix Enterprise Auditor side is working as expected. I'd like to review the configuration of Activity Monitor. Are you available for a remote session? Please use the following link to schedule a remote session at your convenience:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=RIk9ScSLL89hl7AmAg4WXtIvH7Nhoai_fY5Vca5tUds-Z&MeetingID=ePlW1NrPufAaFLcXbHlM794sorG1dCcWzCdYOLc4hzo-Z
+
+I'll need access to the Netwrix application server, but we might need to check the SQL server as well.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Rick Schaktman [rschaktman@camcapital.com]
+Sent: 10/31/2024 2:54 PM
+To: techsupport@netwrix.com
+Cc: william.lavary@netwrix.com
+Subject: RE: Netwrix Support Ticket #425507 - ref:_00D7091pB._500Q000HfJhf:ref - [EXT] 24 hour report sending stale data [ ref:!00D70091pB.!500Qk0HfJhf:ref ]
+
+ref:_00D7091pB._500Q000HfJhf:ref
+
+
+
+Answers below in RED
+
+What is the impact of the issue on your business? Bad Reporting
+Who is affected by this issue? The person receiving the report.
+What steps to troubleshoot the issue have already been taken? Included in the original ticket description
+
+Is the sale data the same old data every day? No, in fact today the results table is blank.
+Has anything changed in your environment since the last time it worked? I worked with your support team to update the license in Activity Monitor
+When did this issue start?  Last week.
+
+ 
+
+Get-CimInstance -Class Win32_Product |Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue
+
+ 
+
+PS C:windowssystem32> Get-CimInstance -Class Win32_Product |Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like
+
+""Netwrix*"" -or $_.Name -like ""Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue
+
+ 
+
+Name             Caption                   Vendor                    Version                   IdentifyingNumber
+
+----             -------                   ------                    -------                   -----------------
+
+Netwrix Enter... Netwrix Enterprise Aud... Netwrix Corporation       11.6.0.59                 {42A187E2-6B39-4494-A...
+
+Netwrix Activ... Netwrix Activity Monit... Netwrix corporation       7.0.3035                  {35A8EA28-5E95-4503-B...
+
+Netwrix Activ... Netwrix Activity Monitor  Netwrix corporation       7.0.3035                  {C5099B0A-DCD0-4CC9-B...
+
+Netwrix Acces... Netwrix Access Informa... Netwrix Corporation       11.6.0.9                  {EB88AD8C-7B2A-4264-A...
+
+ 
+
+I have uploaded the job/logs to ticket.
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, October 30, 2024 11:03 AM
+To: Rick Schaktman <rschaktman@camcapital.com>
+Cc: william.lavary@netwrix.com
+Subject: [EXT] 24 hour report sending stale data [ ref:!00D70091pB.!500Qk0HfJhf:ref ]
+
+
+
+ 
+
+EXTERNAL EMAIL
+
+
+ Hello Rick,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help.
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:  
+
+What is the impact of the issue on your business? 
+Who is affected by this issue? 
+What steps to troubleshoot the issue have already been taken? 
+
+Is the sale data the same old data every day?
+Has anything changed in your environment since the last time it worked? 
+When did this issue start?  
+
+Please also let me know if you have difficulties or questions gathering the following information.
+
+What software is currently installed - run this command from an admin Powershell prompt:
+Get-CimInstance -Class Win32_Product |Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue
+
+Please perform the follow steps and upload the resulting Artifacts:
+
+Enable Debug Logging
+From the NEA Console > Settings > Application
+Set Log Level to Debug
+Rerun jobs that are failing to collect logs in full detail. Return Log level to warning afterwards.
+
+
+Export of Job(s) – note jobs may be nested under multiple Groups:
+Right click on the Job or Job Group experiencing problems and select Export. This creates .zip file containing all logs and configuration settings of your jobs that we can import and review.
+
+
+From the Job Status Export the Messages Table, CSV is preferred: 
+ 
+ 
+
+Uploading the logs
+
+
+	Once you have collected the desired artifacts, copy them to a single folder and compress it by right-clicking the folder and selecting Send to > Compressed (zipped) folder.
+	Log in to the Customer Portal and attach the archived logs to the opened ticket. Use the following link to open the Open tickets page: My Tickets — Open Tickets.
+
+
+
+NOTE: Once you have opened the Open Tickets page and identified the corresponding ticket (with a matching ticket #), you can attach the logs via one of the following ways:
+
+
+	Click the Add attachments button located under the Actions column of the ticket.
+	 
+	Expand the ticket details by clicking the down carat (▼) button and click the plus (+) button next to Attachments.
+	 
+
+
+
+
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0HfJhf:ref
+
+---------------
+This message may contain information that is confidential or privileged. If you are not the intended recipient, please advise the sender immediately and delete this message. .
+---------------","RE: Netwrix Support Ticket #425507 -  - [EXT] 24 hour report sending stale data    [ ref:!00D70091pB.!500Qk0HfJhf:ref ]","techsupport@netwrix.com","Netwrix Support","rschaktman@camcapital.com","","joshua.sexton@netwrix.com","true","2024-11-13T22:04:11.000Z","true"
+"02sQk00000IRyPEIA1","500Qk00000HfJhfIAF","2024-11-26T23:18:25.000Z","2024-11-28T14:00:44.000Z","ref:_00D7091pB._500Q000HfJhf:ref
+
+You can close this ticket.
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Date: Tuesday, Nov 26, 2024 at 16:38
+To: Rick Schaktman <rschaktman@camcapital.com<mailto:rschaktman@camcapital.com>>
+Subject: [EXT] RE: 00425507 - 24 hour report sending stale data
+
+
+EXTERNAL EMAIL
+
+ Hello Rick,
+
+I wanted to check in regarding your support ticket 00425507. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00425507
+Ticket Subject: 24 hour report sending stale data
+Ticket Details: We have a report that is supposed to send daily activity for a folder, but it is sending a report with activity from over a week ago. The analysis 'preview' shows blank data, but the results table and report have the stale data in it.
+
+Thank you!
+
+Joshua Sexton
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0HfJhf:ref
+---------------
+This message may contain information that is confidential or privileged. If you are not the intended recipient, please advise the sender immediately and delete this message. .
+---------------","RE: Netwrix Support Ticket #425507 - ref:_00D7091pB._500Q000HfJhf:ref - [EXT] RE: 00425507 - 24 hour report sending stale data","rschaktman@camcapital.com","Rick Schaktman","techsupport@netwrix.com","","","false","2024-11-26T23:18:11.000Z","true"

@@ -1,0 +1,69 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000BrS9VIAV","00412020","Support Ticket","Upgrade Prod & Fail environments","","","","","Upgraded from the current version of Stealth application(s) running in the Prod & Fail Environments:
+
+FROM:
+StealthAUDIT (SA)                            11.5.0.214
+SA Access Information (AIC)            11.5.0.125   
+Stealthbits Activity (SAM)                  6.0.1111
+
+TO:
+Netwrix Enterprise Auditor (NEA)                11.6.0.75
+NEA Access Information Center (AIC)         11.6.0.14
+Netwrix Activity Monitor (NAM)                 7.0.3119
+
+New install paths:
+D:Program FilesSTEALTHbitsAccess Information Center
+D:Program FilesNetwrixActivity Monitor
+
+On both Prod and Fail we ran the following to update the URL Certs
+Get-ChildItem -Path Cert:LocalMachineMy |Select-Object -Property * |Sort-Object NotAfter |Sort-Object NotAfter -Descending |
+Format-Table Thumbprint,Subject,FriendlyName, NotAfter -AutoSize
+
+##netsh update SSL Cert
+netsh http delete sslcert ipport=0.0.0.0:8082
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" # This will be the same for all installations because it is a GUID from the built-in webserver application
+$certHash = ""INSERT THUMBNAIL VALUE FROM STEP 2 BETWEEN QUOTES""
+$ip = ""0.0.0.0"" # this means all IP addresses
+$port = ""8082"" # the default HTTPS port
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh
+
+## AIC 11.6+
+netsh http delete sslcert ipport=0.0.0.0:481
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" # This will be the same for all installations because it is a GUID from the built-in webserver application
+$certHash = ""INSERT THUMBNAIL VALUE FROM STEP 2 BETWEEN QUOTES""
+$ip = ""0.0.0.0"" # this means all IP addresses
+$port = ""481"" # the default HTTPS port
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh 
+
+REF: Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Reports via the Web Console > Securing the Web Console
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Reports/Secure.htm
+
+Netwrix Access Information Center 11.6 > Installation Overview > Securing the Access Information Center
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm
+
+We did have to run the following to correctly load the NEA URL.
+#11.6 URL issues post upgrade ""fix"" ## If there are issues
+netsh http show urlacl
+netsh http delete urlacl url=""http://+:8082/""
+netsh http add urlacl url=https://+:8082/ user=""NT AUTHORITYLOCAL SERVICE"" listen=yes delegate=no 
+
+
+***NOTE*** Post a Fail over the following would need to be ran if the Prod SQL instance/DB is being used PRIOR to loading the console, same once back on Prod.
+
+--  SA HOST MIRGRATED SQL UPDATE SCRIPT 
+Declare @OHost varchar (128)
+Declare @NHost varchar (128)
+Set @OHost = '<OldSever>' -- Name of the original SA Console being cloned
+Set @NHost = '<NewServer>' -- Name of the new SA Console
+Update [HostMaster_SANodeFilter]
+SET SA_Node = @NHost
+Where SA_Node = @OHost;
+Update [HostListsTbl]
+SET SA_Node = @NHost
+Where SA_Node = @OHost;
+Update [QueryTbl]
+SET SA_Node = @NHost
+Where SA_Node = @OHost;
+
+Contact noted:
+Thanks for helping us get upgraded to 11.6x version of NEA(StealthAudit) successfully! It was very smoothly handled, and you are a pleasure to work with!","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","Upgrade","11.5","214","38.7","Closed - Resolved","MISO Energy","Patrick Sager","2024-06-14T19:10:32.000Z","2024-07-23T13:09:01.000Z"

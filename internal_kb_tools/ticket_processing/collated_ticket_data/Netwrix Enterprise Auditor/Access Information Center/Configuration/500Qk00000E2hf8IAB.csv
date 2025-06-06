@@ -1,0 +1,19 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000E2hf8IAB","00417124","Support Ticket","StealthAudit and port 80","Seems the StealthAudit app is keeping port 80 in use on the Windows server it's installed on. I believe the documentation states it's for FileSystem related jobs for NetApp.  Is there a way we can a) confirm no other jobs/functionality is needed for that port 80 , and then b) can we disable port 80 from being used entirely? 
+
+Our Cyber Sec team is wanting to shut down port 80 if at all possible from being used. Thanks.","","","","Looked at the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)                                                                11.6.0.75
+Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC)      11.6.0.14
+
+Found that the Port in question 80 was liked to the no longer utilized IIS.
+
+netstat -abno |Select-String 80
+Get-Process -pid ####
+
+Get-Service -DisplayName *web* |FT -AutoSize
+Get-Service -DisplayName *iis*
+
+iisreset /status
+
+The default Web page was removed from the IIS manager.","Incorrect configuration: Netwrix server","Dusty Grayson","","Netwrix Enterprise Auditor","Access Information Center","Configuration","11.6","75","1.8","Closed - Resolved","MISO Energy","Patrick Sager","2024-08-05T19:35:32.000Z","2024-08-07T14:45:04.000Z"

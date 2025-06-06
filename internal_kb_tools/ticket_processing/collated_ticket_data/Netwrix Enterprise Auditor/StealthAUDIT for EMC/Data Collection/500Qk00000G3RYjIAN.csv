@@ -1,0 +1,41 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000G3RYjIAN","00421694","Support Ticket","Isilon CEE integration","I need help integrating EMC Isilon","Needed permissions within OneFS and Windows Agent/Proxy host
+As well as upgraded to correct an unknonw Root cause with the Proxy scans for Isilion.","Current ISSUE: Post Patching Cannot find any activity log file since last scan on 2025-02-07
+
+PRIOR ISSUE:
+NEA host/Account are not able to read the Reg on the NAM Agent host.
+
+EMC host certificate was installed to the Trusted ROOT store.
+
+We added the other EMC cluster host to NAM to match the FQDN name seen within Netwrix Enterprise Auditor (NEA) via Robert Parsons Implementation.
+
+We did noted that the initial Agent log path was for the HQ..FS02 host via NetBIOS name.","CURRENT:  Correct the Remote Reg access issue.
+
+PRIOR:       Contacts are going to check with their Dell EMC support to see why we are seeing the OneFS API/Web auth issues.
+
+They will confirm that the needed Isilon Noted are forwarding event to the needed CEE agent system.","Had the Customer correct needed settings per Netwrix Enterprise Auditor v11.6 > Requirements > File System Solution > File System Supported Platforms > Dell Isilon/PowerScale Target Requirements > Dell Isilon/PowerScale Activity Auditing Configuration
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/Config/DellPowerScale/Activity.htm
+
+Set the FSAC job to use the Proxy as a Service to collection the Isilon events.
+
+Added the Proxy install path to the system environmental variables to point to the E: drive.
+ 
+looked at the Netwrix Enterprise Auditor (NEA) FSAC scan pulling the EMC data that is collected by Netwrix Activity Monitor (NAM) agent for the EMC host(s) in question.
+
+FSAC is pulling in the file activity from the agent.
+
+We did note a warning that a bulk import was needed however the following bulk import was successful for the EMC host.
+
+Added the missing Reporting Group back into the console Netwrix Enterprise Auditor v11.6 > Solutions > File System Solution > 5.Activity Job Group
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/FileSystem/Activity/Overview.htm
+
+Noted that there will need to be another FSAC job set up to collect from the Windows File Servers once the needed NAM agent has been installed and data is being collected.
+
+Other Guide sections referenced during the meeting that would need new tickets if assistance with them are needed.
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/Databases/SQL/Overview.htm
+https://helpcenter.netwrix.com/bundle/ActivityMonitor_8.0/page/Content/ActivityMonitor/Admin/MonitoredHosts/Output.htm
+https://helpcenter.netwrix.com/bundle/ActivityMonitor_8.0/page/Content/ActivityMonitor/Admin/Agents/Add/Single.htm
+https://helpcenter.netwrix.com/bundle/ActivityMonitor_8.0/page/Content/ActivityMonitor/Admin/MonitoredHosts/Add/Overview.htm
+
+
+Issue was resolved post upgrading the NEA host and Proxy root casus unknown.","Incorrect configuration: target server software","Dusty Grayson","Error","Netwrix Enterprise Auditor","StealthAUDIT for EMC","Data Collection","11.6","153","173.8","Closed - Resolved","The Fresh Market","ian rojo","2024-09-20T18:12:58.000Z","2025-03-13T13:38:54.000Z"

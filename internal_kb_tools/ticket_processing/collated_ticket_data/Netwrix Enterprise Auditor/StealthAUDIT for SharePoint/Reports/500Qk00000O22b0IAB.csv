@@ -1,0 +1,21 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000O22b0IAB","00441919","Support Ticket","DBA have requested Query be rewritten to save Processing power","I ran the SharePoint- Broken Inheritance Job on our designated server A0775-APP2357-S   which utilizes SQL database A0775-DBS0136-S .
+ I received an email that the CPU was at 100% on and off during the Jobs execution and a request to have the query rewritten.
+
+I have provided the text of the email below: Please note that we have had many issues over the last 6 months and several tickets open relating to similar issues. 
+
+Looking at the server, your -A account was logged running queries through a .Net provider against database J4D_STEALTHAUDIT_AEM_SP. The query is below. The highest cost I am seeing on this query is your INSERT, which is listed in the query as a SELECT…INTO. 
+
+Please rewrite your query to create your temp tables BEFORE you insert into them in order to save processing power and to prevent server outages / disruptions. Additionally, create an unnamed primary key on the tables to keep the metadata in SQL Server for faster processing. Details on both of these items can be found in the attached database standards document.
+
+  SELECT Host,ResourceID,Template  
+  INTO #Teams  
+  FROM SA_SPAA_Sites  
+  WHERE Template = 'GROUP#0'    ;
+
+  With SCTV_CTE (         HostID,       ResourceID,       ParentResourceId,       ResourceName,       WebAppId,       
+  siteCollectionId,       SiteCollectionName,       NestedLevel,       HostName,       FullPath,       ResourceDescription)
+  AS  (  SELECT        HostID,       ResourceID,       ParentResourceId,       ResourceName,       WebAppId,       siteCollectionId,   
+  SiteCollectionName as SiteCollection,       NestedLevel,       HostName,       FullPath,       ResourceDescription
+  FROM SA_SPAA_SiteCollectionsTraversalView 
+  WHERE  ParentResourceId is not null   AND  ResourceType  2  AND  NestedLevel","N/A - Suggestion on improvement","Test greenlit, given that they perform it on the copies of the job.","Closure","Explained that we encourage trying out improvements given that every job affected is backed up, with separate table created for tests and the job is copied so they have their basic stuff available.","Guidance","Ilya Kotov","Performance","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Reports","11.6","11.6.0.92","7.0","Closed - Resolved","Allstate Insurance Company","Stealth Audit","2025-04-14T13:27:49.000Z","2025-04-21T13:15:20.000Z"

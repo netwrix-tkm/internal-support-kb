@@ -1,0 +1,50 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000ZlTiqKAF","500Qk00000N92beIAB","TextPost","0054u000008ARZjAAO","2025-03-20T15:06:30.000Z","Description: Hello, could someone assist me in resolving the errors in the attached file? most messages include in the message that 'A full ADI scan may be required'. My understanding was if the ""Collect only updates since the last scan"" checkbox was cleared in the query options, this was a full scan (see other screenshot). i've unchecked that box, but still see errors and warnings.","","","","0054u000008ARZjAAO","2025-03-20T15:06:30.000Z"
+"0D5Qk00000Zqmw2KAB","500Qk00000N92beIAB","TextPost","0054u000007oss5AAA","2025-03-21T20:47:08.000Z","Invitation updated. Attendees: Joshua Sexton","","","","0054u000007oss5AAA","2025-03-21T20:47:08.000Z"
+"0D5Qk00000Zqmw1KAB","500Qk00000N92beIAB","TextPost","0054u000007oss5AAA","2025-03-21T20:47:08.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007oss5AAA","2025-03-21T20:47:08.000Z"
+"0D5Qk00000Zqmw3KAB","500Qk00000N92beIAB","TextPost","0054u000007oss5AAA","2025-03-21T20:47:09.000Z","Invitation updated. Attendees: Joshua Sexton, Frank Babcock","","","","0054u000007oss5AAA","2025-03-21T20:47:09.000Z"
+"0D5Qk00000aEUbbKAG","500Qk00000N92beIAB","TextPost","0054u000007oss5AAA","2025-03-24T18:53:53.000Z","<p>zoom meeting</p><p> </p><p>fixed issue in Analysis tasks</p><p>-changed placeholder [tablename] with the actual table name</p><p>-re-ran analysis tasks to make sure it completed without error</p><p> </p><p>discussed warnings calling out custom attributes</p><p>client has serveral domains and those attributes are not all present in all domains.</p><p>Warnings call out domains by DomainID not name</p><p>used table, ADInventory_UserView, to identify which domain was which by DomianID</p><p> </p><p>client understands the issue and is okay with leaving as is</p><p>-he wants to make sure he&#39;s getting those attributes from the other domains that have them set</p><p> </p><p>LDAP server is unavailable for one domain is because that domain has heavily limited connections</p><p>the DC it was trying to connect to has LDAP ports blocked.</p><p>-still pings</p><p> </p><p>Client has a custom job already in place that builds dynamic host lists for AD scans. Corrected it so it will choose a DC from that domain that isn&#39;t as limited</p><p> </p><p>Last error (outstanding):</p><p> </p><p>ERROR:</p><p> </p><p>Error while adding: user &#39;CN=Service Account (Azure Release Dev),OU=Service Accounts,DC=dtt,DC=omg,DC=crhomg,DC=com&#39; &#39;Error while searching &#39;SA_ADInventory_DistinguishedNames&#39; Table : System.Data.SqlClient.SqlException (0x80131904): 1.) @PId SET TO NULL, @DeletedDnId = 84867, @CurrentDnId = 97435</p><p>Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, &lt;, &lt;= , &gt;, &gt;= or when the subquery is used as an expression.</p><p>  at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)</p><p>  at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)</p><p>  at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)</p><p>  at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean&amp; dataReady)</p><p>  at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)</p><p>  at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task&amp; task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)</p><p>  at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task&amp; task, Boolean&amp; usedCache, Boolean asyncWrite, Boolean inRetry)</p><p>  at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean&amp; usedCache, Boolean asyncWrite, Boolean inRetry)</p><p>  at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()</p><p>  at Stealthbits.StealthAUDIT.DataCollectors.ADInventory2.SqlCommandExt.ExecuteNonQueryLogged(SqlCommand cmd)</p><p>  at Stealthbits.StealthAUDIT.DataCollectors.ADInventory2.Database.ADInventoryDatabaseUpdate.FindDistinguishedNameId(PrincipalSearchResult principal, SqlTransaction objTransaction)</p><p>ClientConnectionId:4ee6e3d6-9957-4683-9a7d-f4e363f97652</p><p>Error Number:50000,State:1,Class:16 when processing item: CN=Service Account (Azure Release Dev),OU=Service Accounts,DC=dtt,DC=omg,DC=crhomg,DC=com with objectSid: S-1-5-21-2248937888-2538314654-1524159692-98743&#39;</p><p> </p><p>Seems like it is performing a query that is returning more than one result, but the subsequent query only allows single result</p>","","","","0054u000007oss5AAA","2025-03-24T18:53:53.000Z"
+"0D5Qk00000akRwoKAE","500Qk00000N92beIAB","TextPost","0054u000007oss5AAA","2025-03-31T14:11:35.000Z","What We've Learned Updated: fixed issue in Analysis tasks
+-changed placeholder [tablename] with the actual table name
+-re-ran analysis tasks to make sure it completed without error
+
+discussed warnings calling out custom attributes
+client has serveral domains and those attributes are not all present in all domains.
+Warnings call out domains by DomainID not name
+used table, ADInventory_UserView, to identify which domain was which by DomianID
+
+ 
+client understands the issue and is okay with leaving as is
+-he wants to make sure he's getting those attributes from the other domains that have them set
+
+LDAP server is unavailable for one domain is because that domain has heavily limited connections
+the DC it was trying to connect to has LDAP ports blocked.
+-still pings
+
+Client has a custom job already in place that builds dynamic host lists for AD scans. Corrected it so it will choose a DC from that domain that isn't as limited
+
+Last error (outstanding):","","","","0054u000007oss5AAA","2025-03-31T14:11:35.000Z"
+"0D5Qk00000akFzmKAE","500Qk00000N92beIAB","TextPost","0054u000007oss5AAA","2025-03-31T14:15:17.000Z","<p><a href=""https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000R3RKAU.html"" alt=""https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000R3RKAU.html"" target=""_blank"">Remove Domain Audit Data from Reports − Drop Domains</a></p><p> </p><p>-drop the domain and full scan ADI</p>","","","","0054u000007oss5AAA","2025-03-31T14:15:17.000Z"
+"0D5Qk00000akQPVKA2","500Qk00000N92beIAB","TextPost","0054u000007oss5AAA","2025-03-31T14:15:31.000Z","Next Steps Updated: drop the domain and full scan ADI","","","","0054u000007oss5AAA","2025-03-31T14:15:31.000Z"
+"0D5Qk00000alOvPKAU","500Qk00000N92beIAB","TextPost","0054u000007oss5AAA","2025-03-31T19:46:10.000Z","What We've Learned Updated: fixed issue in Analysis tasks
+-changed placeholder [tablename] with the actual table name
+-re-ran analysis tasks to make sure it completed without error
+
+discussed warnings calling out custom attributes
+client has serveral domains and those attributes are not all present in all domains.
+Warnings call out domains by DomainID not name
+used table, ADInventory_UserView, to identify which domain was which by DomianID
+
+ 
+client understands the issue and is okay with leaving as is
+-he wants to make sure he's getting those attributes from the other domains that have them set
+
+LDAP server is unavailable for one domain is because that domain has heavily limited connections
+the DC it was trying to connect to has LDAP ports blocked.
+-still pings
+
+Client has a custom job already in place that builds dynamic host lists for AD scans. Corrected it so it will choose a DC from that domain that isn't as limited
+
+---------------
+dropping ADInventory tables for the affected domain and re-running AD scan seems to have fixed the issue","","","","0054u000007oss5AAA","2025-03-31T19:46:10.000Z"
+"0D5Qk00000alOpdKAE","500Qk00000N92beIAB","TextPost","0054u000007oss5AAA","2025-03-31T19:46:28.000Z","Next Steps Updated: confirming status with client and asking if ticket is good to close","","","","0054u000007oss5AAA","2025-03-31T19:46:28.000Z"

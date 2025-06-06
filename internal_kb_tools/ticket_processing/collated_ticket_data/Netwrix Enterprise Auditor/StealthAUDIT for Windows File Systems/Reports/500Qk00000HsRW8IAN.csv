@@ -1,0 +1,10 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HsRW8IAN","00425976","Support Ticket","FS_PermissionChanges failed to generate report","When running the FS_Permission changes job, the report generation fails with error ""Sequence contains more than one matching element""","","","","Symptom
+When running the FS_Permission changes job, the report generation fails with error ""Sequence contains more than one matching element""
+
+Cause
+Duplicate entries in the job and the report.xml lead to the report failing to populate because it could not determine which field was the correct one.
+
+Resolution
+We removed the entries in between <Reports> in the report.xml file for the job.
+Once this was removed the report ran properly.","Incorrect configuration: Netwrix product","Ian Ranstrom","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Reports","11.6","","0.0","Closed - Resolved","Polsinelli","Brandon Artist","2024-11-04T20:43:50.000Z","2024-11-04T21:18:40.000Z"

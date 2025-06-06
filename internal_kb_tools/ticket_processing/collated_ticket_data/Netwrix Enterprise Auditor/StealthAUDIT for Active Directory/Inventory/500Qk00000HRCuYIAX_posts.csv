@@ -1,0 +1,85 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PMB52KAH","500Qk00000HRCuYIAX","TextPost","0054u000008ARZjAAO","2024-10-24T16:08:20.000Z","Description: General support meeting needed for help with or to investigate what seem to be irregularities in out NEA instance. Thanks.","","","","0054u000008ARZjAAO","2024-10-24T16:08:20.000Z"
+"0D5Qk00000PdSUIKA3","500Qk00000HRCuYIAX","TextPost","005Qk00000276ifIAA","2024-10-29T14:01:48.000Z","What We've Learned Updated: 1) Below is the SQL Select that we ran against the database before and after the full AD collection. 
+
+Before the full collection, we were not able to return the records for the following 4 users:
+--
+Adam.Martin@baldwin.com
+Mike.Grillo@baldwin.com
+Alexis.Arredondo
+TPAadmin-ryan.oleary
+--
+
++++++
+SQL Select:
++++++
+Use StealthAUDIT;
+
+select * from StealthAUDIT.dbo.SA_ADInventory_Principals where ObjectClass = 4 and SamAccountName like '%mike.grill%';
+
+2) In NEA, we searched the ""ADInventory_UserView"" using ""DistinguishedName"" from the drop-down
+BEFORE the FULL COLLECTION: ""ADInventory_UserView"" - OU=Construction Risk Partners > 130 users are being collected from this OU in NEA ("".Active Directory Inventory"")
+
+3) Then we changed a configuration setting for the ""1-AD_Scan"" Job:
+
+Jobs > "".Active Directory Inventory"" > ""1-AD_Scan"" Job > ""Configure"" > ""Queries"" > 
+""Query Properties"" > ""Configure"" button > ""Options"" > UNCHECK ""Collect only updates since the last scan""
+
+This will result in a full collection and refresh instead of an incremental collection.
+
+See the attached screenshot = ""AD_Inventory_DC_Wizard_UNCHECK_Collect_only_updates_since_the_last_scan_SS_2024-10-24_164721.png""
+
+AD_Inventory_DC_Wizard_UNCHECK_Collect_only_updates_since_the_last_scan_SS_2024-10-24_164721
+
+4) After the full collection which took 8-9 minutes:
++++++
+Adam.Martin@baldwin.com - initially was NOT in the DB - OU=Construction Risk Partners, OU=Midmarket  - after the full collection shows up in DB and AIC
+Mike.Grillo@baldwin.com - initially was NOT in the DB - OU=Construction Risk Partners, OU=Midmarket  - after the full collection shows up in DB and AIC
+Alexis.Arredondo - initially was NOT in the DB - after the full collection shows up in DB and AIC
+TPAadmin-ryan.oleary - Is NOW showing up in AIC - after the full collection shows up in DB
++++++
+Anthony Krake - was always present in the DB and NEA ""ADInventory_UserView""","","","","005Qk00000276ifIAA","2024-10-29T14:01:48.000Z"
+"0D5Qk00000PdROgKAN","500Qk00000HRCuYIAX","TextPost","005Qk00000276ifIAA","2024-10-29T14:02:12.000Z","What We've Learned Updated: 1) Below is the SQL Select that we ran against the database before and after the full AD collection. 
+
+Before the full collection, we were not able to return the records for the following 4 users:
+--
+Adam.Martin@baldwin.com
+Mike.Grillo@baldwin.com
+Alexis.Arredondo
+TPAadmin-ryan.oleary
+--
+
++++++
+SQL Select:
++++++
+Use StealthAUDIT;
+
+select * from StealthAUDIT.dbo.SA_ADInventory_Principals 
+where ObjectClass = 4 and SamAccountName like '%mike.grill%';
+
+2) In NEA, we searched the ""ADInventory_UserView"" using ""DistinguishedName"" from the drop-down
+BEFORE the FULL COLLECTION: ""ADInventory_UserView"" - OU=Construction Risk Partners > 130 users are being collected from this OU in NEA ("".Active Directory Inventory"")
+
+3) Then we changed a configuration setting for the ""1-AD_Scan"" Job:
+
+Jobs > "".Active Directory Inventory"" > ""1-AD_Scan"" Job > ""Configure"" > ""Queries"" > 
+""Query Properties"" > ""Configure"" button > ""Options"" > UNCHECK ""Collect only updates since the last scan""
+
+This will result in a full collection and refresh instead of an incremental collection.
+
+See the attached screenshot = ""AD_Inventory_DC_Wizard_UNCHECK_Collect_only_updates_since_the_last_scan_SS_2024-10-24_164721.png""
+
+AD_Inventory_DC_Wizard_UNCHECK_Collect_only_updates_since_the_last_scan_SS_2024-10-24_164721
+
+4) After the full collection which took 8-9 minutes:
++++++
+Adam.Martin@baldwin.com - initially was NOT in the DB - OU=Construction Risk Partners, OU=Midmarket  - after the full collection shows up in DB and AIC
+Mike.Grillo@baldwin.com - initially was NOT in the DB - OU=Construction Risk Partners, OU=Midmarket  - after the full collection shows up in DB and AIC
+Alexis.Arredondo - initially was NOT in the DB - after the full collection shows up in DB and AIC
+TPAadmin-ryan.oleary - Is NOW showing up in AIC - after the full collection shows up in DB
++++++
+Anthony Krake - was always present in the DB and NEA ""ADInventory_UserView""","","","","005Qk00000276ifIAA","2024-10-29T14:02:12.000Z"
+"0D5Qk00000Peq79KAB","500Qk00000HRCuYIAX","TextPost","0050g000006QqyEAAS","2024-10-29T20:29:29.000Z","Description Updated: General support meeting needed for help with or to investigate what seem to be irregularities in out NEA instance. Thanks.
+
+Several users that are known to exist are not found in NEA or AIC reports.","","","","0050g000006QqyEAAS","2024-10-29T20:29:29.000Z"
+"0D5Qk00000Q31ZMKAZ","500Qk00000HRCuYIAX","TextPost","00570000003KXurAAG","2024-11-04T16:33:50.000Z","<p><b>#EAM</b> --- Dusty</p><p><b>Contact last comment:</b>        Non-diff AD scan seemed to have cleared up that problem.I appreciate it. <b>11/01</b></p><p><b>Current Status:</b>                    T1 Support</p><p><b>Current Tier:</b>                       T1 Support</p><p><b>T1 Mike Candon:</b>                 Corrected missing AD Users with a <b>Full ADI </b>Scan.<b>10/24</b></p><p>T1 changed 11/01 top Tay assuming in relation to case <b>00417261</b></p>","","","","00570000003KXurAAG","2024-11-04T16:33:50.000Z"

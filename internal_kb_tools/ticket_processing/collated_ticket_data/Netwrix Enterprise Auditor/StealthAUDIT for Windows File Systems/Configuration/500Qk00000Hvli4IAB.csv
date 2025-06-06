@@ -1,0 +1,45 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Hvli4IAB","00426137","Support Ticket","File System Action Module - retry failed rows - error codes","Hello,
+
+Under the FSAM options > There is a checkbox for ""Retry failed rows"".
+
+There is a little box that says ""Do not retry error codes"", how do we obtain the specific error codes for FSAM to acknowledge so it doesn't retry the row?
+
+For example, if the path is not reachable, instead of showing ""RPC error"" in the logs, i'd like to set it up so that it sees the error code and SKIPS the row and continues onto the next.
+
+thank you","","https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Action/FileSystem/Options.htm
+
+https://learn.microsoft.com/en-us/windows/win32/debug/system-error-codes
+
+GOAL: Error code = RPC Error code and do not retry","","+++++
+From Michael Kong on 13-Nov-2024:
++++++
+Thanks! So if I’m receiving this below error code 0x80004005, then the error code to put into SA “do not retry” would be 4005?
+
++++++
+See the attached screenshots from the customer:
++++++
+Network_Error__Error_code_0x80004005_Unspecified_error
+System_Error_Codes_listings_screenshots.png
+
+@@@@@
++++++
+What We've Learned Updated:
++++++
+
+1) File System Action Module - found in the Netwrix Help Center documentation
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Action/FileSystem/Overview.htm
+
+2) File System Action: Options - found in the Netwrix Help Center documentation
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Action/FileSystem/Options.htm
+
+3) Tutorial - Debug system error codes - Win32 apps | Microsoft Learn
+
+https://learn.microsoft.com/en-us/windows/win32/debug/system-error-codes
+
+4) What the customer is trying to accomplish:
+
+GOAL: Error code = RPC Error code and do not retry
++++++","Guidance","Mike Candon","Question","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Configuration","11.5","","16.0","Closed - Resolved","MUFG Bank, LTD.","Michael Kong","2024-11-05T22:19:05.000Z","2024-11-21T21:40:41.000Z"

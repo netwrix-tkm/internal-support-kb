@@ -1,0 +1,5630 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MT7crIAD","500Qk00000LyNCAIA3","2025-03-11T14:17:57.000Z","2025-03-11T14:17:57.000Z","Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.Rule: Check if privileged users have been revealed on RODCRule ID: P-RODCAdminRevealedDescription: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).Technical Explanation:The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.Steps Taken:The admin account password has been reset multiple times.The RODCPurgeAccount command has been executed, but the user reappears after some time.Request:Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:16 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thanks for your update. Since the RODCPurgeAccount operation did not resolve the issue, there are a few additional steps that may help:
+
+Check if the account is still in use – If the account is still being referenced, it may prevent removal.
+
+	Use repadmin to manually clear cached credentials:
+
+repadmin /prp remove <RODC_Name> <Account_Name>
+
+
+	Use Clear-ADAccountPasswordCache to remove stored credentials:
+
+Clear-ADAccountPasswordCache -Identity <RODC_Name>
+
+Rebuilding the RODC – If the above steps do not work, Microsoft's official recommendation remains to rebuild the RODC to ensure proper removal.
+
+Let us know if you need further guidance.
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/18/2025 9:41 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thank you for the details. We’ll check internally regarding this and get back to you as soon as possible.
+
+Please let me know if you need anything else in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 2/17/2025 10:04 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436038 - ref:_00D7091pB._500Q000LyNCA:ref - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+
+Thanks, but I already tried it like mentioned.
+
+ 
+
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									
+										
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Mit freundlichen Grüßen | Kind regards​​​​
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		i. A.
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		Tim Buntrock
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		System Engineer Directory & Cloud Services
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					T +492301292134
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					M +491601020167
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		E Tim.Buntrock@rhenus.com
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 | 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		W rhenus.group
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															Rhenus Assets & Services GmbH & Co. KG
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					Rhenus‑Platz 1
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					59439
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Holzwickede
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Germany
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Sitz: Holzwickede, AG Hamm, HRA 2493
+																		PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+																		Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															You will find further information about data protection in the following link:
+															​https://www.rhenus.group/data-information
+															
+														
+													
+												
+												
+											
+										
+									
+									
+								
+							
+						
+						
+					
+					
+						
+						 
+						
+					
+				
+			
+			
+		
+	
+
+
+
+
+ 
+
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Montag, 17. Februar 2025 15:37
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+
+
+ 
+
+Dear Tim,
+
+To proceed with the RODC account removal, you will need to purge the account as well.
+
+While Microsoft's official recommendation remains to rebuild the RODC, you can alternatively use the RODCPurgeAccount operation to remove it.
+
+Here’s the relevant documentation for more details:
+
+RODCPurgeAccount Operation
+ADSecurity Guide
+
+Please note that the reset will invalidate the stored credentials, but they may still be cached until you perform the purge operation.
+
+Let me know if you need any further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LyNCA:ref","RE: Netwrix Support Ticket #436038 -  - AW: Check if privileged users have been revealed on RODC issue - cant remove user    [ ref:!00D70091pB.!500Qk0LyNCA:ref ]","techsupport@netwrix.com","Netwrix Support","tim.buntrock@rhenus.com","","iulia.apatachioaei@netwrix.com","true","2025-03-11T14:17:56.000Z","true"
+"02sQk00000MZpkYIAT","500Qk00000LyNCAIA3","2025-03-13T18:28:51.000Z","2025-03-13T18:28:51.000Z","Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.Rule: Check if privileged users have been revealed on RODCRule ID: P-RODCAdminRevealedDescription: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).Technical Explanation:The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.Steps Taken:The admin account password has been reset multiple times.The RODCPurgeAccount command has been executed, but the user reappears after some time.Request:Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/11/2025 10:17 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:16 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thanks for your update. Since the RODCPurgeAccount operation did not resolve the issue, there are a few additional steps that may help:
+
+Check if the account is still in use – If the account is still being referenced, it may prevent removal.
+
+	Use repadmin to manually clear cached credentials:
+
+repadmin /prp remove <RODC_Name> <Account_Name>
+
+
+	Use Clear-ADAccountPasswordCache to remove stored credentials:
+
+Clear-ADAccountPasswordCache -Identity <RODC_Name>
+
+Rebuilding the RODC – If the above steps do not work, Microsoft's official recommendation remains to rebuild the RODC to ensure proper removal.
+
+Let us know if you need further guidance.
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/18/2025 9:41 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thank you for the details. We’ll check internally regarding this and get back to you as soon as possible.
+
+Please let me know if you need anything else in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 2/17/2025 10:04 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436038 - ref:_00D7091pB._500Q000LyNCA:ref - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+
+Thanks, but I already tried it like mentioned.
+
+ 
+
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									
+										
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Mit freundlichen Grüßen | Kind regards​​​​
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		i. A.
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		Tim Buntrock
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		System Engineer Directory & Cloud Services
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					T +492301292134
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					M +491601020167
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		E Tim.Buntrock@rhenus.com
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 | 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		W rhenus.group
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															Rhenus Assets & Services GmbH & Co. KG
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					Rhenus‑Platz 1
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					59439
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Holzwickede
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Germany
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Sitz: Holzwickede, AG Hamm, HRA 2493
+																		PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+																		Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															You will find further information about data protection in the following link:
+															​https://www.rhenus.group/data-information
+															
+														
+													
+												
+												
+											
+										
+									
+									
+								
+							
+						
+						
+					
+					
+						
+						 
+						
+					
+				
+			
+			
+		
+	
+
+
+
+
+ 
+
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Montag, 17. Februar 2025 15:37
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+
+
+ 
+
+Dear Tim,
+
+To proceed with the RODC account removal, you will need to purge the account as well.
+
+While Microsoft's official recommendation remains to rebuild the RODC, you can alternatively use the RODCPurgeAccount operation to remove it.
+
+Here’s the relevant documentation for more details:
+
+RODCPurgeAccount Operation
+ADSecurity Guide
+
+Please note that the reset will invalidate the stored credentials, but they may still be cached until you perform the purge operation.
+
+Let me know if you need any further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LyNCA:ref","RE: Netwrix Support Ticket #436038 -  - AW: Check if privileged users have been revealed on RODC issue - cant remove user    [ ref:!00D70091pB.!500Qk0LyNCA:ref ]","techsupport@netwrix.com","Netwrix Support","tim.buntrock@rhenus.com","","iulia.apatachioaei@netwrix.com","true","2025-03-13T18:28:51.000Z","true"
+"02sQk00000NC9gcIAD","500Qk00000LyNCAIA3","2025-03-31T12:07:55.000Z","2025-03-31T15:41:18.000Z","ref:_00D7091pB._500Q000LyNCA:ref
+
+Hello again,
+
+Issue still persists. Demote promote is not an option at this state.
+
+
+Mit freundlichen Grüßen | Kind regards​​​​
+
+i. A.
+
+
+
+Tim Buntrock
+
+System Engineer Directory & Cloud Services
+
+T +492301292134<tel:+492301292134>
+
+ |
+
+M +491601020167<tel:+491601020167>
+
+E Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>
+
+ |
+
+W rhenus.group<https://rhenus.group/>
+
+[cid:image001.png@01DBA246.3F301DD0]
+
+Rhenus Assets & Services GmbH & Co. KG
+
+Rhenus‑Platz 1
+
+ |
+
+59439
+
+
+
+Holzwickede
+
+ |
+
+Germany
+
+Sitz: Holzwickede, AG Hamm, HRA 2493
+PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+
+You will find further information about data protection in the following link:
+​https://www.rhenus.group/data-information
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Donnerstag, 13. März 2025 19:29
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/11/2025 10:17 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:16 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thanks for your update. Since the RODCPurgeAccount operation did not resolve the issue, there are a few additional steps that may help:
+
+Check if the account is still in use – If the account is still being referenced, it may prevent removal.
+
+  *   Use repadmin to manually clear cached credentials:
+repadmin /prp remove <RODC_Name> <Account_Name>
+
+  *   Use Clear-ADAccountPasswordCache to remove stored credentials:
+Clear-ADAccountPasswordCache -Identity <RODC_Name>
+
+Rebuilding the RODC – If the above steps do not work, Microsoft's official recommendation remains to rebuild the RODC to ensure proper removal.
+
+Let us know if you need further guidance.
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/18/2025 9:41 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thank you for the details. We’ll check internally regarding this and get back to you as soon as possible.
+
+Please let me know if you need anything else in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 2/17/2025 10:04 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436038 - ref:_00D7091pB._500Q000LyNCA:ref - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+Thanks, but I already tried it like mentioned.
+
+
+Mit freundlichen Grüßen | Kind regards​​​​
+
+i. A.
+
+
+
+Tim Buntrock
+
+System Engineer Directory & Cloud Services
+
+T +492301292134
+
+ |
+
+M +491601020167
+
+E Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>
+
+ |
+
+W rhenus.group<https://rhenus.group/>
+
+[cid:image001.png@01DBA246.3F301DD0]
+
+Rhenus Assets & Services GmbH & Co. KG
+
+Rhenus‑Platz 1
+
+ |
+
+59439
+
+
+
+Holzwickede
+
+ |
+
+Germany
+
+Sitz: Holzwickede, AG Hamm, HRA 2493
+PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+
+You will find further information about data protection in the following link:
+​https://www.rhenus.group/data-information
+
+
+Von: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Gesendet: Montag, 17. Februar 2025 15:37
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>>
+Betreff: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Dear Tim,
+
+To proceed with the RODC account removal, you will need to purge the account as well.
+
+While Microsoft's official recommendation remains to rebuild the RODC, you can alternatively use the RODCPurgeAccount operation to remove it.
+
+Here’s the relevant documentation for more details:
+
+RODCPurgeAccount Operation<https://urldefense.com/v3/__https:/learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/78bca39e-cba0-4127-95fe-7e2afdad0101?redirectedfrom=MSDN__;!!Iy-eiNsJYb8-!UafS6dYunAK5VAGag7OYhAEzBeYApEYMTPShVdV60wm7URIKGrObLOjl_N_hsZKjj60j5RglsrD3FAgKZjQkJGNO$>
+ADSecurity Guide<https://urldefense.com/v3/__https:/adsecurity.org/?p=276__;!!Iy-eiNsJYb8-!UafS6dYunAK5VAGag7OYhAEzBeYApEYMTPShVdV60wm7URIKGrObLOjl_N_hsZKjj60j5RglsrD3FAgKZibL0Gaz$>
+
+Please note that the reset will invalidate the stored credentials, but they may still be cached until you perform the purge operation.
+
+Let me know if you need any further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UafS6dYunAK5VAGag7OYhAEzBeYApEYMTPShVdV60wm7URIKGrObLOjl_N_hsZKjj60j5RglsrD3FAgKZq0zKspT$>
+
+ref:!00D70091pB.!500Qk0LyNCA:ref","AW: Netwrix Support Ticket #436038 -  - AW: Check if privileged users have been revealed on RODC issue - cant remove user    [ ref:!00D70091pB.!500Qk0LyNCA:ref ]","tim.buntrock@rhenus.com","Buntrock, Tim","techsupport@netwrix.com","","","true","2025-03-31T12:07:34.000Z","true"
+"02sQk00000NEgVBIA1","500Qk00000LyNCAIA3","2025-04-01T08:15:53.000Z","2025-04-01T08:15:53.000Z","Hello Tim,
+
+After speaking to the PingCastle team, there are no other options at this point. Please let us know if you want to go ahead with RODC rebuild,.
+
+Apologies for not being able to assist you more with this.
+
+Thank you,
+
+Rej Uddin
+
+Technical Support Team Lead
+
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+
+____________________ __________
+
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+Netwrix | Cybersecurity that works for you.
+Easily identify sensitive, regulated and mission-critical information in your data stores and focus on the information that truly requires protection.
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 3/31/2025 8:07 AM
+To: techsupport@netwrix.com
+Subject: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+
+Hello again,
+
+ 
+
+Issue still persists. Demote promote is not an option at this state.
+
+ 
+
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									
+										
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Mit freundlichen Grüßen | Kind regards​​​​
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		i. A.
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		Tim Buntrock
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		System Engineer Directory & Cloud Services
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					T +492301292134
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					M +491601020167
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		E Tim.Buntrock@rhenus.com
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 | 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		W rhenus.group
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															Rhenus Assets & Services GmbH & Co. KG
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					Rhenus‑Platz 1
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					59439
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Holzwickede
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Germany
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Sitz: Holzwickede, AG Hamm, HRA 2493
+																		PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+																		Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															You will find further information about data protection in the following link:
+															​https://www.rhenus.group/data-information
+															
+														
+													
+												
+												
+											
+										
+									
+									
+								
+							
+						
+						
+					
+					
+						
+						 
+						
+					
+				
+			
+			
+		
+	
+
+
+
+
+ 
+
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Donnerstag, 13. März 2025 19:29
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+
+
+ 
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/11/2025 10:17 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:16 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thanks for your update. Since the RODCPurgeAccount operation did not resolve the issue, there are a few additional steps that may help:
+
+Check if the account is still in use – If the account is still being referenced, it may prevent removal.
+
+
+	Use repadmin to manually clear cached credentials:
+
+
+repadmin /prp remove <RODC_Name> <Account_Name>
+
+
+	Use Clear-ADAccountPasswordCache to remove stored credentials:
+
+
+Clear-ADAccountPasswordCache -Identity <RODC_Name>
+
+Rebuilding the RODC – If the above steps do not work, Microsoft's official recommendation remains to rebuild the RODC to ensure proper removal.
+
+Let us know if you need further guidance.
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/18/2025 9:41 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thank you for the details. We’ll check internally regarding this and get back to you as soon as possible.
+
+Please let me know if you need anything else in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 2/17/2025 10:04 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436038 - ref:_00D7091pB._500Q000LyNCA:ref - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+ 
+
+
+Thanks, but I already tried it like mentioned.
+
+ 
+
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									
+										
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Mit freundlichen Grüßen | Kind regards​​​​
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		i. A.
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		Tim Buntrock
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		System Engineer Directory & Cloud Services
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					T +492301292134
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					M +491601020167
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		E Tim.Buntrock@rhenus.com
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 | 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		W rhenus.group
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															Rhenus Assets & Services GmbH & Co. KG
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					Rhenus‑Platz 1
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					59439
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Holzwickede
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Germany
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Sitz: Holzwickede, AG Hamm, HRA 2493
+																		PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+																		Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															You will find further information about data protection in the following link:
+															​https://www.rhenus.group/data-information
+															
+														
+													
+												
+												
+											
+										
+									
+									
+								
+							
+						
+						
+					
+					
+						
+						 
+						
+					
+				
+			
+			
+		
+	
+
+
+
+
+ 
+
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Montag, 17. Februar 2025 15:37
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+
+
+ 
+
+Dear Tim,
+
+To proceed with the RODC account removal, you will need to purge the account as well.
+
+While Microsoft's official recommendation remains to rebuild the RODC, you can alternatively use the RODCPurgeAccount operation to remove it.
+
+Here’s the relevant documentation for more details:
+
+RODCPurgeAccount Operation
+ADSecurity Guide
+
+Please note that the reset will invalidate the stored credentials, but they may still be cached until you perform the purge operation.
+
+Let me know if you need any further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LyNCA:ref","RE: AW: Netwrix Support Ticket #436038 -  - AW: Check if privileged users have been revealed on RODC issue - cant remove user    [ ref:!00D70091pB.!500Qk0LyNCA:ref ]","techsupport@netwrix.com","Netwrix Support","tim.buntrock@rhenus.com","","rejaul.uddin@netwrix.com","true","2025-04-01T08:15:53.000Z","true"
+"02sQk00000NXpwAIAT","500Qk00000LyNCAIA3","2025-04-09T08:09:39.000Z","2025-04-09T08:09:39.000Z","Hello Tim!
+
+I just wanted to check with you if you got a chance to look into our last response on this ticket? 
+
+Regards,
+
+Shaheryar Ali
+Technical Support Engineer
+Netwrix Corporation
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/1/2025 4:15 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+After speaking to the PingCastle team, there are no other options at this point. Please let us know if you want to go ahead with RODC rebuild,.
+
+Apologies for not being able to assist you more with this.
+
+Thank you,
+
+Rej Uddin
+
+Technical Support Team Lead
+
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+
+____________________ __________
+
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+Netwrix | Cybersecurity that works for you.
+Easily identify sensitive, regulated and mission-critical information in your data stores and focus on the information that truly requires protection.
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 3/31/2025 8:07 AM
+To: techsupport@netwrix.com
+Subject: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+
+Hello again,
+
+ 
+
+Issue still persists. Demote promote is not an option at this state.
+
+ 
+
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									
+										
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Mit freundlichen Grüßen | Kind regards​​​​
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		i. A.
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		Tim Buntrock
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		System Engineer Directory & Cloud Services
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					T +492301292134
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					M +491601020167
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		E Tim.Buntrock@rhenus.com
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 | 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		W rhenus.group
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															Rhenus Assets & Services GmbH & Co. KG
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					Rhenus‑Platz 1
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					59439
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Holzwickede
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Germany
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Sitz: Holzwickede, AG Hamm, HRA 2493
+																		PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+																		Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															You will find further information about data protection in the following link:
+															​https://www.rhenus.group/data-information
+															
+														
+													
+												
+												
+											
+										
+									
+									
+								
+							
+						
+						
+					
+					
+						
+						 
+						
+					
+				
+			
+			
+		
+	
+
+
+
+
+ 
+
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Donnerstag, 13. März 2025 19:29
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+
+
+ 
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/11/2025 10:17 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:16 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thanks for your update. Since the RODCPurgeAccount operation did not resolve the issue, there are a few additional steps that may help:
+
+Check if the account is still in use – If the account is still being referenced, it may prevent removal.
+
+
+	Use repadmin to manually clear cached credentials:
+
+
+repadmin /prp remove <RODC_Name> <Account_Name>
+
+
+	Use Clear-ADAccountPasswordCache to remove stored credentials:
+
+
+Clear-ADAccountPasswordCache -Identity <RODC_Name>
+
+Rebuilding the RODC – If the above steps do not work, Microsoft's official recommendation remains to rebuild the RODC to ensure proper removal.
+
+Let us know if you need further guidance.
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/18/2025 9:41 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thank you for the details. We’ll check internally regarding this and get back to you as soon as possible.
+
+Please let me know if you need anything else in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 2/17/2025 10:04 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436038 - ref:_00D7091pB._500Q000LyNCA:ref - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+ 
+
+
+Thanks, but I already tried it like mentioned.
+
+ 
+
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									
+										
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Mit freundlichen Grüßen | Kind regards​​​​
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		i. A.
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		Tim Buntrock
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		System Engineer Directory & Cloud Services
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					T +492301292134
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					M +491601020167
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		E Tim.Buntrock@rhenus.com
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 | 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		W rhenus.group
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															Rhenus Assets & Services GmbH & Co. KG
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					Rhenus‑Platz 1
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					59439
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Holzwickede
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Germany
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Sitz: Holzwickede, AG Hamm, HRA 2493
+																		PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+																		Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															You will find further information about data protection in the following link:
+															​https://www.rhenus.group/data-information
+															
+														
+													
+												
+												
+											
+										
+									
+									
+								
+							
+						
+						
+					
+					
+						
+						 
+						
+					
+				
+			
+			
+		
+	
+
+
+
+
+ 
+
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Montag, 17. Februar 2025 15:37
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+
+
+ 
+
+Dear Tim,
+
+To proceed with the RODC account removal, you will need to purge the account as well.
+
+While Microsoft's official recommendation remains to rebuild the RODC, you can alternatively use the RODCPurgeAccount operation to remove it.
+
+Here’s the relevant documentation for more details:
+
+RODCPurgeAccount Operation
+ADSecurity Guide
+
+Please note that the reset will invalidate the stored credentials, but they may still be cached until you perform the purge operation.
+
+Let me know if you need any further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LyNCA:ref","RE: AW: Netwrix Support Ticket #436038 -  - AW: Check if privileged users have been revealed on RODC issue - cant remove user    [ ref:!00D70091pB.!500Qk0LyNCA:ref ]","techsupport@netwrix.com","Netwrix Support","tim.buntrock@rhenus.com","","shaheryar.ali.tahir@netwrix.com","true","2025-04-09T08:09:38.000Z","true"
+"02sQk00000NXs2nIAD","500Qk00000LyNCAIA3","2025-04-09T08:24:24.000Z","2025-04-10T09:21:57.000Z","ref:_00D7091pB._500Q000LyNCA:ref
+
+Hello guys,
+
+You can close the ticket thx for your help.
+
+
+Mit freundlichen Grüßen | Kind regards​​​​
+
+i. A.
+
+
+
+Tim Buntrock
+
+System Engineer Directory & Cloud Services
+
+T +492301292134<tel:+492301292134>
+
+ |
+
+M +491601020167<tel:+491601020167>
+
+E Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>
+
+ |
+
+W rhenus.group<https://rhenus.group/>
+
+[cid:image001.png@01DBA939.7D3B9B50]
+
+Rhenus Assets & Services GmbH & Co. KG
+
+Rhenus‑Platz 1
+
+ |
+
+59439
+
+
+
+Holzwickede
+
+ |
+
+Germany
+
+Sitz: Holzwickede, AG Hamm, HRA 2493
+PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+
+You will find further information about data protection in the following link:
+​https://www.rhenus.group/data-information
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Mittwoch, 9. April 2025 10:10
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: RE: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim!
+
+I just wanted to check with you if you got a chance to look into our last response on this ticket?
+
+Regards,
+
+Shaheryar Ali
+Technical Support Engineer
+Netwrix Corporation
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/1/2025 4:15 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+After speaking to the PingCastle team, there are no other options at this point. Please let us know if you want to go ahead with RODC rebuild,.
+
+Apologies for not being able to assist you more with this.
+
+Thank you,
+
+Rej Uddin
+
+Technical Support Team Lead
+
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+
+____________________ __________
+
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!Xn6RcbLqdn21itfuxt6BtG0T-CP_2j4hlMQoTTuhxsz8egUU_nll4aVziji_Xm6B0vosx0DSMTjGRQAPwfOHXseP$>
+Netwrix | Cybersecurity that works for you.
+Easily identify sensitive, regulated and mission-critical information in your data stores and focus on the information that truly requires protection.
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 3/31/2025 8:07 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+Hello again,
+
+Issue still persists. Demote promote is not an option at this state.
+
+
+Mit freundlichen Grüßen | Kind regards​​​​
+
+i. A.
+
+
+
+Tim Buntrock
+
+System Engineer Directory & Cloud Services
+
+T +492301292134
+
+ |
+
+M +491601020167
+
+E Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>
+
+ |
+
+W rhenus.group<https://rhenus.group/>
+
+[cid:image001.png@01DBA939.7D3B9B50]
+
+Rhenus Assets & Services GmbH & Co. KG
+
+Rhenus‑Platz 1
+
+ |
+
+59439
+
+
+
+Holzwickede
+
+ |
+
+Germany
+
+Sitz: Holzwickede, AG Hamm, HRA 2493
+PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+
+You will find further information about data protection in the following link:
+​https://www.rhenus.group/data-information
+
+
+Von: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Gesendet: Donnerstag, 13. März 2025 19:29
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>>
+Betreff: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/11/2025 10:17 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:16 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thanks for your update. Since the RODCPurgeAccount operation did not resolve the issue, there are a few additional steps that may help:
+
+Check if the account is still in use – If the account is still being referenced, it may prevent removal.
+
+  1.  Use repadmin to manually clear cached credentials:
+repadmin /prp remove <RODC_Name> <Account_Name>
+
+  1.  Use Clear-ADAccountPasswordCache to remove stored credentials:
+Clear-ADAccountPasswordCache -Identity <RODC_Name>
+
+Rebuilding the RODC – If the above steps do not work, Microsoft's official recommendation remains to rebuild the RODC to ensure proper removal.
+
+Let us know if you need further guidance.
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/18/2025 9:41 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thank you for the details. We’ll check internally regarding this and get back to you as soon as possible.
+
+Please let me know if you need anything else in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 2/17/2025 10:04 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436038 - ref:_00D7091pB._500Q000LyNCA:ref - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+Thanks, but I already tried it like mentioned.
+
+
+Mit freundlichen Grüßen | Kind regards​​​​
+
+i. A.
+
+
+
+Tim Buntrock
+
+System Engineer Directory & Cloud Services
+
+T +492301292134
+
+ |
+
+M +491601020167
+
+E Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>
+
+ |
+
+W rhenus.group<https://rhenus.group/>
+
+[cid:image001.png@01DBA939.7D3B9B50]
+
+Rhenus Assets & Services GmbH & Co. KG
+
+Rhenus‑Platz 1
+
+ |
+
+59439
+
+
+
+Holzwickede
+
+ |
+
+Germany
+
+Sitz: Holzwickede, AG Hamm, HRA 2493
+PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+
+You will find further information about data protection in the following link:
+​https://www.rhenus.group/data-information
+
+
+Von: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Gesendet: Montag, 17. Februar 2025 15:37
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>>
+Betreff: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Dear Tim,
+
+To proceed with the RODC account removal, you will need to purge the account as well.
+
+While Microsoft's official recommendation remains to rebuild the RODC, you can alternatively use the RODCPurgeAccount operation to remove it.
+
+Here’s the relevant documentation for more details:
+
+RODCPurgeAccount Operation<https://urldefense.com/v3/__https:/learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/78bca39e-cba0-4127-95fe-7e2afdad0101?redirectedfrom=MSDN__;!!Iy-eiNsJYb8-!UafS6dYunAK5VAGag7OYhAEzBeYApEYMTPShVdV60wm7URIKGrObLOjl_N_hsZKjj60j5RglsrD3FAgKZjQkJGNO$>
+ADSecurity Guide<https://urldefense.com/v3/__https:/adsecurity.org/?p=276__;!!Iy-eiNsJYb8-!UafS6dYunAK5VAGag7OYhAEzBeYApEYMTPShVdV60wm7URIKGrObLOjl_N_hsZKjj60j5RglsrD3FAgKZibL0Gaz$>
+
+Please note that the reset will invalidate the stored credentials, but they may still be cached until you perform the purge operation.
+
+Let me know if you need any further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UafS6dYunAK5VAGag7OYhAEzBeYApEYMTPShVdV60wm7URIKGrObLOjl_N_hsZKjj60j5RglsrD3FAgKZq0zKspT$>
+
+ref:!00D70091pB.!500Qk0LyNCA:ref","AW: AW: Netwrix Support Ticket #436038 -  - AW: Check if privileged users have been revealed on RODC issue - cant remove user    [ ref:!00D70091pB.!500Qk0LyNCA:ref ]","tim.buntrock@rhenus.com","Buntrock, Tim","techsupport@netwrix.com","","","true","2025-04-09T08:23:53.000Z","true"
+"02sQk00000Nd8wZIAR","500Qk00000LyNCAIA3","2025-04-11T08:50:05.000Z","2025-04-11T08:50:05.000Z","Thanks for your confirmation. We are closing this ticket.
+
+Regards,
+
+Shaheryar Ali
+Technical Support Engineer
+Netwrix Corportation
+
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 4/9/2025 4:23 AM
+To: techsupport@netwrix.com
+Subject: AW: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+
+Hello guys,
+
+ 
+
+You can close the ticket thx for your help.
+
+ 
+
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									
+										
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Mit freundlichen Grüßen | Kind regards​​​​
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		i. A.
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		Tim Buntrock
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		System Engineer Directory & Cloud Services
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					T +492301292134
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					M +491601020167
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		E Tim.Buntrock@rhenus.com
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 | 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		W rhenus.group
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															Rhenus Assets & Services GmbH & Co. KG
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					Rhenus‑Platz 1
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					59439
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Holzwickede
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Germany
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Sitz: Holzwickede, AG Hamm, HRA 2493
+																		PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+																		Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															You will find further information about data protection in the following link:
+															​https://www.rhenus.group/data-information
+															
+														
+													
+												
+												
+											
+										
+									
+									
+								
+							
+						
+						
+					
+					
+						
+						 
+						
+					
+				
+			
+			
+		
+	
+
+
+
+
+ 
+
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Mittwoch, 9. April 2025 10:10
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: RE: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+
+
+ 
+
+Hello Tim!
+
+I just wanted to check with you if you got a chance to look into our last response on this ticket? 
+
+Regards,
+
+Shaheryar Ali
+Technical Support Engineer
+Netwrix Corporation
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/1/2025 4:15 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+After speaking to the PingCastle team, there are no other options at this point. Please let us know if you want to go ahead with RODC rebuild,.
+
+Apologies for not being able to assist you more with this.
+
+Thank you,
+
+Rej Uddin
+
+Technical Support Team Lead
+
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+
+____________________ __________
+
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+Netwrix | Cybersecurity that works for you.
+Easily identify sensitive, regulated and mission-critical information in your data stores and focus on the information that truly requires protection.
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 3/31/2025 8:07 AM
+To: techsupport@netwrix.com
+Subject: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+ 
+
+
+Hello again,
+
+ 
+
+Issue still persists. Demote promote is not an option at this state.
+
+ 
+
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									
+										
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Mit freundlichen Grüßen | Kind regards​​​​
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		i. A.
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		Tim Buntrock
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		System Engineer Directory & Cloud Services
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					T +492301292134
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					M +491601020167
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		E Tim.Buntrock@rhenus.com
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 | 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		W rhenus.group
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															Rhenus Assets & Services GmbH & Co. KG
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					Rhenus‑Platz 1
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					59439
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Holzwickede
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Germany
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Sitz: Holzwickede, AG Hamm, HRA 2493
+																		PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+																		Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															You will find further information about data protection in the following link:
+															​https://www.rhenus.group/data-information
+															
+														
+													
+												
+												
+											
+										
+									
+									
+								
+							
+						
+						
+					
+					
+						
+						 
+						
+					
+				
+			
+			
+		
+	
+
+
+
+
+ 
+
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Donnerstag, 13. März 2025 19:29
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+
+
+ 
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/11/2025 10:17 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:16 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thanks for your update. Since the RODCPurgeAccount operation did not resolve the issue, there are a few additional steps that may help:
+
+Check if the account is still in use – If the account is still being referenced, it may prevent removal.
+
+
+	Use repadmin to manually clear cached credentials:
+
+
+repadmin /prp remove <RODC_Name> <Account_Name>
+
+
+	Use Clear-ADAccountPasswordCache to remove stored credentials:
+
+
+Clear-ADAccountPasswordCache -Identity <RODC_Name>
+
+Rebuilding the RODC – If the above steps do not work, Microsoft's official recommendation remains to rebuild the RODC to ensure proper removal.
+
+Let us know if you need further guidance.
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/18/2025 9:41 AM
+To: tim.buntrock@rhenus.com
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thank you for the details. We’ll check internally regarding this and get back to you as soon as possible.
+
+Please let me know if you need anything else in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 2/17/2025 10:04 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436038 - ref:_00D7091pB._500Q000LyNCA:ref - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+ 
+
+
+Thanks, but I already tried it like mentioned.
+
+ 
+
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									
+										
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Mit freundlichen Grüßen | Kind regards​​​​
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		i. A.
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		Tim Buntrock
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		System Engineer Directory & Cloud Services
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					T +492301292134
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					M +491601020167
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		E Tim.Buntrock@rhenus.com
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		 | 
+																		
+																	
+																
+															
+															
+															
+															
+																
+																	
+																		
+																		W rhenus.group
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															Rhenus Assets & Services GmbH & Co. KG
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		
+																			
+																				
+																					
+																					Rhenus‑Platz 1
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					59439
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Holzwickede
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					 | 
+																					
+																				
+																			
+																		
+																		
+																		
+																		
+																			
+																				
+																					
+																					Germany
+																					
+																				
+																			
+																		
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															
+																
+																	
+																		
+																		Sitz: Holzwickede, AG Hamm, HRA 2493
+																		PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+																		Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+																		
+																	
+																
+															
+															
+														
+													
+												
+												
+											
+											
+												
+												
+													
+														
+															
+															You will find further information about data protection in the following link:
+															​https://www.rhenus.group/data-information
+															
+														
+													
+												
+												
+											
+										
+									
+									
+								
+							
+						
+						
+					
+					
+						
+						 
+						
+					
+				
+			
+			
+		
+	
+
+
+
+
+ 
+
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Montag, 17. Februar 2025 15:37
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+
+
+ 
+
+Dear Tim,
+
+To proceed with the RODC account removal, you will need to purge the account as well.
+
+While Microsoft's official recommendation remains to rebuild the RODC, you can alternatively use the RODCPurgeAccount operation to remove it.
+
+Here’s the relevant documentation for more details:
+
+RODCPurgeAccount Operation
+ADSecurity Guide
+
+Please note that the reset will invalidate the stored credentials, but they may still be cached until you perform the purge operation.
+
+Let me know if you need any further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0LyNCA:ref","RE: AW: AW: Netwrix Support Ticket #436038 -  - AW: Check if privileged users have been revealed on RODC issue - cant remove user    [ ref:!00D70091pB.!500Qk0LyNCA:ref ]","techsupport@netwrix.com","Netwrix Support","tim.buntrock@rhenus.com","","shaheryar.ali.tahir@netwrix.com","true","2025-04-11T08:50:04.000Z","true"
+"02sQk00000NdRnwIAF","500Qk00000LyNCAIA3","2025-04-11T11:38:17.000Z","2025-04-11T11:39:18.000Z","ref:_00D7091pB._500Q000LyNCA:ref
+
+Thanks guys! Have a nice weekend!
+
+
+Mit freundlichen Grüßen | Kind regards​​​​
+
+i. A.
+
+
+
+Tim Buntrock
+
+System Engineer Directory & Cloud Services
+
+T +492301292134<tel:+492301292134>
+
+ |
+
+M +491601020167<tel:+491601020167>
+
+E Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>
+
+ |
+
+W rhenus.group<https://rhenus.group/>
+
+[cid:image001.png@01DBAAE6.EC42EA90]
+
+Rhenus Assets & Services GmbH & Co. KG
+
+Rhenus‑Platz 1
+
+ |
+
+59439
+
+
+
+Holzwickede
+
+ |
+
+Germany
+
+Sitz: Holzwickede, AG Hamm, HRA 2493
+PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+
+You will find further information about data protection in the following link:
+​https://www.rhenus.group/data-information
+
+
+Von: Netwrix Support <techsupport@netwrix.com>
+Gesendet: Freitag, 11. April 2025 10:50
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com>
+Betreff: RE: AW: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Thanks for your confirmation. We are closing this ticket.
+
+Regards,
+
+Shaheryar Ali
+Technical Support Engineer
+Netwrix Corportation
+
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 4/9/2025 4:23 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: AW: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+Hello guys,
+
+You can close the ticket thx for your help.
+
+
+Mit freundlichen Grüßen | Kind regards​​​​
+
+i. A.
+
+
+
+Tim Buntrock
+
+System Engineer Directory & Cloud Services
+
+T +492301292134
+
+ |
+
+M +491601020167
+
+E Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>
+
+ |
+
+W rhenus.group<https://rhenus.group/>
+
+[cid:image001.png@01DBAAE6.EC42EA90]
+
+Rhenus Assets & Services GmbH & Co. KG
+
+Rhenus‑Platz 1
+
+ |
+
+59439
+
+
+
+Holzwickede
+
+ |
+
+Germany
+
+Sitz: Holzwickede, AG Hamm, HRA 2493
+PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+
+You will find further information about data protection in the following link:
+​https://www.rhenus.group/data-information
+
+
+Von: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Gesendet: Mittwoch, 9. April 2025 10:10
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>>
+Betreff: RE: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim!
+
+I just wanted to check with you if you got a chance to look into our last response on this ticket?
+
+Regards,
+
+Shaheryar Ali
+Technical Support Engineer
+Netwrix Corporation
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/1/2025 4:15 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+After speaking to the PingCastle team, there are no other options at this point. Please let us know if you want to go ahead with RODC rebuild,.
+
+Apologies for not being able to assist you more with this.
+
+Thank you,
+
+Rej Uddin
+
+Technical Support Team Lead
+
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+
+____________________ __________
+
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!Xn6RcbLqdn21itfuxt6BtG0T-CP_2j4hlMQoTTuhxsz8egUU_nll4aVziji_Xm6B0vosx0DSMTjGRQAPwfOHXseP$>
+Netwrix | Cybersecurity that works for you.
+Easily identify sensitive, regulated and mission-critical information in your data stores and focus on the information that truly requires protection.
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 3/31/2025 8:07 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: AW: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+Hello again,
+
+Issue still persists. Demote promote is not an option at this state.
+
+
+Mit freundlichen Grüßen | Kind regards​​​​
+
+i. A.
+
+
+
+Tim Buntrock
+
+System Engineer Directory & Cloud Services
+
+T +492301292134
+
+ |
+
+M +491601020167
+
+E Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>
+
+ |
+
+W rhenus.group<https://rhenus.group/>
+
+[cid:image001.png@01DBAAE6.EC42EA90]
+
+Rhenus Assets & Services GmbH & Co. KG
+
+Rhenus‑Platz 1
+
+ |
+
+59439
+
+
+
+Holzwickede
+
+ |
+
+Germany
+
+Sitz: Holzwickede, AG Hamm, HRA 2493
+PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+
+You will find further information about data protection in the following link:
+​https://www.rhenus.group/data-information
+
+
+Von: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Gesendet: Donnerstag, 13. März 2025 19:29
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>>
+Betreff: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/11/2025 10:17 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hello Tim,
+
+I wanted to check in regarding your support ticket 00436038. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436038
+Ticket Subject: Check if privileged users have been revealed on RODC issue - cant remove user
+Ticket Details: The following issue persists: despite multiple password resets for the admin account, the user continues to reappear after some time. The RODCPurgeAccount command has been attempted without success.
+
+Rule: Check if privileged users have been revealed on RODC
+
+Rule ID: P-RODCAdminRevealed
+Description: Verifies whether privileged users have been revealed on a Read-Only Domain Controller (RODC).
+Technical Explanation:
+The RODC tracks revealed users using the msDS-RevealedUsers attribute on its computer object.
+If a privileged user appears in this list, their authentication secrets are cached, posing a security risk as they can be used for impersonation.
+Steps Taken:
+
+The admin account password has been reset multiple times.
+The RODCPurgeAccount command has been executed, but the user reappears after some time.
+Request:
+Assistance is required to resolve the issue and prevent the admin account from being revealed on the RODC.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:16 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thanks for your update. Since the RODCPurgeAccount operation did not resolve the issue, there are a few additional steps that may help:
+
+Check if the account is still in use – If the account is still being referenced, it may prevent removal.
+
+  1.  Use repadmin to manually clear cached credentials:
+repadmin /prp remove <RODC_Name> <Account_Name>
+
+  1.  Use Clear-ADAccountPasswordCache to remove stored credentials:
+Clear-ADAccountPasswordCache -Identity <RODC_Name>
+
+Rebuilding the RODC – If the above steps do not work, Microsoft's official recommendation remains to rebuild the RODC to ensure proper removal.
+
+Let us know if you need further guidance.
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/18/2025 9:41 AM
+To: tim.buntrock@rhenus.com<mailto:tim.buntrock@rhenus.com>
+Subject: RE: Netwrix Support Ticket #436038 - - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Hi Tim,
+
+Thank you for the details. We’ll check internally regarding this and get back to you as soon as possible.
+
+Please let me know if you need anything else in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UFPzXYNnc8LiNyd1-_2jaSoOAAFl2_JMyQgRM19YgDFal6Ht53fGFoLew__JUx8qNgjFbZLUsP5YrWPQnoxH09zC$>
+
+
+--------------- Original Message ---------------
+From: Buntrock, Tim [tim.buntrock@rhenus.com]
+Sent: 2/17/2025 10:04 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436038 - ref:_00D7091pB._500Q000LyNCA:ref - AW: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+ref:_00D7091pB._500Q000LyNCA:ref
+
+
+Thanks, but I already tried it like mentioned.
+
+
+Mit freundlichen Grüßen | Kind regards​​​​
+
+i. A.
+
+
+
+Tim Buntrock
+
+System Engineer Directory & Cloud Services
+
+T +492301292134
+
+ |
+
+M +491601020167
+
+E Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>
+
+ |
+
+W rhenus.group<https://rhenus.group/>
+
+[cid:image001.png@01DBAAE6.EC42EA90]
+
+Rhenus Assets & Services GmbH & Co. KG
+
+Rhenus‑Platz 1
+
+ |
+
+59439
+
+
+
+Holzwickede
+
+ |
+
+Germany
+
+Sitz: Holzwickede, AG Hamm, HRA 2493
+PhG: Rhenus Assets & Services Verwaltungs GmbH, AG Hamm, HRB 4203
+Geschäftsführung: Dr. Joana Bätz, Gilles Delarue, Heinrich Kerstgens, Johannes Kost, Tobias König, Dr. Frank Lindner, Christian Ruppert, Markus Sandbrink
+
+You will find further information about data protection in the following link:
+​https://www.rhenus.group/data-information
+
+
+Von: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Gesendet: Montag, 17. Februar 2025 15:37
+An: Buntrock, Tim <Tim.Buntrock@rhenus.com<mailto:Tim.Buntrock@rhenus.com>>
+Betreff: Check if privileged users have been revealed on RODC issue - cant remove user [ ref:!00D70091pB.!500Qk0LyNCA:ref ]
+
+Dear Tim,
+
+To proceed with the RODC account removal, you will need to purge the account as well.
+
+While Microsoft's official recommendation remains to rebuild the RODC, you can alternatively use the RODCPurgeAccount operation to remove it.
+
+Here’s the relevant documentation for more details:
+
+RODCPurgeAccount Operation<https://urldefense.com/v3/__https:/learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/78bca39e-cba0-4127-95fe-7e2afdad0101?redirectedfrom=MSDN__;!!Iy-eiNsJYb8-!UafS6dYunAK5VAGag7OYhAEzBeYApEYMTPShVdV60wm7URIKGrObLOjl_N_hsZKjj60j5RglsrD3FAgKZjQkJGNO$>
+ADSecurity Guide<https://urldefense.com/v3/__https:/adsecurity.org/?p=276__;!!Iy-eiNsJYb8-!UafS6dYunAK5VAGag7OYhAEzBeYApEYMTPShVdV60wm7URIKGrObLOjl_N_hsZKjj60j5RglsrD3FAgKZibL0Gaz$>
+
+Please note that the reset will invalidate the stored credentials, but they may still be cached until you perform the purge operation.
+
+Let me know if you need any further assistance.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Iy-eiNsJYb8-!UafS6dYunAK5VAGag7OYhAEzBeYApEYMTPShVdV60wm7URIKGrObLOjl_N_hsZKjj60j5RglsrD3FAgKZq0zKspT$>
+
+ref:!00D70091pB.!500Qk0LyNCA:ref","AW: AW: AW: Netwrix Support Ticket #436038 -  - AW: Check if privileged users have been revealed on RODC issue - cant remove user    [ ref:!00D70091pB.!500Qk0LyNCA:ref ]","tim.buntrock@rhenus.com","Buntrock, Tim","techsupport@netwrix.com","","","true","2025-04-11T11:37:53.000Z","true"

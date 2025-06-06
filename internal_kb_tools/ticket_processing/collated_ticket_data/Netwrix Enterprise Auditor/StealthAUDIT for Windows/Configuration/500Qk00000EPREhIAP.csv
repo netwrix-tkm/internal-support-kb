@@ -1,0 +1,36 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EPREhIAP","00418056","Support Ticket","StealthAudit app using local guest service account somehow","This came from our internal Cyber team that is trying to track down what is causing issues with guest account on machines. The account in question is (MISOGUEST). 
+
+Good morning Patrick, I’m revisiting the MISOGUEST account issue and noticed that the caller computer, IPWDAG01 (which is identified as StealthAudit), is attempting to authenticate using the MISOGUEST account across various hosts. This behavior appears to be associated with the account lockout events we’ve been observing. Could you please confirm if it is standard behavior for StealthAudit to probe the guest account in this manner?
+
+Wondering if this is somehow happening now since the upgrade to 11.6? 
+We tell StealthAudit to use specific accounts in the jobs so - I'm struggling to think of how StealthAudit could be contributing to this mess.","","","","Via the Netwrix Enterprise Auditor (NEA) server
+gci "" D:Program Files (x86)STEALTHbitsStealthAUDIT\SADatabaseLogs*.log"" -Recurse |Select-String MISOGUEST
+gci ""D:Program FilesSTEALTHbitsAccess Information Center*.log"" -Recurse |Select-String MISOGUEST
+gci ""D:Program Files (x86)STEALTHbitsStealthAUDITJobs"" -Include ConnectStatus.csv -Recurse |Select-String MISOGUEST    
+ 
+These all returned no results.
+
+Confirmed that the needed OS Auditing was in place via on the NEA sever as well as one of the Win 2019 Servers in question.
+            auditpol /get /category:Logon/Logoff
+            auditpol /get /category:'Account Logon' 
+
+Filtered the Windows Security Event log for the Last 24 Hours for MISOGUEST
+            <QueryList>
+                        <Query Id=""0"" Path=""Security"">
+                        <Select Path=""Security"">*[System[(EventID=4625 or EventID=4648 or EventID=4776 or EventID=4777 or EventID=4740 or EventID=4767 or EventID=4768 or EventID=4769 or EventID=4779) and TimeCreated[timediff(@SystemTime) &lt;= 86400000]]] and *[EventData[Data[@Name ='TargetUserName'] ='MISOGUEST']]</Select>
+                        </Query>
+                        </QueryList>
+
+Or we can filter the event logs with the following then do a find for the account in question
+            4625,4768,4769,4771,4776,4768, 4769, 4771,4648
+           
+No Logon attempts noted from the NEA Server, however we did note some entries on the Win 2019 host for the account int question as a local users via the BESClient.exe
+           
+Event ID references:
+        https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventid=4648
+        https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventid=4740
+        https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventid=4625
+
+
+This concluded that the calls are not coming from the Netwrix apps installed on the calling server","Netwrix account issues","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Windows","Configuration","11.6","","14.1","Closed - Resolved","MISO Energy","Patrick Sager","2024-08-14T12:37:02.000Z","2024-08-28T15:52:34.000Z"

@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000L37byIAB","00433567","Support Ticket","24. Content Security Policy Not Implemented","AIC 11.5
+
+Impact:
+An attacker can execute cross domain scripts on the application to perform attacks like XSS.
+
+Recommendation:
+1. Enable CSP on your website by sending the Content-Security-Policy in HTTP response
+headers that instructs the browser to apply the policies you specified.
+2. Implement CSP header as mentioned below:
+Content-Security-Policy: script-src 'self'; OR
+<meta http-equiv=""Content-Security-Policy"" content=""script-src 'self';"">
+3. Apply the whitelist and policies as strict as possible.
+
+References:
+Industry Standard:
+https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html
+
+Steps to Reproduce:
+Verify the response headers for CSP","Verify the response headers for CSP","","","confirmed, ""Content-Security-Policy"" security header was added to AIC and Webserver in 11.6+.","Product defect","Brandon West","Request","Netwrix Enterprise Auditor","Access Information Center","Configuration","11.5","","46.7","Closed - Resolved","Netwrix Technical Support","Catharine Coleman","2025-01-24T20:54:23.000Z","2025-03-12T12:31:13.000Z"

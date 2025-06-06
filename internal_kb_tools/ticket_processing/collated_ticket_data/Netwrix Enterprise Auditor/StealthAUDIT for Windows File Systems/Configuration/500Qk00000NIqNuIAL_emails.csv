@@ -1,0 +1,1852 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MyqQYIAZ","500Qk00000NIqNuIAL","2025-03-25T12:31:01.000Z","2025-03-25T12:31:01.000Z","Hello Sean, 
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job. 
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment. 
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0NIqNu:ref","""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","techsupport@netwrix.com","Netwrix Support","aem-stealthaudit-vm@allstate.com","jared.harris@netwrix.com","","false","2025-03-25T12:30:59.000Z","true"
+"02sQk00000N1sNkIAJ","500Qk00000NIqNuIAL","2025-03-26T13:24:18.000Z","2025-03-26T13:24:18.000Z","Hi Sean, 
+
+Thank you for your time on a meeting today. 
+Here is a recap of what we did:
+
+We made a new job and recreated settings of ""DropFSHostData"" custom job which was failing with ""Job connection profile is not available"" - all settings were correct except for the connection profile. 
+The connection profile settings were set to default - and when we checked the corresponding ""Z_"" job group we noticed that the connection profile is empty.
+We then switched it to an existing connection profile. 
+
+At the moment I suspect that empty connection profile was a root cause of the ""DropFSHostData"" job failing with ""Job connection profile is not available"".
+Please, let me know results once job completes since we made changes to settings and updated connection profile. 
+
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 4:30 PM
+To: aem-stealthaudit-vm@allstate.com
+Cc: jared.harris@netwrix.com
+Subject: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+Hello Sean, 
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job. 
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment. 
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+ref:!00D70091pB.!500Qk0NIqNu:ref","RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","techsupport@netwrix.com","Netwrix Support","aem-stealthaudit-vm@allstate.com","jared.harris@netwrix.com","","false","2025-03-26T13:24:16.000Z","true"
+"02sQk00000NCS9uIAH","500Qk00000NIqNuIAL","2025-03-31T14:53:28.000Z","2025-04-01T09:38:49.000Z","ref:_00D7091pB._500Q000NIqNu:ref
+
+Hi Artem,
+
+I’ve created the ""DropFSHostData"" custom job in my production server and have gone through the same steps we completed in the test environment.
+
+Couple of things to note from this:
+
+The host list from the analysis took a very long time to create a new host list from the data (I don’t know exactly, I left it to run overnight)
+[cid:image001.png@01DBA253.F8D5FB80]
+
+With there being 13k servers listed in the Host List, I decided to test the job on just two servers.
+
+It ran for 5h 48m before being ‘Aborted’
+[cid:image002.png@01DBA254.7C457180]
+
+It did however remove the hosts from the FSAA_Hosts table in the ‘Results’
+[cid:image003.png@01DBA254.FF7EBC50]
+
+I’m just concerned that two servers took this long. If tried to all 13k it would take a very long time for the job to complete if it takes 2/3 hours per server.
+
+
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 1:24 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Cc: jared.harris@netwrix.com
+Subject: [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+We made a new job and recreated settings of ""DropFSHostData"" custom job which was failing with ""Job connection profile is not available"" - all settings were correct except for the connection profile.
+The connection profile settings were set to default - and when we checked the corresponding ""Z_"" job group we noticed that the connection profile is empty.
+We then switched it to an existing connection profile.
+
+At the moment I suspect that empty connection profile was a root cause of the ""DropFSHostData"" job failing with ""Job connection profile is not available"".
+Please, let me know results once job completes since we made changes to settings and updated connection profile.
+
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 4:30 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+Hello Sean,
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job.
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment.
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+ref:!00D70091pB.!500Qk0NIqNu:ref[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KZlzs&from=ext]","RE: Netwrix Support Ticket #439897 - ref:_00D7091pB._500Q000NIqNu:ref - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","smcmb@allstate.com","McMahon, Sean","aem-stealthaudit-vm@allstate.com; techsupport@netwrix.com","jared.harris@netwrix.com","","true","2025-03-31T14:53:12.000Z","true"
+"02sQk00000NEjOFIA1","500Qk00000NIqNuIAL","2025-04-01T09:56:25.000Z","2025-04-01T09:56:25.000Z","Hi Sean, 
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+The ""DropFSHostData"" job took 5 hours to complete when 2 hosts were selected for processing.
+After inspecting the logs we found that most of the time was spent on completing FSAA_Hosts analysis task as it was taking a lot of time to resole 13k hosts.
+
+There is no need to run this analysis task every time, as such we disabled it to check how long it will take to complete ""DropFSHostData"" without it.
+
+Once you have results of the next run for a couple more hosts - please, let me know results.
+I am looking forward to your reply.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/31/2025 6:53 PM
+To: aem-stealthaudit-vm@allstate.com; techsupport@netwrix.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - ref:_00D7091pB._500Q000NIqNu:ref - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+
+
+Hi Artem,
+
+ 
+
+I’ve created the ""DropFSHostData"" custom job in my production server and have gone through the same steps we completed in the test environment.
+
+ 
+
+Couple of things to note from this:
+
+ 
+
+The host list from the analysis took a very long time to create a new host list from the data (I don’t know exactly, I left it to run overnight)
+
+
+
+ 
+
+With there being 13k servers listed in the Host List, I decided to test the job on just two servers.
+
+ 
+
+It ran for 5h 48m before being ‘Aborted’
+
+
+
+ 
+
+It did however remove the hosts from the FSAA_Hosts table in the ‘Results’
+
+
+
+ 
+
+I’m just concerned that two servers took this long. If tried to all 13k it would take a very long time for the job to complete if it takes 2/3 hours per server.
+
+ 
+
+ 
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 1:24 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Cc: jared.harris@netwrix.com
+Subject: [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for your time on a meeting today. 
+Here is a recap of what we did:
+
+We made a new job and recreated settings of ""DropFSHostData"" custom job which was failing with ""Job connection profile is not available"" - all settings were correct except for the connection profile. 
+The connection profile settings were set to default - and when we checked the corresponding ""Z_"" job group we noticed that the connection profile is empty.
+We then switched it to an existing connection profile. 
+
+At the moment I suspect that empty connection profile was a root cause of the ""DropFSHostData"" job failing with ""Job connection profile is not available"".
+Please, let me know results once job completes since we made changes to settings and updated connection profile. 
+
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 4:30 PM
+To: aem-stealthaudit-vm@allstate.com
+Cc: jared.harris@netwrix.com
+Subject: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+Hello Sean, 
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job. 
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment. 
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0NIqNu:ref","RE: Netwrix Support Ticket #439897 -  - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","techsupport@netwrix.com","Netwrix Support","smcmb@allstate.com","jared.harris@netwrix.com; aem-stealthaudit-vm@allstate.com","","true","2025-04-01T09:56:24.000Z","true"
+"02sQk00000NFePiIAL","500Qk00000NIqNuIAL","2025-04-01T15:58:00.000Z","2025-04-02T08:27:28.000Z","ref:_00D7091pB._500Q000NIqNu:ref
+
+Hi Artem,
+
+The latest job for another two hosts just completed.
+
+Unfortunately took another five hours
+[cid:image001.png@01DBA327.2DB4D780]
+
+But I noticed the Task Stats showed the hosts being removed within seconds of the job running
+[cid:image002.png@01DBA327.2DB4D780]
+
+And the FSAA_Hosts table updated very quickly after that to reflect the new number within it
+[cid:image003.png@01DBA327.2DB4D780]
+
+So not sure what may still be causing the job to runs for another 5 hours after when the analysis task is no longer enabled.
+
+We can maybe look at it further?
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, April 1, 2025 10:56 AM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+The ""DropFSHostData"" job took 5 hours to complete when 2 hosts were selected for processing.
+After inspecting the logs we found that most of the time was spent on completing FSAA_Hosts analysis task as it was taking a lot of time to resole 13k hosts.
+
+There is no need to run this analysis task every time, as such we disabled it to check how long it will take to complete ""DropFSHostData"" without it.
+
+Once you have results of the next run for a couple more hosts - please, let me know results.
+I am looking forward to your reply.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/31/2025 6:53 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439897 - ref:_00D7091pB._500Q000NIqNu:ref - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+Hi Artem,
+
+I've created the ""DropFSHostData"" custom job in my production server and have gone through the same steps we completed in the test environment.
+
+Couple of things to note from this:
+
+The host list from the analysis took a very long time to create a new host list from the data (I don't know exactly, I left it to run overnight)
+[cid:image004.png@01DBA327.2DB4D780]
+
+With there being 13k servers listed in the Host List, I decided to test the job on just two servers.
+
+It ran for 5h 48m before being 'Aborted'
+[cid:image005.png@01DBA327.2DB4D780]
+
+It did however remove the hosts from the FSAA_Hosts table in the 'Results'
+[cid:image006.png@01DBA327.2DB4D780]
+
+I'm just concerned that two servers took this long. If tried to all 13k it would take a very long time for the job to complete if it takes 2/3 hours per server.
+
+
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 26, 2025 1:24 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+We made a new job and recreated settings of ""DropFSHostData"" custom job which was failing with ""Job connection profile is not available"" - all settings were correct except for the connection profile.
+The connection profile settings were set to default - and when we checked the corresponding ""Z_"" job group we noticed that the connection profile is empty.
+We then switched it to an existing connection profile.
+
+At the moment I suspect that empty connection profile was a root cause of the ""DropFSHostData"" job failing with ""Job connection profile is not available"".
+Please, let me know results once job completes since we made changes to settings and updated connection profile.
+
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 4:30 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+Hello Sean,
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job.
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment.
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+ref:!00D70091pB.!500Qk0NIqNu:ref
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KkyLq&from=ext]","RE: Netwrix Support Ticket #439897 -  - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","smcmb@allstate.com","McMahon, Sean","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; jared.harris@netwrix.com","","true","2025-04-01T15:57:47.000Z","true"
+"02sQk00000NHa9tIAD","500Qk00000NIqNuIAL","2025-04-02T09:57:23.000Z","2025-04-02T09:57:23.000Z","Hi Sean, 
+
+Thank you for your reply.
+
+To isolate which task causes job to run for 5 hours I need to analyze logs of the last job run.
+
+Please, right-click on ""DropFSHostData"" job > select ""Export"" to export the logs folder.
+Once exported, upload resulted archive to the ticket 00439897 using customer portal in ""My Tickets"" section and notify me once upload has completed.
+
+Looking forward to your reply!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 4/1/2025 7:57 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+
+
+Hi Artem,
+
+ 
+
+The latest job for another two hosts just completed.
+
+ 
+
+Unfortunately took another five hours
+
+
+
+ 
+
+But I noticed the Task Stats showed the hosts being removed within seconds of the job running
+
+
+
+ 
+
+And the FSAA_Hosts table updated very quickly after that to reflect the new number within it
+
+
+
+ 
+
+So not sure what may still be causing the job to runs for another 5 hours after when the analysis task is no longer enabled.
+
+ 
+
+We can maybe look at it further?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, April 1, 2025 10:56 AM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+The ""DropFSHostData"" job took 5 hours to complete when 2 hosts were selected for processing.
+After inspecting the logs we found that most of the time was spent on completing FSAA_Hosts analysis task as it was taking a lot of time to resole 13k hosts.
+
+There is no need to run this analysis task every time, as such we disabled it to check how long it will take to complete ""DropFSHostData"" without it.
+
+Once you have results of the next run for a couple more hosts - please, let me know results.
+I am looking forward to your reply.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/31/2025 6:53 PM
+To: aem-stealthaudit-vm@allstate.com; techsupport@netwrix.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - ref:_00D7091pB._500Q000NIqNu:ref - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+ 
+
+
+Hi Artem,
+
+ 
+
+I’ve created the ""DropFSHostData"" custom job in my production server and have gone through the same steps we completed in the test environment.
+
+ 
+
+Couple of things to note from this:
+
+ 
+
+The host list from the analysis took a very long time to create a new host list from the data (I don’t know exactly, I left it to run overnight)
+
+
+
+ 
+
+With there being 13k servers listed in the Host List, I decided to test the job on just two servers.
+
+ 
+
+It ran for 5h 48m before being ‘Aborted’
+
+
+
+ 
+
+It did however remove the hosts from the FSAA_Hosts table in the ‘Results’
+
+
+
+ 
+
+I’m just concerned that two servers took this long. If tried to all 13k it would take a very long time for the job to complete if it takes 2/3 hours per server.
+
+ 
+
+ 
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 1:24 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Cc: jared.harris@netwrix.com
+Subject: [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for your time on a meeting today. 
+Here is a recap of what we did:
+
+We made a new job and recreated settings of ""DropFSHostData"" custom job which was failing with ""Job connection profile is not available"" - all settings were correct except for the connection profile. 
+The connection profile settings were set to default - and when we checked the corresponding ""Z_"" job group we noticed that the connection profile is empty.
+We then switched it to an existing connection profile. 
+
+At the moment I suspect that empty connection profile was a root cause of the ""DropFSHostData"" job failing with ""Job connection profile is not available"".
+Please, let me know results once job completes since we made changes to settings and updated connection profile. 
+
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 4:30 PM
+To: aem-stealthaudit-vm@allstate.com
+Cc: jared.harris@netwrix.com
+Subject: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+Hello Sean, 
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job. 
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment. 
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0NIqNu:ref","RE: Netwrix Support Ticket #439897 -  - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","techsupport@netwrix.com","Netwrix Support","smcmb@allstate.com","jared.harris@netwrix.com; aem-stealthaudit-vm@allstate.com","","true","2025-04-02T09:57:22.000Z","true"
+"02sQk00000NK7L4IAL","500Qk00000NIqNuIAL","2025-04-03T07:17:15.000Z","2025-04-03T07:17:15.000Z","ref:_00D7091pB._500Q000NIqNu:ref
+
+Hi Artem,
+
+Exported data has been attached to the ticket.
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 2, 2025 10:57 AM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for your reply.
+
+To isolate which task causes job to run for 5 hours I need to analyze logs of the last job run.
+
+Please, right-click on ""DropFSHostData"" job > select ""Export"" to export the logs folder.
+Once exported, upload resulted archive to the ticket 00439897 using customer portal in ""My Tickets"" section and notify me once upload has completed.
+
+Looking forward to your reply!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 4/1/2025 7:57 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+Hi Artem,
+
+The latest job for another two hosts just completed.
+
+Unfortunately took another five hours
+[cid:image001.png@01DBA470.C33C4140]
+
+But I noticed the Task Stats showed the hosts being removed within seconds of the job running
+[cid:image002.png@01DBA470.C33C4140]
+
+And the FSAA_Hosts table updated very quickly after that to reflect the new number within it
+[cid:image003.png@01DBA470.C33C4140]
+
+So not sure what may still be causing the job to runs for another 5 hours after when the analysis task is no longer enabled.
+
+We can maybe look at it further?
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, April 1, 2025 10:56 AM
+To: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+The ""DropFSHostData"" job took 5 hours to complete when 2 hosts were selected for processing.
+After inspecting the logs we found that most of the time was spent on completing FSAA_Hosts analysis task as it was taking a lot of time to resole 13k hosts.
+
+There is no need to run this analysis task every time, as such we disabled it to check how long it will take to complete ""DropFSHostData"" without it.
+
+Once you have results of the next run for a couple more hosts - please, let me know results.
+I am looking forward to your reply.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/31/2025 6:53 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439897 - ref:_00D7091pB._500Q000NIqNu:ref - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+Hi Artem,
+
+I've created the ""DropFSHostData"" custom job in my production server and have gone through the same steps we completed in the test environment.
+
+Couple of things to note from this:
+
+The host list from the analysis took a very long time to create a new host list from the data (I don't know exactly, I left it to run overnight)
+[cid:image004.png@01DBA470.C33C4140]
+
+With there being 13k servers listed in the Host List, I decided to test the job on just two servers.
+
+It ran for 5h 48m before being 'Aborted'
+[cid:image005.png@01DBA470.C33C4140]
+
+It did however remove the hosts from the FSAA_Hosts table in the 'Results'
+[cid:image006.png@01DBA470.C33C4140]
+
+I'm just concerned that two servers took this long. If tried to all 13k it would take a very long time for the job to complete if it takes 2/3 hours per server.
+
+
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 26, 2025 1:24 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+We made a new job and recreated settings of ""DropFSHostData"" custom job which was failing with ""Job connection profile is not available"" - all settings were correct except for the connection profile.
+The connection profile settings were set to default - and when we checked the corresponding ""Z_"" job group we noticed that the connection profile is empty.
+We then switched it to an existing connection profile.
+
+At the moment I suspect that empty connection profile was a root cause of the ""DropFSHostData"" job failing with ""Job connection profile is not available"".
+Please, let me know results once job completes since we made changes to settings and updated connection profile.
+
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 4:30 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+Hello Sean,
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job.
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment.
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+ref:!00D70091pB.!500Qk0NIqNu:ref","RE: Netwrix Support Ticket #439897 -  - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","smcmb@allstate.com","McMahon, Sean","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; jared.harris@netwrix.com","","true","2025-04-03T07:17:02.000Z","true"
+"02sQk00000NKcANIA1","500Qk00000NIqNuIAL","2025-04-03T13:44:49.000Z","2025-04-03T13:44:49.000Z","Hi Sean, 
+
+Thank you for sharing these logs.
+
+I took a closer look at the logs from my side and would like to share my findings.
+I see that the job spent most of the time completing the following:
+
+01/04/2025 05:57:13    DEBUG    SQLSERVER    TSPSQLProfileConnectionItf.GetNewADOConnection()    ""End""            25020    8632    14288
+01/04/2025 10:47:16    DEBUG    SQLSERVER    TSPSQLHMStorageItf.UpdateHostListHosts    ""Start""        HostManagement    25020    8632    14288
+01/04/2025 11:33:34    DEBUG    SQLSERVER    TSPSQLHMStorageItf.UpdateHostListHosts    ""End""        HostManagement    25020    8632    14288
+01/04/2025 11:33:35    INFO    StealthAUDIT    TJobQueueThread.RunNextJob    ""FJob.Running:=FALSE""        DropFSHostData    13600    8632    14288
+01/04/2025 11:33:35    INFO    SAJobEngine    TJobStatus.SetEvent    ""Completed in 5h:36m:33s""            13600    8632    14288
+
+In this log we can see that job was waiting for 5 hours to start updating the host list ""hosts"" which is visible by the timestamps between these two lines:
+01/04/2025 05:57:13    DEBUG    SQLSERVER    TSPSQLProfileConnectionItf.GetNewADOConnection()    ""End""            25020    8632    14288
+01/04/2025 10:47:16    DEBUG    SQLSERVER    TSPSQLHMStorageItf.UpdateHostListHosts    ""Start""        HostManagement    25020    8632    14288
+
+It seems that a job was waiting for SQL Server.
+Could you clarify, were there any other jobs running in background while ""DropFSHostData"" job was running?
+
+In any case, this delay is not related to the amount of data that job was removing. Job was not removing data for 2 hosts for 5 hours. The actual data removal process completed in less than a minute.
+
+As such, I would suggest adding a complete list of Windows Hosts to the ""DropFSHostData"" job and let it run and complete data removal.
+Looking forward to your reply.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 4/3/2025 11:17 AM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+
+
+Hi Artem,
+
+ 
+
+Exported data has been attached to the ticket.
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 2, 2025 10:57 AM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for your reply.
+
+To isolate which task causes job to run for 5 hours I need to analyze logs of the last job run.
+
+Please, right-click on ""DropFSHostData"" job > select ""Export"" to export the logs folder.
+Once exported, upload resulted archive to the ticket 00439897 using customer portal in ""My Tickets"" section and notify me once upload has completed.
+
+Looking forward to your reply!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 4/1/2025 7:57 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+ 
+
+
+Hi Artem,
+
+ 
+
+The latest job for another two hosts just completed.
+
+ 
+
+Unfortunately took another five hours
+
+
+
+ 
+
+But I noticed the Task Stats showed the hosts being removed within seconds of the job running
+
+
+
+ 
+
+And the FSAA_Hosts table updated very quickly after that to reflect the new number within it
+
+
+
+ 
+
+So not sure what may still be causing the job to runs for another 5 hours after when the analysis task is no longer enabled.
+
+ 
+
+We can maybe look at it further?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, April 1, 2025 10:56 AM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+The ""DropFSHostData"" job took 5 hours to complete when 2 hosts were selected for processing.
+After inspecting the logs we found that most of the time was spent on completing FSAA_Hosts analysis task as it was taking a lot of time to resole 13k hosts.
+
+There is no need to run this analysis task every time, as such we disabled it to check how long it will take to complete ""DropFSHostData"" without it.
+
+Once you have results of the next run for a couple more hosts - please, let me know results.
+I am looking forward to your reply.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/31/2025 6:53 PM
+To: aem-stealthaudit-vm@allstate.com; techsupport@netwrix.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - ref:_00D7091pB._500Q000NIqNu:ref - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+ 
+
+
+Hi Artem,
+
+ 
+
+I’ve created the ""DropFSHostData"" custom job in my production server and have gone through the same steps we completed in the test environment.
+
+ 
+
+Couple of things to note from this:
+
+ 
+
+The host list from the analysis took a very long time to create a new host list from the data (I don’t know exactly, I left it to run overnight)
+
+
+
+ 
+
+With there being 13k servers listed in the Host List, I decided to test the job on just two servers.
+
+ 
+
+It ran for 5h 48m before being ‘Aborted’
+
+
+
+ 
+
+It did however remove the hosts from the FSAA_Hosts table in the ‘Results’
+
+
+
+ 
+
+I’m just concerned that two servers took this long. If tried to all 13k it would take a very long time for the job to complete if it takes 2/3 hours per server.
+
+ 
+
+ 
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 1:24 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Cc: jared.harris@netwrix.com
+Subject: [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for your time on a meeting today. 
+Here is a recap of what we did:
+
+We made a new job and recreated settings of ""DropFSHostData"" custom job which was failing with ""Job connection profile is not available"" - all settings were correct except for the connection profile. 
+The connection profile settings were set to default - and when we checked the corresponding ""Z_"" job group we noticed that the connection profile is empty.
+We then switched it to an existing connection profile. 
+
+At the moment I suspect that empty connection profile was a root cause of the ""DropFSHostData"" job failing with ""Job connection profile is not available"".
+Please, let me know results once job completes since we made changes to settings and updated connection profile. 
+
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 4:30 PM
+To: aem-stealthaudit-vm@allstate.com
+Cc: jared.harris@netwrix.com
+Subject: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+Hello Sean, 
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job. 
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment. 
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0NIqNu:ref","RE: Netwrix Support Ticket #439897 -  - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","techsupport@netwrix.com","Netwrix Support","smcmb@allstate.com","jared.harris@netwrix.com; aem-stealthaudit-vm@allstate.com","","true","2025-04-03T13:44:48.000Z","true"
+"02sQk00000NKsqIIAT","500Qk00000NIqNuIAL","2025-04-03T14:47:13.000Z","2025-04-04T16:19:05.000Z","ref:_00D7091pB._500Q000NIqNu:ref
+
+Hi Artem
+
+I ran another job this time with approx. 1000 hosts and the data was removed in about 12minutes with the FSAA_Hosts list updating to reflect this.
+
+The job is still running doing something similar to your findings below, but I'll let It complete then move forward with the remaining hosts.
+[cid:image001.png@01DBA4AF.9EE9B4F0]
+
+Without any more issues, I'd be happy to have this ticket closed out as resolved if you're aligned?
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 2:45 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for sharing these logs.
+
+I took a closer look at the logs from my side and would like to share my findings.
+I see that the job spent most of the time completing the following:
+
+01/04/2025 05:57:13    DEBUG    SQLSERVER    TSPSQLProfileConnectionItf.GetNewADOConnection()    ""End""            25020    8632    14288
+01/04/2025 10:47:16    DEBUG    SQLSERVER    TSPSQLHMStorageItf.UpdateHostListHosts    ""Start""        HostManagement    25020    8632    14288
+01/04/2025 11:33:34    DEBUG    SQLSERVER    TSPSQLHMStorageItf.UpdateHostListHosts    ""End""        HostManagement    25020    8632    14288
+01/04/2025 11:33:35    INFO    StealthAUDIT    TJobQueueThread.RunNextJob    ""FJob.Running:=FALSE""        DropFSHostData    13600    8632    14288
+01/04/2025 11:33:35    INFO    SAJobEngine    TJobStatus.SetEvent    ""Completed in 5h:36m:33s""            13600    8632    14288
+
+In this log we can see that job was waiting for 5 hours to start updating the host list ""hosts"" which is visible by the timestamps between these two lines:
+01/04/2025 05:57:13    DEBUG    SQLSERVER    TSPSQLProfileConnectionItf.GetNewADOConnection()    ""End""            25020    8632    14288
+01/04/2025 10:47:16    DEBUG    SQLSERVER    TSPSQLHMStorageItf.UpdateHostListHosts    ""Start""        HostManagement    25020    8632    14288
+
+It seems that a job was waiting for SQL Server.
+Could you clarify, were there any other jobs running in background while ""DropFSHostData"" job was running?
+
+In any case, this delay is not related to the amount of data that job was removing. Job was not removing data for 2 hosts for 5 hours. The actual data removal process completed in less than a minute.
+
+As such, I would suggest adding a complete list of Windows Hosts to the ""DropFSHostData"" job and let it run and complete data removal.
+Looking forward to your reply.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 4/3/2025 11:17 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+Hi Artem,
+
+Exported data has been attached to the ticket.
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, April 2, 2025 10:57 AM
+To: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for your reply.
+
+To isolate which task causes job to run for 5 hours I need to analyze logs of the last job run.
+
+Please, right-click on ""DropFSHostData"" job > select ""Export"" to export the logs folder.
+Once exported, upload resulted archive to the ticket 00439897 using customer portal in ""My Tickets"" section and notify me once upload has completed.
+
+Looking forward to your reply!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 4/1/2025 7:57 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+Hi Artem,
+
+The latest job for another two hosts just completed.
+
+Unfortunately took another five hours
+[cid:image002.png@01DBA4AF.9EE9B4F0]
+
+But I noticed the Task Stats showed the hosts being removed within seconds of the job running
+[cid:image003.png@01DBA4AF.9EE9B4F0]
+
+And the FSAA_Hosts table updated very quickly after that to reflect the new number within it
+[cid:image004.png@01DBA4AF.9EE9B4F0]
+
+So not sure what may still be causing the job to runs for another 5 hours after when the analysis task is no longer enabled.
+
+We can maybe look at it further?
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, April 1, 2025 10:56 AM
+To: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+The ""DropFSHostData"" job took 5 hours to complete when 2 hosts were selected for processing.
+After inspecting the logs we found that most of the time was spent on completing FSAA_Hosts analysis task as it was taking a lot of time to resole 13k hosts.
+
+There is no need to run this analysis task every time, as such we disabled it to check how long it will take to complete ""DropFSHostData"" without it.
+
+Once you have results of the next run for a couple more hosts - please, let me know results.
+I am looking forward to your reply.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/31/2025 6:53 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: Netwrix Support Ticket #439897 - ref:_00D7091pB._500Q000NIqNu:ref - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+Hi Artem,
+
+I've created the ""DropFSHostData"" custom job in my production server and have gone through the same steps we completed in the test environment.
+
+Couple of things to note from this:
+
+The host list from the analysis took a very long time to create a new host list from the data (I don't know exactly, I left it to run overnight)
+[cid:image005.png@01DBA4AF.9EE9B4F0]
+
+With there being 13k servers listed in the Host List, I decided to test the job on just two servers.
+
+It ran for 5h 48m before being 'Aborted'
+[cid:image006.png@01DBA4AF.9EE9B4F0]
+
+It did however remove the hosts from the FSAA_Hosts table in the 'Results'
+[cid:image007.png@01DBA4AF.9EE9B4F0]
+
+I'm just concerned that two servers took this long. If tried to all 13k it would take a very long time for the job to complete if it takes 2/3 hours per server.
+
+
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 26, 2025 1:24 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+Hi Sean,
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+We made a new job and recreated settings of ""DropFSHostData"" custom job which was failing with ""Job connection profile is not available"" - all settings were correct except for the connection profile.
+The connection profile settings were set to default - and when we checked the corresponding ""Z_"" job group we noticed that the connection profile is empty.
+We then switched it to an existing connection profile.
+
+At the moment I suspect that empty connection profile was a root cause of the ""DropFSHostData"" job failing with ""Job connection profile is not available"".
+Please, let me know results once job completes since we made changes to settings and updated connection profile.
+
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 4:30 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+Hello Sean,
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job.
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment.
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+ref:!00D70091pB.!500Qk0NIqNu:ref","RE: Netwrix Support Ticket #439897 -  - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","smcmb@allstate.com","McMahon, Sean","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; jared.harris@netwrix.com","","true","2025-04-03T14:46:59.000Z","true"
+"02sQk00000NNxJwIAL","500Qk00000NIqNuIAL","2025-04-04T16:22:01.000Z","2025-04-04T16:22:01.000Z","Hi Sean, 
+
+Thank you for getting back to me with this update.
+I can close this ticket then, but you can always re-open it if you feel like any related errors/issues return.
+
+The following is a recap of the ticket for your records:
+
+The ""DropFSHostData"" job was not starting.
+After checking its settings we noticed that job had empty connection profile (no connection profile was selected).
+
+Even though job is not scanning any data but removing it from NEA SQL db - it still needs connection profile to run.
+We configured ""DropFSHostData"" job with one of the connection profilesin NEA, then we restarted job.
+
+As of now the job is running and removing data.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return.
+In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 4/3/2025 6:46 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+
+
+
+Hi Artem
+
+ 
+
+I ran another job this time with approx. 1000 hosts and the data was removed in about 12minutes with the FSAA_Hosts list updating to reflect this.
+
+ 
+
+The job is still running doing something similar to your findings below, but I’ll let It complete then move forward with the remaining hosts.
+
+
+
+ 
+
+Without any more issues, I’d be happy to have this ticket closed out as resolved if you’re aligned?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 2:45 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for sharing these logs.
+
+I took a closer look at the logs from my side and would like to share my findings.
+I see that the job spent most of the time completing the following:
+
+01/04/2025 05:57:13    DEBUG    SQLSERVER    TSPSQLProfileConnectionItf.GetNewADOConnection()    ""End""            25020    8632    14288
+01/04/2025 10:47:16    DEBUG    SQLSERVER    TSPSQLHMStorageItf.UpdateHostListHosts    ""Start""        HostManagement    25020    8632    14288
+01/04/2025 11:33:34    DEBUG    SQLSERVER    TSPSQLHMStorageItf.UpdateHostListHosts    ""End""        HostManagement    25020    8632    14288
+01/04/2025 11:33:35    INFO    StealthAUDIT    TJobQueueThread.RunNextJob    ""FJob.Running:=FALSE""        DropFSHostData    13600    8632    14288
+01/04/2025 11:33:35    INFO    SAJobEngine    TJobStatus.SetEvent    ""Completed in 5h:36m:33s""            13600    8632    14288
+
+In this log we can see that job was waiting for 5 hours to start updating the host list ""hosts"" which is visible by the timestamps between these two lines:
+01/04/2025 05:57:13    DEBUG    SQLSERVER    TSPSQLProfileConnectionItf.GetNewADOConnection()    ""End""            25020    8632    14288
+01/04/2025 10:47:16    DEBUG    SQLSERVER    TSPSQLHMStorageItf.UpdateHostListHosts    ""Start""        HostManagement    25020    8632    14288
+
+It seems that a job was waiting for SQL Server.
+Could you clarify, were there any other jobs running in background while ""DropFSHostData"" job was running?
+
+In any case, this delay is not related to the amount of data that job was removing. Job was not removing data for 2 hosts for 5 hours. The actual data removal process completed in less than a minute.
+
+As such, I would suggest adding a complete list of Windows Hosts to the ""DropFSHostData"" job and let it run and complete data removal.
+Looking forward to your reply.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 4/3/2025 11:17 AM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+ 
+
+
+Hi Artem,
+
+ 
+
+Exported data has been attached to the ticket.
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 2, 2025 10:57 AM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for your reply.
+
+To isolate which task causes job to run for 5 hours I need to analyze logs of the last job run.
+
+Please, right-click on ""DropFSHostData"" job > select ""Export"" to export the logs folder.
+Once exported, upload resulted archive to the ticket 00439897 using customer portal in ""My Tickets"" section and notify me once upload has completed.
+
+Looking forward to your reply!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 4/1/2025 7:57 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+ 
+
+
+Hi Artem,
+
+ 
+
+The latest job for another two hosts just completed.
+
+ 
+
+Unfortunately took another five hours
+
+
+
+ 
+
+But I noticed the Task Stats showed the hosts being removed within seconds of the job running
+
+
+
+ 
+
+And the FSAA_Hosts table updated very quickly after that to reflect the new number within it
+
+
+
+ 
+
+So not sure what may still be causing the job to runs for another 5 hours after when the analysis task is no longer enabled.
+
+ 
+
+We can maybe look at it further?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, April 1, 2025 10:56 AM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: RE: Netwrix Support Ticket #439897 - - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for your time on a meeting today.
+Here is a recap of what we did:
+
+The ""DropFSHostData"" job took 5 hours to complete when 2 hosts were selected for processing.
+After inspecting the logs we found that most of the time was spent on completing FSAA_Hosts analysis task as it was taking a lot of time to resole 13k hosts.
+
+There is no need to run this analysis task every time, as such we disabled it to check how long it will take to complete ""DropFSHostData"" without it.
+
+Once you have results of the next run for a couple more hosts - please, let me know results.
+I am looking forward to your reply.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/31/2025 6:53 PM
+To: aem-stealthaudit-vm@allstate.com; techsupport@netwrix.com
+Cc: jared.harris@netwrix.com
+Subject: RE: Netwrix Support Ticket #439897 - ref:_00D7091pB._500Q000NIqNu:ref - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+ref:_00D7091pB._500Q000NIqNu:ref
+
+ 
+
+
+Hi Artem,
+
+ 
+
+I’ve created the ""DropFSHostData"" custom job in my production server and have gone through the same steps we completed in the test environment.
+
+ 
+
+Couple of things to note from this:
+
+ 
+
+The host list from the analysis took a very long time to create a new host list from the data (I don’t know exactly, I left it to run overnight)
+
+
+
+ 
+
+With there being 13k servers listed in the Host List, I decided to test the job on just two servers.
+
+ 
+
+It ran for 5h 48m before being ‘Aborted’
+
+
+
+ 
+
+It did however remove the hosts from the FSAA_Hosts table in the ‘Results’
+
+
+
+ 
+
+I’m just concerned that two servers took this long. If tried to all 13k it would take a very long time for the job to complete if it takes 2/3 hours per server.
+
+ 
+
+ 
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 26, 2025 1:24 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Cc: jared.harris@netwrix.com
+Subject: [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for your time on a meeting today. 
+Here is a recap of what we did:
+
+We made a new job and recreated settings of ""DropFSHostData"" custom job which was failing with ""Job connection profile is not available"" - all settings were correct except for the connection profile. 
+The connection profile settings were set to default - and when we checked the corresponding ""Z_"" job group we noticed that the connection profile is empty.
+We then switched it to an existing connection profile. 
+
+At the moment I suspect that empty connection profile was a root cause of the ""DropFSHostData"" job failing with ""Job connection profile is not available"".
+Please, let me know results once job completes since we made changes to settings and updated connection profile. 
+
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/25/2025 4:30 PM
+To: aem-stealthaudit-vm@allstate.com
+Cc: jared.harris@netwrix.com
+Subject: ""DropFSHostData"" Job failed with ""Job connection profile is not available"". [ ref:!00D70091pB.!500Qk0NIqNu:ref ]
+
+Hello Sean, 
+
+This is Artem with a separate ticket for troubleshooting of ""Job connection profile is not available"" error message for ""DropFSHostData"" Job. 
+
+The best way forward right now, I believe, would be scheduling a remote support session to review ""DropFSHostData"" Job configuration in test environment. 
+
+Please, follow this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=2xQMKTlrLYGwOzmEPYnknxIP6isOvWfGIINi0c1hKzs-Z&MeetingID=uPDaVxs.IxNqRQpUwvgBC_hL12nMNshfsqbBYxTA9_Q-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0NIqNu:ref","RE: Netwrix Support Ticket #439897 -  - [EXTERNAL] RE: ""DropFSHostData"" Job failed with ""Job connection profile is not available"".    [ ref:!00D70091pB.!500Qk0NIqNu:ref ]","techsupport@netwrix.com","Netwrix Support","smcmb@allstate.com","jared.harris@netwrix.com; aem-stealthaudit-vm@allstate.com","","true","2025-04-04T16:21:59.000Z","true"

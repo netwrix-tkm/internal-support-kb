@@ -1,0 +1,43 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HLMa1IAH","00424717","Support Ticket","file deletion","the jobs run without error but no data from the current  file server just from old file servers.","","Identified that the FSAC system scans are erroring out on a host ""Unable to start scan"". We have verified that the agent is collecting activity by testing a file creation and deletion. We also verified that the events are successfully being sent to a SIEM as well.
+-------------------------------------------------------
+
+11/4/2024 Update
+
+Today we:
+
+Performed an upgrade on the AIC to the latest available version (11.6.0.25) by performing the process mentioned in the documentation below:
+
+Upgrade Procedure
+
+Once the upgrade process was successfully completed we were able to view recent file system activity in the AIC on the desired hosts.","Allow the current File System Jobs to full complete then run a repair on the affected host. Once the repair has been completed we will run the FSAC system Scan and Bulk Import again.
+----------------------------------------------------------
+
+11/4/2024
+
+
+Our next steps are:
+
+You will:
+
+Allow the File System 0.Collections job group to run through the scheduled tasks and verify that the information is displayed in the AIC if there are any new or updated file system activity or permission changes.
+
+I will:
+
+Continue to keep this ticket in a postponed reply status and I will reach out tomorrow for a status update on the AIC and FSAC system scan jobs.","Symptom
+
+the jobs run without error but no data from the current file server just from old file servers.
+
+Cause
+
+Identified that the FSAC system scans are erroring out on a host ""Unable to start scan"". We have verified that the agent is collecting activity by testing a file creation and deletion. We also verified that the events are successfully being sent to a SIEM as well.
+
+The root cause was an incongruent version of the AIC  in comparison to the NEA application. 
+
+Resolution
+
+Performed an upgrade on the AIC to the latest available version (11.6.0.25) by performing the process mentioned in the documentation below:
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Once the upgrade process was successfully completed we were able to view recent file system activity in the AIC on the desired hosts.","Product defect","Scottie Taylor","","Netwrix Enterprise Auditor","Access Information Center","Events","","","22.0","Closed - Resolved","Eglin Federal Credit Union","Glenda Coley","2024-10-22T16:46:54.000Z","2024-11-13T17:04:50.000Z"

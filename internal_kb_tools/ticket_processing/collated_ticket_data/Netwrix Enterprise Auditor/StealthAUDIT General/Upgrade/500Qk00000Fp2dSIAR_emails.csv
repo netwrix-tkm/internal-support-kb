@@ -1,0 +1,1548 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000HefVnIAJ","500Qk00000Fp2dSIAR","2024-11-08T14:15:30.000Z","2024-11-11T13:28:41.000Z","ref:_00D7091pB._500Q000Fp2dS:ref
+
+Good Morning Josh,
+
+Unfortunately, the same issue took place. 3 servers (instead of 5 like the first time) are still showing as ‘running’ in task stats, but the job itself just displays ‘0s’ for duration and there is nothing displaying in ‘Running Instances’.
+
+Best,
+
+[cid:image001.png@01DB31BE.756F3050]
+
+David Grom
+Manager, IT Governance – Information Risk Mgmt
+
+Executive Park, 40 Lake Center Drive
+401 RT 73 North | Marlton, NJ 08053
+e: david.grom@freedommortgage.com<mailto:david.grom@freedommortgage.com>
+
+
+[signature_3553761897]        [signature_538274946]
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, October 30, 2024 2:23 PM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: yaniq.campbell@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+Thanks for meeting with us again. We confirmed what you were seeing and provided in your screen shots before:
+No jobs are running, but the FileSystem job's task stats show several server scans are still running and have no duration.
+
+We checked the Job groups folder and found a ""running.lck"" file was still present. This ""lock"" file should only be there while the job is running. It seems like either the previous scan didn't end properly or two jobs were trying scan the same resource at once. Either way, we deleted the running.lck file and kick off the scan again.
+
+Please let me know how it goes.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 10/23/2024 11:15 AM
+To: techsupport@netwrix.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+
+Thanks, Josh. Just scheduled a call. Here’s some screenshots I took:
+
+[cid:image004.png@01DB31BE.756F3050]
+
+[cid:image005.png@01DB31BE.756F3050]
+
+[cid:image006.png@01DB31BE.756F3050]
+
+[cid:image007.png@01DB31BE.756F3050]
+
+
+[cid:image001.png@01DB31BE.756F3050]
+
+David Grom
+Manager, IT Governance – Information Risk Mgmt
+
+Executive Park, 40 Lake Center Drive
+401 RT 73 North | Marlton, NJ 08053
+e: david.grom@freedommortgage.com<mailto:david.grom@freedommortgage.com>
+
+
+
+
+
+
+[signature_3553761897]        [signature_538274946]
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, October 23, 2024 9:17 AM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+Here's another meeting invite, but I'm sorry to say the first available is a week out.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=Ej_qw0OpJtusAdLIebdmZlpbkdn_gl6KEibHQ_mjX1c-Z&MeetingID=ZBl5WOZ9gfwngakKNyAoAsL5kDskIsrE9LyyhvBQNv0-Z
+
+In the meantime, could you send me a screen shot that shows the FSAA scan is still running and one of the Job Statistics?
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 10/22/2024 2:52 PM
+To: techsupport@netwrix.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+
+Thanks again for your help, Josh and Tay. I had kicked off the Collection job for Permissions and Sensitive Data on 10/18 and observed it running as expected. However, logging back in today and looking at the audit tool, it looks like there’s still 6 servers being FSAA scanned, but I don’t see any evidence of this in ‘Schedules’ or ‘Running Instances’ and the job statistics are not displaying an actual time duration anymore, just ‘0 seconds’. Am I missing anything?
+
+
+[cid:image001.png@01DB31BE.756F3050]
+
+David Grom
+Manager, IT Governance – Information Risk Mgmt
+
+Executive Park, 40 Lake Center Drive
+401 RT 73 North | Marlton, NJ 08053
+e: david.grom@freedommortgage.com<mailto:david.grom@freedommortgage.com>
+
+
+
+
+
+
+[signature_3553761897]        [signature_538274946]
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, October 18, 2024 3:39 PM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+Thank you for meeting with me and Tay today. In our session we applied the new license to both Netwrix Enterprise Auditor (NEA) and Netwrix Activity Monitor. We then installed the SDD module on the NEA server.
+
+The SDD jobs all seemed to still be in place from before the upgrade and the license was missed up.
+
+Please let us know how it looks going forward.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/16/2024 10:46 AM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+No problem. Here's a scheduling link:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=CVYsO4PGvRNLzN0md3xBU.oAdPPZB889tGZwA8HnaLo-Z&MeetingID=BjYCaKm9qi7SCdVzDIdQ5V9GW.5NjaHaeDCXL6rMPmI-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 10/16/2024 10:26 AM
+To: techsupport@netwrix.com
+Cc: joshua.sexton@netwrix.com; taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+
+Thank you, Tay, yes I did receive the new license. How would I go about scheduling a remote session? Just want to make sure everything’s set up correctly for the SD module and I’m not missing anything.
+
+
+[cid:image001.png@01DB31BE.756F3050]
+
+David Grom
+Manager, IT Governance – Information Risk Mgmt
+
+Executive Park, 40 Lake Center Drive
+401 RT 73 North | Marlton, NJ 08053
+e: david.grom@freedommortgage.com<mailto:david.grom@freedommortgage.com>
+
+
+
+
+
+
+[signature_3553761897]        [signature_538274946]
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, October 16, 2024 10:05 AM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: taylor.vanorden@netwrix.com; joshua.sexton@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hey David,
+
+I see that new NEA license got sent over to you this morning. That should have both the File System and Sensitive Data modules.
+
+Here are the instructions to update that license file in NEA and Activity Monitor:
+https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/UpdateLicense.htm<https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/UpdateLicense.htm>
+
+https://helpcenter.netwrix.com/bundle/ActivityMonitor_7.1/page/Content/ActivityMonitor/Install/ImportLicenseKey.htm
+
+After updating that license file, you'll be able to install the Sensitive Data module:
+https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/SensitiveDataDiscovery/Wizard.htm<https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/SensitiveDataDiscovery/Wizard.htm>
+
+
+Also feel free to schedule a remote session if you need assistance installing that license file or the sensitive data module.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+Error! Filename not specified.<https://try.netwrix.com/netwrix_connect_us_2024>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/14/2024 9:27 AM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+I'm not sure why the custom attributes are still failing. Looking through my notes, I don't think we captured the error with custom attributes. If it's still available, could you send me a screenshot or copy/paste that error?
+
+
+Yes, you can remove them and add them back later. The custom attributes configuration is a bit buried, but here's where to find it:
+
+NEA > Expand Jobs group > Expand .Active Directory Inventory group > Expand 1-AD_Scan Job > Expand Configure node > Right-click Queries > Select Properties
+
+Query Properties Pop-up > Click Configure
+
+Active Directory Inventory DC Wizard Pop-up > Select the Custom Attributes tab
+
+[cid:image008.png@01DB31BE.756F3050]
+[cid:image009.png@01DB31BE.756F3050]
+
+
+Please let me know if that helps. Looking through my notes, I don't we captured the error with custom attributes. If it's still available, could you send me a screenshot of that error?
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/12/2024 11:27 AM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hey David,
+
+Thank you for meeting with me today. To recap our session, we successfully updated to the following:
+
+  1.  Netwrix Enterprise Auditor v11.6.0.113
+  2.  Netwrix Access Information Center v11.6.0.25
+  3.  Netwrix Activity Monitor (and it's agents) v7.1.179
+Other things done during this meeting:
+
+  1.  We were unable to install/upgrade the Sensitive Data Discovery module due to it missing from your new NEA license. I have reached out to your account owner, Jim Sawyer, to get that corrected.
+  2.  Re-enabled the Active Directory Inventory and FSAC jobs in the Scheduled Tasks
+  3.  Ran the Sandbox > File System > Initial Jobs > 0-CreateSchema job to update any schema changes for File System in the database
+  4.  Ran the Active Directory Inventory job- it looks like our first run we were missing some custom attributes to be collected so we kicked off a full ADI scan (opposed to the usual differential) to pull in those extended attributes. This scan didn't finish during our call, so please update me when it's done.
+  5.  Add port :514 to the syslog server output at the bottom of the Activity Monitor > Monitored Hosts to get it to successfully connect again
+
+Once that ADI scan completes, please let me know. Otherwise I hope to touch base with you Monday regarding the Sensitive Data license/installation.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+Error! Filename not specified.<https://try.netwrix.com/netwrix_connect_us_2024>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/7/2024 2:53 PM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+Thank you for meeting with me and Tay today. In our session we reviewed the configuration of your StealthAUDIT deployment and took screenshots of various settings within the UI. We also backed up a handful of configuration files. It's unlikely we will need them, but we like to have them as reference in case the installer reports any conflicts while importing the previous configuration.
+
+The upgrade is scheduled on 10/12/24 at 10:00AM EDT. It's booked as a 90-minute meeting, but there's a good chance we won't need that long. During that meeting, Tay will also upgrade the Access Information Center and Stealth Activity Monitor.
+
+In case you need it, here is a link to join that meeting at the appropriate time:
+
+https://netwrix.zoom.us/j/86154942576?pwd=WliA9sG38K8muIDGIQ66b7EFwAAJii.1
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 9/23/2024 9:34 AM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+The issue is only because it has the same name as the previous server with a different IP address. I'm creating a new ticket for this issue. You should get an email from the new ticket shortly, which will include a scheduling link.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+Error! Filename not specified.<https://try.netwrix.com/netwrix_connect_us_2024>
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 9/20/2024 5:29 PM
+To: techsupport@netwrix.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+
+Hi Josh,
+
+I only just found out today, they are going to be doing migration over this weekend. They clarified it is a new server that will be name changed to match the server in question once they’ve completed the data migration and then original server will be renamed to ‘ServerName_old’. With the old server still existing, we’ll likely need to continue monitoring it temporarily as is.
+
+We are still on 11.0 StealthAUDIT and Stealthbits Activity Monitor, so not sure if that matters, but I recall in the past being able to push an SB agent onto a new server from the activity monitor and inputting a log file path into the settings that for the file server without issue before. With it being technically a ‘new’ server, there still might be an issue after installing it?
+
+Best,
+
+[cid:image001.png@01DB31BE.756F3050]
+
+David Grom
+Manager, IT Governance – Information Risk Mgmt
+
+Executive Park, 40 Lake Center Drive
+401 RT 73 North | Marlton, NJ 08053
+e: david.grom@freedommortgage.com<mailto:david.grom@freedommortgage.com>
+
+
+
+
+
+
+[signature_3553761897]        [signature_538274946]
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, September 20, 2024 5:10 PM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+Unfortunately, there are several steps needed to switch Netwrix Activity Monitor and Netwrix Enterprise Auditor over to auditing the new server even though the name is the same. We should create a new ticket for performing this change.
+
+Do you know when they are migrating the data over?
+
+You will need to remove the agent from the old server in Netwrix Activity Monitor and re-add agent to that server to ush the agent out to the new server. You will then need to re-configure the Monitored Host Output to make sure it's collecting the data you want from the new server and still sending it to Netwrix Enterprise Auditor.
+
+The Netwrix Enterprise Auditor side gets a little trickier. Assuming you want to keep the data from your old server, you'll need to add the new server to the host list as a new host with a different name (FQDN if you had used CommonName or CommonName if you had used FQDN).
+
+You'll also need to change that server's output file in Netwrix Activity Monitor to report as whatever you name the server in NEA.
+
+This sounds more complicated than it is, but I'd still like to help wit this over a remote session. Please let me know when they are making that change, and I'll open a new ticket for this.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+Error! Filename not specified.<https://try.netwrix.com/netwrix_connect_us_2024>
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 9/20/2024 11:19 AM
+To: techsupport@netwrix.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - ref:_00D7091pB._500Q000Fp2dS:ref - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+
+Good Morning Josh,
+
+Hope it’s okay to ask another question here.
+
+Our Windows team informed me they are migrating a file server and all its data we currently monitor in the activity monitor tool from Windows Server 2012 to Windows Server 2022. The name of the server will remain the same, however, the IP will change. Is there anything I would need to do beyond installing a new agent? Do I need to install a new agent from the tool?
+
+Best,
+
+[cid:image001.png@01DB31BE.756F3050]
+
+David Grom
+Manager, IT Governance – Information Risk Mgmt
+
+Executive Park, 40 Lake Center Drive
+401 RT 73 North | Marlton, NJ 08053
+e: david.grom@freedommortgage.com<mailto:david.grom@freedommortgage.com>
+
+
+
+
+
+
+[signature_3553761897]        [signature_538274946]
+
+From: David Grom
+Sent: Tuesday, September 17, 2024 10:27 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello Josh,
+
+I have scheduled a pre-flight meeting for 10/07 at 2:00pm.
+
+Thank you for confirming on the FSAA folder, I will remove the folders for the old servers we no longer utilize. Let me get back to you on removing the data from the auditor, I would imagine we would, but let me confirm just in case.
+
+Best,
+
+[cid:image001.png@01DB31BE.756F3050]
+
+David Grom
+Manager, IT Governance – Information Risk Mgmt
+
+Executive Park, 40 Lake Center Drive
+401 RT 73 North | Marlton, NJ 08053
+e: david.grom@freedommortgage.com<mailto:david.grom@freedommortgage.com>
+
+
+
+
+
+
+[signature_3553761897]        [signature_538274946]
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, September 16, 2024 11:37 AM
+To: David Grom <David.Grom@FreedomMortgage.com<mailto:David.Grom@FreedomMortgage.com>>
+Cc: taylor.vanorden@netwrix.com<mailto:taylor.vanorden@netwrix.com>
+Subject: **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+
+Hello David,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help. We do have an Engineer who's available to assist with the upgrade on 10/12/24, however upgrading Netwrix Enterprise Auditor normally requires two meetings. The first is a pre-flight where we don't actually make any changes, so this shouldn't require any change control. We just gather some screenshots and configurations. We'd like to do this during the week prior (10/07/24 - 10/11/24).
+
+Please use this link to schedule the pre-flight meeting:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=g9mrPCMxv4DhJNlfZSrJOO8ET3IPj0RrMco5BamNXQI-Z&MeetingID=lzyv1vgwS1vT1gunf90UUG8MWY2g.IcEq1JiQQUoKbA-Z
+
+We can meet on 10/12/24 for the actual upgrade. This is typically a 90-minute meeting. Please let me know what time that day works for you, and I will get it scheduled on our end.
+
+Regarding the FSAA folder: If those hosts have been decommissioned, then you're safe to delete those from the FSAA folder. Would you also like to drop all the data from those hosts from Netwrix Enterprise Auditor's database?
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+Error! Filename not specified.<https://try.netwrix.com/netwrix_connect_us_2024>
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0Fp2dS:ref
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.Error! Filename not specified.
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.Error! Filename not specified.
+ Error! Filename not specified.
+ Error! Filename not specified.
+ Error! Filename not specified.
+ Error! Filename not specified.
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.Error! Filename not specified.
+ Error! Filename not specified.
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.Error! Filename not specified.
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.[Image removed by sender.]
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.","RE: Netwrix Support Ticket #421116 -  - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question    [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]","david.grom@freedommortgage.com","David Grom","techsupport@netwrix.com","yaniq.campbell@netwrix.com","","true","2024-11-08T14:15:06.000Z","true"
+"02sQk00000HkilpIAB","500Qk00000Fp2dSIAR","2024-11-11T13:47:14.000Z","2024-11-11T13:47:14.000Z","Hello David,
+
+Thank you for the update, and I'm sorry for the late reply. I was out-of-office yesterday.
+
+This ticket was originally for upgrading Netwrix Enterprise Auditor. Since the upgrade was completed and the continuing issue isn't part of the upgrade process, I'm going to close this ticket and open a new one.
+
+You should get a few emails: Closing this ticket, opening the new one, and my actual reply on the new ticket.
+
+I really appreciate your patience with this.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 11/8/2024 9:15 AM
+To: techsupport@netwrix.com
+Cc: yaniq.campbell@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+
+
+Good Morning Josh,
+
+ 
+
+Unfortunately, the same issue took place. 3 servers (instead of 5 like the first time) are still showing as ‘running’ in task stats, but the job itself just displays ‘0s’ for duration and there is nothing displaying in ‘Running Instances’.
+
+ 
+
+Best,
+
+
+
+	
+		
+			
+			 
+			
+			
+			
+			
+		
+		
+			
+			 
+			
+			
+			David Grom
+			Manager, IT Governance – Information Risk Mgmt
+			
+		
+		
+			
+			 
+			
+			
+			Executive Park, 40 Lake Center Drive
+
+			401 RT 73 North | Marlton, NJ 08053
+
+			e: david.grom@freedommortgage.com
+			
+		
+		
+			 
+			
+			 
+			
+		
+		
+			 
+			 
+			 
+		
+	
+
+
+ 
+
+        
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, October 30, 2024 2:23 PM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: yaniq.campbell@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+
+
+ 
+
+Hello David,
+
+Thanks for meeting with us again. We confirmed what you were seeing and provided in your screen shots before:
+No jobs are running, but the FileSystem job's task stats show several server scans are still running and have no duration.
+
+We checked the Job groups folder and found a ""running.lck"" file was still present. This ""lock"" file should only be there while the job is running. It seems like either the previous scan didn't end properly or two jobs were trying scan the same resource at once. Either way, we deleted the running.lck file and kick off the scan again.
+
+Please let me know how it goes.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 10/23/2024 11:15 AM
+To: techsupport@netwrix.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+ 
+
+
+Thanks, Josh. Just scheduled a call. Here’s some screenshots I took:
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+	
+		
+			
+			 
+			
+			
+			
+			
+		
+		
+			
+			 
+			
+			
+			David Grom
+			Manager, IT Governance – Information Risk Mgmt
+			
+		
+		
+			
+			 
+			
+			
+			Executive Park, 40 Lake Center Drive
+
+			401 RT 73 North | Marlton, NJ 08053
+
+			e: david.grom@freedommortgage.com
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+        
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, October 23, 2024 9:17 AM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+
+
+ 
+
+Hello David,
+
+Here's another meeting invite, but I'm sorry to say the first available is a week out.
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=Ej_qw0OpJtusAdLIebdmZlpbkdn_gl6KEibHQ_mjX1c-Z&MeetingID=ZBl5WOZ9gfwngakKNyAoAsL5kDskIsrE9LyyhvBQNv0-Z
+
+In the meantime, could you send me a screen shot that shows the FSAA scan is still running and one of the Job Statistics?
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 10/22/2024 2:52 PM
+To: techsupport@netwrix.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+ 
+
+
+Thanks again for your help, Josh and Tay. I had kicked off the Collection job for Permissions and Sensitive Data on 10/18 and observed it running as expected. However, logging back in today and looking at the audit tool, it looks like there’s still 6 servers being FSAA scanned, but I don’t see any evidence of this in ‘Schedules’ or ‘Running Instances’ and the job statistics are not displaying an actual time duration anymore, just ‘0 seconds’. Am I missing anything?
+
+ 
+
+
+
+	
+		
+			
+			 
+			
+			
+			
+			
+		
+		
+			
+			 
+			
+			
+			David Grom
+			Manager, IT Governance – Information Risk Mgmt
+			
+		
+		
+			
+			 
+			
+			
+			Executive Park, 40 Lake Center Drive
+
+			401 RT 73 North | Marlton, NJ 08053
+
+			e: david.grom@freedommortgage.com
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+        
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, October 18, 2024 3:39 PM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+
+
+ 
+
+Hello David,
+
+Thank you for meeting with me and Tay today. In our session we applied the new license to both Netwrix Enterprise Auditor (NEA) and Netwrix Activity Monitor. We then installed the SDD module on the NEA server.
+
+The SDD jobs all seemed to still be in place from before the upgrade and the license was missed up.
+
+Please let us know how it looks going forward.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/16/2024 10:46 AM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+No problem. Here's a scheduling link:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=CVYsO4PGvRNLzN0md3xBU.oAdPPZB889tGZwA8HnaLo-Z&MeetingID=BjYCaKm9qi7SCdVzDIdQ5V9GW.5NjaHaeDCXL6rMPmI-Z
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 10/16/2024 10:26 AM
+To: techsupport@netwrix.com
+Cc: joshua.sexton@netwrix.com; taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+ 
+
+
+Thank you, Tay, yes I did receive the new license. How would I go about scheduling a remote session? Just want to make sure everything’s set up correctly for the SD module and I’m not missing anything.
+
+ 
+
+
+
+	
+		
+			
+			 
+			
+			
+			
+			
+		
+		
+			
+			 
+			
+			
+			David Grom
+			Manager, IT Governance – Information Risk Mgmt
+			
+		
+		
+			
+			 
+			
+			
+			Executive Park, 40 Lake Center Drive
+
+			401 RT 73 North | Marlton, NJ 08053
+
+			e: david.grom@freedommortgage.com
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+        
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, October 16, 2024 10:05 AM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: taylor.vanorden@netwrix.com; joshua.sexton@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+
+
+ 
+
+Hey David,
+
+I see that new NEA license got sent over to you this morning. That should have both the File System and Sensitive Data modules.
+
+Here are the instructions to update that license file in NEA and Activity Monitor:
+https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/UpdateLicense.htm
+
+https://helpcenter.netwrix.com/bundle/ActivityMonitor_7.1/page/Content/ActivityMonitor/Install/ImportLicenseKey.htm
+
+After updating that license file, you'll be able to install the Sensitive Data module:
+https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/SensitiveDataDiscovery/Wizard.htm
+
+
+Also feel free to schedule a remote session if you need assistance installing that license file or the sensitive data module.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+Error! Filename not specified.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/14/2024 9:27 AM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+I'm not sure why the custom attributes are still failing. Looking through my notes, I don't think we captured the error with custom attributes. If it's still available, could you send me a screenshot or copy/paste that error?
+
+
+Yes, you can remove them and add them back later. The custom attributes configuration is a bit buried, but here's where to find it:
+
+NEA > Expand Jobs group > Expand .Active Directory Inventory group > Expand 1-AD_Scan Job > Expand Configure node > Right-click Queries > Select Properties
+
+Query Properties Pop-up > Click Configure
+
+Active Directory Inventory DC Wizard Pop-up > Select the Custom Attributes tab
+
+
+
+
+
+Please let me know if that helps. Looking through my notes, I don't we captured the error with custom attributes. If it's still available, could you send me a screenshot of that error?
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/12/2024 11:27 AM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hey David,
+
+Thank you for meeting with me today. To recap our session, we successfully updated to the following:
+
+
+	Netwrix Enterprise Auditor v11.6.0.113
+	Netwrix Access Information Center v11.6.0.25
+	Netwrix Activity Monitor (and it's agents) v7.1.179
+
+
+Other things done during this meeting:
+
+
+	We were unable to install/upgrade the Sensitive Data Discovery module due to it missing from your new NEA license. I have reached out to your account owner, Jim Sawyer, to get that corrected.
+	Re-enabled the Active Directory Inventory and FSAC jobs in the Scheduled Tasks
+	Ran the Sandbox > File System > Initial Jobs > 0-CreateSchema job to update any schema changes for File System in the database
+	Ran the Active Directory Inventory job- it looks like our first run we were missing some custom attributes to be collected so we kicked off a full ADI scan (opposed to the usual differential) to pull in those extended attributes. This scan didn't finish during our call, so please update me when it's done.
+	Add port :514 to the syslog server output at the bottom of the Activity Monitor > Monitored Hosts to get it to successfully connect again
+
+
+
+Once that ADI scan completes, please let me know. Otherwise I hope to touch base with you Monday regarding the Sensitive Data license/installation.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+Error! Filename not specified.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/7/2024 2:53 PM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+Thank you for meeting with me and Tay today. In our session we reviewed the configuration of your StealthAUDIT deployment and took screenshots of various settings within the UI. We also backed up a handful of configuration files. It's unlikely we will need them, but we like to have them as reference in case the installer reports any conflicts while importing the previous configuration.
+
+The upgrade is scheduled on 10/12/24 at 10:00AM EDT. It's booked as a 90-minute meeting, but there's a good chance we won't need that long. During that meeting, Tay will also upgrade the Access Information Center and Stealth Activity Monitor.
+
+In case you need it, here is a link to join that meeting at the appropriate time:
+
+https://netwrix.zoom.us/j/86154942576?pwd=WliA9sG38K8muIDGIQ66b7EFwAAJii.1
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 9/23/2024 9:34 AM
+To: david.grom@freedommortgage.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+Hello David,
+
+The issue is only because it has the same name as the previous server with a different IP address. I'm creating a new ticket for this issue. You should get an email from the new ticket shortly, which will include a scheduling link.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+Error! Filename not specified.
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 9/20/2024 5:29 PM
+To: techsupport@netwrix.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+ 
+
+
+Hi Josh,
+
+ 
+
+I only just found out today, they are going to be doing migration over this weekend. They clarified it is a new server that will be name changed to match the server in question once they’ve completed the data migration and then original server will be renamed to ‘ServerName_old’. With the old server still existing, we’ll likely need to continue monitoring it temporarily as is.
+
+ 
+
+We are still on 11.0 StealthAUDIT and Stealthbits Activity Monitor, so not sure if that matters, but I recall in the past being able to push an SB agent onto a new server from the activity monitor and inputting a log file path into the settings that for the file server without issue before. With it being technically a ‘new’ server, there still might be an issue after installing it?
+
+ 
+
+Best,
+
+
+
+	
+		
+			
+			 
+			
+			
+			
+			
+		
+		
+			
+			 
+			
+			
+			David Grom
+			Manager, IT Governance – Information Risk Mgmt
+			
+		
+		
+			
+			 
+			
+			
+			Executive Park, 40 Lake Center Drive
+
+			401 RT 73 North | Marlton, NJ 08053
+
+			e: david.grom@freedommortgage.com
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+        
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, September 20, 2024 5:10 PM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+
+
+ 
+
+Hello David,
+
+Unfortunately, there are several steps needed to switch Netwrix Activity Monitor and Netwrix Enterprise Auditor over to auditing the new server even though the name is the same. We should create a new ticket for performing this change.
+
+Do you know when they are migrating the data over?
+
+You will need to remove the agent from the old server in Netwrix Activity Monitor and re-add agent to that server to ush the agent out to the new server. You will then need to re-configure the Monitored Host Output to make sure it's collecting the data you want from the new server and still sending it to Netwrix Enterprise Auditor.
+
+The Netwrix Enterprise Auditor side gets a little trickier. Assuming you want to keep the data from your old server, you'll need to add the new server to the host list as a new host with a different name (FQDN if you had used CommonName or CommonName if you had used FQDN). 
+
+You'll also need to change that server's output file in Netwrix Activity Monitor to report as whatever you name the server in NEA.
+
+This sounds more complicated than it is, but I'd still like to help wit this over a remote session. Please let me know when they are making that change, and I'll open a new ticket for this.
+
+Thank you, 
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+Error! Filename not specified.
+
+
+--------------- Original Message ---------------
+From: David Grom [david.grom@freedommortgage.com]
+Sent: 9/20/2024 11:19 AM
+To: techsupport@netwrix.com
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: Netwrix Support Ticket #421116 - ref:_00D7091pB._500Q000Fp2dS:ref - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+ref:_00D7091pB._500Q000Fp2dS:ref
+
+ 
+
+
+Good Morning Josh,
+
+ 
+
+Hope it’s okay to ask another question here.
+
+ 
+
+Our Windows team informed me they are migrating a file server and all its data we currently monitor in the activity monitor tool from Windows Server 2012 to Windows Server 2022. The name of the server will remain the same, however, the IP will change. Is there anything I would need to do beyond installing a new agent? Do I need to install a new agent from the tool?
+
+ 
+
+Best,
+
+
+
+	
+		
+			
+			 
+			
+			
+			
+			
+		
+		
+			
+			 
+			
+			
+			David Grom
+			Manager, IT Governance – Information Risk Mgmt
+			
+		
+		
+			
+			 
+			
+			
+			Executive Park, 40 Lake Center Drive
+
+			401 RT 73 North | Marlton, NJ 08053
+
+			e: david.grom@freedommortgage.com
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+        
+
+
+ 
+
+
+
+From: David Grom
+Sent: Tuesday, September 17, 2024 10:27 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: taylor.vanorden@netwrix.com
+Subject: RE: **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+
+
+ 
+
+Hello Josh,
+
+ 
+
+I have scheduled a pre-flight meeting for 10/07 at 2:00pm.
+
+ 
+
+Thank you for confirming on the FSAA folder, I will remove the folders for the old servers we no longer utilize. Let me get back to you on removing the data from the auditor, I would imagine we would, but let me confirm just in case.
+
+ 
+
+Best,
+
+
+
+	
+		
+			
+			 
+			
+			
+			
+			
+		
+		
+			
+			 
+			
+			
+			David Grom
+			Manager, IT Governance – Information Risk Mgmt
+			
+		
+		
+			
+			 
+			
+			
+			Executive Park, 40 Lake Center Drive
+
+			401 RT 73 North | Marlton, NJ 08053
+
+			e: david.grom@freedommortgage.com
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+		
+		
+			
+			 
+			
+			
+			 
+			
+			
+			 
+			
+		
+	
+
+
+ 
+
+        
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, September 16, 2024 11:37 AM
+To: David Grom <David.Grom@FreedomMortgage.com>
+Cc: taylor.vanorden@netwrix.com
+Subject: **EXT** Weekend Upgrade Planning // FSAA Job cleanup question [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]
+
+
+
+ 
+
+Hello David,
+
+Thank you for contacting Netwrix Technical Support. My name is Josh, and I'm happy to help. We do have an Engineer who's available to assist with the upgrade on 10/12/24, however upgrading Netwrix Enterprise Auditor normally requires two meetings. The first is a pre-flight where we don't actually make any changes, so this shouldn't require any change control. We just gather some screenshots and configurations. We'd like to do this during the week prior (10/07/24 - 10/11/24).
+
+Please use this link to schedule the pre-flight meeting:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=g9mrPCMxv4DhJNlfZSrJOO8ET3IPj0RrMco5BamNXQI-Z&MeetingID=lzyv1vgwS1vT1gunf90UUG8MWY2g.IcEq1JiQQUoKbA-Z
+
+We can meet on 10/12/24 for the actual upgrade. This is typically a 90-minute meeting. Please let me know what time that day works for you, and I will get it scheduled on our end. 
+
+Regarding the FSAA folder: If those hosts have been decommissioned, then you're safe to delete those from the FSAA folder. Would you also like to drop all the data from those hosts from Netwrix Enterprise Auditor's database?
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+Error! Filename not specified.
+
+Error! Filename not specified.
+
+ref:!00D70091pB.!500Qk0Fp2dS:ref
+
+
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.Error! Filename not specified.
+
+
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.Error! Filename not specified.
+ Error! Filename not specified.
+ Error! Filename not specified.
+ Error! Filename not specified.
+ Error! Filename not specified.
+
+
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.Error! Filename not specified.
+ Error! Filename not specified.
+
+
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.Error! Filename not specified.
+
+
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.
+
+CONFIDENTIALITY NOTICE: This e-mail and any attachments (collectively, “e-mail”) is confidential and may contain information that is private, proprietary, and/or legally privileged. Any unauthorized use, copying, printing, saving, sharing or other distribution of this e-mail is strictly prohibited. If you have received this e-mail in error, please (1) notify us so that we can correct the error and take steps to ensure it does not reoccur and (2) delete the e-mail without distribution.","RE: Netwrix Support Ticket #421116 -  - **EXT** Weekend Upgrade Planning // FSAA Job cleanup question    [ ref:!00D70091pB.!500Qk0Fp2dS:ref ]","techsupport@netwrix.com","Netwrix Support","david.grom@freedommortgage.com","yaniq.campbell@netwrix.com","joshua.sexton@netwrix.com","true","2024-11-11T13:47:13.000Z","true"

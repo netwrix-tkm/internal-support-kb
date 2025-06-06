@@ -1,0 +1,62 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BYuuHIAT","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Account ACV has been changed to 892749.8266666666536.","0054u000006gpoAAAQ","2025-01-31T22:21:48.000Z","2025-01-31T22:21:48.000Z","false","false"
+"00aQk00000BYuvtIAD","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Account ACV has been changed to 446374.9133333333268.","0054u000006gpoAAAQ","2025-01-31T22:21:50.000Z","2025-01-31T22:21:50.000Z","false","false"
+"00aQk00000Baf6LIAR","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-03T14:40:32.000Z","2025-02-03T14:40:32.000Z","false","false"
+"00aQk00000Baf6NIAR","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the new comment has been added: Carlos Mejia:
+
+@Salesforce @Ethan Israel  @Helen Randall @Michael Burrofato @WaitingOnEngineer Here are  two theories worth investigating:
+1) The EGMCalc.exe Process that it initialized during the scan runtime wasn't closed properly, for whatever reason, from their previous runs causing the error. I see the log attempts to run the egmcalc.exe process but instead of being successful it presents us with an error. I recommend checking to see if there is a rogue emgcalc.exe process running on the server. May also be worth giving the server a reboot at this point to see if that resolves the problem opening the exe. If it fails again, a new log would be useful.
+2) There is some third party application blocking the egmcalc.exe process from initiating causing an unsuccessful connection. The typical path for the exe is ""C:Program Files (x86)STEALTHbitsStealthAUDITPrivateAssembliesStealthbits.StealthAUDIT.EgmCalc.exe"". Ask the customer if there is some third party application that could be possibly blocking the egmcalc.exe and whether it needs to be added to the exclusions list. It is not out of the ordinary for 3rd party applications to block unknown executibles from running, albeit this isn't the first time the scan has ran.
+
+For added context, the EgmCalc.exe process runs near the end of the ADI and AADI scans and calculates the effective group membership of all users/groups found during the scan and the calculation is performed in the server itself instead of the SQL server. These would be the first two areas i recommend investigating these theories while we wait for this go to through the regular development cycle.
+
+[DevOps CommentId:11589405]","0054u000006gtWUAAY","2025-02-03T14:40:33.000Z","2025-02-03T14:40:33.000Z","false","false"
+"00aQk00000BanVKIAZ","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-02-03T15:55:58.000Z","2025-02-03T15:55:58.000Z","false","false"
+"00aQk00000Be8F3IAJ","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-05T21:27:59.000Z","2025-02-05T21:27:59.000Z","false","false"
+"00aQk00000Be8F5IAJ","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the new comment has been added: Carlos Mejia:
+
+@Salesforce @WaitingOnEngineer  Dev reviewed the logs and it appears the connection to the database is being lost during the scan. The ExecuteScalar issue is a result of the connection loss from the NEA server to the database.
+
+[DevOps CommentId:11605378]","0054u000006gtWUAAY","2025-02-05T21:28:00.000Z","2025-02-05T21:28:00.000Z","false","false"
+"00aQk00000BeIeDIAV","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-02-05T23:28:18.000Z","2025-02-05T23:28:18.000Z","false","false"
+"00aQk00000BmhSaIAJ","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Account ACV has been changed to 727320.7133333332928.
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-13T05:04:43.000Z","2025-02-13T05:04:43.000Z","false","false"
+"00aQk00000BmhScIAJ","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-02-05 21:27 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11640500]","0054u000006gtWUAAY","2025-02-13T05:04:44.000Z","2025-02-13T05:04:44.000Z","false","false"
+"00aQk00000Bn2X0IAJ","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the new comment has been added: Appears to have cleared  itself up.
+Customer and Proserv engineer both believe its was a timing issue with a backup causing performance issues.
+This is good to close after moving the scan time","0054u000006gpoAAAQ","2025-02-13T13:55:35.000Z","2025-02-13T13:55:35.000Z","false","false"
+"00aQk00000Bn3ZVIAZ","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2025-02-13T14:10:12.000Z","2025-02-13T14:10:12.000Z","false","false"
+"00aQk00000Bn3ZXIAZ","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Account ACV has been changed to 1454641.4266666665856.","0054u000006gpoAAAQ","2025-02-13T14:10:16.000Z","2025-02-13T14:10:16.000Z","false","false"
+"00aQk00000Bn3fxIAB","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Account ACV has been changed to 727320.7133333332928.","0054u000006gtWUAAY","2025-02-13T14:10:29.000Z","2025-02-13T14:10:29.000Z","false","false"
+"00aQk00000C1FCeIAN","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the new comment has been added: Michael Burrofato:
+
+@Salesforce @WaitingOnEngineer This is being reported as closed in devops. Closing on our end. 
+
+[DevOps CommentId:11707109]","0054u000006gtWUAAY","2025-02-26T15:33:52.000Z","2025-02-26T15:33:52.000Z","false","false"
+"00aQk00000C1FCcIAN","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Account ACV has been changed to 396780.0666666666598.
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-26T15:33:52.000Z","2025-02-26T15:33:52.000Z","false","false"
+"00aQk00000C1Kx6IAF","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2025-02-26T15:51:05.000Z","2025-02-26T15:51:05.000Z","false","false"
+"00aQk00000C1Kx8IAF","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Account ACV has been changed to 793560.1333333333196.","0054u000006gpoAAAQ","2025-02-26T15:51:08.000Z","2025-02-26T15:51:08.000Z","false","false"
+"00aQk00000C1MArIAN","500Qk00000LJtW9IAL","On Escalation Ticket # 00434359 the Following Fields have been updated: 
+Account ACV has been changed to 396780.0666666666598.","0054u000006gtWUAAY","2025-02-26T15:51:18.000Z","2025-02-26T15:51:18.000Z","false","false"

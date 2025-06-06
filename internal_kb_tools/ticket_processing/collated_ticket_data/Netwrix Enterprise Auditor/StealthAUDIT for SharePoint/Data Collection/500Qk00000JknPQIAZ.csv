@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000JknPQIAZ","00430483","Support Ticket","SPSEEK System Scan Disk I/O Error","code = IoErr (10), message = System.Data.SQLite.SQLiteException (0x800007FF): disk I/O error
+disk I/O error
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Storage.SqliteStorage._createSqliteConnection()
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Storage.SqliteStorage.get_Connection()
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Storage.SqliteStorage._GetSchemaVersion(String schema)
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Storage.SqliteStorage.UpgradeSchemaVersion(String schemaName, String resourceName, Int64 initialSchemaVersion, Int64 latestSchemaVersion, Dictionary`2 codeMigrations, Boolean readOnly)
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Storage.SqliteStorage.ValidateSchema(Action`1 onStatus, Boolean readOnly)
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Tasks.Scan.ScanSharePoint.ScanInitializeTier2()
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Tasks.Scan.ScanSharePoint._scan(String serverName)
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Tasks.Scan.ScanSharePoint.<>c__DisplayClass49_0.<Scan>b__0()
+
+--- End of stack trace from previous location where exception was thrown ---
+
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Tasks.Scan.ScanSharePoint.Scan(String serverName)
+   at Stealthbits.StealthAUDIT.DataCollectors.SPAA.Tasks.ScanSharePointAccessTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()","","C: 33GB+ space free
+D: 630GB+ space free (NEA Install Dir & SP T2s)
+Account has proper access to T2s","","Dropping T2s and rescanning seems to have resolved the issue. Email on 00418307 told use to close this as resolved.","Root Cause Unknown","Tay Caliguiri","Error","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Data Collection","11.6","","32.1","Closed - Resolved","Advent Health System","Paul Williams","2024-12-20T15:46:52.000Z","2025-01-21T17:49:40.000Z"

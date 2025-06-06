@@ -1,201 +1,147 @@
-# Netwrix Endpoint Protector: Device Control - Device Groups Knowledge Base
+# Netwrix Endpoint Protector: Device Control - Device Groups Reference Guide
 
 ## Overview
 
-The **Device Groups** feature in **Netwrix Endpoint Protector** allows administrators to manage and enforce policies for specific sets of devices. This functionality is critical for ensuring compliance with organizational security requirements, such as restricting device usage, managing group priorities, and generating reports. However, common issues can arise due to misconfigurations, user misunderstandings, or environmental factors like server migrations.
-
-This article provides a detailed guide to troubleshooting and resolving common issues related to Device Groups, including step-by-step procedures, root cause analysis, and tested solutions. It also includes best practices to prevent recurring problems.
+This guide provides a comprehensive reference for troubleshooting and resolving issues related to the **Device Groups** feature within the **Device Control** component of **Netwrix Endpoint Protector**. Device Groups are critical for managing device access policies, ensuring data security, and maintaining compliance with organizational requirements. Understanding and effectively addressing issues in this category is essential for providing consistent and reliable support to customers.
 
 ---
 
-## Issue Summary Table
+## Technical Background
 
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| Blocking Bluetooth Data Transfer | Bluetooth data transfer remains enabled despite policy settings | Verify Device Control settings and update policies | Correct misconfigured policies to block Bluetooth | [Blocking Bluetooth Data Transfer](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FDkXSIA1/view) |
-| Managing Device Groups | Unable to add or delete computers in a group | Review group management process with the customer | Guide customer on correct group management steps | [Managing Device Groups](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FPTKjIAP/view) |
-| File Tracing Report Issues | Unable to fetch File Tracing reports by group | Verify group-wise settings and provide instructions | Guide customer on fetching reports correctly | [File Tracing Report Issues](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GdTsBIAV/view) |
-| Uninstalling Endpoint Protector Agents | Need to uninstall agents from multiple machines | Provide uninstallation script and SCCM deployment guidance | Deploy custom script via SCCM | [Uninstalling Endpoint Protector Agents](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JScozIAD/view) |
-| Creating Custom Device Groups | Need to whitelist devices by PID, VID, and serial numbers | Explain custom group creation process | Guide customer on creating and managing custom groups | [Creating Custom Device Groups](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MtmU2IAJ/view) |
-| Server Migration and User Import Issues | Users and computers not imported after server migration | Verify Azure AD and EPP server settings | Adjust Azure AD settings and re-sync | [Server Migration and User Import Issues](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NmYjlIAF/view) |
-| Changing Device Group Priorities | Unable to reorder device groups | Explain drag-and-drop functionality for group priorities | Use drag-and-drop to reorder groups | [Changing Device Group Priorities](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000O1QM2IAN/view) |
+### Key Concepts
+- **Device Groups**: Logical groupings of devices that allow administrators to apply specific policies, such as access restrictions or permissions, to a set of devices.
+- **Device Control**: A feature within Netwrix Endpoint Protector that enables granular control over device usage, including blocking or allowing specific devices or functionalities.
+- **Policy Settings**: Configurations applied to Device Groups to enforce security measures, such as blocking Bluetooth data transfer or whitelisting specific devices.
 
----
-
-## Detailed Issues
-
-### Blocking Bluetooth Data Transfer
-
-**Symptoms:**  
-Bluetooth data transfer remains enabled on devices despite applying policies to block it.
-
-**Troubleshooting Steps:**  
-1. Review the Device Control settings in Netwrix Endpoint Protector.
-2. Verify the policies applied to the relevant Device Groups.
-3. Update the policy settings to explicitly block Bluetooth data transfer.
-4. Test the changes on a sample device to confirm the restrictions are effective.
-
-**Root Cause:**  
-Misconfiguration in the Device Control settings allowed Bluetooth data transfer.
-
-**Solution:**  
-- Update the policy settings for the relevant Device Group to explicitly disable Bluetooth data transfer.
-- Apply and test the changes to ensure the functionality is blocked.
-
-**Warnings:**  
-- Regularly review Device Control policies to ensure compliance with security requirements.
-
-**Source Ticket:** [Blocking Bluetooth Data Transfer](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FDkXSIA1/view)
+### System Context
+- **Netwrix Endpoint Protector**: A data security solution designed to prevent data loss and enforce device usage policies.
+- **Azure Active Directory (AD)**: Often integrated with Endpoint Protector for user and group synchronization.
+- **SCCM (System Center Configuration Manager)**: A tool used for deploying scripts or managing Endpoint Protector agents across multiple endpoints.
 
 ---
 
-### Managing Device Groups
+## Issue Recognition & Triage
 
-**Symptoms:**  
-Unable to add new computers to a group or delete existing ones.
+### Common Symptoms
+- Inability to block specific device functionalities (e.g., Bluetooth data transfer).
+- Errors or confusion when adding or removing devices from groups.
+- Problems generating reports based on group-wise settings.
+- Challenges in managing device group priorities.
+- Issues with synchronization or migration of users and groups.
 
-**Troubleshooting Steps:**  
-1. Conduct a meeting with the customer to understand the issue.
-2. Review the process for managing device groups.
-3. Provide guidance on the correct steps to add or delete computers.
-
-**Root Cause:**  
-User misunderstanding of the group management process.
-
-**Solution:**  
-- Guide the customer on the correct procedure for managing device groups.
-
-**Warnings:**  
-- Ensure users are familiar with group management features to prevent similar issues.
-
-**Source Ticket:** [Managing Device Groups](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FPTKjIAP/view)
+### Priority Assessment
+- **High Priority**: Issues affecting security compliance (e.g., inability to block data transfer).
+- **Medium Priority**: Operational inefficiencies (e.g., difficulty managing group priorities).
+- **Low Priority**: User misunderstandings or requests for guidance.
 
 ---
 
-### File Tracing Report Issues
+## Diagnostic Methodology
 
-**Symptoms:**  
-Unable to fetch File Tracing reports based on group-wise settings.
+### Systematic Approach
+1. **Understand the Problem**: Gather detailed information from the customer about the issue.
+2. **Verify Configuration**: Check the relevant settings in the Device Control and Device Groups features.
+3. **Test Changes**: Apply and test configuration changes in a controlled environment.
+4. **Analyze Logs**: Review logs for errors or misconfigurations.
+5. **Validate Resolution**: Confirm that the issue is resolved and meets the customer's requirements.
 
-**Troubleshooting Steps:**  
-1. Confirm the issue with the customer and gather details.
-2. Provide instructions on how to fetch the File Tracing report.
-3. Follow up to ensure the issue is resolved.
-
-**Root Cause:**  
-Configuration or usage issue with group-wise settings.
-
-**Solution:**  
-- Guide the customer on the correct steps to fetch the File Tracing report.
-
-**Source Ticket:** [File Tracing Report Issues](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GdTsBIAV/view)
+### Decision Points
+- If the issue is related to misconfiguration, proceed with correcting the settings.
+- If the issue involves a lack of understanding, provide detailed guidance or training.
+- If the issue persists despite troubleshooting, escalate to the development team.
 
 ---
 
-### Uninstalling Endpoint Protector Agents
+## Information Collection
 
-**Symptoms:**  
-Need to uninstall Endpoint Protector agents from multiple client machines.
+### Questions to Ask Customers
+- What specific functionality or behavior is not working as expected?
+- Have there been any recent changes to the configuration or environment (e.g., server migration)?
+- Are there any error messages or logs available?
 
-**Troubleshooting Steps:**  
-1. Review the customer's request for uninstallation methods.
-2. Check for existing scripts or executables for uninstallation.
-3. Provide guidance on deploying the script via SCCM.
-
-**Root Cause:**  
-No automated solution readily available for mass uninstallation.
-
-**Solution:**  
-- Provide a custom uninstallation script.
-- Guide the customer on deploying the script via SCCM.
-
-**Warnings:**  
-- Test uninstallation scripts in a controlled environment before deployment.
-- Maintain a backup of configurations before performing mass uninstalls.
-
-**Source Ticket:** [Uninstalling Endpoint Protector Agents](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JScozIAD/view)
+### Data to Collect
+- Screenshots of the current configuration.
+- Logs from the Endpoint Protector server.
+- Details about the affected devices or groups (e.g., device identifiers, group names).
+- Information about the customer's environment (e.g., version, integration with Azure AD).
 
 ---
 
-### Creating Custom Device Groups
+## Common Scenarios & Solutions
 
-**Symptoms:**  
-Need to whitelist devices by PID, VID, and serial numbers.
+### Scenario 1: Blocking Bluetooth Data Transfer
+- **Symptoms**: Bluetooth data transfer is not blocked despite applying restrictions.
+- **Solution**: Update the Device Control policy settings for the relevant Device Group to explicitly disable Bluetooth data transfer. Test the changes on sample devices to confirm functionality.  
+  [Case Reference: [500Qk00000FDkXSIA1](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FDkXSIA1/view)]
 
-**Troubleshooting Steps:**  
-1. Understand the customer’s requirements.
-2. Provide detailed instructions on creating custom device groups.
-3. Guide the customer on adding devices in bulk.
+### Scenario 2: Managing Device Groups
+- **Symptoms**: Difficulty adding or removing devices from groups.
+- **Solution**: Provide step-by-step guidance on managing Device Groups, including adding and removing devices.  
+  [Case Reference: [500Qk00000FPTKjIAP](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FPTKjIAP/view)]
 
-**Root Cause:**  
-Customer required a method to manage and whitelist devices efficiently.
+### Scenario 3: Generating Group-Wise Reports
+- **Symptoms**: Unable to fetch File Tracing reports based on group-wise settings.
+- **Solution**: Verify the configuration and provide instructions for generating reports.  
+  [Case Reference: [500Qk00000GdTsBIAV](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GdTsBIAV/view)]
 
-**Solution:**  
-- Explain the process of creating custom device groups.
-- Guide the customer on managing devices by specific identifiers.
+### Scenario 4: Uninstalling Endpoint Protector Agents
+- **Symptoms**: Need to uninstall agents from multiple endpoints using SCCM.
+- **Solution**: Provide a custom uninstallation script and instructions for deploying it via SCCM.  
+  [Case Reference: [500Qk00000JScozIAD](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000JScozIAD/view)]
 
-**Source Ticket:** [Creating Custom Device Groups](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MtmU2IAJ/view)
+### Scenario 5: Creating Custom Device Groups
+- **Symptoms**: Need to whitelist devices based on PID, VID, and serial numbers.
+- **Solution**: Guide the customer through creating custom Device Groups and applying them in policy settings.  
+  [Case Reference: [500Qk00000MtmU2IAJ](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MtmU2IAJ/view)]
 
----
+### Scenario 6: Synchronization Issues After Server Migration
+- **Symptoms**: Users and computers not imported after server migration.
+- **Solution**: Verify Azure AD settings, adjust configurations, and re-sync.  
+  [Case Reference: [500Qk00000NmYjlIAF](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NmYjlIAF/view)]
 
-### Server Migration and User Import Issues
-
-**Symptoms:**  
-Users and computers not imported after server migration.
-
-**Troubleshooting Steps:**  
-1. Verify EPP server settings.
-2. Check Azure AD configuration.
-3. Provide relevant documentation for Azure settings.
-4. Re-sync after adjustments.
-
-**Root Cause:**  
-Incorrect Azure AD configuration for user mapping.
-
-**Solution:**  
-- Adjust Azure AD settings and re-sync.
-- Use groups for departmental separation.
-
-**Warnings:**  
-- Ensure Azure AD settings are correctly configured to prevent synchronization issues.
-
-**Source Ticket:** [Server Migration and User Import Issues](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NmYjlIAF/view)
+### Scenario 7: Changing Device Group Priorities
+- **Symptoms**: Unable to reorder Device Groups.
+- **Solution**: Use the drag-and-drop functionality to adjust group priorities.  
+  [Case Reference: [500Qk00000O1QM2IAN](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000O1QM2IAN/view)]
 
 ---
 
-### Changing Device Group Priorities
+## Detailed Case Studies
 
-**Symptoms:**  
-Unable to reorder device groups.
+### Case Study 1: Blocking Bluetooth Data Transfer
+- **Symptoms**: Customer reported that Bluetooth data transfer was not blocked.
+- **Diagnostic Steps**: Reviewed Device Control settings, identified misconfiguration, and updated policies.
+- **Resolution**: Corrected the policy settings and tested on sample devices.  
+  **Key Takeaways**: Always verify policy settings and test changes in a controlled environment.  
+  [Case Reference: [500Qk00000FDkXSIA1](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FDkXSIA1/view)]
 
-**Troubleshooting Steps:**  
-1. Explain the drag-and-drop functionality for group priorities.
-2. Demonstrate how to reorder groups.
-
-**Root Cause:**  
-Customer unaware of drag-and-drop functionality.
-
-**Solution:**  
-- Use drag-and-drop to reorder device groups.
-
-**Source Ticket:** [Changing Device Group Priorities](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000O1QM2IAN/view)
-
----
-
-## Best Practices
-
-- Regularly review and update Device Control policies to ensure compliance with security requirements.
-- Provide training sessions or documentation for users unfamiliar with group management features.
-- Test any custom scripts or configurations in a controlled environment before deployment.
-- Maintain backups of configurations before performing significant changes, such as mass uninstalls or server migrations.
-- Ensure Azure AD settings are correctly configured to avoid synchronization issues.
+### Case Study 2: Synchronization Issues After Server Migration
+- **Symptoms**: Users and computers not imported after migration.
+- **Diagnostic Steps**: Verified EPP server settings, checked Azure AD configurations, and re-synced.
+- **Resolution**: Adjusted Azure settings and successfully re-synced users and groups.  
+  **Key Takeaways**: Ensure Azure AD settings are correctly configured before synchronization.  
+  [Case Reference: [500Qk00000NmYjlIAF](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NmYjlIAF/view)]
 
 ---
 
-## Advanced Topics
+## Best Practices & Tips
 
-### Hybrid Environments and Azure AD Synchronization
-- When using hybrid environments, ensure the "Map on-premises users" feature in Azure AD is configured appropriately to prevent duplicate usernames.
-- Refer to the [EPP Directory Services Overview](https://helpcenter.netwrix.com/bundle/EndpointProtector_5.9.4/page/Content/EndpointProtector/Admin/DirectoryServices/Overview.htm) and [API Permission Configuration](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis) for detailed guidance.
+1. **Regular Policy Reviews**: Periodically review Device Control policies to ensure compliance with security requirements.
+2. **Documentation**: Maintain detailed documentation of custom scripts and configurations for future reference.
+3. **Testing Environment**: Test all changes in a controlled environment before applying them organization-wide.
+4. **Customer Training**: Provide training or documentation to customers on managing Device Groups and policies.
+5. **Backup Configurations**: Advise customers to back up configurations before making significant changes.
 
 ---
+
+## Escalation Guidelines
+
+### When to Escalate
+- The issue involves a suspected bug or software defect.
+- The problem persists despite following standard troubleshooting steps.
+- The customer requires a feature or functionality not currently supported.
+
+### How to Escalate
+1. Gather all relevant information, including logs, screenshots, and a detailed description of the issue.
+2. Submit the case to the development team with a clear summary of the troubleshooting steps taken.
+3. Follow up with the customer to provide updates on the escalation status.

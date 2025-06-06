@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KAkSlIAL","00431091","Support Ticket","Error message -The ALTER TAble statement conflicted with the foreign key","Hi Support,
+
+After upgarding to 11.6,unfortuntely,we got an error message like ""The ALTER TABLE statement conflicted with the FOREIGN key as attached when running ""create schema"" job.
+
+Please assist in clarifying it and make it clear.
+
+Jimmy","1. Run FileSystem->0.Collection->0-Create Schema Job
+
+Please note that this error is not reproducible in my lab env.","Customer is facing the following errors:
+08/01/2025 11:03:14	ERROR	DataAnalysis:SQLScripting	ExecuteNonQuery	""The ALTER TABLE statement conflicted with the FOREIGN KEY constraint ""FK_SA_FSAC_ActivityEvents_PathID"". The conflict occurred in database ""STEALTHBITS"", table ""dbo.SA_FSAA_Resources"".""			62200	30696	6264
+
+08/01/2025 11:03:29	ERROR	DataAnalysis:SQLScripting	ExecuteNonQuery	""The ALTER TABLE statement conflicted with the FOREIGN KEY constraint ""FK_SA_FSAC_DailyActivity_FolderID"". The conflict occurred in database ""STEALTHBITS"", table ""dbo.SA_FSAA_Resources"".""			17888	30696	6264
+
+On ticket 00366415 , running the repair wizard multiple times under FSAA query's maintenance option resolved the issue.
+
+Customer has tried running the repair wizard, but issue was not resolved. I haven't been able to find any bug fixes associated with the above-mentioned error.","R&D team categorize this as P2 and currently sitting behind P1s. Will follow up with them end of the week for an update.","Customer confirmed the error disappeared after resetting the host.","Incorrect configuration: Netwrix product","Pasan Illege","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.6","11.6.0.117","100.9","Closed - Resolved","TSMC","SHENG CHANG CHEN","2025-01-03T07:54:00.000Z","2025-04-14T05:00:34.000Z"

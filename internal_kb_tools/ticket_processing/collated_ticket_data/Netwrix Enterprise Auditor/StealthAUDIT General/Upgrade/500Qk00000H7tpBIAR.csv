@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000H7tpBIAR","00424164","Support Ticket","Upgrade Assistance for NEA pathcing","Patching 
+Netwrix Enterprise Auditor (NEA)			FROM: 11.6.0.55	TO: 11.6.0.113
+Netwrix Access Information Center (AIC)		FROM: 11.6.0.7	        TO:  11.6.0.25","","Post patching, we are still seeing the issue with the Windows Schedule task not running the NEA application yet the task notes that it completed successfully in only 3< seconds.
+
+I suspect CrowdStrike rule update is blocking the task scheduler from fully calling the needed EXE.","Contact will work with his team to confirm the needed Antivirus Exclusions for Netwrix Enterprise Auditor
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u000000TsxHCAS.html","Patched the current version of Stealth application(s) running in the Environment:
+FROM:
+Netwrix Enterprise Auditor (NEA)       11.6.0.55
+NEA Access Information (AIC)            11.6.0.7
+TO:
+Netwrix Enterprise Auditor (NEA)       11.6.0.115
+NEA Access Information (AIC)            11.6.0.25
+
+Post patching, we are still seeing the issue with the Windows Schedule task not running the NEA application yet the task notes that it completed successfully in only 3< seconds.
+
+I suspect the root cause blocking the task scheduler from fully calling the needed EXE, issue to be related to the Credential Guard Configuration GPO settings. Additionally, the following third-party security tools are in place:
+•	Carbon Black App Control: 8.7.8.787 (installed on 05/23/2023)
+•	CrowdStrike Windows Sensor: 7.11.18110.0 (installed on 04/15/2024)
+Antivirus Exclusions for Netwrix Enterprise Auditor
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u000000TsxHCAS.html
+
+
+task scheduler issue is being worked via Ticket # 00423620","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","Upgrade","11.6","55","19.8","Closed - Resolved","Guitar Center, Inc.","Omar Castellanos","2024-10-16T19:43:51.000Z","2024-11-05T15:56:03.000Z"

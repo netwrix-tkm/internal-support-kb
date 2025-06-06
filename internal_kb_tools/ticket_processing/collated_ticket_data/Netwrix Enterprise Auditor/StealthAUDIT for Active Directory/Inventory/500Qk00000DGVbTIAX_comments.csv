@@ -1,0 +1,60 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000813iPIAQ","500Qk00000DGVbTIAX","tz -4 | transferring to lead queue","0054u000007ouL8AAI","2024-07-18T21:00:03.000Z","2024-07-18T21:00:03.000Z","false","false"
+"00aQk0000085q9TIAQ","500Qk00000DGVbTIAX","Wrong product (Stealth Audit) transfer the case.","0054u000007oumnAAA","2024-07-23T11:56:28.000Z","2024-07-23T11:56:28.000Z","false","false"
+"00aQk000008GebBIAS","500Qk00000DGVbTIAX","[Meeting Notes 7/31/24]
+**Current Issue**
+The ADInventory_ExtendedAttributesPivotView does not populate. When attempting to view in SSMS we get:
+FOR XML could not serialize the data for node 'NoName' because it contains a character (0x0000) which is not allowed in XML. To retrieve this data using FOR XML, convert it to binary, varbinary or image data type and use the BINARY BASE64 directive.
+
+**Troubleshooting Completed during Meeting**
+- Verified the 1-AD_Scan job is configured to collect extended attributes
+- Full scan is being run (no differential)
+- Dropped the view and recreated it-- same error occurs on the new one
+
+**Logs/Screenshots Collected**
+
+**Next Steps**","0054u000007MiY9AAK","2024-07-31T19:24:13.000Z","2024-07-31T19:24:13.000Z","false","false"
+"00aQk000008Ni8bIAC","500Qk00000DGVbTIAX","[Meeting Notes 8/6/24]
+**Current Issue**
+The ADInventory_ExtendedAttributesPivotView does not populate. When attempting to view in SSMS we get:
+FOR XML could not serialize the data for node 'NoName' because it contains a character (0x0000) which is not allowed in XML. To retrieve this data using FOR XML, convert it to binary, varbinary or image data type and use the BINARY BASE64 directive.
+
+**Troubleshooting Completed during Meeting**
+- Verified the SA_ADInventory_ExtendedAttributes table populates
+- Went through the ExtendedAttributes table looking for invalid characters
+
+**Logs/Screenshots Collected**
+- Export of ExtendedAttributes table
+
+**Next Steps**
+Review export of the values to try and find the special character being complained about","0054u000007MiY9AAK","2024-08-06T21:36:39.000Z","2024-08-06T21:36:39.000Z","false","false"
+"00aQk000008NierIAC","500Qk00000DGVbTIAX","[Tiger Team]
+**Problem Statement/Business Impact**
+Customer is unable to run custom UserMemberAudit job because the ADInventory_ExtendedAttributesPivotView does not populate despite no errors being thrown on the ADI scan.
+
+**Desired Outcome**
+The ADInventory_ExtendedAttributesPivotView will populate with Extended Attributes collected by the ADI scan and verified in the ADInventory_ExtendedAttributes table.
+
+**Steps to Reproduce**
+In the customer's environment- 
+1. Try to view the ADInventory_ExtendedAttributesPivotView in SSMS (does not populate any data in NEA console)
+2. Get error: FOR XML could not serialize the data for node 'NoName' because it contains a character (0x0000) which is not allowed in XML. To retrieve this data using FOR XML, convert it to binary, varbinary or image data type and use the BINARY BASE64 directive.
+
+**Troubleshooting Completed/Notes**
+- Deleted the ADInventory_ExtendedAttributesPivotView and used the AD Inventory job to recreate it
+- Verified the 1-AD_Scan job is configured to collect the extended attribute
+- Verified the customer is running full ADI scans (no differential)
+- Verified the SA_ADInventory_ExtendedAttributes table populates
+- Went through the ExtendedAttributes table looking for invalid characters
+--- This is a big table with a lot of extended attributes so it will take time
+
+**Logs Uploaded**
+Export of the ADInventory_ExtendedAttributes table","0054u000007MiY9AAK","2024-08-06T21:46:36.000Z","2024-08-06T21:46:36.000Z","false","false"
+"00aQk000008UMeSIAW","500Qk00000DGVbTIAX","Appears to relate to data for the msDS-ReplAttributeMetaData attribute. Reproduced in lab after including this attribute in the 1-AD_Scan config. 
+
+Trying to track down specifically what character(s) causing the FOR XML error before escalating to R&D as the view script will likely need to be updated.","0054u000006goFUAAY","2024-08-13T00:04:45.000Z","2024-08-13T00:04:45.000Z","false","false"
+"00aQk000009Q9AZIA0","500Qk00000DGVbTIAX","Created a SQL analysis task on the ADI1-AD_Scan job that runs the below script after data collection:
+
+UPDATE [dbo].[SA_ADInventory_ExtendedAttributes]
+SET [value] = SUBSTRING([Value],0,Len([Value])-1)
+WHERE [value] like '%'+char(10)+char(0)","0054u000007MiY9AAK","2024-10-01T19:16:17.000Z","2024-10-01T19:16:17.000Z","false","false"

@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Jf3BuIAJ","00430245","Support Ticket","Error with Active Directory Inventory job on last run. SQL errors.","Seeing errors on the SQL server since the last time the Active Directory Inventory job ran.  The job also has an error listed the last time it ran the AD Scan.  
+
+Message
+Login failed. The login is from an untrusted domain and cannot be used with Integrated authentication. [CLIENT: 10.128.104.165] (<a href='https://pw1appstau01a.ibddomain.net' target='_blank'>pw1appstau01a.ibddomain.net</a> )","","It is not possible to use Windows authentication type account for logging into SQL servers from non-trusted domains.","","Below is the stack trace from this case that seems to be similar to a couple of other NEA cases:
+
+ 00357899 - Issue with custom AD weak password report
+00382211 - Error in AD_Weakpassword job
+
++++++
+
+System.DirectoryServices.ActiveDirectory.ActiveDirectoryServerDownException: The RPC server is unavailable ---> System.ComponentModel.Win32Exception: The RPC server is unavailable
+
+  --- End of inner exception stack trace ---
+
+  at DSInternals.Common.Validator.AssertSuccess(Win32ErrorCode code)
+  at DSInternals.Replication.Interop.DrsConnection.Bind(IntPtr rpcHandle)
+  at DSInternals.Replication.Interop.DrsConnection..ctor(IntPtr rpcHandle, Guid clientDsa)
+  at DSInternals.Replication.DirectoryReplicationClient..ctor(String server, RpcProtocol protocol, NetworkCredential credential)
+  at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.InternalProcessRecord()
+  at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
++++++","Guidance","Mike Candon","Error","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Inventory","11.5","","15.8","Closed - Resolved","Osaic","James Foreman","2024-12-18T17:16:50.000Z","2025-01-03T13:13:52.000Z"

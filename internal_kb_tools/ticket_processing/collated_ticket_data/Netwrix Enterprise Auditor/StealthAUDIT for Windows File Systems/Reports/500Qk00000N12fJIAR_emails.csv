@@ -1,0 +1,1721 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000Mi6hoIAB","500Qk00000N12fJIAR","2025-03-17T22:18:45.000Z","2025-03-17T22:18:45.000Z","Rayn,
+
+Thank you for contacting Netwrix Technical Support. 
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:  
+
+What is the impact of the issue on your business? 
+
+Who is affected by this issue? 
+
+What steps to troubleshoot the issue have already been taken? 
+
+Could we get clarification on ""Large amount of data Transferred from specific folders for fileshare”
+Is the assumed action a copy of object off of the Server in question?
+
+Where the files moved to another audited path/server?
+
+What type of File Server(s) are being investigated?
+***NOTE*** Windows does not have a Copy event this would just look like a multiple read event for the same object at least once to list the object then another on access however this cold be from a user truly accessing the file not necessarily copying it.
+
+When did this issue start?  
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+# Collects the Service install paths
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {$_.DisplayName -like 'Netwrix*'}).Pathname
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {$_.DisplayName -like 'Stealth*'}).Pathname 
+
+We can look at SQLViewCreation pointing to the SA_FSAC_ActivityEventsView as long as the host in question is being monitored by Netwrix Enterprise Auditor (NEA) & Netwrix Activity Monitor (NAM) 
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Overview.htm 
+
+Within the Analysis we can filter for known details.
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module > SQLViewCreation: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Filter.htm 
+
+Please let me know what is found here.
+
+Additional reference links you might like:
+NEW Netwrix Community https://community.netwrix.com/
+NEW Customer Training  https://www.netwrix.com/customer_training.html
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0N12fJ:ref","Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","techsupport@netwrix.com","Netwrix Support","rtyson@central-bank.org.tt","","","false","2025-03-17T22:18:44.000Z","true"
+"02sQk00000MjGGsIAN","500Qk00000N12fJIAR","2025-03-18T12:18:30.000Z","2025-03-18T17:05:21.000Z","ref:_00D7091pB._500Q000N12fJ:ref
+
+Good day Dusty,
+
+Can we have a session to discuss the questions identified ?
+
+
+Regards,
+
+Ryan Tyson
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+[cid:image007.jpg@01DAE356.9024BBB0]
+
+Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt<http://www.central-bank.org.tt/>
+
+[cid:image001.png@01DAE7E0.2296CE10][cid:image002.png@01DAE7E0.2296CE10]
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, 17 March 2025 6:19 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+Rayn,
+
+Thank you for contacting Netwrix Technical Support.
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:
+
+What is the impact of the issue on your business?
+
+Who is affected by this issue?
+
+What steps to troubleshoot the issue have already been taken?
+
+Could we get clarification on ""Large amount of data Transferred from specific folders for fileshare""
+Is the assumed action a copy of object off of the Server in question?
+
+Where the files moved to another audited path/server?
+
+What type of File Server(s) are being investigated?
+***NOTE*** Windows does not have a Copy event this would just look like a multiple read event for the same object at least once to list the object then another on access however this cold be from a user truly accessing the file not necessarily copying it.
+
+When did this issue start?
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+# Collects the Service install paths
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {$_.DisplayName -like 'Netwrix*'}).Pathname
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {$_.DisplayName -like 'Stealth*'}).Pathname
+
+We can look at SQLViewCreation pointing to the SA_FSAC_ActivityEventsView as long as the host in question is being monitored by Netwrix Enterprise Auditor (NEA) & Netwrix Activity Monitor (NAM)
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Overview.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Overview.htm__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!JkJjBYKmsceI_M-sJoJ0mWzUuWLMrruAqRfNs93Wy7NnC_95WPWpSTPQCIBA9Wp0G5P47aE7nqFvPo3VSKeXSv1CLiuc$>
+
+Within the Analysis we can filter for known details.
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module > SQLViewCreation: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Filter.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Filter.htm__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!JkJjBYKmsceI_M-sJoJ0mWzUuWLMrruAqRfNs93Wy7NnC_95WPWpSTPQCIBA9Wp0G5P47aE7nqFvPo3VSKeXSqdVv6TA$>
+
+Please let me know what is found here.
+
+Additional reference links you might like:
+NEW Netwrix Community https://community.netwrix.com/<https://urldefense.com/v3/__https:/community.netwrix.com/__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!JkJjBYKmsceI_M-sJoJ0mWzUuWLMrruAqRfNs93Wy7NnC_95WPWpSTPQCIBA9Wp0G5P47aE7nqFvPo3VSKeXSvTSYNQ9$>
+NEW Customer Training  https://www.netwrix.com/customer_training.html<https://urldefense.com/v3/__https:/www.netwrix.com/customer_training.html__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!JkJjBYKmsceI_M-sJoJ0mWzUuWLMrruAqRfNs93Wy7NnC_95WPWpSTPQCIBA9Wp0G5P47aE7nqFvPo3VSKeXShPX5Djf$>
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!JkJjBYKmsceI_M-sJoJ0mWzUuWLMrruAqRfNs93Wy7NnC_95WPWpSTPQCIBA9Wp0G5P47aE7nqFvPo3VSKeXSjhfaG4r$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!JkJjBYKmsceI_M-sJoJ0mWzUuWLMrruAqRfNs93Wy7NnC_95WPWpSTPQCIBA9Wp0G5P47aE7nqFvPo3VSKeXSk14Lr6c$>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KIAjn&from=ext]
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","rtyson@central-bank.org.tt","Ryan Tyson","techsupport@netwrix.com","","","true","2025-03-18T12:18:16.000Z","true"
+"02sQk00000MmGttIAF","500Qk00000N12fJIAR","2025-03-19T14:17:17.000Z","2025-03-19T14:17:17.000Z","Rayn,
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=Ki2NvtN2URHJw6hXJefG50OdIWfIjDB_7.h1ikCk_xY-Z&MeetingID=pgq2QFy7HDkH4WO2Qe3fsCv6TeaJnfer0z8chnBdYkE-Z
+
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 3/18/2025 8:18 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+ref:_00D7091pB._500Q000N12fJ:ref
+
+
+
+Good day Dusty,
+
+ 
+
+Can we have a session to discuss the questions identified ?
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Ryan Tyson
+
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+
+
+	
+		
+			
+			
+			
+		
+	
+
+
+
+	
+		
+			
+			Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+
+			Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt
+			
+		
+	
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, 17 March 2025 6:19 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+
+
+ 
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+
+
+Rayn,
+
+Thank you for contacting Netwrix Technical Support. 
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:  
+
+What is the impact of the issue on your business? 
+
+Who is affected by this issue? 
+
+What steps to troubleshoot the issue have already been taken? 
+
+Could we get clarification on ""Large amount of data Transferred from specific folders for fileshare”
+Is the assumed action a copy of object off of the Server in question?
+
+Where the files moved to another audited path/server?
+
+What type of File Server(s) are being investigated?
+***NOTE*** Windows does not have a Copy event this would just look like a multiple read event for the same object at least once to list the object then another on access however this cold be from a user truly accessing the file not necessarily copying it.
+
+When did this issue start?  
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object |  Format-Table Name,Version,InstallDate -AutoSize 
+# Collects the Service install paths
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable  Service |Where-Object {$_.DisplayName -like 'Netwrix*'}).Pathname
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable  Service |Where-Object {$_.DisplayName -like 'Stealth*'}).Pathname 
+
+We can look at SQLViewCreation pointing to the SA_FSAC_ActivityEventsView as long as the host in question is being monitored by Netwrix Enterprise Auditor (NEA) & Netwrix Activity Monitor (NAM)
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Overview.htm
+
+Within the Analysis we can filter for known details.
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module > SQLViewCreation: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Filter.htm
+
+Please let me know what is found here.
+
+Additional reference links you might like:
+NEW Netwrix Community  https://community.netwrix.com/
+NEW Customer Training   https://www.netwrix.com/customer_training.html
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+
+
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 -  - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","techsupport@netwrix.com","Netwrix Support","rtyson@central-bank.org.tt","","dusty.grayson@netwrix.com","true","2025-03-19T14:17:16.000Z","true"
+"02sQk00000MrJ9bIAF","500Qk00000N12fJIAR","2025-03-21T13:16:49.000Z","2025-03-21T13:16:49.000Z","Rayn,
+
+Looks like you are not able to make this meeting time.
+
+We can use the same Scheduling Link to select a new opening that aligns best for you.
+
+Openings wil lbe listed out till 4/4/2025
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/19/2025 10:17 AM
+To: rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #438997 - - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+Rayn,
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=Ki2NvtN2URHJw6hXJefG50OdIWfIjDB_7.h1ikCk_xY-Z&MeetingID=pgq2QFy7HDkH4WO2Qe3fsCv6TeaJnfer0z8chnBdYkE-Z
+
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 3/18/2025 8:18 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+ref:_00D7091pB._500Q000N12fJ:ref
+
+
+
+Good day Dusty,
+
+ 
+
+Can we have a session to discuss the questions identified ?
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Ryan Tyson
+
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+
+
+	
+		
+			
+			
+			
+		
+	
+
+
+
+	
+		
+			
+			Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+
+			Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt
+			
+		
+	
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, 17 March 2025 6:19 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+
+
+ 
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+
+
+Rayn,
+
+Thank you for contacting Netwrix Technical Support. 
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:  
+
+What is the impact of the issue on your business? 
+
+Who is affected by this issue? 
+
+What steps to troubleshoot the issue have already been taken? 
+
+Could we get clarification on ""Large amount of data Transferred from specific folders for fileshare”
+Is the assumed action a copy of object off of the Server in question?
+
+Where the files moved to another audited path/server?
+
+What type of File Server(s) are being investigated?
+***NOTE*** Windows does not have a Copy event this would just look like a multiple read event for the same object at least once to list the object then another on access however this cold be from a user truly accessing the file not necessarily copying it.
+
+When did this issue start?  
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object |  Format-Table Name,Version,InstallDate -AutoSize 
+# Collects the Service install paths
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable  Service |Where-Object {$_.DisplayName -like 'Netwrix*'}).Pathname
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable  Service |Where-Object {$_.DisplayName -like 'Stealth*'}).Pathname 
+
+We can look at SQLViewCreation pointing to the SA_FSAC_ActivityEventsView as long as the host in question is being monitored by Netwrix Enterprise Auditor (NEA) & Netwrix Activity Monitor (NAM)
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Overview.htm
+
+Within the Analysis we can filter for known details.
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module > SQLViewCreation: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Filter.htm
+
+Please let me know what is found here.
+
+Additional reference links you might like:
+NEW Netwrix Community  https://community.netwrix.com/
+NEW Customer Training   https://www.netwrix.com/customer_training.html
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+
+
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 -  - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","techsupport@netwrix.com","Netwrix Support","rtyson@central-bank.org.tt","","","true","2025-03-21T13:16:48.000Z","true"
+"02sQk00000MzRGdIAN","500Qk00000N12fJIAR","2025-03-25T16:17:01.000Z","2025-03-25T16:17:01.000Z","Rayn,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA)    11.6.0.117
+NEA Access Information (AIC)         11.6.0.25 
+Netwrix Activity (NAM)                    7.1.211   
+
+We noted some related events for the path in question that was mistakenly moved into the Folder the was below its original path on the File Server.
+We looked at the AIC activity reporting: Netwrix Access Information Center 11.6 > Resource Audit Overview > File System Reports > Activity Summary Report
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/ResourceAudit/FileSystem/ActivitySummary.htm
+
+As well as in thew Netwrix Activity Monitor v7.1 > Administration > Search Feature > File Search Query
+https://helpcenter.netwrix.com/bundle/ActivityMonitor_7.1/page/Content/ActivityMonitor/Admin/Search/Query/File.htm
+
+We then looked at the SQLViewCreation option to filter on the needed host and path: Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Overview.htm
+From that we can then create a report if needed per Netwrix Enterprise Auditor v11.6 > Administration > Reporting > Creating a Report
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Report/Create.htm
+
+Found an issue with the host Dropping packets so the Skip Hosts that do not respond to PING was disable for the FSAC scan and bulk import jobs.
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Jobs > Job Properties > Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+Follow-up Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tC6ykHrmNdG51oN41w7b2B...Q7hQrvjMBgCp6I12vc-Z&MeetingID=3hJjz1.ylfNWy3JZ6oN65wj7s_hRiG..8aw5lXDYARg-Z
+ 
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+If we could get SQL Server Management Studio (SSMS) installed on the NEA host to look directly at the NEA SQL DB to help better filter the needed job.
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 9:16 AM
+To: rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #438997 - - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+Rayn,
+
+Looks like you are not able to make this meeting time.
+
+We can use the same Scheduling Link to select a new opening that aligns best for you.
+
+Openings wil lbe listed out till 4/4/2025
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/21/2025 9:16 AM
+To: rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #438997 - - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+Rayn,
+
+Looks like you are not able to make this meeting time.
+
+We can use the same Scheduling Link to select a new opening that aligns best for you.
+
+Openings wil lbe listed out till 4/4/2025
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/19/2025 10:17 AM
+To: rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #438997 - - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+Rayn,
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=Ki2NvtN2URHJw6hXJefG50OdIWfIjDB_7.h1ikCk_xY-Z&MeetingID=pgq2QFy7HDkH4WO2Qe3fsCv6TeaJnfer0z8chnBdYkE-Z
+
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 3/18/2025 8:18 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+ref:_00D7091pB._500Q000N12fJ:ref
+
+
+
+Good day Dusty,
+
+ 
+
+Can we have a session to discuss the questions identified ?
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Ryan Tyson
+
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+
+
+	
+		
+			
+			
+			
+		
+	
+
+
+
+	
+		
+			
+			Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+
+			Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt
+			
+		
+	
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, 17 March 2025 6:19 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+
+
+ 
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+
+
+Rayn,
+
+Thank you for contacting Netwrix Technical Support. 
+
+To help us streamline the troubleshooting process and resolve your issue more efficiently, please provide the following information:  
+
+What is the impact of the issue on your business? 
+
+Who is affected by this issue? 
+
+What steps to troubleshoot the issue have already been taken? 
+
+Could we get clarification on ""Large amount of data Transferred from specific folders for fileshare”
+Is the assumed action a copy of object off of the Server in question?
+
+Where the files moved to another audited path/server?
+
+What type of File Server(s) are being investigated?
+***NOTE*** Windows does not have a Copy event this would just look like a multiple read event for the same object at least once to list the object then another on access however this cold be from a user truly accessing the file not necessarily copying it.
+
+When did this issue start?  
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object |  Format-Table Name,Version,InstallDate -AutoSize 
+# Collects the Service install paths
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable  Service |Where-Object {$_.DisplayName -like 'Netwrix*'}).Pathname
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable  Service |Where-Object {$_.DisplayName -like 'Stealth*'}).Pathname 
+
+We can look at SQLViewCreation pointing to the SA_FSAC_ActivityEventsView as long as the host in question is being monitored by Netwrix Enterprise Auditor (NEA) & Netwrix Activity Monitor (NAM)
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Overview.htm
+
+Within the Analysis we can filter for known details.
+Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module > SQLViewCreation: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Filter.htm
+
+Please let me know what is found here.
+
+Additional reference links you might like:
+NEW Netwrix Community  https://community.netwrix.com/
+NEW Customer Training   https://www.netwrix.com/customer_training.html
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+
+
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 -  - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","techsupport@netwrix.com","Netwrix Support","rtyson@central-bank.org.tt","","","true","2025-03-25T16:16:59.000Z","true"
+"02sQk00000NKCSqIAP","500Qk00000N12fJIAR","2025-04-03T12:15:41.000Z","2025-04-03T15:23:08.000Z","ref:_00D7091pB._500Q000N12fJ:ref
+
+Good day Dusty,
+
+Please resend the link.
+
+
+Regards,
+
+Ryan Tyson
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+[cid:image007.jpg@01DAE356.9024BBB0]
+
+Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt<http://www.central-bank.org.tt/>
+
+[cid:image001.png@01DAE7E0.2296CE10][cid:image002.png@01DAE7E0.2296CE10]
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 2 April 2025 6:53 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: RE: 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+Hello Ryan,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00438997
+Ticket Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+Ticket Details: Trying to identify a report that illustrates the following:
+- Information concerning Large files moved from a specific file share.
+- Two folders specifically from the file share.
+- The dates where the largest amount was moved and by whom.
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!P599m0zZs3xE0LPD93yPedbKflTrZkreiInE9hjyYD5K4guIzOF1CKhbLaVqj3-_KckraU-Ubt4nq6H5YQ416bxNtKtH$>
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare","rtyson@central-bank.org.tt","Ryan Tyson","techsupport@netwrix.com","","","true","2025-04-03T12:15:24.000Z","true"
+"02sQk00000NL5ynIAD","500Qk00000N12fJIAR","2025-04-03T15:24:35.000Z","2025-04-03T15:24:35.000Z","Ryan,
+
+Follow-up Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tC6ykHrmNdG51oN41w7b2B...Q7hQrvjMBgCp6I12vc-Z&MeetingID=3hJjz1.ylfNWy3JZ6oN65wj7s_hRiG..8aw5lXDYARg-Z
+ 
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+If we could get SQL Server Management Studio (SSMS) installed on the NEA host to look directly at the NEA SQL DB to help better filter the needed job.
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 4/3/2025 8:15 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+ref:_00D7091pB._500Q000N12fJ:ref
+
+
+
+Good day Dusty,
+
+ 
+
+Please resend the link.
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Ryan Tyson
+
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+
+
+	
+		
+			
+			
+			
+			
+			Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+
+			Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt
+			
+		
+	
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 2 April 2025 6:53 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: RE: 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+
+
+ 
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+
+
+Hello Ryan,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00438997
+Ticket Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+Ticket Details: Trying to identify a report that illustrates the following:
+- Information concerning Large files moved from a specific file share.
+- Two folders specifically from the file share.
+- The dates where the largest amount was moved and by whom.
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+
+
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 -  - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","techsupport@netwrix.com","Netwrix Support","rtyson@central-bank.org.tt","","","true","2025-04-03T15:24:34.000Z","true"
+"02sQk00000NtNmrIAF","500Qk00000N12fJIAR","2025-04-18T17:09:26.000Z","2025-04-18T17:09:26.000Z","Ryan,
+
+I wanted to follow up to see if we are still good for this meeting time.
+
+Please let me know.
+
+If we need to reschedule, we can use the same Scheduling Link to select a new opening that aligns best for you.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/3/2025 11:24 AM
+To: rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #438997 - - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+Ryan,
+
+Follow-up Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tC6ykHrmNdG51oN41w7b2B...Q7hQrvjMBgCp6I12vc-Z&MeetingID=3hJjz1.ylfNWy3JZ6oN65wj7s_hRiG..8aw5lXDYARg-Z
+ 
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+If we could get SQL Server Management Studio (SSMS) installed on the NEA host to look directly at the NEA SQL DB to help better filter the needed job.
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 4/3/2025 8:15 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+ref:_00D7091pB._500Q000N12fJ:ref
+
+
+
+Good day Dusty,
+
+ 
+
+Please resend the link.
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Ryan Tyson
+
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+
+
+	
+		
+			
+			
+			
+			
+			Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+
+			Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt
+			
+		
+	
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 2 April 2025 6:53 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: RE: 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+
+
+ 
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+
+
+Hello Ryan,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00438997
+Ticket Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+Ticket Details: Trying to identify a report that illustrates the following:
+- Information concerning Large files moved from a specific file share.
+- Two folders specifically from the file share.
+- The dates where the largest amount was moved and by whom.
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+
+
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 -  - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","techsupport@netwrix.com","Netwrix Support","rtyson@central-bank.org.tt","","","true","2025-04-18T17:09:25.000Z","true"
+"02sQk00000Ntfa4IAB","500Qk00000N12fJIAR","2025-04-18T17:33:06.000Z","2025-04-18T17:33:06.000Z","Ryan,
+
+Looks like you were not able to join the meeting today.
+
+To reschedule, we can use the same Scheduling Link to select a new opening that aligns best for you.
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tC6ykHrmNdG51oN41w7b2B...Q7hQrvjMBgCp6I12vc-Z&MeetingID=3hJjz1.ylfNWy3JZ6oN65wj7s_hRiG..8aw5lXDYARg-Z
+
+Please also try the following within SQL Server Management Studio (SSMS) edit the @Needed_Path for the object in question.
+
+The TSQL query will look for all non-Read activity that was possessed by the FSAC job collected from the Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) Agent.
+
+DECLARE @Needed_Path VARCHAR(255);
+SET @Needed_Path = '%Installers%'   --- % used as a Wildcard so the query will match the listed object no matter what comes before or after what is entered
+SELECT  --[HostID]
+      [HostName]
+      --,[ID]
+      ,[AccessTime]
+      --,[ResourceID]
+      --,[ResourceType]
+      ,[ResourceTypeDescription]
+      --,[ParentResourceID]
+      ,[ResourceName]
+      ,[Path]
+      --,[ProcessID]
+      ,[ProcessName]
+      --,[Operation]
+      ,[OperationDescription]
+      ,[Allow]
+      ,[AllowDescription]
+      ,[TargetResourceID]
+      ,[TargetResourceName]
+      ,[TargetParentResourceID]
+      ,[TargetPath]
+      --,[UserID]
+      --,[UserSID]
+      --,[UserDisplayName]
+      --,[UserNTDomain]
+      --,[UserNTName]
+      --,[UserType]
+      ,[UserPrincipalID]
+      ,[UserTypeDescription]
+      ,[UserNTStyleName]
+  FROM [StealthAudit].[dbo].[SA_FSAC_ActivityEventsView]
+WHERE Operation <> 0 AND Path Like @Needed_Path
+
+Please let me know what is found or if any additional assistance is needed for this case.
+
+Additional reference links you might like:
+NEW Netwrix Community https://community.netwrix.com/
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/18/2025 1:09 PM
+To: rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #438997 - - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+Ryan,
+
+I wanted to follow up to see if we are still good for this meeting time.
+
+Please let me know.
+
+If we need to reschedule, we can use the same Scheduling Link to select a new opening that aligns best for you.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/3/2025 11:24 AM
+To: rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #438997 - - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+Ryan,
+
+Follow-up Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tC6ykHrmNdG51oN41w7b2B...Q7hQrvjMBgCp6I12vc-Z&MeetingID=3hJjz1.ylfNWy3JZ6oN65wj7s_hRiG..8aw5lXDYARg-Z
+ 
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+If we could get SQL Server Management Studio (SSMS) installed on the NEA host to look directly at the NEA SQL DB to help better filter the needed job.
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 4/3/2025 8:15 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+ref:_00D7091pB._500Q000N12fJ:ref
+
+
+
+Good day Dusty,
+
+ 
+
+Please resend the link.
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Ryan Tyson
+
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+
+
+	
+		
+			
+			
+			
+			
+			Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+
+			Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt
+			
+		
+	
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, 2 April 2025 6:53 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: RE: 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+
+
+ 
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+
+
+Hello Ryan,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00438997
+Ticket Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+Ticket Details: Trying to identify a report that illustrates the following:
+- Information concerning Large files moved from a specific file share.
+- Two folders specifically from the file share.
+- The dates where the largest amount was moved and by whom.
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+
+
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 -  - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","techsupport@netwrix.com","Netwrix Support","rtyson@central-bank.org.tt","","","true","2025-04-18T17:33:05.000Z","true"
+"02sQk00000O37f5IAB","500Qk00000N12fJIAR","2025-04-23T12:21:21.000Z","2025-04-23T12:39:49.000Z","ref:_00D7091pB._500Q000N12fJ:ref
+
+Good day Dusty,
+
+A reschedule would be required.
+
+
+Regards,
+
+Ryan Tyson
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+[cid:image007.jpg@01DAE356.9024BBB0]
+
+Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt<http://www.central-bank.org.tt/>
+
+[cid:image001.png@01DAE7E0.2296CE10][cid:image002.png@01DAE7E0.2296CE10]
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, 18 April 2025 1:09 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: RE: Netwrix Support Ticket #438997 - - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+Ryan,
+
+I wanted to follow up to see if we are still good for this meeting time.
+
+Please let me know.
+
+If we need to reschedule, we can use the same Scheduling Link to select a new opening that aligns best for you.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!PPjrCYMoCtYLLA9GWpofrfSZeUeAtcRL3wbyPb69CGynGcl9zoQB9l3K80KsL72ImZsP8hFQJMHymQASjHhrw4_rLZMB$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!PPjrCYMoCtYLLA9GWpofrfSZeUeAtcRL3wbyPb69CGynGcl9zoQB9l3K80KsL72ImZsP8hFQJMHymQASjHhrw5v20pSY$>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/3/2025 11:24 AM
+To: rtyson@central-bank.org.tt<mailto:rtyson@central-bank.org.tt>
+Subject: RE: Netwrix Support Ticket #438997 - - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare [ ref:!00D70091pB.!500Qk0N12fJ:ref ]
+
+Ryan,
+
+Follow-up Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tC6ykHrmNdG51oN41w7b2B...Q7hQrvjMBgCp6I12vc-Z&MeetingID=3hJjz1.ylfNWy3JZ6oN65wj7s_hRiG..8aw5lXDYARg-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=tC6ykHrmNdG51oN41w7b2B...Q7hQrvjMBgCp6I12vc-Z&MeetingID=3hJjz1.ylfNWy3JZ6oN65wj7s_hRiG..8aw5lXDYARg-Z__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!PPjrCYMoCtYLLA9GWpofrfSZeUeAtcRL3wbyPb69CGynGcl9zoQB9l3K80KsL72ImZsP8hFQJMHymQASjHhrwyBT8yyH$>
+
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+If we could get SQL Server Management Studio (SSMS) installed on the NEA host to look directly at the NEA SQL DB to help better filter the needed job.
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!PPjrCYMoCtYLLA9GWpofrfSZeUeAtcRL3wbyPb69CGynGcl9zoQB9l3K80KsL72ImZsP8hFQJMHymQASjHhrw4_rLZMB$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!PPjrCYMoCtYLLA9GWpofrfSZeUeAtcRL3wbyPb69CGynGcl9zoQB9l3K80KsL72ImZsP8hFQJMHymQASjHhrw5v20pSY$>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 4/3/2025 8:15 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+ref:_00D7091pB._500Q000N12fJ:ref
+
+
+Good day Dusty,
+
+Please resend the link.
+
+
+Regards,
+
+Ryan Tyson
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+[cid:image007.jpg@01DAE356.9024BBB0]
+
+Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt<http://www.central-bank.org.tt/>
+
+[cid:image001.png@01DAE7E0.2296CE10][cid:image002.png@01DAE7E0.2296CE10]
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, 2 April 2025 6:53 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt<mailto:rtyson@central-bank.org.tt>>
+Subject: RE: 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+Hello Ryan,
+
+I'm following up on my previous email with the scheduling availability link, as I haven't seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00438997
+Ticket Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+Ticket Details: Trying to identify a report that illustrates the following:
+- Information concerning Large files moved from a specific file share.
+- Two folders specifically from the file share.
+- The dates where the largest amount was moved and by whom.
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!P599m0zZs3xE0LPD93yPedbKflTrZkreiInE9hjyYD5K4guIzOF1CKhbLaVqj3-_KckraU-Ubt4nq6H5YQ416bxNtKtH$>
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KquFX&from=ext]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000LLy3W&from=ext]
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 -  - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","rtyson@central-bank.org.tt","Ryan Tyson","techsupport@netwrix.com","","","true","2025-04-23T12:21:03.000Z","true"
+"02sQk00000O3GNPIA3","500Qk00000N12fJIAR","2025-04-23T12:28:28.000Z","2025-04-23T12:39:49.000Z","ref:_00D7091pB._500Q000N12fJ:ref
+
+Good day Dusty,
+
+This issue has been resolved.
+
+
+Regards,
+
+Ryan Tyson
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+[cid:image007.jpg@01DAE356.9024BBB0]
+
+Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt<http://www.central-bank.org.tt/>
+
+[cid:image001.png@01DAE7E0.2296CE10][cid:image002.png@01DAE7E0.2296CE10]
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, 22 April 2025 1:53 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: RE: 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+Hello Ryan,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00438997
+Ticket Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+Ticket Details: Trying to identify a report that illustrates the following:
+- Information concerning Large files moved from a specific file share.
+- Two folders specifically from the file share.
+- The dates where the largest amount was moved and by whom.
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__https:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!P-QcnO247avnL8USjnb4jY6rkcPq-weAIGeXS0II7eF7E-lnCFEWUJTID-ecwBiAHHvu5SfRdyEQyKMMD9EaSaoeX4Ry$>
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare","rtyson@central-bank.org.tt","Ryan Tyson","techsupport@netwrix.com","","","true","2025-04-23T12:28:18.000Z","true"
+"02sQk00000O3L8XIAV","500Qk00000N12fJIAR","2025-04-23T12:42:48.000Z","2025-04-23T12:42:48.000Z","Ryan,
+
+Thank You for the update, I will close out this ticket as noted.
+
+We have 30days to reopen once the closure email is received.
+
+To reopen we can just reply to that email to bring the case back into my queue.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. 
+
+Feel free to leave any feedback via the survey link.
+
+Additional reference links you might like:
+NEW Netwrix Community https://community.netwrix.com/
+
+Have a great week.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 4/23/2025 8:28 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #438997 - ref:_00D7091pB._500Q000N12fJ:ref - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+ref:_00D7091pB._500Q000N12fJ:ref
+
+
+
+Good day Dusty,
+
+ 
+
+This issue has been resolved.
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Ryan Tyson
+
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+
+
+	
+		
+			
+			
+			
+			
+			Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+
+			Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt
+			
+		
+	
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, 22 April 2025 1:53 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: RE: 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+
+
+
+ 
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+
+
+Hello Ryan,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00438997
+Ticket Subject: Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare
+Ticket Details: Trying to identify a report that illustrates the following:
+- Information concerning Large files moved from a specific file share.
+- Two folders specifically from the file share.
+- The dates where the largest amount was moved and by whom.
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0N12fJ:ref
+
+
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #438997 -  - 00438997 - Need Assistance in identifying ""Large amount of data Transferred from specific folders for fileshare    [ ref:!00D70091pB.!500Qk0N12fJ:ref ]","techsupport@netwrix.com","Netwrix Support","rtyson@central-bank.org.tt","","","true","2025-04-23T12:42:47.000Z","true"

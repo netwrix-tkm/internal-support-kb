@@ -1,0 +1,25 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GV2ypIAD","00422587","Support Ticket","AIC reports web page and IIS settings for our DR app server","Team,
+
+I'm looking for help with troubleshooting the AIC reports page and IIS settings for our DR app server. It may just need to be brought up to match the current production instance.","","","","Symptom:
+AIC reports web page and IIS settings for our DR app server
+
+Cause:
+Incorrect settings in the following files 
+Access Information Center's (AIC): “C:inetpubwwwrootStealthAUDIT Complianceweb.config” 
+ StealthAUDlT (SA):  ""C:Program Files (x86)STEALTHbitsStealthAUDITWebWebServer.exe.config""
+
+Resolution:
+Disabled the SSO option for the DR AIC site.
+REF:  Netwrix Access Information Center 11.5 > Installation Overview for StealthAUDlT > Securing the Access Information Center for StealthAUDlT > Enable Single Sign-On https://helpcenter.netwrix.com/bundle/AIC_11.5/page/Content/Access/InformationCenter/Installation/Secure.htm#enable_single_signon
+
+The same for DR  SA
+REF: Netwrix StealthAUDlT v11.5 > Installation > Netwrix StealthAUDlT Console Installation Guide > Report Index > Enable Single Sign-On
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Install_Guides/SA_Install/5.Report_Index.htm#enable_single_signon
+
+Set the <add key=""AuthSessionValidationUrl"" value=""http://+:8082/whoami""/>   from the FQDN of the DNS Alias.
+REF: Netwrix Access Information Center 11.5 > Administrator Overview for StealthAUDlT > Troubleshooting for StealthAUDlT > Access Tab in the Web Console:
+Using a DNS Alias with SSL/TLS Enabled for the Web Server https://helpcenter.netwrix.com/bundle/AIC_11.5/page/Content/Access/InformationCenter/Admin/Troubleshooting/Access_Tab.htm
+
+
+Following this the local URL(s) via the host name loaded without issue.","Incorrect configuration: Netwrix product","Dusty Grayson","","Netwrix Enterprise Auditor","Access Information Center","Configuration","11.5","137","14.9","Closed - Resolved","MUFG Bank, LTD.","Michael Kong","2024-10-01T16:47:46.000Z","2024-10-16T15:35:15.000Z"

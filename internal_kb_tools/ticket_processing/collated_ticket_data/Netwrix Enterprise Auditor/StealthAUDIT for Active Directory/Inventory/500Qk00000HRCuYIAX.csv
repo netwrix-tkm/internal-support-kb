@@ -1,0 +1,47 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HRCuYIAX","00424991","Support Ticket","Cannot see certain access Request / other support","General support meeting needed for help with or to investigate what seem to be irregularities in out NEA instance. Thanks.
+
+Several users that are known to exist are not found in NEA or AIC reports.","","1) Below is the SQL Select that we ran against the database before and after the full AD collection. 
+
+Before the full collection, we were not able to return the records for the following 4 users:
+--
+Adam.Martin@baldwin.com
+Mike.Grillo@baldwin.com
+Alexis.Arredondo
+TPAadmin-ryan.oleary
+--
+
++++++
+SQL Select:
++++++
+Use StealthAUDIT;
+
+select * from StealthAUDIT.dbo.SA_ADInventory_Principals 
+where ObjectClass = 4 and SamAccountName like '%mike.grill%';
+
+2) In NEA, we searched the ""ADInventory_UserView"" using ""DistinguishedName"" from the drop-down
+BEFORE the FULL COLLECTION: ""ADInventory_UserView"" - OU=Construction Risk Partners > 130 users are being collected from this OU in NEA ("".Active Directory Inventory"")
+
+3) Then we changed a configuration setting for the ""1-AD_Scan"" Job:
+
+Jobs > "".Active Directory Inventory"" > ""1-AD_Scan"" Job > ""Configure"" > ""Queries"" > 
+""Query Properties"" > ""Configure"" button > ""Options"" > UNCHECK ""Collect only updates since the last scan""
+
+This will result in a full collection and refresh instead of an incremental collection.
+
+See the attached screenshot = ""AD_Inventory_DC_Wizard_UNCHECK_Collect_only_updates_since_the_last_scan_SS_2024-10-24_164721.png""
+
+AD_Inventory_DC_Wizard_UNCHECK_Collect_only_updates_since_the_last_scan_SS_2024-10-24_164721
+
+4) After the full collection which took 8-9 minutes:
++++++
+Adam.Martin@baldwin.com - initially was NOT in the DB - OU=Construction Risk Partners, OU=Midmarket  - after the full collection shows up in DB and AIC
+Mike.Grillo@baldwin.com - initially was NOT in the DB - OU=Construction Risk Partners, OU=Midmarket  - after the full collection shows up in DB and AIC
+Alexis.Arredondo - initially was NOT in the DB - after the full collection shows up in DB and AIC
+TPAadmin-ryan.oleary - Is NOW showing up in AIC - after the full collection shows up in DB
++++++
+Anthony Krake - was always present in the DB and NEA ""ADInventory_UserView""","","[Issue]
+Some users known to no longer exist in AD are showing up in NEA and the AIC
+
+[Resolution]
+Set the ADI AD Scan to run as a full scan and then flipped it back to differential","Incorrect configuration: Netwrix product","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Inventory","11.6","","11.1","Closed - Resolved","Baldwin Risk Partners","Ryan Oleary","2024-10-24T16:08:18.000Z","2024-11-04T17:29:26.000Z"

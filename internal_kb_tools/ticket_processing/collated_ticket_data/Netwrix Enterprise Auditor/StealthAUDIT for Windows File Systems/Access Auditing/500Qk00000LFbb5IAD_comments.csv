@@ -1,0 +1,122 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BeHYTIA3","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Account ACV has been changed to 1414558.837142857144.","0054u000006gpoAAAQ","2025-02-05T23:10:37.000Z","2025-02-05T23:10:37.000Z","false","false"
+"00aQk00000BeHa5IAF","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Account ACV has been changed to 707279.418571428572.","0054u000006gpoAAAQ","2025-02-05T23:10:39.000Z","2025-02-05T23:10:39.000Z","false","false"
+"00aQk00000BgUeTIAV","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-07T17:24:10.000Z","2025-02-07T17:24:10.000Z","false","false"
+"00aQk00000BgUeVIAV","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the new comment has been added: Adam DeSapio:
+
+@Salesforce @WaitingOnEngineer @Michael Burrofato
+
+In the video, they cleared the SYSTEM server certificate/CA on the proxy, but were client certificates/CA on the NEA console cleared?
+
+For a fully clean slate, this should be done for both INF and FS accounts.
+Certificates are created on the NEA console for the current user.
+This means when they switch between INF and FS connection profiles, new certificates will be created if they are not present and automatic mode is used.
+The account the scheduled task runs as is not used to select the account for certificate exchange.
+The account that is used will be a Task(domain) credential in the connection profile, or the job credentials.
+The job credentials are picked by core as the first credential that can contact the remote host.
+When the proxy certs are removed, and the FS account is used, the error in the job log is ""Key not valid for use in specified state""
+This means there is a problem with CAs private key so the certificate can't be signed.
+It looks like they don't have a Task(domain) cred, so the FS svc account is used but cannot generate server certificates on the proxy.
+Once the INF svc account successfully makes the server certificate, then the FS acc can use that server certificate.
+
+[DevOps CommentId:11617617]","0054u000006gtWUAAY","2025-02-07T17:24:11.000Z","2025-02-07T17:24:11.000Z","false","false"
+"00aQk00000BjEBlIAN","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-02-10T19:42:26.000Z","2025-02-10T19:42:26.000Z","false","false"
+"00aQk00000BkogEIAR","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the new comment has been added: So Good News. Task domain with creds worked. 
+
+But Customer had 2 questions that I didn't have the answers too if you could help.
+""f this is an added feature/change, can I see the documentation that states the new task(domain) type requirement for proxy/file system scanning? I do not see mention in release notes as well to the change. We were on 11.6.0.112 and upgraded to 11.6.0.127 in December, this I suspect is where the feature was added or something broke.
+
+Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.""","0054u000006gpoAAAQ","2025-02-11T20:53:54.000Z","2025-02-11T20:53:54.000Z","false","false"
+"00aQk00000Bkol3IAB","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2025-02-11T20:54:03.000Z","2025-02-11T20:54:03.000Z","false","false"
+"00aQk00000CP9KYIA1","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the new comment has been added: We can close the ticket after we try to answer these questions.
+But Customer had 2 questions that I didn't have the answers too if you could help.
+""f this is an added feature/change, can I see the documentation that states the new task(domain) type requirement for proxy/file system scanning? I do not see mention in release notes as well to the change. We were on 11.6.0.112 and upgraded to 11.6.0.127 in December, this I suspect is where the feature was added or something broke.
+
+Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.""","0054u000006gpoAAAQ","2025-03-18T19:55:01.000Z","2025-03-18T19:55:01.000Z","false","false"
+"00aQk00000CQ5zdIAD","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-19T15:20:31.000Z","2025-03-19T15:20:31.000Z","false","false"
+"00aQk00000CQ5zfIAD","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the new comment has been added: Adam DeSapio:
+
+@Chris Brooks @Salesforce @WaitingOnEngineer
+
+This is not an added feature / change. Rather the recommendation was based on the setup of using 2 credentials - 1 that has the ability for server certs to get created and another for the scan. 
+
+If we do not have documentation regarding what credentials we support and their purpose in the connection profile, we should make a doc task. For what it is worth, I did not find Task(domain) creds spelled out anywhere, but this isn't new.
+
+As for why it was working at one point, then stopped: My guess is that server certificates were already in place, so the credential for running the scan would not error when trying to set those up. Then they expired or were deleted? I'm not aware of changes made between .112 - .127 that would have led to this. Because certificates were always per user.
+
+To debug job credentials issues, check the following:
+
+	 - 	The account selected under Settings > Schedule 
+	 - 	Schedules > pick an action > Properties > Run As > which account is selected? 
+	 - 	See if Settings > Connection has the checkbox ""Use the Windows account ..."" selected. 
+	 - 	Connection Profile: 
+
+	 - 	The connection profile selected at the job level 
+	 - 	vs the Schedules > Scheduled action > Connection level
+
+Maybe between these different areas there is a difference in configuration leading to the discrepancy.
+
+If not, this may be a better question for Core - how they select Job Credentials passed to the DCs when executing a job manually vs scheduled task. 
+
+[DevOps CommentId:11809321]","0054u000006gtWUAAY","2025-03-19T15:20:32.000Z","2025-03-19T15:20:32.000Z","false","false"
+"00aQk00000CQdy6IAD","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-03-19T21:31:15.000Z","2025-03-19T21:31:15.000Z","false","false"
+"00aQk00000CQhDhIAL","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-19T21:31:26.000Z","2025-03-19T21:31:26.000Z","false","false"
+"00aQk00000CQhK9IAL","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2025-03-19T21:33:40.000Z","2025-03-19T21:33:40.000Z","false","false"
+"00aQk00000DDTJHIA5","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the new comment has been added: Sorry For the delay on this. 
+Looking for some further clarification.
+
+1. Is there official documentation or a release note that states the requirement for a Task(domain) credential for proxy/file system scanning, or was this behavior changed between NEA 11.6.0.112 and 11.6.0.127?
+2. Why does the system use different credentials for certificate exchange when running jobs manually (console user) versus scheduled (not the scheduled task account)?
+2. Is this behavior intentional or a bug, and should customers expect to always use a Task(domain) credential for new proxies?
+3. Should documentation be updated to clarify these requirements and avoid future confusion?  
+Thinking connection profile article to further explain this, While it may be understood, we should probably have a Specific proxy certificate part of the documentation to cover the certificate process as well as cover connection profile situations or recommendations like we do for other solutions such as Entra and what not.","0054u000006gpoAAAQ","2025-04-30T22:03:43.000Z","2025-04-30T22:03:43.000Z","false","false"
+"00aQk00000DDOrSIAX","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2025-04-30T22:03:54.000Z","2025-04-30T22:03:54.000Z","false","false"
+"00aQk00000DFW1hIAH","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-02T14:42:23.000Z","2025-05-02T14:42:23.000Z","false","false"
+"00aQk00000DFW1jIAH","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the new comment has been added: Adam DeSapio:
+
+@Michael Burrofato @Chris Brooks @Salesforce @WaitingOnEngineer
+
+1.
+
+This behavior did not change between 11.6.0.112 and 11.6.0.127.
+Task(domain) credential is not new therefore it must be a gap in the existing documentation.
+If a Task(domain) credential exists in the connection profile, it will be used for certificate exchange.
+
+2.
+I already said that this is a question for core. Do we say anywhere that these credentials are used in the running job? I believe they are only the credentials used to start the scheduled task but I have not combed our documentation:
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Admin/Settings/Schedule.htm
+
+3.
+Not a bug, credential type gap in the documentation. It isn't necessarily a requirement.
+It has been a long time, but IIRC:
+We gave a recommendation for their specific situation with 2 credentials in the connection profile: one of AD type and one of Task(domain) type. This recommendation was provided to keep using automatic certificate exchange.
+
+4.
+Yes.
+
+[DevOps CommentId:12004122]","0054u000006gtWUAAY","2025-05-02T14:42:24.000Z","2025-05-02T14:42:24.000Z","false","false"
+"00aQk00000DFYhqIAH","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the new comment has been added: Adam DeSapio:
+
+@Salesforce @WaitingOnEngineer
+
+Confirmed with core on point number 2. The credential configured in the Schedule is for starting the scheduled task, not running the job. The doc link in the previous comment should also confirm this.
+
+[DevOps CommentId:12004227]","0054u000006gtWUAAY","2025-05-02T15:10:56.000Z","2025-05-02T15:10:56.000Z","false","false"
+"00aQk00000DFtSwIAL","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-05-02T18:59:39.000Z","2025-05-02T18:59:39.000Z","false","false"
+"00aQk00000DJ54ZIAT","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Account ACV has been changed to 703179.4299999999967.","0054u000006gtWUAAY","2025-05-06T10:47:37.000Z","2025-05-06T10:47:37.000Z","false","false"
+"00aQk00000DM4dNIAT","500Qk00000LFbb5IAD","On Escalation Ticket # 00434796 the Following Fields have been updated: 
+Account ACV has been changed to 703179.4298245614017.
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2025-05-08T14:18:38.000Z","2025-05-08T14:18:38.000Z","false","false"

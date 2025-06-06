@@ -1,0 +1,30 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000bKkW1KAK","500Qk00000NnqzVIAR","TextPost","0054u000008ARZjAAO","2025-04-07T23:42:43.000Z","Description: I installed Netwrix Access Analyzer 12.0. When I tried to scan, it gave me the message that I had to run the Create Schema job. I ran it, and after running for about 83 hours, I stopped in case something was happening. It is running the task 18. Data Migration SQL Script 1 of 3. I noticed this is a new task compared to previous times of running this job. Is it normal for this migration to take this long? Is there a way to get an idea of how long the migration will take?","","","","0054u000008ARZjAAO","2025-04-07T23:42:43.000Z"
+"0D5Qk00000bOIfGKAW","500Qk00000NnqzVIAR","TextPost","005Qk00000276ifIAA","2025-04-08T22:19:53.000Z","Invitation updated. Attendees: Mike Candon","","","","005Qk00000276ifIAA","2025-04-08T22:19:53.000Z"
+"0D5Qk00000bOIfHKAW","500Qk00000NnqzVIAR","TextPost","005Qk00000276ifIAA","2025-04-08T22:19:53.000Z","Invitation updated. Attendees: Mike Candon, Steven Schiesl","","","","005Qk00000276ifIAA","2025-04-08T22:19:53.000Z"
+"0D5Qk00000bOIfFKAW","500Qk00000NnqzVIAR","TextPost","005Qk00000276ifIAA","2025-04-08T22:19:53.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk00000276ifIAA","2025-04-08T22:19:53.000Z"
+"0D5Qk00000bS04nKAC","500Qk00000NnqzVIAR","TextPost","005Qk00000276ifIAA","2025-04-09T19:27:23.000Z","<p>1) It might be a better option to turn off the FK constraint check on the ResourcesScanTypeDetails table during the migration</p><p> </p><p>ALTER TABLE SA_FSAA_ResourcesScanTypeDetails NOCHECK CONSTRAINT ALL</p><p> </p><p>2) then afterwards:</p><p>ALTER TABLE SA_FSAA_ResourcesScanTypeDetails WITH CHECK CHECK CONSTRAINT ALL</p><p> </p><p>3) ALTER TABLE SA_FSAA_ResourceMap NOCHECK CONSTRAINT ALL</p><p> </p><p>4) ALTER TABLE SA_FSAA_ResourceMap WITH CHECK CHECK CONSTRAINT ALL</p>","","","","005Qk00000276ifIAA","2025-04-09T19:27:23.000Z"
+"0D5Qk00000bab3CKAQ","500Qk00000NnqzVIAR","TextPost","005Qk00000276ifIAA","2025-04-11T20:57:14.000Z","What We've Learned Updated: A) Today on the call, for NAA 12, Step 18.Data Migration had been running for another 41 hours after it ran for 81+ hours the first time that you ran it and then killed it.
+
+B) We consulted with our Product Management and Dev teams and they gave us a workaround to remove the constraints from 2 tables based upon the what we were seeing in SSMS > Activity Monitor > Active Expensive Queries. 
+
+They had us turn off the FK constraint on 2 tables:
+""SA_FSAA_ResourcesScanTypeDetails""
+""SA_FSAA_ResourceMap""
+
+and then Step ""18.Data Migration"" completed very quickly.
+
+C) Next we re-applied the 2 constraints:
+1) It might be a better option to turn off the FK constraint check on the ""SA_FSAA_ResourcesScanTypeDetails"" table during the migration:
+
+ALTER TABLE ResourcesScanTypeDetails NOCHECK CONSTRAINT ALL
+
+2) then afterwards:
+
+ALTER TABLE SA_FSAA_ResourcesScanTypeDetails WITH CHECK CHECK CONSTRAINT ALL
+
+3) ALTER TABLE SA_FSAA_ResourceMap NOCHECK CONSTRAINT ALL
+
+4) ALTER TABLE SA_FSAA_ResourceMap WITH CHECK CHECK CONSTRAINT ALL
+
+D) And now you are running one of your scans which we anticipate will take about one (1+) day(s) to complete.","","","","005Qk00000276ifIAA","2025-04-11T20:57:14.000Z"

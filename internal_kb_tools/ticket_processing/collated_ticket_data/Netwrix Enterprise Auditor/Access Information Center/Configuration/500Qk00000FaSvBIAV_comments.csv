@@ -1,0 +1,39 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk0000091eW6IAI","500Qk00000FaSvBIAV","Unsupported Product, Reassigning to Team Lead Queue","0054u000008icoxAAA","2024-09-10T19:27:47.000Z","2024-09-10T19:27:47.000Z","false","false"
+"00aQk000009GcVZIA0","500Qk00000FaSvBIAV","Use the following to ID the old and new Thumbprints via an ADMIN PowerShell ISE:
+Clear-Host
+#Check Current cert details 
+netsh http show sslcert
+Get-ChildItem -Path Cert:LocalMachineMy |Select-Object -Property * |Sort-Object NotAfter |Sort-Object NotAfter -Descending |
+Format-Table Thumbprint,Subject,FriendlyName, NotAfter -AutoSize
+
+##netsh update SSL Cert based on the details from the above output
+
+netsh http delete sslcert ipport=0.0.0.0:8082
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" # This will be the same for all installations because it is a GUID from the built-in webserver application
+$certHash = ""INSERT THUMBNAIL VALUE FROM STEP 2 BETWEEN QUOTES""
+$ip = ""0.0.0.0"" # this means all IP addresses
+$port = ""8082"" # the default HTTPS port
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh
+
+## AIC 11.6+
+netsh http delete sslcert ipport=0.0.0.0:481
+$guid = ""bdd5710f-7cbe-4f85-b8c1-da4bddf485a8"" # This will be the same for all installations because it is a GUID from the built-in webserver application
+$certHash = ""INSERT THUMBNAIL VALUE FROM STEP 2 BETWEEN QUOTES""
+$ip = ""0.0.0.0"" # this means all IP addresses
+$port = ""481"" # the default HTTPS port
+""http add sslcert ipport=$($ip):$port certhash=$certHash appid={$guid}"" | netsh
+
+
+#11.6 URL issues post upgrade ""fix"" ## If there are issues
+netsh http show urlacl
+netsh http delete urlacl url=""http://+:8082/""    #  might need to run for ""https://+:8082/""
+netsh http add urlacl url=https://+:8082/ user=""NT AUTHORITYLOCAL SERVICE"" listen=yes delegate=no
+
+Example image if needed: https://nwxcorp.lightning.force.com/servlet/servlet.FileDownload?file=00PQk00000AJ4gT
+ 
+References:
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Reports via the Web Console > Securing the Web Console
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Reports/Secure.htm 
+Netwrix Access Information Center 11.6 > Installation Overview > Securing the Access Information Center
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm","00570000003KXurAAG","2024-09-23T19:02:28.000Z","2024-09-23T19:02:28.000Z","false","false"

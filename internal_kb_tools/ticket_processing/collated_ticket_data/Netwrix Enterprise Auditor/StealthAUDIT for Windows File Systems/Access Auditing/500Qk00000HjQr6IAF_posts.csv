@@ -1,0 +1,50 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PoxLgKAJ","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-10-31T18:59:05.000Z","Description: A single Bulk import job is returning these error message:
+""SQL logic error unknown database strucmap""","","","","0054u000007oss5AAA","2024-10-31T18:59:05.000Z"
+"0D5Qk00000Q9UlnKAF","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-05T21:27:00.000Z","What We've Learned Updated: client said they ran the repair and will let me know if the error persists","","","","0054u000007oss5AAA","2024-11-05T21:27:00.000Z"
+"0D5Qk00000Q9UloKAF","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-05T21:27:00.000Z","Next Steps Updated: waiting to hear back from the client","","","","0054u000007oss5AAA","2024-11-05T21:27:00.000Z"
+"0D5Qk00000Q9kWeKAJ","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-05T21:29:10.000Z","Steps to Reproduce Updated: run the bulk import job","","","","0054u000007oss5AAA","2024-11-05T21:29:10.000Z"
+"0D5Qk00000QCuurKAD","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-06T14:07:37.000Z","<p>ticket is showing as rotting even thought the client just told me yesterday that they ran the repair and will let me know</p><p>putting in postpone reply to clear from rotting queue</p>","","","","0054u000007oss5AAA","2024-11-06T14:07:37.000Z"
+"0D5Qk00000QKnvYKAT","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-07T21:51:32.000Z","Next Steps Updated: waiting to hear back from the client
+
+request logs from job after setting to debug","","","","0054u000007oss5AAA","2024-11-07T21:51:32.000Z"
+"0D5Qk00000QKnvXKAT","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-07T21:51:32.000Z","Description Updated: A single Bulk import job is returning these error message:
+""SQL logic error unknown database strucmap""","","","","0054u000007oss5AAA","2024-11-07T21:51:32.000Z"
+"0D5Qk00000QdIrZKAV","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-11T20:55:30.000Z","<p>zoom meeting</p><p> </p><p>problem changed a little bit</p><p>bulk import error doesn&#39;t exist anymore</p><p> </p><p>a scan is failing so the bulk doesn&#39;t run</p><p> </p><p>lots of error:</p><p>error 110 parsing tags the system cannot open the device or files specified</p><p> </p><p>scheduled to run weekly and timeout after 72 hours</p><p>-looking at log, it seems to have stopped ~3 hours</p><p> </p><p>changing bulk import to run if incomplete</p><p>running manually</p><p> </p><p>client has veem for backing up servers</p><p>maybe the backup caused the scan to fail</p><p> </p><p>client did delete the running.lck file</p><p> </p><p>they have been stepping up scan depts</p><p>was at 2 for a long time</p><p>currently set to 8</p><p>wants to scan unlimited soon</p><p> </p><p>bulk import scan finished with warning -host is offline</p><p>-this host has been reporting that for many previous scans</p><p>-maybe decom&#39;d</p><p>-unchecking the bock for skipping if the host doesn&#39;t respond to ping</p><p> </p><p>confirmed that server is gone</p><p>-client will remove from host list</p><p> </p><p>failed at 12:04AM</p><p> </p><p>found error in application log on APP server</p><p>-.NET runtime error</p><p>-attaching Screenshot to ticket</p><p>-&quot;unhandled exception&quot;</p><p> </p><p>this is not congruent with errors expected with server backup</p><p> </p><p>no errors on the target FS&#39;s application log</p><p> </p><p> </p><p> </p><p> </p>","","","","0054u000007oss5AAA","2024-11-11T20:55:30.000Z"
+"0D5Qk00000QdRkuKAF","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-11T21:12:52.000Z","<p>FSAC jobs are disabled</p><p>checked NAM</p><p>looks good except NAM was reporting as netbios name</p><p>-changed all to report as FQDN</p><p> </p><p> </p>","","","","0054u000007oss5AAA","2024-11-11T21:12:52.000Z"
+"0D5Qk00000QdRCsKAN","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-11T21:13:54.000Z","What We've Learned Updated: SQL error was only present for FS that was offline
+
+FSAA scan failing after 3 hours
+
+the only change we made was enable partial bulk imports
+and disabled ""skip servers that don't respond to ping""","","","","0054u000007oss5AAA","2024-11-11T21:13:54.000Z"
+"0D5Qk00000QgLvEKAV","500Qk00000HjQr6IAF","TextPost","0054u000007oss5AAA","2024-11-12T14:34:38.000Z","What We've Learned Updated: Issues identified:
+The latest bulk import didn't even try to start
+-It looks like this is because the FSAA system scan failed to complete. 
+
+Most recent FSAA System Scan failed after only a couple hours
+-previous scans took a couple days
+-scan time has been increasing as depth has increased, as expected
+-currently set to 8 levels deep
+Errors identified:
+Bulk import error:
+""Host is offline""
+-This is expected for a server that appears to have been decommissioned.
+
+Error in Application log on Netwrix Server:
+.NET runtime ""unhandled exception"" error with StealthAUDIT.exe
+-This appears to be what killed the most recent scan
+
+FSAA System Scan job error:
+""Error 110 parsing tags the system cannot open the device or files specified"" - Path to file
+-This is a common error when scanning related to file access at the time of the scan
+Changes made:
+Bulk import:
+-disabled skipping over hosts that don't respond to ping
+-enabled uploading partial scans
+--This way, the bulk import should run even if the FSAA System Scan fails to fully complete
+
+This is unrelated to the FSAA scan issues, but we did make a change in Netwrix Activity Monitor.
+-Changed the monitored Hosts to report their host name as FQND
+-This is important for when you enable FSAC (File Activity) auditing","","","","0054u000007oss5AAA","2024-11-12T14:34:38.000Z"
+"0D5Qk00000S7XtlKAF","500Qk00000HjQr6IAF","TextPost","005Qk0000017MRRIA2","2024-12-02T20:37:05.000Z","<p>Hi @Joshua Sexton​ thanks for flagging this ticket as &quot;KB article needed&quot;. Would you mind creating a draft with the error message thrown by the bulk import (and the cause, if you know it)? Thanks :)</p>","","","","005Qk0000017MRRIA2","2024-12-02T20:37:05.000Z"

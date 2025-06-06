@@ -1,0 +1,21 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OgP7RIAV","00443816","Support Ticket","File System Create Schema job hangs post 12.0 upgrade","Split from upgrade ticket 00442753
+---------------
+Upgraded NEA to 12.0 then ran the FS Create Schema job per standard post upgrade procedure.
+Create Schema job hangs at final analysis task: 18.Data Migration > SQL script 1 of 3.
+
+Confirmed in SSMS that query is running but it seems to run indefinitely.","post 12.0 upgrade
+run FS Create Schema job","create schema job still just hangs on the 18.Data Migration SQL script 1 of 3 step
+the logs, even in debug, just hang at that point with no updates until the job is aborted
+
+the job ran all weekend then timed out at 72 hours
+
+client is running the FS_MigrateSchema job then will try the create schema job again
+
+bulk import fails with errors (expected because create schema has to run first)","asked client if FS_MigrateSchema job helped","Issue:
+Post 12.0 upgrade
+FS Create Schema job hang indefinitely on analysis task 18.Data Migration
+
+Resolution:
+Ran FS_Migradeschema instant job
+then Create Schema completed successfully.","Database Configuration/Capacity","Joshua Sexton","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Database","12.0","1070","8.1","Closed - Resolved","US Department of Treasury-Office of the Comptroller of the Currency","Eugene Johnson","2025-05-01T18:17:08.000Z","2025-05-09T20:18:05.000Z"

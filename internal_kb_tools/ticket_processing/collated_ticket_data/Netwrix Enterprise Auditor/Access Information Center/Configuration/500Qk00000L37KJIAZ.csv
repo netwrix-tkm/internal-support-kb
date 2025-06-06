@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000L37KJIAZ","00433568","Support Ticket","25. Missing Security Header X-Frame Options","AIC 11.5
+
+Impact:
+The users of the web application can be tricked into clicking link to a malicious website
+which will then frame a legitimate website and capture all the users’ keystrokes. All activity by
+the user can be monitored and recorded by the attacker allowing a complete compromise of
+the username, password, or any other sensitive inputs. Attacker can perform Click jacking
+and Phishing attacks to capture the sensitive information.
+
+Recommendation:
+As a security best practice, we recommend to implement X-Frame Options - ‘SAMEORIGIN’
+to allow framing only by pages from the same origin and CSP frame-ancestors through out
+the application.
+
+References:
+Industry Standard:
+https://owasp.org/www-community/attacks/Clickjacking
+https://wiki.owasp.org/index.php/OWASP_Secure_Headers_Project#xfo
+
+Steps to Reproduce:
+Verify the response headers of application for X-Frame Options.","Verify the response headers of application for X-Frame Options.","","","fixed in 11.6+","Product defect","Brandon West","Question","Netwrix Enterprise Auditor","Access Information Center","Configuration","11.5","","25.7","Closed - Resolved","Netwrix Technical Support","Catharine Coleman","2025-01-24T20:56:10.000Z","2025-02-19T13:43:46.000Z"

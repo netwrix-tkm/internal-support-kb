@@ -1,0 +1,54 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000O9ytZIAR","00442427","Support Ticket","RegisterAzureAppAuth","I am getting an error on trying to fun the RegisterAzureappAuth for Sharepoint. I get these errors
+
+###
+
+Connect-MgGraph : The type initializer for 'Azure.Identity.AuthenticationRecord' threw an exception.
+At line:85 char:13
++ $userAuth = Connect-MgGraph -TenantId $tenantId -Scopes 'Application. ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ : Could not connect to MS Graph API
+at , : line 91
+Connect-MgGraph : The type initializer for 'Azure.Identity.AuthenticationRecord' threw an exception.
+At line:89 char:17
++     $userAuth = Connect-MgGraph -TenantId $tenantId
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+## I have set up a connection account which has 2 credentials, 1 called ""newapp"" set as Task (Local) and another containing a Entra ID Account which is a Global Admin. 
+
+When I run the task it pops up a login box for my admin account which I log into. First time it ran it also asked me to authorise access to the Graph API which I did for that user. 
+
+Its targeted to my Sharepoint Online Tenant.","","-----------
+17.04.2025 
+Artem Naskal 
+
+Customer tried using RegisterAzureappAuth to set up Entra ID app for SharePoint online access auditing. 
+
+It seems app was not registered properly and it is missing Graph API permissions. 
+
+Suggested the following as solution:
+configure application for SharePoint Online access auditing follow these steps from the top of the article:
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/Config/SharePointOnline/Access.htm
+
+Once you have SharePoint Online application set up and once you copy all necessary information (The comma delimited string containing the path to the certificate PFX file, certificate password, and the Microsoft Entra ID environment identifier ( CertPath,CertPassword,AzureEnvironment)) - use this information to create a separate Connection Profile of Account Type > Azure Active Directory as described here:
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Admin/Settings/Connection/Profile/EntraID.htm","Customer will attempt configuring entra ID app for SharePoint online access auditing manually and reply back.","Customer tried the SP_RegisterAzureAppAuth Job:
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Admin/Jobs/InstantJobs/SP_RegisterAzureAppAuth.htm
+
+Job failed with this error:
+Connect-MgGraph : The type initializer for 'Azure.Identity.AuthenticationRecord' threw an exception.
+At line:85 char:13
++ $userAuth = Connect-MgGraph -TenantId $tenantId -Scopes 'Application. ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ : Could not connect to MS Graph API
+at , : line 91
+Connect-MgGraph : The type initializer for 'Azure.Identity.AuthenticationRecord' threw an exception.
+At line:89 char:17
++     $userAuth = Connect-MgGraph -TenantId $tenantId
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Job was failing due to incorrect connection profile. 
+
+Customer applied this workaround to resolve issue then closed ticket from their side:
+I have found a workaround and it wasnt missing permissions. I used powershell to first connect to graph by using Connect-MgGraph, by leaving that powershell open it had already pre-authenticated me utilizing exactly the same user that was registered in the system. It then went rhough and registered the app fine and produced the required certificate. It still produced an error but this seems to be after the app was created and is more of a checking stage.","Incorrect configuration: target server software","Artem Naskal","Error","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Access Auditing","12.0","","0.1","Closed - Resolved","St Margarets Hospice","Liam Rice","2025-04-17T13:59:26.000Z","2025-04-17T15:59:37.000Z"

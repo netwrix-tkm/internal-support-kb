@@ -1,0 +1,30 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EVn9HIAT","00418307","Support Ticket","Scanning Errors","Receiving the following error when trying to run permissions and SDD scans: 
+System.IndexOutOfRangeException: There is no row at position 0. at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util.RunInBackground[TResult](Action statusAction, Func`1 execAction) at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util.RunInBackground(Action statusAction, Action execAction) at Stealthbits.StealthAUDIT.DataCollectors.FSAA.AccessScanTask.InternalProcessRecord() at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()","1. Run FSAA/SEEK System Scan
+2. Receive error from certain hosts","Met with customer and a firewall resource. Tested with host OTTVAIOHUGMS001 from proxy server SOPVAPPSTBMS002. We had an UNsuccessful tnc on 445 from the proxy to the host. We were also unable to successfully unc via \OTTVAIOHUGMS001 or \OTTVAIOHUGMS001C$. 
+
+There were no hits (success or deny) on the Palo Alto firewall which leads us to believe it is an issue with the internal firewall, but that is managed by Open Systems and may take some time to remediate.
+-----
+Sat on the call for 40 minutes but we were unable to locate the service account password for troubleshooting - sending the next steps via email and another meeting link
+-----
+Upgraded to NEA v11.6.0.117 and FS Proxy v11.6.0.36
+
+We also discussed how to create a job to drop data for a file system host. Paul ran the DropFSTables job before the meeting thinking that was the correct job. He is going to work with his DBA to try and restore those tables.
+-----
+@Salesforce
+
+Identified an issue affecting proxy mode scans. Working on a fix.
+
+
+The 8/2 applet log provided has this error message ""Failed to connect to \HUGVAPPLRSMS001IPC$: The specified network name is no longer available""
+Was able to reproduce by disabling the ""Server"" service. This service should be running on target hosts in order for scans to succeed.
+This appears to have lead to the current issue reading the proxies T2s that we will get a fix for","Customer has a meeting this week with their firewall team and should be able to provide an update by the end of the week - 3/21.
+
+Customer must work with Open Systems to locate the correct firewall blocking us and open ports 445 between the proxies and the target hosts.","Symptom:
+Failed to connect to \{HOST}IPC$: The specified network name is no longer available during the FSAA System Scan.
+
+Cause:
+This error is occurring because the NEA scan server (proxy server) is unable to reach the target host's IPC$ share due to SMB traffic over port 445/tcp being blocked.
+
+Resolution:
+To resolve this, a firewall rule will need to be implemented to allow SMB (445/tcp) traffic between the NEA scan server and the target file system.","Incorrect configuration: target server software","Tay Caliguiri","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.6","","241.1","Closed - Resolved","Advent Health System","Paul Williams","2024-08-16T10:34:45.000Z","2025-04-14T13:58:55.000Z"

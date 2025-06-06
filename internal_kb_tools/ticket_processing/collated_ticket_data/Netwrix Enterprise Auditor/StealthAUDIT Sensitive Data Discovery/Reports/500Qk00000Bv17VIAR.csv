@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Bv17VIAR","00412058","Support Ticket","Active Sensitive Data job as supplied by Netwrix -  Slow Thread","Hello
+I have previously been provided with the code to create an ""Active Sensitive Data"" job by Netwrix support.  This job  has previously run ok  but the last week or so it has been taking a very long time to run to the point where I end it prematurely.  Please can you advise any steps I can take to diagnose what is wrong.
+Thanks","","","","Optimized the script excluding the subqueries, and added the DROP VIEW of SA_Active_Sensitive_Data_Result before generating a new one.
+
+The original SQL script was:
+
+CREATE VIEW [SA_Active_Sensitive_Data_Result] AS
+SELECT   [SourceTable1].[HostName], [SourceTable1].[CriteriaName], [SourceTable1].[FileName], [SourceTable1].[FilePath], [SourceTable1].[MatchCount]
+FROM (select res.*  from [SA_FSDLP_MatchesView] as res ) as SourceTable1 INNER join (select res.*  from [SA_FSAA_ResourcesView] as res ) as SourceTable2 on ([SourceTable1].[ResourceID] = [SourceTable2].[ID])
+WHERE (""SourceTable2"".""DeletedUSN"" is null)
+
+I've changed it to:
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].SA_Active_Sensitive_Data_Result') AND type in (N'V'))
+DROP VIEW SA_Active_Sensitive_Data_Result
+
+GO
+
+CREATE VIEW [SA_Active_Sensitive_Data_Result] AS
+SELECT mv.[HostName], mv.[CriteriaName], mv.[FileName], mv.[FilePath], mv.[MatchCount]
+FROM dbo.SA_FSDLP_MatchesView mv
+JOIN dbo.SA_FSAA_ResourcesView rv ON mv.ResourceID = rv.ID
+WHERE rv.DeletedUSN IS NULL","Data validation / interpretation","Aleksandr Timofeev","","Netwrix Enterprise Auditor","StealthAUDIT Sensitive Data Discovery","Reports","11.5","","4.0","Closed - Resolved","Assystem Energy & Infrastructure Limited","James Allen","2024-06-17T08:58:01.000Z","2024-06-21T09:11:40.000Z"

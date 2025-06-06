@@ -1,0 +1,34 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IdmoqIAB","00427856","Support Ticket","File System Activity - Data Retention","File System Activity data retention does not seem to be respected. Detailed activity retention is set to the default of 60 days in the FSAC Query, but the database can recall events back to March 2023.
+
+Incomplete activity data is displayed in the AIC (possible a symptom of the data retention control).
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/FileSystem/Collection/1-FSAC_System_Scans.htm#_Configure_the_Activity_Scan-Query_for1-FSAC_System_Scans
+
+
+--------
+17/01/2025
+--------
+FSAC scans are working correctly, just waiting for 60 days to see if retention period is respected.","After 60 day retention period, information is not removed and stale info can be seen in reports and database.","--------
+03/03/2023
+--------
+Check file system retention on next call as we should be nearing the time for cleanup to occur.
+
+The File System Activity collection is pulling in data from the Activity Monitor, but it is not displayed – in part or full – in the AIC.  We noted that the Data retention was set to 60 days but event records exist back to March 2023.  
+
+ The AIC display may be a symptom of an overly large data set.
+
+
+--------
+12/12/2024
+--------
+After meeting with Glenda, I found out they want to upgrade the OS on their NEA server. We decided we could deploy a fresh installation on a new server running the OS they want and this running in parallel to the current setup would give us additional data as to where the troubleshooting should focus. There is suspicion that the data retention is not working properly or being displayed properly due to the hosts or amount of data that is present.
+
+--------
+01/28/2025
+--------
+File system scans are still working and we are not just monitoring to ensure that the data retention is respected by the new setup.","Monitoring file retention for file system scans.","Issue:
+NEA database cleanup job is not functioning properly.
+
+Resolution:
+The issue was resolved when we moved to a new server and redeployed to cleanup any corruption that may have existed in the old environment.","Root Cause Unknown","Ian Ranstrom","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Activity Auditing","11.6","","109.8","Closed - Resolved","Eglin Federal Credit Union","Glenda Coley","2024-11-21T21:52:58.000Z","2025-03-11T17:01:40.000Z"

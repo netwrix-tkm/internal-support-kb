@@ -1,0 +1,1221 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000N0GlvIAF","500Qk00000NJCxwIAH","2025-03-25T20:07:01.000Z","2025-03-25T20:07:01.000Z","Justin,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix/Stelthbits Install/Service path(s)
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {$_.DisplayName -like 'Stealth*'}).Pathname
+(Get-CimInstance -ClassName Win32_Service -PipelineVariable Service |Where-Object {$_.DisplayName -like 'Netwrix*'}).Pathname 
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0NJCxw:ref","StealthAUDIT upgrade to latest version    [ ref:!00D70091pB.!500Qk0NJCxw:ref ]","techsupport@netwrix.com","Netwrix Support","jsnow@hughchatham.org","","","false","2025-03-25T20:07:00.000Z","true"
+"02sQk00000NLMGXIA5","500Qk00000NJCxwIAH","2025-04-03T17:22:33.000Z","2025-04-03T18:47:00.000Z","ref:_00D7091pB._500Q000NJCxw:ref
+
+Good afternoon Dusty,
+
+I ran the script provided and provided the following:
+
+SERVER: SB-APP
+Name                                               Version    InstallDate
+----                                               -------    -----------
+Netwrix Activity Monitor                           8.0.142    20250319   
+StealthAUDIT Access Information Center             10.0.0.73  20200827   
+StealthAUDIT Sensitive Data Discovery Add-On V10.0 10.0.0.87  20211216   
+StealthAUDIT V10.0                                 10.0.0.168 20200824   
+StealthINTERCEPT Server                            7.3.5.202  20220726   
+
+
+PS C:Userssbservice> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:inetpubwwwrootStealthAUDIT ComplianceBinAccessInformationCenter.Service.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIEnterpriseManagerSIEnterpriseManager.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.ReportingServicesHost.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.Services.Scheduler.Host.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITVaultService.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITWebWebServer.exe""
+
+SERVER: SB-DEFEND
+Name                                         Version     InstallDate
+----                                         -------     -----------
+ConfigurePostgres                            10.5.4.0    20211202   
+Netwrix Activity Monitor Agent 64-bit        8.0.142     20250327   
+PostgreSQL10Client                           2.7.1448    20220825   
+Python 3.10.4 Core Interpreter (64-bit)      3.10.4150.0 20220617   
+Python 3.10.4 Development Libraries (64-bit) 3.10.4150.0 20220617   
+Python 3.10.4 Documentation (64-bit)         3.10.4150.0 20220617   
+Python 3.10.4 Executables (64-bit)           3.10.4150.0 20220617   
+Python 3.10.4 pip Bootstrap (64-bit)         3.10.4150.0 20220617   
+Python 3.10.4 Standard Library (64-bit)      3.10.4150.0 20220617   
+Python 3.10.4 Tcl/Tk Support (64-bit)        3.10.4150.0 20220617   
+Python 3.10.4 Test Suite (64-bit)            3.10.4150.0 20220617   
+Python 3.10.4 Utility Scripts (64-bit)       3.10.4150.0 20220617   
+Python 3.7.4 Core Interpreter (64-bit)       3.7.4150.0  20200824   
+Python 3.7.4 Development Libraries (64-bit)  3.7.4150.0  20200824   
+Python 3.7.4 Documentation (64-bit)          3.7.4150.0  20200824   
+Python 3.7.4 Executables (64-bit)            3.7.4150.0  20200824   
+Python 3.7.4 pip Bootstrap (64-bit)          3.7.4150.0  20200824   
+Python 3.7.4 Standard Library (64-bit)       3.7.4150.0  20200824   
+Python 3.7.4 Tcl/Tk Support (64-bit)         3.7.4150.0  20200824   
+Python 3.7.4 Test Suite (64-bit)             3.7.4150.0  20200824   
+Python 3.7.4 Utility Scripts (64-bit)        3.7.4150.0  20200824   
+Python Launcher                              3.10.7751.0 20220617   
+StealthDEFEND                                2.7.1448    20220825   
+StealthDEFEND Action Service                 2.7.1448    20220825   
+
+
+
+PS C:Windowssystem32> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:Program FilesSTEALTHbitsStealthDEFENDActionServiceActionService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDActiveDirectoryServiceActiveDirectoryService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEmailServiceEmailService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEventMessageServiceEventMessageService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDJobServiceJobService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDLicenseServiceLicenseService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDSiemServiceSiemService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDWebServiceRestServer.exe""
+""C:Program FilesNetwrixActivity MonitorAgentnet472FSACLoggingSvc.exe""
+""C:Program FilesStealthbitsStealthAUDITFSACSBTService.exe""
+""C:Program FilesNetwrixActivity MonitorAgentDNS ServiceDnsService.exe"" -d ""C:ProgramDataNetwrixDns Service"""
+"02sQk00000NLkCNIA1","500Qk00000NJCxwIAH","2025-04-03T19:00:22.000Z","2025-04-03T19:00:22.000Z","Justin,
+
+Thank You for the update.
+
+Upgrade prep Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gsDhaHWeFJwnpU1tzDJppoKfrVsev94lPunrVifIdr8-Z&MeetingID=Ix7jy1O1_OIByVMXnbaGNjbaYaNOAhw4SN5Eyd3r284-Z
+
+For this 45min Perp meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server
+
+​​​​​​​If possible 7zip installed
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Justin Snow [jsnow@hughchatham.org]
+Sent: 4/3/2025 1:22 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version
+
+ref:_00D7091pB._500Q000NJCxw:ref
+
+Good afternoon Dusty,
+
+I ran the script provided and provided the following:
+
+SERVER: SB-APP
+Name Version InstallDate
+---- ------- -----------
+Netwrix Activity Monitor 8.0.142 20250319
+StealthAUDIT Access Information Center 10.0.0.73 20200827
+StealthAUDIT Sensitive Data Discovery Add-On V10.0 10.0.0.87 20211216
+StealthAUDIT V10.0 10.0.0.168 20200824
+StealthINTERCEPT Server 7.3.5.202 20220726
+
+
+PS C:Userssbservice> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:inetpubwwwrootStealthAUDIT ComplianceBinAccessInformationCenter.Service.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIEnterpriseManagerSIEnterpriseManager.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.ReportingServicesHost.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.Services.Scheduler.Host.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITVaultService.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITWebWebServer.exe""
+
+SERVER: SB-DEFEND
+Name Version InstallDate
+---- ------- -----------
+ConfigurePostgres 10.5.4.0 20211202
+Netwrix Activity Monitor Agent 64-bit 8.0.142 20250327
+PostgreSQL10Client 2.7.1448 20220825
+Python 3.10.4 Core Interpreter (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Development Libraries (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Documentation (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Executables (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 pip Bootstrap (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Standard Library (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Tcl/Tk Support (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Test Suite (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Utility Scripts (64-bit) 3.10.4150.0 20220617
+Python 3.7.4 Core Interpreter (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Development Libraries (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Documentation (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Executables (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 pip Bootstrap (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Standard Library (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Tcl/Tk Support (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Test Suite (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Utility Scripts (64-bit) 3.7.4150.0 20200824
+Python Launcher 3.10.7751.0 20220617
+StealthDEFEND 2.7.1448 20220825
+StealthDEFEND Action Service 2.7.1448 20220825
+
+
+
+PS C:Windowssystem32> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:Program FilesSTEALTHbitsStealthDEFENDActionServiceActionService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDActiveDirectoryServiceActiveDirectoryService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEmailServiceEmailService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEventMessageServiceEventMessageService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDJobServiceJobService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDLicenseServiceLicenseService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDSiemServiceSiemService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDWebServiceRestServer.exe""
+""C:Program FilesNetwrixActivity MonitorAgentnet472FSACLoggingSvc.exe""
+""C:Program FilesStealthbitsStealthAUDITFSACSBTService.exe""
+""C:Program FilesNetwrixActivity MonitorAgentDNS ServiceDnsService.exe"" -d ""C:ProgramDataNetwrixDns Service"""
+"02sQk00000NYQMFIA5","500Qk00000NJCxwIAH","2025-04-09T14:19:21.000Z","2025-04-09T14:19:21.000Z","Justin,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment and prepared for the upgraded:
+
+StealthAUDIT (SA)                            10.0.0.168      
+SA Access Information (AIC)            10.0.0.73
+SA Sensitive Data (SDD)                   10.0.0.87
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=0r0Sfb.NdQCJcv.F3raCL_STOxswu2tYyslbnVd59N0-Z&MeetingID=aAGp2yrYFVvDXQZVR3lLSi6w_.ll3CwZ4tMUOQ0GfqY-Z
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+StealthAUDIT (SA)                            11.5.0.279+
+Access Information Center (AIC)      11.5.0.138+
+Sensitive Data Add-On (SDD)           11.5.0.65+
+If possible:
+SQL Server Management Studio (SSMS)
+Notepad++
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/3/2025 3:00 PM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Thank You for the update.
+
+Upgrade prep Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gsDhaHWeFJwnpU1tzDJppoKfrVsev94lPunrVifIdr8-Z&MeetingID=Ix7jy1O1_OIByVMXnbaGNjbaYaNOAhw4SN5Eyd3r284-Z
+
+For this 45min Perp meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server
+
+If possible 7zip installed
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Justin Snow [jsnow@hughchatham.org]
+Sent: 4/3/2025 1:22 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version
+
+ref:_00D7091pB._500Q000NJCxw:ref
+
+Good afternoon Dusty,
+
+I ran the script provided and provided the following:
+
+SERVER: SB-APP
+Name Version InstallDate
+---- ------- -----------
+Netwrix Activity Monitor 8.0.142 20250319
+StealthAUDIT Access Information Center 10.0.0.73 20200827
+StealthAUDIT Sensitive Data Discovery Add-On V10.0 10.0.0.87 20211216
+StealthAUDIT V10.0 10.0.0.168 20200824
+StealthINTERCEPT Server 7.3.5.202 20220726
+
+
+PS C:Userssbservice> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:inetpubwwwrootStealthAUDIT ComplianceBinAccessInformationCenter.Service.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIEnterpriseManagerSIEnterpriseManager.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.ReportingServicesHost.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.Services.Scheduler.Host.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITVaultService.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITWebWebServer.exe""
+
+SERVER: SB-DEFEND
+Name Version InstallDate
+---- ------- -----------
+ConfigurePostgres 10.5.4.0 20211202
+Netwrix Activity Monitor Agent 64-bit 8.0.142 20250327
+PostgreSQL10Client 2.7.1448 20220825
+Python 3.10.4 Core Interpreter (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Development Libraries (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Documentation (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Executables (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 pip Bootstrap (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Standard Library (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Tcl/Tk Support (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Test Suite (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Utility Scripts (64-bit) 3.10.4150.0 20220617
+Python 3.7.4 Core Interpreter (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Development Libraries (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Documentation (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Executables (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 pip Bootstrap (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Standard Library (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Tcl/Tk Support (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Test Suite (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Utility Scripts (64-bit) 3.7.4150.0 20200824
+Python Launcher 3.10.7751.0 20220617
+StealthDEFEND 2.7.1448 20220825
+StealthDEFEND Action Service 2.7.1448 20220825
+
+
+
+PS C:Windowssystem32> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:Program FilesSTEALTHbitsStealthDEFENDActionServiceActionService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDActiveDirectoryServiceActiveDirectoryService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEmailServiceEmailService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEventMessageServiceEventMessageService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDJobServiceJobService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDLicenseServiceLicenseService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDSiemServiceSiemService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDWebServiceRestServer.exe""
+""C:Program FilesNetwrixActivity MonitorAgentnet472FSACLoggingSvc.exe""
+""C:Program FilesStealthbitsStealthAUDITFSACSBTService.exe""
+""C:Program FilesNetwrixActivity MonitorAgentDNS ServiceDnsService.exe"" -d ""C:ProgramDataNetwrixDns Service"""
+"02sQk00000Nu7KwIAJ","500Qk00000NJCxwIAH","2025-04-18T20:15:59.000Z","2025-04-18T20:15:59.000Z","Justin,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+FROM:
+StealthAUDIT (SA)                            10.0.0.168      
+SA Access Information (AIC)            10.0.0.73
+SA Sensitive Data (SDD)                   10.0.0.87
+
+TO:
+StealthAUDIT (SA)                            11.5.0.279
+Access Information Center (AIC)       11.5.0.138
+Sensitive Data Add-On (SDD)            11.5.0.65
+
+We did have to reset the Default ADMIN profile to get into the AIC to check configurations with the following query in the
+SA_AIC_Authentication_FULL_JOIN_SA_AIC_ActiveDirectoryPrincipals.sql file that was sent during the call:
+
+
+    SELECT TOP (1000) [TrusteeSID]
+      ,[TrusteeType]
+         ,NTAccount
+         ,DisplayName
+      ,[Role]
+      ,[IsEnabled]
+      ,[AccessType]
+      ,[AccessList]
+  FROM [dbo].[SA_AIC_Authentication] 
+  FULL OUTER JOIN  [dbo].[SA_AIC_ActiveDirectoryPrincipals] ON ObjectSID = TrusteeSID
+
+  --SELECT * FROM [dbo].[SA_AIC_Authentication] 
+
+  --SELECT * FROM [dbo].[SA_AIC_ActiveDirectoryPrincipals]
+
+  /*-- if needed enable AIC built-in Admin in SQL
+
+---  in the *StealthAUDIT ComplianceWeb.config clear the value in <add key=""AuthBuiltinAdminPassword"" value="""" />  
+
+UPDATE SA_AIC_Authentication
+SET IsEnabled = 1
+WHERE TrusteeSID = 'X-1-1-0'
+
+*/
+
+Once that was completed we were able to uninstall the older applications and install the builds noted above.
+The service account was also updated to an Admin within the AIC console.
+
+Re-built the Reports Folder and confirmed the 8082 and 81 URLs were both functional.
+
+Enabled the host LongPathsEnabled within the Registry ***NOTE*** Reboot is required to full take affect
+^^^ Recommend enabling this on all Windows File Servers as well ^^^
+
+Set the Host PageFile to only use the E: Drive to mitigate issues with the SDD scans.
+***RECOMMEND*** Increasing the vCPUs from 4 to 8
+
+Here is our new Scheduling Link for the 11.5 to 11.6 upgrade if all the jobs run successfully over the weekend  
+nwxcorp.my.salesforce-sites.com/cts?Id=fcBYcQktMlaZpwvcCjU7dTRulHwPkvosGLP3oRJBjI0-Z&MeetingID=LBJQ8tuL.OlEK4c9lu1sPvtO9FZtEiRDRtgJccZ7ri0-Z
+
+For this meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Enterprise Auditor (NEA)    11.6.0.141+
+Access Information (AIC)                  11.6.0.37+
+Sensitive Data Discovery (SDD)       11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/9/2025 10:19 AM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment and prepared for the upgraded:
+
+StealthAUDIT (SA)                            10.0.0.168      
+SA Access Information (AIC)            10.0.0.73
+SA Sensitive Data (SDD)                   10.0.0.87
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=0r0Sfb.NdQCJcv.F3raCL_STOxswu2tYyslbnVd59N0-Z&MeetingID=aAGp2yrYFVvDXQZVR3lLSi6w_.ll3CwZ4tMUOQ0GfqY-Z
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+StealthAUDIT (SA)                            11.5.0.279+
+Access Information Center (AIC)      11.5.0.138+
+Sensitive Data Add-On (SDD)           11.5.0.65+
+If possible:
+SQL Server Management Studio (SSMS)
+Notepad++
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/3/2025 3:00 PM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Thank You for the update.
+
+Upgrade prep Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gsDhaHWeFJwnpU1tzDJppoKfrVsev94lPunrVifIdr8-Z&MeetingID=Ix7jy1O1_OIByVMXnbaGNjbaYaNOAhw4SN5Eyd3r284-Z
+
+For this 45min Perp meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server
+
+If possible 7zip installed
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Justin Snow [jsnow@hughchatham.org]
+Sent: 4/3/2025 1:22 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version
+
+ref:_00D7091pB._500Q000NJCxw:ref
+
+Good afternoon Dusty,
+
+I ran the script provided and provided the following:
+
+SERVER: SB-APP
+Name Version InstallDate
+---- ------- -----------
+Netwrix Activity Monitor 8.0.142 20250319
+StealthAUDIT Access Information Center 10.0.0.73 20200827
+StealthAUDIT Sensitive Data Discovery Add-On V10.0 10.0.0.87 20211216
+StealthAUDIT V10.0 10.0.0.168 20200824
+StealthINTERCEPT Server 7.3.5.202 20220726
+
+
+PS C:Userssbservice> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:inetpubwwwrootStealthAUDIT ComplianceBinAccessInformationCenter.Service.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIEnterpriseManagerSIEnterpriseManager.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.ReportingServicesHost.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.Services.Scheduler.Host.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITVaultService.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITWebWebServer.exe""
+
+SERVER: SB-DEFEND
+Name Version InstallDate
+---- ------- -----------
+ConfigurePostgres 10.5.4.0 20211202
+Netwrix Activity Monitor Agent 64-bit 8.0.142 20250327
+PostgreSQL10Client 2.7.1448 20220825
+Python 3.10.4 Core Interpreter (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Development Libraries (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Documentation (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Executables (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 pip Bootstrap (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Standard Library (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Tcl/Tk Support (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Test Suite (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Utility Scripts (64-bit) 3.10.4150.0 20220617
+Python 3.7.4 Core Interpreter (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Development Libraries (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Documentation (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Executables (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 pip Bootstrap (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Standard Library (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Tcl/Tk Support (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Test Suite (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Utility Scripts (64-bit) 3.7.4150.0 20200824
+Python Launcher 3.10.7751.0 20220617
+StealthDEFEND 2.7.1448 20220825
+StealthDEFEND Action Service 2.7.1448 20220825
+
+
+
+PS C:Windowssystem32> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:Program FilesSTEALTHbitsStealthDEFENDActionServiceActionService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDActiveDirectoryServiceActiveDirectoryService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEmailServiceEmailService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEventMessageServiceEventMessageService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDJobServiceJobService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDLicenseServiceLicenseService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDSiemServiceSiemService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDWebServiceRestServer.exe""
+""C:Program FilesNetwrixActivity MonitorAgentnet472FSACLoggingSvc.exe""
+""C:Program FilesStealthbitsStealthAUDITFSACSBTService.exe""
+""C:Program FilesNetwrixActivity MonitorAgentDNS ServiceDnsService.exe"" -d ""C:ProgramDataNetwrixDns Service"""
+"02sQk00000O0mGbIAJ","500Qk00000NJCxwIAH","2025-04-22T14:17:23.000Z","2025-04-22T14:54:10.000Z","ref:_00D7091pB._500Q000NJCxw:ref
+
+Thanks Dusty, enjoyed our meeting Friday. I am not seeing a follow up meeting for this ticket, please advise to book next session.
+
+Thank you sir!
+-Justin Snow","Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version","jsnow@hughchatham.org","Justin Snow","techsupport@netwrix.com","","","false","2025-04-22T14:17:23.000Z","true"
+"02sQk00000O0mtOIAR","500Qk00000NJCxwIAH","2025-04-22T14:56:12.000Z","2025-04-22T14:56:12.000Z","Justin,
+
+Happy to help.
+
+Our new Scheduling Link for the 11.5 to 11.6 upgrade if all the jobs run successfully over the weekend  
+nwxcorp.my.salesforce-sites.com/cts?Id=fcBYcQktMlaZpwvcCjU7dTRulHwPkvosGLP3oRJBjI0-Z&MeetingID=LBJQ8tuL.OlEK4c9lu1sPvtO9FZtEiRDRtgJccZ7ri0-Z
+
+For this meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Enterprise Auditor (NEA)    11.6.0.141+
+Access Information (AIC)                  11.6.0.37+
+Sensitive Data Discovery (SDD)       11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Justin Snow [jsnow@hughchatham.org]
+Sent: 4/22/2025 10:17 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version
+
+ref:_00D7091pB._500Q000NJCxw:ref
+
+Thanks Dusty, enjoyed our meeting Friday. I am not seeing a follow up meeting for this ticket, please advise to book next session.
+
+Thank you sir!
+-Justin Snow
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/18/2025 4:15 PM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+FROM:
+StealthAUDIT (SA)                            10.0.0.168      
+SA Access Information (AIC)            10.0.0.73
+SA Sensitive Data (SDD)                   10.0.0.87
+
+TO:
+StealthAUDIT (SA)                            11.5.0.279
+Access Information Center (AIC)       11.5.0.138
+Sensitive Data Add-On (SDD)            11.5.0.65
+
+We did have to reset the Default ADMIN profile to get into the AIC to check configurations with the following query in the
+SA_AIC_Authentication_FULL_JOIN_SA_AIC_ActiveDirectoryPrincipals.sql file that was sent during the call:
+
+
+    SELECT TOP (1000) [TrusteeSID]
+      ,[TrusteeType]
+         ,NTAccount
+         ,DisplayName
+      ,[Role]
+      ,[IsEnabled]
+      ,[AccessType]
+      ,[AccessList]
+  FROM [dbo].[SA_AIC_Authentication] 
+  FULL OUTER JOIN  [dbo].[SA_AIC_ActiveDirectoryPrincipals] ON ObjectSID = TrusteeSID
+
+  --SELECT * FROM [dbo].[SA_AIC_Authentication] 
+
+  --SELECT * FROM [dbo].[SA_AIC_ActiveDirectoryPrincipals]
+
+  /*-- if needed enable AIC built-in Admin in SQL
+
+---  in the *StealthAUDIT ComplianceWeb.config clear the value in <add key=""AuthBuiltinAdminPassword"" value="""" />  
+
+UPDATE SA_AIC_Authentication
+SET IsEnabled = 1
+WHERE TrusteeSID = 'X-1-1-0'
+
+*/
+
+Once that was completed we were able to uninstall the older applications and install the builds noted above.
+The service account was also updated to an Admin within the AIC console.
+
+Re-built the Reports Folder and confirmed the 8082 and 81 URLs were both functional.
+
+Enabled the host LongPathsEnabled within the Registry ***NOTE*** Reboot is required to full take affect
+^^^ Recommend enabling this on all Windows File Servers as well ^^^
+
+Set the Host PageFile to only use the E: Drive to mitigate issues with the SDD scans.
+***RECOMMEND*** Increasing the vCPUs from 4 to 8
+
+Here is our new Scheduling Link for the 11.5 to 11.6 upgrade if all the jobs run successfully over the weekend  
+nwxcorp.my.salesforce-sites.com/cts?Id=fcBYcQktMlaZpwvcCjU7dTRulHwPkvosGLP3oRJBjI0-Z&MeetingID=LBJQ8tuL.OlEK4c9lu1sPvtO9FZtEiRDRtgJccZ7ri0-Z
+
+For this meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Enterprise Auditor (NEA)    11.6.0.141+
+Access Information (AIC)                  11.6.0.37+
+Sensitive Data Discovery (SDD)       11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/9/2025 10:19 AM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment and prepared for the upgraded:
+
+StealthAUDIT (SA)                            10.0.0.168      
+SA Access Information (AIC)            10.0.0.73
+SA Sensitive Data (SDD)                   10.0.0.87
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=0r0Sfb.NdQCJcv.F3raCL_STOxswu2tYyslbnVd59N0-Z&MeetingID=aAGp2yrYFVvDXQZVR3lLSi6w_.ll3CwZ4tMUOQ0GfqY-Z
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+StealthAUDIT (SA)                            11.5.0.279+
+Access Information Center (AIC)      11.5.0.138+
+Sensitive Data Add-On (SDD)           11.5.0.65+
+If possible:
+SQL Server Management Studio (SSMS)
+Notepad++
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/3/2025 3:00 PM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Thank You for the update.
+
+Upgrade prep Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gsDhaHWeFJwnpU1tzDJppoKfrVsev94lPunrVifIdr8-Z&MeetingID=Ix7jy1O1_OIByVMXnbaGNjbaYaNOAhw4SN5Eyd3r284-Z
+
+For this 45min Perp meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server
+
+If possible 7zip installed
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Justin Snow [jsnow@hughchatham.org]
+Sent: 4/3/2025 1:22 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version
+
+ref:_00D7091pB._500Q000NJCxw:ref
+
+Good afternoon Dusty,
+
+I ran the script provided and provided the following:
+
+SERVER: SB-APP
+Name Version InstallDate
+---- ------- -----------
+Netwrix Activity Monitor 8.0.142 20250319
+StealthAUDIT Access Information Center 10.0.0.73 20200827
+StealthAUDIT Sensitive Data Discovery Add-On V10.0 10.0.0.87 20211216
+StealthAUDIT V10.0 10.0.0.168 20200824
+StealthINTERCEPT Server 7.3.5.202 20220726
+
+
+PS C:Userssbservice> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:inetpubwwwrootStealthAUDIT ComplianceBinAccessInformationCenter.Service.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIEnterpriseManagerSIEnterpriseManager.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.ReportingServicesHost.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.Services.Scheduler.Host.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITVaultService.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITWebWebServer.exe""
+
+SERVER: SB-DEFEND
+Name Version InstallDate
+---- ------- -----------
+ConfigurePostgres 10.5.4.0 20211202
+Netwrix Activity Monitor Agent 64-bit 8.0.142 20250327
+PostgreSQL10Client 2.7.1448 20220825
+Python 3.10.4 Core Interpreter (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Development Libraries (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Documentation (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Executables (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 pip Bootstrap (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Standard Library (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Tcl/Tk Support (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Test Suite (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Utility Scripts (64-bit) 3.10.4150.0 20220617
+Python 3.7.4 Core Interpreter (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Development Libraries (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Documentation (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Executables (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 pip Bootstrap (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Standard Library (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Tcl/Tk Support (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Test Suite (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Utility Scripts (64-bit) 3.7.4150.0 20200824
+Python Launcher 3.10.7751.0 20220617
+StealthDEFEND 2.7.1448 20220825
+StealthDEFEND Action Service 2.7.1448 20220825
+
+
+
+PS C:Windowssystem32> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:Program FilesSTEALTHbitsStealthDEFENDActionServiceActionService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDActiveDirectoryServiceActiveDirectoryService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEmailServiceEmailService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEventMessageServiceEventMessageService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDJobServiceJobService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDLicenseServiceLicenseService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDSiemServiceSiemService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDWebServiceRestServer.exe""
+""C:Program FilesNetwrixActivity MonitorAgentnet472FSACLoggingSvc.exe""
+""C:Program FilesStealthbitsStealthAUDITFSACSBTService.exe""
+""C:Program FilesNetwrixActivity MonitorAgentDNS ServiceDnsService.exe"" -d ""C:ProgramDataNetwrixDns Service"""
+"02sQk00000OJy2lIAD","500Qk00000NJCxwIAH","2025-04-30T14:16:30.000Z","2025-04-30T14:16:30.000Z","Justin,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+FROM:
+StealthAUDIT (SA)                            11.5.0.279
+Access Information Center (AIC)       11.5.0.138
+Sensitive Data Add-On (SDD)            11.5.0.65
+
+TOP:
+Netwrix Enterprise Auditor (NEA)    11.6.0.142
+Access Information (AIC)                  11.6.0.37
+Sensitive Data Discovery (SDD)       11.6.0.18
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Console Upgrade
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm 
+Netwrix Access Information Center 11.6 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Upgrade.htm 
+
+Recommended for the CPU 8 vCores and 500GB Drive size for the Working folder and PageFile.sys Disk E:.
+Netwrix Enterprise Auditor v11.6 > Requirements > File System Solution
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem.htm#File 
+
+Please let me know how the next set of scans complete.
+
+Additional reference links you might like:
+NEW Netwrix Community https://community.netwrix.com/ 
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/22/2025 10:56 AM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Happy to help.
+
+Our new Scheduling Link for the 11.5 to 11.6 upgrade if all the jobs run successfully over the weekend  
+nwxcorp.my.salesforce-sites.com/cts?Id=fcBYcQktMlaZpwvcCjU7dTRulHwPkvosGLP3oRJBjI0-Z&MeetingID=LBJQ8tuL.OlEK4c9lu1sPvtO9FZtEiRDRtgJccZ7ri0-Z
+
+For this meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Enterprise Auditor (NEA)    11.6.0.141+
+Access Information (AIC)                  11.6.0.37+
+Sensitive Data Discovery (SDD)       11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Justin Snow [jsnow@hughchatham.org]
+Sent: 4/22/2025 10:17 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version
+
+ref:_00D7091pB._500Q000NJCxw:ref
+
+Thanks Dusty, enjoyed our meeting Friday. I am not seeing a follow up meeting for this ticket, please advise to book next session.
+
+Thank you sir!
+-Justin Snow
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/18/2025 4:15 PM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+FROM:
+StealthAUDIT (SA)                            10.0.0.168      
+SA Access Information (AIC)            10.0.0.73
+SA Sensitive Data (SDD)                   10.0.0.87
+
+TO:
+StealthAUDIT (SA)                            11.5.0.279
+Access Information Center (AIC)       11.5.0.138
+Sensitive Data Add-On (SDD)            11.5.0.65
+
+We did have to reset the Default ADMIN profile to get into the AIC to check configurations with the following query in the
+SA_AIC_Authentication_FULL_JOIN_SA_AIC_ActiveDirectoryPrincipals.sql file that was sent during the call:
+
+
+    SELECT TOP (1000) [TrusteeSID]
+      ,[TrusteeType]
+         ,NTAccount
+         ,DisplayName
+      ,[Role]
+      ,[IsEnabled]
+      ,[AccessType]
+      ,[AccessList]
+  FROM [dbo].[SA_AIC_Authentication] 
+  FULL OUTER JOIN  [dbo].[SA_AIC_ActiveDirectoryPrincipals] ON ObjectSID = TrusteeSID
+
+  --SELECT * FROM [dbo].[SA_AIC_Authentication] 
+
+  --SELECT * FROM [dbo].[SA_AIC_ActiveDirectoryPrincipals]
+
+  /*-- if needed enable AIC built-in Admin in SQL
+
+---  in the *StealthAUDIT ComplianceWeb.config clear the value in <add key=""AuthBuiltinAdminPassword"" value="""" />  
+
+UPDATE SA_AIC_Authentication
+SET IsEnabled = 1
+WHERE TrusteeSID = 'X-1-1-0'
+
+*/
+
+Once that was completed we were able to uninstall the older applications and install the builds noted above.
+The service account was also updated to an Admin within the AIC console.
+
+Re-built the Reports Folder and confirmed the 8082 and 81 URLs were both functional.
+
+Enabled the host LongPathsEnabled within the Registry ***NOTE*** Reboot is required to full take affect
+^^^ Recommend enabling this on all Windows File Servers as well ^^^
+
+Set the Host PageFile to only use the E: Drive to mitigate issues with the SDD scans.
+***RECOMMEND*** Increasing the vCPUs from 4 to 8
+
+Here is our new Scheduling Link for the 11.5 to 11.6 upgrade if all the jobs run successfully over the weekend  
+nwxcorp.my.salesforce-sites.com/cts?Id=fcBYcQktMlaZpwvcCjU7dTRulHwPkvosGLP3oRJBjI0-Z&MeetingID=LBJQ8tuL.OlEK4c9lu1sPvtO9FZtEiRDRtgJccZ7ri0-Z
+
+For this meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Enterprise Auditor (NEA)    11.6.0.141+
+Access Information (AIC)                  11.6.0.37+
+Sensitive Data Discovery (SDD)       11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/9/2025 10:19 AM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment and prepared for the upgraded:
+
+StealthAUDIT (SA)                            10.0.0.168      
+SA Access Information (AIC)            10.0.0.73
+SA Sensitive Data (SDD)                   10.0.0.87
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=0r0Sfb.NdQCJcv.F3raCL_STOxswu2tYyslbnVd59N0-Z&MeetingID=aAGp2yrYFVvDXQZVR3lLSi6w_.ll3CwZ4tMUOQ0GfqY-Z
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+StealthAUDIT (SA)                            11.5.0.279+
+Access Information Center (AIC)      11.5.0.138+
+Sensitive Data Add-On (SDD)           11.5.0.65+
+If possible:
+SQL Server Management Studio (SSMS)
+Notepad++
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/3/2025 3:00 PM
+To: jsnow@hughchatham.org
+Subject: RE: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version [ ref:!00D70091pB.!500Qk0NJCxw:ref ]
+
+Justin,
+
+Thank You for the update.
+
+Upgrade prep Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gsDhaHWeFJwnpU1tzDJppoKfrVsev94lPunrVifIdr8-Z&MeetingID=Ix7jy1O1_OIByVMXnbaGNjbaYaNOAhw4SN5Eyd3r284-Z
+
+For this 45min Perp meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server
+
+If possible 7zip installed
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Justin Snow [jsnow@hughchatham.org]
+Sent: 4/3/2025 1:22 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #439919 - StealthAUDIT upgrade to latest version
+
+ref:_00D7091pB._500Q000NJCxw:ref
+
+Good afternoon Dusty,
+
+I ran the script provided and provided the following:
+
+SERVER: SB-APP
+Name Version InstallDate
+---- ------- -----------
+Netwrix Activity Monitor 8.0.142 20250319
+StealthAUDIT Access Information Center 10.0.0.73 20200827
+StealthAUDIT Sensitive Data Discovery Add-On V10.0 10.0.0.87 20211216
+StealthAUDIT V10.0 10.0.0.168 20200824
+StealthINTERCEPT Server 7.3.5.202 20220726
+
+
+PS C:Userssbservice> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:inetpubwwwrootStealthAUDIT ComplianceBinAccessInformationCenter.Service.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIEnterpriseManagerSIEnterpriseManager.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.ReportingServicesHost.exe""
+""E:Program FilesSTEALTHbitsStealthINTERCEPTSIReportsReportingServicesSI.Services.Scheduler.Host.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITVaultService.exe""
+""E:Program Files (x86)STEALTHbitsStealthAUDITWebWebServer.exe""
+
+SERVER: SB-DEFEND
+Name Version InstallDate
+---- ------- -----------
+ConfigurePostgres 10.5.4.0 20211202
+Netwrix Activity Monitor Agent 64-bit 8.0.142 20250327
+PostgreSQL10Client 2.7.1448 20220825
+Python 3.10.4 Core Interpreter (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Development Libraries (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Documentation (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Executables (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 pip Bootstrap (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Standard Library (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Tcl/Tk Support (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Test Suite (64-bit) 3.10.4150.0 20220617
+Python 3.10.4 Utility Scripts (64-bit) 3.10.4150.0 20220617
+Python 3.7.4 Core Interpreter (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Development Libraries (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Documentation (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Executables (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 pip Bootstrap (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Standard Library (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Tcl/Tk Support (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Test Suite (64-bit) 3.7.4150.0 20200824
+Python 3.7.4 Utility Scripts (64-bit) 3.7.4150.0 20200824
+Python Launcher 3.10.7751.0 20220617
+StealthDEFEND 2.7.1448 20220825
+StealthDEFEND Action Service 2.7.1448 20220825
+
+
+
+PS C:Windowssystem32> \hcmh02netadmin2StealthBitsPullSBinfo2.ps1
+""E:Program FilesSTEALTHbitsStealthDEFENDActionServiceActionService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDActiveDirectoryServiceActiveDirectoryService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEmailServiceEmailService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDEventMessageServiceEventMessageService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDJobServiceJobService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDLicenseServiceLicenseService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDSiemServiceSiemService.exe""
+""E:Program FilesSTEALTHbitsStealthDEFENDWebServiceRestServer.exe""
+""C:Program FilesNetwrixActivity MonitorAgentnet472FSACLoggingSvc.exe""
+""C:Program FilesStealthbitsStealthAUDITFSACSBTService.exe""
+""C:Program FilesNetwrixActivity MonitorAgentDNS ServiceDnsService.exe"" -d ""C:ProgramDataNetwrixDns Service"""

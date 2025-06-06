@@ -1,0 +1,302 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000Cf20XIAR","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Account ACV has been changed to 36289.00.
+Priority has been changed to Medium.","0054u000007p4sbAAA","2025-04-01T12:52:11.000Z","2025-04-01T12:52:11.000Z","false","false"
+"00aQk00000Cf23lIAB","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Account ACV has been changed to 18144.50.","0054u000007p4sbAAA","2025-04-01T12:52:12.000Z","2025-04-01T12:52:12.000Z","false","false"
+"00aQk00000CllcUIAR","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Hi, was this ticket assigned?","0054u000007p4sbAAA","2025-04-07T13:14:32.000Z","2025-04-07T13:14:33.000Z","false","false"
+"00aQk00000CmScbIAF","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-07T20:23:12.000Z","2025-04-07T20:23:12.000Z","false","false"
+"00aQk00000CmScdIAF","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Adam DeSapio:
+
+@Michael Burrofato @Chris Brooks @Salesforce @WaitingOnEngineer
+
+Yeah it seems like we need MigrateSchema to succeed to get CreateSchema to succeed. But the migrations for the relevant tables have been stable for 8 years. So it doesn't make sense that 11.5 was working and now the migration is failing. There must be some other piece of information we haven't been provided.
+
+
+	 - 	Before upgrading, were there any issues on 11.5?
+	 - 	What were they on prior to 11.5 such that they did not have bigint types? (that's what MigrateSchema does)
+	 - 	Have they manipulated data in any way? manually dropping T1/T2 data, repair tool, drop tables, remove host, etc...
+
+[DevOps CommentId:11900730]","0054u000006gtWUAAY","2025-04-07T20:23:13.000Z","2025-04-07T20:23:13.000Z","false","false"
+"00aQk00000CmySnIAJ","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-04-08T08:59:37.000Z","2025-04-08T08:59:37.000Z","false","false"
+"00aQk00000CnBJaIAN","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Hi, please find the answers below:
+
+- Before upgrading, were there any issues on 11.5? - ""Other than the original issue that I was requested to upgraded from 11.5 to 11.6 for (DFS Namespace issue), I was not aware of any other issues with the system.""
+
+I believe customer means this ticket that he has in past - https://dev.azure.com/NetwrixCorporation/StealthAUDIT/_workitems/edit/292619
+
+
+- What were they on prior to 11.5 such that they did not have bigint types? (that's what MigrateSchema does) - ""Cannot recall.""
+
+- Have they manipulated data in any way? manually dropping T1/T2 data, repair tool, drop tables, remove host, etc... - ""I did not personally manipulate any data prior to the upgrade, and we didn’t complete any of the tasks specified. The only actions we completed was retrieval of logs, disablement of jobs, and setting hosts specifically against jobs.""","0054u000007p4sbAAA","2025-04-08T12:45:25.000Z","2025-04-08T12:45:25.000Z","false","false"
+"00aQk00000CnporIAB","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-08T19:29:13.000Z","2025-04-08T19:29:13.000Z","false","false"
+"00aQk00000CnpotIAB","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Adam DeSapio:
+
+@Salesforce @WaitingOnEngineer
+
+It appears Host data was improperly dropped at some point
+
+because when MigrateSchema tries to create the FK referencing the hosts table,
+it fails indicating the ActivityEvents table has hosts not in the hosts table.
+To verify run:
+
+SELECT HOST FROM SA_FSAC_ActivityEvents
+EXCEPT
+SELECT ID FROM SA_FSAA_HOSTS;
+
+Do the same for SA_FSAC_DailyActivity
+
+[DevOps CommentId:11907274]","0054u000006gtWUAAY","2025-04-08T19:29:14.000Z","2025-04-08T19:29:14.000Z","false","false"
+"00aQk00000CoGkDIAV","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-04-09T05:44:30.000Z","2025-04-09T05:44:30.000Z","false","false"
+"00aQk00000CoIFlIAN","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-04-09T06:46:02.000Z","2025-04-09T06:46:02.000Z","false","false"
+"00aQk00000CoIJ0IAN","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Hi, customer reported back, the output for both queries is following:
+
+HOST
+24
+25
+27","0054u000007p4sbAAA","2025-04-09T06:46:42.000Z","2025-04-09T06:46:42.000Z","false","false"
+"00aQk00000CoizqIAB","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-09T14:46:22.000Z","2025-04-09T14:46:22.000Z","false","false"
+"00aQk00000CoizsIAB","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Adam DeSapio:
+
+@Salesforce @WaitingOnEngineer
+
+The ActivityEvents and DailyActivity tables are in an invalid state.
+Prior to upgrade/CreateSchema/MigrateSchema, these tables would have had a FK on the Hosts table. 
+We can see this was not the case because there are hosts ids in these activity tables that are not in the Hosts table. 
+
+To ensure there are not other problems, run:
+
+SELECT HOST, ID
+FROM SA_FSAA_Resources
+WHERE HOST in (24, 25, 27);
+
+If there are resources that reference these hosts, that would mean there are further problems with their T1 database.
+
+[DevOps CommentId:11912327]","0054u000006gtWUAAY","2025-04-09T14:46:23.000Z","2025-04-09T14:46:23.000Z","false","false"
+"00aQk00000CpnHVIAZ","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-04-10T05:48:15.000Z","2025-04-10T05:48:15.000Z","false","false"
+"00aQk00000Cu4LQIAZ","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Hi, provided query returns nothing, screenshot of output uploaded to SP. Could you please advise on next steps to fix this issue?","0054u000007p4sbAAA","2025-04-14T10:36:59.000Z","2025-04-14T10:36:59.000Z","false","false"
+"00aQk00000Cu2THIAZ","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-04-14T10:37:17.000Z","2025-04-14T10:37:17.000Z","false","false"
+"00aQk00000CuMa2IAF","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-14T15:03:25.000Z","2025-04-14T15:03:25.000Z","false","false"
+"00aQk00000CuMa4IAF","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Michael Longo:
+
+@Michael Burrofato @Adam DeSapio @Salesforce @WaitingOnEngineer
+Since the query did not provide any results, this confirms the activity events that are failing to migrate are invalid because they do not have resources to relate to. In order to correct the state of the SQL database, records that reference host 24, 25, and 27 should get removed.
+
+Start with removing the records from SA_FSAC_ActivityEvents and SA_FSAC_DailyActivity with the follow SQL queries:
+
+--- CODE ---DELETE FROM SA_FSAC_ActivityEvents
+WHERE HOST IN (24, 25, 27)--- CODE ---
+
+
+--- CODE ---
+--- CODE ---
+
+and
+
+
+--- CODE ---
+DELETE FROM SA_FSAC_DailyActivity
+WHERE HOST IN (24, 25, 27)
+
+--- CODE ---
+
+
+--- CODE ---
+--- CODE ---
+
+Then try running Migrate Schema followed by Create Schema again. If the jobs continue to fail, please provided the new error message so that the remaining invalid records can be identified.
+
+[DevOps CommentId:11931303]","0054u000006gtWUAAY","2025-04-14T15:03:26.000Z","2025-04-14T15:03:26.000Z","false","false"
+"00aQk00000CxHE1IAN","500Qk00000NLFwWIAX","Apologies,  Shall i relay this back to the client?
+
+Cheers","005Qk000003cQkXIAU","2025-04-16T15:37:42.000Z","2025-04-16T15:37:42.000Z","false","false"
+"00aQk00000D2ya8IAB","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-04-14 15:03 UTC and the last detected comment from support was 2025-04-14 10:37 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11954414]","0054u000006gtWUAAY","2025-04-22T05:03:08.000Z","2025-04-22T05:03:08.000Z","false","false"
+"00aQk00000D3DE9IAN","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-04-22T10:16:28.000Z","2025-04-22T10:16:28.000Z","false","false"
+"00aQk00000DCL4PIAX","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-30T05:03:06.000Z","2025-04-30T05:03:06.000Z","false","false"
+"00aQk00000DCL4RIAX","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2025-04-14 15:03 UTC and the last detected comment from support was 2025-04-14 10:37 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11992975]","0054u000006gtWUAAY","2025-04-30T05:03:07.000Z","2025-04-30T05:03:07.000Z","false","false"
+"00aQk00000DCNNyIAP","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Hi, when trying to run the first command, customer was given the following error:
+
+Msg 547, Level 16, State 0, Line 2
+The DELETE statement conflicted with the REFERENCE constraint ""FK_SA_FSAC_RenameTargets_ActivityID"". The conflict occurred in database ""StealthAUDIT"", table ""dbo.SA_FSAC_RenameTargets"".
+The statement has been terminated.
+
+Completion time: 2025-04-29T11:36:29.7011690+01:00
+
+The second command ran without any errors, deleting over 8000 rows.","0054u000007p4sbAAA","2025-04-30T06:27:55.000Z","2025-04-30T06:27:55.000Z","false","false"
+"00aQk00000DCNPZIA5","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-04-30T06:28:12.000Z","2025-04-30T06:28:12.000Z","false","false"
+"00aQk00000DDOQ1IAP","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-30T20:35:57.000Z","2025-04-30T20:35:57.000Z","false","false"
+"00aQk00000DDOQ3IAP","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Michael Longo:
+
+@Michael Burrofato @Salesforce @WaitingOnEngineer
+Please run the following query and provide the results:
+
+--- CODE ---SELECT * FROM SA_FSAA_Hosts WHERE ID IN (24, 25, 27)--- CODE ---
+
+Since those hosts have no resources, it should be safe to drop their data. If the query returns hosts that are recognized, you can configure a job to run the FSAA Remove Host query targeting the host names returned by the query. This will clear out all references to the above host IDs and will allow you to procede with the Migrate Schema and Create Schema jobs.
+
+[DevOps CommentId:11997885]","0054u000006gtWUAAY","2025-04-30T20:35:58.000Z","2025-04-30T20:35:58.000Z","false","false"
+"00aQk00000DDmqYIAT","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-05-01T06:51:39.000Z","2025-05-01T06:51:39.000Z","false","false"
+"00aQk00000DDn9tIAD","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-01T06:51:51.000Z","2025-05-01T06:51:51.000Z","false","false"
+"00aQk00000DDwRjIAL","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-05-01T11:28:57.000Z","2025-05-01T11:28:57.000Z","false","false"
+"00aQk00000DFJPSIA5","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Hi Michael, can you help me out with determining the hostnames for 24, 25, 27?
+ 
+I've tried to look up table schema document, but I think I only have older one for AD and AIC tables.
+
+
+On most recent meeting we were trying to determine hosts with customer and previously they had this output
+
+The DELETE statement conflicted with the REFERENCE constraint ""FK_SA_FSAC_RenameTargets_ActivityID"". The conflict occurred in database ""StealthAUDIT"", table ""dbo.SA_FSAC_RenameTargets"".
+The statement has been terminated.
+
+for this query:
+
+--- CODE ---
+
+DELETE FROM SA_FSAC_ActivityEvents
+WHERE HOST IN (24, 25, 27)--- CODE ---
+
+
+--- CODE ---
+
+Customer decided run a DELETE statement for SA_FSAC_RenameTargets
+
+---CODE---
+
+DELETE FROM SA_FSAC_RenameTargets
+WHERE HOST IN (24, 25, 27)
+
+---CODE---
+
+
+This was not something we've recommended, customer did this on his own. After deleting from SA_FSAC_RenameTargets, this statement worked fine:
+
+DELETE FROM SA_FSAC_ActivityEvents
+WHERE HOST IN (24, 25, 27)
+
+So we've decided to run Migrate Schema, and we still see the same error messages in Migrate Schema.
+
+Log for Migrate Schema is uploaded to SP, as well as screenshot for queries that customer executed.","0054u000007p4sbAAA","2025-05-02T11:35:51.000Z","2025-05-02T11:35:51.000Z","false","false"
+"00aQk00000DFJR3IAP","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-05-02T11:36:13.000Z","2025-05-02T11:36:13.000Z","false","false"
+"00aQk00000DI3O9IAL","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-05T15:38:35.000Z","2025-05-05T15:38:35.000Z","false","false"
+"00aQk00000DI3OBIA1","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Michael Longo:
+
+@Chris Brooks @Michael Burrofato @Salesforce @WaitingOnEngineer
+The `HOST` column in `SA_FSAA_Hosts` contains the host names. I would like to get on a customer call to resolve this issue.
+
+[DevOps CommentId:12008349]","0054u000006gtWUAAY","2025-05-05T15:38:36.000Z","2025-05-05T15:38:36.000Z","false","false"
+"00aQk00000DIy7uIAD","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Thank you, no problem, sent customer a meeting link with myself and Michael Longo, waiting on customer to book.","0054u000007p4sbAAA","2025-05-06T08:56:41.000Z","2025-05-06T08:56:41.000Z","false","false"
+"00aQk00000DIyB7IAL","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-05-06T08:56:57.000Z","2025-05-06T08:56:57.000Z","false","false"
+"00aQk00000DIyCjIAL","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-05-06T08:57:08.000Z","2025-05-06T08:57:08.000Z","false","false"
+"00aQk00000DKGnWIAX","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Hi Michael, I can see that meeting was declined by you, I assume it is due to your availability, can you please clarify your working hours so I can adjust the meeting accordingly?","0054u000007p4sbAAA","2025-05-07T05:41:54.000Z","2025-05-07T05:41:54.000Z","false","false"
+"00aQk00000DKGp7IAH","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-05-07T05:42:10.000Z","2025-05-07T05:42:10.000Z","false","false"
+"00aQk00000DKquEIAT","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Michael Longo:
+
+@Michael Burrofato @Salesforce
+My work hours are 8:00 AM - 5:00 PM EDT
+
+[DevOps CommentId:12023520]","0054u000006gtWUAAY","2025-05-07T15:47:29.000Z","2025-05-07T15:47:29.000Z","false","false"
+"00aQk00000DL9iLIAT","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-07T18:49:43.000Z","2025-05-07T18:49:43.000Z","false","false"
+"00aQk00000DL9iNIAT","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Michael Burrofato:
+
+@WaitingOnEngineer
+
+[DevOps CommentId:12023845]","0054u000006gtWUAAY","2025-05-07T18:49:44.000Z","2025-05-07T18:49:44.000Z","false","false"
+"00aQk00000DLe4cIAD","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-05-08T05:21:37.000Z","2025-05-08T05:21:37.000Z","false","false"
+"00aQk00000DLd0VIAT","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-08T05:21:49.000Z","2025-05-08T05:21:49.000Z","false","false"
+"00aQk00000DSgPpIAL","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-05-14T13:04:31.000Z","2025-05-14T13:04:31.000Z","false","false"
+"00aQk00000DSjSXIA1","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-14T13:36:33.000Z","2025-05-14T13:36:33.000Z","false","false"
+"00aQk00000DSjSZIA1","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Michael Longo:
+
+@Salesforce @WaitingOnEngineer 
+We got on a call with the customer today and found that in addition to NAA SQL tables referencing hosts that have no data, there are also records that reference resources that do not exist in the SA_FSAA_Resources table. So I am working on putting together some SQL scripts to help remove the invalid data. We should schedule another call with the customer so we can address any subsequent issues after running the provided script as they come up until the database is in a valid state.
+
+Here is the SQL script that will resolve the issues we saw on the call regarding SA_FSAC_ActivityEvents:
+
+--- CODE ---DELETE ae
+
+FROM SA_FSAC_ActivityEvents ae
+LEFT JOIN SA_FSAA_Resources r
+ON r.Host = ae.Host AND r.ID = ae.PathID
+WHERE r.ID IS NULL
+--- CODE ---
+
+[DevOps CommentId:12055147]","0054u000006gtWUAAY","2025-05-14T13:36:34.000Z","2025-05-14T13:36:34.000Z","false","false"
+"00aQk00000DTzlOIAT","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-05-15T10:49:31.000Z","2025-05-15T10:49:31.000Z","false","false"
+"00aQk00000DUAC9IAP","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-05-15T13:30:09.000Z","2025-05-15T13:30:09.000Z","false","false"
+"00aQk00000DUAH0IAP","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: The SQL code did not complete because of the following error:
+
+Msg 547, Level 16, State 0, Line 1
+The DELETE statement conflicted with the REFERENCE constraint ""FK_SA_FSAC_RenameTargets_ActivityID"". The conflict occurred in database ""StealthAUDIT"", table ""dbo.SA_FSAC_RenameTargets"".
+The statement has been terminated.
+
+Completion time: 2025-05-15T12:10:58.6516073+01:00
+
+I've sent a customer another meeting link with myself and Michael.","0054u000007p4sbAAA","2025-05-15T13:30:45.000Z","2025-05-15T13:30:45.000Z","false","false"
+"00aQk00000DZNOsIAP","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-05-20T13:29:53.000Z","2025-05-20T13:29:53.000Z","false","false"
+"00aQk00000DZNOuIAP","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Luke Butcher:
+
+@WaitingOnEngineer @Salesforce any update on when that customer call will be?
+
+[DevOps CommentId:12079556]","0054u000006gtWUAAY","2025-05-20T13:29:54.000Z","2025-05-20T13:29:54.000Z","false","false"
+"00aQk00000DZNtWIAX","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Michael Longo:
+
+@Michael Burrofato @Luke Butcher @Chris Brooks @Salesforce
+We need to run a similar query to the one I provided against the tables that SQL is throwing errors for. This can be done on the call scheduled tomorrow. We have a much better understanding of the underlying problem now.
+
+[DevOps CommentId:12079563]","0054u000006gtWUAAY","2025-05-20T13:30:30.000Z","2025-05-20T13:30:30.000Z","false","false"
+"00aQk00000DarMTIAZ","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-05-21T13:10:47.000Z","2025-05-21T13:10:47.000Z","false","false"
+"00aQk00000Dc30cIAB","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-05-22T08:26:14.000Z","2025-05-22T08:26:14.000Z","false","false"
+"00aQk00000Dc1tHIAR","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the new comment has been added: Customer confirmed that issue was resolved, closing support ticket, thank you.","0054u000007p4sbAAA","2025-05-22T08:26:52.000Z","2025-05-22T08:26:52.000Z","false","false"
+"00aQk00000Dc4BCIAZ","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007p4sbAAA","2025-05-22T08:29:27.000Z","2025-05-22T08:29:27.000Z","false","false"
+"00aQk00000Dc4BEIAZ","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Account ACV has been changed to 36289.00.","0054u000007p4sbAAA","2025-05-22T08:29:30.000Z","2025-05-22T08:29:30.000Z","false","false"
+"00aQk00000Dc5K9IAJ","500Qk00000NLFwWIAX","On Escalation Ticket # 00440592 the Following Fields have been updated: 
+Account ACV has been changed to 18144.50.","0054u000007p4sbAAA","2025-05-22T08:29:37.000Z","2025-05-22T08:29:37.000Z","false","false"

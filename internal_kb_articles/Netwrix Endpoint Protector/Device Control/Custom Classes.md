@@ -1,205 +1,141 @@
-# Netwrix Endpoint Protector: Device Control - Custom Classes Knowledge Base
-
-## Overview
-
-The **Device Control** component of **Netwrix Endpoint Protector (EPP)** allows organizations to manage and restrict access to devices connected to endpoints. The **Custom Classes** feature enables administrators to define specific device types or groups for granular control. This article addresses common issues encountered with this feature, provides troubleshooting steps, explains root causes, and outlines tested solutions.
-
-## Issue Summary Table
-
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| Effective Rights Report Discrepancy | Report shows fewer devices than expected | Verify report settings and system behavior | Confirm expected behavior and educate users | [Effective Rights Report Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GHkoRIAT/view) |
-| Offline Installer Request | Customer requested the latest offline installer | Verify version and prepare installer | Provide the requested offline installer | [Offline Installer Request](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GYMzUIAX/view) |
-| Missing Printer VID/PID | EPP client does not collect VID/PID for some printers | Check device type and logs | Clarify limitations and recommend physical printers | [Printer VID/PID Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Hi3LWIAZ/view) |
-| OTP Validity Issue | OTP valid for 15 minutes allowed access for 20 days | Test OTP functionality and time restrictions | Investigate OTP mechanism and system clock | [OTP Validity Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HT487IAD/view) |
-| EPP Client Not Receiving Policies | Client not receiving policies despite successful connection | Verify client-server connection and licensing | Confirm licensing and monitor connectivity | [Client Policy Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HZcevIAD/view) |
-| License Release Delay | License release request not reflected immediately | Check release settings and refresh interface | Inform user of 30-day delay for license release | [License Release Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000M6b8LIAR/view) |
-| Bulk USB Enrollment Error | Bulk enrollment assigns incorrect VID/PID | Test with fresh XLS file and verify encoding | Avoid Libre Office and use compatible tools | [Bulk USB Enrollment Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NLFreIAH/view) |
-| Virtual Appliance Migration | Inquiry about moving EPP appliance from Nutanix to VMware | Recommend backup and restore method | Deploy new appliance and restore from backup | [Virtual Appliance Migration](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000OpkSnIAJ/view) |
+# Netwrix Endpoint Protector Knowledge Base Reference Guide  
+## **Overview**  
+This guide focuses on troubleshooting and resolving issues related to the **Device Control** component of **Netwrix Endpoint Protector (EPP)**, specifically within the **Custom Classes** feature. Device Control is critical for managing access to devices and enforcing security policies across endpoints. Understanding this category is essential for ensuring proper functionality, minimizing downtime, and maintaining compliance with organizational security standards.
 
 ---
 
-## Detailed Issues
+## **Technical Background**  
+### **Key Concepts**  
+- **Device Control**: A feature within EPP that allows administrators to manage and restrict access to devices connected to endpoints.  
+- **Custom Classes**: A sub-feature that enables the creation of tailored device groups based on specific attributes such as Vendor ID (VID), Product ID (PID), or serial numbers.  
+- **Effective Rights Report**: A report that displays devices and their associated permissions for endpoints.  
+- **Offline Temporary Passwords (OTP)**: Time-limited passwords used to grant temporary access to devices.  
+- **Bulk Enrollment**: A method for adding multiple devices to the Allowed Specific Devices list using .xls files.  
 
-### 1. Effective Rights Report Discrepancy
-**Symptoms:**  
-The Effective Rights report displayed only 15 devices instead of the expected 41.
-
-**Troubleshooting Steps:**  
-1. Confirm the issue is related to the Effective Rights report.  
-2. Investigate the discrepancy in the number of devices displayed.  
-3. Review the report generation process and settings.  
-4. Escalate to engineering if necessary.
-
-**Root Cause:**  
-The report was functioning as designed, listing only devices for which rights could be set on Linux machines.
-
-**Solution:**  
-- Confirm the report's behavior is expected.  
-- Educate users on how the report works to prevent confusion.  
-
-**Source Ticket:** [Effective Rights Report Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GHkoRIAT/view)
+### **System Context**  
+- **EPP Server**: The central management system responsible for policy enforcement and device monitoring.  
+- **EPP Client**: Installed on endpoints to enforce policies and communicate with the server.  
+- **Logs**: Critical for diagnosing issues, including server logs, client logs, and device-specific logs.  
+- **Licensing**: Ensures proper functionality and communication between the server and clients.  
 
 ---
 
-### 2. Offline Installer Request
-**Symptoms:**  
-Customer requested the latest offline installer for version 5.9.4.0.
+## **Issue Recognition & Triage**  
+### **Symptoms**  
+- Discrepancies in reports (e.g., missing devices in Effective Rights).  
+- Incorrect or missing VID/PID data for devices.  
+- Licensing or connectivity issues between EPP clients and the server.  
+- Bulk enrollment errors when adding devices.  
+- Unexpected behavior of OTPs or device access restrictions.  
 
-**Troubleshooting Steps:**  
-1. Verify the version requested by the customer.  
-2. Confirm the availability of the offline installer.  
-3. Prepare and send the installer to the customer.
-
-**Root Cause:**  
-The customer required the latest version to maintain functionality and security.
-
-**Solution:**  
-Provide the offline installer for version 5.9.4.0.
-
-**Source Ticket:** [Offline Installer Request](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GYMzUIAX/view)
+### **Priority Assessment**  
+- **High Priority**: Issues affecting security policies (e.g., unrestricted device access).  
+- **Medium Priority**: Errors in reporting or bulk enrollment that do not compromise security.  
+- **Low Priority**: General inquiries or requests for documentation.  
 
 ---
 
-### 3. Missing Printer VID/PID
-**Symptoms:**  
-- EPP client does not collect VID/PID for some printers.  
-- Some printers display unusual serial numbers.
-
-**Troubleshooting Steps:**  
-1. Review EPP client configuration and device detection settings.  
-2. Investigate missing VID/PID cases.  
-3. Analyze serial number anomalies.  
-4. Request logs and screenshots from the customer.
-
-**Root Cause:**  
-- Virtual printers (e.g., "Print to PDF") do not have VID/PID.  
-- Some physical devices lack serial numbers.
-
-**Solution:**  
-- Clarify limitations of the EPP client.  
-- Recommend using physical printers for accurate detection.
-
-**Source Ticket:** [Printer VID/PID Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Hi3LWIAZ/view)
+## **Diagnostic Methodology**  
+### **Systematic Approach**  
+1. **Verify the Problem**: Confirm the reported issue by replicating the behavior or reviewing logs/screenshots provided by the customer.  
+2. **Categorize the Issue**: Determine whether the problem is related to configuration, system limitations, or external factors (e.g., file encoding).  
+3. **Investigate Logs**: Analyze server and client logs for errors or anomalies.  
+4. **Test Scenarios**: Recreate the issue in a controlled environment to identify root causes.  
+5. **Consult Documentation**: Refer to product manuals and known limitations for clarification.  
+6. **Escalate if Necessary**: If the issue cannot be resolved, escalate to engineering with detailed findings.  
 
 ---
 
-### 4. OTP Validity Issue
-**Symptoms:**  
-An OTP valid for 15 minutes allowed access for 20 days.
+## **Information Collection**  
+### **Customer Queries**  
+- What is the specific behavior observed?  
+- Are there screenshots or logs available?  
+- What version of EPP is being used?  
+- Are the devices physical or virtual?  
+- Have any recent changes been made to the system or policies?  
 
-**Troubleshooting Steps:**  
-1. Block the device in question.  
-2. Create and apply a 15-minute OTP.  
-3. Wait 20 minutes and confirm if the device is still accessible.
-
-**Root Cause:**  
-Potential issue with the OTP mechanism or system clock discrepancies.
-
-**Solution:**  
-Investigate OTP functionality and ensure time-based restrictions are enforced.
-
-**Source Ticket:** [OTP Validity Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HT487IAD/view)
+### **Logs/Data to Collect**  
+- **Server Logs**: For policy updates and device communication.  
+- **Client Logs**: For device detection and enforcement issues.  
+- **Screenshots**: Effective Rights reports, Device Manager, or error messages.  
+- **Configuration Files**: Bulk enrollment .xls files or policy settings.  
 
 ---
 
-### 5. EPP Client Not Receiving Policies
-**Symptoms:**  
-Client not receiving policies despite successful connection tests.
+## **Common Scenarios & Solutions**  
+### **Scenario 1: Missing Devices in Effective Rights Report**  
+- **Symptoms**: Report displays fewer devices than expected.  
+- **Root Cause**: System limitation—only devices with configurable rights are displayed.  
+- **Solution**: Confirm expected behavior with the customer and provide documentation.  
+- **Reference Case**: [500Qk00000GHkoRIAT](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GHkoRIAT/view)  
 
-**Troubleshooting Steps:**  
-1. Verify client-server connection.  
-2. Check server logs for policy updates.  
-3. Investigate potential licensing issues.
+### **Scenario 2: Incorrect VID/PID for Printers**  
+- **Symptoms**: Missing VID/PID or unusual serial numbers for printers.  
+- **Root Cause**: Virtual printers or devices lacking serial numbers.  
+- **Solution**: Verify physical devices and clarify system limitations.  
+- **Reference Case**: [500Qk00000Hi3LWIAZ](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Hi3LWIAZ/view)  
 
-**Root Cause:**  
-Temporary licensing issue affecting client-server communication.
+### **Scenario 3: Bulk Enrollment Errors**  
+- **Symptoms**: Incorrect VID/PID assignment during bulk enrollment.  
+- **Root Cause**: File encoding changes by third-party software (e.g., Libre Office).  
+- **Solution**: Use Microsoft Excel to save .xls files and ensure proper encoding.  
+- **Reference Case**: [500Qk00000NLFreIAH](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NLFreIAH/view)  
 
-**Solution:**  
-- Confirm licensing is up to date.  
-- Monitor client-server connectivity.
+### **Scenario 4: OTP Validity Issues**  
+- **Symptoms**: OTP grants access beyond the intended time limit.  
+- **Root Cause**: Potential system clock discrepancies or OTP mechanism failure.  
+- **Solution**: Verify system clock and test OTP functionality.  
+- **Reference Case**: [500Qk00000HT487IAD](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HT487IAD/view)  
 
-**Source Ticket:** [Client Policy Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HZcevIAD/view)
-
----
-
-### 6. License Release Delay
-**Symptoms:**  
-License release request did not reflect immediately.
-
-**Troubleshooting Steps:**  
-1. Verify the license release request was submitted successfully.  
-2. Check if the release was scheduled for a future date.  
-3. Refresh the interface to confirm changes.
-
-**Root Cause:**  
-License release was scheduled for 30 days instead of immediate execution.
-
-**Solution:**  
-Inform the user of the 30-day delay and ensure clarity on release settings.
-
-**Source Ticket:** [License Release Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000M6b8LIAR/view)
+### **Scenario 5: Licensing and Connectivity Problems**  
+- **Symptoms**: EPP client fails to receive policies despite successful connection tests.  
+- **Root Cause**: Licensing issues affecting client-server communication.  
+- **Solution**: Confirm licensing status and monitor connectivity.  
+- **Reference Case**: [500Qk00000HZcevIAD](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HZcevIAD/view)  
 
 ---
 
-### 7. Bulk USB Enrollment Error
-**Symptoms:**  
-Bulk enrollment XLS file assigned incorrect VID/PID values.
+## **Detailed Case Studies**  
+### **Case Study 1: Bulk Enrollment Encoding Issue**  
+- **Ticket ID**: [500Qk00000NLFreIAH](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NLFreIAH/view)  
+- **Symptoms**: Incorrect VID/PID assignment during bulk enrollment.  
+- **Diagnostic Steps**:  
+  - Recreated the issue using the customer’s .xls file.  
+  - Tested with a fresh sample file saved using Microsoft Excel.  
+- **Resolution**: Advised the customer to avoid using Libre Office for editing .xls files.  
+- **Key Takeaways**: Ensure compatibility of file formats for bulk uploads.  
 
-**Troubleshooting Steps:**  
-1. Test with a fresh XLS file.  
-2. Verify encoding of the file used for bulk enrollment.  
-3. Recreate the issue in a support environment.
-
-**Root Cause:**  
-Encoding changes made by Libre Office caused the server to misinterpret VID/PID data.
-
-**Solution:**  
-- Avoid using Libre Office for editing XLS files.  
-- Use Microsoft Excel or other compatible tools.
-
-**Source Ticket:** [Bulk USB Enrollment Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NLFreIAH/view)
-
----
-
-### 8. Virtual Appliance Migration
-**Symptoms:**  
-Customer requested guidance on moving EPP appliance from Nutanix to VMware.
-
-**Troubleshooting Steps:**  
-1. Advise against direct migration via SSH.  
-2. Recommend deploying a new appliance on VMware.  
-3. Use System Backup V2 and Audit Log Backup for migration.
-
-**Root Cause:**  
-Misunderstanding of the migration process between virtualization platforms.
-
-**Solution:**  
-Deploy a new appliance and restore data using backup tools.
-
-**Source Ticket:** [Virtual Appliance Migration](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000OpkSnIAJ/view)
+### **Case Study 2: OTP Validity Issue**  
+- **Ticket ID**: [500Qk00000HT487IAD](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HT487IAD/view)  
+- **Symptoms**: OTP grants access beyond the intended time limit.  
+- **Diagnostic Steps**:  
+  - Tested OTP functionality in a controlled environment.  
+  - Verified system clock settings.  
+- **Resolution**: No documented resolution; customer closed the case independently.  
+- **Key Takeaways**: Always verify time-sensitive mechanisms and system clock accuracy.  
 
 ---
 
-## Best Practices
-
-- **Effective Rights Reports:** Educate users on expected behavior to avoid confusion.  
-- **Offline Installers:** Maintain an updated repository of available versions for quick access.  
-- **Device Detection:** Ensure physical devices are used for accurate VID/PID reporting.  
-- **OTP Management:** Regularly verify system clocks and OTP functionality.  
-- **Licensing:** Keep licenses up to date to prevent communication issues.  
-- **Bulk Enrollment:** Use compatible tools like Microsoft Excel to avoid encoding issues.  
-- **Virtual Appliance Migration:** Follow recommended backup and restore procedures for seamless transitions.
+## **Best Practices & Tips**  
+1. **Documentation**: Provide clear explanations of system limitations to customers upfront.  
+2. **Testing**: Recreate issues in a controlled environment to identify root causes.  
+3. **File Compatibility**: Use recommended software (e.g., Microsoft Excel) for bulk uploads.  
+4. **Logs**: Collect comprehensive logs for faster diagnosis.  
+5. **Licensing**: Regularly verify licensing status to prevent communication issues.  
+6. **Customer Communication**: Set realistic expectations and provide actionable recommendations.  
 
 ---
 
-## Advanced Topics
+## **Escalation Guidelines**  
+### **Criteria for Escalation**  
+- Issues involving system bugs or limitations requiring engineering intervention.  
+- Problems that cannot be resolved after thorough troubleshooting.  
+- High-priority cases affecting security or compliance.  
 
-### High Resource Usage During Bulk Enrollment
-- Monitor server performance during bulk operations.  
-- Optimize policies and limit file shadowing to necessary scenarios.  
-- Plan migrations to new instances to address performance bottlenecks.  
+### **Escalation Process**  
+1. Document all findings, including logs, screenshots, and test results.  
+2. Submit a detailed report to the engineering team via the internal escalation system.  
+3. Follow up with the customer to provide updates and manage expectations.  
 
---- 
-
-End of Article.
+---  
+End of Document.  

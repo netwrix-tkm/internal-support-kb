@@ -1,0 +1,15 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000BQb2PIAT","00410930","Support Ticket","Bulk M&A Scans not working","The bulk scans that are ran for our M&A Partners are not working correctly.  One particular NAS scan ran for days and when the scan finished, there is no record of the scan started or the scan results.  The history shows the scan being run from a month ago but in reality, the scan was ran a week ago.","","","","[Initial Issue]
+FSAA Bulk imports and erroring out
+
+[Root Cause]
+The FSAA System Scan and the SEEK system scan are running at the same time and is causing table lock issues in SQL due to them trying to use the same tables, causing both scans to take longer than it should.
+
+[Initial Resolution]
+We stopped both scans, made sure there were no running.lck files in either of the job directories, and then began a level 3 scan starting from the Collection group so it will run through the FSAA scan and FSAA bulk import before moving on to the SEEK tasks.
+
+[Secondary Issue]
+We also observed a permissions issue on the DFW NAS.
+
+[Secondary Resolution]
+Provided customer permissions documentation to review with their NAS team to add any missing permissions.","Incorrect configuration: Netwrix product","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Configuration","11.6","","34.1","Closed - Resolved","Citizens Financial Group, Inc.","Michael Graham","2024-06-04T13:32:00.000Z","2024-07-08T15:39:40.000Z"

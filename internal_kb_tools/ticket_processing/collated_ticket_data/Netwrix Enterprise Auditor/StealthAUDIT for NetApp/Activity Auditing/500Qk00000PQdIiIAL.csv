@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000PQdIiIAL","00445885","Support Ticket","The FSAC System Scan is not working","The FSAC System scan failed with the following error message:
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Unable to start scan: Failed to get INI file path from registry for VWATL1D5986 trying to get FSAC log path: Failed to get SBTFileMon.INI path from registry key HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesSBTLoggingParametersConfigPath in order to find FSAC log path: Requested registry access is not allowed.
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.ActivityScanTask.<InternalProcessRecordAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.ActivityScanTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()","Step 1: Open the Netwrix Enterprise Auditor version 11.6.
+Step 2: Initiate an FSAC System scan.
+Step 3: Observe that the scan fails with the error message indicating ""Requested registry access is not allowed"" while attempting to retrieve the SBTFileMon.INI path from the registry key `HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesSBTLoggingParametersConfigPath`.","The FSAC System scan fails with the error ""Requested registry access is not allowed"" when attempting to retrieve the SBTFileMon.INI path from the registry key `HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesSBTLoggingParametersConfigPath`.
+- The issue appears to be related to insufficient permissions to access the specified registry key, which prevents the scan from retrieving the necessary configuration file path.
+- The problem occurs in Netwrix Enterprise Auditor version 11.6 (build 11.6.0.132) and is reproducible by initiating an FSAC System scan.
+- It is unclear whether the issue is caused by a misconfiguration, a permissions issue, or a software defect. Further investigation is required to determine the root cause.","No next steps documented.
+
+(Requested by user 0054u000007osjS)","Issue: The FSAC System scan in Netwrix Enterprise Auditor version 11.6 (build 11.6.0.132) failed with the error message: ""Requested registry access is not allowed."" This occurred while attempting to retrieve the `SBTFileMon.INI` path from the registry key `HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesSBTLoggingParametersConfigPath`.
+
+Cause: The issue appears to be related to insufficient permissions to access the specified registry key, which prevents the scan from retrieving the necessary configuration file path. The exact root cause (whether it is a misconfiguration, permissions issue, or software defect) remains undetermined.
+
+Resolution: 
+• Open C:ProgramDataNetwrixActivity MonitorAgentSBTFileMon.ini on ISR-MMR-FS1
+• Under the [FILE_MONITOR1] section, look for STEALTHAUDIT=ON 
+• Set this to STEALTHAUDIT=OFF and save
+• Kick off a new FSAC System Scan","Root Cause Unknown","Frantz Baptiste","Request","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Activity Auditing","11.6","11.6.0.132","7.2","Closed - Resolved","EverBank","Bradley Dickinson","2025-05-21T16:38:47.000Z","2025-05-28T21:48:33.000Z"

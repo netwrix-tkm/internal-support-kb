@@ -1,0 +1,162 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PeFf6KAF","500Qk00000EVn9HIAT","TextPost","0050g000006QqyEAAS","2024-10-29T17:23:53.000Z","What We've Learned Updated: @Salesforce
+
+Identified an issue affecting proxy mode scans. Working on a fix.
+
+
+The 8/2 applet log provided has this error message ""Failed to connect to \HUGVAPPLRSMS001IPC$: The specified network name is no longer available""
+Was able to reproduce by disabling the ""Server"" service. This service should be running on target hosts in order for scans to succeed.
+This appears to have lead to the current issue reading the proxies T2s that we will get a fix for","","","","0050g000006QqyEAAS","2024-10-29T17:23:53.000Z"
+"0D5Qk00000PeCEHKA3","500Qk00000EVn9HIAT","TextPost","0050g000006QqyEAAS","2024-10-29T17:24:02.000Z","Next Steps Updated: R&D to deliver fix","","","","0050g000006QqyEAAS","2024-10-29T17:24:02.000Z"
+"0D5Qk00000Q4JKsKAN","500Qk00000EVn9HIAT","TextPost","00570000003KXurAAG","2024-11-04T20:20:59.000Z","<p><b>#EAM</b> --- Dusty</p><p><b>Current Status:</b>                    Awaiting Meeting &lt;&lt; Meeting Date  <b>11/4</b>/2024</p><p><b>Current Tier:</b>                       T2 Support</p><p><b>Contact last comment:</b>        The requested log has been uploaded. <b>10/29</b></p><p><b>T2 Owner Tay:                     </b>Awaiting meeting to Apply hotfix  <b>10/31</b></p><p><b>R&amp;D Jon Obst:                    </b>Hotfix available in this KB article: Stealthaudit-hotfix-11.6.0.057 <b>10/31</b></p>","","","","00570000003KXurAAG","2024-11-04T20:20:59.000Z"
+"0D5Qk00000Q8klwKAB","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-11-05T18:07:48.000Z","What We've Learned Updated: Upgraded to NEA v11.6.0.117 and FS Proxy v11.6.0.36
+-----
+@Salesforce
+
+Identified an issue affecting proxy mode scans. Working on a fix.
+
+
+The 8/2 applet log provided has this error message ""Failed to connect to \HUGVAPPLRSMS001IPC$: The specified network name is no longer available""
+Was able to reproduce by disabling the ""Server"" service. This service should be running on target hosts in order for scans to succeed.
+This appears to have lead to the current issue reading the proxies T2s that we will get a fix for","","","","0054u000007MiY9AAK","2024-11-05T18:07:48.000Z"
+"0D5Qk00000Q8rJSKAZ","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-11-05T18:08:28.000Z","Next Steps Updated: Fixed version has been implemented in the customers environment. We will wait to hear how their next run of File System scans look.","","","","0054u000007MiY9AAK","2024-11-05T18:08:28.000Z"
+"0D5Qk00000Q9WGhKAN","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-11-05T20:47:09.000Z","What We've Learned Updated: Upgraded to NEA v11.6.0.117 and FS Proxy v11.6.0.36
+
+We also discussed how to create a job to drop data for a file system host. Paul ran the DropFSTables job before the meeting thinking that was the correct job. He is going to work with his DBA to try and restore those tables.
+-----
+@Salesforce
+
+Identified an issue affecting proxy mode scans. Working on a fix.
+
+
+The 8/2 applet log provided has this error message ""Failed to connect to \HUGVAPPLRSMS001IPC$: The specified network name is no longer available""
+Was able to reproduce by disabling the ""Server"" service. This service should be running on target hosts in order for scans to succeed.
+This appears to have lead to the current issue reading the proxies T2s that we will get a fix for","","","","0054u000007MiY9AAK","2024-11-05T20:47:09.000Z"
+"0D5Qk00000QdXvOKAV","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-11-11T22:22:48.000Z","<p><b>#EAM</b>​ <b> --- Tay</b></p><p><b>Current Status: </b>Awaiting Client</p><p><b>Current Tier:  </b>T2 Support</p><p><b>Customer Last comment: </b>I was able to confirm on the console and proxy servers. I don’t have a time efficient way to validate all target servers, however, I did double-check 5-6 that gave the error from the last scan and the Server service was running on them as well. (<i>11/11/24)</i></p><p><b>Update: </b>[<i>From T2</i>]<b>  </b>Customer is still experiencing issues despite fix from R&amp;D. Dev believes this to be an environmental issue with the customers IPC$ share. Sending meeting invite to troubleshoot further with the customer. <i>(11/11/24)</i></p><p> </p>","","","","0054u000007MiY9AAK","2024-11-11T22:22:48.000Z"
+"0D5Qk00000QtFf4KAF","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-11-14T18:43:51.000Z","Next Steps Updated: Troubleshooting IPC$:
+- Verify Windows Server service is running
+- AdminCMD run ""net share"" on target machine
+- AdminCMD run ""net use \hostnameIPC$ /user:neaserviceaccount"" x2
+- Check the below security policies > Security Options:
+--- Network Security: LAN Manager Authentication Level (Send NTLMv2 response only)
+--- Network Access: Sharing and Security Model for Local Accounts (Classic)
+--- Accounts: Limit Local Account Use of Blank Passwords to Console Logon Only (Enabled)
+--- Network Access: Do Not Allow Anonymous Enumeration of SAM Accounts and Shares (Enabled)
+--- Network Access: Restrict Anonymous Access to Named Pipes and Shares (Enabled)
+--- Network Access: Allow Anonymous SID/Name Translation (Disabled)
+--- Network access: Do not allow storage of passwords and credentials for network authentication (Disabled)
+--- Network access: Restrict clients allowed to make remote calls to SAM (Granted to NEA Service account)","","","","0054u000007MiY9AAK","2024-11-14T18:43:51.000Z"
+"0D5Qk00000QtlKdKAJ","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-11-14T19:41:55.000Z","What We've Learned Updated: Sat on the call for 40 minutes but we were unable to locate the service account password for troubleshooting.
+-----
+Upgraded to NEA v11.6.0.117 and FS Proxy v11.6.0.36
+
+We also discussed how to create a job to drop data for a file system host. Paul ran the DropFSTables job before the meeting thinking that was the correct job. He is going to work with his DBA to try and restore those tables.
+-----
+@Salesforce
+
+Identified an issue affecting proxy mode scans. Working on a fix.
+
+
+The 8/2 applet log provided has this error message ""Failed to connect to \HUGVAPPLRSMS001IPC$: The specified network name is no longer available""
+Was able to reproduce by disabling the ""Server"" service. This service should be running on target hosts in order for scans to succeed.
+This appears to have lead to the current issue reading the proxies T2s that we will get a fix for","","","","0054u000007MiY9AAK","2024-11-14T19:41:55.000Z"
+"0D5Qk00000QtTOYKA3","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-11-14T19:42:13.000Z","What We've Learned Updated: Sat on the call for 40 minutes but we were unable to locate the service account password for troubleshooting - sending the next steps via email and another meeting link
+-----
+Upgraded to NEA v11.6.0.117 and FS Proxy v11.6.0.36
+
+We also discussed how to create a job to drop data for a file system host. Paul ran the DropFSTables job before the meeting thinking that was the correct job. He is going to work with his DBA to try and restore those tables.
+-----
+@Salesforce
+
+Identified an issue affecting proxy mode scans. Working on a fix.
+
+
+The 8/2 applet log provided has this error message ""Failed to connect to \HUGVAPPLRSMS001IPC$: The specified network name is no longer available""
+Was able to reproduce by disabling the ""Server"" service. This service should be running on target hosts in order for scans to succeed.
+This appears to have lead to the current issue reading the proxies T2s that we will get a fix for","","","","0054u000007MiY9AAK","2024-11-14T19:42:13.000Z"
+"0D5Qk00000QtVfEKAV","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-11-14T19:55:58.000Z","Next Steps Updated: Troubleshooting IPC$:
+- Verify Windows Server service is running on target machine
+- AdminCMD run ""net share"" on target machine
+- AdminCMD run ""net use \hostnameIPC$ /user:domainneaserviceaccount"" x2
+- Ping the host from NEA Proxy to Target machine and look for packet loss or high latency
+- Verify the following SMB ports: TCP 445, TCP 139, UDP 137, UDP 138
+- AdminPS run ""Get-SmbServerConfiguration"" on both the proxy and target machine and verify ""EnableSMB1Protocol"" is set to False & ""EnableSMB2Protocol"" is set to True
+- Check the below security policies (Local Policies > Security Options):
+--- Network Security: LAN Manager Authentication Level (Send NTLMv2 response only)
+--- Network Access: Sharing and Security Model for Local Accounts (Classic)
+--- Accounts: Limit Local Account Use of Blank Passwords to Console Logon Only (Enabled)
+--- Network Access: Do Not Allow Anonymous Enumeration of SAM Accounts and Shares (Enabled)
+--- Network Access: Restrict Anonymous Access to Named Pipes and Shares (Enabled)
+--- Network Access: Allow Anonymous SID/Name Translation (Disabled)
+--- Network access: Do not allow storage of passwords and credentials for network authentication (Disabled)
+--- Network access: Restrict clients allowed to make remote calls to SAM (Granted to NEA Service account)
+
+“The network path was not found” indicates an issue before establishing a connection (e.g., DNS resolution, incorrect address, or connectivity problems).
+
+“The specified network name is no longer available” indicates an issue after a connection was made but then lost or terminated (e.g., network drop, server unavailability, or SMB session closure).","","","","0054u000007MiY9AAK","2024-11-14T19:55:58.000Z"
+"0D5Qk00000Ro39RKAR","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-11-26T19:17:56.000Z","<p>#EAM​  -- T. Caliguiri</p><p><b>Current Status: </b>Awaiting Client</p><p><b>Last Update: </b>&quot;TSE has developed a list if actions to test and isolate why IPC$ share is a problem have identified a envi problem between the proxy and endpoint&quot;</p><p> </p><p><b>Additional Info/Follow Up:</b> No update from customer since 11/21</p>","","","","0054u000007MiY9AAK","2024-11-26T19:17:56.000Z"
+"0D5Qk00000S7hNyKAJ","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-12-02T22:28:55.000Z","<p>#EAM -- T. Caliguiri</p><p>Current Status: Awaiting Client</p><p>Last Update: Customer is working on this and should have more information/results for us by the end of the week.</p><p> </p><p>Additional Info/Follow Up: </p>","","","","0054u000007MiY9AAK","2024-12-02T22:28:55.000Z"
+"0D5Qk00000TCYomKAH","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2024-12-17T18:56:45.000Z","<p>#EAM -- TRC</p><p>Current Status: Awaiting Client</p><p>Last Update: Issue appears to be environmental. Contact is working with their network team to address the issue they believe lies with their vlan firewall or missing permissions in a GPO and is preventing them (and NEA) from accessing the IPC$ share</p>","","","","0054u000007MiY9AAK","2024-12-17T18:56:45.000Z"
+"0D5Qk00000UbSHUKA3","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-01-10T14:03:31.000Z","Invitation updated. Attendees: Tay Caliguiri","","","","0054u000007MiY9AAK","2025-01-10T14:03:31.000Z"
+"0D5Qk00000UbSHTKA3","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-01-10T14:03:31.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007MiY9AAK","2025-01-10T14:03:31.000Z"
+"0D5Qk00000UbSHVKA3","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-01-10T14:03:32.000Z","Invitation updated. Attendees: Tay Caliguiri, Paul Williams","","","","0054u000007MiY9AAK","2025-01-10T14:03:32.000Z"
+"0D5Qk00000VjO7wKAF","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-01-29T16:29:12.000Z","Invitation updated. Attendees: Tay Caliguiri, Paul Williams, Scott Webber","","","","0054u000007MiY9AAK","2025-01-29T16:29:12.000Z"
+"0D5Qk00000W6o1mKAB","500Qk00000EVn9HIAT","TextPost","0050g000006QqyEAAS","2025-02-04T18:53:32.000Z","Next Steps Updated: Customer must valid Firewall Configuration will allow required connections
+
+Troubleshooting IPC$:
+- Verify Windows Server service is running on target machine
+- AdminCMD run ""net share"" on target machine
+- AdminCMD run ""net use \hostnameIPC$ /user:domainneaserviceaccount"" x2
+- Ping the host from NEA Proxy to Target machine and look for packet loss or high latency
+- Verify the following SMB ports: TCP 445, TCP 139, UDP 137, UDP 138
+- AdminPS run ""Get-SmbServerConfiguration"" on both the proxy and target machine and verify ""EnableSMB1Protocol"" is set to False & ""EnableSMB2Protocol"" is set to True
+- Check the below security policies (Local Policies > Security Options):
+--- Network Security: LAN Manager Authentication Level (Send NTLMv2 response only)
+--- Network Access: Sharing and Security Model for Local Accounts (Classic)
+--- Accounts: Limit Local Account Use of Blank Passwords to Console Logon Only (Enabled)
+--- Network Access: Do Not Allow Anonymous Enumeration of SAM Accounts and Shares (Enabled)
+--- Network Access: Restrict Anonymous Access to Named Pipes and Shares (Enabled)
+--- Network Access: Allow Anonymous SID/Name Translation (Disabled)
+--- Network access: Do not allow storage of passwords and credentials for network authentication (Disabled)
+--- Network access: Restrict clients allowed to make remote calls to SAM (Granted to NEA Service account)
+
+“The network path was not found” indicates an issue before establishing a connection (e.g., DNS resolution, incorrect address, or connectivity problems).
+
+“The specified network name is no longer available” indicates an issue after a connection was made but then lost or terminated (e.g., network drop, server unavailability, or SMB session closure).","","","","0050g000006QqyEAAS","2025-02-04T18:53:32.000Z"
+"0D5Qk00000W71t8KAB","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-02-04T19:23:03.000Z","<p>Met with customer this morning but the network resource was unable to join so they will be rescheduling using the original meeting link</p>","","","","0054u000007MiY9AAK","2025-02-04T19:23:03.000Z"
+"0D5Qk00000WgJ5XKAV","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-02-10T22:01:48.000Z","What We've Learned Updated: Met with customer and a firewall resource. Tested with host OTTVAIOHUGMS001 from proxy server SOPVAPPSTBMS002. We had an UNsuccessful tnc on 445 from the proxy to the host. We were also unable to successfully unc via \OTTVAIOHUGMS001 or \OTTVAIOHUGMS001C$. 
+
+There were no hits (success or deny) on the Palo Alto firewall which leads us to believe it is an issue with the internal firewall, but that is managed by Open Systems and may take some time to remediate.
+-----
+Sat on the call for 40 minutes but we were unable to locate the service account password for troubleshooting - sending the next steps via email and another meeting link
+-----
+Upgraded to NEA v11.6.0.117 and FS Proxy v11.6.0.36
+
+We also discussed how to create a job to drop data for a file system host. Paul ran the DropFSTables job before the meeting thinking that was the correct job. He is going to work with his DBA to try and restore those tables.
+-----
+@Salesforce
+
+Identified an issue affecting proxy mode scans. Working on a fix.
+
+
+The 8/2 applet log provided has this error message ""Failed to connect to \HUGVAPPLRSMS001IPC$: The specified network name is no longer available""
+Was able to reproduce by disabling the ""Server"" service. This service should be running on target hosts in order for scans to succeed.
+This appears to have lead to the current issue reading the proxies T2s that we will get a fix for","","","","0054u000007MiY9AAK","2025-02-10T22:01:48.000Z"
+"0D5Qk00000WoN7IKAV","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-02-11T17:24:00.000Z","Next Steps Updated: Customer must work with Open Systems to locate the correct firewall blocking us and open ports 445 between the proxies and the target hosts","","","","0054u000007MiY9AAK","2025-02-11T17:24:00.000Z"
+"0D5Qk00000XEMY9KAP","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-02-18T18:06:42.000Z","Next Steps Updated: Customer must work with Open Systems to locate the correct firewall blocking us and open ports 445 between the proxies and the target hosts. 
+
+They indicated this will take some time on their end and they will reach out once it is complete. PPR to check in if no update in 2 weeks (2/27).","","","","0054u000007MiY9AAK","2025-02-18T18:06:42.000Z"
+"0D5Qk00000Y7MGkKAN","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-03-03T19:58:03.000Z","Next Steps Updated: Last Customer Follow-up: 3/3
+
+Customer must work with Open Systems to locate the correct firewall blocking us and open ports 445 between the proxies and the target hosts. 
+
+They indicated this will take some time on their end and they will reach out once it is complete. PPR to check in if no update in 2 weeks (2/27).","","","","0054u000007MiY9AAK","2025-03-03T19:58:03.000Z"
+"0D5Qk00000YhRPrKAN","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-03-07T21:58:39.000Z","<p>Clients latest email is for a different ticket (#424404)</p>","","","","0054u000007MiY9AAK","2025-03-07T21:58:39.000Z"
+"0D5Qk00000Yu2iFKAR","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-03-10T20:46:08.000Z","Steps to Reproduce Updated: 1. Run FSAA/SEEK System Scan
+2. Receive error from certain hosts","","","","0054u000007MiY9AAK","2025-03-10T20:46:08.000Z"
+"0D5Qk00000YtprqKAB","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-03-10T21:06:46.000Z","Next Steps Updated: Customer must work with Open Systems to locate the correct firewall blocking us and open ports 445 between the proxies and the target hosts. 
+
+They indicated this will take some time on their end and they will reach out once it is complete. PPR to check in if no update in 2 weeks (2/27).","","","","0054u000007MiY9AAK","2025-03-10T21:06:46.000Z"
+"0D5Qk00000ZeLg1KAF","500Qk00000EVn9HIAT","TextPost","0054u000007MiY9AAK","2025-03-18T17:06:09.000Z","Next Steps Updated: Customer has a meeting this week with their firewall team and should be able to provide an update by the end of the week - 3/21.
+
+Customer must work with Open Systems to locate the correct firewall blocking us and open ports 445 between the proxies and the target hosts.","","","","0054u000007MiY9AAK","2025-03-18T17:06:09.000Z"

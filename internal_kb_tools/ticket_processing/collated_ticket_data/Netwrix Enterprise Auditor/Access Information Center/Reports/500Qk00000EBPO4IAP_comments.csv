@@ -1,0 +1,38 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008Q6QBIA0","500Qk00000EBPO4IAP","Might be best to use Resource Audit, then pick the server, then filter the group desired","0054u000007MiY9AAK","2024-08-08T18:31:22.000Z","2024-08-08T18:31:22.000Z","false","false"
+"00aQk000008V8pVIAS","500Qk00000EBPO4IAP","In the AccessInformationCenter.service.exe.config we added a 0 to the MaxRowCount line (1000000) and this increased the row view in the AIC","0054u000007MiY9AAK","2024-08-13T14:47:27.000Z","2024-08-13T14:47:27.000Z","false","false"
+"00aQk000008VKx7IAG","500Qk00000EBPO4IAP","If pop-ups are enabled, next I'll have the customer check that going from Resource Audit > Active Directory > find the group in the AD tree, then export from there","0054u000007MiY9AAK","2024-08-13T16:45:42.000Z","2024-08-13T16:45:42.000Z","false","false"
+"00aQk000008ZBvGIAW","500Qk00000EBPO4IAP","Interesting wrinkle- the logs show the report being generated but nothing is ever created/downloaded","0054u000007MiY9AAK","2024-08-16T13:57:31.000Z","2024-08-16T13:57:31.000Z","false","false"
+"00aQk000008bf2nIAA","500Qk00000EBPO4IAP","[Tiger Team]
+**Problem Statement/Business Impact**
+Customer is unable to download the Permissions report from the AIC for the CACA-SG CDN NSS ITS Tax Offshore Users group (700k+ rows)
+
+**Desired Outcome**
+Customer needs this report to be downloadable to other departments can parse through it
+
+**Steps to Reproduce**
+1. Search CACA-SG CDN NSS ITS Tax Offshore Users in the AIC
+2. Select the Permissions report
+3. Check the box to include inherited
+4. Download as excel --out-of-memory error in log
+5. Download as csv -- 2024-08-16 12:28:02 -- Error  -- 10.133.31.138 Exception:
+2024-08-16 12:28:02 -- Error  -- 10.133.31.138  Message: Rejecting from ip address: 10.133.31.138
+2024-08-16 12:28:02 -- Error  -- 10.133.31.138  Type:    System.UnauthorizedAccessException
+2024-08-16 12:28:02 -- Error  -- 10.133.31.138  StackTrace:
+   at AccessInformationCenter.Web.Configuration.SessionSecurity.ValidateUser(CookieValidateIdentityContext context)
+
+**Troubleshooting Completed/Notes**
+- Increased the max row count via the AIC config
+- 32GB of RAM on NEA system
+- Verified the other reports download just fine
+- Verified there is a csv from the download attempt at (...Program FilesSTEALTHbitsAccess Information CenterExports) but the AIC shows no indication to find it there, nor is it able to be downloaded remotely
+
+**Logs Uploaded**
+AIC-nodebug.log
+AIC-debug.log","0054u000007MiY9AAK","2024-08-19T13:52:17.000Z","2024-08-19T13:54:27.000Z","false","false"
+"00aQk000008bgwYIAQ","500Qk00000EBPO4IAP","Were you able to confirm if a smaller report behaves?
+
+It appears in your notes there may be some sort of Out of Memory error. 
+
+If its only this big one I'd check event viewer and space on the drives of the AIC App server.","0054u000006gpoAAAQ","2024-08-19T14:29:29.000Z","2024-08-19T14:29:29.000Z","false","false"
+"00aQk000008blHtIAI","500Qk00000EBPO4IAP","All other reports download just fine. It just appears to be this one having issues. Out of Memory explains the issue with excel but looks like we are getting a different error for csv","0054u000007MiY9AAK","2024-08-19T14:55:10.000Z","2024-08-19T14:55:10.000Z","false","false"

@@ -1,200 +1,197 @@
-# Netwrix Endpoint Protector: Client Install/Uninstall Knowledge Base
+# Netwrix Endpoint Protector: Client Install/Uninstall Knowledge Base Guide
 
 ## Overview
-The Netwrix Endpoint Protector (EPP) client is a critical component for managing endpoint security, including data loss prevention (DLP), device control, and compliance monitoring. This guide consolidates common issues, troubleshooting steps, and solutions related to the installation, uninstallation, and configuration of the EPP client across various operating systems and deployment methods. It also includes best practices and advanced topics to help support engineers resolve issues efficiently.
+
+This guide provides a comprehensive reference for troubleshooting and resolving issues related to the installation and uninstallation of the Netwrix Endpoint Protector (EPP) client. The EPP client is a critical component of the Endpoint Protector platform, enabling endpoint-level data protection, policy enforcement, and secure communication with the Endpoint Protector server. Proper handling of installation and uninstallation processes ensures seamless deployment, functionality, and compliance with organizational security policies.
+
+This document is designed to equip support engineers with the knowledge and tools necessary to diagnose, resolve, and prevent issues, ensuring consistent and efficient support delivery.
 
 ---
 
-## Issue Summary Table
+## Technical Background
 
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| DLP License Not Reflecting on Server | License installed on client but not visible on server | Reinstall client and verify connectivity | Reinstall client to restore license recognition | [DLP License Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Bdhl8IAB/view) |
-| Ubuntu 24.04 Compatibility | No compatible client available for Ubuntu 24.04 | Confirm compatibility with development team | Upgrade server to 5.9.4.1 and install compatible agent | [Ubuntu Compatibility](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000N5puHIAR/view) |
-| MSI File Missing for Uninstallation | Unable to uninstall without MSI file | Provide zap tool or alternative uninstall methods | Use zap tool for uninstallation | [MSI File Missing](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BNgReIAL/view) |
-| macOS Intune Deployment Script Missing | Deployment failed due to missing shell script | Provide required shell script | Share shell script for deployment | [macOS Intune Deployment](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000C1cCPIAZ/view) |
-| Windows Firewall Disabled During Installation | Installation failed with firewall off | Enable firewall temporarily during installation | Enable firewall, complete installation, then reconfigure | [Firewall Disabled](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GlYoFIAV/view) |
-| Transparent Proxy Not Installed on macOS 15 | Proxy pop-up missing after upgrade | Perform clean macOS installation | Reinstall macOS 15 and retry | [Transparent Proxy Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GlvuTIAR/view) |
-| SentinelOne Blocking Installation | SentinelOne flagged installation as suspicious | Disable SentinelOne and use zap tool | Use zap tool to clean remnants, then reinstall | [SentinelOne Blocking](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FpiCzIAJ/view) |
-| Service Name Mismatch in Systemctl | Incorrect service name used in commands | Verify correct service name | Use `epp-client-daemon` instead of `epp-client-daemon-d` | [Service Name Mismatch](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FrGKYIA3/view) |
-| Fedora Installer Request | Missing installer for Fedora 41 | Confirm availability, create product board request | Provide Fedora 40 and 41 installers | [Fedora Installer Request](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Hr2xxIAB/view) |
-| Missing Uninstall Password | Unable to uninstall client without password | Provide zap tool for removal | Use zap tool to uninstall client | [Missing Uninstall Password](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000OPxS5IAL/view) |
-| macOS Notifications Missing | No notifications for policy violations | Verify notifier functionality and reinstall client | Update client to version 3.0.4.3 | [macOS Notification Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Ntpe9IAB/view) |
+### Key Concepts
+- **Endpoint Protector Client (EPP):** A software agent installed on endpoint devices to enforce data protection policies, monitor activity, and communicate with the Endpoint Protector server.
+- **Client-Server Communication:** The client relies on a secure connection to the Endpoint Protector server for policy updates, reporting, and license validation.
+- **Installation/Uninstallation Methods:** Clients can be installed or removed manually, via scripts, or through Mobile Device Management (MDM) solutions like Intune, Jamf, or JumpCloud.
+- **Uninstallation Protection:** The EPP client often includes password protection or server-side controls to prevent unauthorized removal.
+- **Zap Tool:** A specialized utility provided by Netwrix to forcibly remove the EPP client when standard uninstallation methods fail.
 
----
+### Terminology
+- **Silent Installation/Uninstallation:** A process that runs without user interaction, typically used for bulk deployments or removals.
+- **Transparent Proxy:** A feature that intercepts and inspects network traffic for data loss prevention (DLP) purposes.
+- **Configuration Profiles:** Files used to automate client settings during installation, often required for MDM deployments.
+- **Compatibility Matrix:** A reference for supported operating systems and versions for the EPP client.
+- **CAP (Content-Aware Protection):** Policies that monitor and control data transfers based on content.
+- **DPI (Deep Packet Inspection):** A feature requiring specific configurations for secure communication.
 
-## Detailed Issues and Solutions
-
-### DLP License Not Reflecting on Server
-**Symptoms:**  
-- DLP license installed on the client but not visible on the server.  
-- Clients unable to connect to the server despite updated policies.
-
-**Troubleshooting Steps:**  
-1. Verify that the license is installed on the client.  
-2. Check server logs for connectivity issues.  
-3. Attempt to uninstall and reinstall the client.  
-4. Confirm that the uninstall password is valid.  
-
-**Solution:**  
-Reinstall the Endpoint Protector client on affected machines and verify that the license is recognized on the server after reinstallation.  
+### Supported Platforms
+- **Operating Systems:** Windows, macOS, Linux (Ubuntu, RHEL).
+- **Deployment Methods:** Manual installation, MDM deployment, or script-based installation.
 
 ---
 
-### Ubuntu 24.04 Compatibility
-**Symptoms:**  
-- No compatible EPP client available for Ubuntu 24.04.  
+## Issue Recognition & Triage
 
-**Troubleshooting Steps:**  
-1. Verify the EPP server version (ensure it is 5.9.4.1 or later).  
-2. Inform the customer that the compatible client is available only for the latest server version.  
-3. Provide download links for the compatible agent.  
+### Common Symptoms
+- **Installation Errors:** Missing dependencies, blocked by security software, or insufficient privileges.
+- **Uninstallation Failures:** Password prompts, remnants left behind, or missing uninstallation files.
+- **Client-Server Connectivity Issues:** Clients not appearing in the server console, incorrect IP configuration, or firewall interference.
+- **Compatibility Problems:** Issues with specific operating systems or outdated client/server versions.
+- **Functional Issues Post-Installation:** Features not working, certificates not trusted, or policies not applied.
 
-**Solution:**  
-Upgrade the server to version 5.9.4.1 and install the compatible agent.  
-
----
-
-### MSI File Missing for Uninstallation
-**Symptoms:**  
-- Standard uninstallation command fails due to missing MSI file.  
-
-**Troubleshooting Steps:**  
-1. Attempt uninstallation using the MSI file path.  
-2. Provide alternative methods, such as the zap tool.  
-
-**Solution:**  
-Use the zap tool to forcibly remove the EPP client. Ensure the zap tool is executed with administrative privileges.  
+### Priority Assessment
+- **High Priority:** Issues affecting multiple endpoints, critical business operations, or security compliance (e.g., inability to uninstall due to expired licenses, widespread connectivity failures).
+- **Medium Priority:** Issues affecting individual endpoints or non-critical features (e.g., installation errors on a single device).
+- **Low Priority:** Requests for guidance, documentation, or clarification (e.g., how to configure installation scripts).
 
 ---
 
-### macOS Intune Deployment Script Missing
-**Symptoms:**  
-- Deployment via Intune fails due to missing shell script.  
+## Diagnostic Methodology
 
-**Troubleshooting Steps:**  
-1. Confirm the requirement for a shell script in the deployment process.  
-2. Provide the necessary shell script to the customer.  
+### Systematic Approach
+1. **Verify Environment Details:**
+   - Operating system version.
+   - EPP client version.
+   - Deployment method (manual, script, MDM).
+   - Server version and configuration.
+   - Network configuration (e.g., static vs. dynamic IP, firewall settings).
 
-**Solution:**  
-Share the shell script with the customer and provide guidance on its use.  
+2. **Reproduce the Issue:**
+   - Attempt the installation/uninstallation process in a controlled environment.
+   - Review logs for error messages or warnings.
 
----
+3. **Check Compatibility:**
+   - Confirm the client version is compatible with the server version.
+   - Verify supported operating systems using the compatibility matrix.
 
-### Windows Firewall Disabled During Installation
-**Symptoms:**  
-- Installation fails with an error when the Windows firewall is disabled.  
+4. **Analyze Logs:**
+   - Installation logs (e.g., MSIExec logs for Windows, system logs for Linux/macOS).
+   - Server logs for client registration or communication errors.
 
-**Troubleshooting Steps:**  
-1. Verify that the firewall is disabled on the client machine.  
-2. Attempt installation with the firewall temporarily enabled.  
+5. **Test Workarounds:**
+   - Use alternative installation/uninstallation methods (e.g., Zap Tool, manual commands).
+   - Adjust configuration files or scripts as needed.
 
-**Solution:**  
-Enable the firewall temporarily during installation. Once complete, reconfigure the firewall as needed.  
+6. **Validate the Solution:**
+   - Confirm successful installation/uninstallation.
+   - Verify client-server communication and policy enforcement.
 
----
-
-### Transparent Proxy Not Installed on macOS 15
-**Symptoms:**  
-- Transparent proxy pop-up does not appear after upgrading to macOS 15.  
-
-**Troubleshooting Steps:**  
-1. Verify the installation of the EPP client and certificate.  
-2. Restart the MacBook and attempt to trigger the proxy pop-up.  
-3. Perform a clean installation of macOS 15.  
-
-**Solution:**  
-Perform a full wipe and reinstall macOS 15. Retry the installation process.  
+7. **Escalate if Necessary:**
+   - If the issue persists after standard troubleshooting, escalate to the R&D team with detailed logs and findings.
 
 ---
 
-### SentinelOne Blocking Installation
-**Symptoms:**  
-- SentinelOne flags the EPP installation as suspicious.  
+## Information Collection
 
-**Troubleshooting Steps:**  
-1. Disable SentinelOne temporarily.  
-2. Use the zap tool to clean remnants of previous installations.  
-3. Perform a fresh installation of the EPP client.  
+### Questions to Ask Customers
+- What operating system and version are you using?
+- What version of the EPP client are you trying to install/uninstall?
+- Are you using an MDM solution? If so, which one?
+- What error messages are you encountering?
+- Have you attempted any troubleshooting steps? If so, what were the results?
 
-**Solution:**  
-Use the zap tool to remove remnants, then reinstall the EPP client.  
-
----
-
-### Service Name Mismatch in Systemctl
-**Symptoms:**  
-- Error message: "Unit epp-client-daemon-d.service could not be found."  
-
-**Troubleshooting Steps:**  
-1. Verify the service name using `ps ax | grep epp-client`.  
-2. Use the correct service name (`epp-client-daemon`) in commands.  
-
-**Solution:**  
-Use `epp-client-daemon` as the correct service name.  
+### Logs and Data to Collect
+- Installation/uninstallation logs (e.g., MSI logs for Windows, `/var/log` for Linux).
+- System logs (e.g., Event Viewer on Windows).
+- Screenshots or error messages.
+- Network connectivity tests (e.g., ping, traceroute).
+- Configuration files (e.g., `options.sh`, `epp_install_parameters.txt`).
 
 ---
 
-### Fedora Installer Request
-**Symptoms:**  
-- Customer requested installers for Fedora 40 and Fedora 41.  
+## Common Scenarios & Solutions
 
-**Troubleshooting Steps:**  
-1. Provide the installer link for Fedora 40.  
-2. Confirm availability of Fedora 41 installer with engineering.  
+### Scenario 1: Installation Errors
+- **Symptoms:** Installation fails with dependency or permission errors.
+- **Resolution:**
+  1. Verify that all prerequisites are met (e.g., required libraries, permissions).
+  2. Use the latest version of the client compatible with the operating system.
+  3. Temporarily disable security software if it blocks the installation.
 
-**Solution:**  
-Share the Fedora 40 and 41 installer links with the customer.  
+### Scenario 2: Uninstallation Failures
+- **Symptoms:** Uninstallation prompts for a password or leaves remnants behind.
+- **Resolution:**
+  1. Use the Zap Tool for forced removal.
+  2. Include the uninstall password in the command if required:
+     ```bash
+     MsiExec /X {ProductCode} PASSWORD={password}
+     ```
+  3. Reboot the system after uninstallation to ensure all components are removed.
 
----
+### Scenario 3: Client-Server Connectivity Issues
+- **Symptoms:** Clients do not appear in the server console.
+- **Resolution:**
+  1. Verify network connectivity and firewall settings.
+  2. Check the client configuration file for correct server details.
+  3. Restart client and server services.
 
-### macOS Notifications Missing
-**Symptoms:**  
-- Notifications for policy violations were not displayed.  
+### Scenario 4: Compatibility Problems
+- **Symptoms:** Client fails to install or function on a specific OS version.
+- **Resolution:**
+  1. Confirm compatibility using the Netwrix compatibility matrix.
+  2. Update to the latest client version.
+  3. Use alternative deployment methods if MDM solutions are unsupported.
 
-**Troubleshooting Steps:**  
-1. Verify notifier functionality and check logs for errors.  
-2. Ensure full disk access and DPI certificate import.  
-3. Provide patch for updated client version (3.0.4.3).  
-
-**Solution:**  
-Update the client to version 3.0.4.3 to resolve notifier functionality.  
-
----
-
-## Best Practices
-
-1. **Pre-Installation Checks:**  
-   - Ensure all remnants of previous installations are removed using tools like the zap tool.  
-   - Verify compatibility with the operating system and network configuration.
-
-2. **Backup MSI Files:**  
-   - Retain MSI files for future uninstallation needs.  
-
-3. **Use Latest Versions:**  
-   - Ensure the latest versions of the EPP client and server are installed to avoid compatibility issues.  
-
-4. **Document Configurations:**  
-   - Maintain detailed records of configurations, including uninstall passwords and server settings.  
-
-5. **License Management:**  
-   - Regularly monitor license allocation and ensure devices are within the license limit.  
+### Scenario 5: Proxy Interference
+- **Symptoms:** Client fails to connect during installation.
+- **Resolution:**
+  1. Temporarily disable the proxy or use the "SetServerIP" tool.
+  2. Verify proxy exceptions for EPP communication.
 
 ---
 
-## Advanced Topics
+## Detailed Case Studies
 
-### Using the Zap Tool for Uninstallation
-The zap tool is a powerful utility for forcibly removing the EPP client. Use it only as a last resort and ensure administrative privileges are available.  
-**Steps:**  
-1. Obtain written agreement from the customer.  
-2. Provide the zap tool and instruct the customer to run it as an administrator.  
-3. Ensure the tool is deleted from the machine after use.  
+### Case Study 1: Uninstallation Failure Due to Missing MSI File
+- **Symptoms:** Customer could not uninstall the client due to a missing MSI file.
+- **Resolution:** Provided the Zap Tool for manual removal.
+- **Key Takeaways:** Always maintain access to installation files for uninstallation purposes.
 
-**Warnings:**  
-- Do not share the zap tool with third parties.  
-- Use the tool responsibly and only in extraordinary circumstances.  
+### Case Study 2: Installation Blocked by Security Software
+- **Symptoms:** SentinelOne flagged the installation as suspicious.
+- **Resolution:** Disabled SentinelOne temporarily and used the Zap Tool for a clean installation.
+- **Key Takeaways:** Coordinate with security teams to whitelist EPP client installers.
+
+### Case Study 3: Proxy Interference on macOS
+- **Symptoms:** Client failed to connect during installation with a system-wide proxy enabled.
+- **Resolution:** Advised disabling the proxy during installation. Connection succeeded.
+- **Key Takeaways:** Document proxy-related workarounds for environments with strict network policies.
 
 ---
 
-End of Article.
+## Best Practices & Tips
+
+1. **Pre-Installation Checks:**
+   - Verify system requirements and dependencies.
+   - Ensure administrative privileges.
+
+2. **Use Deployment Tools:**
+   - For large-scale deployments, use GPO or MDM tools like Intune or Jamf.
+
+3. **Leverage Cleanup Tools:**
+   - Use the Zap Tool to remove remnants of old installations before reinstalling.
+
+4. **Document Configuration Settings:**
+   - Maintain records of server IPs, ports, and certificates for troubleshooting.
+
+5. **Proactive Communication:**
+   - Inform customers about potential issues (e.g., VPN interference, expired licenses) and provide preventive guidance.
+
+---
+
+## Escalation Guidelines
+
+### When to Escalate
+- Persistent issues after following standard troubleshooting steps.
+- Logs indicate a potential bug or compatibility issue.
+- Requests for unsupported operating systems or custom configurations.
+
+### How to Escalate
+1. Collect all relevant logs, screenshots, and configuration files.
+2. Document the troubleshooting steps already performed.
+3. Submit a detailed escalation request to the R&D team via the internal ticketing system.
+
+---
+
+This guide serves as a definitive reference for handling client installation and uninstallation issues in Netwrix Endpoint Protector, enabling support engineers to resolve cases efficiently and consistently.

@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MHjIeIAL","00436938","Support Ticket","Hardened Paths have been modified to lower the security level","Hi,
+
+I would like to schedule a meeting to discuss the following risk identified by Pingcastle: Hardened Paths have been modified to lower the security level.
+
+The agenda for the meeting would be to review and discuss how to remediate this risk from our AD.
+
+Please let me know your availability for Thursday 27th February.
+
+Kind Regards,
+
+Atif Rashid","","Customer wanted to discuss the risk Hardened Paths have been modified to lower the security level, identified by Pingcastle","Wait for customer that mentioned this is still in review with their architect team to understand the risk impact of implementing these changes.","Hardened Paths Have Been Modified to Lower the Security Level:
+This finding indicates that the Hardened UNC Paths policy has been altered, reducing protection for SYSVOL and NETLOGON shares. This increases the risk of unauthorized access and potential manipulation of Group Policy settings.
+
+-To mitigate this, the policy should be correctly enforced through Group Policy Management:
+Navigate to Computer Configuration > Policies > Administrative Templates > Network > Network Provider > Hardened UNC Paths
+-Apply the following values:
+\*SYSVOL  RequireMutualAuthentication=1, RequireIntegrity=1  
+\*NETLOGON  RequireMutualAuthentication=1, RequireIntegrity=1  
+-Run gpupdate /force and verify access controls.
+Number of Users Not in Protected Users
+The Protected Users group enhances security by enforcing stricter authentication policies, preventing NTLM usage, and restricting credential caching. Users not in this group remain more susceptible to authentication-based attacks.
+
+To mitigate this, privileged accounts should be added to the Protected Users group:
+-Open Active Directory Users and Computers (ADUC)
+-Locate and modify the Protected Users group
+-Add the necessary accounts and enforce a Group Policy update","","Emiliano Krainuk","Question","PingCastle","PC Standard","PingCastle General","3.1.0.1","","36.8","Closed - Resolved","Barratt Develepements Plc","atif rashid","2025-02-25T16:03:48.000Z","2025-04-03T11:59:53.000Z"

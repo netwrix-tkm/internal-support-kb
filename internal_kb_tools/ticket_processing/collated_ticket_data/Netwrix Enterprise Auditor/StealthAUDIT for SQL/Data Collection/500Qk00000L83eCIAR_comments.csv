@@ -1,0 +1,74 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BgGgMIAV","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the Following Fields have been updated: 
+Account ACV has been changed to 312853.9813333333506.
+Priority has been changed to Critical.","00570000003KXurAAG","2025-02-07T15:53:18.000Z","2025-02-07T15:53:18.000Z","false","false"
+"00aQk00000BgM0zIAF","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the Following Fields have been updated: 
+Account ACV has been changed to 156426.9906666666753.","00570000003KXurAAG","2025-02-07T15:53:19.000Z","2025-02-07T15:53:19.000Z","false","false"
+"00aQk00000BizeAIAR","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the Following Fields have been updated: 
+Account ACV has been changed to 174797.7906666666753.","0054u000006gtWUAAY","2025-02-10T18:14:01.000Z","2025-02-10T18:14:01.000Z","false","false"
+"00aQk00000Bj33TIAR","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Contact uploaded new dmp files to cross linked Escalation 00430359 <> T2 00429627 - SQL Sensitive Data Scan failing constantly again
+Name                                   LastWriteTime
+StealthAUDITStart (3).DMP  2/10/2025 12:28:53 PM
+StealthAUDIT (4).DMP         2/10/2025 12:16:14 PM
+StealthAUDIT (5).DMP         2/10/2025 12:28:48 PM","00570000003KXurAAG","2025-02-10T18:16:17.000Z","2025-02-10T18:16:17.000Z","false","false"
+"00aQk00000BjKp4IAF","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Adam Mielke:
+
+@Salesforce From what I can tell, it looks like maybe the job is configured to run on multiple hosts at once. Can you confirm the list of hosts that this is running on? I don't think the SQL DC is meant to be run on multiple SQL hosts at once.
+
+[DevOps CommentId:11625152]","0054u000006gtWUAAY","2025-02-10T20:49:13.000Z","2025-02-10T20:49:13.000Z","false","false"
+"00aQk00000BjGWyIAN","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Just to confirm- the SQL DC can only run against 1 SQL server? We definitely have customers running these jobs against multiple sql hosts.
+
+But I will confirm total host count","0054u000007MiY9AAK","2025-02-10T20:55:53.000Z","2025-02-10T20:55:53.000Z","false","false"
+"00aQk00000BjMAwIAN","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Please confirm ""I don't think the SQL DC is meant to be run on multiple SQL hosts at once.""
+
+Does this mean every job using the SQL DC must be single threat to force collection from one host at a time?","0050g000006QqyEAAS","2025-02-10T21:00:31.000Z","2025-02-10T21:00:31.000Z","false","false"
+"00aQk00000BjTSYIA3","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Adam Mielke:
+
+@Salesforce Upon further review, this appears to be an issue with the SQL DC and running multiple hosts at once
+
+[DevOps CommentId:11625225]","0054u000006gtWUAAY","2025-02-10T22:12:21.000Z","2025-02-10T22:12:21.000Z","false","false"
+"00aQk00000BjWi9IAF","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the Following Fields have been updated: 
+Escalating Engineer Name has been changed to User: Tay Caliguiri.","0054u000007MiY9AAK","2025-02-10T22:59:53.000Z","2025-02-10T22:59:53.000Z","false","false"
+"00aQk00000BjWTfIAN","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: They have around 207 SQL hosts to scan- will they need to create 207 job groups and then attempt to schedule them?
+
+Is this a bug that we can expect a patch for or is this by design?","0054u000007MiY9AAK","2025-02-10T23:01:53.000Z","2025-02-10T23:01:53.000Z","false","false"
+"00aQk00000BkDK7IAN","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Adam Mielke:
+
+@Salesforce We are working on a fix so that the jobs will not have to be altered
+
+[DevOps CommentId:11631441]","0054u000006gtWUAAY","2025-02-11T15:12:28.000Z","2025-02-11T15:12:28.000Z","false","false"
+"00aQk00000BmIQxIAN","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Adam Mielke:
+
+@Salesforce Working on a fix for this, but as a workaround can you check that the 0.Collection -> .Databases Schema -> Update_Schema job didn't get its host list overwritten with the full host list? That one is only intended to run for LOCALHOST.
+
+[DevOps CommentId:11640235]","0054u000006gtWUAAY","2025-02-12T20:48:24.000Z","2025-02-12T20:48:24.000Z","false","false"
+"00aQk00000BmJusIAF","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: I don't see any job like that in NEA","0054u000007MiY9AAK","2025-02-12T21:02:05.000Z","2025-02-12T21:02:05.000Z","false","false"
+"00aQk00000Bn8aoIAB","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Adam Mielke:
+
+@Salesforce OK, I was looking at the 12.0 job tree. The 11.6 job tree (which the customer is on) doesn't have that job. Still working on the fix for this.
+
+[DevOps CommentId:11646013]","0054u000006gtWUAAY","2025-02-13T15:02:40.000Z","2025-02-13T15:02:40.000Z","false","false"
+"00aQk00000BnIGnIAN","500Qk00000L83eCIAR","Any kind of eta for an update or fix I can provide the customer? They’re pinging us just about everyday for an update.","0054u000007MiY9AAK","2025-02-13T16:27:14.000Z","2025-02-13T16:27:14.000Z","false","false"
+"00aQk00000Bs9cfIAB","500Qk00000L83eCIAR","Just checking in- do we have an update or eta for the customer?","0054u000007MiY9AAK","2025-02-18T15:16:34.000Z","2025-02-18T15:16:34.000Z","false","false"
+"00aQk00000BsDgIIAV","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Adam Mielke:
+
+@Salesforce This is dev complete and awaiting testing
+
+[DevOps CommentId:11667220]","0054u000006gtWUAAY","2025-02-18T16:01:33.000Z","2025-02-18T16:01:33.000Z","false","false"
+"00aQk00000Btv90IAB","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Michael Burrofato:
+
+@Salesforce Fix has been tested by QA. Hotfix to be sent out today.
+
+[DevOps CommentId:11675229]","0054u000006gtWUAAY","2025-02-19T19:47:32.000Z","2025-02-19T19:47:32.000Z","false","false"
+"00aQk00000BtwJaIAJ","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Michael Burrofato:
+
+@Salesforce Hotfix sent out for 11.6. Expect link shortly.
+
+[DevOps CommentId:11675249]","0054u000006gtWUAAY","2025-02-19T19:58:45.000Z","2025-02-19T19:58:45.000Z","false","false"
+"00aQk00000BtxlwIAB","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the new comment has been added: Hotfix available in this KB article: https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk000000CKCfIAO/view","0054u000006goGXAAY","2025-02-19T21:04:58.000Z","2025-02-19T21:04:58.000Z","false","false"
+"00aQk00000BvMVJIA3","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the Following Fields have been updated: 
+Account ACV has been changed to 200288.9906666666753.","0054u000006gtWUAAY","2025-02-20T20:38:12.000Z","2025-02-20T20:38:12.000Z","false","false"
+"00aQk00000ByyJ8IAJ","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007MiY9AAK","2025-02-24T20:26:17.000Z","2025-02-24T20:26:17.000Z","false","false"
+"00aQk00000Ci4qcIAB","500Qk00000L83eCIAR","On Escalation Ticket # 00435094 the Following Fields have been updated: 
+Account ACV has been changed to 322076.9106666666753.","0054u000006gtWUAAY","2025-04-03T15:13:57.000Z","2025-04-03T15:13:57.000Z","false","false"

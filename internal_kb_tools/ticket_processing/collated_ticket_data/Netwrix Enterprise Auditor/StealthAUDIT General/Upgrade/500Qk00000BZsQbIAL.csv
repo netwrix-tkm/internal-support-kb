@@ -1,0 +1,40 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000BZsQbIAL","00411398","Support Ticket","Upgrade StealthAudit  to Netwrix Audit","Need assistance from Dusty and team for upgrading StealthAudit.","","","","Upgraded the current version of Stealth application(s) running in the Environment:
+FROM:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)                                                                11.5.0.245 
+Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC)      11.5.0.130
+Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM)                                        6.0.1214
+
+TO:
+Netwrix Enterprise Auditor (NEA)                                                                                                                11.6.0.79
+NEA Access Information Center (AIC)                                                                                                         11.6.0.15
+NEA Sensitive Data Discovery (SDD)                                                                                                          11.6.0.12
+Netwrix Activity Monitor (NAM)                                                                                                                  7.0.0.3135
+StealthINTERCEPT Agent (SIa)                                                                                                                   7.3.9.160
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Console Upgrade > Enterprise Auditor Core Upgrade Instructions
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Wizard.htm
+
+URs are both HTTP based.
+
+
+Ran into issues with the SA DB being corrupted past back-ups also seemed to be in the same state.
+
+DBCC CHECKDB
+And 
+DBCC CHECKDB(StealthAudit, REPAIR_REBUILD)
+ 
+Both complained about the DB Error page PFS page/Status
+
+Restored from an even older back from 5/12 issue persist
+
+Re-build the StealthAudit DB
+
+Re-populated the Host list
+We had to rebuild the Agent connection to the DRProd host to be able to update the NAM console to clear the Warning.
+
+Created a BU_ folder under the FileSystem install path to remove all the duplicate jobs.
+
+Confirmed the FileSystem job settings for the 2 file servers.
+
+Scheduled out the FileSystem job(s) to run as needed.","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","Upgrade","11.5","245","31.9","Closed - Resolved","Chimera Investment Corporation","Dhruman Shah","2024-06-07T16:33:27.000Z","2024-07-09T14:54:14.000Z"

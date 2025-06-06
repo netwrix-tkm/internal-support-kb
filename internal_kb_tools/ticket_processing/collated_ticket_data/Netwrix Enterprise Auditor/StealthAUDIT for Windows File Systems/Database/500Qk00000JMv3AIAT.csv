@@ -1,0 +1,30 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000JMv3AIAT","00429538","Support Ticket","Error when browsing stealth audit and VM disk full","Hello
+
+The <a href='https://StealthAUDIT.sql' target='_blank'>StealthAUDIT.sql</a> file size is above 250GB
+I have ""Root element is missing"" error mostly everywhere in the steathaudit app","","Customer`s primary concern is the cost of the NEA server hosting. They would like to start by decreasing the currently occupied space on disk by NEA database. 
+
+We checked the disk usage by Table on the SQL server and found that most of the space was occupied by this table:
+StealthAUDIT.dbo.SA_FS_TagsMapped
+
+This table is created by the  4.Content > Tags > FS_FileTags job. We disabled this job for both of the File System storages that are configured for auditing in StealthAudit. 
+
+We then truncated contents of this table using this SQL command:
+truncate table StealthAUDIT.dbo.SA_FS_TagsMapped;
+
+This freed up space inside the database container itself, however the disk space is not reclaimed after this. 
+According to the information we got from SSMS - after truncating that table the database container now has 46% of space available. 
+
+As an attempt to free up disk space we started database shrinking from SSMS. 
+We agreed with customer to keep shrinking operation running and then continue troubleshooting on Monday.","Customer will monitor the DB shrinking and will let support know the results tomorrow.","We checked the disk usage by Table on the SQL server and found that most of the space was occupied by this table:
+StealthAUDIT.dbo.SA_FS_TagsMapped
+
+This table is created by the 4.Content > Tags > FS_FileTags job.
+We disabled this job for both of the File System storages that are configured for auditing in StealthAudit.
+
+We then truncated contents of this table using this SQL command:
+truncate table StealthAUDIT.dbo.SA_FS_TagsMapped;
+
+This freed up space inside the database container itself, however the disk space is not reclaimed after this.
+
+As an attempt to free up disk space we started database shrinking from SSMS. Shrinking operation completed successfully and we confirmed that the disk space was reclaimed.","Guidance","Artem Naskal","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Database","11.5","","6.9","Closed - Resolved","Compétences & Développement - Education Network","Cyril Menigoz","2024-12-11T14:48:24.000Z","2024-12-18T12:56:15.000Z"

@@ -1,0 +1,27 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OwTOsIAN","00444568","Support Ticket","Scanning Duplicate Domain","AD Summary scan job is failing, please review the screenshots in the document. Thank you!","Step 1: Open the Netwrix Enterprise Auditor console.  
+Step 2: Navigate to the AD Summary scan job.  
+Step 3: Assign a host list that includes multiple domain controllers per domain.  
+Step 4: Run the AD Summary scan job.  
+Step 5: Observe the job failure and review the error messages generated.  
+
+(Requested by user 0054u000007Mdqr)","- The AD Summary scan job failure was caused by a record of a replaced domain controller (DC) using the same fully qualified domain name (FQDN), which was being picked up by the host discovery query.
+- The issue was resolved by removing the DNS entry and FQDN associated with the replaced machine and its respective IP address, and modifying the host list to target the currently active domain controller.
+- The customer indicated that the problem may have started after an Auditor upgrade, but no specific timeline or prior troubleshooting steps were provided.
+- The customer did not attend the scheduled meeting on 5/23/2025, which delayed further investigation and resolution.
+- The error messages generated during the scan job failure were linked to duplicate domain entries, as confirmed by the screenshots and logs provided.
+- It remains unclear whether any other environmental changes besides the Auditor upgrade contributed to the issue.
+
+(Requested by Scottie Taylor)","No next steps documented.
+
+(Requested by Scottie Taylor)","Issue: The AD Summary scan job was failing, and the customer reported error messages linked to duplicate domain entries. The issue was suspected to have started after an Auditor upgrade.
+
+Cause: The failure was caused by a record of a replaced domain controller (DC) using the same fully qualified domain name (FQDN), which was being picked up by the host discovery query. This resulted in duplicate domain entries during the scan job.
+
+Resolution: The issue was resolved by:
+1. Removing the DNS entry and FQDN associated with the replaced domain controller and its respective IP address.
+2. Modifying the host list to target the currently active domain controller.
+
+These steps eliminated the duplicate domain error messages and allowed the AD Summary scan job to complete successfully.
+
+(Requested by Scottie Taylor)","Configuration/Customization Request","Scottie Taylor","Error","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Inventory","11.6","139","19.9","Closed - Resolved","Stamford Health","Wajid Fazal","2025-05-08T17:14:25.000Z","2025-05-28T14:23:44.000Z"

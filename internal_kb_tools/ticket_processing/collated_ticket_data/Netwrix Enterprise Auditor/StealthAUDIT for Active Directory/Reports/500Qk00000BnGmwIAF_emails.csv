@@ -1,0 +1,390 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000BGhE1IAL","500Qk00000BnGmwIAF","2024-06-13T14:46:37.000Z","2024-06-13T14:46:37.000Z","Jason,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+#Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) install path
+(Get-ItemProperty -Path ""HKLM:SOFTWARENetwrix Activity Monitor*""-ErrorAction SilentlyContinue).InstallLocation
+#OR 
+(Get-ItemProperty -Path ""HKLM:SOFTWAREStealthbits Activity Monitor""-ErrorAction SilentlyContinue).InstallLocation
+
+Could I get some details on the needed group change report to see if I can mock up something from the caned reports under
+Jobs > Active Directory > 6.Activity > Group Usage
+
+These details are pulled in NEA from the StealthINTERCEPT agents (SIa) on the DCs via Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) agent
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0BnGmw:ref","Customize group change report    [ ref:!00D70091pB.!500Qk0BnGmw:ref ]","techsupport@netwrix.com","Netwrix Support","jrule@kumc.edu","","","false","2024-06-13T14:46:35.000Z","true"
+"02sQk00000BHOafIAH","500Qk00000BnGmwIAF","2024-06-13T17:28:48.000Z","2024-06-13T17:28:48.000Z","ref:_00D7091pB._500Q000BnGmw:ref
+
+Dusty,
+
+See attached for output results. FYI, there was not output for last command (Activity Monitor).
+
+I'll look to create report for a specific AD group when there is a member change. I'd also like to see if its possible to add monitoring (Activity details) to a C:Program Files (x86) folder on a specific server.
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 13, 2024 9:47 AM
+To: Jason Rule <jrule@kumc.edu>
+Subject: Customize group change report [ ref:!00D70091pB.!500Qk0BnGmw:ref ]
+
+Jason,
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+#Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) install path
+(Get-ItemProperty -Path ""HKLM:SOFTWARENetwrix Activity Monitor*""-ErrorAction SilentlyContinue).InstallLocation
+#OR
+(Get-ItemProperty -Path ""HKLM:SOFTWAREStealthbits Activity Monitor""-ErrorAction SilentlyContinue).InstallLocation
+
+Could I get some details on the needed group change report to see if I can mock up something from the caned reports under
+Jobs > Active Directory > 6.Activity > Group Usage
+
+These details are pulled in NEA from the StealthINTERCEPT agents (SIa) on the DCs via Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) agent
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://www.netwrix.com/sign_in.html?rf=my_tickets.html>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0BnGmw:ref","RE: Netwrix Support Ticket #411850 - ref:_00D7091pB._500Q000BnGmw:ref - Customize group change report    [ ref:!00D70091pB.!500Qk0BnGmw:ref ]","jrule@kumc.edu","Jason Rule","techsupport@netwrix.com","","","true","2024-06-13T17:28:23.000Z","true"
+"02sQk00000BI2BVIA1","500Qk00000BnGmwIAF","2024-06-13T20:40:31.000Z","2024-06-13T20:40:31.000Z","Jason,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=l31boKgqyWvLBi89unz9nNkhCxWrTEQHkZPY4r6AXiQ-Z&MeetingID=4m9rsmG1X8ENZHZmraC4nC5L9Wdwr3zu05nI6oapFPI-Z
+
+For this meeting, we will need to have a Full Admin access to of the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jason Rule [jrule@kumc.edu]
+Sent: 6/13/2024 1:28 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #411850 - ref:_00D7091pB._500Q000BnGmw:ref - Customize group change report [ ref:!00D70091pB.!500Qk0BnGmw:ref ]
+
+ref:_00D7091pB._500Q000BnGmw:ref
+
+
+
+Dusty,
+
+ 
+
+See attached for output results. FYI, there was not output for last command (Activity Monitor). 
+
+ 
+
+I’ll look to create report for a specific AD group when there is a member change. I’d also like to see if its possible to add monitoring (Activity details) to a C:Program Files (x86) folder on a specific server. 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 13, 2024 9:47 AM
+To: Jason Rule <jrule@kumc.edu>
+Subject: Customize group change report [ ref:!00D70091pB.!500Qk0BnGmw:ref ]
+
+
+
+ 
+
+Jason,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host   # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object |  Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+#Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) install path
+(Get-ItemProperty -Path ""HKLM:SOFTWARENetwrix Activity Monitor*""-ErrorAction SilentlyContinue).InstallLocation
+#OR 
+(Get-ItemProperty -Path ""HKLM:SOFTWAREStealthbits Activity Monitor""-ErrorAction SilentlyContinue).InstallLocation
+
+Could I get some details on the needed group change report to see if I can mock up something from the caned reports under
+Jobs > Active Directory > 6.Activity > Group Usage
+
+These details are pulled in NEA from the StealthINTERCEPT agents (SIa) on the DCs via Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) agent
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0BnGmw:ref","RE: Netwrix Support Ticket #411850 -  - Customize group change report    [ ref:!00D70091pB.!500Qk0BnGmw:ref ]","techsupport@netwrix.com","Netwrix Support","jrule@kumc.edu","","","false","2024-06-13T20:40:30.000Z","true"
+"02sQk00000BZrmMIAT","500Qk00000BnGmwIAF","2024-06-20T20:04:43.000Z","2024-06-20T20:04:43.000Z","Jason,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+StealthAUDIT (SA)                                                    11.5.0.205    
+StealthAUDIT Access Information Center (AIC)     11.5.0.120    
+SA Sensitive Data (SDD)                                           11.5.0.65
+Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) ????  We see the SAM Agent Services however we do not see the Control console.
+
+Created a job based on the prior Job group to filter with the following Analysis.
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = object_id(N'[dbo].[SA_PP_Groups]') AND TYPE in (N'U'))
+  DROP TABLE [SA_PP_Groups]
+SELECT * Into [SA_PP_Groups]
+From SA_AD_Changes_GroupMembershipChanges
+Where [Group] like '%PP-%' And [when discovered] >= DATEADD(day, -1, GETDATE())
+
+Updated the URL settings
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Reports via the Web Console > Securing the Web Console
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Reports/Secure.htm
+
+Netwrix Access Information Center 11.6 > Installation Overview > Securing the Access Information Center
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm
+
+
+Will need to update the Email recipients for the new PP-Groups Report based on the SA_AD_Changes_GroupMembershipChanges table.
+
+Added the additional Windows File Server.
+
+Thank You for the update, I will close out this ticket as noted.
+
+We have 30days to reopen once the closure email is received.
+
+To reopen we can just reply to that email to bring the case back into my queue.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return.
+
+Feel free to leave any feedback via the survey link.
+
+Have a great weekend.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 6/13/2024 4:40 PM
+To: jrule@kumc.edu
+Subject: RE: Netwrix Support Ticket #411850 - - Customize group change report [ ref:!00D70091pB.!500Qk0BnGmw:ref ]
+
+Jason,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=l31boKgqyWvLBi89unz9nNkhCxWrTEQHkZPY4r6AXiQ-Z&MeetingID=4m9rsmG1X8ENZHZmraC4nC5L9Wdwr3zu05nI6oapFPI-Z
+
+For this meeting, we will need to have a Full Admin access to of the Following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Jason Rule [jrule@kumc.edu]
+Sent: 6/13/2024 1:28 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #411850 - ref:_00D7091pB._500Q000BnGmw:ref - Customize group change report [ ref:!00D70091pB.!500Qk0BnGmw:ref ]
+
+ref:_00D7091pB._500Q000BnGmw:ref
+
+
+
+Dusty,
+
+ 
+
+See attached for output results. FYI, there was not output for last command (Activity Monitor). 
+
+ 
+
+I’ll look to create report for a specific AD group when there is a member change. I’d also like to see if its possible to add monitoring (Activity details) to a C:Program Files (x86) folder on a specific server. 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, June 13, 2024 9:47 AM
+To: Jason Rule <jrule@kumc.edu>
+Subject: Customize group change report [ ref:!00D70091pB.!500Qk0BnGmw:ref ]
+
+
+
+ 
+
+Jason,
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host   # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object |  Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+#Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) install path
+(Get-ItemProperty -Path ""HKLM:SOFTWARENetwrix Activity Monitor*""-ErrorAction SilentlyContinue).InstallLocation
+#OR 
+(Get-ItemProperty -Path ""HKLM:SOFTWAREStealthbits Activity Monitor""-ErrorAction SilentlyContinue).InstallLocation
+
+Could I get some details on the needed group change report to see if I can mock up something from the caned reports under
+Jobs > Active Directory > 6.Activity > Group Usage
+
+These details are pulled in NEA from the StealthINTERCEPT agents (SIa) on the DCs via Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) agent
+
+Thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0BnGmw:ref","RE: Netwrix Support Ticket #411850 -  - Customize group change report    [ ref:!00D70091pB.!500Qk0BnGmw:ref ]","techsupport@netwrix.com","Netwrix Support","jrule@kumc.edu","","","false","2024-06-20T20:04:42.000Z","true"

@@ -1,0 +1,42 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007S4KnIAK","500Qk00000BwG9KIAV","Following ERROR was from a forced Query termination by the DBA 
+
+7/06/2024 11:29:03	DEBUG	TDAThread	TDAThread.AbortCurrentWork	""Notifying DA to abort""	2. Resolve links		2568	4212	2104
+17/06/2024 11:29:03	ERROR	DataAnalysis:SQLScripting	ExecuteNonQuery	""A severe error occurred on the current command.  The results, if any, should be discarded.  Operation cancelled by user.  The statement has been terminated.""			176	4212	2104
+17/06/2024 11:29:03	DEBUG	DataAnalysis:SQLScripting	SQLScripting::ExecuteTask	""User Abort Requested.""			5500	4212	2104
+17/06/2024 11:29:03	ERROR	DataAnalysis:SQLScripting	DA-SQLScripting::ExecuteTask	""User abort Requested.""			5500	4212	2104
+17/06/2024 11:29:03	DEBUG	DataAnalysis:SQLScripting	SQLScripting::ExecuteTask	""End.""			5500	4212	2104","00570000003KXurAAG","2024-06-20T15:06:24.000Z","2024-06-20T15:06:24.000Z","false","false"
+"00aQk000007YBZhIAO","500Qk00000BwG9KIAV","Problem Statement/Business Impact:
+SA 11.5.0.260 FSAA Resolve links analysis at times takes 10+ hours to complete. 9k+ Reads on the SQL DB
+Normally runs in about 30min 6k+ Reads on the SQL DB
+Same issue noted for this customer in Ticket Number 00392841
+   https://nwxcorp.lightning.force.com/lightning/r/500Qk000005Q2UlIAK/view
+
+Desired Outcome:
+For the job to complete in its more normal time of around 30min.
+
+Steps to Reproduce:
+Unable to reproduce at will.
+Contact states that nothing has changed on the SQL instance and the same job had similar issues prior to a repair of the installed version. 
+
+Reliably Repro'd in Customer Envi
+
+Troubleshooting completed/Notes: 
+1.Make sure no other jobs are running and kick off the FSAA tree to update the SQL tables.
+
+Ensure relevant logs are uploaded to SPO:
+Application Logs
+Job Logs
+Other SQL Server details, Error and System logs.
+Details from SQL show that at times the job is preforming 9k+ reads ( 10hr runtime) and during expected run-times around 
+6k+ reads that completes in about 30min.
+
+ref-image db_sql2.png 
+https://nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00412112/db_sql2.png?csf=1&web=1&e=1xGtFu
+
+The task had to be aborted on 6/17 to allow queries for another DB to complete.","00570000003KXurAAG","2024-06-25T17:40:35.000Z","2024-06-25T17:40:35.000Z","false","false"
+"00aQk000007a3wDIAQ","500Qk00000BwG9KIAV","Hi Dusty Can you please....
+1. Check host list on job settings, properties and scheduled task. 
+Seems like there may be dup hosts....
+2. Screen Shot of Scheduled Tasks 
+This may be due to either duplicate hosts and/ or to her jobs running or Load on the SQL server from other app if a shared instance.","0054u000006goKoAAI","2024-06-26T19:43:47.000Z","2024-06-26T19:43:47.000Z","false","false"

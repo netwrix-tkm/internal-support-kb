@@ -1,0 +1,36 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000FoxR1IAJ","00421127","Support Ticket","System Scans error for new agent and filer","Hi,
+
+I am receiving the below error when attempting to scan a new agent that was added to file activity monitor. The new agent is successfully collecting data from filer.
+
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Unable to start scan: Could not initialize scan session with any proxy host supplied
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.ActivityScanTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()","","","","Issue:
+NEA unable to ingest the NAM activity data from a new File Server
+Data is collected and searchable in NAM, without issue
+NEA throws an error Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Unable to start scan: Could not initialize scan session with any proxy host supplied at Stealthbits.StealthAUDIT.DataCollectors.FSAA.ActivityScanTask.InternalProcessRecord() at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+Cause:
+-this FS was audited by a different instance of NEA from a different domain and it seems like that corrupted the T2s
+
+-Certs were also broken
+
+
+Resolution:
+Fixing cert:
+-used psexec to access the certificate management tool for the system account
+-deleted bad certs in FSAA location for service account and system account
+in accordance with
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000WSvKAM.html
+
+This caused the error to change to 
+""there is no row at position zero""
+
+Fixing T2s:
+dropped the data for the old NEA host from SQL DB
+-used dropdata instant job
+-renamed T2 folder on proxy and application server to SERVERNAME_OLD
+-ran the job again
+
+that fixed it","Root Cause Unknown","Joshua Sexton","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Activity Auditing","11.6","","17.1","Closed - Resolved","Mizuho Americas Services LLC","William Dang","2024-09-16T14:57:32.000Z","2024-10-03T16:10:50.000Z"

@@ -1,0 +1,78 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DpDgTIAV","00416701","Support Ticket","SQL transaction issue due to which Netwrix Enterprise Auditor console is not accessible","Hi Team,
+
+We have recently upgraded StealthAudit application from version 11.5 to 11.6. After the upgrade we are often observing SQL transaction issue. 
+The Network Enterprise Auditor console is frozen stating ""Testing SQL connection"". Based on initial investigation, looks like some jobs are taking long time to run. 
+
+Hence, we request you to please schedule a call to determine and troubleshoot the issue on priority.","Enable usage statistics is high volume environment
+Disable Usage Statistics in NEA Console
+attempt to launch console - hangs on Test SQL Connection
+Note in SSMS running tasks that usage statistics is still running - causing  the Console to not be able to complete the test connection to the database.","The Storage Account is via Windows auth. We were able to log into the SA console via the Service account post terminating the running jobs then was able to clean up the orphaned lock (*.lck) files under the Jobs folder.
+
+Hi Sukanya, thank you for your time on call today, on meeting we've stopped all running jobs and ended every single StealthAudit process using task manager, then we ran this script:
+
+# Specify the path to the folder you want to scan
+$folderPath = ""%sainstalldir%""
+
+# Recursively find all files with the .lck extension
+$lckFiles = Get-ChildItem -Path $folderPath -Recurse -Filter *.lck
+
+# Check if any files were found
+if ($lckFiles.Count -eq 0) {
+    Write-Host ""No files with the .lck extension found.""
+} else {
+    Write-Host ""The following files with the .lck extension were found:""
+    $lckFiles | ForEach-Object { Write-Host $_.FullName }
+
+    # Ask the user if they want to delete the files
+    $response = Read-Host ""Do you want to delete these files? (y/n)""
+    
+    if ($response -eq 'y') {
+        # Delete the found files
+        $lckFiles | Remove-Item -Force
+        Write-Host ""Files successfully deleted.""
+    } else {
+        Write-Host ""Deletion cancelled by the user.""
+    }
+}
+
+To remove any orphanated .lck files.
+
+After running the script we've checked with DBA team on any aborted/hung jobs in tempdb, DBA team confirmed that no jobs were found.
+
+We've launched Netwrix Enterprise Auditor console without any issues.
+
+After that console launched, but the issue reoccurs after some time","The customer has disabled the ""Usage Statistics"" setting within NEA. Customer to report any change in behavior when launching console.
+
+No Change
+
+Manually remove Usage Statistic control files:
+1. Navigate to C:Program Files (x86)STEALTHbitsStealthAUDITSPSQLScriptsUsageStatistics.
+2. Move all .proc files from this folder (to any backup folder for example).
+3. Launch NEA console
+
+console successfully launches","Symptom
+NEA Console hangs at launch during ""Test SQL Connection""
+
+Cause
+long running queries on the SQL server are blocking the test query from completing.  In this instance the queries were related to the usage statistics feature that NEA reports back to Netwrix.
+
+Unchecking ""Send Usage Statistics"" did not prevent these queries from running.
+
+Resolution
+the *.proc files located at C:Program Files (x86)STEALTHbitsStealthAUDITSPSQLScriptsUsageStatistics had to moved out of the folder. After this action the console completed the Test SQL Connection quickly.
+
+R&D is investigating why unchecking the ""Send Usage Statistics"" did not prevent they queries from running.
+
+----------
+
+The customer has disabled the ""Usage Statistics"" setting within NEA. Customer to report any change in behavior when launching console.
+
+No Change
+
+Manually remove Usage Statistic control files:
+1. Navigate to C:Program Files (x86)STEALTHbitsStealthAUDITSPSQLScriptsUsageStatistics.
+2. Move all .proc files from this folder (to any backup folder for example).
+3. Launch NEA console
+
+console successfully launches","Product defect","Damir Akhmatshin","Performance","Netwrix Enterprise Auditor","StealthAUDIT General","NEA MGMT Console","11.6","11.6.0.86","145.6","Closed - Resolved","Hess Corporation","Sukanya Jaivelu","2024-07-31T17:48:58.000Z","2024-12-24T08:19:57.000Z"

@@ -1,0 +1,42 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NQvbiIAD","00440315","Support Ticket","Scans - 2_FSAC_Bulk_Import_Results_Activity","Hi, Netwrix Support Team,
+
+I am reaching out regarding an issue with our Stealthbits scanner. We have configured activity monitoring on all folders within FS01 and Financial folder, but the scanner is currently not returning any results.
+
+can you assist us with this? 
+
+thank you, 
+Mawloda Khudaynazar","","It was good to speak with you today.
+
+Today we found that your FileSystem job runs every 2 weeks.
+We also found that your special HR VP job and your other job run monthly and should show activity for the entire previous month.
+We did not see that any job failed but that only one row of data was found in the ""Departments HR_VP Activity"" report.
+I recommended that you perform (or have someone perform) 4 actions worth of test activity in the ""E:DepartmentsHR_VP%"" department, maintain a record of this activity and confirm that this activity is recorded in the ""Departments HR_VP Activity"" report for the month of April 2025.
+
+1) Today on the call we found that the SA_FSAC_ActivityEvents table (and therefor SA_FSAC_ActivityEventsView) populated with data on the 07-April run.
+We ran a few queries that were looking for distinct values by Path against the SA_FSAC_ActivityEventsView view and this returned over 300,000+ rows of data.
+
+
+
+2) We verified in the database that the WHERE clause against the ""SA_FSAC_ActivityEventsView"" returns the same single row from 04-March-2025 found in the ""E_Departments_HR_VP_Activity_Monthly_Report"".
+
+
+
+3) Here is a screenshot of the ""Departments HR_VP Activity"" report showing that same single row of data for March 04, 2025.","","It was good to speak with you today.
+
+Today we found that your FileSystem job runs every 2 weeks.
+We also found that your special HR VP job and your other job run monthly and should show activity for the entire previous month.
+We did not see that any job failed but that only one row of data was found in the ""Departments HR_VP Activity"" report.
+
+I recommended that you perform (or have someone perform) 4 actions worth of test activity in the ""E:DepartmentsHR_VP%"" department, maintain a record of this activity and confirm that this activity is recorded in the ""Departments HR_VP Activity"" report for the month of April 2025.
+
+1) Today on the call we found that the SA_FSAC_ActivityEvents table (and therefor SA_FSAC_ActivityEventsView) populated with data on the 07-April run.
+We ran a few queries that were looking for distinct values by Path against the SA_FSAC_ActivityEventsView view and this returned over 300,000+ rows of data.
+
+
+
+2) We verified in the database that the WHERE clause against the ""SA_FSAC_ActivityEventsView"" returns the same single row from 04-March-2025 found in the ""E_Departments_HR_VP_Activity_Monthly_Report"".
+
+
+
+3) Here is a screenshot of the ""Departments HR_VP Activity"" report showing that same single row of data for March 04, 2025.","Guidance","Mike Candon","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.6","","11.3","Closed - Resolved","Massachusetts Property Insurance Underwriting Association","Mawloda Khudaynazar","2025-03-28T11:04:45.000Z","2025-04-08T17:19:21.000Z"

@@ -1,0 +1,842 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000BQCFjIAP","500Qk00000BxEyHIAV","2024-06-17T20:58:24.000Z","2024-06-17T20:58:24.000Z","ref:_00D7091pB._500Q000BxEyH:ref
+
+Customer has requested update for the ticket 00412142","Netwrix Support Ticket #412142 - ref:_00D7091pB._500Q000BxEyH:ref - Customer is requesting update","ccit-cs@columbia.edu","ccit-cs","techsupport@netwrix.com","","","false","2024-06-17T20:58:24.000Z","true"
+"02sQk00000BQGyuIAH","500Qk00000BxEyHIAV","2024-06-17T20:59:47.000Z","2024-06-17T20:59:47.000Z","ref:_00D7091pB._500Q000BxEyH:ref
+
+Please include id2426@columbia.edu on any subsequent emails
+
+Thanks,
+Iurii Druchuk","Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.","ccit-cs@columbia.edu","ccit-cs","techsupport@netwrix.com","","","false","2024-06-17T20:59:47.000Z","true"
+"02sQk00000BQHdcIAH","500Qk00000BxEyHIAV","2024-06-17T21:08:18.000Z","2024-06-17T21:08:18.000Z","Hi Team,
+
+Thank you for contacting Netwrix technical support. Can you please upload the logs to the ticket in the customer portal? Which task is it timing out on?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ccit-cs [ccit-cs@columbia.edu]
+Sent: 6/17/2024 4:59 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.
+
+ref:_00D7091pB._500Q000BxEyH:ref
+
+Please include id2426@columbia.edu on any subsequent emails
+
+Thanks,
+Iurii Druchuk","RE: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.    [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","techsupport@netwrix.com","Netwrix Support","ccit-cs@columbia.edu; id2426@columbia.edu","","taylor.caliguiri@netwrix.com","false","2024-06-17T21:08:18.000Z","true"
+"02sQk00000BS3g1IAD","500Qk00000BxEyHIAV","2024-06-18T14:34:07.000Z","2024-06-18T14:34:07.000Z","ref:_00D7091pB._500Q000BxEyH:ref
+
+Hello, 
+
+FS_BrokenInheritance is the job that we are having issues with, and is the one that would time out. I have increased the Timeout period from 1440 to 2880, so I have not seen it timing out since than, however it still seems to get stuck and fail in the end. 
+
+Another issue with this job is that because it runs for such a long time our database tempdb and EnterpriseAuditor log files are growing until they fill up all the free space on the SQL server, which is around 200GB. As a result, I have limited the tempdb and EnterpriseAuditor files max growth sizes to mitigate that. However, now we are starting to see that the job gets aborted and reports that the tempdb is full.
+I have tried to size these files according to the requirements set here: https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem.htm ; with the adjustment to the size of our environment with the number of objects that we need to scan, which should not exceed 20 million folders and files combined from our file server and workstation data.
+
+I have uploaded DEBUG level logs for the previous two runs of the Analysis->Broken Inheritance job along with several screenshots of the messages that we are getting and the database file size configurations. Let me know if there is anything else we can provide.
+
+
+Thanks,
+Iurii Druchuk
+Systems Administrator","Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.","ccit-cs@columbia.edu","ccit-cs","techsupport@netwrix.com","","","false","2024-06-18T14:34:06.000Z","true"
+"02sQk00000BSHCYIA5","500Qk00000BxEyHIAV","2024-06-18T14:56:42.000Z","2024-06-18T14:56:42.000Z","Hey Iurii,
+
+What size is your tempdb for the StealthAUDIT database? Based on the images sent over, I'm seeing it at just over 12GB instead of the recommended 130GB.
+
+Is the database also in Simple Recovery mode?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ccit-cs [ccit-cs@columbia.edu]
+Sent: 6/18/2024 10:34 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.
+
+ref:_00D7091pB._500Q000BxEyH:ref
+
+Hello,
+
+FS_BrokenInheritance is the job that we are having issues with, and is the one that would time out. I have increased the Timeout period from 1440 to 2880, so I have not seen it timing out since than, however it still seems to get stuck and fail in the end.
+
+Another issue with this job is that because it runs for such a long time our database tempdb and EnterpriseAuditor log files are growing until they fill up all the free space on the SQL server, which is around 200GB. As a result, I have limited the tempdb and EnterpriseAuditor files max growth sizes to mitigate that. However, now we are starting to see that the job gets aborted and reports that the tempdb is full.
+I have tried to size these files according to the requirements set here: https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem.htm ; with the adjustment to the size of our environment with the number of objects that we need to scan, which should not exceed 20 million folders and files combined from our file server and workstation data.
+
+I have uploaded DEBUG level logs for the previous two runs of the Analysis->Broken Inheritance job along with several screenshots of the messages that we are getting and the database file size configurations. Let me know if there is anything else we can provide.
+
+
+Thanks,
+Iurii Druchuk
+Systems Administrator","RE: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.    [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","techsupport@netwrix.com","Netwrix Support","ccit-cs@columbia.edu","","taylor.caliguiri@netwrix.com","false","2024-06-18T14:56:42.000Z","true"
+"02sQk00000BcY8rIAF","500Qk00000BxEyHIAV","2024-06-21T18:11:54.000Z","2024-06-21T18:11:54.000Z","ref:_00D7091pB._500Q000BxEyH:ref
+
+Hello Tay,
+
+I just wanted to follow up on this ticket and see if you were able to take
+a look at the logs that we have uploaded through the customer portal.
+
+Thanks,
+Iurii
+
+On Mon, Jun 17, 2024 at 5:08 PM Netwrix Support <techsupport@netwrix.com>
+wrote:
+
+> Hi Team,
+>
+> Thank you for contacting Netwrix technical support. Can you please upload
+> the logs to the ticket in the customer portal? Which task is it timing out
+> on?
+>
+> Thank you,
+>
+> Tay Caliguiri
+>
+> Senior Technical Support Engineer
+> __________________ _________
+> Cybersecurity That Works for You
+>
+> 300 Spectrum Ctr Dr #200, Irvine, CA 92618
+> www.netwrix.com
+>
+>
+> --------------- Original Message ---------------
+> From: ccit-cs [ccit-cs@columbia.edu]
+> Sent: 6/17/2024 4:59 PM
+> To: techsupport@netwrix.com
+> Subject: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to
+> run.
+>
+> ref:_00D7091pB._500Q000BxEyH:ref
+>
+> Please include id2426@columbia.edu on any subsequent emails
+>
+> Thanks,
+> Iurii Druchuk
+>
+>
+
+-- 
+
+Iurii Druchuk
+
+Associate Systems Engineer
+
+Office of the Dean
+
+Columbia College <http://www.college.columbia.edu/>
+
+101 Carman Hall
+
+T: 212-854-8676 | id2426@columbia.edu
+
+Need help? Contact the CCIT Service Desk at ccit@columbia.edu or (212)
+851-9713.","Re: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run. [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","id2426@columbia.edu","Iurii S Druchuk","techsupport@netwrix.com","ccit-cs@columbia.edu","","false","2024-06-21T18:11:32.000Z","true"
+"02sQk00000Bho3FIAR","500Qk00000BxEyHIAV","2024-06-24T15:28:02.000Z","2024-06-24T15:28:02.000Z","Hey Iurii,
+
+I was able to look at those logs-
+
+What size is your tempdb for the StealthAUDIT database? Based on the images sent over, I'm seeing it at just over 12GB instead of the recommended 130GB.
+
+Is the database also in Simple Recovery mode?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Iurii S Druchuk [id2426@columbia.edu]
+Sent: 6/21/2024 2:11 PM
+To: techsupport@netwrix.com
+Cc: ccit-cs@columbia.edu
+Subject: Re: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run. [ ref:!00D70091pB.!500Qk0BxEyH:ref ]
+
+ref:_00D7091pB._500Q000BxEyH:ref
+ 
+Hello Tay,
+ 
+
+I just wanted to follow up on this ticket and see if you were able to take a look at the logs that we have uploaded through the customer portal.
+
+ 
+
+Thanks,
+
+Iurii
+
+ 
+
+
+On Mon, Jun 17, 2024 at 5:08 PM Netwrix Support <techsupport@netwrix.com> wrote:
+
+
+Hi Team,
+
+Thank you for contacting Netwrix technical support. Can you please upload the logs to the ticket in the customer portal? Which task is it timing out on?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ccit-cs [ccit-cs@columbia.edu]
+Sent: 6/17/2024 4:59 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.
+
+ref:_00D7091pB._500Q000BxEyH:ref
+
+Please include id2426@columbia.edu on any subsequent emails
+
+Thanks,
+Iurii Druchuk
+ 
+
+
+ 
+
+ 
+-- 
+
+
+
+Iurii Druchuk
+
+Associate Systems Engineer
+
+Office of the Dean
+
+Columbia College
+
+101 Carman Hall
+
+T: 212-854-8676 | id2426@columbia.edu
+
+Need help? Contact the CCIT Service Desk at ccit@columbia.edu or (212) 851-9713.","Re: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.    [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","techsupport@netwrix.com","Netwrix Support","id2426@columbia.edu","","taylor.caliguiri@netwrix.com","false","2024-06-24T15:28:02.000Z","true"
+"02sQk00000Bi6GIIAZ","500Qk00000BxEyHIAV","2024-06-24T16:33:09.000Z","2024-06-24T16:33:09.000Z","ref:_00D7091pB._500Q000BxEyH:ref
+
+Hi Tay,
+
+That is right, the 12GB that you have noted is only the initial size of the
+tempdb data files, which we have 4 of, and each were allowed autogrow to
+25GB, also there is 35GB allocated to the templog file, which in total
+makes it around 135GB just for tempdb and templog files.
+
+I have wondered whether these restrictions might be too stringent and
+removed all of the restrictions for tempdb and EnterpriseAuditor data and
+log files sizes. So, essentially, it had 215GB of free space that it could
+use. I have then re-ran the analysis jobs this weekend, but still failed
+with the following error message:
+[image: image.png]
+
+Also, for some reason the ticket has disappeared from our
+ccit-cs@columbia.edu support account, so I cannot upload logs or
+screenshots to this case. I am not sure how this has happened.
+
+Best regards,
+Iurii
+
+
+On Mon, Jun 24, 2024 at 11:28 AM Netwrix Support <techsupport@netwrix.com>
+wrote:
+
+> Hey Iurii,
+>
+> I was able to look at those logs-
+>
+> What size is your tempdb for the StealthAUDIT database? Based on the
+> images sent over, I'm seeing it at just over 12GB instead of the
+> recommended 130GB.
+>
+> Is the database also in Simple Recovery mode?
+>
+> Thank you,
+>
+> Tay Caliguiri
+>
+> Senior Technical Support Engineer
+> __________________ _________
+> Cybersecurity That Works for You
+>
+> 300 Spectrum Ctr Dr #200, Irvine, CA 92618
+> www.netwrix.com
+>
+>
+> --------------- Original Message ---------------
+> *From:* Iurii S Druchuk [id2426@columbia.edu]
+> *Sent:* 6/21/2024 2:11 PM
+> *To:* techsupport@netwrix.com
+> *Cc:* ccit-cs@columbia.edu
+> *Subject:* Re: Netwrix Support Ticket #412142 - Broken Inheritance Job
+> fails to run. [ ref:!00D70091pB.!500Qk0BxEyH:ref ]
+>
+> ref:_00D7091pB._500Q000BxEyH:ref
+>
+> Hello Tay,
+>
+> I just wanted to follow up on this ticket and see if you were able to take
+> a look at the logs that we have uploaded through the customer portal.
+>
+> Thanks,
+> Iurii
+>
+> On Mon, Jun 17, 2024 at 5:08 PM Netwrix Support <techsupport@netwrix.com>
+> wrote:
+>
+>> Hi Team,
+>>
+>> Thank you for contacting Netwrix technical support. Can you please upload
+>> the logs to the ticket in the customer portal? Which task is it timing out
+>> on?
+>>
+>> Thank you,
+>>
+>> Tay Caliguiri
+>>
+>> Senior Technical Support Engineer
+>> __________________ _________
+>> Cybersecurity That Works for You
+>>
+>> 300 Spectrum Ctr Dr #200, Irvine, CA 92618
+>> www.netwrix.com
+>>
+>>
+>> --------------- Original Message ---------------
+>> From: ccit-cs [ccit-cs@columbia.edu]
+>> Sent: 6/17/2024 4:59 PM
+>> To: techsupport@netwrix.com
+>> Subject: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to
+>> run.
+>>
+>> ref:_00D7091pB._500Q000BxEyH:ref
+>>
+>> Please include id2426@columbia.edu on any subsequent emails
+>>
+>> Thanks,
+>> Iurii Druchuk
+>>
+>>
+>
+>
+> --
+>
+> Iurii Druchuk
+>
+> Associate Systems Engineer
+>
+> Office of the Dean
+>
+> Columbia College <http://www.college.columbia.edu/>
+>
+> 101 Carman Hall
+>
+> T: 212-854-8676 | id2426@columbia.edu
+>
+> Need help? Contact the CCIT Service Desk at ccit@columbia.edu or (212)
+> 851-9713.
+>
+>
+>
+>
+
+-- 
+
+Iurii Druchuk
+
+Associate Systems Engineer
+
+Office of the Dean
+
+Columbia College <http://www.college.columbia.edu/>
+
+101 Carman Hall
+
+T: 212-854-8676 | id2426@columbia.edu
+
+Need help? Contact the CCIT Service Desk at ccit@columbia.edu or (212)
+851-9713.","Re: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run. [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","id2426@columbia.edu","Iurii S Druchuk","techsupport@netwrix.com","","","true","2024-06-24T16:30:36.000Z","true"
+"02sQk00000BiTKxIAN","500Qk00000BxEyHIAV","2024-06-24T18:41:06.000Z","2024-06-24T18:41:06.000Z","Hi Iurii,
+
+Can you please export that job by right-clicking it in the job and selecting ""Export"" (include all job components save to the desktop or other known location).
+
+I'll need that uploaded to the case, but I understand you don't currently see the ticket. You can try attaching the zip file via email, but I will also reach out to our Customer Portal team to look into why you're unable to see the ticket.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Iurii S Druchuk [id2426@columbia.edu]
+Sent: 6/24/2024 12:30 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run. [ ref:!00D70091pB.!500Qk0BxEyH:ref ]
+
+ref:_00D7091pB._500Q000BxEyH:ref
+ 
+Hi Tay,
+ 
+
+That is right, the 12GB that you have noted is only the initial size of the tempdb data files, which we have 4 of, and each were allowed autogrow to 25GB, also there is 35GB allocated to the templog file, which in total makes it around 135GB just for tempdb and templog files.
+
+ 
+
+I have wondered whether these restrictions might be too stringent and removed all of the restrictions for tempdb and EnterpriseAuditor data and log files sizes. So, essentially, it had 215GB of free space that it could use. I have then re-ran the analysis jobs this weekend, but still failed with the following error message:
+
+
+ 
+
+Also, for some reason the ticket has disappeared from our ccit-cs@columbia.edu support account, so I cannot upload logs or screenshots to this case. I am not sure how this has happened.
+
+ 
+
+Best regards,
+
+Iurii
+
+ 
+
+
+ 
+
+
+On Mon, Jun 24, 2024 at 11:28 AM Netwrix Support <techsupport@netwrix.com> wrote:
+
+
+Hey Iurii,
+
+I was able to look at those logs-
+
+What size is your tempdb for the StealthAUDIT database? Based on the images sent over, I'm seeing it at just over 12GB instead of the recommended 130GB.
+
+Is the database also in Simple Recovery mode?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Iurii S Druchuk [id2426@columbia.edu]
+Sent: 6/21/2024 2:11 PM
+To: techsupport@netwrix.com
+Cc: ccit-cs@columbia.edu
+Subject: Re: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run. [ ref:!00D70091pB.!500Qk0BxEyH:ref ]
+
+ref:_00D7091pB._500Q000BxEyH:ref
+ 
+Hello Tay,
+ 
+
+I just wanted to follow up on this ticket and see if you were able to take a look at the logs that we have uploaded through the customer portal.
+
+ 
+
+Thanks,
+
+Iurii
+
+ 
+
+
+On Mon, Jun 17, 2024 at 5:08 PM Netwrix Support <techsupport@netwrix.com> wrote:
+
+
+Hi Team,
+
+Thank you for contacting Netwrix technical support. Can you please upload the logs to the ticket in the customer portal? Which task is it timing out on?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ccit-cs [ccit-cs@columbia.edu]
+Sent: 6/17/2024 4:59 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.
+
+ref:_00D7091pB._500Q000BxEyH:ref
+
+Please include id2426@columbia.edu on any subsequent emails
+
+Thanks,
+Iurii Druchuk
+ 
+
+
+ 
+
+ 
+-- 
+
+
+
+Iurii Druchuk
+
+Associate Systems Engineer
+
+Office of the Dean
+
+Columbia College
+
+101 Carman Hall
+
+T: 212-854-8676 | id2426@columbia.edu
+
+Need help? Contact the CCIT Service Desk at ccit@columbia.edu or (212) 851-9713.
+
+ 
+
+
+
+ 
+
+
+ 
+
+ 
+-- 
+
+
+
+Iurii Druchuk
+
+Associate Systems Engineer
+
+Office of the Dean
+
+Columbia College
+
+101 Carman Hall
+
+T: 212-854-8676 | id2426@columbia.edu
+
+Need help? Contact the CCIT Service Desk at ccit@columbia.edu or (212) 851-9713.","Re: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.    [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","techsupport@netwrix.com","Netwrix Support","id2426@columbia.edu","","taylor.caliguiri@netwrix.com","true","2024-06-24T18:41:06.000Z","true"
+"02sQk00000BidP8IAJ","500Qk00000BxEyHIAV","2024-06-24T18:47:09.000Z","2024-06-24T18:47:09.000Z","ref:_00D7091pB._500Q000BxEyH:ref
+
+Hi Tay,
+
+I can now see our tickets in the support portal and was able to upload exported 3.Broken Inheritance.zip to the case. Thanks for your help.
+
+Best,
+Iurii","Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.","ccit-cs@columbia.edu","ccit-cs","techsupport@netwrix.com","","","false","2024-06-24T18:47:09.000Z","true"
+"02sQk00000BmNfFIAV","500Qk00000BxEyHIAV","2024-06-25T20:14:51.000Z","2024-06-25T20:14:51.000Z","Hi Primary,
+
+
+
+Please use the link below to schedule ""Netwrix Support Ticket #00412142 | BrokenInheritanceJob"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+
+
+ 
+
+
+Thanks!
+Tay Caliguiri
+
+Tay Caliguiri
+
+Senior Technical Support Engineer 
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com","Schedule Meeting for ""Netwrix Support Ticket #00412142 | BrokenInheritanceJob""","taylor.caliguiri@netwrix.com","Tay Caliguiri","ccit-sys@columbia.edu","","","false","2024-06-25T20:14:51.000Z","true"
+"02sQk00000C1IdYIAV","500Qk00000BxEyHIAV","2024-07-01T15:30:31.000Z","2024-07-01T15:30:31.000Z","Hey Iurii,
+
+Thank you for meeting with me today. To recap our session, we:
+
+	Confirmed the BrokenInheritance job used to take 2h 30m, but is now taking well over 24 hours
+	Verified the SQL resources look appropriate 
+	Collected the SQL script that was taking the longest to finish
+
+I'll review the collected info with my team and reach out shortly with our next steps.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Tay Caliguiri [taylor.caliguiri@netwrix.com]
+Sent: 6/25/2024 4:14 PM
+To: ccit-sys@columbia.edu
+Subject: Schedule Meeting for ""Netwrix Support Ticket #00412142 | BrokenInheritanceJob""
+
+Hi Primary,
+
+
+Please use the link below to schedule ""Netwrix Support Ticket #00412142 | BrokenInheritanceJob"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+
+
+
+
+
+Thanks!
+Tay Caliguiri
+
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+ref:!00D70091pB.!500Qk0BxEyH:ref","RE: Schedule Meeting for ""Netwrix Support Ticket #00412142 | BrokenInheritanceJob""    [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","techsupport@netwrix.com","Netwrix Support","ccit-sys@columbia.edu; id2426@columbia.edu","","taylor.caliguiri@netwrix.com","false","2024-07-01T15:30:30.000Z","true"
+"02sQk00000CDCMIIA5","500Qk00000BxEyHIAV","2024-07-05T16:17:37.000Z","2024-07-05T16:17:37.000Z","Hey Iurii,
+
+Has the BrokenInheritance job produced a report or anything recently? My team would like you to verify that their isn't an active issue with broken inheritance in your environment, as that would also cause the scan to run longer.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/1/2024 11:30 AM
+To: ccit-sys@columbia.edu; id2426@columbia.edu
+Subject: RE: Schedule Meeting for ""Netwrix Support Ticket #00412142 | BrokenInheritanceJob"" [ ref:!00D70091pB.!500Qk0BxEyH:ref ]
+
+Hey Iurii,
+
+Thank you for meeting with me today. To recap our session, we:
+
+	Confirmed the BrokenInheritance job used to take 2h 30m, but is now taking well over 24 hours
+	Verified the SQL resources look appropriate 
+	Collected the SQL script that was taking the longest to finish
+
+I'll review the collected info with my team and reach out shortly with our next steps.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Tay Caliguiri [taylor.caliguiri@netwrix.com]
+Sent: 6/25/2024 4:14 PM
+To: ccit-sys@columbia.edu
+Subject: Schedule Meeting for ""Netwrix Support Ticket #00412142 | BrokenInheritanceJob""
+
+Hi Primary,
+
+
+Please use the link below to schedule ""Netwrix Support Ticket #00412142 | BrokenInheritanceJob"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+
+
+
+
+
+Thanks!
+Tay Caliguiri
+
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0BxEyH:ref","RE: Schedule Meeting for ""Netwrix Support Ticket #00412142 | BrokenInheritanceJob""    [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","techsupport@netwrix.com","Netwrix Support","id2426@columbia.edu; ccit-sys@columbia.edu","","taylor.caliguiri@netwrix.com","false","2024-07-05T16:17:35.000Z","true"
+"02sQk00000CNTwsIAH","500Qk00000BxEyHIAV","2024-07-09T20:45:36.000Z","2024-07-09T20:45:36.000Z","ref:_00D7091pB._500Q000BxEyH:ref
+
+Hi Tay,
+
+Thanks for getting back to us. We have noticed that we might have some broken inheritance issues on our workstation, which we also run Analysis jobs against. I will run the analysis job for our file shares only to see if it goes any better and will keep you posted.
+
+Best,
+Iurii","Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.","ccit-cs@columbia.edu","ccit-cs","techsupport@netwrix.com","","","false","2024-07-09T20:45:36.000Z","true"
+"02sQk00000CNNTJIA5","500Qk00000BxEyHIAV","2024-07-09T20:55:51.000Z","2024-07-09T20:55:51.000Z","Hey Iurii,
+
+Thanks for the update! Let me know how that goes!
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ccit-cs [ccit-cs@columbia.edu]
+Sent: 7/9/2024 4:45 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.
+
+ref:_00D7091pB._500Q000BxEyH:ref
+
+Hi Tay,
+
+Thanks for getting back to us. We have noticed that we might have some broken inheritance issues on our workstation, which we also run Analysis jobs against. I will run the analysis job for our file shares only to see if it goes any better and will keep you posted.
+
+Best,
+Iurii","RE: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.    [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","techsupport@netwrix.com","Netwrix Support","ccit-cs@columbia.edu","","taylor.caliguiri@netwrix.com","false","2024-07-09T20:55:50.000Z","true"
+"02sQk00000CgyP4IAJ","500Qk00000BxEyHIAV","2024-07-16T19:06:12.000Z","2024-07-16T19:06:12.000Z","Hi Iurii,
+
+Just checking in to see how things are looking with the Broken Inheritance job- are you still experiencing issues?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/9/2024 4:55 PM
+To: ccit-cs@columbia.edu
+Subject: RE: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run. [ ref:!00D70091pB.!500Qk0BxEyH:ref ]
+
+Hey Iurii,
+
+Thanks for the update! Let me know how that goes!
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ccit-cs [ccit-cs@columbia.edu]
+Sent: 7/9/2024 4:45 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.
+
+ref:_00D7091pB._500Q000BxEyH:ref
+
+Hi Tay,
+
+Thanks for getting back to us. We have noticed that we might have some broken inheritance issues on our workstation, which we also run Analysis jobs against. I will run the analysis job for our file shares only to see if it goes any better and will keep you posted.
+
+Best,
+Iurii","RE: Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.    [ ref:!00D70091pB.!500Qk0BxEyH:ref ]","techsupport@netwrix.com","Netwrix Support","ccit-cs@columbia.edu","","taylor.caliguiri@netwrix.com","false","2024-07-16T19:06:11.000Z","true"
+"02sQk00000ChGvTIAV","500Qk00000BxEyHIAV","2024-07-16T20:56:40.000Z","2024-07-16T20:56:40.000Z","ref:_00D7091pB._500Q000BxEyH:ref
+
+Hi Tay,
+
+Thanks so much for following up. I am currently running the analysis job just for our file shares and domain controllers, skipping all the workstations, which seem to have issues with Broken Inheritance. I should report back on the results once the analysis tasks are finished, hopefully some time tomorrow.
+
+Thanks again!
+
+Best,
+-Iurii","Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.","ccit-cs@columbia.edu","ccit-cs","techsupport@netwrix.com","","","false","2024-07-16T20:56:39.000Z","true"
+"02sQk00000CkjrHIAR","500Qk00000BxEyHIAV","2024-07-17T20:54:09.000Z","2024-07-17T20:54:09.000Z","ref:_00D7091pB._500Q000BxEyH:ref
+
+Hello Tay,
+
+The Analysis/Broken Inheritance tasks have been running for 22 hours now, currently processing the ""4. Analyze Trustee Differences"" job. The database files have grown by around 170GB already and growing, so with this rate of storage usage growth, I do not believe it will be able to complete the task before the database server runs out of free disk space. I will leave it running and see if the 20GB of the remaining free space is enough for it to complete. 
+
+With that said, is it typical for the database files to take up the whole 400GB of disk space that we have allocated for the Netwrix SQL database? It does seem like an unreasonable amount of storage that it needs for the amount of objects it needs to process based on the requirements listed here: https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem.htm
+
+Thanks,
+-Iurii","Netwrix Support Ticket #412142 - Broken Inheritance Job fails to run.","ccit-cs@columbia.edu","ccit-cs","techsupport@netwrix.com","","","false","2024-07-17T20:54:09.000Z","true"

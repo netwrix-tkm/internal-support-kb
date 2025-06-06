@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EDUkzIAH","00417657","Support Ticket","Ping Castle: Wrong User/Pass for GPO, only","Dear Ping Castle Team,
+ 
+I tested the community edition for Ping Castle 3.2.0.1 and noticed following error in <a href='https://trace.log' target='_blank'>trace.log</a>.
+Login works successfully using <a href='https://username@example.com' target='_blank'>username@example.com</a> and Password.
+ 
+Image
+ 
+Ping Castle is started via following script (so you know the parameters):
+Image
+ 
+I noticed GPO access denied in v2.9.2.0 when passing creds with user argument · Issue #80 · netwrix/pingcastle · GitHub, where an equal issue occured.
+ 
+Any idea, why this error happens?","","","","If “runas” is not working (the workstation must belong to the domain or a trusted domain) PingCastle has no chance to work.
+We also discourage to use “—user” as GPO are prohibited due to the SYSVOL hardening that requires integrity (which is causing problem with impersonation that PingCastle is using)
+
+Another solution is to shift – right click to display a context menu to run the program under another identity.","","Ali Asif","","PingCastle","PC Standard","PingCastle General","3.2.0.1","","122.0","Closed - Resolved","Lhind DLH","Fabian Schroedter","2024-08-09T08:40:35.000Z","2024-12-09T07:41:47.000Z"

@@ -1,0 +1,25 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008rfV3IAI","500Qk00000FAGfZIAX","The customer location is the US (Oregon)","0054u000008AYYTAA4","2024-09-02T07:35:09.000Z","2024-09-02T07:35:09.000Z","false","false"
+"00aQk000008tfcDIAQ","500Qk00000FAGfZIAX","We identified that the permission change to the AD group was recorded within the ADI scan and visible under the GroupsMemberView.
+
+We also confirmed that the account added to the group was recorded and picked up by the ADI scan however the group that was affected by the change has permissions to a file share.
+
+The permission changes to the group did not reflect within the file share. We verified the FSAA system scan and bulk import jobs and identified that the host the share exist on was successfully accessed, scanned and successfully imported.
+
+The scan and bulk import jobs do record and report on permission changes within other shares on the host but the AccessReview share is not listed. It however is listed within the AIC but not during the designated timeframe in which the change was made. 
+
+We suggested a test by adding the user that was associated with the group directly to the file share and monitor if that change will be recorded within the FSAA system scan.","0054u000007MdqrAAC","2024-09-03T23:13:34.000Z","2024-09-03T23:13:34.000Z","false","false"
+"00aQk000008w1yPIAQ","500Qk00000FAGfZIAX","Issue
+
+report on permission change activity not updating
+
+found activity change report not updating
+
+Cause
+
+No Root Cause
+
+
+Resolution
+
+Since the change was made at the top level in AD that change was reported in the ADI scan but not the FSAA system scan. We determined that this functions as expected and a change would need to be made at the file share level to report on file permission changes.","0054u000007MdqrAAC","2024-09-05T17:37:07.000Z","2024-09-05T17:37:07.000Z","false","false"

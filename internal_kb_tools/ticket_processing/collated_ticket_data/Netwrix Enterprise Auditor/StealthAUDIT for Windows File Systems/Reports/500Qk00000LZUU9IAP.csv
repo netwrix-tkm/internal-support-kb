@@ -1,0 +1,29 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LZUU9IAP","00434978","Support Ticket","FindFile","Trying to create a custom StealthAuidt job, to find file types that end with .ONE extension.","","This is for a new report the contact is trying.","Awating meeitng.","the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) 11.5.0.260   
+
+Looking at the FileSystem >> 7.Sensitive Data >> FS_DLPResults
+Within its SA_FS_DLPResults_ShareDetails table we were able to filter on some .One objects found in the past.
+
+Unfortunately we were not able to tell if these Items were still in the last noted location (Deleted), Whom the owner is/was, or if the location was linked to an Open Access path.
+
+Looking at the look at the Netwrix Enterprise Auditor V11.6 > Administration > Data Collectors > File Data Collector > File Details Tab:
+Scan file-level details – Turns on file-level scanning and collects a full list of files, file size, last modified, and last accessed
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/DefaultScopingOptions/FileDetails.htm
+This should be needed for all the FSAA details for the scanned objects
+
+Not to be confused with Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector FSAA: Default Scoping Options > File Properties (Folder Summary) Tab:
+Scan for File Types – Gathers file type information within the audited folders
+Limit maximum number of file types to return per folder [number] – Stops the collection of file types when the number provided is reached per folder
+Only return file types with these comma-separated values (without leading dots) – Enter the file types that will be returned from the scan. Any types not provided are ignored.
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/DefaultScopingOptions/FileProperties.htm
+
+Per the investigation we agreed that a Custom job would be best to limit impact on the SQL Server to prefrom the needed Table Queries with a singe job rather than using the multiple Netwrix Enterprise Auditor v11.6 > Administration > Analysis Modules > SQLViewCreation Analysis Module
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Analysis/SQLViewCreation/Overview.htm
+
+To build out the needed joint tables/views for the desired report.
+
+For this I have CC the account Rep(s) to look at the ProServe options to build out the needed Analys and Report.
+
+I will also submit the Noted Feature Request to list of have the ability to add needed files types like the .One extension or possible any custom file types the might be used in a Customers environment.","Guidance","Dusty Grayson","Question","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Reports","11.5","260","21.7","Closed - Resolved","EverBank","Bradley Dickinson","2025-02-06T20:30:26.000Z","2025-02-28T13:44:13.000Z"

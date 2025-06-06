@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IHTxkIAH","00427002","Support Ticket","Customized report in StealthAUDIT is failing, the specialized table is not created","Hello,
+
+We've recently moved our scanning from an Azure server to 2 new onprem servers and now the scan is failing. The error message suggests that the table is not created. Please assist.  Thank you!","Post migration/ fresh install the needed attribute was no longer being collected via ADI","Found that the 'extensionAttribute9' attribute was not being collected by Jobs >> .Active Directory Inventory>> 1-AD_Scan  (ADI) job.
+
+This is a recurred column for the Custom JOB_AD_WeakPasswords_Custom job","With the attribute collection corrected we kicked off this scan per a mock schedule as well as staged ones for JOB_AD_WeakPasswords & JOB_AD_WeakPasswords_Custom.
+
+The later two jobs will need to be run post the 1-AD_Scan jobs completion.
+
+Awaiting job completion details.","Symptom:
+JOB_AD_WeakPasswords_Custom not completing being that a needed column was not found in another needed table.
+
+Cause:
+Found that the 'extensionAttribute9' attribute was not being collected by Jobs >> .Active Directory Inventory>> 1-AD_Scan  (ADI) job.
+
+Resolution:
+With this corrected we kicked off this scan per a mock schedule as well as staged ones for JOB_AD_WeakPasswords & JOB_AD_WeakPasswords_Custom.","Incorrect configuration: Netwrix product","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Custom Reports","11.6","11","11.7","Closed - Resolved","City National Bank (CNB)","Kim Holmes","2024-11-13T21:18:56.000Z","2024-11-25T14:27:39.000Z"

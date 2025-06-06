@@ -1,0 +1,35 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000M1HYYIA3","00436182","Support Ticket","Repports doesn't received anymore after upgrade product from version pro to version Entreprise","Hi, i have just finished the upgrade of my server.
+Hi have followed the good advices received by your service from Ticket#428974
+Anyway, all seams ok, I have my scheduled AGENT TASK that still work fine.
+When I execute one of them, the total of received report is well incremented.
+But I still have one problem, I didn’t receive the reports by mail anymore.
+Yet I have correctly configured the configuration file: ""<a href='https://appsettings.Production.json' target='_blank'>appsettings.Production.json</a>"" but nothing to do I do not receive the emails.
+Can you help me on the subject, please?","Perform a health check to verify that the SMTP server is correctly configured in appsettings.json.
+Trigger a scheduled AGENT TASK manually.
+Observe that the report count increases, but no email is received.","The issue was tested in a lab environment, and no problems were encountered.
+ SAML authentication has been provided as an alternative solution for secure access.
+ Potential causes of the issue include:
+
+Incorrect or reset SMTP settings (server, port, credentials).
+Changes in authentication requirements (e.g., OAuth updates).
+Unreadable or incorrectly formatted appsettings.Production.json file.
+Email delivery being blocked by the provider (e.g., spam filters or IP blocklisting).","To troubleshoot the issue, the following steps have been performed:
+Verified SMTP Configuration:
+Checked appsettings.Production.json to confirm that the SMTP server settings (server, port, credentials) were correctly configured.
+Ensured that authentication details were correctly provided and there were no syntax errors in the JSON file.
+Performed Health Check on SMTP Server:
+Verified that the SMTP server is reachable from the PingCastle server.
+Confirmed that the SMTP connection test does not return any authentication failures or connection errors.
+Manually Triggered an Agent Task:
+Observed that the total count of received reports increases, confirming that report generation is functioning as expected.
+Confirmed that reports are being generated and processed internally but are not being delivered via email.
+Tested the Scenario in a Lab Environment:
+Ran the same configuration in a controlled lab environment.
+No issues were encountered in the lab setup, confirming that the problem is environment-specific.
+Reviewed Possible Causes:
+Considered potential authentication requirement changes (e.g., OAuth updates).
+Checked whether the SMTP settings were reset or overwritten during the upgrade.
+Evaluated whether the email provider is blocking emails due to spam filters or IP restrictions.
+Provided Alternative Authentication Method (SAML):
+Shared configuration details for SAML authentication as an alternative solution.","customer managed to get email reports working. Requested to close the ticket as they dont want to go ahead with SAML authentication with their workspace ONE IDP.","Advanced Configuration Change","Shaheryar Ali Tahir","Unexpected Behavior","PingCastle","PC Enterprise","PingCastle General","3.3","","41.6","Closed - Resolved","CDC HABITAT","Jimenez David","2025-02-18T16:37:45.000Z","2025-04-01T07:40:25.000Z"

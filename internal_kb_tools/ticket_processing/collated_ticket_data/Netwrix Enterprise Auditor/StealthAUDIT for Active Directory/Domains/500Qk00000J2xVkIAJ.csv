@@ -1,0 +1,28 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000J2xVkIAJ","00428702","Support Ticket","POC |  Ticket Cross Domain (with no trust) Troubles Accessing GPO","In a current POC with SS&C and we are experiencing issues pulling GPO collections in a domain different from the one the NEA app server is in and that domain does not have a trust. We have tried to run the collections via task scheduler and are also running into issues doing that too. Customer has hardened least priv model and this was a problem when they use Netwrix Auditor too. Our account is a domain admin in the test domain we are trying to reach.
+
+Job logs are attached from both a successful run and the errors we get while trying to connect to the domain.
+
+From the client: 
+The group policy collection issue appears to be related to Kerberos authentication required when the NEA server is trying to access the SYSVOL share.
+
+Source domain: ssnc-corp.global (Where the NEA server is located.)
+Target domain: ssnctest.ssncad.global
+
+There is not a trust between these domains. If I relax the UNC hardening settings on the NEA server that affects how it communicates to the \wdcaddc01.ssnctest.ssncad.globalsysvol share, the GPOs can be accessed. These are the registry settings that I had to change on the NEA server:
+
+ComputerHKEY_LOCAL_MACHINESOFTWAREPoliciesMicrosoftWindowsNetworkProviderHardenedPaths:
+
+Name: \wdcaddc01.ssnctest.ssncad.globalsysvol
+Value: RequireMutualAuthentication=0,RequireIntegrity=0,RequirePrivacy=1
+
+The default values are: RequireMutualAuthentication=1,RequireIntegrity=1,RequirePrivacy=1
+
+Here’s the link to the Microsoft article:
+MS15-011: Vulnerability in Group Policy could allow remote code execution: February 10, 2015 - Microsoft Support
+
+Obviously, this is a not an answer to the problem, just an indicator of the problem. We had this exact same problem with Netwrix Auditor. The fix that Netwrix supplied was an update to the Auditor application where you could configure Netwrix Auditor to use remote powershell using SSL. So, we added a WinRM certificate on the DCs in the domains where this problem was encountered, and it solved the problem. We still have a secure connection to the SYSVOL share and the GPO info can be collected
+
+
+Reference Ticket from when they saw similar thing in NA: https://nwxcorp.lightning.force.com/lightning/r/Case/5004u00002ab8UHAAY/view","","","","Demonstrated the Domain issue was related to windows permissions rather than a product Defect.
+Customer understood.","Guidance","Nicholas Zimmer","Error","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Domains","11.6","","36.9","Closed - Resolved","SS&C Technologies","Daniel McLaughlin","2024-12-03T18:18:22.000Z","2025-01-09T15:52:49.000Z"

@@ -1,0 +1,19 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IoK1JIAV","00428157","Support Ticket","Request Header Too Long","Customer is using the survey action module through the 8082 website.  This was something we put in 11.5 for them.  (They are currently on 11.6).  
+
+They are using single sign on option.  When some users log in they see the ""Request Header Too Long"" 400 error.   Those users can log in with incognito mode.  Customer believes this may be a result of the user being a member of many AD groups
+
+SWAT Convo on the Topic
+https://teams.microsoft.com/l/message/19:2f33cf4c06364f4c8644adce095eb161@thread.tacv2/1731964968372?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1731964968372&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=NEA%20Core&createdTime=1731964968372","","","","The user can access the portal, after changing the registry key.
+
+Snippet of Microsoft guide we followed below:
+For IIS 6.0 and later, the MaxFieldLength and MaxRequestBytes registry keys are located at the following sub key:
+HKEY_LOCAL_MACHINESystemCurrentControlSetServicesHTTPParameters
+Set the key values as shown in the following table:
+Name Value Type Value Data
+MaxFieldLength DWORD (4/3 * T bytes) + 200
+MaxRequestBytes DWORD (4/3 * T bytes) + 200
+You can also set the registry keys to their maximum values, as shown in the next table. Consider all potential security ramifications before you make any changes to the registry settings.
+Name Value Type Value Data
+MaxFieldLength DWORD 65536 (Dec) or 10000 (Hex)
+MaxRequestBytes DWORD 16777216 (Dec) or 1000000 (Hex)","Guidance","Paul Pitas","","Netwrix Enterprise Auditor","Website and Documentation","Knowledge Base","11.6","","72.2","Closed - Resolved","Royal Bank Canada (RBC)","Samuel Bahri","2024-11-26T14:24:38.000Z","2025-02-06T19:48:36.000Z"

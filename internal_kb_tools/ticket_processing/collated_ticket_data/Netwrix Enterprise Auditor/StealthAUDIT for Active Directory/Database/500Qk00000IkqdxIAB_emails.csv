@@ -1,0 +1,3019 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000INRl9IAH","500Qk00000IkqdxIAB","2024-11-25T15:12:51.000Z","2024-11-25T15:12:51.000Z","Hello James, 
+
+Thank you for contacting Netwrix Technical Support. 
+My name is Artem, and I will be assisting you with this ticket. 
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute. 
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+
+
+Just in case I will attach the screenshot to the email as a file as well. 
+
+Please, let me know if this information satisfies your inquiry. 
+I am looking forward to hearing back from you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0Ikqdx:ref","AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-11-25T15:12:49.000Z","true"
+"02sQk00000INe2TIAT","500Qk00000IkqdxIAB","2024-11-25T15:50:43.000Z","2024-11-26T08:07:47.000Z","ref:_00D7091pB._500Q000Ikqdx:ref
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+[cid:image002.png@01DB3F51.B1ED9580]
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+[cid:image003.png@01DB3F51.D8598D50]
+
+
+
+
+How do I change the criteria to 30?
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+Thank you for contacting Netwrix Technical Support.
+My name is Artem, and I will be assisting you with this ticket.
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute.
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+[cid:image001.png@01DB3F51.3A4B8410]
+
+Just in case I will attach the screenshot to the email as a file as well.
+
+Please, let me know if this information satisfies your inquiry.
+I am looking forward to hearing back from you.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!QcYmDNaUe2JLUcx3xBBztjGPX-3GRWei75NfaK6AlNMhq3dVAqLbsvqSi8GG10OpCpyuUx5DJxHlRfIFoFbeXn1V9c8$>
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref","RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-11-25T15:50:09.000Z","true"
+"02sQk00000IPnxfIAD","500Qk00000IkqdxIAB","2024-11-26T08:25:45.000Z","2024-11-26T08:25:45.000Z","Hello James, 
+
+Thank you for your reply. 
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61. 
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria. 
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report. 
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory 
+Active Directory 
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution. 
+  
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+ 
+
+
+
+ 
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+How do I change the criteria to 30?
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for contacting Netwrix Technical Support. 
+My name is Artem, and I will be assisting you with this ticket. 
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute. 
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+
+
+Just in case I will attach the screenshot to the email as a file as well. 
+
+Please, let me know if this information satisfies your inquiry. 
+I am looking forward to hearing back from you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-11-26T08:25:44.000Z","true"
+"02sQk00000IPwWHIA1","500Qk00000IkqdxIAB","2024-11-26T09:20:00.000Z","2024-11-26T09:55:33.000Z","ref:_00D7091pB._500Q000Ikqdx:ref
+
+Hello
+
+I confirm that the ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+[cid:image001.png@01DB3FE2.B1DD7100]
+
+The AD_Scan job  runs every night successfully:
+
+[cid:image006.png@01DB3FE3.264AE450]
+
+
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+[cid:image007.png@01DB3FE3.9D68AA90]
+
+
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+Please can you find out where to change that?
+
+James
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+Thank you for your reply.
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61.
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria.
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report.
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory
+Active Directory
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!TjLQ4wYaPaU38Td_07ck_HPTg-bimATnKFx5C7Xkp_Pyjfs4WcuDoWE7nVsv-TTPiKFStT8TkfJmxXM9dd6-Avbr4kE$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+[cid:image002.png@01DB3FE2.B1DD7100]
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+[cid:image003.png@01DB3FE2.B1DD7100]
+
+
+
+
+How do I change the criteria to 30?
+
+James
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+Thank you for contacting Netwrix Technical Support.
+My name is Artem, and I will be assisting you with this ticket.
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute.
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+[cid:image004.png@01DB3FE2.B1DD7100]
+
+Just in case I will attach the screenshot to the email as a file as well.
+
+Please, let me know if this information satisfies your inquiry.
+I am looking forward to hearing back from you.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!QcYmDNaUe2JLUcx3xBBztjGPX-3GRWei75NfaK6AlNMhq3dVAqLbsvqSi8GG10OpCpyuUx5DJxHlRfIFoFbeXn1V9c8$>
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref
+[Image removed by sender.]","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-11-26T09:19:33.000Z","true"
+"02sQk00000IQ0ekIAD","500Qk00000IkqdxIAB","2024-11-26T11:09:07.000Z","2024-11-26T11:09:07.000Z","Hello James, 
+
+Thank you for your reply and for the provided information. 
+
+May I suggest scheduling a meeting so we could have a look a closer look at the issue and perform a health check on the "".Active Directory Inventory"" solution?
+
+Please, follow this link to schedule meeting:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/26/2024 1:19 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+
+
+
+Hello
+
+ 
+
+I confirm that the  ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+ 
+
+
+
+ 
+
+The AD_Scan job  runs every night successfully:
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+ 
+
+Please can you find out where to change that?  
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for your reply. 
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61. 
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria. 
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report. 
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory 
+Active Directory 
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution. 
+  
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+ 
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+ 
+
+
+
+ 
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+How do I change the criteria to 30?
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for contacting Netwrix Technical Support. 
+My name is Artem, and I will be assisting you with this ticket. 
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute. 
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+
+
+Just in case I will attach the screenshot to the email as a file as well. 
+
+Please, let me know if this information satisfies your inquiry. 
+I am looking forward to hearing back from you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-11-26T11:09:06.000Z","true"
+"02sQk00000IQI5TIAX","500Qk00000IkqdxIAB","2024-11-26T13:37:57.000Z","2024-11-26T13:37:57.000Z","Hello James, 
+
+Thank you for your time on a meeting today. 
+Here is a meeting recap:
+
+As we discussed, your current goal is to make AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60. 
+
+In contrast with AWS solution, where the AWS_StaleUsers Job has a customizable analysis task:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm#Customiz
+the AD_StaleUsers Job analysis task does not have similar threshold parameters configuration in its SQL query, as such, we could not modify the analysis query accordingly. 
+
+Please, allow me time to clarify how we can fine tune the AD_StaleUsers job and report for your needs. As soon as I have an update - I will get back to you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 3:09 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Thank you for your reply and for the provided information. 
+
+May I suggest scheduling a meeting so we could have a look a closer look at the issue and perform a health check on the "".Active Directory Inventory"" solution?
+
+Please, follow this link to schedule meeting:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/26/2024 1:19 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+ 
+
+
+
+Hello
+
+ 
+
+I confirm that the  ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+ 
+
+
+
+ 
+
+The AD_Scan job  runs every night successfully:
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+ 
+
+Please can you find out where to change that?  
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for your reply. 
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61. 
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria. 
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report. 
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory 
+Active Directory 
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution. 
+  
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+ 
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+ 
+
+
+
+ 
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+How do I change the criteria to 30?
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for contacting Netwrix Technical Support. 
+My name is Artem, and I will be assisting you with this ticket. 
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute. 
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+
+
+Just in case I will attach the screenshot to the email as a file as well. 
+
+Please, let me know if this information satisfies your inquiry. 
+I am looking forward to hearing back from you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-11-26T13:37:56.000Z","true"
+"02sQk00000IQnNlIAL","500Qk00000IkqdxIAB","2024-11-26T16:28:25.000Z","2024-11-26T16:28:25.000Z","Hello James, 
+
+I have an update for you.
+
+Upon inspecting the ""Active Directory"" solution > ""2.Users"" job group> ""AD_StaleUsers"" job > ""User Details"" analysis SQL query I found that it is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+As such, I went to check the 3-AD_Exceptions job that creates ADInventory_ExceptionsView table. 
+I found that ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD. 
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table. 
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+To summarize, in order to change criteria for the data that gets written to the ""AD_StaleUsers"" job report, perform these steps:
+
+1. Navigate to "".Active Directory Inventory"" solution > ""3-AD_Exceptions"" job > ""Analysis"" > select ""Stale Users"" analysis. 
+
+2. Select ""Analysis Configuration"" 
+
+3. Scroll the variables list until you find @STALE_THRESHOLD
+
+4. Change the value from 60 to 30 - this will make ""3-AD_Exceptions"" job treat users who haven`t logged on for more than or equal to 30 days as stale users (instead of default 60 days). 
+
+5. Let the "".Active Directory Inventory"" and ""Active Directory"" solutions run and complete.
+Afterward, inspect the ""AD_StaleUsers"" job report and let me know the results. 
+
+I will send feedback to our technical writers so that this information is added to ""AD_StaleUsers"" job article so that it mentions where the Stale Users threshold can be modified. 
+
+I am looking forward hearing back from you.
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 5:37 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Thank you for your time on a meeting today. 
+Here is a meeting recap:
+
+As we discussed, your current goal is to make AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60. 
+
+In contrast with AWS solution, where the AWS_StaleUsers Job has a customizable analysis task:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm#Customiz
+the AD_StaleUsers Job analysis task does not have similar threshold parameters configuration in its SQL query, as such, we could not modify the analysis query accordingly. 
+
+Please, allow me time to clarify how we can fine tune the AD_StaleUsers job and report for your needs. As soon as I have an update - I will get back to you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 3:09 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Thank you for your reply and for the provided information. 
+
+May I suggest scheduling a meeting so we could have a look a closer look at the issue and perform a health check on the "".Active Directory Inventory"" solution?
+
+Please, follow this link to schedule meeting:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/26/2024 1:19 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+ 
+
+
+
+Hello
+
+ 
+
+I confirm that the  ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+ 
+
+
+
+ 
+
+The AD_Scan job  runs every night successfully:
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+ 
+
+Please can you find out where to change that?  
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for your reply. 
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61. 
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria. 
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report. 
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory 
+Active Directory 
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution. 
+  
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+ 
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+ 
+
+
+
+ 
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+How do I change the criteria to 30?
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for contacting Netwrix Technical Support. 
+My name is Artem, and I will be assisting you with this ticket. 
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute. 
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+
+
+Just in case I will attach the screenshot to the email as a file as well. 
+
+Please, let me know if this information satisfies your inquiry. 
+I am looking forward to hearing back from you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-11-26T16:28:24.000Z","true"
+"02sQk00000IVegLIAT","500Qk00000IkqdxIAB","2024-11-28T13:20:44.000Z","2024-11-28T13:49:16.000Z","ref:_00D7091pB._500Q000Ikqdx:ref
+
+Hello Artem
+
+I have made that change and will let the jobs run as they usually do.  I will get back to you on Monday.
+
+Many thanks for your solution -  much appreciated.
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 4:28 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+I have an update for you.
+
+Upon inspecting the ""Active Directory"" solution > ""2.Users"" job group> ""AD_StaleUsers"" job > ""User Details"" analysis SQL query I found that it is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+As such, I went to check the 3-AD_Exceptions job that creates ADInventory_ExceptionsView table.
+I found that ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD.
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table.
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+To summarize, in order to change criteria for the data that gets written to the ""AD_StaleUsers"" job report, perform these steps:
+
+1. Navigate to "".Active Directory Inventory"" solution > ""3-AD_Exceptions"" job > ""Analysis"" > select ""Stale Users"" analysis.
+
+2. Select ""Analysis Configuration""
+
+3. Scroll the variables list until you find @STALE_THRESHOLD
+
+4. Change the value from 60 to 30 - this will make ""3-AD_Exceptions"" job treat users who haven`t logged on for more than or equal to 30 days as stale users (instead of default 60 days).
+
+5. Let the "".Active Directory Inventory"" and ""Active Directory"" solutions run and complete.
+Afterward, inspect the ""AD_StaleUsers"" job report and let me know the results.
+
+I will send feedback to our technical writers so that this information is added to ""AD_StaleUsers"" job article so that it mentions where the Stale Users threshold can be modified.
+
+I am looking forward hearing back from you.
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTtWgWjSI$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 5:37 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James,
+
+Thank you for your time on a meeting today.
+Here is a meeting recap:
+
+As we discussed, your current goal is to make AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60.
+
+In contrast with AWS solution, where the AWS_StaleUsers Job has a customizable analysis task:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm#Customiz<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm*Customiz__;Iw!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMThN5IPHU$>
+the AD_StaleUsers Job analysis task does not have similar threshold parameters configuration in its SQL query, as such, we could not modify the analysis query accordingly.
+
+Please, allow me time to clarify how we can fine tune the AD_StaleUsers job and report for your needs. As soon as I have an update - I will get back to you.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTtWgWjSI$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 3:09 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James,
+
+Thank you for your reply and for the provided information.
+
+May I suggest scheduling a meeting so we could have a look a closer look at the issue and perform a health check on the "".Active Directory Inventory"" solution?
+
+Please, follow this link to schedule meeting:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTRTWZvgE$>
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTtWgWjSI$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/26/2024 1:19 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+Hello
+
+I confirm that the ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+[cid:image001.png@01DB4198.6A8EF5F0]
+
+The AD_Scan job  runs every night successfully:
+
+[cid:image002.png@01DB4198.6A8EF5F0]
+
+
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+[cid:image003.png@01DB4198.6A8EF5F0]
+
+
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+Please can you find out where to change that?
+
+James
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+Thank you for your reply.
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61.
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria.
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report.
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory
+Active Directory
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!TjLQ4wYaPaU38Td_07ck_HPTg-bimATnKFx5C7Xkp_Pyjfs4WcuDoWE7nVsv-TTPiKFStT8TkfJmxXM9dd6-Avbr4kE$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+[cid:image004.png@01DB4198.6A8EF5F0]
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+[cid:image005.png@01DB4198.6A8EF5F0]
+
+
+
+
+How do I change the criteria to 30?
+
+James
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+Thank you for contacting Netwrix Technical Support.
+My name is Artem, and I will be assisting you with this ticket.
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute.
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+[cid:image006.png@01DB4198.6A8EF5F0]
+
+Just in case I will attach the screenshot to the email as a file as well.
+
+Please, let me know if this information satisfies your inquiry.
+I am looking forward to hearing back from you.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!QcYmDNaUe2JLUcx3xBBztjGPX-3GRWei75NfaK6AlNMhq3dVAqLbsvqSi8GG10OpCpyuUx5DJxHlRfIFoFbeXn1V9c8$>
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref
+[Image removed by sender.]
+[Image removed by sender.]
+ [Image removed by sender.]
+ [Image removed by sender.]","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-11-28T13:20:20.000Z","true"
+"02sQk00000IVf4ZIAT","500Qk00000IkqdxIAB","2024-11-28T13:52:14.000Z","2024-11-28T13:52:14.000Z","Hello James, 
+
+Understood, I am glad I could help you on this.
+I will put ticket on hold till Monday so you can check results. Let me know if issue persists afterward. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/28/2024 5:20 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+
+
+
+Hello Artem
+
+ 
+
+I have made that change and will let the jobs run as they usually do.  I will get back to you on Monday.
+
+ 
+
+Many thanks for your solution -  much appreciated.
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 4:28 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+I have an update for you.
+
+Upon inspecting the ""Active Directory"" solution > ""2.Users"" job group> ""AD_StaleUsers"" job > ""User Details"" analysis SQL query I found that it is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+As such, I went to check the 3-AD_Exceptions job that creates ADInventory_ExceptionsView table. 
+I found that ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD. 
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table. 
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+To summarize, in order to change criteria for the data that gets written to the ""AD_StaleUsers"" job report, perform these steps:
+
+1. Navigate to "".Active Directory Inventory"" solution > ""3-AD_Exceptions"" job > ""Analysis"" > select ""Stale Users"" analysis. 
+
+2. Select ""Analysis Configuration"" 
+
+3. Scroll the variables list until you find @STALE_THRESHOLD
+
+4. Change the value from 60 to 30 - this will make ""3-AD_Exceptions"" job treat users who haven`t logged on for more than or equal to 30 days as stale users (instead of default 60 days). 
+
+5. Let the "".Active Directory Inventory"" and ""Active Directory"" solutions run and complete.
+Afterward, inspect the ""AD_StaleUsers"" job report and let me know the results. 
+
+I will send feedback to our technical writers so that this information is added to ""AD_StaleUsers"" job article so that it mentions where the Stale Users threshold can be modified. 
+
+I am looking forward hearing back from you.
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 5:37 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Thank you for your time on a meeting today. 
+Here is a meeting recap:
+
+As we discussed, your current goal is to make AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60. 
+
+In contrast with AWS solution, where the AWS_StaleUsers Job has a customizable analysis task:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm#Customiz
+the AD_StaleUsers Job analysis task does not have similar threshold parameters configuration in its SQL query, as such, we could not modify the analysis query accordingly. 
+
+Please, allow me time to clarify how we can fine tune the AD_StaleUsers job and report for your needs. As soon as I have an update - I will get back to you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 3:09 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Thank you for your reply and for the provided information. 
+
+May I suggest scheduling a meeting so we could have a look a closer look at the issue and perform a health check on the "".Active Directory Inventory"" solution?
+
+Please, follow this link to schedule meeting:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/26/2024 1:19 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+ 
+
+
+Hello
+
+ 
+
+I confirm that the ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+ 
+
+
+
+ 
+
+The AD_Scan job  runs every night successfully:
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+ 
+
+Please can you find out where to change that?  
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for your reply. 
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61. 
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria. 
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report. 
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory 
+Active Directory 
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution. 
+  
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+ 
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+ 
+
+
+
+ 
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+How do I change the criteria to 30?
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for contacting Netwrix Technical Support. 
+My name is Artem, and I will be assisting you with this ticket. 
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute. 
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+
+
+Just in case I will attach the screenshot to the email as a file as well. 
+
+Please, let me know if this information satisfies your inquiry. 
+I am looking forward to hearing back from you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-11-28T13:52:12.000Z","true"
+"02sQk00000IeQRMIA3","500Qk00000IkqdxIAB","2024-12-03T15:18:42.000Z","2024-12-03T15:18:42.000Z","Hello James, 
+
+I wanted to send this follow up to ask if you have some news regarding the AD_StaleUsers job report. 
+Is there anything else I can assist you with regarding it? 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/28/2024 5:52 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Understood, I am glad I could help you on this.
+I will put ticket on hold till Monday so you can check results. Let me know if issue persists afterward. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/28/2024 5:20 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+ 
+
+
+
+Hello Artem
+
+ 
+
+I have made that change and will let the jobs run as they usually do.  I will get back to you on Monday.
+
+ 
+
+Many thanks for your solution -  much appreciated.
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 4:28 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+I have an update for you.
+
+Upon inspecting the ""Active Directory"" solution > ""2.Users"" job group> ""AD_StaleUsers"" job > ""User Details"" analysis SQL query I found that it is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+As such, I went to check the 3-AD_Exceptions job that creates ADInventory_ExceptionsView table. 
+I found that ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD. 
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table. 
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+To summarize, in order to change criteria for the data that gets written to the ""AD_StaleUsers"" job report, perform these steps:
+
+1. Navigate to "".Active Directory Inventory"" solution > ""3-AD_Exceptions"" job > ""Analysis"" > select ""Stale Users"" analysis. 
+
+2. Select ""Analysis Configuration"" 
+
+3. Scroll the variables list until you find @STALE_THRESHOLD
+
+4. Change the value from 60 to 30 - this will make ""3-AD_Exceptions"" job treat users who haven`t logged on for more than or equal to 30 days as stale users (instead of default 60 days). 
+
+5. Let the "".Active Directory Inventory"" and ""Active Directory"" solutions run and complete.
+Afterward, inspect the ""AD_StaleUsers"" job report and let me know the results. 
+
+I will send feedback to our technical writers so that this information is added to ""AD_StaleUsers"" job article so that it mentions where the Stale Users threshold can be modified. 
+
+I am looking forward hearing back from you.
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 5:37 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Thank you for your time on a meeting today. 
+Here is a meeting recap:
+
+As we discussed, your current goal is to make AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60. 
+
+In contrast with AWS solution, where the AWS_StaleUsers Job has a customizable analysis task:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm#Customiz
+the AD_StaleUsers Job analysis task does not have similar threshold parameters configuration in its SQL query, as such, we could not modify the analysis query accordingly. 
+
+Please, allow me time to clarify how we can fine tune the AD_StaleUsers job and report for your needs. As soon as I have an update - I will get back to you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 3:09 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Thank you for your reply and for the provided information. 
+
+May I suggest scheduling a meeting so we could have a look a closer look at the issue and perform a health check on the "".Active Directory Inventory"" solution?
+
+Please, follow this link to schedule meeting:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/26/2024 1:19 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+ 
+
+
+Hello
+
+ 
+
+I confirm that the ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+ 
+
+
+
+ 
+
+The AD_Scan job  runs every night successfully:
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+ 
+
+Please can you find out where to change that?  
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for your reply. 
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61. 
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria. 
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report. 
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory 
+Active Directory 
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution. 
+  
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+ 
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+ 
+
+
+
+ 
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+How do I change the criteria to 30?
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for contacting Netwrix Technical Support. 
+My name is Artem, and I will be assisting you with this ticket. 
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute. 
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+
+
+Just in case I will attach the screenshot to the email as a file as well. 
+
+Please, let me know if this information satisfies your inquiry. 
+I am looking forward to hearing back from you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-12-03T15:18:40.000Z","true"
+"02sQk00000Ieg34IAB","500Qk00000IkqdxIAB","2024-12-03T15:20:24.000Z","2024-12-03T15:21:56.000Z","ref:_00D7091pB._500Q000Ikqdx:ref
+
+Hello Artem.   Apologies,  I did say I would update you and have not.  But it was good news and your solution worked.
+
+Many thanks,
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, December 3, 2024 3:19 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+I wanted to send this follow up to ask if you have some news regarding the AD_StaleUsers job report.
+Is there anything else I can assist you with regarding it?
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!Tg524w4Omcp9rylPG3--g2dPCd8n8LA3wqw1WeyHhIdjEOFO4FqGlVbIcmv7jvOPIg5N4vXnJR_4DxhFq9xV5dZoO-I$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/28/2024 5:52 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James,
+
+Understood, I am glad I could help you on this.
+I will put ticket on hold till Monday so you can check results. Let me know if issue persists afterward.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!Tg524w4Omcp9rylPG3--g2dPCd8n8LA3wqw1WeyHhIdjEOFO4FqGlVbIcmv7jvOPIg5N4vXnJR_4DxhFq9xV5dZoO-I$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/28/2024 5:20 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+Hello Artem
+
+I have made that change and will let the jobs run as they usually do.  I will get back to you on Monday.
+
+Many thanks for your solution -  much appreciated.
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 4:28 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+I have an update for you.
+
+Upon inspecting the ""Active Directory"" solution > ""2.Users"" job group> ""AD_StaleUsers"" job > ""User Details"" analysis SQL query I found that it is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+As such, I went to check the 3-AD_Exceptions job that creates ADInventory_ExceptionsView table.
+I found that ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD.
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table.
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+To summarize, in order to change criteria for the data that gets written to the ""AD_StaleUsers"" job report, perform these steps:
+
+1. Navigate to "".Active Directory Inventory"" solution > ""3-AD_Exceptions"" job > ""Analysis"" > select ""Stale Users"" analysis.
+
+2. Select ""Analysis Configuration""
+
+3. Scroll the variables list until you find @STALE_THRESHOLD
+
+4. Change the value from 60 to 30 - this will make ""3-AD_Exceptions"" job treat users who haven`t logged on for more than or equal to 30 days as stale users (instead of default 60 days).
+
+5. Let the "".Active Directory Inventory"" and ""Active Directory"" solutions run and complete.
+Afterward, inspect the ""AD_StaleUsers"" job report and let me know the results.
+
+I will send feedback to our technical writers so that this information is added to ""AD_StaleUsers"" job article so that it mentions where the Stale Users threshold can be modified.
+
+I am looking forward hearing back from you.
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTtWgWjSI$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 5:37 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James,
+
+Thank you for your time on a meeting today.
+Here is a meeting recap:
+
+As we discussed, your current goal is to make AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60.
+
+In contrast with AWS solution, where the AWS_StaleUsers Job has a customizable analysis task:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm#Customiz<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm*Customiz__;Iw!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMThN5IPHU$>
+the AD_StaleUsers Job analysis task does not have similar threshold parameters configuration in its SQL query, as such, we could not modify the analysis query accordingly.
+
+Please, allow me time to clarify how we can fine tune the AD_StaleUsers job and report for your needs. As soon as I have an update - I will get back to you.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTtWgWjSI$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 3:09 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James,
+
+Thank you for your reply and for the provided information.
+
+May I suggest scheduling a meeting so we could have a look a closer look at the issue and perform a health check on the "".Active Directory Inventory"" solution?
+
+Please, follow this link to schedule meeting:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTRTWZvgE$>
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTtWgWjSI$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/26/2024 1:19 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+Hello
+
+I confirm that the ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+[cid:image001.png@01DB4597.136E5E20]
+
+The AD_Scan job  runs every night successfully:
+
+[cid:image002.png@01DB4597.136E5E20]
+
+
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+[cid:image003.png@01DB4597.136E5E20]
+
+
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+Please can you find out where to change that?
+
+James
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+Thank you for your reply.
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61.
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria.
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report.
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory
+Active Directory
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!TjLQ4wYaPaU38Td_07ck_HPTg-bimATnKFx5C7Xkp_Pyjfs4WcuDoWE7nVsv-TTPiKFStT8TkfJmxXM9dd6-Avbr4kE$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+[cid:image004.png@01DB4597.136E5E20]
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+[cid:image005.png@01DB4597.136E5E20]
+
+
+
+
+How do I change the criteria to 30?
+
+James
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+Thank you for contacting Netwrix Technical Support.
+My name is Artem, and I will be assisting you with this ticket.
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute.
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+[cid:image006.png@01DB4597.136E5E20]
+
+Just in case I will attach the screenshot to the email as a file as well.
+
+Please, let me know if this information satisfies your inquiry.
+I am looking forward to hearing back from you.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!QcYmDNaUe2JLUcx3xBBztjGPX-3GRWei75NfaK6AlNMhq3dVAqLbsvqSi8GG10OpCpyuUx5DJxHlRfIFoFbeXn1V9c8$>
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref
+[Image removed by sender.]
+[Image removed by sender.]
+ [Image removed by sender.]
+ [Image removed by sender.]
+[Image removed by sender.]
+ [Image removed by sender.]","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-12-03T15:20:00.000Z","true"
+"02sQk00000IedQDIAZ","500Qk00000IkqdxIAB","2024-12-03T15:22:53.000Z","2024-12-03T15:22:53.000Z","Hi James, 
+
+Thank you for reply on such short notice. No problem at all, I am glad to hear that we found solution. 
+
+Shall I proceed with closing this ticket for you? 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 12/3/2024 7:20 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+
+
+
+Hello Artem.   Apologies,  I did say I would update you and have not.  But it was good news and your solution worked.
+
+ 
+
+Many thanks,
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, December 3, 2024 3:19 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+I wanted to send this follow up to ask if you have some news regarding the AD_StaleUsers job report. 
+Is there anything else I can assist you with regarding it? 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/28/2024 5:52 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Understood, I am glad I could help you on this.
+I will put ticket on hold till Monday so you can check results. Let me know if issue persists afterward. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/28/2024 5:20 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+ 
+
+
+Hello Artem
+
+ 
+
+I have made that change and will let the jobs run as they usually do.  I will get back to you on Monday.
+
+ 
+
+Many thanks for your solution -  much appreciated.
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 4:28 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+I have an update for you.
+
+Upon inspecting the ""Active Directory"" solution > ""2.Users"" job group> ""AD_StaleUsers"" job > ""User Details"" analysis SQL query I found that it is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+As such, I went to check the 3-AD_Exceptions job that creates ADInventory_ExceptionsView table. 
+I found that ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD. 
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table. 
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+To summarize, in order to change criteria for the data that gets written to the ""AD_StaleUsers"" job report, perform these steps:
+
+1. Navigate to "".Active Directory Inventory"" solution > ""3-AD_Exceptions"" job > ""Analysis"" > select ""Stale Users"" analysis. 
+
+2. Select ""Analysis Configuration"" 
+
+3. Scroll the variables list until you find @STALE_THRESHOLD
+
+4. Change the value from 60 to 30 - this will make ""3-AD_Exceptions"" job treat users who haven`t logged on for more than or equal to 30 days as stale users (instead of default 60 days). 
+
+5. Let the "".Active Directory Inventory"" and ""Active Directory"" solutions run and complete.
+Afterward, inspect the ""AD_StaleUsers"" job report and let me know the results. 
+
+I will send feedback to our technical writers so that this information is added to ""AD_StaleUsers"" job article so that it mentions where the Stale Users threshold can be modified. 
+
+I am looking forward hearing back from you.
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 5:37 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Thank you for your time on a meeting today. 
+Here is a meeting recap:
+
+As we discussed, your current goal is to make AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60. 
+
+In contrast with AWS solution, where the AWS_StaleUsers Job has a customizable analysis task:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm#Customiz
+the AD_StaleUsers Job analysis task does not have similar threshold parameters configuration in its SQL query, as such, we could not modify the analysis query accordingly. 
+
+Please, allow me time to clarify how we can fine tune the AD_StaleUsers job and report for your needs. As soon as I have an update - I will get back to you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 3:09 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James, 
+
+Thank you for your reply and for the provided information. 
+
+May I suggest scheduling a meeting so we could have a look a closer look at the issue and perform a health check on the "".Active Directory Inventory"" solution?
+
+Please, follow this link to schedule meeting:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/26/2024 1:19 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+ 
+
+
+Hello
+
+ 
+
+I confirm that the ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+ 
+
+
+
+ 
+
+The AD_Scan job  runs every night successfully:
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+ 
+
+Please can you find out where to change that?  
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for your reply. 
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61. 
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria. 
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report. 
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory 
+Active Directory 
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution. 
+  
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+ 
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+ 
+
+
+
+ 
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+How do I change the criteria to 30?
+
+ 
+
+James
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+
+ 
+
+Hello James, 
+
+Thank you for contacting Netwrix Technical Support. 
+My name is Artem, and I will be assisting you with this ticket. 
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute. 
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+
+
+Just in case I will attach the screenshot to the email as a file as well. 
+
+Please, let me know if this information satisfies your inquiry. 
+I am looking forward to hearing back from you. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","techsupport@netwrix.com","Netwrix Support","jaallen-ext@assystem.com","","","true","2024-12-03T15:22:52.000Z","true"
+"02sQk00000IeizIIAR","500Qk00000IkqdxIAB","2024-12-03T16:18:18.000Z","2024-12-04T08:30:00.000Z","ref:_00D7091pB._500Q000Ikqdx:ref
+
+Yes, thanks
+
+J
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, December 3, 2024 3:23 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hi James,
+
+Thank you for reply on such short notice. No problem at all, I am glad to hear that we found solution.
+
+Shall I proceed with closing this ticket for you?
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!XLQ9bW5IOnKpwiYJokMc1AaynyKfmL9evF4vE26JwsXooLWyNBv8xLnVx5mMUsARKE0OT8d2zsbyWMtf8S9Ls74GynI$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 12/3/2024 7:20 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+
+Hello Artem.   Apologies,  I did say I would update you and have not.  But it was good news and your solution worked.
+
+Many thanks,
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, December 3, 2024 3:19 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+I wanted to send this follow up to ask if you have some news regarding the AD_StaleUsers job report.
+Is there anything else I can assist you with regarding it?
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!Tg524w4Omcp9rylPG3--g2dPCd8n8LA3wqw1WeyHhIdjEOFO4FqGlVbIcmv7jvOPIg5N4vXnJR_4DxhFq9xV5dZoO-I$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/28/2024 5:52 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James,
+
+Understood, I am glad I could help you on this.
+I will put ticket on hold till Monday so you can check results. Let me know if issue persists afterward.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!Tg524w4Omcp9rylPG3--g2dPCd8n8LA3wqw1WeyHhIdjEOFO4FqGlVbIcmv7jvOPIg5N4vXnJR_4DxhFq9xV5dZoO-I$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/28/2024 5:20 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+Hello Artem
+
+I have made that change and will let the jobs run as they usually do.  I will get back to you on Monday.
+
+Many thanks for your solution -  much appreciated.
+
+James
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 4:28 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+I have an update for you.
+
+Upon inspecting the ""Active Directory"" solution > ""2.Users"" job group> ""AD_StaleUsers"" job > ""User Details"" analysis SQL query I found that it is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+As such, I went to check the 3-AD_Exceptions job that creates ADInventory_ExceptionsView table.
+I found that ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD.
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table.
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+To summarize, in order to change criteria for the data that gets written to the ""AD_StaleUsers"" job report, perform these steps:
+
+1. Navigate to "".Active Directory Inventory"" solution > ""3-AD_Exceptions"" job > ""Analysis"" > select ""Stale Users"" analysis.
+
+2. Select ""Analysis Configuration""
+
+3. Scroll the variables list until you find @STALE_THRESHOLD
+
+4. Change the value from 60 to 30 - this will make ""3-AD_Exceptions"" job treat users who haven`t logged on for more than or equal to 30 days as stale users (instead of default 60 days).
+
+5. Let the "".Active Directory Inventory"" and ""Active Directory"" solutions run and complete.
+Afterward, inspect the ""AD_StaleUsers"" job report and let me know the results.
+
+I will send feedback to our technical writers so that this information is added to ""AD_StaleUsers"" job article so that it mentions where the Stale Users threshold can be modified.
+
+I am looking forward hearing back from you.
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTtWgWjSI$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 5:37 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James,
+
+Thank you for your time on a meeting today.
+Here is a meeting recap:
+
+As we discussed, your current goal is to make AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60.
+
+In contrast with AWS solution, where the AWS_StaleUsers Job has a customizable analysis task:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm#Customiz<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/AWS/Users/AWS_StaleUsers.htm*Customiz__;Iw!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMThN5IPHU$>
+the AD_StaleUsers Job analysis task does not have similar threshold parameters configuration in its SQL query, as such, we could not modify the analysis query accordingly.
+
+Please, allow me time to clarify how we can fine tune the AD_StaleUsers job and report for your needs. As soon as I have an update - I will get back to you.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTtWgWjSI$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/26/2024 3:09 PM
+To: jaallen-ext@assystem.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+Hello James,
+
+Thank you for your reply and for the provided information.
+
+May I suggest scheduling a meeting so we could have a look a closer look at the issue and perform a health check on the "".Active Directory Inventory"" solution?
+
+Please, follow this link to schedule meeting:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=.1Du1FP3MRjUnpbYZFNl3a0UpSQqrBNZfppu3ldZ_N4-Z&MeetingID=hlCSKRlkGqVwd2EBz9KB53VD.BBH5r7CdqaL6PrUaRw-Z__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTRTWZvgE$>
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!T4XONvPT0rwZb9glq9bKwELCKolgaN0EmVgPIwdAxZ5e1ULK0nSpse4PWnXfbZabFEc61_Gbya7qaBGM_HMTtWgWjSI$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/26/2024 1:19 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+Hello
+
+I confirm that the ADInventory_UsersView  job runs every night around 7pm.  Here is a snip of the results from last night clearly showing that there are accounts where the days since last logon values are less than 30.  I can’t imagine a domain where there would be no logins for 30 days for a large company with thousands of users!  It makes me wonder if the data is being collected correctly from AD -  how do we check that?
+
+[cid:image001.png@01DB459F.298E2660]
+
+The AD_Scan job  runs every night successfully:
+
+[cid:image002.png@01DB459F.298E2660]
+
+
+
+You can also see in this snip that the AD_Stale_Users job under Active Directory runs every day at around 9pm successfully.
+
+[cid:image003.png@01DB459F.298E2660]
+
+
+
+So we can see that there are accounts that should be collected by the jobs,  but since the filter is set somewhere at 60  they do not show up in the results.
+
+Please can you find out where to change that?
+
+James
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 26, 2024 8:26 AM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: RE: Netwrix Support Ticket #428004 - - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+Thank you for your reply.
+
+Data that you see in the results table - is the data that is stored in the Netwrix Enterprise Auditor database.
+If the lowest number of days is 61 - this means that the database does not have information about users who have 30 days since last logon, there are simply no such users who's ""days since last logon"" are less than 61.
+
+This is why you do not see any entries when configuring filtering by placing 30 in ""days since last logon"" - the report filtering works as expected, there is no entries because there is no data that fits this filter criteria.
+
+Regarding the Active Directory data collection - there are no criteria for the AD data collection job to return specific ""days since last logon"" users.
+Active Directory job solution is processing information that was collected from your active directory.
+If within your active directory there are no such users who's ""days since last logon"" do not match 30 days or less, then you won`t see such information in the results table or the report.
+
+If you are sure that you have users in Active Directory for whom this attribute is less than 60 or 30 days, but you do not see this information in the report - then you need to schedule and run the following Job solutions one after another to update information in Netwrix Enterprise Auditor database:
+
+.Active Directory Inventory
+Active Directory
+
+Please note, that "".Active Directory Inventory"" is the primary source of AD information for the ""Active Directory"" solution.
+As such, "".Active Directory Inventory"" must be running regularly and it must be run first before running ""Active Directory"" job solution.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!TjLQ4wYaPaU38Td_07ck_HPTg-bimATnKFx5C7Xkp_Pyjfs4WcuDoWE7nVsv-TTPiKFStT8TkfJmxXM9dd6-Avbr4kE$>
+
+
+--------------- Original Message ---------------
+From: ALLEN James [jaallen-ext@assystem.com]
+Sent: 11/25/2024 7:50 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428004 - ref:_00D7091pB._500Q000Ikqdx:ref - AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+ref:_00D7091pB._500Q000Ikqdx:ref
+
+
+Thanks for your response,  but I’m afraid it does not work for me:
+
+[cid:image004.png@01DB459F.298E2660]
+
+The lowest number in the “days since last logon” column is 61  so I cannot filter to 30.
+
+[cid:image005.png@01DB459F.298E2660]
+
+
+
+
+How do I change the criteria to 30?
+
+James
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 25, 2024 3:13 PM
+To: ALLEN James <jaallen-ext@assystem.com>
+Subject: AD_StaleUsers job and report [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]
+
+
+Hello James,
+
+Thank you for contacting Netwrix Technical Support.
+My name is Artem, and I will be assisting you with this ticket.
+
+When viewing the AD_StaleUsers report either from Netwrix Enterprise Auditor console or PublishedReports, you can apply filter to report using the ""Days since last logon"" attribute.
+To enable filtering click on the filter icon in the top left corner of the report > then specify needed number of days in ""Days since last logon"" attribute as shown on the example screenshot bellow:
+[cid:image006.png@01DB459F.298E2660]
+
+Just in case I will attach the screenshot to the email as a file as well.
+
+Please, let me know if this information satisfies your inquiry.
+I am looking forward to hearing back from you.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!GDyMDYbfvpeH7A!QcYmDNaUe2JLUcx3xBBztjGPX-3GRWei75NfaK6AlNMhq3dVAqLbsvqSi8GG10OpCpyuUx5DJxHlRfIFoFbeXn1V9c8$>
+[Image removed by sender.]
+
+ref:!00D70091pB.!500Qk0Ikqdx:ref
+[Image removed by sender.]
+[Image removed by sender.]
+ [Image removed by sender.]
+ [Image removed by sender.]
+[Image removed by sender.]
+ [Image removed by sender.]
+[Image removed by sender.]","RE: Netwrix Support Ticket #428004 -  - AD_StaleUsers job and report    [ ref:!00D70091pB.!500Qk0Ikqdx:ref ]","jaallen-ext@assystem.com","ALLEN James","techsupport@netwrix.com","","","true","2024-12-03T16:17:53.000Z","true"

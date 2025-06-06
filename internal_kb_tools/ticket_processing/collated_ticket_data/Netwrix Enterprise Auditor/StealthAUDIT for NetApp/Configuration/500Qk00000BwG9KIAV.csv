@@ -1,0 +1,15 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000BwG9KIAV","00412112","Support Ticket","2-FSAA Bulk Import taking 10+ hours","The 2-FSAA Bulk Import had been taking 3-4 hours (The bulk of the time is for the resolve links), but improved to just about 35 minutes last month . Unclear why the change, but today it was taking over 10 hours and I had to eventually stop the scheduled job as it was causing latency for other queries on the SQL server. 
+
+Can we determine the source of why it was taking so long? And/or ways we can keep it optimize to just < 35 minues?","","","","Confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)                          11.5.0.260          Repair install date 2024/6/12
+
+The only change noted since the Repair on 6/12 was KB5037763 installed on the SQL host similar issue occurred on 5/22 possible related to the update installed on 5/18
+
+Found over lapping names  in the selected host list.
+
+Per Andy this was needed to mitigate issues as these should be cleaned up or merged together to remove the duplicate host in the list.
+
+Ref: Netwrix Enterprise Auditor v11.6 > Administration > Host Management > Host Management Activities > Edit List
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Actions/EditList.htm","Incorrect configuration: Netwrix product","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Configuration","11.5","260","14.9","Closed - Resolved","W. L. Gore & Associates, Inc.","Connie Liang","2024-06-17T16:44:59.000Z","2024-07-02T14:26:40.000Z"

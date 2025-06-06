@@ -1,0 +1,34 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008WUnyIAG","500Qk00000EPREhIAP","Local Auth XML Query:
+
+look at the output from the following:
+
+auditpol /get /category:Logon/Logoff
+auditpol /get /category:'Account Logon' 
+
+Output Example of the needed audit settings: https://nwxcorp.file.force.com/sfc/servlet.shepherd/version/download/068Qk00000DA7Ly?asPdf=false&operationContext=CHATTER
+ 
+If these are enabled on the host we can look at the Security event logs for the calling application.
+
+If not enabled via GPO we can set locally within the Local Security Policy (secpol.msc)
+Example image if needed: https://helpcenter-be.netwrix.com/bundle/Auditor_10.7/page/Content/Resources/Images/Auditor/ManualConfig/ManualConfig_FileServer_Advanced_LocalPolicy2016.png?_LANG=enus
+
+
+With these confirmed we can then use the following to filter out the Security Event log to note the application that it using the 
+ACC_IN_Question  Update this in the Query for the needed account name
+
+logon events  Example image: https://nwxcorp.lightning.force.com/lightning/r/ContentDocument/069Qk00000CyYUfIAN/view 
+
+<QueryList>
+ <Query Id=""0"" Path=""Security"">
+ <Select Path=""Security"">*[System[(EventID=4625 or EventID=4648 or EventID=4776 or EventID=4777 or EventID=4740 or EventID=4767 or EventID=4768 or EventID=4769 or EventID=4779) and TimeCreated[timediff(@SystemTime) &lt;= 43200000]]] and *[EventData[Data[@Name ='TargetUserName'] ='ACC_IN_Question']]</Select>
+ </Query>
+</QueryList>
+
+****NOITE*** Might need to remove the and TimeCreated[timediff(@SystemTime) &lt;= 43200000] portion or edit for the needed time frame
+Last Hour = 3600000
+Last 12 Hours = 43200000
+Last 24 Hours = 86400000
+Last 7 days = 604800000
+
+The search for .exe https://nwxcorp.lightning.force.com/lightning/r/ContentDocument/069Qk00000CyMlEIAV/view","00570000003KXurAAG","2024-08-14T14:31:06.000Z","2024-08-14T14:31:06.000Z","false","false"

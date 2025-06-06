@@ -1,0 +1,47 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008EzrqIAC","500Qk00000CuRYBIA3","[Meeting Notes 7/30/24]
+**Current Issue**
+Unexpected exception: Encountered error: ""The specified path, file name, or both are too long. The fully qualified file name must be less than 260 characters, and the directory name must be less than 248 characters."" while generating report
+-- For 2 custom reports
+
+**Troubleshooting Completed during Meeting**
+-- Report location: C:Program Files (x86)STEALTHbitsStealthAUDITReportsv3GH-SBAPPPagesData{3D618B6F-901C-48DD-B7AA-13D13922F9FA}_0_0.csv
+---- The path is well under the 248 character limit
+---- The path is no longer than any other GUID report that is there and completing successfully (like AD Summary)
+-- Verified the regkey for LongPaths is enabled on the NEA system
+
+**Logs/Screenshots Collected**
+-- 1. Create New job export
+
+**Next Steps**","0054u000007MiY9AAK","2024-07-30T20:09:48.000Z","2024-07-30T20:09:48.000Z","false","false"
+"00aQk000008F3PBIA0","500Qk00000CuRYBIA3","[Tiger Team]
+**Problem Statement/Business Impact**
+Customer is unable to run 2 custom reports on AD Account creation due to the following error:
+Unexpected exception: Encountered error: ""The specified path, file name, or both are too long. The fully qualified file name must be less than 260 characters, and the directory name must be less than 248 characters."" while generating report
+
+**Desired Outcome**
+Successful run, no errors
+
+**Steps to Reproduce**
+I was not able to repro this in my lab, but does happen reliably in the customers environment
+
+**Troubleshooting Completed/Notes**
+-- Report location: C:Program Files (x86)STEALTHbitsStealthAUDITReportsv3GH-SBAPPPagesData{3D618B6F-901C-48DD-B7AA-13D13922F9FA}_0_0.csv
+---- The path is well under the 248 character limit
+---- The path is no longer than any other GUID report that is there and completing successfully (like AD Summary)
+-- Verified the regkey for LongPaths is enabled on the NEA system & rebooted just in case
+-- Job location: C:Program Files (x86)STEALTHbitsStealthAUDITJobsGROUP_Gastro Health Onboarding OffboardingGROUP_1. Create NewJOB_Create New Employees (140 characters)
+---- This is part of a custom group sequence created by ProServ
+
+**Logs Uploaded**
+1. Create New job export
+JobTree.png","0054u000007MiY9AAK","2024-07-30T20:21:09.000Z","2024-08-05T15:10:23.000Z","false","false"
+"00aQk000008LVnOIAW","500Qk00000CuRYBIA3","Tay - please verify the path length of the joboutput folder - if the job is deeply nested this may be the source of the long path issue.","0050g000006QqyEAAS","2024-08-05T14:39:29.000Z","2024-08-05T14:39:29.000Z","false","false"
+"00aQk000008LZCfIAO","500Qk00000CuRYBIA3","@Brandon please see the comment below yours contains the full report path (125 characters)","0054u000007MiY9AAK","2024-08-05T14:48:48.000Z","2024-08-05T14:48:48.000Z","false","false"
+"00aQk000008g4VdIAI","500Qk00000CuRYBIA3","Through testing in the customer's environment yesterday, we were able to get a successful run of the report by changing the job name to ""Create NewEmployees"" from ""Create New Employees"". This job/report worked when it was implemented by ProServ, but we're not sure what changed to cause the name to be too long all of a sudden.
+
+The customer did recently upgrade to v11.6.
+
+We are also seeing the following error of a step/job further down in the group (Ticket #00416837):
+Data Anlysis error:
+""The multi-part identifier ""S.GHOutlookDept"" could not be bound. The multi-part identifier ""S.Employee_Type_Code"" could not be bound. The multi-part identifier ""S.GHOutlookDept"" could not be bound. The multi-part identifier ""S.Employee_Type_Code"" could not be bound.""","0054u000007MiY9AAK","2024-08-22T13:57:58.000Z","2024-08-22T13:57:58.000Z","false","false"

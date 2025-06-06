@@ -1,0 +1,47 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Ccci5IAB","00413920","Support Ticket","DB Size","Needs assistance with the DB size and Log file size for Stealthaudit.  They have recently grown very large.","","","","Contact noted:  You can close the case. The issue was due to SQL Logging being set to Full instead of Simple.
+
+Requested 
+Within SQL Server Management Studio (SSMS) run the following TSQL the output can then be saved as CSV files then merged together within Excel or Copy with headers and pasted into an Excel file for review. 
+/* 
+In the DB drop down select the NEA/SA DB to investigate
+*/
+SET NOCOUNT ON
+
+DBCC UPDATEUSAGE(0)
+
+-- DB size.
+EXEC sp_spaceused
+
+--Get size of each tables in database
+SELECT
+    t.name AS TableName,
+    s.name AS SchemaName,
+    p.rows,
+    SUM(a.total_pages) * 8 AS TotalSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS TotalSpaceMB,
+    SUM(a.used_pages) * 8 AS UsedSpaceKB,
+    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS UsedSpaceMB,
+    (SUM(a.total_pages) - SUM(a.used_pages)) * 8 AS UnusedSpaceKB,
+    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS UnusedSpaceMB
+FROM
+    sys.tables t
+INNER JOIN     
+    sys.indexes i ON t.object_id = i.object_id
+INNER JOIN
+    sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
+INNER JOIN
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE
+    t.name NOT LIKE 'dt%'
+    AND t.is_ms_shipped = 0
+    AND i.object_id > 255 
+GROUP BY
+    t.name, s.name, p.rows
+ORDER BY
+    TotalSpaceMB DESC, t.name
+
+TSQL Output Example if needed:
+https://nwxcorp.file.force.com/sfc/servlet.shepherd/version/download/068Qk00000BP537?asPdf=false&operationContext=CHATTER","Third-party system failure","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","","13.1","Closed - Resolved","The Carlstar Group LLC (formerly CTP Carlisle Transportation Products)","James Lilley","2024-07-03T12:52:38.000Z","2024-07-16T16:04:43.000Z"

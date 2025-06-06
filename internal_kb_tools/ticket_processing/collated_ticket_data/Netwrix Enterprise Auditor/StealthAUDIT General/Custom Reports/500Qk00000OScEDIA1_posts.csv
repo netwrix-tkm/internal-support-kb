@@ -1,0 +1,44 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000ccVEtKAM","500Qk00000OScEDIA1","TextPost","0054u000008ARZjAAO","2025-04-25T16:47:03.000Z","Description: A bunch of accounts with passwords not expiring are missing from this report. The SQL Query for the job is below. 
+DROP TABLE [StealthAudit].[dbo].[SA_RS_PassNeverExpires]
+
+SELECT  [uv].[PrincipalId] AS [PrincipalId]
+          ,ISNULL([uv].[DisplayName],[uv].[NTAccount]) AS [User]
+          ,[uv].[DistinguishedName] AS [Distinguished Name]
+    ,[epv].[canonicalName] as [Canoncial Name]
+    ,[uv].[Title] AS [Title]
+          ,[epv].[physicaldeliveryofficename] AS [Office]
+    ,[uv].[NTAccount] AS [NT Account]
+    ,[uv].[Description] AS [Decription]
+,[uv].IsDeleted
+    ,[epv].[Info] AS [Notes]
+     ,[uv].Mail
+    ,uv.[PwdLastSetDate] as [Last Set]
+,[epv].[extensionAttribute4] as [Owner]
+          ,CAST([uv].[LastLogonTimestamp] AS date) AS [Last Logon]
+          ,CAST([uv].[WhenCreated] AS date) AS [Created On]
+          ,DATEDIFF(dd,[uv].[lastLogonTimeStamp],GETUTCDATE()) AS [Days since last Logon]
+          ,CASE WHEN [uv].[AccountExpires] < GETDATE() THEN 'True'
+                ELSE 'False'
+           END AS [Account Expired]
+          ,CASE WHEN [uv].[ACCOUNTDISABLE] = 0 then 'False'
+                ELSE 'True'
+           END AS [Disabled],
+        DATEDIFF(dd, UV.PwdLastSetDate, GETUTCDATE()) AS [Password Age],
+  CASE WHEN UV.PASSWD_NOTREQD = 1 THEN 'True' ELSE 'False' END AS [Not Required],
+        CASE WHEN UV.PASSWD_CANT_CHANGE = 1 THEN 'True' ELSE 'False' End AS [Can't Change],
+        CASE WHEN UV.DONT_EXPIRE_PASSWORD = 1 THEN 'True' ELSE 'False' End AS [Never Expire]
+
+INTO [StealthAudit].[dbo].[SA_RS_PassNeverExpires]
+  FROM [StealthAudit].[dbo].[SA_ADInventory_UsersView] as [uv]
+inner join [StealthAudit].[dbo].[SA_ADInventory_ExtendedAttributesPivotView] as [epv] on [uv].PrincipalID = [epv].PrincipalID
+
+ where [uv].IsDeleted = 0 and  [uv].SamAccountName not like '%healthmailbox%' 
+and [uv].DONT_EXPIRE_PASSWORD = 1 and [uv].Mail not like  '<a href='https://%company.com' target='_blank'>%company.com</a>%' and [uv].Mail not like '%departed%' and [uv].DomainId = 1","","","","0054u000008ARZjAAO","2025-04-25T16:47:03.000Z"
+"0D5Qk00000ccgIPKAY","500Qk00000OScEDIA1","TextPost","0054u000006gpoAAAQ","2025-04-25T18:26:07.000Z","<p>If you want to point them in the right direction.</p><p>They could remove the where from the analysis. As long as it produces the table they can apply those filters to the report.</p><p>but I see there are some custom tables mentioned so may be best to refer to proserv as past our &quot;break fix&quot; support boundaries.</p>","","","","0054u000006gpoAAAQ","2025-04-25T18:26:07.000Z"
+"0D5Qk00000csJpYKAU","500Qk00000OScEDIA1","TextPost","0054u000007MdqrAAC","2025-04-28T17:20:56.000Z","Invitation updated. Attendees: Scottie Taylor, Lenny Jones","","","","0054u000007MdqrAAC","2025-04-28T17:20:56.000Z"
+"0D5Qk00000csJpXKAU","500Qk00000OScEDIA1","TextPost","0054u000007MdqrAAC","2025-04-28T17:20:56.000Z","Invitation updated. Attendees: Scottie Taylor","","","","0054u000007MdqrAAC","2025-04-28T17:20:56.000Z"
+"0D5Qk00000csJpWKAU","500Qk00000OScEDIA1","TextPost","0054u000007MdqrAAC","2025-04-28T17:20:56.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007MdqrAAC","2025-04-28T17:20:56.000Z"
+"0D5Qk00000czfihKAA","500Qk00000OScEDIA1","TextPost","0054u000007MdqrAAC","2025-04-30T14:39:13.000Z","Next Steps Updated: N/A","","","","0054u000007MdqrAAC","2025-04-30T14:39:13.000Z"
+"0D5Qk00000czfigKAA","500Qk00000OScEDIA1","TextPost","0054u000007MdqrAAC","2025-04-30T14:39:13.000Z","What We've Learned Updated: N/A","","","","0054u000007MdqrAAC","2025-04-30T14:39:13.000Z"
+"0D5Qk00000czkVCKAY","500Qk00000OScEDIA1","TextPost","0054u000007MdqrAAC","2025-04-30T14:39:23.000Z","Steps to Reproduce Updated: N/A","","","","0054u000007MdqrAAC","2025-04-30T14:39:23.000Z"

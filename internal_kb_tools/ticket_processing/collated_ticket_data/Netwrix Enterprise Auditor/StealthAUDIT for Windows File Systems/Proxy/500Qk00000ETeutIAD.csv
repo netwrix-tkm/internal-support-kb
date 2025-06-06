@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000ETeutIAD","00418228","Support Ticket","FSAA/FSAC Scans failing with no error message","FSAA Scans are running for about an hour and then disappear from Running Instances.
+No error messages in logs/messages sections.  Just shows jobs ran for 0 seconds (even though I watched it run for an hour) and produces no results.","","","","Splitting the Scan Credential(s) into separate jobs.
+Noted the following 
+Netwrix Enterprise Auditor v11.6 > Installation > File System Proxy as a Service Overview > Upgrade Proxy Service Procedure
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/FileSystemProxy/Upgrade.htm
+
+Built out the schedule for one of the file servers.
+
+When using multiple Proxy host for the same File servers it is recommended to use the following:
+Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector > FSAA: Applet Settings >> Strong proxy affinity (only run scans on last proxy to scan host, unless no longer in proxy host list)
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/AppletSettings.htm
+
+Set the old domain to scan via MSTask Task Scheduler https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/AppletSettings.htm
+ 
+and Automatic (Local for NAS device hosts, Remote for Windows hosts) – Applet is deployed to all targeted Windows servers. Other targeted devices, for example NAS, are scanned locally by the Enterprise Auditor Console server.
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/ScanServerSelection.htm","Incorrect configuration: Netwrix product","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Proxy","11.6","","28.2","Closed - Resolved","Sierra Nevada Corporation","Kellen Carl","2024-08-15T17:02:39.000Z","2024-09-12T20:39:48.000Z"

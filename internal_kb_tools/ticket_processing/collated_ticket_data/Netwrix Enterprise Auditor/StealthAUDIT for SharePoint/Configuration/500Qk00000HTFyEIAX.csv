@@ -1,0 +1,66 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HTFyEIAX","00425073","Support Ticket","sharepoint online not giving any result  and exchange reports are limited and not useful","Please find the screenshot, the exchange reports are not useful, we only have exchange online and most of the reports are for on-prem version , so please help to understand why these are not filtered .
+The sharepoint online is not giving any result.","Attempt to scan sharepoint online","Wrong configuration
+
+Scan issues with every collector
+
+FIPS hash issues + fixed in a previous hotfix, but the config file was never updated since the installation of the hotfix predated the enablement of SPAA/SPSEEK
+
+INI file not found, two hosts instead of one.
+On this meeting we have confirmed that first two SP jobs work properly but we have encountered issues with 3-SPAC. We tried to manually assign a single host, but it didn't change the connect status info, where it shows two hosts. 
+
+The logs showed access denied despite other collectors for SP working fine. We have found that the similar issue was fixed in the following version: 11.6.0.115 Released October 23rd, 2024
+
+We have suggested installing latest version to see if it fixes the issue and are awaiting confirmation from you.
+__________________
+After the upgrade the client reports that all collectors fail with an error, investigating
+______________________
+3-FSAC is the main culprit, setting up through NAM results in NAM erroring out on
+1/21/2025 11:15:18 AM	Error	FILE: NHSCFA.SHAREPOINT.COM_Log_.json - Failed to GET IEnumerable`1. Url: https://manage.office.com/api/v1.0/071ca16e-d213-461f-9ab1-081b0144c15a/activity/feed/subscriptions/list?PublisherIdentifier=097499ff-179d-4959-ab02-86d364125bfc. An error occurred while sending the request. The underlying connection was closed: An unexpected error occurred on a send. Authentication failed because the remote party has closed the transport stream.
+
+3/13/2025
+
+Customer asked to put ticket on hold until license is renewed, I've requested updated from customer's network team, since package capture shows potential issues with TLS handshake.
+
+Postponing until Monday 3/17/2025
+
+4/10/2025
+
+We had a call with the customer. We asked the customer to execute a PowerShell snippet that mimics what NAM is doing.
+```
+$tenantId = ""1111111-1111-1111-1111-111111111111""
+Add-Type -AssemblyName System.Web
+Add-Type -AssemblyName System.Net.Http
+$installPath = Get-ItemPropertyValue -Path ""HKLM:SOFTWARENetwrix Activity Monitor Agent 64-bit"" -Name InstallLocation
+$agentVersion = Get-ItemPropertyValue -Path ""HKLM:SOFTWARENetwrix Activity Monitor Agent 64-bit"" -Name Version
+cd ""$installPathnet472""
+$httpHandler = [System.Net.Http.HttpClientHandler]::new()
+$client = [System.Net.Http.HttpClient]::new($httpHandler)
+$client.Timeout = [System.TimeSpan]::FromSeconds(180)
+$client.DefaultRequestHeaders.Add(""User-Agent"", ""ISV|Netwrix|Activity Monitor|$agentVersion"")
+$request = [System.Net.Http.HttpRequestMessage]::new([System.Net.Http.HttpMethod]::Get, ""[https://manage.office.com/api/v1.0/$tenantId/activity/feed/subscriptions/list?PublisherIdentifier=097499ff-179d-4959-ab02-86d364125bfc"")](https://manage.office.com/api/v1.0/071ca16e-d213-461f-9ab1-081b0144c15a/activity/feed/subscriptions/list?PublisherIdentifier=097499ff-179d-4959-ab02-86d364125bfc%22) ""https://manage.office.com/api/v1.0/071ca16e-d213-461f-9ab1-081b0144c15a/activity/feed/subscriptions/list?publisheridentifier=097499ff-179d-4959-ab02-86d364125bfc%22)"")
+$request.Headers.Authorization = [System.Net.Http.Headers.AuthenticationHeaderValue]::new(""Bearer"", ""abc"")
+$request.Headers.Accept.Add([System.Net.Http.Headers.MediaTypeWithQualityHeaderValue]::new(""application/json""))
+$client.SendAsync($request).Result
+```
+
+If the script can connect to manage.office.com, the script should result with the 401 Unauthorized error. On the other hand, if the script, like NAM agent, cannot connect to manage.office.com, it should fail with some other connection error.
+
+I hoped that the script would fail to connect and we would reproduce the problem in PowerShell. Unfortunately, the script managed to connect (401 Unauthorized). So, both the browser and powershell can connect, but not NAM.
+
+I still think that it must be some firewall/security product that blocks the connection. NAM uses exactly the same piece of code to connect to login.microsoftonline.com, graph.microsoft.com and manage.office.com. The former two work, but the latter fails. It fails with a FIN packet that arrives incredibly quickly (less than 1ms).
+
+We asked the customer to do two things:
+1. Verify their firewall to see if there are any signs of blocked connections.
+2. Try to deploy an agent to another server/workstation and configure SharePoint Online monitoring there to see if the problem is reproducible.","Checking the logs after T2 consultation
+
+Check in with the provided hotfix
+
+Awaiting the installation of the last build.
+
+Checking the logs for newly reported errors
+
+We asked the customer to do two things:
+1. Verify their firewall to see if there are any signs of blocked connections.
+2. Try to deploy an agent to another server/workstation and configure SharePoint Online monitoring there to see if the problem is reproducible.","Resolution
+Allowed access to SP by customer's network team, configured SPAC collector","Network Connectivity","Damir Akhmatshin","Error","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Configuration","11.6","11.6.0.129","185.0","Closed - Resolved","NHS Counter Fraud Authority","kannan soman","2024-10-25T10:27:40.000Z","2025-04-28T11:29:32.000Z"

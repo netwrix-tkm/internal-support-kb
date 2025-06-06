@@ -1,0 +1,3848 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MTaI0IAL","500Qk00000M47hNIAR","2025-03-11T16:14:07.000Z","2025-03-11T16:14:07.000Z","Hi Alison, 
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings. 
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it. 
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated. 
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes. 
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, 
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier. 
+
+Yes, absolutely, I will be happy to assist you on a meeting. 
+Current meeting plan is:
+
+
+	Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable. 
+	Then we will check and adjust the configuration of the appropriate Job. 
+
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","techsupport@netwrix.com","Netwrix Support","aem-stealthaudit-vm@allstate.com","","","false","2025-03-11T16:14:05.000Z","true"
+"02sQk00000MUlL3IAL","500Qk00000M47hNIAR","2025-03-11T22:22:13.000Z","2025-03-12T10:05:49.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+Currently the job  is still running interactively and we have ~5628 hosts left.
+I will advise you once this job has completed.
+
+Thank you,
+Alison.
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender!
+This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button.
+ZjQcmQRYFpfptBannerEnd
+
+Hi Alison,
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers<https://urldefense.com/v3/__https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykIb55nZNg$>
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings.
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it.
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated.
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes.
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison,
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier.
+
+Yes, absolutely, I will be happy to assist you on a meeting.
+Current meeting plan is:
+
+  *   Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable.
+  *   Then we will check and adjust the configuration of the appropriate Job.
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z<https://urldefense.com/v3/__https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykJSXH9Yxg$>
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","alison.mills@allstate.com","Mills, Alison","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; techsupport@netwrix.com","","","false","2025-03-11T22:22:01.000Z","true"
+"02sQk00000MVlArIAL","500Qk00000M47hNIAR","2025-03-12T10:07:34.000Z","2025-03-12T10:07:34.000Z","Hi Alison, 
+
+Thank you for the follow up, that is great to hear that job has good progress! 
+Please, keep me posted on the results. 
+
+Thank you! 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+
+
+Hi Artem,
+
+Currently the job  is still running interactively and we have ~5628 hosts left.
+
+I will advise you once this job has completed.
+
+ 
+
+Thank you,
+
+Alison.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+ 
+
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+
+
+
+ZjQcmQRYFpfptBannerStart
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									This Message Is From an External Sender! 
+									
+								
+								
+									
+									This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button. 
+									
+								
+							
+						
+						
+					
+				
+			
+			
+		
+	
+
+
+
+ZjQcmQRYFpfptBannerEnd
+
+
+Hi Alison, 
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings. 
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it. 
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated. 
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes. 
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, 
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier. 
+
+Yes, absolutely, I will be happy to assist you on a meeting. 
+Current meeting plan is:
+
+
+	Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable. 
+	Then we will check and adjust the configuration of the appropriate Job. 
+
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","techsupport@netwrix.com","Netwrix Support","alison.mills@allstate.com","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com","","false","2025-03-12T10:07:33.000Z","true"
+"02sQk00000MX0uGIAT","500Qk00000M47hNIAR","2025-03-12T18:27:17.000Z","2025-03-18T18:28:07.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Complete!!
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Alison,
+
+Thank you for the follow up, that is great to hear that job has good progress!
+Please, keep me posted on the results.
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+Hi Artem,
+Currently the job  is still running interactively and we have ~5628 hosts left.
+I will advise you once this job has completed.
+
+Thank you,
+Alison.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender!
+This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button.
+ZjQcmQRYFpfptBannerEnd
+
+Hi Alison,
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers<https://urldefense.com/v3/__https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykIb55nZNg$>
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings.
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it.
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated.
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes.
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison,
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier.
+
+Yes, absolutely, I will be happy to assist you on a meeting.
+Current meeting plan is:
+
+  1.  Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable.
+  2.  Then we will check and adjust the configuration of the appropriate Job.
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z<https://urldefense.com/v3/__https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykJSXH9Yxg$>
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.
+
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000K7eur&from=ext]","RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","alison.mills@allstate.com","Mills, Alison","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com","","false","2025-03-12T18:27:01.000Z","true"
+"02sQk00000MYc6SIAT","500Qk00000M47hNIAR","2025-03-13T11:27:43.000Z","2025-03-14T13:13:21.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+Thanks,
+Sean
+
+From: Mills, Alison <Alison.Mills@Allstate.com>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Complete!!
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Alison,
+
+Thank you for the follow up, that is great to hear that job has good progress!
+Please, keep me posted on the results.
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+Currently the job  is still running interactively and we have ~5628 hosts left.
+I will advise you once this job has completed.
+
+Thank you,
+Alison.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender!
+This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button.
+ZjQcmQRYFpfptBannerEnd
+
+Hi Alison,
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers<https://urldefense.com/v3/__https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykIb55nZNg$>
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings.
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it.
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated.
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes.
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison,
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier.
+
+Yes, absolutely, I will be happy to assist you on a meeting.
+Current meeting plan is:
+
+  1.  Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable.
+  2.  Then we will check and adjust the configuration of the appropriate Job.
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z<https://urldefense.com/v3/__https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykJSXH9Yxg$>
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","smcmb@allstate.com","McMahon, Sean","alison.mills@allstate.com; techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com","","false","2025-03-13T11:27:27.000Z","true"
+"02sQk00000Mba1UIAR","500Qk00000M47hNIAR","2025-03-14T13:14:41.000Z","2025-03-14T13:14:41.000Z","Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+ 
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com; techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+
+Hi Artem,
+
+ 
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Mills, Alison <Alison.Mills@Allstate.com>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Complete!!
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Alison, 
+
+Thank you for the follow up, that is great to hear that job has good progress! 
+Please, keep me posted on the results. 
+
+Thank you! 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+ 
+
+
+Hi Artem,
+
+Currently the job  is still running interactively and we have ~5628 hosts left.
+
+I will advise you once this job has completed.
+
+ 
+
+Thank you,
+
+Alison.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+ 
+
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+
+
+
+ZjQcmQRYFpfptBannerStart
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									This Message Is From an External Sender! 
+									
+								
+								
+									
+									This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button. 
+									
+								
+							
+						
+						
+					
+				
+			
+			
+		
+	
+
+
+
+ZjQcmQRYFpfptBannerEnd
+
+
+Hi Alison, 
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings. 
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it. 
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated. 
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes. 
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, 
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier. 
+
+Yes, absolutely, I will be happy to assist you on a meeting. 
+Current meeting plan is:
+
+
+	Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable. 
+	Then we will check and adjust the configuration of the appropriate Job. 
+
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","techsupport@netwrix.com","Netwrix Support","smcmb@allstate.com","jared.harris@netwrix.com","ilya.kotov@netwrix.com","false","2025-03-14T13:14:40.000Z","true"
+"02sQk00000MivvbIAB","500Qk00000M47hNIAR","2025-03-18T10:57:21.000Z","2025-03-18T18:28:07.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Ilya,
+
+Job has been started, will monitor progress and keep everyone updated.
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 14, 2025 1:15 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com
+Subject: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com<mailto:alison.mills@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+Hi Artem,
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+Thanks,
+Sean
+
+From: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Complete!!
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Alison,
+
+Thank you for the follow up, that is great to hear that job has good progress!
+Please, keep me posted on the results.
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+Currently the job  is still running interactively and we have ~5628 hosts left.
+I will advise you once this job has completed.
+
+Thank you,
+Alison.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender!
+This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button.
+ZjQcmQRYFpfptBannerEnd
+
+Hi Alison,
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers<https://urldefense.com/v3/__https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykIb55nZNg$>
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings.
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it.
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated.
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes.
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison,
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier.
+
+Yes, absolutely, I will be happy to assist you on a meeting.
+Current meeting plan is:
+
+  1.  Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable.
+  2.  Then we will check and adjust the configuration of the appropriate Job.
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z<https://urldefense.com/v3/__https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykJSXH9Yxg$>
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE:  RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","smcmb@allstate.com","McMahon, Sean","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com","","false","2025-03-18T10:57:09.000Z","true"
+"02sQk00000MoROXIA3","500Qk00000M47hNIAR","2025-03-20T08:53:13.000Z","2025-03-20T09:57:03.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+
+I've been testing again in the lower environment. And have found that the host data is not being removed when manually inputting hosts within the Individual hosts tab.
+The Netrix article you shared on the job suggests about using a schedule to run the task but I'm getting warnings when doing this or the job doesn't run.
+When I try to manually run the job, I'm getting the following error:
+[cid:image001.png@01DB9975.79D30EE0]
+
+Might need to have another look at the set up of this to get the configuration right.
+
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 18, 2025 6:38 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: [EXTERNAL] RE: 00436299 - Remove data for old/decommissioned hosts
+
+Hello Stealth,
+
+I wanted to check in regarding your support ticket 00436299. We haven't heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you're still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We're here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00436299
+Ticket Subject: Remove data for old/decommissioned hosts
+Ticket Details: Customer would like to perform clean up on a list of hosts that are no longer scanned.
+
+Thank you!
+
+Artem Naskal
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0M47hN:ref","RE: Netwrix Support Ticket #436299 - ref:_00D7091pB._500Q000M47hN:ref - RE: 00436299 - Remove data for old/decommissioned hosts","smcmb@allstate.com","McMahon, Sean","aem-stealthaudit-vm@allstate.com; techsupport@netwrix.com","","","true","2025-03-20T08:53:00.000Z","true"
+"02sQk00000MoaADIAZ","500Qk00000M47hNIAR","2025-03-20T10:46:02.000Z","2025-03-24T13:07:44.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Ilya,
+
+The job was close to completing the NAS scan when we got an error and the scan stopped.
+
+[cid:image001.png@01DB9985.381A4F30]
+
+The scan had just 6 remaining servers to scan then we got the following error:
+
+[cid:image002.png@01DB9985.381A4F30]
+
+I’ve attached the log to the ticket in the portal.
+
+If you need anything else, please let me know.
+
+
+Thanks,
+Sean
+
+From: McMahon, Sean
+Sent: Tuesday, March 18, 2025 10:57 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+Job has been started, will monitor progress and keep everyone updated.
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 14, 2025 1:15 PM
+To: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com<mailto:alison.mills@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+Thanks,
+Sean
+
+From: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Complete!!
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Alison,
+
+Thank you for the follow up, that is great to hear that job has good progress!
+Please, keep me posted on the results.
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+Currently the job  is still running interactively and we have ~5628 hosts left.
+I will advise you once this job has completed.
+
+Thank you,
+Alison.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender!
+This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button.
+ZjQcmQRYFpfptBannerEnd
+
+Hi Alison,
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers<https://urldefense.com/v3/__https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykIb55nZNg$>
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings.
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it.
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated.
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes.
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison,
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier.
+
+Yes, absolutely, I will be happy to assist you on a meeting.
+Current meeting plan is:
+
+  1.  Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable.
+  2.  Then we will check and adjust the configuration of the appropriate Job.
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z<https://urldefense.com/v3/__https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykJSXH9Yxg$>
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE:  RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","smcmb@allstate.com","McMahon, Sean","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com","","true","2025-03-20T10:45:42.000Z","true"
+"02sQk00000MpF0OIAV","500Qk00000M47hNIAR","2025-03-20T15:57:02.000Z","2025-03-24T12:58:48.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Ilya,
+
+I reached out to our DBA team to check if they saw any memory constraints during the time the scan threw the error and they didn’t see anything from their end that would confirm any memory issue.
+Attached is their response.
+
+Thanks,
+Sean
+
+From: McMahon, Sean <smcmb@allstate.com>
+Sent: Thursday, March 20, 2025 10:46 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+The job was close to completing the NAS scan when we got an error and the scan stopped.
+
+[cid:image001.png@01DB99B0.A7F644F0]
+
+The scan had just 6 remaining servers to scan then we got the following error:
+
+[cid:image002.png@01DB99B0.A7F644F0]
+
+I’ve attached the log to the ticket in the portal.
+
+If you need anything else, please let me know.
+
+
+Thanks,
+Sean
+
+From: McMahon, Sean
+Sent: Tuesday, March 18, 2025 10:57 AM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+Job has been started, will monitor progress and keep everyone updated.
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 14, 2025 1:15 PM
+To: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com<mailto:alison.mills@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+Hi Artem,
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+Thanks,
+Sean
+
+From: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Complete!!
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Alison,
+
+Thank you for the follow up, that is great to hear that job has good progress!
+Please, keep me posted on the results.
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+Currently the job  is still running interactively and we have ~5628 hosts left.
+I will advise you once this job has completed.
+
+Thank you,
+Alison.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender!
+This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button.
+ZjQcmQRYFpfptBannerEnd
+
+Hi Alison,
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers<https://urldefense.com/v3/__https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykIb55nZNg$>
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings.
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it.
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated.
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes.
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison,
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier.
+
+Yes, absolutely, I will be happy to assist you on a meeting.
+Current meeting plan is:
+
+  1.  Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable.
+  2.  Then we will check and adjust the configuration of the appropriate Job.
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z<https://urldefense.com/v3/__https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykJSXH9Yxg$>
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE:  RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","smcmb@allstate.com","McMahon, Sean","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com","","true","2025-03-20T15:56:44.000Z","true"
+"02sQk00000Mw0KmIAJ","500Qk00000M47hNIAR","2025-03-24T11:41:25.000Z","2025-03-24T11:41:25.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Ilya,
+
+Is there any update on this from the Netwrix side?
+
+Thanks,
+Sean
+
+From: McMahon, Sean
+Sent: Thursday, March 20, 2025 3:57 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+I reached out to our DBA team to check if they saw any memory constraints during the time the scan threw the error and they didn’t see anything from their end that would confirm any memory issue.
+Attached is their response.
+
+Thanks,
+Sean
+
+From: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Sent: Thursday, March 20, 2025 10:46 AM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+The job was close to completing the NAS scan when we got an error and the scan stopped.
+
+[cid:image001.png@01DB9CB1.A19C2170]
+
+The scan had just 6 remaining servers to scan then we got the following error:
+
+[cid:image002.png@01DB9CB1.A19C2170]
+
+I’ve attached the log to the ticket in the portal.
+
+If you need anything else, please let me know.
+
+
+Thanks,
+Sean
+
+From: McMahon, Sean
+Sent: Tuesday, March 18, 2025 10:57 AM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+Job has been started, will monitor progress and keep everyone updated.
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 14, 2025 1:15 PM
+To: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com<mailto:alison.mills@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+Hi Artem,
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+Thanks,
+Sean
+
+From: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Complete!!
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Alison,
+
+Thank you for the follow up, that is great to hear that job has good progress!
+Please, keep me posted on the results.
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+Currently the job  is still running interactively and we have ~5628 hosts left.
+I will advise you once this job has completed.
+
+Thank you,
+Alison.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender!
+This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button.
+ZjQcmQRYFpfptBannerEnd
+
+Hi Alison,
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers<https://urldefense.com/v3/__https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykIb55nZNg$>
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings.
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it.
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated.
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes.
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison,
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier.
+
+Yes, absolutely, I will be happy to assist you on a meeting.
+Current meeting plan is:
+
+  1.  Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable.
+  2.  Then we will check and adjust the configuration of the appropriate Job.
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z<https://urldefense.com/v3/__https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykJSXH9Yxg$>
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE: [EXTERNAL] RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","smcmb@allstate.com","McMahon, Sean","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com","","true","2025-03-24T11:41:11.000Z","true"
+"02sQk00000MwALhIAN","500Qk00000M47hNIAR","2025-03-24T12:28:46.000Z","2025-03-24T12:28:46.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Customer has requested update for the ticket 00436299","Netwrix Support Ticket #436299 - ref:_00D7091pB._500Q000M47hN:ref - Customer is requesting update","aem-stealthaudit-vm@allstate.com","Stealth Audit","techsupport@netwrix.com","","","false","2025-03-24T12:28:46.000Z","true"
+"02sQk00000MwGSlIAN","500Qk00000M47hNIAR","2025-03-24T13:07:41.000Z","2025-03-24T13:07:41.000Z","Hi Sean, 
+
+This is Artem here, I will continue assisting you with this ticket. 
+
+Thank you for sharing the FSAA system scan logs. I have analyzed them and the 'System.OutOfMemoryException' error indicates that most likely the Netwrix Enterprise Auditor server itself has run out of memory while executing FSAA system scan. 
+
+I need to note that this ticket was opened as a request for assistance with removing decommissioned hosts data from the Enterprise Auditor database. 
+This request was fulfilled after we created a custom ""DropFSHostData"" Job as instructed in this article:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+""DropFSHostData"" Job has completed successfully and FSAA related data for these hosts was removed. 
+As for the ""Out of memory"" exception - I will open a separate ticket for you to ensure efficient issue resolution and progress tracking. Please, stand by for my follow up in a new ticket. 
+
+If you do not have additional questions regarding ""DropFSHostData"" Job - then we will close this ticket. 
+Let me know if there is anything else I can assist you with regarding removal of FSAA data for decommissioned hosts. 
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/24/2025 3:41 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+
+
+Hi Ilya,
+
+ 
+
+Is there any update on this from the Netwrix side?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: McMahon, Sean
+Sent: Thursday, March 20, 2025 3:57 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Ilya,
+
+ 
+
+I reached out to our DBA team to check if they saw any memory constraints during the time the scan threw the error and they didn’t see anything from their end that would confirm any memory issue.
+
+Attached is their response.
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: McMahon, Sean <smcmb@allstate.com>
+Sent: Thursday, March 20, 2025 10:46 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Ilya,
+
+ 
+
+The job was close to completing the NAS scan when we got an error and the scan stopped.
+
+ 
+
+
+
+ 
+
+The scan had just 6 remaining servers to scan then we got the following error:
+
+ 
+
+
+
+ 
+
+I’ve attached the log to the ticket in the portal.
+
+ 
+
+If you need anything else, please let me know.
+
+ 
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: McMahon, Sean
+Sent: Tuesday, March 18, 2025 10:57 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Ilya,
+
+ 
+
+Job has been started, will monitor progress and keep everyone updated.
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 14, 2025 1:15 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com
+Subject: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+ 
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com; techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+Hi Artem,
+
+ 
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Mills, Alison <Alison.Mills@Allstate.com>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Complete!!
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Alison, 
+
+Thank you for the follow up, that is great to hear that job has good progress! 
+Please, keep me posted on the results. 
+
+Thank you! 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+ 
+
+
+Hi Artem,
+
+Currently the job  is still running interactively and we have ~5628 hosts left.
+
+I will advise you once this job has completed.
+
+ 
+
+Thank you,
+
+Alison.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+ 
+
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+
+
+
+ZjQcmQRYFpfptBannerStart
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									This Message Is From an External Sender! 
+									
+								
+								
+									
+									This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button. 
+									
+								
+							
+						
+						
+					
+				
+			
+			
+		
+	
+
+
+
+ZjQcmQRYFpfptBannerEnd
+
+
+Hi Alison, 
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings. 
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it. 
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated. 
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes. 
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, 
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier. 
+
+Yes, absolutely, I will be happy to assist you on a meeting. 
+Current meeting plan is:
+
+
+	Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable. 
+	Then we will check and adjust the configuration of the appropriate Job. 
+
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE: [EXTERNAL] RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","techsupport@netwrix.com","Netwrix Support","smcmb@allstate.com","jared.harris@netwrix.com; aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com","","true","2025-03-24T13:07:40.000Z","true"
+"02sQk00000MwRuVIAV","500Qk00000M47hNIAR","2025-03-24T14:38:53.000Z","2025-03-24T15:27:19.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+
+Before having this ticket closed, I’d like to have a review of it and try to replicate the job on our Test server.
+I’ve attempted to do this but I’m getting errors, and I’m following the steps listed within the online article for it.
+
+Would that be possible?
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 1:08 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Sean,
+
+This is Artem here, I will continue assisting you with this ticket.
+
+Thank you for sharing the FSAA system scan logs. I have analyzed them and the 'System.OutOfMemoryException' error indicates that most likely the Netwrix Enterprise Auditor server itself has run out of memory while executing FSAA system scan.
+
+I need to note that this ticket was opened as a request for assistance with removing decommissioned hosts data from the Enterprise Auditor database.
+This request was fulfilled after we created a custom ""DropFSHostData"" Job as instructed in this article:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+""DropFSHostData"" Job has completed successfully and FSAA related data for these hosts was removed.
+As for the ""Out of memory"" exception - I will open a separate ticket for you to ensure efficient issue resolution and progress tracking. Please, stand by for my follow up in a new ticket.
+
+If you do not have additional questions regarding ""DropFSHostData"" Job - then we will close this ticket.
+Let me know if there is anything else I can assist you with regarding removal of FSAA data for decommissioned hosts.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/24/2025 3:41 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+Hi Ilya,
+
+Is there any update on this from the Netwrix side?
+
+Thanks,
+Sean
+
+From: McMahon, Sean
+Sent: Thursday, March 20, 2025 3:57 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+I reached out to our DBA team to check if they saw any memory constraints during the time the scan threw the error and they didn’t see anything from their end that would confirm any memory issue.
+Attached is their response.
+
+Thanks,
+Sean
+
+From: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Sent: Thursday, March 20, 2025 10:46 AM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+The job was close to completing the NAS scan when we got an error and the scan stopped.
+
+[cid:image001.png@01DB9CCA.6C4268E0]
+
+The scan had just 6 remaining servers to scan then we got the following error:
+
+[cid:image002.png@01DB9CCA.6C4268E0]
+
+I’ve attached the log to the ticket in the portal.
+
+If you need anything else, please let me know.
+
+
+Thanks,
+Sean
+
+From: McMahon, Sean
+Sent: Tuesday, March 18, 2025 10:57 AM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+Job has been started, will monitor progress and keep everyone updated.
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 14, 2025 1:15 PM
+To: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com<mailto:alison.mills@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+Hi Artem,
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+Thanks,
+Sean
+
+From: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Complete!!
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Alison,
+
+Thank you for the follow up, that is great to hear that job has good progress!
+Please, keep me posted on the results.
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+Currently the job  is still running interactively and we have ~5628 hosts left.
+I will advise you once this job has completed.
+
+Thank you,
+Alison.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender!
+This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button.
+ZjQcmQRYFpfptBannerEnd
+
+Hi Alison,
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers<https://urldefense.com/v3/__https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykIb55nZNg$>
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings.
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it.
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated.
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes.
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison,
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier.
+
+Yes, absolutely, I will be happy to assist you on a meeting.
+Current meeting plan is:
+
+  1.  Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable.
+  2.  Then we will check and adjust the configuration of the appropriate Job.
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z<https://urldefense.com/v3/__https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykJSXH9Yxg$>
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.
+
+
+
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KUVm1&from=ext]","RE: [EXTERNAL] RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","smcmb@allstate.com","McMahon, Sean","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com","","true","2025-03-24T14:38:39.000Z","true"
+"02sQk00000MywCbIAJ","500Qk00000M47hNIAR","2025-03-25T12:26:33.000Z","2025-03-25T12:26:33.000Z","Hi Sean, 
+
+Thank you for the update. 
+
+Yes, absolutely. I just checked your previous replies and noticed that you experienced this error while trying to run ""DropFSHostData"" Job in test: 
+
+
+Is that correct? 
+
+Since this message could indicate an issue in the test environment the best way to proceed would be creating a separate ticket where we can track ""Job connection profile is not available"" issue resolution separately. 
+
+Please, stand by for my email. I will create a separate ticket for this issue and will get back to you. 
+
+As for this ticket - 00436299 - Remove data for old/decommissioned hosts, since Alison confirmed that job has completed successfully, we should then close this ticket and continue troubleshooting test environment in the other. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/24/2025 6:38 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+
+
+Hi Artem,
+
+ 
+
+Before having this ticket closed, I’d like to have a review of it and try to replicate the job on our Test server.
+
+I’ve attempted to do this but I’m getting errors, and I’m following the steps listed within the online article for it.
+
+ 
+
+Would that be possible?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 1:08 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+This is Artem here, I will continue assisting you with this ticket. 
+
+Thank you for sharing the FSAA system scan logs. I have analyzed them and the 'System.OutOfMemoryException' error indicates that most likely the Netwrix Enterprise Auditor server itself has run out of memory while executing FSAA system scan. 
+
+I need to note that this ticket was opened as a request for assistance with removing decommissioned hosts data from the Enterprise Auditor database. 
+This request was fulfilled after we created a custom ""DropFSHostData"" Job as instructed in this article:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+""DropFSHostData"" Job has completed successfully and FSAA related data for these hosts was removed. 
+As for the ""Out of memory"" exception - I will open a separate ticket for you to ensure efficient issue resolution and progress tracking. Please, stand by for my follow up in a new ticket. 
+
+If you do not have additional questions regarding ""DropFSHostData"" Job - then we will close this ticket. 
+Let me know if there is anything else I can assist you with regarding removal of FSAA data for decommissioned hosts. 
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/24/2025 3:41 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+ 
+
+
+Hi Ilya,
+
+ 
+
+Is there any update on this from the Netwrix side?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: McMahon, Sean
+Sent: Thursday, March 20, 2025 3:57 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Ilya,
+
+ 
+
+I reached out to our DBA team to check if they saw any memory constraints during the time the scan threw the error and they didn’t see anything from their end that would confirm any memory issue.
+
+Attached is their response.
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: McMahon, Sean <smcmb@allstate.com>
+Sent: Thursday, March 20, 2025 10:46 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Ilya,
+
+ 
+
+The job was close to completing the NAS scan when we got an error and the scan stopped.
+
+ 
+
+
+
+ 
+
+The scan had just 6 remaining servers to scan then we got the following error:
+
+ 
+
+
+
+ 
+
+I’ve attached the log to the ticket in the portal.
+
+ 
+
+If you need anything else, please let me know.
+
+ 
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: McMahon, Sean
+Sent: Tuesday, March 18, 2025 10:57 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Ilya,
+
+ 
+
+Job has been started, will monitor progress and keep everyone updated.
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 14, 2025 1:15 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com
+Subject: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+ 
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com; techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+Hi Artem,
+
+ 
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Mills, Alison <Alison.Mills@Allstate.com>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Complete!!
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Alison, 
+
+Thank you for the follow up, that is great to hear that job has good progress! 
+Please, keep me posted on the results. 
+
+Thank you! 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+ 
+
+
+Hi Artem,
+
+Currently the job  is still running interactively and we have ~5628 hosts left.
+
+I will advise you once this job has completed.
+
+ 
+
+Thank you,
+
+Alison.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+ 
+
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+
+
+
+ZjQcmQRYFpfptBannerStart
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									This Message Is From an External Sender! 
+									
+								
+								
+									
+									This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button. 
+									
+								
+							
+						
+						
+					
+				
+			
+			
+		
+	
+
+
+
+ZjQcmQRYFpfptBannerEnd
+
+
+Hi Alison, 
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings. 
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it. 
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated. 
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes. 
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, 
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier. 
+
+Yes, absolutely, I will be happy to assist you on a meeting. 
+Current meeting plan is:
+
+
+	Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable. 
+	Then we will check and adjust the configuration of the appropriate Job. 
+
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE: [EXTERNAL] RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","techsupport@netwrix.com","Netwrix Support","smcmb@allstate.com","jared.harris@netwrix.com; aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com","","true","2025-03-25T12:26:32.000Z","true"
+"02sQk00000MynPZIAZ","500Qk00000M47hNIAR","2025-03-25T12:32:40.000Z","2025-03-25T12:34:33.000Z","ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+
+Thanks for opening a separate ticket.
+
+Yes, please go ahead and close this current ticket.
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 12:27 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Sean,
+
+Thank you for the update.
+
+Yes, absolutely. I just checked your previous replies and noticed that you experienced this error while trying to run ""DropFSHostData"" Job in test:
+[cid:image001.png@01DB9D81.F3914ED0]
+
+Is that correct?
+
+Since this message could indicate an issue in the test environment the best way to proceed would be creating a separate ticket where we can track ""Job connection profile is not available"" issue resolution separately.
+
+Please, stand by for my email. I will create a separate ticket for this issue and will get back to you.
+
+As for this ticket - 00436299 - Remove data for old/decommissioned hosts, since Alison confirmed that job has completed successfully, we should then close this ticket and continue troubleshooting test environment in the other.
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/24/2025 6:38 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+Hi Artem,
+
+Before having this ticket closed, I’d like to have a review of it and try to replicate the job on our Test server.
+I’ve attempted to do this but I’m getting errors, and I’m following the steps listed within the online article for it.
+
+Would that be possible?
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, March 24, 2025 1:08 PM
+To: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Sean,
+
+This is Artem here, I will continue assisting you with this ticket.
+
+Thank you for sharing the FSAA system scan logs. I have analyzed them and the 'System.OutOfMemoryException' error indicates that most likely the Netwrix Enterprise Auditor server itself has run out of memory while executing FSAA system scan.
+
+I need to note that this ticket was opened as a request for assistance with removing decommissioned hosts data from the Enterprise Auditor database.
+This request was fulfilled after we created a custom ""DropFSHostData"" Job as instructed in this article:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+""DropFSHostData"" Job has completed successfully and FSAA related data for these hosts was removed.
+As for the ""Out of memory"" exception - I will open a separate ticket for you to ensure efficient issue resolution and progress tracking. Please, stand by for my follow up in a new ticket.
+
+If you do not have additional questions regarding ""DropFSHostData"" Job - then we will close this ticket.
+Let me know if there is anything else I can assist you with regarding removal of FSAA data for decommissioned hosts.
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/24/2025 3:41 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+Hi Ilya,
+
+Is there any update on this from the Netwrix side?
+
+Thanks,
+Sean
+
+From: McMahon, Sean
+Sent: Thursday, March 20, 2025 3:57 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+I reached out to our DBA team to check if they saw any memory constraints during the time the scan threw the error and they didn’t see anything from their end that would confirm any memory issue.
+Attached is their response.
+
+Thanks,
+Sean
+
+From: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Sent: Thursday, March 20, 2025 10:46 AM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+The job was close to completing the NAS scan when we got an error and the scan stopped.
+
+[cid:image002.png@01DB9D81.F3914ED0]
+
+The scan had just 6 remaining servers to scan then we got the following error:
+
+[cid:image003.png@01DB9D81.F3914ED0]
+
+I’ve attached the log to the ticket in the portal.
+
+If you need anything else, please let me know.
+
+
+Thanks,
+Sean
+
+From: McMahon, Sean
+Sent: Tuesday, March 18, 2025 10:57 AM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Ilya,
+
+Job has been started, will monitor progress and keep everyone updated.
+
+Thanks,
+Sean
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 14, 2025 1:15 PM
+To: McMahon, Sean <smcmb@allstate.com<mailto:smcmb@allstate.com>>
+Cc: jared.harris@netwrix.com<mailto:jared.harris@netwrix.com>
+Subject: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com<mailto:alison.mills@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+Hi Artem,
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+Thanks,
+Sean
+
+From: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Complete!!
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com<mailto:Alison.Mills@Allstate.com>>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com<mailto:AEMStealthAuditAdmins@allstate.com>>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+Hi Alison,
+
+Thank you for the follow up, that is great to hear that job has good progress!
+Please, keep me posted on the results.
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>; aemstealthauditadmins@allstate.com<mailto:aemstealthauditadmins@allstate.com>; techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem,
+Currently the job  is still running interactively and we have ~5628 hosts left.
+I will advise you once this job has completed.
+
+Thank you,
+Alison.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com<mailto:AEM-StealthAudit-VM@allstate.com>>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+ZjQcmQRYFpfptBannerStart
+This Message Is From an External Sender!
+This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button.
+ZjQcmQRYFpfptBannerEnd
+
+Hi Alison,
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers<https://urldefense.com/v3/__https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykIb55nZNg$>
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings.
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it.
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated.
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes.
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison,
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier.
+
+Yes, absolutely, I will be happy to assist you on a meeting.
+Current meeting plan is:
+
+  1.  Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable.
+  2.  Then we will check and adjust the configuration of the appropriate Job.
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z<https://urldefense.com/v3/__https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykJSXH9Yxg$>
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http://www.netwrix.com__;!!IIU9BLNPZ2ob!JA2AdGTZ5xWvXhLGyJPrSg3ul5QOzNe_PNlvFLdjMoyzJEPJ2oXBjZQ0HfZyfuHFPcuru2Tl2D5iXK-23KaPI7fkykL2UWHHpA$>
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com<mailto:aem-stealthaudit-vm@allstate.com>]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.
+
+
+
+
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KX1g9&from=ext]","RE: [EXTERNAL] RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","smcmb@allstate.com","McMahon, Sean","techsupport@netwrix.com","aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com","","true","2025-03-25T12:32:24.000Z","true"
+"02sQk00000N1R5lIAF","500Qk00000M47hNIAR","2025-03-26T08:29:53.000Z","2025-03-26T08:29:53.000Z","Hi Sean, 
+
+The following is a summary of the ticket for your records:
+
+To scope the hosts that are eligible for FSAA data removal we made a static host list by filtering FSAA hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+A ""DropFSHostData"" Job was created using instructions from this KB:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+We then configured static host list mentioned above in ""Hosts"" settings for the ""DropFSHostData"" custom job. 
+It was confirmed that job has completed successfully. 
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if you will have any additional questions regarding actions that were taken to satisfy this inquiry. 
+In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/25/2025 4:32 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+
+
+Hi Artem,
+
+ 
+
+Thanks for opening a separate ticket.
+
+ 
+
+Yes, please go ahead and close this current ticket.
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 12:27 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+Thank you for the update. 
+
+Yes, absolutely. I just checked your previous replies and noticed that you experienced this error while trying to run ""DropFSHostData"" Job in test: 
+
+
+Is that correct? 
+
+Since this message could indicate an issue in the test environment the best way to proceed would be creating a separate ticket where we can track ""Job connection profile is not available"" issue resolution separately. 
+
+Please, stand by for my email. I will create a separate ticket for this issue and will get back to you. 
+
+As for this ticket - 00436299 - Remove data for old/decommissioned hosts, since Alison confirmed that job has completed successfully, we should then close this ticket and continue troubleshooting test environment in the other. 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/24/2025 6:38 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+ 
+
+
+Hi Artem,
+
+ 
+
+Before having this ticket closed, I’d like to have a review of it and try to replicate the job on our Test server.
+
+I’ve attempted to do this but I’m getting errors, and I’m following the steps listed within the online article for it.
+
+ 
+
+Would that be possible?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 24, 2025 1:08 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Sean, 
+
+This is Artem here, I will continue assisting you with this ticket. 
+
+Thank you for sharing the FSAA system scan logs. I have analyzed them and the 'System.OutOfMemoryException' error indicates that most likely the Netwrix Enterprise Auditor server itself has run out of memory while executing FSAA system scan. 
+
+I need to note that this ticket was opened as a request for assistance with removing decommissioned hosts data from the Enterprise Auditor database. 
+This request was fulfilled after we created a custom ""DropFSHostData"" Job as instructed in this article:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+""DropFSHostData"" Job has completed successfully and FSAA related data for these hosts was removed. 
+As for the ""Out of memory"" exception - I will open a separate ticket for you to ensure efficient issue resolution and progress tracking. Please, stand by for my follow up in a new ticket. 
+
+If you do not have additional questions regarding ""DropFSHostData"" Job - then we will close this ticket. 
+Let me know if there is anything else I can assist you with regarding removal of FSAA data for decommissioned hosts. 
+
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/24/2025 3:41 PM
+To: techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; jared.harris@netwrix.com
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+ 
+
+
+Hi Ilya,
+
+ 
+
+Is there any update on this from the Netwrix side?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: McMahon, Sean
+Sent: Thursday, March 20, 2025 3:57 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Ilya,
+
+ 
+
+I reached out to our DBA team to check if they saw any memory constraints during the time the scan threw the error and they didn’t see anything from their end that would confirm any memory issue.
+
+Attached is their response.
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: McMahon, Sean <smcmb@allstate.com>
+Sent: Thursday, March 20, 2025 10:46 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Ilya,
+
+ 
+
+The job was close to completing the NAS scan when we got an error and the scan stopped.
+
+ 
+
+
+
+ 
+
+The scan had just 6 remaining servers to scan then we got the following error:
+
+ 
+
+
+
+ 
+
+I’ve attached the log to the ticket in the portal.
+
+ 
+
+If you need anything else, please let me know.
+
+ 
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: McMahon, Sean
+Sent: Tuesday, March 18, 2025 10:57 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: jared.harris@netwrix.com; AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Ilya,
+
+ 
+
+Job has been started, will monitor progress and keep everyone updated.
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 14, 2025 1:15 PM
+To: McMahon, Sean <smcmb@allstate.com>
+Cc: jared.harris@netwrix.com
+Subject: [EXTERNAL] RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Sean,
+
+Please start the job and check the messages/results, thank you.
+
+Best wishes,
+Ilya Kotov
+Technical Support Engineer
+1-949-407-5125 x7099
+____________________ _________
+Cybersecurity That Works for You
+ 
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: McMahon, Sean [smcmb@allstate.com]
+Sent: 3/13/2025 3:27 PM
+To: alison.mills@allstate.com; techsupport@netwrix.com
+Cc: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com
+Subject: RE: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+
+Hi Artem,
+
+ 
+
+With the remove host data job now complete, should I now schedule the FSAA job and get the scan kicked off? Or is there anything you’d like to do or see before that happens?
+
+ 
+
+
+Thanks,
+
+Sean
+
+
+ 
+
+
+
+From: Mills, Alison <Alison.Mills@Allstate.com>
+Sent: Wednesday, March 12, 2025 6:27 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: RE: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Complete!!
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 10:08 AM
+To: Mills, Alison <Alison.Mills@Allstate.com>
+Cc: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>; AEM-StealthAudit_Admins <AEMStealthAuditAdmins@allstate.com>
+Subject: [EXTERNAL] RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+
+ 
+
+Hi Alison, 
+
+Thank you for the follow up, that is great to hear that job has good progress! 
+Please, keep me posted on the results. 
+
+Thank you! 
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Mills, Alison [alison.mills@allstate.com]
+Sent: 3/12/2025 2:22 AM
+To: aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com; techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+ref:_00D7091pB._500Q000M47hN:ref
+ 
+
+
+Hi Artem,
+
+Currently the job  is still running interactively and we have ~5628 hosts left.
+
+I will advise you once this job has completed.
+
+ 
+
+Thank you,
+
+Alison.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 11, 2025 4:14 PM
+To: AEM-StealthAudit-VM <AEM-StealthAudit-VM@allstate.com>
+Subject: [External] RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+
+ 
+
+
+Hi Alison, Thank you for your time on our meeting today. Here is a recap of what we did today: We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution. 
+
+
+
+ZjQcmQRYFpfptBannerStart
+
+
+
+	
+		
+			
+			
+				
+					
+						
+						
+							
+								
+									
+									This Message Is From an External Sender! 
+									
+								
+								
+									
+									This message came from outside your organization. If you don’t trust this email, report it using the Report Phish button. 
+									
+								
+							
+						
+						
+					
+				
+			
+			
+		
+	
+
+
+
+ZjQcmQRYFpfptBannerEnd
+
+
+Hi Alison, 
+
+Thank you for your time on our meeting today.
+Here is a recap of what we did today:
+
+We discussed that FS_DropTables instant job won`t be suitable for removing old data because it will wipe everything related to File System solution.
+Instead, a ""remove host data"" query is more suitable for your current use case.
+
+As such, we configured ""DropFSHostData"" custom job which uses ""remove host data"" query as per instructions from this KB:
+How to Drop Data for Decommissioned File Servers
+Purpose of the ""DropFSHostData"" custom job is deleting data from NEA(StalthAudit) database for hosts that are specified in ""Hosts"" settings. 
+
+You mentioned that you would like to remove data for hosts for which last scan date is older than December 2024.
+As such, we created a static host list by filtering the SA_FSAA_Hosts table using this query:
+SELECT *
+FROM [J4D_StealthAudit_AEM].[dbo].[SA_FSAA_Hosts]
+WHERE ScanTime < '2024-12-01 00:00:00'
+ORDER BY ScanTime;
+
+We then configured this static host list for ""DropFSHostData"" custom job and started it. 
+Currently the job is running in ""Interactive mode"" - which means that NEA console must be opened, otherwise job will be terminated. 
+
+Please, monitor the ""DropFSHostData"" job progress and let me know once it finishes. 
+Looking forward to hearing back from you. Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/6/2025 6:11 PM
+To: aem-stealthaudit-vm@allstate.com
+Subject: RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error. [ ref:!00D70091pB.!500Qk0M47hN:ref ]
+
+Hi Alison, 
+
+Please, accept my apologies for a delayed reply - I was fully booked yesterday and could not get back to you earlier. 
+
+Yes, absolutely, I will be happy to assist you on a meeting. 
+Current meeting plan is:
+
+
+	Discuss what fits your current use case more - dropping all data related to File System solution (this includes permission scans and activity collection for all hosts together), or if removing individual hosts data from DB is more suitable. 
+	Then we will check and adjust the configuration of the appropriate Job. 
+
+
+Please, use this link to schedule meeting with me:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=zsQyrf.s7pDKtUP4WPvSgWBAZIFNNPsAMddQgAQ5Cr8-Z&MeetingID=Dy_htYa8UQ5Z0WjgAtODwGmTUSsMmavWHEkS9G7QcxY-Z
+
+Thank you!
+
+Best regards,
+Artem Naskal
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Stealth Audit [aem-stealthaudit-vm@allstate.com]
+Sent: 3/5/2025 6:23 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.
+
+ref:_00D7091pB._500Q000M47hN:ref
+
+Hi Artem, would you be available to meet and review the process of removing data from our FSAA scan process on A0775-APP2356-S. As this process involves dropping data I would rather go through the process with you.
+Thank you,
+Alison.","RE: [EXTERNAL] RE:  RE:  RE: Netwrix Support Ticket #436299 - FS_DropTables - Foreign Key constraint error.    [ ref:!00D70091pB.!500Qk0M47hN:ref ]","techsupport@netwrix.com","Netwrix Support","smcmb@allstate.com","jared.harris@netwrix.com; aem-stealthaudit-vm@allstate.com; aemstealthauditadmins@allstate.com","","true","2025-03-26T08:29:52.000Z","true"

@@ -1,194 +1,198 @@
-# Netwrix Endpoint Protector: Client Upgrade Troubleshooting Guide
+# Netwrix Endpoint Protector Knowledge Base: Client Upgrade Troubleshooting Guide
 
 ## Overview
 
-The **Client Upgrade** feature in Netwrix Endpoint Protector (EPP) enables administrators to update endpoint agents to the latest versions, ensuring compatibility, security, and access to new features. While the upgrade process is designed to be seamless, various issues can arise, including compatibility problems, configuration errors, and environmental limitations. This guide consolidates troubleshooting steps, solutions, and best practices to address common client upgrade challenges.
+The **Client Upgrade** feature in **Netwrix Endpoint Protector (EPP)** is essential for maintaining endpoint security, compatibility, and functionality. Upgrading client software ensures that endpoints remain secure, benefit from new features, and align with server requirements. This guide provides a comprehensive approach to diagnosing, resolving, and preventing issues related to client upgrades across various operating systems and environments.
 
 ---
 
-## Common Issues and Solutions
+## Technical Background
 
-### Issue Summary Table
+### Key Concepts
+- **Netwrix Endpoint Protector (EPP):** A platform for device control, data loss prevention, and endpoint security.
+- **Client Software:** Installed on endpoints to enforce policies and communicate with the EPP server.
+- **Upgrade Process:** Updates client software to newer versions via the EPP console or manual installation.
+- **Compatibility:** Ensures client versions align with server versions and operating system requirements.
+- **Upgrade Methods:**
+  - **Console-Based Upgrade:** Initiated from the EPP server dashboard.
+  - **Manual Installation:** Performed using MSI packages or offline patches.
+  - **Third-Party Tools:** Used for Linux deployments (e.g., Ansible, Puppet).
 
-| Issue | Symptoms | Key Troubleshooting Steps | Solution |
-|-------|----------|---------------------------|----------|
-| **Clients greyed out in upgrade interface** | Unable to select clients for upgrade | Check for old upgrade jobs and delete them | Delete old upgrade jobs |
-| **Upgrade job fails for large batches** | Upgrade job does not complete | Split upgrade job into smaller batches | Create smaller upgrade jobs |
-| **Missing client version in Console** | Desired version not listed for upgrade | Verify version availability in Console | Update Console to include version |
-| **Blue screen errors (BSOD)** | Systems crash with `cssdlp20.sys` error | Generate logs using EPP Support Tool | Reinstall EPP client |
-| **Unresponsive systems during upgrade** | Systems hang and require reboot | Check installation path and logs | Use VBS script for installation |
-| **Ubuntu agent not checking in** | Agent fails to communicate with server | Check `options.sh` configuration | Correct `options.sh` file |
-| **Fedora client installer request** | Missing installers for Fedora versions | Verify availability of installers | Provide updated installers |
-| **Printing blocked in Outlook** | Users unable to print emails | Configure Advanced Scanning Exceptions | Whitelist Outlook in exceptions |
-| **Temporary access codes not recognized** | Temporary access codes fail after upgrade | Verify version, check configuration | Apply patch for version 5.9.4.1 |
-| **Unable to upgrade system agents** | Certain systems cannot be selected for upgrade | Check permissions, logs, and dashboard settings | Adjust permissions and retry |
-| **Slow client upgrade progress** | Upgrade job progresses slowly | Verify server version, suggest redeployment | Redeploy via Intune, wait for server patch |
-| **Mac agents pointing to unknown server** | Misconfigured agents | Reconfigure agents to correct server | Update agent settings |
-| **Windows Server 2016 incompatibility** | Client fails to report after upgrade | Check OS compatibility, revert version | Use older client version |
-| **Linux upgrades not supported via EPP server** | Linux upgrades not supported | Suggest third-party tools | Use tools like Ansible or Puppet |
+### Terminology
+- **EPP Console:** The management interface for deploying and monitoring client upgrades.
+- **Upgrade Job:** A scheduled task initiated via the console to update client software.
+- **Offline Patch:** A downloadable package used to manually update clients when automatic upgrades fail.
+- **Logs:** Diagnostic files generated during installation or upgrade processes, such as `eppclient.log` or MSI logs.
+- **EPPSetServer Tool:** A utility for reconfiguring client-server communication settings.
 
 ---
 
-## Detailed Troubleshooting Steps
+## Issue Recognition & Triage
 
-### 1. Clients Greyed Out in Upgrade Interface
-**Symptoms:**  
-Clients appear greyed out in the upgrade interface, preventing selection for upgrades.
+### Common Symptoms
+- **Grayed-Out Clients:** Clients appear unselectable in the upgrade interface despite being online and licensed.
+- **Upgrade Failures:** Errors during the upgrade process, such as "Upgrade Failed" or "Completed with Errors."
+- **Endpoint Functionality Issues:** Problems like BSOD or unresponsive systems post-upgrade.
+- **Missing Client Versions:** Desired client versions not listed in the EPP console.
+- **Configuration Errors:** Clients pointing to incorrect servers or reverting to default settings.
+- **Compatibility Issues:** Errors due to unsupported operating systems or outdated server versions.
+- **Performance Issues:** Slow upgrade progress or limited visibility of eligible clients.
 
-**Troubleshooting Steps:**  
-1. Check for existing upgrade jobs in the system.
-2. Delete any failed or incomplete upgrade jobs.
-3. Refresh the upgrade interface and attempt to select clients again.
-
-**Root Cause:**  
-Old upgrade jobs block the selection of clients for new upgrades.
-
-**Solution:**  
-Delete all old upgrade jobs and retry the upgrade process.
-
----
-
-### 2. Upgrade Job Fails for Large Batches
-**Symptoms:**  
-Upgrade jobs containing a large number of clients fail to complete.
-
-**Troubleshooting Steps:**  
-1. Review the size of the upgrade job.
-2. Split the job into smaller batches of 50-100 clients.
-3. Monitor the progress of each smaller job.
-
-**Root Cause:**  
-Large batch sizes overwhelm the upgrade process, causing failures.
-
-**Solution:**  
-Create multiple smaller upgrade jobs to ensure successful completion.
+### Priority Assessment
+- **High Priority:** Security vulnerabilities, widespread upgrade failures, or critical endpoint functionality issues.
+- **Medium Priority:** Individual client upgrade failures or minor compatibility concerns.
+- **Low Priority:** Cosmetic changes or non-critical inquiries about upgrade processes.
 
 ---
 
-### 3. Missing Client Version in Console
-**Symptoms:**  
-The desired client version is not listed in the EPP Console for upgrade.
+## Diagnostic Methodology
 
-**Troubleshooting Steps:**  
-1. Verify the version availability in the Console.
-2. Check for updates to the Console that include the desired version.
-3. Contact support if the version is not available.
+### Systematic Approach
+1. **Verify Environment Details:**
+   - Confirm server and client versions.
+   - Check operating system compatibility.
+   - Review network configurations (e.g., firewall rules, Active Directory policies).
 
-**Root Cause:**  
-The EPP Console does not list all available client versions due to version availability settings.
+2. **Reproduce the Issue:**
+   - Attempt the upgrade manually or via the console.
+   - Generate logs during the process for analysis.
 
-**Solution:**  
-Update the Console to include the desired client version.
+3. **Analyze Logs:**
+   - Examine `eppclient.log`, MSI logs, or event viewer entries for error codes or warnings.
 
----
+4. **Check Upgrade Jobs:**
+   - Identify incomplete or failed jobs that may block new upgrades.
+   - Delete old jobs if necessary.
 
-### 4. Blue Screen Errors (BSOD)
-**Symptoms:**  
-Systems crash with a blue screen error, citing `cssdlp20.sys`.
+5. **Review Configuration Settings:**
+   - Verify group assignments, policies, and dependencies (e.g., certificates).
 
-**Troubleshooting Steps:**  
-1. Generate logs using the EPP Support Tool.
-2. Identify the driver causing the issue (`cssdlp20.sys`).
-3. Uninstall the EPP client and reinstall it.
+6. **Test Solutions:**
+   - Apply patches, modify configurations, or use alternative deployment methods (e.g., MDM tools).
 
-**Root Cause:**  
-A conflict with the `cssdlp20.sys` driver causes the blue screen error.
-
-**Solution:**  
-Reinstall the EPP client to resolve the driver conflict.
+7. **Validate Resolution:**
+   - Confirm that the issue is resolved across all affected endpoints.
+   - Document findings and update internal knowledge bases.
 
 ---
 
-### 5. Unresponsive Systems During Upgrade
-**Symptoms:**  
-Systems become unresponsive during the upgrade process and require a reboot.
+## Information Collection
 
-**Troubleshooting Steps:**  
-1. Check the installation path in the upgrade command.
-2. Append `/l*v <path_to_log>` to the `msiexec` command to generate logs.
-3. Use a VBS script to automate the installation process.
+### Questions to Ask Customers
+- What server and client versions are being used?
+- What operating systems are affected?
+- Are there any error messages or logs available?
+- Has the issue occurred after a recent upgrade or configuration change?
+- Are there specific endpoints or groups affected?
 
-**Root Cause:**  
-The installation command does not correctly point to the installer path.
-
-**Solution:**  
-Use a VBS script to ensure the installer is located and executed properly.
-
----
-
-### 6. Ubuntu Agent Not Checking In
-**Symptoms:**  
-The Ubuntu agent fails to communicate with the EPP server.
-
-**Troubleshooting Steps:**  
-1. Check the `options.sh` file for configuration errors.
-2. Correct any misconfigurations in the file.
-3. Restart the agent and verify connectivity.
-
-**Root Cause:**  
-Misconfiguration in the `options.sh` file prevents communication with the server.
-
-**Solution:**  
-Edit the `options.sh` file to correct the configuration settings.
+### Logs and Data to Collect
+- **EPP Client Logs:** `eppclient.log` for upgrade-related errors.
+- **MSI Logs:** Generated using `/l*v <path_to_log>` during installation.
+- **Event Viewer Logs:** For system-level errors.
+- **Server Logs:** Synchronization and upgrade job statuses.
+- **Network Details:** Firewall rules, open ports, and proxy configurations.
 
 ---
 
-### 7. Fedora Client Installer Request
-**Symptoms:**  
-Customer requests updated client installers for Fedora versions 38, 39, and 40.
+## Common Scenarios & Solutions
 
-**Troubleshooting Steps:**  
-1. Verify the availability of client installers for the requested Fedora versions.
-2. Provide download links for the updated installers.
+### Scenario 1: Grayed-Out Clients in Upgrade Interface
+- **Symptoms:** Clients appear unselectable despite being online and licensed.
+- **Resolution:**
+  - Delete old upgrade jobs blocking new selections.
+  - Verify client licensing and synchronization status.
 
-**Root Cause:**  
-The customer did not have access to updated client installers for the specified Fedora versions.
+### Scenario 2: Upgrade Job Fails for Large Batches
+- **Symptoms:** Upgrade jobs with hundreds of clients fail or become unresponsive.
+- **Resolution:**
+  - Split large upgrade jobs into smaller batches.
+  - Monitor each batch for completion.
 
-**Solution:**  
-Provide the updated client installers to the customer.
+### Scenario 3: Missing Client Versions in Console
+- **Symptoms:** Desired client version not listed in the upgrade interface.
+- **Resolution:**
+  - Update the EPP console to reflect the latest versions.
+  - Use offline patches for manual upgrades.
 
----
+### Scenario 4: BSOD During Upgrade
+- **Symptoms:** Blue screen errors caused by `cssdlp20.sys`.
+- **Resolution:**
+  - Uninstall and reinstall the EPP client.
+  - Verify driver compatibility.
 
-### 8. Printing Blocked in Outlook
-**Symptoms:**  
-Users are unable to print email memos in Microsoft Outlook.
+### Scenario 5: Compatibility Issues with Linux Clients
+- **Symptoms:** Errors during installation due to identical `.deb` package versions.
+- **Resolution:**
+  - Modify `.deb` package names to include OS version identifiers.
 
-**Troubleshooting Steps:**  
-1. Navigate to `System Parameters >> Advanced Scanning Exceptions`.
-2. Add `outlook.exe` or `olk.exe` to the Application Process Name field.
-3. Whitelist Outlook in the exceptions and update policies.
-
-**Root Cause:**  
-The EPP client blocks printing in Outlook due to security settings.
-
-**Solution:**  
-Whitelist Outlook in the Advanced Scanning Exceptions.
-
----
-
-## Best Practices
-
-1. **Regularly Clean Up Old Upgrade Jobs:** Ensure that no failed or incomplete jobs remain in the system before initiating new upgrades.
-2. **Split Large Upgrade Jobs:** For environments with many clients, divide upgrade jobs into smaller batches to prevent failures.
-3. **Verify Configuration Settings:** Check all relevant settings, such as `options.sh` for Linux agents, before initiating upgrades.
-4. **Generate Logs for Troubleshooting:** Use detailed logging options (e.g., `/l*v <path_to_log>`) to capture errors during upgrades.
-5. **Communicate Changes to Users:** Inform users about any visible changes, such as new icons or features, to avoid confusion.
+### Scenario 6: Slow Upgrade Progress
+- **Symptoms:** Upgrade jobs take an unusually long time to complete.
+- **Resolution:**
+  - Uninstall and redeploy clients using third-party tools.
+  - Wait for server updates to ensure compatibility.
 
 ---
 
-## Advanced Topics
+## Detailed Case Studies
 
-### Handling Driver Conflicts
-If blue screen errors occur due to driver conflicts (e.g., `cssdlp20.sys`), uninstall the EPP client and reinstall it using the latest version. Ensure that all drivers are compatible with the operating system.
+### Case Study 1: Grayed-Out Clients Blocking Upgrade
+- **Symptoms:** Clients unselectable despite being online.
+- **Diagnostic Steps:** Verified upgrade jobs, deleted old jobs.
+- **Resolution:** Cleared old jobs; clients became selectable.
+- **Key Takeaways:** Always check for incomplete jobs before initiating upgrades.
 
-### Linux Batch Upgrades
-Linux upgrades are not supported directly via the EPP server. Use third-party tools like Ansible, Puppet, or Chef for mass deployments. Ensure compatibility with the target Linux distributions before proceeding.
+### Case Study 2: BSOD During Upgrade
+- **Symptoms:** Blue screen errors caused by `cssdlp20.sys`.
+- **Diagnostic Steps:** Collected logs, identified driver conflict.
+- **Resolution:** Uninstalled and reinstalled EPP client.
+- **Key Takeaways:** Monitor driver compatibility during upgrades.
 
-### Automating Upgrades with Scripts
-Use VBS or PowerShell scripts to automate client installations and upgrades, ensuring that all paths and commands are correctly configured.
+### Case Study 3: Linux Client Compatibility Issues
+- **Symptoms:** Installation errors due to identical `.deb` package versions.
+- **Diagnostic Steps:** Compared archives, modified package names.
+- **Resolution:** Renamed `.deb` packages to include OS version identifiers.
+- **Key Takeaways:** Use distinct naming conventions for multi-OS environments.
 
 ---
 
-## Conclusion
+## Best Practices & Tips
 
-The Client Upgrade feature in Netwrix Endpoint Protector is a powerful tool for maintaining up-to-date endpoint agents. By following the troubleshooting steps and best practices outlined in this guide, administrators can resolve common issues and ensure a smooth upgrade process. For unresolved issues, contact Netwrix Support for further assistance.
+1. **Pre-Upgrade Checks:**
+   - Verify compatibility between server and client versions.
+   - Test upgrades on a small subset of endpoints.
+
+2. **Documentation:**
+   - Maintain detailed records of server migrations, patches, and configurations.
+   - Update internal knowledge bases with resolved cases.
+
+3. **Communication:**
+   - Clearly inform customers about OS and version support limitations.
+   - Provide step-by-step instructions for manual upgrades.
+
+4. **Proactive Monitoring:**
+   - Regularly audit server and client configurations.
+   - Monitor for new patches and updates.
+
+5. **Batch Upgrades:**
+   - Split large upgrade jobs into smaller batches to avoid failures.
+
+6. **Offline Patches:**
+   - Use offline patches for manual upgrades when automatic methods fail.
+
+---
+
+## Escalation Guidelines
+
+### Criteria for Escalation
+- Security vulnerabilities affecting multiple endpoints.
+- Persistent upgrade failures despite troubleshooting.
+- Critical functionality issues post-upgrade (e.g., BSOD, unresponsive systems).
+
+### Escalation Process
+1. **Document Findings:** Include logs, error messages, and troubleshooting steps.
+2. **Contact Development Team:** Escalate issues related to patches or version compatibility.
+3. **Customer Communication:** Inform the customer about the escalation and expected timelines.
+
+---
+
+By following this guide, support engineers can systematically address client upgrade issues, ensuring efficient resolutions and maintaining customer satisfaction.

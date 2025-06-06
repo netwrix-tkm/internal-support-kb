@@ -1,0 +1,41 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OqWsVIAV","00444228","Support Ticket","getExchLocation function update, and cleanup default Scan site update.","I would like to verify recommended method updating the getExchLocation function (to support new countries), and update hosts with PADC (default site) in ExchLocation to ensure they re-process in getExchLocation function.","","","","Symptom
+
+I would like to verify recommended method updating the getExchLocation function (to support new countries), and update hosts with PADC (default site) in ExchLocation to ensure they re-process in getExchLocation function.
+
+Cause
+
+Request/Question
+
+Resolution
+
+Referred to Professional Services and provided the information below:
+
+The customer specifically has a question/request regarding a custom analysis task that was previously created and the possibility of modifying this task to include scanning new locations, countries/states as well as cleaning up old locations. Since this isn't an out of the box job and this customers environment is heavily customized this is something professional services need to look at first. If they can determine that it is possible to modified, then they would need to implement those changes.
+
+Additional information provided below:
+
+The getExchLocation function is part of the HOST MANAGEMENT job (MergeSORHosts child job).
+
+Our default FSAA scanning site is PADC.
+
+The function is currently designed to assign ExchLocation (scanning locations), for hosts with ‘blank’ ExchLocations.  Once assigned, they have to be manually updated or the ExchLocation must be set to ‘blank’ to reprocess by the getExchLocation to assign the new ExchLocation.
+
+Sites with no COUNTRY or STATE in the SA_SORHosts table, get assigned to the ExchLocation PADC to ensure they get scanned.
+
+When the hosts are updated with a valid COUNTRY or STATE, we need to cleanup the PADC ExchLocations to reassign them to the most efficient scanning site.
+
+ 
+
+These jobs reside on our REPORTING servers.
+
+On my TEST Reporting server, I found an Analysis task that “Creates a getExchLocation function”, Can I use this to update my Production “getExchLocation” function?  I would like to verify if I can safely update the function from within StealthAudit.
+
+ 
+
+I have determined a good query to locate the hostnames currently assigned to ExchLocation PADC (that should no longer be assigned there), we currently have over 700 servers that need to leave PADC.
+
+Ideas:
+
+Update the getExchLocation function to “reprocess” PADC hosts each week when the HOST MANAGEMENT job runs, to update the ExchLocation to the “appropriate site”
+Create an analysis task to manually reset only (‘blank’ the ExchLocation) for the hosts that need to move out of PADC.","Other","Scottie Taylor","Question","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.5","","0.3","Closed - Resolved","Bank of America Corporation","Greg Dieter","2025-05-06T15:26:58.000Z","2025-05-06T22:55:23.000Z"

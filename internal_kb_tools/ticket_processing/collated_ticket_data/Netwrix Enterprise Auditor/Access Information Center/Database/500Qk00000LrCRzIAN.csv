@@ -1,0 +1,223 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LrCRzIAN","00435789","Support Ticket","AIC 11.6.0.12 - Is currently not rendering Activity Details.","AIC 11.6.0.12 - Is currently not rendering Activity Details.
+
+I did not check if Activity Statistics is showing anything.
+2 (two) sets of logs are attached but I am not sure if they are useful.","","+++++
+2025_0218: Meeting summary
++++++
+
+1) Unknown protocol: VSS - Volume Shadow Copy Service
+We pick up the activity but we do not do anything with that activity.
+
++++++
+NAM > Monitored Hosts > File: C:Program FilesStealthbitsStealthAudit > Edit output > Operations tab > VSS Operations > un-check all 3 at the top
++++++
+
++++++
+Snapshot add
+Snapshot delete - may be checkedselected by default
+Read
++++++
+CTRL-A to select all 41 at once time
+
+""Saving 0/28"" - next to OK BTN - 28 INI files to update but then it will roll pretty quick
++++++
+
+2) DC2-P-FILE-02 - had no file output - no PATH to ""DC2-P-FILE-02_Log.tsv""
+""C:Program FilesStealthbitsStealthAUDITFSAcSBTFileMon_LogsDC2-P-FILE-02_Log_.tsv""
+(click the 3 dots to navigate and click the ""Test"" BUTTON) 
+
+3) In NAM, we checked the 'Account Exclusions' TAB:
++++++
+NT AUTHORITYIUSR
+NT AUTHORITYSYSTEM
+NT AUTHORITYLOCAL SERVICE
+NT AUTHORITYNETWORK SERVICE
++++++
+
+4) Checked both NEA Jobs - 
+1-FSAA System Scans - hit a timeout of some sort
+2-FSAA Bulk Import - just one host had a problem
+
+5) NEA AIC > Resource Audit > \DC2-P-FILE-02Scanner > Activity Details > Date range: 02/11/2025 - 02/18/2025
+
+Date range: 12/30/2025 - 01/07/2025
+NEA > 2.Activity > 1-FSAC System Scans > Results > Activity - find a server that has a lot of activity events
++++++
+In AIC > DCP-APPS-02 > Activity Details and Activity Statistics - there is lots of data
+column hidden = called ""Target Path"" - for moves this is how you know where the data/file went
++++++
+
++++++
+Retention value in the NEA console itself
++++++
+NEA > 2.Activity > 1-FSAC System Scans > Configure > Queries > Query Properties > Configure BUTTON > 
+Activity Settings > ""Set scan filter for detailed activity"" > 60 days
+
+6) In NAM > 'Monitored Hosts' tab > 'DC2-P-FILE-02.polsinelli.law' > 'Additional Properties' TAB > 'Report hostname as' = ${NETBIOS_NAME}
+
+Is there a variable for this?
+like ${NETBIOS_NAME}
+
+Right-click on the actual host > Windows tab > 'Report the host name as:' NETBIOS name OR FQDN
+
+7) SI Agent Installer registers NETBIOS name as the Machine name (in the UI and DB)
+Separate Files:
+NEA uses = ""C:Program FilesSTEATLHbitsSteatlhAUDITFSACSBTFileMon_Logs<NETBIOS_NAME>_Log_.tsv"" = NEA uses
+NAM uses = ""C:ProgramDatgaNetwrixActivity MonitorAgentSBTFileMon_LogsSBTFileMon_Log_.tsv"" = NAM uses
+(same data but in different format)
+NAM versus SI team
+
+8) NEA > GROUP_2.Activity > ""1-FSAC Systems Scans""
+""DC2-P-FILE-02"" - did not have 'Report hostname as' set up correctly.
+
+2.Activity > ""Run Group""
+
+""Remove old hosts"" JOB > Results > DEFAULT > Right-click on the HOST column and ""Group By"" to see concise list of 17 hosts (or whatever the ""SA_FSAA_Hosts"" table contains)
+
+9) NEA > ""Host Management"" > FILESERVERS - ensure that the 17 servers have been removed from this list
+
+10) 1-SEEK System Scans > MESSAGE = ""Failed to delete...FSAA<SERVERNAME>SDDTemp - not crtical as this is a TEMP DIR that NEA uses.
+You can manually empty that directory if you want.
+
+11) ""DC2-P-FILE-02"" - is it running an old leftover applet?
+""DC2-P-FILE-02"" - a lot of files are collected but then it errors.
+
+FSAA DC Wizard > Query Selection > Maintenance > ""Remove scan executable and data"" - Remove FSAA applet and data from remote server(s).
++++++
+Created a new ""Remove_Applet_FSAA"" job (in the Custom_Job_Folder) > Configure > Queries > Data Collector drop-down = FILESYSTEMACCESS >
+Query Selection > Maintenance > ""Remove scan executable and data"" - Remove FSAA applet and data from remote server(s).
+
+Hosts > Host name - added ""DC2-P-FILE-02""
++++++
+
+12) ""2-FSAAC Bulk Import"" - is now succeeding and took about 8 minutes 47 seconds for the successful run
+
+13) 'Remove old hosts' job MESSAGES:
++++++
+Host is offline
+Abort request received
+Host processing aborted
++++++
+
+14) AIC > <SERVER_NAME> > Activity Details
+Drill into specific folders and AIC is displaying data after all of the NEA fixes that we applied
+
+15) FS_StaleContent > re-run this report job after the 'Remove old hosts' job completes successfully
+
+16) ""Remove old hosts"" JOB >  Error removing DCP-ARCHIVE-01 from tier 1 database: Failed to remove Host ID: 5 from table SA_FSAA_Resources
+Renamed hostname from ""DCP-ARCHIVE-01"" to !REMOVED_DCP-ARCHIVE-01_<MORE_IDENTIFIERS>
+Add ""code-renamed"" hostname to ""Remove old hosts"" JOB > Configure > Hosts list.
+ 
++++++
++++++","+++++
+2025_0218: Review the Zoom Meeting - lots of specific details covered and actions performed.
++++++","+++++
+2025_0218: Meeting summary
++++++
+
+1) Unknown protocol: VSS - Volume Shadow Copy Service
+We pick up the activity but we do not do anything with that activity.
+
++++++
+NAM > Monitored Hosts > File: C:Program FilesStealthbitsStealthAudit > Edit output > Operations tab > VSS Operations > un-check all 3 at the top
++++++
+
++++++
+Snapshot add
+Snapshot delete - may be checkedselected by default
+Read
++++++
+CTRL-A to select all 41 at once time
+
+""Saving 0/28"" - next to OK BTN - 28 INI files to update but then it will roll pretty quick
++++++
+
+2) DC2-P-FILE-02 - had no file output - no PATH to ""DC2-P-FILE-02_Log.tsv""
+""C:Program FilesStealthbitsStealthAUDITFSAcSBTFileMon_LogsDC2-P-FILE-02_Log_.tsv""
+(click the 3 dots to navigate and click the ""Test"" BUTTON) 
+
+3) In NAM, we checked the 'Account Exclusions' TAB:
++++++
+NT AUTHORITYIUSR
+NT AUTHORITYSYSTEM
+NT AUTHORITYLOCAL SERVICE
+NT AUTHORITYNETWORK SERVICE
++++++
+
+4) Checked both NEA Jobs - 
+1-FSAA System Scans - hit a timeout of some sort
+2-FSAA Bulk Import - just one host had a problem
+
+5) NEA AIC > Resource Audit > \DC2-P-FILE-02Scanner > Activity Details > Date range: 02/11/2025 - 02/18/2025
+
+Date range: 12/30/2025 - 01/07/2025
+NEA > 2.Activity > 1-FSAC System Scans > Results > Activity - find a server that has a lot of activity events
++++++
+In AIC > DCP-APPS-02 > Activity Details and Activity Statistics - there is lots of data
+column hidden = called ""Target Path"" - for moves this is how you know where the data/file went
++++++
+
++++++
+Retention value in the NEA console itself
++++++
+NEA > 2.Activity > 1-FSAC System Scans > Configure > Queries > Query Properties > Configure BUTTON > 
+Activity Settings > ""Set scan filter for detailed activity"" > 60 days
+
+6) In NAM > 'Monitored Hosts' tab > 'DC2-P-FILE-02.polsinelli.law' > 'Additional Properties' TAB > 'Report hostname as' = ${NETBIOS_NAME}
+
+Is there a variable for this?
+like ${NETBIOS_NAME}
+
+Right-click on the actual host > Windows tab > 'Report the host name as:' NETBIOS name OR FQDN
+
+7) SI Agent Installer registers NETBIOS name as the Machine name (in the UI and DB)
+Separate Files:
+NEA uses = ""C:Program FilesSTEATLHbitsSteatlhAUDITFSACSBTFileMon_Logs<NETBIOS_NAME>_Log_.tsv"" = NEA uses
+NAM uses = ""C:ProgramDatgaNetwrixActivity MonitorAgentSBTFileMon_LogsSBTFileMon_Log_.tsv"" = NAM uses
+(same data but in different format)
+NAM versus SI team
+
+8) NEA > GROUP_2.Activity > ""1-FSAC Systems Scans""
+""DC2-P-FILE-02"" - did not have 'Report hostname as' set up correctly.
+
+2.Activity > ""Run Group""
+
+""Remove old hosts"" JOB > Results > DEFAULT > Right-click on the HOST column and ""Group By"" to see concise list of 17 hosts (or whatever the ""SA_FSAA_Hosts"" table contains)
+
+9) NEA > ""Host Management"" > FILESERVERS - ensure that the 17 servers have been removed from this list
+
+10) 1-SEEK System Scans > MESSAGE = ""Failed to delete...FSAA<SERVERNAME>SDDTemp - not crtical as this is a TEMP DIR that NEA uses.
+You can manually empty that directory if you want.
+
+11) ""DC2-P-FILE-02"" - is it running an old leftover applet?
+""DC2-P-FILE-02"" - a lot of files are collected but then it errors.
+
+FSAA DC Wizard > Query Selection > Maintenance > ""Remove scan executable and data"" - Remove FSAA applet and data from remote server(s).
++++++
+Created a new ""Remove_Applet_FSAA"" job (in the Custom_Job_Folder) > Configure > Queries > Data Collector drop-down = FILESYSTEMACCESS >
+Query Selection > Maintenance > ""Remove scan executable and data"" - Remove FSAA applet and data from remote server(s).
+
+Hosts > Host name - added ""DC2-P-FILE-02""
++++++
+
+12) ""2-FSAAC Bulk Import"" - is now succeeding and took about 8 minutes 47 seconds for the successful run
+
+13) 'Remove old hosts' job MESSAGES:
++++++
+Host is offline
+Abort request received
+Host processing aborted
++++++
+
+14) AIC > <SERVER_NAME> > Activity Details
+Drill into specific folders and AIC is displaying data after all of the NEA fixes that we applied
+
+15) FS_StaleContent > re-run this report job after the 'Remove old hosts' job completes successfully
+
+16) ""Remove old hosts"" JOB >  Error removing DCP-ARCHIVE-01 from tier 1 database: Failed to remove Host ID: 5 from table SA_FSAA_Resources
+Renamed hostname from ""DCP-ARCHIVE-01"" to !REMOVED_DCP-ARCHIVE-01_<MORE_IDENTIFIERS>
+Add ""code-renamed"" hostname to ""Remove old hosts"" JOB > Configure > Hosts list.
+ 
++++++
++++++","Guidance","Mike Candon","Unexpected Behavior","Netwrix Enterprise Auditor","Access Information Center","Database","11.6","11.6.0.12","18.0","Closed - Resolved","Polsinelli","Brandon Artist","2025-02-13T18:05:40.000Z","2025-03-03T17:49:47.000Z"

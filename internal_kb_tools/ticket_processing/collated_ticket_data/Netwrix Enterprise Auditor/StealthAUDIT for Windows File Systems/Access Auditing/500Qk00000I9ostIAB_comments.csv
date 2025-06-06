@@ -1,0 +1,99 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000AKCFNIA5","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Account ACV has been changed to 719462.18.
+Priority has been changed to High.","0054u000007MiY9AAK","2024-11-19T21:49:57.000Z","2024-11-19T21:49:57.000Z","false","false"
+"00aQk00000AKCGzIAP","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Account ACV has been changed to 359731.09.","0054u000007MiY9AAK","2024-11-19T21:49:59.000Z","2024-11-19T21:49:59.000Z","false","false"
+"00aQk00000AKjUfIAL","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Account ACV has been changed to 307802.15.","0054u000006gtWUAAY","2024-11-20T11:52:20.000Z","2024-11-20T11:52:20.000Z","false","false"
+"00aQk00000ALg9mIAD","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: Chris Brooks:
+
+@Salesforce During the preliminary investigation we need to do more digging to find the issue's root. It would help us if we have T2s from the customer's environment, would it be possible for them to provide those for us?
+
+[DevOps CommentId:11245261]","0054u000006gtWUAAY","2024-11-21T02:43:25.000Z","2024-11-21T02:43:25.000Z","false","false"
+"00aQk00000AMKX0IAP","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: Michael Burrofato:
+
+@Chris Brooks @Ethan Israel @Salesforce 
+Log file 2-FSAA Bulk Import_Log_20241113_005300.tsv shows the UNIQUE constraint error. However, the subsequent bulk import log 2-FSAA Bulk Import_Log_20241113_203200.tsv shows that data was reset and successfully imported. So not sure if that is still an issue.
+
+The latest bulk import job log shows a database is locked error: 
+
+16/11/2024 00:01:59 ERROR FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""code = Busy (5), message = System.Data.SQLite.SQLiteException (0x800007AF): database is locked  database is locked     at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)     at System.Data.SQLite.SQLiteDataReader.NextResult()     at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)     at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)     at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)     at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()     at System.Data.SQLite.SQLiteTransaction.Begin(Boolean deferredLock)     at System.Data.SQLite.SQLiteTransactionBase..ctor(SQLiteConnection connection, Boolean deferredLock)     at System.Data.SQLite.SQLiteTransaction..ctor(SQLiteConnection connection, Boolean deferredLock)     at System.Data.SQLite.SQLiteConnection.BeginDbTransaction(IsolationLevel isolationLevel)     at System.Data.SQLite.SQLiteConnection.BeginTransaction()     at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.MigrateDbs(SQLiteConnection sqLite, DatabaseFiles tables, String host)     at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.IsTier2SchemaUpdated(SQLiteConnection sqLite, DatabaseFiles tables, String host)     at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()     at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()"" BRPW-FS01 DCExtract 8628 7416 9784
+
+Database is locked error usually means that we are attempting to use the tier 2 database while it's already being used by another process. This can occur when attempting to bulk import a database while a scan is occurring, or 2 scans of the same type overlapping at the same time. These kinds of scenarios can also causing some data to be written incorrectly, which could lead to the original Unique constraint issue.
+
+I think the next steps is for customer to review their job schedules and make sure that there are no overlaps of scheduled scans and imports. NEA does NOT support any bulk import of a host that is being actively scanned. We also don't support scanning the same host of the same scan type at the same time. (2 permissions scans running against the same host at the same time).
+
+[DevOps CommentId:11260022]","0054u000006gtWUAAY","2024-11-21T16:10:29.000Z","2024-11-21T16:10:29.000Z","false","false"
+"00aQk00000AMLZVIA5","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Priority has been changed to Critical.","0054u000006goGXAAY","2024-11-21T16:20:59.000Z","2024-11-21T16:20:59.000Z","false","false"
+"00aQk00000AMLeMIAX","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: Priority raised to P1/Critical due to customer renewal timeline","0054u000006goGXAAY","2024-11-21T16:21:31.000Z","2024-11-21T16:21:31.000Z","false","false"
+"00aQk00000ATUBSIA5","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: Helen Randall:
+
+@Salesforce this one is marked as Awaiting R&D in SF, but looks like we're waiting feedback from the customer. Please could you confirm?
+
+[DevOps CommentId:11289410]","0054u000006gtWUAAY","2024-11-28T10:31:12.000Z","2024-11-28T10:31:12.000Z","false","false"
+"00aQk00000ATbZWIA1","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-28T12:18:20.000Z","2024-11-28T12:18:20.000Z","false","false"
+"00aQk00000ATbZYIA1","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: Helen Randall:
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11290486]","0054u000006gtWUAAY","2024-11-28T12:18:21.000Z","2024-11-28T12:18:21.000Z","false","false"
+"00aQk00000AWQUgIAP","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-12-02T15:45:11.000Z","2024-12-02T15:45:11.000Z","false","false"
+"00aQk00000AWSLBIA5","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-02T15:45:22.000Z","2024-12-02T15:45:22.000Z","false","false"
+"00aQk00000AbLKgIAN","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-11-28 12:18 UTC and the last detected comment from support was 2024-11-21 16:21 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11354128]","0054u000006gtWUAAY","2024-12-06T05:04:39.000Z","2024-12-06T05:04:39.000Z","false","false"
+"00aQk00000AbmfqIAB","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: Meeting scheduled with customer for 12/11/2024 11:00 AM ET","0054u000007MiY9AAK","2024-12-06T15:26:39.000Z","2024-12-06T15:26:39.000Z","false","false"
+"00aQk00000Ah5ebIAB","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-12-11T16:36:34.000Z","2024-12-11T16:36:34.000Z","false","false"
+"00aQk00000AiQsJIAV","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: Fixed the customers schedule- will close the escalation once customer confirms they no longer need to reset hosts","0054u000007MiY9AAK","2024-12-12T16:18:59.000Z","2024-12-12T16:18:59.000Z","false","false"
+"00aQk00000An4pVIAR","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-17T11:54:11.000Z","2024-12-17T11:54:11.000Z","false","false"
+"00aQk00000An4pXIAR","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: Helen Randall:
+
+@WaitingOnEngineer let us know when you have any update from the customer. Thanks
+
+[DevOps CommentId:11420393]","0054u000006gtWUAAY","2024-12-17T11:54:12.000Z","2024-12-17T11:54:12.000Z","false","false"
+"00aQk00000AnNCDIA3","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-12-17T16:07:39.000Z","2024-12-17T16:07:39.000Z","false","false"
+"00aQk00000AumgwIAB","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-25T05:04:08.000Z","2024-12-25T05:04:08.000Z","false","false"
+"00aQk00000AumgyIAB","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-12-17 11:54 UTC and the last detected comment from support was 2024-12-12 16:19 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11447028]","0054u000006gtWUAAY","2024-12-25T05:04:09.000Z","2024-12-25T05:04:09.000Z","false","false"
+"00aQk00000Av9btIAB","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-12-25T16:32:56.000Z","2024-12-25T16:32:56.000Z","false","false"
+"00aQk00000B0Yt0IAF","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-01T05:04:12.000Z","2025-01-01T05:04:12.000Z","false","false"
+"00aQk00000B0Yt2IAF","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-12-17 11:54 UTC and the last detected comment from support was 2024-12-12 16:19 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11452777]","0054u000006gtWUAAY","2025-01-01T05:04:13.000Z","2025-01-01T05:04:13.000Z","false","false"
+"00aQk00000B1V0EIAV","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the new comment has been added: Haven't received a response from customer in a month. Closing escalation so support ticket can go through auto-follow up process","0054u000007MiY9AAK","2025-01-02T14:33:12.000Z","2025-01-02T14:33:12.000Z","false","false"
+"00aQk00000B1V8HIAV","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to No Response.","0054u000007MiY9AAK","2025-01-02T14:34:20.000Z","2025-01-02T14:34:20.000Z","false","false"
+"00aQk00000B5PHCIA3","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007MiY9AAK","2025-01-06T17:24:36.000Z","2025-01-06T17:24:36.000Z","false","false"
+"00aQk00000BQ9nhIAD","500Qk00000I9ostIAB","On Escalation Ticket # 00427590 the Following Fields have been updated: 
+Account ACV has been changed to 251298.99.","0054u000006gtWUAAY","2025-01-24T12:31:05.000Z","2025-01-24T12:31:05.000Z","false","false"

@@ -1,0 +1,25 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Ex0ggIAB","00419141","Support Ticket","Medium vulnerabilities in Netwrix products","We have two vulnerabilities that we need help remediating
+
+The first one is about incorrct permissions on 
+c:program files (x86)stealthbitsstealthauditfilesystemam<a href='https://stealthauditrpcfsam.exe' target='_blank'>stealthauditrpcfsam.exe</a>
+
+The audit shows that this path has Users with modify permissions.  Users (beyond Admins) should not be able to modify files in the Program files path.
+
+I'm not sure how this got set (maybe as part of troubleshooting?) but Is it OK if we remove these permissions?
+
+-------------
+
+The other vulnerability is a older one for Threat manager where we need to update the .net core and <a href='https://asp.net' target='_blank'>asp.net</a> to the latest supported version (8 I believe) but when we tried to upgrade, Enterprise Auditor stopped working.  
+
+Here are the details from the ticket
+  The .Net core 6.0.19 version in <a href='https://phprdappstb01w.nbme.org' target='_blank'>phprdappstb01w.nbme.org</a> server was updated but the Stealth Bit site was inoperable. As a result, we performed a rollback of the changes on the respective server. The vendor confirms the issue and reports that they will provide a fix in the next release of Stealth Defend slated for Q3 on PhPrdAppStb01w
+
+Does Threat Manager (and Enterprise Auditor since they both run on the same machine at present) now support the latest version of .net core and <a href='https://asp.net' target='_blank'>asp.net</a>?
+If not, will the next version(s) support it?
+If the next version(s) support the latest version of .net core <a href='https:///asp.net' target='_blank'>/asp.net</a>, when will they be released (approx)?","","","","[Issue]
+Incorrect permissions on
+c:program files (x86)stealthbitsstealthauditfilesystemamstealthauditrpcfsam.exe
+
+[Resolution]
+Removed the ""Users"" from having modify permissions","Guidance","Tay Caliguiri","","Netwrix Enterprise Auditor","Action Module","File System","11.6","","30.1","Closed - Resolved","National Board of Medical Examiners","Bob Langer","2024-08-26T17:23:54.000Z","2024-09-25T19:19:20.000Z"

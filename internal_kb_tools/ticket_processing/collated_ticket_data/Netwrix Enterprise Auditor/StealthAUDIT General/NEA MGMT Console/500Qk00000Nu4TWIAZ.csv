@@ -1,0 +1,33 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Nu4TWIAZ","00441574","Support Ticket","How to Determine Host Group Membership by Host","I would like to understand how to derive the list of Host Groups that a given Host is a member of. If there is no way to determine this from UI navigation, then I'd like some help building a Job that can report such output. We have a very large number of hosts and host groups, and I've had several use cases for this information. The latest is that owner of a particular Host has been transferred to me without any historical context - other then it may be related to Netwrix. I would like to know which Host Groups the host is a member of so I make an assessment on if the Host was replaced, what Jobs run against it, if it is acting as a proxy for Auditing, and other such questions.","","DECLARE @Server NVARCHAR(50) = 'MCANDON-FS';
+SELECT Name from HostListsTbl where listID in (
+	SELECT listID FROM HostListsContentTbl where hostID = (
+		SELECT hostID FROM SA_HostMasterTbl where Name = @Server));
+
+##
+##
+
+select hmt.name as Host_Name
+, hlt.name as list_name
+from HostListsContentTbl hlct
+join HostListsTbl hlt on hlt.listID = hlct.listID
+join SA_HostMasterTbl hmt on hmt.hostID = hlct.hostID
+order by hmt.name, hlt.name 
+;","2025_0411: Anticipating feedback from the customer on Monday.","KB_NEEDED?
+
+DECLARE @Server NVARCHAR(50) = 'MCANDON-FS';
+SELECT Name from HostListsTbl where listID in (
+SELECT listID FROM HostListsContentTbl where hostID = (
+SELECT hostID FROM SA_HostMasterTbl where Name = @Server));
+
+++
+++
+
+
+select hmt.name as Host_Name
+, hlt.name as list_name
+from HostListsContentTbl hlct
+join HostListsTbl hlt on hlt.listID = hlct.listID
+join SA_HostMasterTbl hmt on hmt.hostID = hlct.hostID
+order by hmt.name, hlt.name 
+;","Guidance","Mike Candon","Question","Netwrix Enterprise Auditor","StealthAUDIT General","NEA MGMT Console","11.6","","4.3","Closed - Resolved","John Deere Company","Scott Prigge","2025-04-10T12:08:03.000Z","2025-04-14T20:09:10.000Z"

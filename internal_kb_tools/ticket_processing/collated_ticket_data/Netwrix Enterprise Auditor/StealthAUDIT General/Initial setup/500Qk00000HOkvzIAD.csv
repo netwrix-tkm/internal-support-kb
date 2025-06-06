@@ -1,0 +1,19 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HOkvzIAD","00424885","Support Ticket","Review host status and SSL certificate renewal","Hello. I would like to speak with an engineer about two topics:
+1) I need to replace the expiring SSL certificate used by the Published Reports and AIC interface. I'd like some guidance on the process to update the product to use it.
+2) I would like to review the File Permissions data from one host to ensure it is reporting reliable data in preparation for an upcoming financial audit.
+
+Neither of these items are urgent, so please contact me at your earliest convenience to arrange a time for a consultation. Thanks!","","AIC is showing some shared folders that no longer exist. The customer has noted that they are running external audits by running SQL queries directly against the NEA database. The concern right now is that since AIC is displaying folders that no longer exist, they can't trust the information in the NEA database, even after running new scans.","Scott has stated that since the data is apparently incorrect, they don't care about keeping it and he would like to drop the entire FS tables and rebuild them to get fresh data. The next step currently is to drop the FS tables, run the schema job and rescan all File systems.
+
+1. Add the following job from Instant Jobs: File SystemFS_DropTables
+2. Enable applicable analyses based on what tables to drop (at least FSAA 1 & 5)
+3. Run the job
+4. Run the File System0-CreateSchema job
+5. Verify FSAA job is configured as the customer desires and run it from the scheduled tasks","Symptom
+The customer has data showing in AIC that is stale. Several file systems show permissions and folders that no longer exist, even after rescanning. This is leading to the customer not trusting the data they are seeing. The product was managed by another team originally and the customer is looking for guidance on how to start fresh to rebuild confidence in the product.
+
+
+Resolution
+We spoke with the customer about how he can drop the tables from NEA to start fresh and how the product would work, as well as gave basic guidance on how to configure custom reporting.
+
+The customer is going to proceed with professional services to get a new baseline and setup reporting for one file host and build from there, the help build confidence in the product within the company.","Guidance","Ian Ranstrom","","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","","21.0","Closed - Resolved","John Deere Company","Scott Prigge","2024-10-23T19:11:46.000Z","2024-11-13T18:26:56.000Z"

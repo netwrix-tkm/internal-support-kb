@@ -1,0 +1,44 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Ks5glIAB","00432916","Support Ticket","access denied error for FSAA job ( Running Job against Nutanix )","Customer using Nutanix as a file share, we have configured Enterprise Auditor for Nutanix but getting error for FSAA job","Have 11.6.0.117 NEA installed. 
+Have Nutanix with multiple domain-joined File Servers.
+Configure FSAA scan for Nutanix Filer. 
+Add only one Nutanix File server to the list of target hosts.
+Provide ""Backup Admin: Backup access only"" role (Nutanix Built-in role) to the Domain Account specified in connection profile. 
+
+FSAA scan is failing with Access Denied for several File Shares.","Customer is in EMEA. Saudi Investment Bank. Preferred time zone to work is +3 UTC
+Customer is on 11.6.0.117 NEA. 
+
+On a remote session we checked NEA and Nutanix configuration for FSAA scan. 
+both NEA and Nutanix are configured in accordance with our user guide, which are:
+-Active directory account in the connection profile.
+-the account needs to have the assigned ""Backup Admin: Backup Access"" (Nutanix built-in role) for least privilege or ""admin"" rights.
+-Target host should be Nutanix host/hosts. 
+
+FSAA scan is still failing with ""Access is Denied"" error:
+Access is denied"",,,1/25/2025 8:34:48 PM
+HOSAIBFS.SAIBNET2.SAIB.COM,SBWPDFSSAP001,1/25/2025 8:00:00 PM,WARNING,Access,Access denied scanning \HOSAIBFS.SAIBNET2.SAIB.COMSOSAPP,,,1/25/2025 8:34:48 PM
+HOSAIBFS.SAIBNET2.SAIB.COM,SBWPDFSSAP001,1/25/2025 8:00:00 PM,WARNING,Access,""Unable to get Last Modified Date of \HOSAIBFS.SAIBNET2.SAIB.COMESBLOG:  5 System Error.  Code: 5.
+
+-----------
+
+I had a conversation with Chris Brooks (Product Manager). He suggested checking the following:
+
+1. Connect to Netwrix Enterprise Auditor server. 
+2. On this server open File Explorer. 
+3. Enter UNC path that leads to Nutanix share in question so it would look similar to this:
+\ipaddressshare
+Enter credentials that are used in the account from the Enterprise Auditor connection profile (the service account with ""Backup Admin: Backup Access"" role assigned to it in Nutanix).
+
+And this:
+1. Do you have ""Filesystem Allowlist"" configured in Nutanix?
+2. Does this list include the Netwrix Enterprise Auditor server? 
+
+Customer replied with results:
+""We have done this testing by accessing UNC path from EA server and it is accessible.
+Netwrix EA server is added in allow list and has permission to access.""
+
+As per conversation with Chris Brooks, he suggested escalating this ticket to developers at this point.","Support is preparing ticket for escalation.","Cause
+Configuration issue on customer's side, correct permissions were not applied
+
+Resolution
+After setting up permissions, customer advised to close the ticket","Incorrect configuration: target server software","Damir Akhmatshin","Error","Netwrix Enterprise Auditor","NEA for Nutanix","Access Auditing","11.6","11.6.0.117","41.1","Closed - Resolved","The Saudi Investment Bank (SAIB)","Pramod Sawant","2025-01-21T05:20:34.000Z","2025-03-03T07:29:51.000Z"

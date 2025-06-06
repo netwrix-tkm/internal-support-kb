@@ -1,0 +1,61 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000N0KBEIA3","00438927","Support Ticket","POC - NEA Published Reports :Internal Server Error","We are having an issue when accessing the NEA Published reports When we login we receive an error.
+“Request for Downloading published reports Failed: Internal Server Error”
+In the Web Service “Service.log” we see the error “The user name or password is incorrect.”
+The username and or password is not incorrect as we are using it for a lot of other tasks. 
+There is no RBA setup to the console or the reports. There are no certificates that have been assigned to the Published Reports Web Server. 
+Access to the AIC is working fine. 
+NEA Build number is 11.6.0.137
+
+PLease provide SharePoint Site so i cn copy the logfiles","+++++
+NEA Version 11.6.0.122 and 11.6.0.38
++++++
+
+1) In my experience thus far (UPDATED on 2025_0336 @17:06 PM EST:
+
+a) If I run the NEA Web Server using the Local System and I have NO Roles configured under NEA > Settings > Access, I can login using a Windows user and I CAN reach the NEA Published Reports page.
+
+b) IF there are any roles configured in NEA under Settings > Access THEN a Windows NT user who does NOT at least have the NEA Role = Report Viewer, they can login but they will get the blue ""No Content"" message which says:
++++++
+""No reports have been made available to you currently. Please contact your Administrator of Netwrix Enterprise Auditor to provision access to published reports.""
++++++
+
+Note:
+a) I have removed ALL users from NEA > Settings > Access (no one has any roles).
+b) NEA > Settings > Connection is using the NetwrixEA profile - SQL Server Auth only.
+c) NEA > Settings > Storage > the NetwrixEA DB user that I created with SQL Server Auth only.
+
++++++
+zz) POSSIBLE SCENARIO TO TEST: If I run the NEA Web Server as Local System BUT I still have any roles (Administrator or Report Viewer or any other role) configured under NEA > Settings > Access, I cannot even reach the NEA Published Reports page to login. The NEA Published Reports page does not render at all.","+++++
+NEA Version 11.6.0.122 and 11.6.0.38
++++++
+
+1) In my experience thus far (UPDATED on 2025_0336 @17:06 PM EST:
+
+a) If I run the NEA Web Server using the Local System and I have NO Roles configured under NEA > Settings > Access, I can login using a Windows user and I CAN reach the NEA Published Reports page.
+
+b) IF there are any roles configured in NEA under Settings > Access THEN a Windows NT user who does NOT at least have the NEA Role = Report Viewer, they can login but they will get the blue ""No Content"" message which says:
++++++
+""No reports have been made available to you currently. Please contact your Administrator of Netwrix Enterprise Auditor to provision access to published reports.""
++++++
+
+Note:
+a) I have removed ALL users from NEA > Settings > Access (no one has any roles).
+b) NEA > Settings > Connection is using the NetwrixEA profile - SQL Server Auth only.
+c) NEA > Settings > Storage > the NetwrixEA DB user that I created with SQL Server Auth only.
+
++++++
+zz) POSSIBLE SCENARIO TO TEST: If I run the NEA Web Server as Local System BUT I still have any roles (Administrator or Report Viewer or any other role) configured under NEA > Settings > Access, I cannot even reach the NEA Published Reports page to login. The NEA Published Reports page does not render at all.","+++++
+2025_0313: Next Steps
++++++
+WEB SERVER: AD PERMISSION REQUIREMENT
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u0000000IIfCAM.html
++++++
+
+1) I believe there are permissions issues with/to the RBAC files? A screenshot of the error with the date/time in the corner, and a fresh copy of the service log would be nice to confirm the two are linked. When we've seen this error message in the past, it didn't log errors so the stack trace error may be unrelated. 
+ 
+2) If they replicate the previous fix of recreating the reports folder, does it temporarily resolve? That would point towards a corruption issue
+
+3) Please attach a screenshot of Settings > Reporting and a copy of the web config file.
+
+4) And to dot our i's, a copy of the windows application event log since I think that's a .NET error.","The customer managed to identify that for the reporting site the issue is indeed permissions and have tested with domain users and are able to access the site.","Guidance","Mike Candon","Error","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.6","11.6.0.138","23.5","Closed - Resolved","Lewis Group Ltd","Ziyaad Rasool","2025-03-17T08:41:26.000Z","2025-04-09T21:14:28.000Z"

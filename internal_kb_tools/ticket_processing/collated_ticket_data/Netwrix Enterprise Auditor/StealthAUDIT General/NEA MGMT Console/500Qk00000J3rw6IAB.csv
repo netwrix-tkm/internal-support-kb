@@ -1,0 +1,129 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000J3rw6IAB","00428741","Support Ticket","Cannont find data in Auditor","I have a request from management for the following data:
+
+who has accessed these shares?
+
+\tdc.internalSTARInstallBuildsProductSupportUtilsQA
+\tdc.internalSTARInstallBuildsProductSupportUtils
+\tdc.internalSTARInstallBuildsProductSupportUtils-17.3
+ 
+ 
+Timeframe – I am unsure how much data is kept in the tool.  On the off chance that you have years of data, can you just pull for the last year, and a separate one (or if you can have the last access date then no extra file needed) for last 90 days?","","Today we:
+
+Identified that the FSAC system scan and Bulk Import jobs were displaying errors that required the bulk import job to run for the FSAC scan and the no data to import for the Bulk Import job.
+
+We then verified that the activity monitor agent that is being used as a proxy to scan event activity on Nasuni and NetApp filers are being monitored in the activity monitor console.
+
+Since the FSAC and Bulk Import jobs were displaying errors this was preventing activity from being displayed in the AIC web console.
+
+We then targeted the NetApp host for both the FSAC and Bulk Import jobs. We were successfully able to run the FSAC system scan job and started running the Bulk Import.
+----------------------------------------------------------
+
+12/16/23
+
+Today we:
+
+Performed the steps below:
+ 
+Close NEA and open File Explorer
+Navigate to %SAInstallDir%
+In the Jobs folder, navigate to ...GROUP_FileSystemGROUP_0.Collection and create 2 new folders named ""NetApp"" and ""Nasuni""
+Move the current jobs in this directory to the Nasuni folder
+Back in the %SAInstallDir%, open the InstantSolutions folder, and copy the all the jobs numbered 1-3 from the ...GROUP_FileSystemGROUP_0.Collection to the new NetApp folder created in the Jobs directory
+Open NEA and navigate to your new NetApp folder in the Job Tree
+On the new jobs, set the Hosts to the NetApp servers and set a connection profile with appropriate permissions to collect data (you can most likely use the same connection profile as the Nasuni job
+If using proxys for scanning, you can set that in the Scan Server Selection page of each System Scan jobs query settings (Configure > Queries > Query Properties > Configure)
+After configuring the new jobs to scan the NetApp servers, remove the NetApp host from the Nasuni jobs.
+The goal was to create two new jobs targeting the NetApp and the Windows file servers for activity scans. This will separate the activity that's being collected and not conflict with the query mapping configurations in the Nasuni job settings. 
+
+Once these steps were completed we then ran the FSAC system scan job for the NetApp hosts to test a successful scan which completed successfully. We then scheduled all other activity jobs so that the job groups can be run to test an estimated completion time in preparation for a future scheduled time that will be offset from the Nasuni scheduled jobs. 
+
+We then scheduled a test FSAC Bulk Import for the NetApp job group so that the activity data can be visible within the AIC.
+-------------------------------------------------
+12/17/24
+
+Today we:
+
+Discovered that after running the NetApp FSAC system scan and Bulk Import we were able to view those activity details from those hosts in the AIC. It seems to have required a few hours for the AIC to update and display all recent NetApp activity data that was indexed into the SQL database by the Bulk Import. 
+
+We then reviewed the duration of the Nasuni and NetApp Activity and Permissions job groups and determined a suitable time to schedule and stagger those jobs apart from each other to mitigate table locks on the SQL database. 
+
+We also discovered that one Nasuni filer was not being scanned in one host list. We then tested an FSAC system scan targeting that one hosts and we were successfully able to find and scan that host as well as have a successfully bulk import.","Our next steps are:
+
+You will:
+
+Allow for the Bulk Import job to successfully complete and monitor any issues.
+----------------------------------------------------------
+12/16/23
+
+Our next steps are:
+
+You will:
+
+Monitor the Bulk Import for any errors that may occur and provide those updates. 
+
+Once the Bulk Import is complete verify that you can run a search within the AIC web console and provide an update on that as well. 
+
+I will:
+
+Keep this ticket open until an update has been provided.
+-----------------------------------------------------
+12/17/24
+
+Our next steps are:
+
+You will:
+
+Allow for the current FSAC system scan and Bulk Import to finish and provide an update on those job results.
+
+I will:
+
+Keep this ticket open until an update has been provided.","Symptom
+
+I have a request from management for the following data:
+
+who has accessed these shares?
+
+\tdc.internalSTARInstallBuildsProductSupportUtilsQA
+\tdc.internalSTARInstallBuildsProductSupportUtils
+\tdc.internalSTARInstallBuildsProductSupportUtils-17.3
+
+
+Timeframe – I am unsure how much data is kept in the tool. On the off chance that you have years of data, can you just pull for the last year, and a separate one (or if you can have the last access date then no extra file needed) for last 90 days?
+
+Cause
+
+Identified that the FSAC system scan and Bulk Import jobs were displaying errors that required the bulk import job to run for the FSAC scan and the no data to import for the Bulk Import job.
+
+We then verified that the activity monitor agent that is being used as a proxy to scan event activity on Nasuni and NetApp filers are being monitored in the activity monitor console.
+
+Since the FSAC and Bulk Import jobs were displaying errors this was preventing activity from being displayed in the AIC web console.
+
+Resolution
+
+We then targeted the NetApp host for both the FSAC and Bulk Import jobs. We were successfully able to run the FSAC system scan job and started running the Bulk Import.
+
+We then performed the steps below:
+
+Close NEA and open File Explorer
+Navigate to %SAInstallDir%
+In the Jobs folder, navigate to ...GROUP_FileSystemGROUP_0.Collection and create 2 new folders named ""NetApp"" and ""Nasuni""
+Move the current jobs in this directory to the Nasuni folder
+Back in the %SAInstallDir%, open the InstantSolutions folder, and copy the all the jobs numbered 1-3 from the ...GROUP_FileSystemGROUP_0.Collection to the new NetApp folder created in the Jobs directory
+Open NEA and navigate to your new NetApp folder in the Job Tree
+On the new jobs, set the Hosts to the NetApp servers and set a connection profile with appropriate permissions to collect data (you can most likely use the same connection profile as the Nasuni job
+If using proxys for scanning, you can set that in the Scan Server Selection page of each System Scan jobs query settings (Configure > Queries > Query Properties > Configure)
+After configuring the new jobs to scan the NetApp servers, remove the NetApp host from the Nasuni jobs.
+The goal was to create two new jobs targeting the NetApp and the Windows file servers for activity scans. This will separate the activity that's being collected and not conflict with the query mapping configurations in the Nasuni job settings.
+
+Once these steps were completed we then ran the FSAC system scan job for the NetApp hosts to test a successful scan which completed successfully. We then scheduled all other activity jobs so that the job groups can be run to test an estimated completion time in preparation for a future scheduled time that will be offset from the Nasuni scheduled jobs.
+
+We then scheduled a test FSAC Bulk Import for the NetApp job group so that the activity data can be visible within the AIC.
+
+Discovered that after running the NetApp FSAC system scan and Bulk Import we were able to view those activity details from those hosts in the AIC. It seems to have required a few hours for the AIC to update and display all recent NetApp activity data that was indexed into the SQL database by the Bulk Import.
+
+Reviewed the duration of the Nasuni and NetApp Activity and Permissions job groups and determined a suitable time to schedule and stagger those jobs apart from each other to mitigate table locks on the SQL database.
+
+We also discovered that one Nasuni filer was not being scanned in one host list. We then tested an FSAC system scan targeting that one hosts and we were successfully able to find and scan that host as well as have a successful bulk import.
+
+After allowing the Bulk Imports to fully complete for the FSAC Netapp job we were able to view all activity data in the AIC.","Advanced Configuration Change","Scottie Taylor","Question","Netwrix Enterprise Auditor","StealthAUDIT General","NEA MGMT Console","11.6","","27.0","Closed - Resolved","The Doctors Company","Chad Fontanini","2024-12-03T22:37:54.000Z","2024-12-30T22:43:13.000Z"

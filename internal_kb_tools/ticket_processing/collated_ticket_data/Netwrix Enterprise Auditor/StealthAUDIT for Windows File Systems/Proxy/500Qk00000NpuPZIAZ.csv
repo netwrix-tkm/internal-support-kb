@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NpuPZIAZ","00441375","Support Ticket","Can't install 'File System Scanning Proxy'","I recently upgraded from v11.6 to v12 of the Netwrix Enterprise Auditor. Following the upgrade instructions, I tried to run the 'FS_UpdateProxy' instant job. It failed, almost instantly, with a weird 'key' error message. 
+
+Following the manual update instructions, I uninstalled the proxy from my Proxy Servers. Unfortunately, I can't reinstall it. The installer gets to a screen that asks for my license, then says 'can't find license' and fails. I don't even see this within the installation instructions on Netwrix website. I am trying to install onto systems running Server Core (no UI), so even if I click 'browse', the installer crashes and I can't change the license path.
+
+What license do I use to run the installer? How do I pass that as a command line argument if I can't use the 'browse' button? Am I being asked for a license in error? Would there be a broken Registry entry, or similar, which is causing me to see this screen? 
+
+The installer I'm running is: 
+""<a href='https://auditor-enterprise-FileSystemProxy-12.0.0.1030.msi' target='_blank'>auditor-enterprise-FileSystemProxy-12.0.0.1030.msi</a>""
+
+Just in trying to troubleshoot by myself, I coped '<a href='https://StealthAudit.lic' target='_blank'>StealthAudit.lic</a>' from my Enterprise Auditor installation directory so that it's in the same folder as the installer .msi. 
+
+Unfortunately, since I uninstalled the old Proxy to upgrade, my proxies aren't functional now.","","NAA v12.0 - Silent Installer Option for Proxy
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/FileSystemProxy/SilentInstall.htm
+
+NAA v12.0 - Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm","","msiexec /i auditor-enterprise-FileSystemProxy-12.0.0.1030.msi LICENSE_FILE=C:UsersusernameStealthAUDIT.LIC
+
+
+Required for server core","Guidance","Nicholas Zimmer","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Proxy","12.0","12.0.0.1030","9.1","Closed - Resolved","Acacia Communications, Inc.","Nicholas Smits","2025-04-08T19:29:14.000Z","2025-04-17T21:40:26.000Z"

@@ -1,0 +1,37 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KvlulIAB","00433160","Support Ticket","Entra Collection Jobs Failing","All Entra collection jobs in EA are failing. FYI... Collections are also failing in Threat Manager. I have verified that the connection profile is current. I have also verified that the Netwrix products are able to successfully connect to our Entra tenant.
+
+Enterprise Auditor error message:
+PrepareTask for DC 'AZUREADINVENTORY' for task 'AAD Inventory' failed: Unspecified error
+
+---------------
+current error:
+""ExecuteScalar requires an open and available Connection. The connection's current state is closed.""","","Client has had Entra jobs enabled since implantation, but only recently started to look at the jobs. 
+The errors have likely been there the entire time, just unnoticed
+
+---------------
+secret was expired causing access denied
+that's been fixed and now getting what looks like a SQL error:
+
+""ExecuteScalar requires an open and available Connection. The connection's current state is closed.""
+
+I'm not seeing this error in sales force
+
+the AAD_scan doens't use a bulk import job to upload to SQL. I'm assuming it writes straight to sql, but I don't knwo
+
+---------------
+
+looking at the full error, it looks like a SQL timeout issue
+The job task table reads like it times out at 18 minutes everytime
+
+27/01/2025 08:21:37    ERROR    AZUREADINVENTORY    Stealthbits.StealthAUDIT.DataCollectors.AzureADInventory.Tasks.AADInventoryScanTask.InternalProcessRecord    ""System.InvalidOperationException: ExecuteScalar requires an open and available Connection. The connection's current state is closed.     at System.Data.SqlClient.SqlCommand.ValidateCommand(String method, Boolean async)     at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)     at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)     at System.Data.SqlClient.SqlCommand.ExecuteScalar()     at Stealthbits.StealthAUDIT.DataCollectors.AzureADInventory.Database.AADInventoryDatabaseUpdate.CalculateEffectiveGroupMembership(Action`1 taskStatus)     at Stealthbits.StealthAUDIT.DataCollectors.AzureADInventory.Database.AADInventoryDatabaseUpdate.FinalizeScan(Action`1 taskStatus)     at Stealthbits.StealthAUDIT.DataCollectors.AzureADInventory.Database.AADInventoryDatabaseUpdate.Finish(Action`1 taskStatus)     at Stealthbits.StealthAUDIT.DataCollectors.AzureADInventory.Tasks.AADInventoryScanTask.InternalProcessRecord()""    MOTIVALLC.ONMICROSOFT.COM    DCExtract    10828    9824    10992
+
+---------------
+Searching the internet I can only find examples of this error caused by coding issues. This will likely need escalating.
+
+discussed over TKS
+need to gather another run with debug logs.
+it looks to be failing after trying to switch to group membership but it's also only getting to users letter R","request another debug log run of the job","Had to drop EntraID tables.
+After that runs just fine.
+
+Appears to be related to the Adding domain part of the query.","Guidance","Nicholas Zimmer","Error","Netwrix Enterprise Auditor","StealthAUDIT for AzureAD","Inventory","11.6","1418","41.3","Closed - Resolved","Motiva Enterprises","James Rigoulot","2025-01-22T14:36:52.000Z","2025-03-04T22:34:33.000Z"

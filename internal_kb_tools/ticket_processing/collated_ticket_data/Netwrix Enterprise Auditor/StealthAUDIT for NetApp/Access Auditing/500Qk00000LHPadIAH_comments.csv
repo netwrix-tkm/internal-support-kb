@@ -1,0 +1,87 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BXOlBIAX","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Account ACV has been changed to 11283533.3266666666970.","0054u000006goLGAAY","2025-01-30T20:32:22.000Z","2025-01-30T20:32:22.000Z","false","false"
+"00aQk00000BXJQYIA5","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Account ACV has been changed to 5641766.6633333333485.","0054u000006goLGAAY","2025-01-30T20:32:23.000Z","2025-01-30T20:32:23.000Z","false","false"
+"00aQk00000Bn6ApIAJ","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Account ACV has been changed to 5452381.6633333333485.","0054u000006gtWUAAY","2025-02-13T15:51:32.000Z","2025-02-13T15:51:32.000Z","false","false"
+"00aQk00000BtJdCIAV","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Account ACV has been changed to 5274326.8633333333485.","0054u000006gtWUAAY","2025-02-19T13:44:32.000Z","2025-02-19T13:44:32.000Z","false","false"
+"00aQk00000C0VHrIAN","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the new comment has been added: Ethan Israel:
+
+@Salesforce @Helen Randall - 
+per discussion on the Technical Knowledge share, relaying guidance from dev on what to look out for if an issue like this comes up:
+
+Below is what we have seen. Why the stacktrace relates to the issue is that SafeAccessTokenHandles are not being finalized, so when our code re-impersonates, there are none left. This could happen with other OS resources that have a limit however:
+
+
+--- CODE ---
+System.Security.SecurityException at
+System.Security.Principal.WindowsIdentity.SafeImpersonate(Microsoft.Win32.SafeHandles.SafeAccessTokenHandle,
+System.Security.Principal.WindowsIdentity, System.Threading.StackCrawlMark
+ByRef) at
+System.Security.Principal.WindowsIdentity.Impersonate(System.Threading.StackCrawlMark
+ByRef) at
+System.Security.SecurityContext.SetSecurityContext(System.Security.SecurityContext,
+Reader, Boolean, System.Threading.StackCrawlMark ByRef) at
+System.Threading.ExecutionContext.SetExecutionContext(System.Threading.ExecutionContext,
+Boolean) at
+System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext,
+System.Threading.ContextCallback, System.Object, Boolean) at
+System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext,
+System.Threading.ContextCallback, System.Object, Boolean) at
+System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext,
+System.Threading.ContextCallback, System.Object) at
+System.Net.ContextAwareResult.Complete(IntPtr) at
+System.Net.LazyAsyncResult.ProtectedInvokeCallback(System.Object, IntPtr) at
+System.Net.Sockets.BaseOverlappedAsyncResult.CompletionPortCallback(UInt32,
+UInt32, System.Threading.NativeOverlapped*) at
+System.Threading._IOCompletionCallback.PerformIOCompletionCallback(UInt32,
+UInt32, System.Threading.NativeOverlapped*)
+--- CODE ---
+
+In the EventLogs, souce: .NET Runtime, Application: StealthAudit.EXE
+
+[DevOps CommentId:11701885]","0054u000006gtWUAAY","2025-02-25T20:58:36.000Z","2025-02-25T20:58:36.000Z","false","false"
+"00aQk00000C8zdiIAB","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Account ACV has been changed to 5274326.8566666666819.","0054u000006gtWUAAY","2025-03-05T12:50:27.000Z","2025-03-05T12:50:27.000Z","false","false"
+"00aQk00000CJ33JIAT","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Account ACV has been changed to 5285981.3933333333485.","0054u000006grr1AAA","2025-03-13T13:38:45.000Z","2025-03-13T13:38:45.000Z","false","false"
+"00aQk00000CPFJWIA5","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the new comment has been added: We are due to provide the customer a progress report to this issue. What may we communicate?","0050g000006QqyEAAS","2025-03-18T20:57:57.000Z","2025-03-18T20:57:57.000Z","false","false"
+"00aQk00000CRD0hIAH","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the new comment has been added: Michael Burrofato:
+
+@Salesforce Dev has just completed a fix candidate and submitted to QA for testing. Will provide updates as testing progresses
+
+[DevOps CommentId:11816712]","0054u000006gtWUAAY","2025-03-20T11:48:15.000Z","2025-03-20T11:48:15.000Z","false","false"
+"00aQk00000CRXLyIAP","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the new comment has been added: Michael Burrofato:
+
+@Salesforce  Update: A fix has been made that the dev team believes would help address this customer's issue. The fix is in the core area of the product
+
+Due to the area of the code the fix is in, and due to the cumulative list of fixes that have been made between the version the customer is running and the available fix, we unfortunately cannot provide a hotfix for this issue. Because of this, customer must upgrade to a CU.  Prepping a build now. Should have a CU posted today.
+
+
+@Chris Brooks @Benjamin Warren
+
+[DevOps CommentId:11818979]","0054u000006gtWUAAY","2025-03-20T15:25:26.000Z","2025-03-20T15:25:26.000Z","false","false"
+"00aQk00000CRuK9IAL","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-20T19:20:53.000Z","2025-03-20T19:20:53.000Z","false","false"
+"00aQk00000CRuKBIA1","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the new comment has been added: Michael Burrofato:
+
+@Salesforce @WaitingOnEngineer CU posted to website:
+
+https://releases.netwrix.com/products/auditor-enterprise/11.6/auditor-enterprise-smp-11.6.0.138.zip
+
+[DevOps CommentId:11821463]","0054u000006gtWUAAY","2025-03-20T19:20:53.000Z","2025-03-20T19:20:53.000Z","false","false"
+"00aQk00000CRuSEIA1","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the new comment has been added: Michael Burrofato:
+
+@Salesforce  @WaitingOnEngineer CU posted to website:
+
+https://releases.netwrix.com/products/auditor-enterprise/11.6/auditor-enterprise-smp-11.6.0.138.zip
+
+[DevOps CommentId:11821465]","0054u000006gtWUAAY","2025-03-20T19:22:36.000Z","2025-03-20T19:22:36.000Z","false","false"
+"00aQk00000CWrBxIAL","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006goLGAAY","2025-03-25T15:08:51.000Z","2025-03-25T15:08:51.000Z","false","false"
+"00aQk00000CWrBzIAL","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Account ACV has been changed to 10571962.7866666666970.","0054u000006goLGAAY","2025-03-25T15:08:54.000Z","2025-03-25T15:08:54.000Z","false","false"
+"00aQk00000CWqpPIAT","500Qk00000LHPadIAH","On Escalation Ticket # 00434193 the Following Fields have been updated: 
+Account ACV has been changed to 5285981.3933333333485.","0054u000006gtWUAAY","2025-03-25T15:09:06.000Z","2025-03-25T15:09:06.000Z","false","false"

@@ -1,129 +1,150 @@
-# Netwrix Endpoint Protector: Content-Aware Protection - Third Party Conflict
+# Knowledge Base Reference Guide: Troubleshooting Third-Party Conflicts in Netwrix Endpoint Protector (Content-Aware Protection)
 
 ## Overview
-Netwrix Endpoint Protector's Content-Aware Protection feature is designed to safeguard sensitive data by monitoring and controlling endpoint activities. However, conflicts with third-party applications, particularly VPN clients and other software, can occasionally arise. This article provides a comprehensive guide to identifying, troubleshooting, and resolving these conflicts.
+Third-party conflicts in the Netwrix Endpoint Protector (EPP) often arise when the product interacts with external software, such as VPN clients or specialized applications. These conflicts can disrupt functionality, leading to issues like intermittent connectivity, application failures, or degraded performance. Understanding and resolving these conflicts is critical to maintaining seamless integration and ensuring customer satisfaction.
 
-## Issue Summary Table
-
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| Cisco AnyConnect DPI VPN Recurrence | VPN functionality issues | Review previous ticket history, assess third-party conflicts | No resolution implemented; issue deprioritized | [Cisco AnyConnect DPI VPN Recurrence](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000G1kAsIAJ/view) |
-| Cisco VPN Connection Drops | VPN disconnects after 10-15 minutes; browser pages fail to load | Terminate EPP client, open ADO for investigation | Provided updated EPP client builds to resolve compatibility issues | [Cisco VPN Connection Drops](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000KvRrEIAV/view) |
-| MobileX Server Connection Failure | MobileX cannot connect to its server | Test DPI settings, enable "Stealth DPI driver" | Enabled "Stealth DPI driver" to resolve issue | [MobileX Server Connection Failure](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MsACEIA3/view) |
-| CiscoVPN Disabling Intermittently | VPN disables every 10-30 minutes; intermittent internet access | Disable "Advanced Printer and MTP Scanning," add CiscoVPN to exception list | Disabled advanced scanning and added CiscoVPN process to exception list | [CiscoVPN Disabling Intermittently](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NeNtXIAV/view) |
+This guide provides a systematic approach to identifying, diagnosing, and resolving third-party conflicts, with a focus on Content-Aware Protection. It includes technical background, diagnostic methodologies, common scenarios, and real-world case studies to equip support engineers with the tools and knowledge needed to handle these issues effectively.
 
 ---
 
-## Detailed Issues
+## Technical Background
+### Key Concepts
+- **Content-Aware Protection**: A feature of Netwrix Endpoint Protector that monitors and controls data transfers based on predefined policies.
+- **Third-Party Conflicts**: Issues arising from interactions between the EPP client and external software, such as VPN clients or proprietary applications.
+- **DPI (Data Protection Integration)**: A component of EPP that inspects data traffic for policy enforcement. DPI settings can sometimes interfere with third-party software.
+- **Advanced Scanning Features**: Options like "Advanced Printer and MTP Scanning" that enhance data inspection but may cause compatibility issues.
 
-### Cisco AnyConnect DPI VPN Recurrence
-**Symptoms:**  
-PrivatBank reported recurring issues with the Cisco AnyConnect DPI VPN, previously addressed in an older ticket (#10855). The VPN functionality was disrupted, but the issue was deprioritized by the customer.
+### Common Third-Party Software Affected
+- **Cisco Secure Client (AnyConnect VPN)**: Known for conflicts with DPI and advanced scanning features.
+- **Proprietary Applications (e.g., MobileX)**: May experience connectivity issues due to DPI settings.
 
-**Troubleshooting Steps:**  
-1. Reviewed the history of the previous ticket (#10855) for insights into the issue.  
-2. Engaged with the customer to gather detailed information about the symptoms and any changes in their environment since the last occurrence.  
-3. Assessed potential conflicts with third-party applications affecting VPN functionality.  
-4. Confirmed that the issue was not prioritized by the customer at this time.
-
-**Root Cause:**  
-The root cause was not explicitly identified but was likely linked to conflicts with third-party applications.
-
-**Solution:**  
-No specific resolution was implemented as the customer deprioritized the issue.
-
-**Source Ticket:** [Cisco AnyConnect DPI VPN Recurrence](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000G1kAsIAJ/view)
+### Terminology
+- **ISE Posture Indicator**: A status indicator in Cisco Secure Client that reflects compliance with security policies.
+- **Stealth DPI Driver**: A DPI mode designed to improve compatibility with third-party applications.
 
 ---
 
-### Cisco VPN Connection Drops
-**Symptoms:**  
-PrivatBank reported intermittent VPN connection drops with the Cisco Secure Client. After rebooting the PC, the VPN worked for 10-15 minutes before failing, causing browser pages to stop loading.  
+## Issue Recognition & Triage
+### Symptoms
+- Intermittent VPN disconnections or degraded performance.
+- Application-specific connectivity failures.
+- Browser pages failing to load after a VPN session starts.
 
-**Troubleshooting Steps:**  
-1. Verified the initial problem description with the customer.  
-2. Observed the behavior of the Cisco Secure Client during the issue.  
-3. Terminated the EPP client, which temporarily resolved the connectivity issue.  
-4. Opened an Application Development Order (ADO) to investigate further.  
-5. Awaited updates from R&D regarding the conflict.
+### Categorization
+- **High Priority**: Issues affecting critical business operations (e.g., VPN disconnections for a financial institution).
+- **Medium Priority**: Issues impacting non-critical applications or isolated endpoints.
+- **Low Priority**: Recurring but non-urgent issues reported by the customer.
 
-**Root Cause:**  
-A conflict between the Cisco VPN client and the EPP client caused the VPN connection to drop intermittently.
-
-**Solution:**  
-Provided the customer with updated EPP client builds that resolved compatibility issues with the Cisco VPN client.
-
-**Source Ticket:** [Cisco VPN Connection Drops](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000KvRrEIAV/view)
+### Initial Assessment
+- Confirm whether the issue is isolated to a specific endpoint or affects multiple systems.
+- Identify the third-party software involved and its version.
+- Check for recent changes in the environment, such as software updates or policy modifications.
 
 ---
 
-### MobileX Server Connection Failure
-**Symptoms:**  
-After installing the EPP client, the MobileX application failed to connect to its server. The issue was isolated to one client machine, while other machines with identical EPP settings functioned correctly.
+## Diagnostic Methodology
+### Systematic Approach
+1. **Verify the Problem**: Reproduce the issue to confirm its symptoms and scope.
+2. **Review Logs**: Examine EPP and third-party software logs for error messages or conflicts.
+3. **Isolate the Cause**: Disable specific EPP features (e.g., DPI or advanced scanning) to identify the conflicting component.
+4. **Test Solutions**: Apply potential fixes incrementally and verify their impact.
+5. **Document Findings**: Record all observations, steps taken, and results for future reference.
 
-**Troubleshooting Steps:**  
-1. Confirmed the issue was specific to the MobileX client, not the EPP client itself.  
-2. Suggested disabling the DPI option for the affected computer from "Device Control > Computers > Manage settings."  
-3. Advised updating the EPP client policy and restarting the MobileX client software.  
-4. Tested various DPI settings, including enabling/disabling "Advanced Printer and MTP Scanning."  
-5. Explored enabling bypass options for TLS handshakes and HTTP errors.  
-6. Suggested enabling the "Stealth DPI driver" as a potential solution.
-
-**Root Cause:**  
-A conflict between the EPP client’s DPI settings and the MobileX application prevented the application from connecting to its server.
-
-**Solution:**  
-Enabled the "Stealth DPI driver" option on the affected client machine, allowing the MobileX application to connect successfully.
-
-**Source Ticket:** [MobileX Server Connection Failure](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MsACEIA3/view)
+### Decision Points
+- If disabling a specific feature resolves the issue, determine whether it can remain disabled without compromising security.
+- If the issue persists, escalate to R&D with detailed logs and findings.
 
 ---
 
-### CiscoVPN Disabling Intermittently
-**Symptoms:**  
-PrivatBank reported that the CiscoVPN (Cisco Secure Client) disabled every 10-30 minutes, causing intermittent internet access issues. The problem was isolated to a single Windows endpoint.
+## Information Collection
+### Questions to Ask Customers
+- What are the symptoms of the issue, and when did they start?
+- Has there been any recent change in the environment (e.g., software updates, new policies)?
+- Is the issue isolated to specific endpoints or applications?
 
-**Troubleshooting Steps:**  
-1. Reviewed logs and identified errors related to the Cisco Secure Client:  
-   - `ERROR wow64 helper returned error: 87 for pid: 3112`  
-   - `ERROR hooking failed 0x00000057 - 3112`  
-2. Suggested disabling the "Advanced Printer and MTP Scanning" option to test resolution.  
-3. Confirmed with the customer if the issue persisted after disabling advanced scanning.  
-4. Proposed adding the CiscoVPN process name to the scanning exception list if disabling advanced scanning resolved the issue.
-
-**Root Cause:**  
-A conflict between the EPP client’s advanced scanning features and the Cisco Secure Client caused intermittent VPN disabling.
-
-**Solution:**  
-- Disabled the "Advanced Printer and MTP Scanning" option in the EPP client.  
-- Added the CiscoVPN (Cisco Secure Client) process name to the advanced scanning exception list.
-
-**Source Ticket:** [CiscoVPN Disabling Intermittently](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NeNtXIAV/view)
+### Logs and Data to Collect
+- EPP client logs.
+- Third-party software logs (e.g., Cisco Secure Client logs).
+- System event logs from affected endpoints.
+- Screenshots or videos demonstrating the issue.
 
 ---
 
-## Best Practices
-1. **Monitor Compatibility:** Regularly test compatibility between the EPP client and third-party applications, especially VPN clients.  
-2. **Document Recurring Issues:** Maintain detailed records of recurring issues to identify patterns and streamline future troubleshooting.  
-3. **Use Exceptions:** Add known conflicting processes (e.g., CiscoVPN) to the EPP client’s exception list to prevent disruptions.  
-4. **Enable Stealth DPI Driver:** Consider enabling the "Stealth DPI driver" globally if conflicts with independent software vendors are common.  
-5. **Communicate Changes:** Inform customers about potential conflicts and provide guidance on configuration changes to mitigate issues.
+## Common Scenarios & Solutions
+### Scenario 1: Cisco Secure Client VPN Disconnects
+- **Symptoms**: VPN disconnects intermittently; browser pages fail to load.
+- **Root Cause**: Conflict between EPP advanced scanning features and Cisco Secure Client.
+- **Solution**:
+  1. Disable "Advanced Printer and MTP Scanning" in EPP settings.
+  2. Add the CiscoVPN process name to the advanced scanning exception list.
+  3. Monitor performance to ensure stability.
+
+### Scenario 2: Application-Specific Connectivity Issues
+- **Symptoms**: MobileX application cannot connect to its server.
+- **Root Cause**: DPI settings in EPP interfering with the application.
+- **Solution**:
+  1. Enable the "Stealth DPI driver" for the affected endpoint.
+  2. Test connectivity and confirm resolution.
 
 ---
 
-## Advanced Topics
-### Using the Stealth DPI Driver
-The "Stealth DPI driver" improves interoperability with third-party applications by minimizing interference with their operations. It is particularly useful for resolving conflicts with software that relies on specific network protocols or DPI-sensitive configurations.  
+## Detailed Case Studies
+### Case Study 1: Cisco AnyConnect DPI VPN Conflict
+- **Ticket ID**: [500Qk00000G1kAsIAJ](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000G1kAsIAJ/view)
+- **Symptoms**: Recurring VPN disconnections.
+- **Diagnostic Steps**:
+  1. Reviewed previous ticket history for insights.
+  2. Confirmed the issue was not a priority for the customer at the time.
+- **Resolution**: No action taken; ticket closed as non-priority.
+- **Key Takeaways**: Maintain detailed records of recurring issues for future reference.
 
-**Steps to Enable:**  
-1. Navigate to "Device Control > Computers > Manage settings."  
-2. Locate the DPI settings section.  
-3. Enable the "Stealth DPI driver" option.  
-4. Save changes and restart the affected application or endpoint.
+### Case Study 2: Cisco Secure Client Compatibility Issue
+- **Ticket ID**: [500Qk00000KvRrEIAV](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000KvRrEIAV/view)
+- **Symptoms**: VPN disconnects after 10-15 minutes; ISE Posture indicator turns gray.
+- **Diagnostic Steps**:
+  1. Observed behavior of Cisco Secure Client.
+  2. Terminated EPP client to confirm the conflict.
+  3. Provided updated EPP builds to resolve the issue.
+- **Resolution**: New EPP builds eliminated the conflict.
+- **Key Takeaways**: Ensure compatibility testing for new EPP builds with third-party software.
 
-**Considerations:**  
-- Monitor performance after enabling the Stealth DPI driver to ensure stability.  
-- If enabling globally, test thoroughly to avoid unintended side effects on other endpoints.
+### Case Study 3: MobileX Application Connectivity Issue
+- **Ticket ID**: [500Qk00000MsACEIA3](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MsACEIA3/view)
+- **Symptoms**: MobileX application unable to connect to its server.
+- **Diagnostic Steps**:
+  1. Tested various DPI settings.
+  2. Enabled "Stealth DPI driver" to resolve the issue.
+- **Resolution**: Stealth DPI driver allowed the application to function correctly.
+- **Key Takeaways**: Consider enabling the Stealth DPI driver for similar conflicts.
 
----  
-End of Article.
+### Case Study 4: CiscoVPN Intermittent Disconnections
+- **Ticket ID**: [500Qk00000NeNtXIAV](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NeNtXIAV/view)
+- **Symptoms**: VPN disables every 10-30 minutes; intermittent Internet access.
+- **Diagnostic Steps**:
+  1. Reviewed logs for errors related to Cisco Secure Client.
+  2. Disabled "Advanced Printer and MTP Scanning."
+  3. Added CiscoVPN process to the exception list.
+- **Resolution**: Adjustments to advanced scanning settings resolved the issue.
+- **Key Takeaways**: Maintain a list of known exceptions for third-party software.
+
+---
+
+## Best Practices & Tips
+- **Proactive Monitoring**: Regularly test EPP updates for compatibility with widely used third-party software.
+- **Customer Communication**: Clearly explain the impact of disabling features and involve customers in decision-making.
+- **Documentation**: Maintain detailed records of recurring issues and their resolutions for future reference.
+- **Exception Management**: Use scanning exceptions judiciously to balance functionality and security.
+- **Stealth DPI Driver**: Consider enabling this feature for endpoints with known compatibility issues.
+
+---
+
+## Escalation Guidelines
+- **When to Escalate**:
+  - Issue persists despite disabling conflicting features.
+  - Logs indicate unresolved errors requiring R&D input.
+  - Customer requests a permanent fix beyond temporary workarounds.
+- **How to Escalate**:
+  1. Collect all relevant logs and diagnostic data.
+  2. Document steps taken and their outcomes.
+  3. Submit an Application Development Order (ADO) with detailed findings.
+  4. Follow up with R&D for updates and communicate progress to the customer.

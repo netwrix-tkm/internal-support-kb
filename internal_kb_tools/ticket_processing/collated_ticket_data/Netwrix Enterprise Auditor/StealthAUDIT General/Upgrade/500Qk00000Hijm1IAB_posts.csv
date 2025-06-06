@@ -1,0 +1,45 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PnkukKAB","500Qk00000Hijm1IAB","TextPost","0054u000008ARZjAAO","2024-10-31T14:53:58.000Z","Description: We would like to have StealthAudit upgraded to the latest version.  We are currently running version 11.5.
+
+We would like to upgrade this in our dev environment and after validation we would like to upgrade our Producton environment.
+
+If possible we would like to schedule dev on Nov 18 and the Prod on Nov 22nd
+
+Thank You
+Mike","","","","0054u000008ARZjAAO","2024-10-31T14:53:58.000Z"
+"0D5Qk00000Q9fTqKAJ","500Qk00000Hijm1IAB","TextPost","0054u000007oss5AAA","2024-11-05T20:54:46.000Z","<p>zoom meeting for pre-flight</p><p>NEA v 11.5</p><p> </p><p>dev environment first</p><p>gathered screenshots and files</p><p>no sdd</p><p>no proxies</p><p> </p><p>prod</p><p>gathered screenshots and files</p><p>no sdd</p><p>no proxies</p><p> </p><p>uploading screenshots as doc to ticket</p><p> </p>","","","","0054u000007oss5AAA","2024-11-05T20:54:46.000Z"
+"0D5Qk00000RCPOCKA5","500Qk00000Hijm1IAB","TextPost","0054u000007oss5AAA","2024-11-18T20:17:48.000Z","<p>zoom update</p><p>downloading installers</p><p>unblocking /unzipping</p><p> </p><p>uninstalling NEA</p><p>uninstalling AIC</p><p> </p><p>installing NEA</p><p> </p><p>confirmed configuration of Jobs</p><p>custom attributes is the only difference</p><p>removed the few that were not present in pre-flight</p><p> </p><p>ran the AD inventory collection</p><p>-host offline warning for one server and custom attribute warnings</p><p> </p><p>Looking over host list with client</p><p>-its really outdated</p><p>-changed query to only keep what it finds in fresh scan</p><p>-ran the query</p><p>-it still found some old offline DCs</p><p>--client will look into removing those fully from AD</p><p> </p><p>Ran FS schema job</p><p>-no issues</p><p> </p><p>installing AIC</p><p>login error trying to use the same account it was running as before</p><p>error: login error 1385</p><p>-looks like its a member of a group that bars interactive logons</p><p> </p><p>removed it from that group</p><p>failed again</p><p>-waiting for replication</p><p> </p><p>worked now</p><p> </p><p>certs still in place and bound to correct ports</p><p>configured AIC to use 481</p><p>configured Pub Reports to use 8082</p><p>-updated config files</p><p>-updated the logon account for NEA web service</p><p>-restarted services</p><p> </p><p>AIC and PubReports are good</p><p> </p><p>starting on NAM</p><p> </p><p>upgrading NAM in place</p><p>no issue</p><p> </p><p>launching NAM</p><p> </p><p>only server listed is old decommissioned server</p><p>-client doesn&#39;t use this in Dev</p><p> </p><p>---------------</p><p>client has upgrade for Prod environment already scheduled for Friday</p><p> </p><p> </p><p> </p><p> </p>","","","","0054u000007oss5AAA","2024-11-18T20:17:48.000Z"
+"0D5Qk00000RCQVaKAP","500Qk00000Hijm1IAB","TextPost","0054u000007oss5AAA","2024-11-18T20:21:59.000Z","Next Steps Updated: upgrade prod on 11/22/24","","","","0054u000007oss5AAA","2024-11-18T20:21:59.000Z"
+"0D5Qk00000RCQVZKA5","500Qk00000Hijm1IAB","TextPost","0054u000007oss5AAA","2024-11-18T20:21:59.000Z","What We've Learned Updated: pre-flight for both Dev and production environments completed
+-video and screenshots uploaded to ticket
+
+upgrade for Dev completed
+AIC and Pub reporting secured and working on 481 and 8082
+
+Upgraded NAM, but it isn't used on this Dev environment
+-only had one server listed and it was an old, decommissioned DC
+
+upgrade for Prod is already scheduled for Friday, 11/22/24.","","","","0054u000007oss5AAA","2024-11-18T20:21:59.000Z"
+"0D5Qk00000RaJhwKAF","500Qk00000Hijm1IAB","TextPost","0054u000007oss5AAA","2024-11-22T20:17:41.000Z","<p>zoom meeting</p><p> </p><p>uninstalling </p><p> </p><p>installing NEA</p><p>-no issues</p><p> </p><p>launching</p><p>stepping through wizard</p><p> </p><p>only conflict was with a jobloglevel</p><p>confirming configuration</p><p>-everything looks good</p><p> </p><p>setting up pub reports</p><p>-changing logon as for web service</p><p>testing and it works</p><p> </p><p>uninstalling </p><p>AIC</p><p> </p><p>installing AIC</p><p>adding the s to https in the config file</p><p>already using the correct account in Logon as</p><p>-from installation options</p><p> </p><p>restarting AIC service</p><p> </p><p>confirming connection from client&#39;s workstation</p><p> </p><p>uninstalled AM</p><p>installing NAM 7.1.211</p><p> </p><p>only 4 agents deployed</p><p>not licensed for ADA or FSAC</p><p>not sure what he&#39;s even using NAM for</p><p> </p><p>monitored hosts are just the same 4 servers as the agents with no scoping</p><p> </p><p>either way, he can&#39;t upgrade the agents until tomorrow</p><p>we upgraded 1 as a test and it upgraded without an issue</p><p>-receiving data</p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p>","","","","0054u000007oss5AAA","2024-11-22T20:17:41.000Z"
+"0D5Qk00000RaMHPKA3","500Qk00000Hijm1IAB","TextPost","0054u000007oss5AAA","2024-11-22T20:18:46.000Z","<p>clietn has noticed 103+ GB FSAA folder in NEA&#39;s install directory</p><p> </p><p>logs are set to retain for 7 days</p><p>but there are logs in there for years</p><p> </p><p>need to ask abot this in tonoghts meeting</p><p> </p>","","","","0054u000007oss5AAA","2024-11-22T20:18:46.000Z"
+"0D5Qk00000RaCyFKAV","500Qk00000Hijm1IAB","TextPost","0054u000007oss5AAA","2024-11-22T20:21:07.000Z","Next Steps Updated: need to ask about log retention
+-why years of FSAA logs","","","","0054u000007oss5AAA","2024-11-22T20:21:07.000Z"
+"0D5Qk00000RaCyEKAV","500Qk00000Hijm1IAB","TextPost","0054u000007oss5AAA","2024-11-22T20:21:07.000Z","What We've Learned Updated: pre-flight for both Dev and production environments completed
+-video and screenshots uploaded to ticket
+
+upgrade for Dev completed
+AIC and Pub reporting secured and working on 481 and 8082
+
+Upgraded NAM, but it isn't used on this Dev environment
+-only had one server listed and it was an old, decommissioned DC
+
+Upgrade on Prod completed
+but he can't upgrade NAM agents until tomorrow (11/23/24)
+verified AIC and pub reports are secured and functional
+
+---------------
+client noticed FSAA logs are 103+GB
+only set at warning level and to retain for 7 days
+
+years of logs","","","","0054u000007oss5AAA","2024-11-22T20:21:07.000Z"
+"0D5Qk00000Rk7dFKAR","500Qk00000Hijm1IAB","TextPost","0054u000007oss5AAA","2024-11-25T19:20:15.000Z","Next Steps Updated: closing this ticket and opening new ticket for FileSystem reporting and logs issues","","","","0054u000007oss5AAA","2024-11-25T19:20:15.000Z"

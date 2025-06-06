@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CRkr7IAD","00413496","Support Ticket","locked out accounts report?","Hello,
+
+One of the most common requests I get from customers is whether there is a locked out users report, specifically ones that were recently locked out.  Since I don't see one in the ADInventory (changes) job or in instant solutions, I think there is likely nothing out of the box for that.  We do collect the LOCKOUT flag on users however, so I can imagine it being possible to do this.  Do you have any in-house examples of jobs that do this?  They do not have to be formally blessed or approved, I'm asking for something more of a skeleton that I can look at and change to meet my needs.  I understand fully there would be no official guarantee of functionality etc.","","","","[Original Issue]
+Customer was looking for a report on recent user lock outs.
+
+[Resolution] 
+Pointed the customer toward the Active Directory > 6. Activity > job group, as there is a job in there specifically for this. There used to be a Lockout job that relied on the smartlog collector to scrape DC event logs for lockouts, but it's deprecated and no longer supported.
+
+[Secondary Issue] 
+Customer wanted clarity on how AD Activity auditing is integrated in the Netwrix/Stealth suite.
+
+[Root Cause]
+Inaccurate documentation: https://helpcenter.netwrix.com/bundle/StealthINTERCEPT_7.3/page/Content/Config/ActiveDirectory/ThreatPrevention.htm
+
+[Resolution] 
+Walked the customer through how NTM, NSI, NEA, and NAM deal with a pass through AD Activity data.","Incorrect configuration: Netwrix product","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Activity","11.6","","11.8","Closed - Resolved","Optiv","robert parsons","2024-06-28T20:50:55.000Z","2024-07-10T16:11:58.000Z"

@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000ORN7aIAH","00443170","Support Ticket","Unable to generate reports","When running the scan, the data is retrieved from the target server successfully. However, the report is not getting generated.
+Can we please connect over a call and close this issue.","- Generate a report with Path or File Name longer than allowed. File Name Limit: 260 chars, Path Limit: 248 chars.","As per the logs shared by the customer, they are running a Windows Job group job to generate reports for Local Administrators. The following error is observed in logs:
+
+The specified path, file name, or both are too long. The fully qualified file name must be less than 260 characters, and the directory name must be less than 248 characters."" while generating report""    Local Administrators 
+
+The customer has been asked to check the Report Name/Title and Path of report's storage if they exceed character limit.
+
+29/04/2025 Meeting:
+The job itself was nested inside so many job folders/directories.
+When we moved the job two directories above in the hierarchy and ran it, the reports were generated fine, and no error was observed.","I will follow up the customer on Friday.","Symptom
+When you were running few jobs for creation of reports, you were getting the following error:
+ 
+​​​​​​​The specified path, file name, or both are too long. The fully qualified file name must be less than 260 characters, and the directory name must be less than 248 characters."" while generating report""
+
+Resolution
+We found that the problematic job was nested inside many directories/job groups in Netwrix Access Analyzer. Owing to the Windows Server native limitation, the report was not getting generated. To resolve this issue, we moved out the job Folder to 2-3 directories above in the hierarchy and it resolved the issue.","Incorrect Configuration - Netwrix Product/System","Saqib Sharif","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows","Reports","11.6","11.6.0.42","11.7","Closed - Resolved","Shell Information Technology International, Inc.","Mahima Bopche","2025-04-25T06:48:54.000Z","2025-05-07T00:37:24.000Z"

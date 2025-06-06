@@ -1,0 +1,48 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007kP4DIAU","500Qk00000C0GvWIAV","Problem Statement/Business Impact:
+Results from Exchange Delegates job seemingly missing some of the delagates. When compared to the results from the command below.
+
+Get-Mailbox -RecipientTypeDetails SharedMailbox -ResultSize Unlimited |
+
+Get-MailboxPermission |
+
+Select-Object Identity, User, AccessRights |
+
+Where-Object { $_.User -like '*@*' } |
+
+Export-Csv -Path C:Tempsharedfolders.csv -NoTypeInformation
+
+
+
+Desired Outcome:
+Determine why we are not including or gathering full results. If its by design or if its an issue with our jobs filtering.
+
+Steps to Reproduce:
+1. Set up shared mailboxes with delegates
+2. Run ex delegates job and review results.
+3. Run command below and compare results
+
+Get-Mailbox -RecipientTypeDetails SharedMailbox -ResultSize Unlimited |
+Get-MailboxPermission |
+Select-Object Identity, User, AccessRights |
+Where-Object { $_.User -like '*@*' } |
+Export-Csv -Path C:Tempsharedfolders.csv -NoTypeInformation
+
+Reliably Repro'd in Customer Envi
+
+Troubleshooting completed/Notes: 
+I was not able to reproduce.
+
+Modified a few delegate results and noticed the command picked them up but the job results did not. So there appears to be something in our job preventing the full results. 
+
+included link to command to replicate outside of NEA.
+https://www.netwrix.com/get-shared-mailbox-permissions.html#:~:text=You%20can%20get%20a%20list%20of%20shared%20mailbox,the%20output%20using%20Where-Object%20%7B%20%28%24_.user%20-like%20%27%2A%40%2A%27%29%7D.
+
+Ensure relevant logs are uploaded to SPO:
+Job Logs
+Other (Specify)","0054u000006gpoAAAQ","2024-07-04T23:02:09.000Z","2024-07-04T23:02:09.000Z","false","false"
+"00aQk000008vhhxIAA","500Qk00000C0GvWIAV","UserA's mailbox includes a delegated UserB
+UserA's is disabled, all rights are removed from the mailbox
+no mailbox delegations are report/collected for UserA
+
+Need to confirm is the user and mailbox are both disabled","0050g000006QqyEAAS","2024-09-05T14:29:47.000Z","2024-09-05T14:32:16.000Z","false","false"

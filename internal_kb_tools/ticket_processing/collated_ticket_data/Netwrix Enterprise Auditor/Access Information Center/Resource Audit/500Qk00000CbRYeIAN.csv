@@ -1,0 +1,25 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CbRYeIAN","00413862","Support Ticket","Resource Audit Activity Details","Hi team
+
+We have recently enabled Activity Monitor to audit file activity events on our filesystem.
+
+We have a large number of ""Open Shares"" that grant access to Everyone/Authenticated Users/Domain Users etc and I am reviewing the Activity Details of a share before we cut access.
+
+To make matters more complicated we have shares within shares.  For example in the list below both Share_1, Share_2 and Share_3 are shares:
+
+\ServerShare_1
+\ServerShare_1Share_2
+\ServerShare_1Share_2Share_3
+
+However, when reviewing the Activity Details of Share_1 it shows me users who are connecting to Share_2, even though the Include subfolders tick box is unselected.
+
+Please see attached documents for screenshots of our actual environment.
+
+My question is:
+
+Does the Activity Details window, even with Include subfolders not selected, show you the activity of the parent level and the child items directly below?  In our example this would be \ServerShare_1 and \ServerShare_1Share_2 but not \ServerShare_1Share_2Share_3.
+
+If this is the case, I can download the data to a Spreadsheet and filter out the child items.
+
+Regards
+Mark","","","","It has been confirmed that the problem is not SAM related. It will probably be resolved in version 11.6, but the customer cannot update StealthAUDIT at this time","Root Cause Unknown","Ilia Kudashev","","Netwrix Enterprise Auditor","Access Information Center","Resource Audit","11.5","11.5.0.165","13.0","Closed - Resolved","Westpac Banking Corporation","Mark Chambers","2024-07-03T02:20:16.000Z","2024-07-16T01:26:00.000Z"

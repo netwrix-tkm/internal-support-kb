@@ -1,0 +1,4042 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000NKbkYIAT","500Qk00000Ndp5ZIAR","2025-04-03T12:54:27.000Z","2025-04-03T12:54:27.000Z","Gary,
+Thank you for contacting Netwrix Technical Support. 
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server. 
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","techsupport@netwrix.com","Netwrix Support","gbender@excellus.com","eric.szymanski@netwrix.com","","false","2025-04-03T12:54:25.000Z","true"
+"02sQk00000NKhjdIAD","500Qk00000Ndp5ZIAR","2025-04-03T14:14:21.000Z","2025-04-03T16:35:46.000Z","ref:_00D7091pB._500Q000Ndp5Z:ref
+
+Hi Dusty,
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn't impact the Prod AIC stuff. This is the way we have it set up in test as well.
+I ran the script on both
+STBTSTWAV003 - Test NEA server
+Name                                          Version   InstallDate
+----                                          -------   -----------
+Netwrix Activity Monitor                      7.1.179   20250113
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923
+
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+STBTSTWAV002 - Test AIC server
+Name                              Version   InstallDate
+----                              -------   -----------
+Netwrix Access Information Center 11.6.0.23 20240912
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923
+
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe
+
+Thanks,
+Gary
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Gary,
+Thank you for contacting Netwrix Technical Support.
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z>
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","gary.bender@excellus.com","Gary Bender","techsupport@netwrix.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","false","2025-04-03T14:14:02.000Z","true"
+"02sQk00000NTiQLIA1","500Qk00000Ndp5ZIAR","2025-04-07T19:31:16.000Z","2025-04-07T19:31:16.000Z","Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+ 
+STBTSTWAV003 – Test NEA server
+Name                                                  Version  
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+
+Hi Dusty,
+
+ 
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn’t impact the Prod AIC stuff. This is the way we have it set up in test as well. 
+
+I ran the script on both
+
+STBTSTWAV003 – Test NEA server
+
+Name                                          Version   InstallDate
+
+----                                          -------   -----------
+
+Netwrix Activity Monitor                      7.1.179   20250113   
+
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913   
+
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913   
+
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT 
+
+ 
+
+STBTSTWAV002 – Test AIC server
+
+Name                              Version   InstallDate
+
+----                              -------   -----------
+
+Netwrix Access Information Center 11.6.0.23 20240912   
+
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819   
+
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe 
+
+ 
+
+Thanks,
+
+Gary
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Gary,
+Thank you for contacting Netwrix Technical Support. 
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server. 
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","techsupport@netwrix.com","Netwrix Support","gary.bender@excellus.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","false","2025-04-07T19:31:16.000Z","true"
+"02sQk00000NjXQtIAN","500Qk00000Ndp5ZIAR","2025-04-14T20:02:27.000Z","2025-04-14T20:02:27.000Z","Gary,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server  
+FROM:
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+To:
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA)                                                             12.0.0.1053 
+Netwrix Access Analyzer Access Information Center (AIC) formally Netwrix Access Information Center (AIC)      12.0.0.48
+
+**** NOTE**** Ran into an issue within the SQL Server permissions will need to confirm with your DBA on the following:
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Database > Database Permissions
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_permissions  
+
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+
+Netwrix Access Information Center 12.0 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Post upgraded follow-up meeting for DB issues.  
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z
+
+Follow-up meeting for STBTSTWAV002:
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+****Option**** if not needed let me know I will change the duration from 45 to 90min to patch STBTSTWAV003
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 3:31 PM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+ 
+STBTSTWAV003 – Test NEA server
+Name                                                  Version  
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+
+Hi Dusty,
+
+ 
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn’t impact the Prod AIC stuff. This is the way we have it set up in test as well. 
+
+I ran the script on both
+
+STBTSTWAV003 – Test NEA server
+
+Name                                          Version   InstallDate
+
+----                                          -------   -----------
+
+Netwrix Activity Monitor                      7.1.179   20250113   
+
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913   
+
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913   
+
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT 
+
+ 
+
+STBTSTWAV002 – Test AIC server
+
+Name                              Version   InstallDate
+
+----                              -------   -----------
+
+Netwrix Access Information Center 11.6.0.23 20240912   
+
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819   
+
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe 
+
+ 
+
+Thanks,
+
+Gary
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Gary,
+Thank you for contacting Netwrix Technical Support. 
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server. 
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","techsupport@netwrix.com","Netwrix Support","gary.bender@excellus.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","false","2025-04-14T20:02:27.000Z","true"
+"02sQk00000NkqeIIAR","500Qk00000Ndp5ZIAR","2025-04-15T11:18:27.000Z","2025-04-16T12:36:25.000Z","ref:_00D7091pB._500Q000Ndp5Z:ref
+
+Hi Dusty,
+
+I worked with our DBA after the call, we verified that the account we used had DBA to all the Netwrix DB's.  When I went into settings to validate the DB config and select the DB, we got the error:
+
+[cid:image001.png@01DBADD3.06FCD820]
+
+I clicked OK and then clicked Apply, it appeared to work based on these results.
+[cid:image002.png@01DBADD3.621A7F50]
+
+I closed and saved the config and then ran the create schema job, but it still failed - it ran up to around 120 of 132 tasks in the 1. Create Tables analysis job and failed and also failed the Data Migration Task.
+
+Our DBA then gave me SA rights so I went in and ran the same steps.  This time I did not get the error selecting the DB, but got the below option.  I selected the default and click OK.
+[cid:image003.png@01DBADD4.B530AE20]
+
+It finished the transfer, so I click Finish.
+[cid:image004.png@01DBADD4.B530AE20]
+
+
+I then got the errors below as I click through the OK's.
+[cid:image005.png@01DBADD5.1EA0DE20]
+[cid:image006.png@01DBADD5.1EA0DE20]
+[cid:image007.png@01DBADD5.1EA0DE20]
+
+I ran the schema job and again failed with the same errors.
+
+We looked in the DB tables, but we did not see the SA_FSAA_AzureFilesShares.ResourceID table that was being referenced in the error.  I have also attached the log from the job.
+
+Thanks,
+Gary
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 14, 2025 4:02 PM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Gary,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 - Test AIC server
+FROM:
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+To:
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA)                                                             12.0.0.1053
+Netwrix Access Analyzer Access Information Center (AIC) formally Netwrix Access Information Center (AIC)      12.0.0.48
+
+**** NOTE**** Ran into an issue within the SQL Server permissions will need to confirm with your DBA on the following:
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Database > Database Permissions
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_permissions
+
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+
+Netwrix Access Information Center 12.0 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Post upgraded follow-up meeting for DB issues.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z>
+
+Follow-up meeting for STBTSTWAV002:
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+****Option**** if not needed let me know I will change the duration from 45 to 90min to patch STBTSTWAV003
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 3:31 PM
+To: gary.bender@excellus.com<mailto:gary.bender@excellus.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 - Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+STBTSTWAV003 - Test NEA server
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z>
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock<https://www.thewindowsclub.com/fix-windows-blocked-access-file> then copy over to the Server. netwrix.com/my_products_int.html<https://www.netwrix.com/my_products_int.html>
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+Hi Dusty,
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn't impact the Prod AIC stuff. This is the way we have it set up in test as well.
+I ran the script on both
+STBTSTWAV003 - Test NEA server
+Name                                          Version   InstallDate
+----                                          -------   -----------
+Netwrix Activity Monitor                      7.1.179   20250113
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923
+
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+STBTSTWAV002 - Test AIC server
+Name                              Version   InstallDate
+----                              -------   -----------
+Netwrix Access Information Center 11.6.0.23 20240912
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923
+
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe
+
+Thanks,
+Gary
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com<mailto:Gary.Bender@excellus.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Gary,
+Thank you for contacting Netwrix Technical Support.
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z>
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: [EXT] RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","gary.bender@excellus.com","Gary Bender","techsupport@netwrix.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","true","2025-04-15T11:17:53.000Z","true"
+"02sQk00000Nno0DIAR","500Qk00000Ndp5ZIAR","2025-04-16T13:07:57.000Z","2025-04-16T13:07:57.000Z","Gary,
+
+Here is my SA_AIC_Core_troubleshooting script.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/15/2025 7:17 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+Hi Dusty,
+
+ 
+
+I worked with our DBA after the call, we verified that the account we used had DBA to all the Netwrix DB’s.  When I went into settings to validate the DB config and select the DB, we got the error:
+
+ 
+
+[Inline image name : image001.png]
+
+ 
+
+I clicked OK and then clicked Apply, it appeared to work based on these results.
+
+[Inline image name : image002.png]
+
+ 
+
+I closed and saved the config and then ran the create schema job, but it still failed – it ran up to around 120 of 132 tasks in the 1. Create Tables analysis job and failed and also failed the Data Migration Task.
+
+ 
+
+Our DBA then gave me SA rights so I went in and ran the same steps.  This time I did not get the error selecting the DB, but got the below option.  I selected the default and click OK.
+
+[Inline image name : image003.png]
+
+ 
+
+It finished the transfer, so I click Finish.
+
+[Inline image name : image004.png]
+
+ 
+
+ 
+
+I then got the errors below as I click through the OK’s.
+
+[Inline image name : image005.png]
+
+[Inline image name : image006.png]
+
+[Inline image name : image007.png]
+
+ 
+
+I ran the schema job and again failed with the same errors.
+
+ 
+
+We looked in the DB tables, but we did not see the SA_FSAA_AzureFilesShares.ResourceID table that was being referenced in the error.  I have also attached the log from the job.
+
+ 
+
+Thanks,
+
+Gary
+
+ 
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 14, 2025 4:02 PM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ 
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+ 
+
+Gary,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server  
+FROM:
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+To:
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA)                                                             12.0.0.1053 
+Netwrix Access Analyzer Access Information Center (AIC) formally Netwrix Access Information Center (AIC)      12.0.0.48
+
+**** NOTE**** Ran into an issue within the SQL Server permissions will need to confirm with your DBA on the following:
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Database > Database Permissions
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_permissions  
+
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+
+Netwrix Access Information Center 12.0 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Post upgraded follow-up meeting for DB issues.  
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z
+
+Follow-up meeting for STBTSTWAV002:
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+****Option**** if not needed let me know I will change the duration from 45 to 90min to patch STBTSTWAV003
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 3:31 PM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+ 
+STBTSTWAV003 – Test NEA server
+Name                                                  Version  
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+ 
+
+Hi Dusty,
+
+ 
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn’t impact the Prod AIC stuff. This is the way we have it set up in test as well. 
+
+I ran the script on both
+
+STBTSTWAV003 – Test NEA server
+
+Name                                          Version   InstallDate
+
+----                                          -------   -----------
+
+Netwrix Activity Monitor                      7.1.179   20250113   
+
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913   
+
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913   
+
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT 
+
+ 
+
+STBTSTWAV002 – Test AIC server
+
+Name                              Version   InstallDate
+
+----                              -------   -----------
+
+Netwrix Access Information Center 11.6.0.23 20240912   
+
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819   
+
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe 
+
+ 
+
+Thanks,
+
+Gary
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ 
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+ 
+
+Gary,
+Thank you for contacting Netwrix Technical Support. 
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server. 
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref
+
+ ","RE: [EXT] RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","techsupport@netwrix.com","Netwrix Support","gary.bender@excellus.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","true","2025-04-16T13:07:56.000Z","true"
+"02sQk00000NnqOaIAJ","500Qk00000Ndp5ZIAR","2025-04-16T14:28:34.000Z","2025-04-16T14:28:34.000Z","Team,
+
+Per our call today we tested other options to try and get to the root of the 0-Create Schema Could not create constraint or index issue for the new Netwrix Access Analyzer (NAA) 12.0.0.1053 install/upgrade.
+
+This morning, we ran a repair and then reran the ""%SAInstallDir%StealthAUDIT.EXE"" /Upgrade
+    This was post re-running the PowerShell command and checking that the installer was not Blocked Get-ChildItem ""PATH TO THE INSTALLER"" -Recurse |Unblock-File 
+
+Unfortunately the Console returned the same error(s).
+
+Ran my SA_AIC_Core_troubleshooting and collected the MIS installer logs for review.  << Pulling them now.
+
+Will have the DBA add the account back explicitly to the need DB as well as run the following per the Guide to correct the Error messages from the Global Storage settings.
+USE [master]GRANT VIEW ANY DEFINITION TO [<SA User ID>]
+GO
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/16/2025 9:07 AM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Gary,
+
+Here is my SA_AIC_Core_troubleshooting script.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/15/2025 7:17 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+
+Hi Dusty,
+
+ 
+
+I worked with our DBA after the call, we verified that the account we used had DBA to all the Netwrix DB’s.  When I went into settings to validate the DB config and select the DB, we got the error:
+
+ 
+
+
+
+ 
+
+I clicked OK and then clicked Apply, it appeared to work based on these results.
+
+
+
+ 
+
+I closed and saved the config and then ran the create schema job, but it still failed – it ran up to around 120 of 132 tasks in the 1. Create Tables analysis job and failed and also failed the Data Migration Task.
+
+ 
+
+Our DBA then gave me SA rights so I went in and ran the same steps.  This time I did not get the error selecting the DB, but got the below option.  I selected the default and click OK.
+
+
+
+ 
+
+It finished the transfer, so I click Finish.
+
+
+
+ 
+
+ 
+
+I then got the errors below as I click through the OK’s.
+
+
+
+
+
+
+
+ 
+
+I ran the schema job and again failed with the same errors.
+
+ 
+
+We looked in the DB tables, but we did not see the SA_FSAA_AzureFilesShares.ResourceID table that was being referenced in the error.  I have also attached the log from the job.
+
+ 
+
+Thanks,
+
+Gary
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 14, 2025 4:02 PM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Gary,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server  
+FROM:
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+To:
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA)                                                             12.0.0.1053 
+Netwrix Access Analyzer Access Information Center (AIC) formally Netwrix Access Information Center (AIC)      12.0.0.48
+
+**** NOTE**** Ran into an issue within the SQL Server permissions will need to confirm with your DBA on the following:
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Database > Database Permissions
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_permissions  
+
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+
+Netwrix Access Information Center 12.0 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Post upgraded follow-up meeting for DB issues.  
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z
+
+Follow-up meeting for STBTSTWAV002:
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+****Option**** if not needed let me know I will change the duration from 45 to 90min to patch STBTSTWAV003
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 3:31 PM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+ 
+STBTSTWAV003 – Test NEA server
+Name                                                  Version  
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+ 
+
+
+Hi Dusty,
+
+ 
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn’t impact the Prod AIC stuff. This is the way we have it set up in test as well. 
+
+I ran the script on both
+
+STBTSTWAV003 – Test NEA server
+
+Name                                          Version   InstallDate
+
+----                                          -------   -----------
+
+Netwrix Activity Monitor                      7.1.179   20250113   
+
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913   
+
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913   
+
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT 
+
+ 
+
+STBTSTWAV002 – Test AIC server
+
+Name                              Version   InstallDate
+
+----                              -------   -----------
+
+Netwrix Access Information Center 11.6.0.23 20240912   
+
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819   
+
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe 
+
+ 
+
+Thanks,
+
+Gary
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Gary,
+Thank you for contacting Netwrix Technical Support. 
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server. 
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: [EXT] RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","techsupport@netwrix.com","Netwrix Support","gary.bender@excellus.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","true","2025-04-16T14:28:33.000Z","true"
+"02sQk00000NoMeSIAV","500Qk00000Ndp5ZIAR","2025-04-16T15:17:31.000Z","2025-04-16T15:29:09.000Z","ref:_00D7091pB._500Q000Ndp5Z:ref
+
+Hi Dusty,
+
+I went out to the site and noticed there is a new release as of 4/14 - I download that and will run it to see if it changes anything.
+I also met with our DBA after the call, famadmin was still explicitly added to the DB.  He ran the script and while I didn't get the error from the DB drop down, the schema job still failed.
+When we run the job there is nothing that comes up in the logs but when he looked, it appears the tables get created but the dropped
+
+Thanks,
+Gary
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 16, 2025 10:29 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Team,
+
+Per our call today we tested other options to try and get to the root of the 0-Create Schema Could not create constraint or index issue for the new Netwrix Access Analyzer (NAA) 12.0.0.1053 install/upgrade.
+
+This morning, we ran a repair and then reran the ""%SAInstallDir%StealthAUDIT.EXE"" /Upgrade
+    This was post re-running the PowerShell command and checking that the installer was not Blocked Get-ChildItem ""PATH TO THE INSTALLER"" -Recurse |Unblock-File
+
+Unfortunately the Console returned the same error(s).
+
+Ran my SA_AIC_Core_troubleshooting and collected the MIS installer logs for review.  << Pulling them now.
+
+Will have the DBA add the account back explicitly to the need DB as well as run the following per the Guide to correct the Error messages from the Global Storage settings.
+USE [master]GRANT VIEW ANY DEFINITION TO [<SA User ID>]
+GO
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/16/2025 9:07 AM
+To: gary.bender@excellus.com<mailto:gary.bender@excellus.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Gary,
+
+Here is my SA_AIC_Core_troubleshooting script.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/15/2025 7:17 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+Hi Dusty,
+
+I worked with our DBA after the call, we verified that the account we used had DBA to all the Netwrix DB's.  When I went into settings to validate the DB config and select the DB, we got the error:
+
+[cid:image001.png@01DBAEBF.C35DC2D0]
+
+I clicked OK and then clicked Apply, it appeared to work based on these results.
+[cid:image002.png@01DBAEBF.C35DC2D0]
+
+I closed and saved the config and then ran the create schema job, but it still failed - it ran up to around 120 of 132 tasks in the 1. Create Tables analysis job and failed and also failed the Data Migration Task.
+
+Our DBA then gave me SA rights so I went in and ran the same steps.  This time I did not get the error selecting the DB, but got the below option.  I selected the default and click OK.
+[cid:image003.png@01DBAEBF.C35DC2D0]
+
+It finished the transfer, so I click Finish.
+[cid:image004.png@01DBAEBF.C35DC2D0]
+
+
+I then got the errors below as I click through the OK's.
+[cid:image005.png@01DBAEBF.C35DC2D0]
+[cid:image006.png@01DBAEBF.C35DC2D0]
+[cid:image007.png@01DBAEBF.C35DC2D0]
+
+I ran the schema job and again failed with the same errors.
+
+We looked in the DB tables, but we did not see the SA_FSAA_AzureFilesShares.ResourceID table that was being referenced in the error.  I have also attached the log from the job.
+
+Thanks,
+Gary
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, April 14, 2025 4:02 PM
+To: Gary Bender <Gary.Bender@excellus.com<mailto:Gary.Bender@excellus.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; Rick Paufve <Rick.Paufve@excellus.com<mailto:Rick.Paufve@excellus.com>>
+Subject: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Gary,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 - Test AIC server
+FROM:
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+To:
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA)                                                             12.0.0.1053
+Netwrix Access Analyzer Access Information Center (AIC) formally Netwrix Access Information Center (AIC)      12.0.0.48
+
+**** NOTE**** Ran into an issue within the SQL Server permissions will need to confirm with your DBA on the following:
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Database > Database Permissions
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_permissions
+
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+
+Netwrix Access Information Center 12.0 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Post upgraded follow-up meeting for DB issues.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z>
+
+Follow-up meeting for STBTSTWAV002:
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+****Option**** if not needed let me know I will change the duration from 45 to 90min to patch STBTSTWAV003
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 3:31 PM
+To: gary.bender@excellus.com<mailto:gary.bender@excellus.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 - Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+STBTSTWAV003 - Test NEA server
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z>
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock<https://www.thewindowsclub.com/fix-windows-blocked-access-file> then copy over to the Server. netwrix.com/my_products_int.html<https://www.netwrix.com/my_products_int.html>
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+Hi Dusty,
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn't impact the Prod AIC stuff. This is the way we have it set up in test as well.
+I ran the script on both
+STBTSTWAV003 - Test NEA server
+Name                                          Version   InstallDate
+----                                          -------   -----------
+Netwrix Activity Monitor                      7.1.179   20250113
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923
+
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+STBTSTWAV002 - Test AIC server
+Name                              Version   InstallDate
+----                              -------   -----------
+Netwrix Access Information Center 11.6.0.23 20240912
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923
+
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe
+
+Thanks,
+Gary
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com<mailto:Gary.Bender@excellus.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Gary,
+Thank you for contacting Netwrix Technical Support.
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z>
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","gary.bender@excellus.com","Gary Bender","techsupport@netwrix.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","true","2025-04-16T15:17:06.000Z","true"
+"02sQk00000NoCQhIAN","500Qk00000Ndp5ZIAR","2025-04-16T16:09:39.000Z","2025-04-16T16:09:39.000Z","Gary,
+
+Thank You for the update.
+
+Could we have the DBA log in to SSMS as the service account and run a Trace on the following to see if anything jumps out at him?
+
+/******** Object: [dbo].[SA_FSAA_AzureFilesShares] **************/    Line 1205
+IF OBJECT_ID(N'SA_FSAA_AzureFilesShares', N'U') IS NULL
+BEGIN
+  CREATE TABLE [dbo].[SA_FSAA_AzureFilesShares](
+    [HOST] [int] NOT NULL,
+    [ID] [int] NOT NULL,
+    [ResourceID] [bigint] NOT NULL,
+    [GateID] [int] NOT NULL,
+    [Name] [nvarchar](2000) NULL,
+    [StorageAccount] [varchar](256) NULL,
+    CONSTRAINT [PK_SA_FSAA_AzureFilesShares] PRIMARY KEY CLUSTERED ([HOST] ASC, [ID] ASC),
+    CONSTRAINT [FK_SA_FSAA_AzureFilesShares_HOST] FOREIGN KEY ([HOST]) REFERENCES [dbo].[SA_FSAA_Hosts] ([ID]) ON DELETE CASCADE,
+    CONSTRAINT [FK_SA_FSAA_AzureFilesShares_ResourceID] FOREIGN KEY ([HOST], [ResourceID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID]),
+    CONSTRAINT [FK_SA_FSAA_AzureFilesShares_GateID] FOREIGN KEY ([HOST], [GateID]) REFERENCES [dbo].[SA_FSAA_Gates] ([HOST], [ID])
+  )
+END
+GO
+
+/******** Object: [dbo].[SA_FSAA_ResourceMap] **************/  Line 1270
+IF OBJECT_ID(N'SA_FSAA_ResourceMap', N'U') IS NULL
+BEGIN
+  CREATE TABLE SA_FSAA_ResourceMap
+  (
+    HOST INTEGER NOT NULL,
+    ID BIGINT NOT NULL,
+    AccessID BIGINT NULL,
+    ActivityID BIGINT NULL,
+    DLPID BIGINT NULL,
+    CONSTRAINT [PK_SA_FSAA_ResourceMap] PRIMARY KEY CLUSTERED
+    (
+      [HOST] ASC,
+      [ID] ASC  
+    ),
+    CONSTRAINT [FK_SA_FSAA_ResourceMap_ID] FOREIGN KEY ([HOST], [ID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID])
+  )
+END
+GO
+
+/******** Object: [dbo].[SA_FSAA_ResourcesScanTypeDetails] **************/  Line 1290
+IF OBJECT_ID(N'SA_FSAA_ResourcesScanTypeDetails', N'U') IS NULL
+BEGIN
+  CREATE TABLE SA_FSAA_ResourcesScanTypeDetails 
+  (
+    HOST INTEGER NOT NULL,
+    ID BIGINT NOT NULL,
+    AccessUSN INTEGER NULL,
+    AccessLastSeen DATETIME2 NULL,
+    AccessLastDeleted DATETIME2 NULL,
+    ActivityUSN INTEGER NULL,
+    ActivityLastSeen DATETIME2 NULL,
+    ActivityLastDeleted DATETIME2 NULL,
+    DLPUSN INTEGER NULL,
+    DLPLastSeen DATETIME2 NULL,
+    DLPLastDeleted DATETIME2 NULL,
+    CONSTRAINT [PK_SA_FSAA_ResourcesScanTypeDetails] PRIMARY KEY CLUSTERED
+    (
+      [HOST] ASC,
+      [ID] ASC  
+    ),
+    CONSTRAINT [FK_SA_FSAA_ResourcesScanTypeDetails_ID] FOREIGN KEY ([HOST], [ID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID])
+  )
+END
+GO
+
+For Reference I pulled the TSQL from the 0-Create Schema Jobs Analysis for 1. Create Tables : Creates FSAA Schema
+
+Zipped .trc files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/16/2025 11:17 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+Hi Dusty,
+
+ 
+
+I went out to the site and noticed there is a new release as of 4/14 – I download that and will run it to see if it changes anything. 
+
+I also met with our DBA after the call, famadmin was still explicitly added to the DB.  He ran the script and while I didn’t get the error from the DB drop down, the schema job still failed.
+
+When we run the job there is nothing that comes up in the logs but when he looked, it appears the tables get created but the dropped
+
+ 
+
+Thanks,
+
+Gary
+
+ 
+
+ 
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 16, 2025 10:29 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ 
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+ 
+
+Team,
+
+Per our call today we tested other options to try and get to the root of the 0-Create Schema Could not create constraint or index issue for the new Netwrix Access Analyzer (NAA) 12.0.0.1053 install/upgrade.
+
+This morning, we ran a repair and then reran the ""%SAInstallDir%StealthAUDIT.EXE"" /Upgrade
+    This was post re-running the PowerShell command and checking that the installer was not Blocked Get-ChildItem ""PATH TO THE INSTALLER"" -Recurse |Unblock-File 
+
+Unfortunately the Console returned the same error(s).
+
+Ran my SA_AIC_Core_troubleshooting and collected the MIS installer logs for review.  << Pulling them now.
+
+Will have the DBA add the account back explicitly to the need DB as well as run the following per the Guide to correct the Error messages from the Global Storage settings.
+USE [master]GRANT VIEW ANY DEFINITION TO [<SA User ID>]
+GO
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/16/2025 9:07 AM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Gary,
+
+Here is my SA_AIC_Core_troubleshooting script.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/15/2025 7:17 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+ 
+
+Hi Dusty,
+
+ 
+
+I worked with our DBA after the call, we verified that the account we used had DBA to all the Netwrix DB’s.  When I went into settings to validate the DB config and select the DB, we got the error:
+
+ 
+
+[Inline image name : image001.png]
+
+ 
+
+I clicked OK and then clicked Apply, it appeared to work based on these results.
+
+[Inline image name : image002.png]
+
+ 
+
+I closed and saved the config and then ran the create schema job, but it still failed – it ran up to around 120 of 132 tasks in the 1. Create Tables analysis job and failed and also failed the Data Migration Task.
+
+ 
+
+Our DBA then gave me SA rights so I went in and ran the same steps.  This time I did not get the error selecting the DB, but got the below option.  I selected the default and click OK.
+
+[Inline image name : image003.png]
+
+ 
+
+It finished the transfer, so I click Finish.
+
+[Inline image name : image004.png]
+
+ 
+
+ 
+
+I then got the errors below as I click through the OK’s.
+
+[Inline image name : image005.png]
+
+[Inline image name : image006.png]
+
+[Inline image name : image007.png]
+
+ 
+
+I ran the schema job and again failed with the same errors.
+
+ 
+
+We looked in the DB tables, but we did not see the SA_FSAA_AzureFilesShares.ResourceID table that was being referenced in the error.  I have also attached the log from the job.
+
+ 
+
+Thanks,
+
+Gary
+
+ 
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 14, 2025 4:02 PM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ 
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+ 
+
+Gary,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server  
+FROM:
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+To:
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA)                                                             12.0.0.1053 
+Netwrix Access Analyzer Access Information Center (AIC) formally Netwrix Access Information Center (AIC)      12.0.0.48
+
+**** NOTE**** Ran into an issue within the SQL Server permissions will need to confirm with your DBA on the following:
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Database > Database Permissions
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_permissions  
+
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+
+Netwrix Access Information Center 12.0 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Post upgraded follow-up meeting for DB issues.  
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z
+
+Follow-up meeting for STBTSTWAV002:
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+****Option**** if not needed let me know I will change the duration from 45 to 90min to patch STBTSTWAV003
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 3:31 PM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+ 
+STBTSTWAV003 – Test NEA server
+Name                                                  Version  
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+ 
+
+Hi Dusty,
+
+ 
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn’t impact the Prod AIC stuff. This is the way we have it set up in test as well. 
+
+I ran the script on both
+
+STBTSTWAV003 – Test NEA server
+
+Name                                          Version   InstallDate
+
+----                                          -------   -----------
+
+Netwrix Activity Monitor                      7.1.179   20250113   
+
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913   
+
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913   
+
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT 
+
+ 
+
+STBTSTWAV002 – Test AIC server
+
+Name                              Version   InstallDate
+
+----                              -------   -----------
+
+Netwrix Access Information Center 11.6.0.23 20240912   
+
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819   
+
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe 
+
+ 
+
+Thanks,
+
+Gary
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ 
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+ 
+
+Gary,
+Thank you for contacting Netwrix Technical Support. 
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server. 
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref
+
+ 
+
+ ","RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","techsupport@netwrix.com","Netwrix Support","gary.bender@excellus.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","true","2025-04-16T16:09:39.000Z","true"
+"02sQk00000Np56xIAB","500Qk00000Ndp5ZIAR","2025-04-16T19:31:43.000Z","2025-04-16T19:31:43.000Z","Team,
+
+Could we also get the details from the following?
+SELECT
+            sd.name AS 'DB NAME'
+            ,suser_sname(sid) AS 'Owner ID'
+            ,recovery_model_desc 
+            ,type_desc
+            ,sdb.state_desc
+            ,compatibility_level
+            ,collation_name
+            ,size*8/1024 AS [Size (MB)]
+            ,physical_name'File Location'
+FROM sysdatabases sd
+LEFT JOIN  sys.master_files smf ON sd.name = smf.name
+LEFT JOIN  sys.databases sdb ON sd.name = sdb.name
+Order by [Size (MB)] desc
+
+R&D noted that SQL Server 2016 listed in the Support versions in the guide is not correct and should have stated 2019 ~ 2022.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/16/2025 12:09 PM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Gary,
+
+Thank You for the update.
+
+Could we have the DBA log in to SSMS as the service account and run a Trace on the following to see if anything jumps out at him?
+
+/******** Object: [dbo].[SA_FSAA_AzureFilesShares] **************/    Line 1205
+IF OBJECT_ID(N'SA_FSAA_AzureFilesShares', N'U') IS NULL
+BEGIN
+  CREATE TABLE [dbo].[SA_FSAA_AzureFilesShares](
+    [HOST] [int] NOT NULL,
+    [ID] [int] NOT NULL,
+    [ResourceID] [bigint] NOT NULL,
+    [GateID] [int] NOT NULL,
+    [Name] [nvarchar](2000) NULL,
+    [StorageAccount] [varchar](256) NULL,
+    CONSTRAINT [PK_SA_FSAA_AzureFilesShares] PRIMARY KEY CLUSTERED ([HOST] ASC, [ID] ASC),
+    CONSTRAINT [FK_SA_FSAA_AzureFilesShares_HOST] FOREIGN KEY ([HOST]) REFERENCES [dbo].[SA_FSAA_Hosts] ([ID]) ON DELETE CASCADE,
+    CONSTRAINT [FK_SA_FSAA_AzureFilesShares_ResourceID] FOREIGN KEY ([HOST], [ResourceID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID]),
+    CONSTRAINT [FK_SA_FSAA_AzureFilesShares_GateID] FOREIGN KEY ([HOST], [GateID]) REFERENCES [dbo].[SA_FSAA_Gates] ([HOST], [ID])
+  )
+END
+GO
+
+/******** Object: [dbo].[SA_FSAA_ResourceMap] **************/  Line 1270
+IF OBJECT_ID(N'SA_FSAA_ResourceMap', N'U') IS NULL
+BEGIN
+  CREATE TABLE SA_FSAA_ResourceMap
+  (
+    HOST INTEGER NOT NULL,
+    ID BIGINT NOT NULL,
+    AccessID BIGINT NULL,
+    ActivityID BIGINT NULL,
+    DLPID BIGINT NULL,
+    CONSTRAINT [PK_SA_FSAA_ResourceMap] PRIMARY KEY CLUSTERED
+    (
+      [HOST] ASC,
+      [ID] ASC  
+    ),
+    CONSTRAINT [FK_SA_FSAA_ResourceMap_ID] FOREIGN KEY ([HOST], [ID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID])
+  )
+END
+GO
+
+/******** Object: [dbo].[SA_FSAA_ResourcesScanTypeDetails] **************/  Line 1290
+IF OBJECT_ID(N'SA_FSAA_ResourcesScanTypeDetails', N'U') IS NULL
+BEGIN
+  CREATE TABLE SA_FSAA_ResourcesScanTypeDetails 
+  (
+    HOST INTEGER NOT NULL,
+    ID BIGINT NOT NULL,
+    AccessUSN INTEGER NULL,
+    AccessLastSeen DATETIME2 NULL,
+    AccessLastDeleted DATETIME2 NULL,
+    ActivityUSN INTEGER NULL,
+    ActivityLastSeen DATETIME2 NULL,
+    ActivityLastDeleted DATETIME2 NULL,
+    DLPUSN INTEGER NULL,
+    DLPLastSeen DATETIME2 NULL,
+    DLPLastDeleted DATETIME2 NULL,
+    CONSTRAINT [PK_SA_FSAA_ResourcesScanTypeDetails] PRIMARY KEY CLUSTERED
+    (
+      [HOST] ASC,
+      [ID] ASC  
+    ),
+    CONSTRAINT [FK_SA_FSAA_ResourcesScanTypeDetails_ID] FOREIGN KEY ([HOST], [ID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID])
+  )
+END
+GO
+
+For Reference I pulled the TSQL from the 0-Create Schema Jobs Analysis for 1. Create Tables : Creates FSAA Schema
+
+Zipped .trc files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/16/2025 11:17 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+
+
+Hi Dusty,
+
+ 
+
+I went out to the site and noticed there is a new release as of 4/14 – I download that and will run it to see if it changes anything. 
+
+I also met with our DBA after the call, famadmin was still explicitly added to the DB.  He ran the script and while I didn’t get the error from the DB drop down, the schema job still failed.
+
+When we run the job there is nothing that comes up in the logs but when he looked, it appears the tables get created but the dropped
+
+ 
+
+Thanks,
+
+Gary
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 16, 2025 10:29 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Team,
+
+Per our call today we tested other options to try and get to the root of the 0-Create Schema Could not create constraint or index issue for the new Netwrix Access Analyzer (NAA) 12.0.0.1053 install/upgrade.
+
+This morning, we ran a repair and then reran the ""%SAInstallDir%StealthAUDIT.EXE"" /Upgrade
+    This was post re-running the PowerShell command and checking that the installer was not Blocked Get-ChildItem ""PATH TO THE INSTALLER"" -Recurse |Unblock-File 
+
+Unfortunately the Console returned the same error(s).
+
+Ran my SA_AIC_Core_troubleshooting and collected the MIS installer logs for review.  << Pulling them now.
+
+Will have the DBA add the account back explicitly to the need DB as well as run the following per the Guide to correct the Error messages from the Global Storage settings.
+USE [master]GRANT VIEW ANY  DEFINITION TO [<SA User ID>]
+GO
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/16/2025 9:07 AM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Gary,
+
+Here is my SA_AIC_Core_troubleshooting script.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/15/2025 7:17 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+ 
+
+
+Hi Dusty,
+
+ 
+
+I worked with our DBA after the call, we verified that the account we used had DBA to all the Netwrix DB’s.  When I went into settings to validate the DB config and select the DB, we got the error:
+
+ 
+
+
+
+ 
+
+I clicked OK and then clicked Apply, it appeared to work based on these results.
+
+
+
+ 
+
+I closed and saved the config and then ran the create schema job, but it still failed – it ran up to around 120 of 132 tasks in the 1. Create Tables analysis job and failed and also failed the Data Migration Task.
+
+ 
+
+Our DBA then gave me SA rights so I went in and ran the same steps.  This time I did not get the error selecting the DB, but got the below option.  I selected the default and click OK.
+
+
+
+ 
+
+It finished the transfer, so I click Finish.
+
+
+
+ 
+
+ 
+
+I then got the errors below as I click through the OK’s.
+
+
+
+
+
+
+
+ 
+
+I ran the schema job and again failed with the same errors.
+
+ 
+
+We looked in the DB tables, but we did not see the SA_FSAA_AzureFilesShares.ResourceID table that was being referenced in the error.  I have also attached the log from the job.
+
+ 
+
+Thanks,
+
+Gary
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 14, 2025 4:02 PM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Gary,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server  
+FROM:
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+To:
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA)                                                             12.0.0.1053 
+Netwrix Access Analyzer Access Information Center (AIC) formally Netwrix Access Information Center (AIC)      12.0.0.48
+
+**** NOTE**** Ran into an issue within the SQL Server permissions will need to confirm with your DBA on the following:
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Database > Database Permissions
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_permissions  
+
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+
+Netwrix Access Information Center 12.0 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Post upgraded follow-up meeting for DB issues.  
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z
+
+Follow-up meeting for STBTSTWAV002:
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+****Option**** if not needed let me know I will change the duration from 45 to 90min to patch STBTSTWAV003
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 3:31 PM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+ 
+STBTSTWAV003 – Test NEA server
+Name                                                  Version  
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+ 
+
+
+Hi Dusty,
+
+ 
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn’t impact the Prod AIC stuff. This is the way we have it set up in test as well. 
+
+I ran the script on both
+
+STBTSTWAV003 – Test NEA server
+
+Name                                          Version   InstallDate
+
+----                                          -------   -----------
+
+Netwrix Activity Monitor                      7.1.179   20250113   
+
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913   
+
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913   
+
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT 
+
+ 
+
+STBTSTWAV002 – Test AIC server
+
+Name                              Version   InstallDate
+
+----                              -------   -----------
+
+Netwrix Access Information Center 11.6.0.23 20240912   
+
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819   
+
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe 
+
+ 
+
+Thanks,
+
+Gary
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Gary,
+Thank you for contacting Netwrix Technical Support. 
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server. 
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","techsupport@netwrix.com","Netwrix Support","gary.bender@excellus.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","true","2025-04-16T19:31:43.000Z","true"
+"02sQk00000NqUnxIAF","500Qk00000Ndp5ZIAR","2025-04-17T12:22:47.000Z","2025-04-17T13:37:29.000Z","ref:_00D7091pB._500Q000Ndp5Z:ref
+
+Hi Dusty,
+
+Here is the output.  I know we plan on migrating soon - I will talk to the dba.
+
+Thanks,
+Gary
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 16, 2025 3:32 PM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+Team,
+
+Could we also get the details from the following?
+SELECT
+            sd.name AS 'DB NAME'
+            ,suser_sname(sid) AS 'Owner ID'
+            ,recovery_model_desc
+            ,type_desc
+            ,sdb.state_desc
+            ,compatibility_level
+            ,collation_name
+            ,size*8/1024 AS [Size (MB)]
+            ,physical_name'File Location'
+FROM sysdatabases sd
+LEFT JOIN  sys.master_files smf ON sd.name = smf.name
+LEFT JOIN  sys.databases sdb ON sd.name = sdb.name
+Order by [Size (MB)] desc
+
+R&D noted that SQL Server 2016 listed in the Support versions in the guide is not correct and should have stated 2019 ~ 2022.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/16/2025 12:09 PM
+To: gary.bender@excellus.com<mailto:gary.bender@excellus.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Gary,
+
+Thank You for the update.
+
+Could we have the DBA log in to SSMS as the service account and run a Trace on the following to see if anything jumps out at him?
+
+/******** Object: [dbo].[SA_FSAA_AzureFilesShares] **************/    Line 1205
+IF OBJECT_ID(N'SA_FSAA_AzureFilesShares', N'U') IS NULL
+BEGIN
+  CREATE TABLE [dbo].[SA_FSAA_AzureFilesShares](
+    [HOST] [int] NOT NULL,
+    [ID] [int] NOT NULL,
+    [ResourceID] [bigint] NOT NULL,
+    [GateID] [int] NOT NULL,
+    [Name] [nvarchar](2000) NULL,
+    [StorageAccount] [varchar](256) NULL,
+    CONSTRAINT [PK_SA_FSAA_AzureFilesShares] PRIMARY KEY CLUSTERED ([HOST] ASC, [ID] ASC),
+    CONSTRAINT [FK_SA_FSAA_AzureFilesShares_HOST] FOREIGN KEY ([HOST]) REFERENCES [dbo].[SA_FSAA_Hosts] ([ID]) ON DELETE CASCADE,
+    CONSTRAINT [FK_SA_FSAA_AzureFilesShares_ResourceID] FOREIGN KEY ([HOST], [ResourceID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID]),
+    CONSTRAINT [FK_SA_FSAA_AzureFilesShares_GateID] FOREIGN KEY ([HOST], [GateID]) REFERENCES [dbo].[SA_FSAA_Gates] ([HOST], [ID])
+  )
+END
+GO
+
+/******** Object: [dbo].[SA_FSAA_ResourceMap] **************/  Line 1270
+IF OBJECT_ID(N'SA_FSAA_ResourceMap', N'U') IS NULL
+BEGIN
+  CREATE TABLE SA_FSAA_ResourceMap
+  (
+    HOST INTEGER NOT NULL,
+    ID BIGINT NOT NULL,
+    AccessID BIGINT NULL,
+    ActivityID BIGINT NULL,
+    DLPID BIGINT NULL,
+    CONSTRAINT [PK_SA_FSAA_ResourceMap] PRIMARY KEY CLUSTERED
+    (
+      [HOST] ASC,
+      [ID] ASC
+    ),
+    CONSTRAINT [FK_SA_FSAA_ResourceMap_ID] FOREIGN KEY ([HOST], [ID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID])
+  )
+END
+GO
+
+/******** Object: [dbo].[SA_FSAA_ResourcesScanTypeDetails] **************/  Line 1290
+IF OBJECT_ID(N'SA_FSAA_ResourcesScanTypeDetails', N'U') IS NULL
+BEGIN
+  CREATE TABLE SA_FSAA_ResourcesScanTypeDetails
+  (
+    HOST INTEGER NOT NULL,
+    ID BIGINT NOT NULL,
+    AccessUSN INTEGER NULL,
+    AccessLastSeen DATETIME2 NULL,
+    AccessLastDeleted DATETIME2 NULL,
+    ActivityUSN INTEGER NULL,
+    ActivityLastSeen DATETIME2 NULL,
+    ActivityLastDeleted DATETIME2 NULL,
+    DLPUSN INTEGER NULL,
+    DLPLastSeen DATETIME2 NULL,
+    DLPLastDeleted DATETIME2 NULL,
+    CONSTRAINT [PK_SA_FSAA_ResourcesScanTypeDetails] PRIMARY KEY CLUSTERED
+    (
+      [HOST] ASC,
+      [ID] ASC
+    ),
+    CONSTRAINT [FK_SA_FSAA_ResourcesScanTypeDetails_ID] FOREIGN KEY ([HOST], [ID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID])
+  )
+END
+GO
+
+For Reference I pulled the TSQL from the 0-Create Schema Jobs Analysis for 1. Create Tables : Creates FSAA Schema
+
+Zipped .trc files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/16/2025 11:17 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+Hi Dusty,
+
+I went out to the site and noticed there is a new release as of 4/14 - I download that and will run it to see if it changes anything.
+I also met with our DBA after the call, famadmin was still explicitly added to the DB.  He ran the script and while I didn't get the error from the DB drop down, the schema job still failed.
+When we run the job there is nothing that comes up in the logs but when he looked, it appears the tables get created but the dropped
+
+Thanks,
+Gary
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, April 16, 2025 10:29 AM
+To: Gary Bender <Gary.Bender@excellus.com<mailto:Gary.Bender@excellus.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; Rick Paufve <Rick.Paufve@excellus.com<mailto:Rick.Paufve@excellus.com>>
+Subject: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Team,
+
+Per our call today we tested other options to try and get to the root of the 0-Create Schema Could not create constraint or index issue for the new Netwrix Access Analyzer (NAA) 12.0.0.1053 install/upgrade.
+
+This morning, we ran a repair and then reran the ""%SAInstallDir%StealthAUDIT.EXE"" /Upgrade
+    This was post re-running the PowerShell command and checking that the installer was not Blocked Get-ChildItem ""PATH TO THE INSTALLER"" -Recurse |Unblock-File
+
+Unfortunately the Console returned the same error(s).
+
+Ran my SA_AIC_Core_troubleshooting and collected the MIS installer logs for review.  << Pulling them now.
+
+Will have the DBA add the account back explicitly to the need DB as well as run the following per the Guide to correct the Error messages from the Global Storage settings.
+USE [master]GRANT VIEW ANY DEFINITION TO [<SA User ID>]
+GO
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/16/2025 9:07 AM
+To: gary.bender@excellus.com<mailto:gary.bender@excellus.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Gary,
+
+Here is my SA_AIC_Core_troubleshooting script.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/15/2025 7:17 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+Hi Dusty,
+
+I worked with our DBA after the call, we verified that the account we used had DBA to all the Netwrix DB's.  When I went into settings to validate the DB config and select the DB, we got the error:
+
+[cid:image001.png@01DBAF71.D13AD2A0]
+
+I clicked OK and then clicked Apply, it appeared to work based on these results.
+[cid:image002.png@01DBAF71.D13AD2A0]
+
+I closed and saved the config and then ran the create schema job, but it still failed - it ran up to around 120 of 132 tasks in the 1. Create Tables analysis job and failed and also failed the Data Migration Task.
+
+Our DBA then gave me SA rights so I went in and ran the same steps.  This time I did not get the error selecting the DB, but got the below option.  I selected the default and click OK.
+[cid:image003.png@01DBAF71.D13AD2A0]
+
+It finished the transfer, so I click Finish.
+[cid:image004.png@01DBAF71.D13AD2A0]
+
+
+I then got the errors below as I click through the OK's.
+[cid:image005.png@01DBAF71.D13AD2A0]
+[cid:image006.png@01DBAF71.D13AD2A0]
+[cid:image007.png@01DBAF71.D13AD2A0]
+
+I ran the schema job and again failed with the same errors.
+
+We looked in the DB tables, but we did not see the SA_FSAA_AzureFilesShares.ResourceID table that was being referenced in the error.  I have also attached the log from the job.
+
+Thanks,
+Gary
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Monday, April 14, 2025 4:02 PM
+To: Gary Bender <Gary.Bender@excellus.com<mailto:Gary.Bender@excellus.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; Rick Paufve <Rick.Paufve@excellus.com<mailto:Rick.Paufve@excellus.com>>
+Subject: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Gary,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 - Test AIC server
+FROM:
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+To:
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA)                                                             12.0.0.1053
+Netwrix Access Analyzer Access Information Center (AIC) formally Netwrix Access Information Center (AIC)      12.0.0.48
+
+**** NOTE**** Ran into an issue within the SQL Server permissions will need to confirm with your DBA on the following:
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Database > Database Permissions
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_permissions
+
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+
+Netwrix Access Information Center 12.0 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Post upgraded follow-up meeting for DB issues.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z>
+
+Follow-up meeting for STBTSTWAV002:
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+****Option**** if not needed let me know I will change the duration from 45 to 90min to patch STBTSTWAV003
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 3:31 PM
+To: gary.bender@excellus.com<mailto:gary.bender@excellus.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 - Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+STBTSTWAV003 - Test NEA server
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z>
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock<https://www.thewindowsclub.com/fix-windows-blocked-access-file> then copy over to the Server. netwrix.com/my_products_int.html<https://www.netwrix.com/my_products_int.html>
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>; rick.paufve@excellus.com<mailto:rick.paufve@excellus.com>
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+Hi Dusty,
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn't impact the Prod AIC stuff. This is the way we have it set up in test as well.
+I ran the script on both
+STBTSTWAV003 - Test NEA server
+Name                                          Version   InstallDate
+----                                          -------   -----------
+Netwrix Activity Monitor                      7.1.179   20250113
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923
+
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+STBTSTWAV002 - Test AIC server
+Name                              Version   InstallDate
+----                              -------   -----------
+Netwrix Access Information Center 11.6.0.23 20240912
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923
+
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe
+
+Thanks,
+Gary
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com<mailto:Gary.Bender@excellus.com>>
+Cc: eric.szymanski@netwrix.com<mailto:eric.szymanski@netwrix.com>
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Gary,
+Thank you for contacting Netwrix Technical Support.
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z>
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com/>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: [EXT] RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","gary.bender@excellus.com","Gary Bender","techsupport@netwrix.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","true","2025-04-17T12:22:18.000Z","true"
+"02sQk00000NqYjdIAF","500Qk00000Ndp5ZIAR","2025-04-17T14:19:44.000Z","2025-04-17T14:19:44.000Z","Gary,
+
+Thank You for the update. Will still need the  USE [master]GRANT VIEW ANY DEFINITION TO [<SA User ID>] GO
+
+However, R&D updated me on a possible issue at the root of the 0-Create Schema Could not create constraint or index in relation to and Int to BigInt change in the original tables that the new tables are truly complaining about.
+
+New Scheduling Link to update the older tables with the FS_MigrateSchema Job
+nwxcorp.my.salesforce-sites.com/cts?Id=k58FCoVuQcbqTXt10clrd7qXaLTwfzbn2Ii6igE9Pnk-Z&MeetingID=yM4TXNwO0jpdrUy94iY9M5woCzvsxbG9YCZKrEVMCwo-Z
+
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) Server
+Possibly the Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+REF: FS Migrate_Schema Job https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Chapters/05.Job_Workflow/StealthAUDIT_Instant_Job_Wizard/Spotlight_Jobs.htm
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/17/2025 8:22 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+
+
+
+Hi Dusty,
+
+ 
+
+Here is the output.  I know we plan on migrating soon – I will talk to the dba.
+
+ 
+
+Thanks,
+
+Gary
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 16, 2025 3:32 PM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Team,
+
+Could we also get the details from the following?
+SELECT
+            sd.name AS 'DB NAME'
+             ,suser_sname(sid) AS 'Owner ID'
+             ,recovery_model_desc 
+             ,type_desc
+             ,sdb.state_desc
+             ,compatibility_level
+             ,collation_name
+             ,size*8/1024 AS [Size (MB)]
+             ,physical_name'File Location'
+FROM sysdatabases sd
+LEFT JOIN  sys.master_files smf ON sd.name = smf.name
+LEFT JOIN  sys.databases sdb ON sd.name = sdb.name
+Order by [Size (MB)] desc
+
+R&D noted that SQL Server 2016 listed in the Support versions in the guide is not correct and should have stated 2019 ~ 2022.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/16/2025 12:09 PM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Gary,
+
+Thank You for the update.
+
+Could we have the DBA log in to SSMS as the service account and run a Trace on the following to see if anything jumps out at him?
+
+/******** Object: [dbo].[SA_FSAA_AzureFilesShares] **************/    Line 1205
+IF OBJECT_ID(N'SA_FSAA_AzureFilesShares', N'U')  IS NULL
+BEGIN
+   CREATE TABLE [dbo].[SA_FSAA_AzureFilesShares](
+    [HOST] [int] NOT NULL,
+    [ID] [int] NOT NULL,
+    [ResourceID] [bigint] NOT NULL,
+    [GateID] [int] NOT NULL,
+    [Name] [nvarchar](2000) NULL,
+    [StorageAccount] [varchar](256) NULL,
+     CONSTRAINT [PK_SA_FSAA_AzureFilesShares]  PRIMARY KEY  CLUSTERED ([HOST] ASC, [ID] ASC),
+     CONSTRAINT [FK_SA_FSAA_AzureFilesShares_HOST]  FOREIGN KEY ([HOST]) REFERENCES [dbo].[SA_FSAA_Hosts] ([ID]) ON DELETE  CASCADE,
+     CONSTRAINT [FK_SA_FSAA_AzureFilesShares_ResourceID] FOREIGN KEY  ([HOST], [ResourceID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID]),
+     CONSTRAINT [FK_SA_FSAA_AzureFilesShares_GateID]  FOREIGN KEY ([HOST], [GateID]) REFERENCES [dbo].[SA_FSAA_Gates] ([HOST], [ID])
+   )
+END
+GO
+
+/******** Object: [dbo].[SA_FSAA_ResourceMap] **************/  Line 1270
+IF OBJECT_ID(N'SA_FSAA_ResourceMap', N'U')  IS NULL
+BEGIN
+   CREATE TABLE SA_FSAA_ResourceMap
+   (
+    HOST INTEGER NOT NULL,
+    ID BIGINT NOT NULL,
+    AccessID BIGINT NULL,
+    ActivityID BIGINT NULL,
+    DLPID BIGINT NULL,
+     CONSTRAINT [PK_SA_FSAA_ResourceMap] PRIMARY KEY CLUSTERED
+     (
+      [HOST] ASC,
+      [ID] ASC  
+     ),
+     CONSTRAINT [FK_SA_FSAA_ResourceMap_ID] FOREIGN KEY ([HOST], [ID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID])
+   )
+END
+GO
+
+/******** Object: [dbo].[SA_FSAA_ResourcesScanTypeDetails] **************/  Line 1290
+IF OBJECT_ID(N'SA_FSAA_ResourcesScanTypeDetails', N'U')  IS NULL
+BEGIN
+   CREATE TABLE SA_FSAA_ResourcesScanTypeDetails 
+   (
+    HOST INTEGER NOT NULL,
+    ID BIGINT NOT NULL,
+    AccessUSN INTEGER NULL,
+    AccessLastSeen DATETIME2 NULL,
+    AccessLastDeleted DATETIME2 NULL,
+    ActivityUSN INTEGER NULL,
+    ActivityLastSeen DATETIME2 NULL,
+    ActivityLastDeleted DATETIME2 NULL,
+    DLPUSN INTEGER NULL,
+    DLPLastSeen DATETIME2 NULL,
+    DLPLastDeleted DATETIME2 NULL,
+     CONSTRAINT [PK_SA_FSAA_ResourcesScanTypeDetails] PRIMARY KEY CLUSTERED
+     (
+      [HOST] ASC,
+      [ID] ASC  
+     ),
+     CONSTRAINT [FK_SA_FSAA_ResourcesScanTypeDetails_ID] FOREIGN KEY  ([HOST], [ID]) REFERENCES [dbo].[SA_FSAA_Resources] ([HOST], [ID])
+   )
+END
+GO
+
+For Reference I pulled the TSQL from the 0-Create Schema Jobs Analysis for 1. Create Tables  : Creates FSAA Schema
+
+Zipped .trc files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/16/2025 11:17 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+ 
+
+
+Hi Dusty,
+
+ 
+
+I went out to the site and noticed there is a new release as of 4/14 – I download that and will run it to see if it changes anything. 
+
+I also met with our DBA after the call, famadmin was still explicitly added to the DB.  He ran the script and while I didn’t get the error from the DB drop down, the schema job still failed.
+
+When we run the job there is nothing that comes up in the logs but when he looked, it appears the tables get created but the dropped
+
+ 
+
+Thanks,
+
+Gary
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 16, 2025 10:29 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Team,
+
+Per our call today we tested other options to try and get to the root of the 0-Create Schema Could not create constraint or index issue for the new Netwrix Access Analyzer (NAA) 12.0.0.1053 install/upgrade.
+
+This morning, we ran a repair and then reran the ""%SAInstallDir%StealthAUDIT.EXE"" /Upgrade
+    This was post re-running the PowerShell command and checking that the installer was not Blocked Get-ChildItem ""PATH TO THE INSTALLER"" -Recurse |Unblock-File 
+
+Unfortunately the Console returned the same error(s).
+
+Ran my SA_AIC_Core_troubleshooting and collected the MIS installer logs for review.  << Pulling them now.
+
+Will have the DBA add the account back explicitly to the need DB as well as run the following per the Guide to correct the Error messages from the Global Storage settings.
+USE [master]GRANT VIEW ANY  DEFINITION TO [<SA User ID>]
+GO
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/16/2025 9:07 AM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Gary,
+
+Here is my SA_AIC_Core_troubleshooting script.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/15/2025 7:17 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+ 
+
+
+Hi Dusty,
+
+ 
+
+I worked with our DBA after the call, we verified that the account we used had DBA to all the Netwrix DB’s.  When I went into settings to validate the DB config and select the DB, we got the error:
+
+ 
+
+
+
+ 
+
+I clicked OK and then clicked Apply, it appeared to work based on these results.
+
+
+
+ 
+
+I closed and saved the config and then ran the create schema job, but it still failed – it ran up to around 120 of 132 tasks in the 1. Create Tables analysis job and failed and also failed the Data Migration Task.
+
+ 
+
+Our DBA then gave me SA rights so I went in and ran the same steps.  This time I did not get the error selecting the DB, but got the below option.  I selected the default and click OK.
+
+
+
+ 
+
+It finished the transfer, so I click Finish.
+
+
+
+ 
+
+ 
+
+I then got the errors below as I click through the OK’s.
+
+
+
+
+
+
+
+ 
+
+I ran the schema job and again failed with the same errors.
+
+ 
+
+We looked in the DB tables, but we did not see the SA_FSAA_AzureFilesShares.ResourceID table that was being referenced in the error.  I have also attached the log from the job.
+
+ 
+
+Thanks,
+
+Gary
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, April 14, 2025 4:02 PM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com; Rick Paufve <Rick.Paufve@excellus.com>
+Subject: [EXT] RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Gary,
+
+Per our call today we upgraded the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server  
+FROM:
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+
+To:
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA)                                                             12.0.0.1053 
+Netwrix Access Analyzer Access Information Center (AIC) formally Netwrix Access Information Center (AIC)      12.0.0.48
+
+**** NOTE**** Ran into an issue within the SQL Server permissions will need to confirm with your DBA on the following:
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Database > Database Permissions
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Database.htm#database_permissions  
+
+Netwrix Access Analyzer (formerly Enterprise Auditor) v12.0 > Installation > Installation & Configuration Overview > Access Analyzer Console Upgrade
+https://helpcenter.netwrix.com/bundle/AccessAnalyzer_12.0/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+
+Netwrix Access Information Center 12.0 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+Post upgraded follow-up meeting for DB issues.  
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=DhAzHdgkLxcdkZBuREEIfZrZ0jb1BC3PFCGBE99vAyc-Z&MeetingID=iqnIE7G0Xqdi28M1d9qbg0Gv3csluUC4EASnNcMvZpE-Z
+
+Follow-up meeting for STBTSTWAV002:
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Access Analyzer (NAA) formally Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+****Option**** if not needed let me know I will change the duration from 45 to 90min to patch STBTSTWAV003
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 4/7/2025 3:31 PM
+To: gary.bender@excellus.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+Team,
+
+Per our call today we Prepared the current version of Stealth application(s) running in the Environment:
+
+STBTSTWAV002 – Test AIC server     <<< This is the host we will upgrade for this ticket
+Name                                                  Version
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Access Information (AIC)    11.6.0.23
+ 
+STBTSTWAV003 – Test NEA server
+Name                                                  Version  
+Netwrix Enterprise Auditor (NEA)    11.6.0.90
+Netwrix Sensitive Data (SDD)           11.6.0.12
+FSAA Proxy in used for NAS            ********  <<  Will need access to the server in the configuration of the FSAC job.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=9rTCd5g5FywgP4fm0X6Q.A2k6o6jCerRXvezxn5FsmM-Z&MeetingID=al2zPinMMU5iVX6A9Om9oJsVtn6fYO.qtYhJLML_Bho-Z
+
+For this 90min Upgraded meeting for STBTSTWAV002, we will need to have a Full backup (internal procedures) & Admin access to the following:
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Access Analyzer (NAA)                   12.0.0.1053+
+Access Information Center (AIC)                  12.0.0.48+
+FSAA Proxy                                                   12.0.0.1030+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Gary Bender [gary.bender@excellus.com]
+Sent: 4/3/2025 10:14 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com; rick.paufve@excellus.com
+Subject: RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+ref:_00D7091pB._500Q000Ndp5Z:ref
+
+ 
+
+
+Hi Dusty,
+
+ 
+
+We have our AUDIT and AIC servers broken out in Prod so the Audit scans wouldn’t impact the Prod AIC stuff. This is the way we have it set up in test as well. 
+
+I ran the script on both
+
+STBTSTWAV003 – Test NEA server
+
+Name                                          Version   InstallDate
+
+----                                          -------   -----------
+
+Netwrix Activity Monitor                      7.1.179   20250113   
+
+Netwrix Enterprise Auditor V11.6              11.6.0.90 20240913   
+
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.12 20240913   
+
+StealthINTERCEPT Windows Agent                7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT 
+
+ 
+
+STBTSTWAV002 – Test AIC server
+
+Name                              Version   InstallDate
+
+----                              -------   -----------
+
+Netwrix Access Information Center 11.6.0.23 20240912   
+
+Netwrix Enterprise Auditor V11.6  11.6.0.90 20240819   
+
+StealthINTERCEPT Windows Agent    7.3.9.219 20240923   
+
+ 
+
+ 
+
+D:Program Files (x86)STEALTHbitsStealthAUDIT
+
+D:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe 
+
+ 
+
+Thanks,
+
+Gary
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:54 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Cc: eric.szymanski@netwrix.com
+Subject: [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]
+
+
+
+ 
+
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+
+ 
+
+
+Gary,
+Thank you for contacting Netwrix Technical Support. 
+
+What software is currently installed?
+Could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+#Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC) install path
+(Get-ItemProperty -Path ""HKLM:SYSTEMCurrentControlSetServicesAccessInformationCenter""-ErrorAction SilentlyContinue).ImagePath.Replace(""`"""", """").Replace(""BinAccessInformationCenter.Service.exe"", """")
+
+
+For this 45min Prep meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server. 
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=gD1JpJsqnBP.7DtKF58hiL_.XyAILmB15ya2QE4gcKw-Z&MeetingID=DjA8OKDZ9PeXRDFhFnfpSD3m34q5COG1I5OK32XvsaQ-Z
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: [EXT] RE: [EXT] RE: [EXT] RE: Netwrix Support Ticket #440845 -  - [EXT] Upgrade Test Ent Auditor to Access Analyzer to prep for prod    [ ref:!00D70091pB.!500Qk0Ndp5Z:ref ]","techsupport@netwrix.com","Netwrix Support","gary.bender@excellus.com","eric.szymanski@netwrix.com; rick.paufve@excellus.com","","true","2025-04-17T14:19:44.000Z","true"
+"02sQk00000O6vloIAB","500Qk00000Ndp5ZIAR","2025-04-24T17:42:40.000Z","2025-04-25T10:11:36.000Z","ref:_00D7091pB._500Q000Ndp5Z:ref
+
+Ugh - Sorry Dusty - that slipped through the cracks.  I just scheduled it
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 24, 2025 11:08 AM
+To: Gary Bender <Gary.Bender@excellus.com>
+Subject: [EXT] RE: 00440845 - Upgrade Test Ent Auditor to Access Analyzer to prep for prod
+
+CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+
+Hello Gary,
+
+I'm following up on my previous email with the scheduling availability link, as I haven't seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00440845
+Ticket Subject: Upgrade Test Ent Auditor to Access Analyzer to prep for prod
+Ticket Details: Upgrade Test Ent Auditor to Access Analyzer to prep for prod
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0Ndp5Z:ref","RE: Netwrix Support Ticket #440845 - ref:_00D7091pB._500Q000Ndp5Z:ref - [EXT] RE: 00440845 - Upgrade Test Ent Auditor to Access Analyzer to prep for prod","gary.bender@excellus.com","Gary Bender","techsupport@netwrix.com","","","false","2025-04-24T17:42:21.000Z","true"

@@ -1,0 +1,36 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LkQl4IAF","00435434","Support Ticket","AIC / Resource Audit row count limit","Hi there,
+We've been using the resource audit section within the AIC a lot more recently for file server activity searches and audits. I see that there is a limit of showing 100k rows within the activity details pane. Is there any way to extend this limit so we can export a report of all events? I see that we can filter out certain items to reduce them in the results pane, but once we do that we cannot export the results - those options disappear (which I assume is by design?). thanks for the help here! Doug","N/A","Today we:
+
+Identified that the issue with the report configuration was not selecting the layout when selecting the row count for the report. Once this was selected the report successfully saved the changes.
+---------------------------------------------------------
+
+Customer is currently OOO. Putting into postpone reply until the 24th and will reach back out again with an update.","Our next steps are:
+
+You will:
+
+Generate the report based on the SA_FSAC_ActvityEventsView table. 
+
+I will:
+
+Keep the ticket open until an update has been presented from the completion of the job. 
+
+If the job does not successfully complete please copy and paste that report under the FSAC System scan job and generate the report under that job to resolve the issue. 
+
+Putting in postpone reply until until tomorrow for an update to be provided.","Symptom
+
+We've been using the resource audit section within the AIC a lot more recently for file server activity searches and audits. I see that there is a limit of showing 100k rows within the activity details pane. Is there any way to extend this limit so we can export a report of all events? I see that we can filter out certain items to reduce them in the results pane, but once we do that we cannot export the results - those options disappear (which I assume is by design?). thanks for the help here!
+
+Cause
+
+Default AIC configurations were set to 100k. 
+
+Resolution
+
+Modified the AIC configuration file to a set value of 150k and restarted the AIC service. The location to the changes are below:
+
+""E:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe.Config""
+
+Image_2025-02-24_16-09-15.png
+
+We then resolved the report settings issue of not saving changes by verifying that the finish button was selected before exiting the layout options.","Advanced Configuration Change","Scottie Taylor","Question","Netwrix Enterprise Auditor","Access Information Center","Configuration","11.6","","13.3","Closed - Resolved","Oak Hill Advisors","Douglas Kupcha","2025-02-11T15:03:26.000Z","2025-02-24T22:14:28.000Z"

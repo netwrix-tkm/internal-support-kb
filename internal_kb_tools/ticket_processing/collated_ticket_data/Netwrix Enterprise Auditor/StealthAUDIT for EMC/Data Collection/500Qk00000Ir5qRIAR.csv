@@ -1,0 +1,30 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Ir5qRIAR","00428321","Support Ticket","Issues with Stealth Seek jobs","Hello,
+
+I am having an issue with my Seek jobs. I am getting a database error. 
+
+See Error Below
+Error during processing:  Could not load file or assembly '<a href='https://System.Data' target='_blank'>System.Data</a>.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)","","Per prior cases this is a known bug","Apply Knowledge SEEK System Scan Error:  Could Not Load File or Assembly
+
+Linked to Escalation Ticket Number  00427172.
+
+Awaiting log dump.","Noted the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)    11.6.0.111
+NEA Sensitive Data (SDD)                                                                11.6.0.13
+
+Per the Knowledge SEEK System Scan Error:  Could Not Load File or Assembly
+
+We ran the following to find the incorrect .dll
+Clear-Host
+Set-Location $env:SAINSTALLDIR
+Get-ChildItem -Recurse -Filter ""system.data.sqlite.dll"" | Format-List -property *version*
+
+With that we were able to then copy the correct 1.0.117.0 system.data.sqlite.dll file under  E:Program Files (x86)STEALTHbitsStealthAUDITAgentNET40  and place is into E:Program Files (x86)STEALTHbitsStealthAUDITFSAA which had 1.0.110.0
+
+The noted file was not update during the last patch, R&D is looking into this.
+
+Our workaround should correct for the next FileSystem SEEK scan.
+
+Contacts last email:
+Ran a 0 depth scan just to try it out and it was success. It is currently doing a bulk import. I assume there was probably data that was not imported the last time, due to the issues we were having. It seems to be importing that data now.  So far, it’s been bulk importing for about 4 hours with no errors.","Product defect","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for EMC","Data Collection","11.6","111","21.0","Closed - Resolved","Point32Health Services, Inc.","Peter Sterianos","2024-11-27T14:27:57.000Z","2024-12-18T14:37:09.000Z"

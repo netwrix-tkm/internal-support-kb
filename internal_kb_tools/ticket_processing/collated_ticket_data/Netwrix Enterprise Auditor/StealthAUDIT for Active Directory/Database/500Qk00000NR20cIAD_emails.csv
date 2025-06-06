@@ -1,0 +1,143 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000N7XyDIAV","500Qk00000NR20cIAD","2025-03-28T14:11:31.000Z","2025-03-28T14:11:31.000Z","Hello Kurtis,
+
+My name is Josh, and I'm happy to help with this issue.
+
+Do you have any logs or other artifacts for this issue? Which part of the AD Inventory is failing, the AD_Scan, AD_Changes, or AD_Exceptions? I'd like to see DEBUG logs from the AD_Scan job. 
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0NR20c:ref","POC - AD Inventory failing    [ ref:!00D70091pB.!500Qk0NR20c:ref ]","techsupport@netwrix.com","Netwrix Support","kurtis.andersen@netwrix.com","scott.webber@netwrix.com","joshua.sexton@netwrix.com","false","2025-03-28T14:11:30.000Z","true"
+"02sQk00000N7Z3uIAF","500Qk00000NR20cIAD","2025-03-28T14:16:06.000Z","2025-03-28T16:35:33.000Z","ref:_00D7091pB._500Q000NR20c:ref
+
+The AD_Scan job is failing. Seems to be related to database permissions based on errors for ‘invalid columns’.
+
+I had them walk through dropping the ADI tables but even that job failed with similar messages.
+
+Here is their reply:
+
+Kurtis,
+We have followed all the steps mentioned below even the remove tables job got failed  with the errors as shown in the below screenshot.
+[cid:image001.png@01DB9FC1.FF306DB0]
+We can see that account has all the required permissions and it was able to create the tables/views in the database not sure why  there would be an issue for creating some tables/views that were being logged in our error. Please find the below screenshot of the account permissions in DB.
+
+[cid:image002.png@01DB9FC1.FF306DB0]  [cid:image003.png@01DB9FC1.FF306DB0]
+
+Below screenshot shows that it was able to create the tables/views/functions/Stored Procedures inherently. Not sure why it was unable to create few tables/views despite having all the permissions.
+[cid:image004.png@01DB9FC1.FF306DB0]  [cid:image005.png@01DB9FC1.FF306DB0]
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 28, 2025 9:12 AM
+To: Kurtis Andersen <kurtis.andersen@netwrix.com>
+Cc: Scott Webber <scott.webber@netwrix.com>
+Subject: POC - AD Inventory failing [ ref:!00D70091pB.!500Qk0NR20c:ref ]
+
+Hello Kurtis,
+
+My name is Josh, and I'm happy to help with this issue.
+
+Do you have any logs or other artifacts for this issue? Which part of the AD Inventory is failing, the AD_Scan, AD_Changes, or AD_Exceptions? I'd like to see DEBUG logs from the AD_Scan job.
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0NR20c:ref","RE: Netwrix Support Ticket #440332 - ref:_00D7091pB._500Q000NR20c:ref - POC - AD Inventory failing    [ ref:!00D70091pB.!500Qk0NR20c:ref ]","kurtis.andersen@netwrix.com","Kurtis Andersen","techsupport@netwrix.com","scott.webber@netwrix.com","","true","2025-03-28T14:15:52.000Z","true"
+"02sQk00000NJ22WIAT","500Qk00000NR20cIAD","2025-04-02T19:51:19.000Z","2025-04-02T19:51:19.000Z","Hey Kurtis,
+
+Since we worked out that this was caused by SQL Server Collation and the issue has now been resolved, I will proceed with closing this ticket out.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Kurtis Andersen [kurtis.andersen@netwrix.com]
+Sent: 3/28/2025 10:15 AM
+To: techsupport@netwrix.com
+Cc: scott.webber@netwrix.com
+Subject: RE: Netwrix Support Ticket #440332 - ref:_00D7091pB._500Q000NR20c:ref - POC - AD Inventory failing [ ref:!00D70091pB.!500Qk0NR20c:ref ]
+
+ref:_00D7091pB._500Q000NR20c:ref
+
+
+
+The AD_Scan job is failing. Seems to be related to database permissions based on errors for ‘invalid columns’.
+
+ 
+
+I had them walk through dropping the ADI tables but even that job failed with similar messages.
+
+ 
+
+Here is their reply:
+
+ 
+
+Kurtis,
+We have followed all the steps mentioned below even the remove tables job got failed  with the errors as shown in the below screenshot.
+
+We can see that account has all the required permissions and it was able to create the tables/views in the database not sure why  there would be an issue for creating some tables/views that were being logged in our error. Please find the below screenshot of the account permissions in DB.
+
+  
+
+ 
+
+Below screenshot shows that it was able to create the tables/views/functions/Stored Procedures inherently. Not sure why it was unable to create few tables/views despite having all the permissions.
+  
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 28, 2025 9:12 AM
+To: Kurtis Andersen <kurtis.andersen@netwrix.com>
+Cc: Scott Webber <scott.webber@netwrix.com>
+Subject: POC - AD Inventory failing [ ref:!00D70091pB.!500Qk0NR20c:ref ]
+
+
+
+ 
+
+Hello Kurtis,
+
+My name is Josh, and I'm happy to help with this issue.
+
+Do you have any logs or other artifacts for this issue? Which part of the AD Inventory is failing, the AD_Scan, AD_Changes, or AD_Exceptions? I'd like to see DEBUG logs from the AD_Scan job. 
+
+Thank you,
+
+Joshua Sexton
+Technical Support Engineer Tier 1
+____________________ ______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0NR20c:ref","RE: Netwrix Support Ticket #440332 -  - POC - AD Inventory failing    [ ref:!00D70091pB.!500Qk0NR20c:ref ]","techsupport@netwrix.com","Netwrix Support","kurtis.andersen@netwrix.com","scott.webber@netwrix.com","taylor.caliguiri@netwrix.com","true","2025-04-02T19:51:18.000Z","true"

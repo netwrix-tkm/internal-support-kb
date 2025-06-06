@@ -1,0 +1,39 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000FvRdyIAF","00421360","Support Ticket","SSL CSR","Good day, 
+
+We'd like to update the TLS certificates for our Netwrix products.  Can you assist with a remote session to generate the CSR?
+
+Keisha","","","","+++++
+
+A) Here are some of the steps that Scottie followed during the meeting today and the full article for updating your certificate info for NEA Published Reports.
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm#create_an_sslbinding
+
+B) Note that it looks like your imported certificate did not have a private key and failed on the error shown below.
+
++++++
+""SSL Certificate add failed, Error: 1312"" = Private Key is missing
+Console Message ""A specified login session does not exist. It may have already been terminated.""
++++++
+
+C) Attached is a sample screenshot that shows the message ""You have a private key that corresponds to this certificate."":
+
+""SFC_421360_Certificate_Gen_You_have_a_private_key_SS_2024-10-02_131922.png""
+
++++++
+""You have a private key that corresponds to this certificate.""
++++++
+
+#####
+#####
+
+1) Command to display all SSL certificate info. You will want to copy and paste this info into a notepad - netsh http show sslcert
+
+2) Command to delete the certificate and appID for each web console - netsh http del sslcert ipport=0.0.0.0:8082 to delete current cert
+
+3) Command to add the SSL certificate info including assigning the SSL certificate to the application ID. You will want to modify the port number for the correct web application - netsh http add sslcert ipport=0.0.0.0:8082 appid= certhash=
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm#create_an_sslbinding
+
++++++
++++++","Guidance","Mike Candon","","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.6","","20.4","Closed - Resolved","Central Bank of Trinidad and Tobago","Keisha Lashley","2024-09-18T12:17:01.000Z","2024-10-08T21:10:52.000Z"

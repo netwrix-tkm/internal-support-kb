@@ -1,0 +1,105 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PdWOGKA3","500Qk00000FzXWIIA3","TextPost","0054u000007oss5AAA","2024-10-29T14:24:37.000Z","What We've Learned Updated: out of memory error is killing scan after 2+ days
+application server isn't dropping below 40% RAM usage
+adjusted page file to only use one drive
+
+only scanning 1 host - Isilon","","","","0054u000007oss5AAA","2024-10-29T14:24:37.000Z"
+"0D5Qk00000PdWOHKA3","500Qk00000FzXWIIA3","TextPost","0054u000007oss5AAA","2024-10-29T14:24:37.000Z","Next Steps Updated: had client set logging to debug and export the job when it fails again
+waiting for logs","","","","0054u000007oss5AAA","2024-10-29T14:24:37.000Z"
+"0D5Qk00000Psp3OKAR","500Qk00000FzXWIIA3","TextPost","0054u000007oss5AAA","2024-11-01T16:00:03.000Z","<p> </p><p>30/10/2024 11:53:22	ERROR	FILESYSTEMACCESS	TFileSystemScan.DLPScanFile	&quot;Error initiating DLP scan of file \HLISILON01ifs$HLISI01ClusterHLAPPDATATier2SKUImagepartitions1580871525_39E45A518F227E.jpg Out of memory&quot;	HLISILON01	DCExtract	3100	10588	5344</p><p>30/10/2024 11:53:22	DEBUG	TSPADOEngineTransportItf.DebugLog	TSPEngineTransportItf.PrepareForTable	&quot;Start&quot;	HLISILON01		3100	10588	5344</p><p>30/10/2024 11:53:22	DEBUG	TSPADOEngineTransportItf.DebugLog	TSPEngineTransportItf.PrepareForTable	&quot;End&quot;	HLISILON01	Messages	3100	10588	5344</p><p>30/10/2024 11:53:22	ERROR	FILESYSTEMACCESS	TEventModel.RunEvent	&quot;Failed to process event from TDLPEnumerator.TFileItem after 3 attempts: Out of memory&quot;	HLISILON01	DCExtract	3100	10588	5344</p><p>30/10/2024 11:53:22	DEBUG	TSPADOEngineTransportItf.DebugLog	TSPEngineTransportItf.PrepareForTable	&quot;Start&quot;	HLISILON01		3100	10588	5344</p><p>30/10/2024 11:53:22	DEBUG	TSPADOEngineTransportItf.DebugLog	TSPEngineTransportItf.PrepareForTable	&quot;End&quot;	HLISILON01	Messages	3100	10588	5344</p>","","","","0054u000007oss5AAA","2024-11-01T16:00:03.000Z"
+"0D5Qk00000Pt6dIKAR","500Qk00000FzXWIIA3","TextPost","0054u000007oss5AAA","2024-11-01T16:00:38.000Z","Next Steps Updated: Escalating ticket","","","","0054u000007oss5AAA","2024-11-01T16:00:38.000Z"
+"0D5Qk00000PtAG0KAN","500Qk00000FzXWIIA3","TextPost","0054u000007oss5AAA","2024-11-01T16:01:18.000Z","What We've Learned Updated: out of memory error is killing scan after 2+ days
+application server isn't dropping below 40% RAM usage
+adjusted page file to only use one drive
+
+only scanning 1 host - Isilon
+
+client confirmed that the Hypervisor is not even coming close to running out of RAM","","","","0054u000007oss5AAA","2024-11-01T16:01:18.000Z"
+"0D5Qk00000PtXN7KAN","500Qk00000FzXWIIA3","TextPost","0054u000007oss5AAA","2024-11-01T16:58:49.000Z","What We've Learned Updated: out of memory error is killing scan after 2+ days
+application server isn't dropping below 40% RAM usage
+adjusted page file to only use one drive
+only scanning 1 host - Isilon
+client confirmed that the Hypervisor is not even coming close to running out of RAM
+
+We were getting the below error on the SEEK System Scan:
+---------------
+Error during processing: Could not load file or assembly 'System.Data.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+---------------
+Updated the Netwrix Sensitive Data Discovery Add-on to v11.6.0.13 --this did not fix our error
+
+Found where the System.Data.SQLite.dll v1.0.117.0 was in the %SAInstallDir%FSAA folder and replaced the 3 outdated System.Data.SQLite.dll v0.0.96 files with it 
+--this fixed our SEEK error
+
+Applied AV exclusions
+-This seemingly had no impact
+
+Scanning
+-1 Host: Isilon
+-4 Threads
+--was reduced by the client but he didn't say how much
+-6 Processes
+Server resources:
+-8 Core CPU
+-16GB RAM
+--Recommended increasing RAM to 32GB based on our guidelines
+----https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem.htm#:~:text=Sensitive%20Data%20Discovery%20Auditing%20Requirement
+--client pushed back saying never goes over 40-60% usage
+
+Confirmed Hypervisor is not running out of RAM
+-""that host is only using 40% of 2TB RAM with 100% allocation to vm guests – plenty of headroom there""","","","","0054u000007oss5AAA","2024-11-01T16:58:49.000Z"
+"0D5Qk00000PtTwJKAV","500Qk00000FzXWIIA3","TextPost","0054u000007oss5AAA","2024-11-01T17:00:02.000Z","Description Updated: Problem Statement/Business Impact:
+Trying to complete SEEK scan to provide fresh data to SDD reports
+
+---------------
+
+I am attempting to complete a SEEK scan across our Isilon file storage. The latest scan failed with ""out of memory"" error messages. We just added additional CPU and memory resources to the host (8vCPU, 16GB memory). These issues began after upgrading to 11.6. and we have not been able to complete a scan.","","","","0054u000007oss5AAA","2024-11-01T17:00:02.000Z"
+"0D5Qk00000PtTwKKAV","500Qk00000FzXWIIA3","TextPost","0054u000007oss5AAA","2024-11-01T17:00:02.000Z","Steps to Reproduce Updated: 1. Run the Seek scan job
+2.wait about 2 days for scan to run
+3.scan fails with out of memory error","","","","0054u000007oss5AAA","2024-11-01T17:00:02.000Z"
+"0D5Qk00000Q4w8AKAR","500Qk00000FzXWIIA3","TextPost","00570000003KXurAAG","2024-11-04T20:59:08.000Z","<p><b>#EAM</b> --- Dusty</p><p><b>Current Status:</b>                    Awaiting R&amp;D</p><p><b>Current Tier:</b>                       T2 Support</p><p><b>Contact last comment:</b>        Restarted the scan due to a network outage. Scan failed again after a few days with out of memory errors. Log file has been uploaded. <b>11/01</b></p><p><b>T1 Joshua Sexton:               </b>System<b> </b>out of memory error being noted, however there seems to be sufficient host resources. <b>11/01</b></p><p><b>T2 Owner Tay:                     </b>R&amp;D<b> </b>Priority has been changed to High. <b>11/04</b></p>","","","","00570000003KXurAAG","2024-11-04T20:59:08.000Z"
+"0D5Qk00000Q8mGQKAZ","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-11-05T18:12:03.000Z","Next Steps Updated: R&D Review Needed","","","","0054u000007MiY9AAK","2024-11-05T18:12:03.000Z"
+"0D5Qk00000QJS9nKAH","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-11-07T16:49:23.000Z","Steps to Reproduce Updated: 1. Run the Seek scan job
+2. wait about 2 days for scan to run
+3. scan fails with out of memory error","","","","0054u000007MiY9AAK","2024-11-07T16:49:23.000Z"
+"0D5Qk00000Qdez3KAB","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-11-11T23:00:16.000Z","<p><b>#EAM</b>​ --- Tay</p><p><b>Current Status:</b> Awaiting R&amp;D</p><p><b>Current Tier:</b> T2 Support</p><p><b>Customer Last comment:</b> I had to restart the scan due to a network outage. However, the scan did fail again after a couple days. Same out of memory errors. I have uploaded the log file. <i>(11/1/24)</i></p><p><b>Update:</b> <i>[From T2] </i>Escalated to R&amp;D (11/4/24) but no update from them as of yet </p>","","","","0054u000007MiY9AAK","2024-11-11T23:00:16.000Z"
+"0D5Qk00000RCCy7KAH","500Qk00000FzXWIIA3","TextPost","0050g000006QqyEAAS","2024-11-18T20:25:27.000Z","Next Steps Updated: Active on current sprint","","","","0050g000006QqyEAAS","2024-11-18T20:25:27.000Z"
+"0D5Qk00000RoAbsKAF","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-11-26T19:12:38.000Z","<p>#EAM​  -- T. Caliguiri</p><p><b>Current Status: </b>Awaiting R&amp;D</p><p><b>Last Update:</b> Seek Scan OOM - active on current sprint</p><p> </p><p><b>Additional Info/Follow Up: </b>Last update from R&amp;D was 11/13</p>","","","","0054u000007MiY9AAK","2024-11-26T19:12:38.000Z"
+"0D5Qk00000S6DLqKAN","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-12-02T15:48:45.000Z","Next Steps Updated: Fix in progress","","","","0054u000007MiY9AAK","2024-12-02T15:48:45.000Z"
+"0D5Qk00000S7udcKAB","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-12-02T22:17:27.000Z","<p>#EAM​  -- T. Caliguiri</p><p>Current Status: Awaiting R&amp;D</p><p>Last Update: Fix is currently being worked on - 11/28</p><p> </p><p>Additional Info/Follow Up: </p>","","","","0054u000007MiY9AAK","2024-12-02T22:17:27.000Z"
+"0D5Qk00000SnHA3KAN","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-12-11T20:27:47.000Z","What We've Learned Updated: HFs applied and new SEEK scan kicked off
+---
+out of memory error is killing scan after 2+ days
+application server isn't dropping below 40% RAM usage
+adjusted page file to only use one drive
+only scanning 1 host - Isilon
+client confirmed that the Hypervisor is not even coming close to running out of RAM
+
+We were getting the below error on the SEEK System Scan:
+---------------
+Error during processing: Could not load file or assembly 'System.Data.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+---------------
+Updated the Netwrix Sensitive Data Discovery Add-on to v11.6.0.13 --this did not fix our error
+
+Found where the System.Data.SQLite.dll v1.0.117.0 was in the %SAInstallDir%FSAA folder and replaced the 3 outdated System.Data.SQLite.dll v0.0.96 files with it 
+--this fixed our SEEK error
+
+Applied AV exclusions
+-This seemingly had no impact
+
+Scanning
+-1 Host: Isilon
+-4 Threads
+--was reduced by the client but he didn't say how much
+-6 Processes
+Server resources:
+-8 Core CPU
+-16GB RAM
+--Recommended increasing RAM to 32GB based on our guidelines
+----https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem.htm#:~:text=Sensitive%20Data%20Discovery%20Auditing%20Requirement
+--client pushed back saying never goes over 40-60% usage
+
+Confirmed Hypervisor is not running out of RAM
+-""that host is only using 40% of 2TB RAM with 100% allocation to vm guests – plenty of headroom there""","","","","0054u000007MiY9AAK","2024-12-11T20:27:47.000Z"
+"0D5Qk00000SnDuFKAV","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-12-11T20:28:03.000Z","Next Steps Updated: Customer will update us on how the SEEK scan post-hfs goes","","","","0054u000007MiY9AAK","2024-12-11T20:28:03.000Z"
+"0D5Qk00000TCQfvKAH","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-12-17T18:53:53.000Z","<p>#EAM -- TRC</p><p>Current Status: Awaiting Client</p><p>Last Update: Both HFs applied in the customers environment and kicked off the FS SEEK jobs. This is expected to fix the memory leak issue dev found. Waiting for customer to confirm the jobs are behaving as expected now.</p>","","","","0054u000007MiY9AAK","2024-12-17T18:53:53.000Z"
+"0D5Qk00000TwjlvKAB","500Qk00000FzXWIIA3","TextPost","0054u000007MiY9AAK","2024-12-30T16:28:40.000Z","<p>Seeing the following errors in the logs <b>after the scan is about 22% through HISILON01</b></p><p> </p><p>27/12/2024 08:54:38	ERROR	FILESYSTEMACCESS	Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute	&quot;System.InvalidCastException: Unable to cast COM object of type &#39;System.__ComObject&#39; to interface type &#39;Stealthbits.StealthAUDIT.DataCollectors.ISADCTaskHost&#39;. This operation failed because the QueryInterface call on the COM component for the interface with IID &#39;{D921D431-43E4-4750-93C9-577AE47C86AC}&#39; failed due to the following error: Could not read key from registry (Exception from HRESULT: 0x80040150 (REGDB_E_READREGDB)).   at System.StubHelpers.StubHelpers.GetCOMIPFromRCW(Object objSrc, IntPtr pCPCMD, IntPtr&amp; ppTarget, Boolean&amp; pfNeedsRelease)   at Stealthbits.StealthAUDIT.DataCollectors.ISADCTaskHost.WriteInformation(String scope, String message)   at Stealthbits.StealthAUDIT.DataCollectors.Logging.DCLogWriter.Write(TraceEventType severity, String methodName, String message)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Log.Write(TraceEventType type, String message)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Log.Info(String message)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.AccessScanTask.&lt;InternalProcessRecordAsync&gt;d__2.MoveNext() --- End of stack trace from previous location where exception was thrown ---   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.AccessScanTask.&lt;InternalProcessRecordAsync&gt;d__2.MoveNext() --- End of stack trace from previous location where exception was thrown ---   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.AccessScanTask.InternalProcessRecord()   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()&quot;	HLISILON01	DCExtract	5092	1556	1808</p><p> </p><p>ERROR	SAJobEngine	TSPADOJobTaskStatisticsThread.Execute	&quot;Illegal operation attempted on a registry key that has been marked for deletion&quot; (There are about 8 of these)</p>","","","","0054u000007MiY9AAK","2024-12-30T16:28:40.000Z"

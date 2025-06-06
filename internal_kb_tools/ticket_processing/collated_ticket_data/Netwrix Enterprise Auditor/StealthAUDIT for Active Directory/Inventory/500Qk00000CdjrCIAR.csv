@@ -1,0 +1,28 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CdjrCIAR","00413994","Support Ticket","Failing to run post update to 11.5","We needed to upgrade from an old version of StealthAudit to Enterprise Auditior. We were informed that the database was no long supported and would need to be reformatted.
+
+We stood up a new MSSQL 2019 instance, updated to 11.5 using the GUI and updated the new connection profile and SQL connection. However, we're still getting this error set when trying to run ADI
+
+03/07/2024 13:23:44WARNINGSQLSERVERTSPSQLProfileConnectionItf.ExtractTableIndex""Could not retrieve schema info for SAConfigTbl Error: CommandText does not return a result set""SAConfigTbl706826207204
+03/07/2024 13:23:44WARNINGSAJobEngineTSAJobEngine_share.GetJobHosts""Failed to read the list of static host for this job""1-AD_Scan706826207204
+03/07/2024 13:23:44WARNINGSAJobEngineTSAJobEngine_share.GetJobHosts""Host list:""1-AD_Scan706826207204
+03/07/2024 13:23:48WARNINGADINVENTORYStealthbits.StealthAUDIT.DataCollectors.ADInventory2.Tasks.ADInventoryScanTask.InternalProcessRecord""The custom attribute msDS-AllowedToActOnBehalfOfOtherIdentity was requested, but not set in domain 1 for the User object class.  A full ADI scan may be required.""ADDSFLEX01DCExtract863626207204
+03/07/2024 13:23:48WARNINGADINVENTORYStealthbits.StealthAUDIT.DataCollectors.ADInventory2.Tasks.ADInventoryScanTask.InternalProcessRecord""The custom attribute msDS-AllowedToDelegateTo was requested, but not set in domain 1 for the User object class.  A full ADI scan may be required.""ADDSFLEX01DCExtract863626207204
+03/07/2024 13:23:48WARNINGADINVENTORYStealthbits.StealthAUDIT.DataCollectors.ADInventory2.Tasks.ADInventoryScanTask.InternalProcessRecord""The custom attribute msDS-AllowedToActOnBehalfOfOtherIdentity was requested, but not set in domain 1 for the Computer object class.  A full ADI scan may be required.""ADDSFLEX01DCExtract863626207204
+03/07/2024 13:23:53WARNINGStealthAUDITTJobQueueThread.AbortQueue""Abort queue pending""706826207204
+03/07/2024 13:23:53WARNINGStealthAUDITTJobQueueThread.TerminateQueue""Terminate pending""706826207204
+
+This could be because we didn't completely uninstall or because of needed new permissions on the service account?
+
+Let me know what you think.
+
+Best,
+
+Zeke","","","","[Issue]
+“The custom attribute msDS-AllowedToDelegateTo was requested, but not set in domain 3 for the Computer object class. A full ADI scan may be required.”
+
+[Root Cause]
+The AD inventory scan job searches for common AD schema attributes by default. The job prompts corresponding warnings if your environment does not implement these attributes.
+
+[Resolution]
+Customer removed the unused custom attributes from the query settings and was able to get a successful scan after that","Incorrect configuration: Netwrix product","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Inventory","11.5","","7.0","Closed - Resolved","Minnwest Bank Group","Zeke Town","2024-07-03T18:28:21.000Z","2024-07-10T18:15:49.000Z"

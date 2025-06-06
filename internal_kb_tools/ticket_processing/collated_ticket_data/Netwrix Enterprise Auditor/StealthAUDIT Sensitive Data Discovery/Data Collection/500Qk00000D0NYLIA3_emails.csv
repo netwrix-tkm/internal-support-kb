@@ -1,0 +1,1588 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000CX2H8IAL","500Qk00000D0NYLIA3","2024-07-12T17:46:50.000Z","2024-07-12T17:46:50.000Z","ref:_00D7091pB._500Q000D0NYL:ref
+
+You have received a new voice mail from ""+14242774931 -""CTBC Bank USA:IVR US""
+			
+From:+14242774931 
+To: 8040"" - ""TS"" ""SBSA""
+Received:""Friday, July 12, 2024 5:45:11 PM""
+Duration:""00:01:06""	
+File:""vmail_+14242774931_8040_20240712174511""
+
+
+Transcription:
+Hi, uh, my name is Javier.  Um, I'm calling from ctvc Bank. My phone number is area code.  424-277-4931  My email address is Javier Gomez at ctbc bank usa.com.  I'm trying to run the sensitive data, um report.  And it just times out I have the the log errors. I was trying to log into your portal.  but it doesn't seem to be working the  sign in button is disabled.  So, um, not sure how to um send you the logs or I want to see if I could get support.  Once again, my name is H.  Gomez my phone number is area code 42.","Netwrix Support Ticket #414901 - ref:_00D7091pB._500Q000D0NYL:ref - New Voicemail from +14242774931 - CTBC Bank USA:IVR US","phone.system@netwrix.com","+14242774931","tssbsa@netwrix.com","","","true","2024-07-12T17:46:30.000Z","true"
+"02sQk00000CXVfhIAH","500Qk00000D0NYLIA3","2024-07-12T19:27:10.000Z","2024-07-12T19:27:10.000Z","Javier,
+
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize 
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+Could I also get a screenshot of the Applications License details?
+
+Ref-image if needed:
+
+
+
+Thank You for your time.
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: +14242774931 [phone.system@netwrix.com]
+Sent: 7/12/2024 1:46 PM
+To: tssbsa@netwrix.com
+Subject: Netwrix Support Ticket #414901 - ref:_00D7091pB._500Q000D0NYL:ref - New Voicemail from +14242774931 - CTBC Bank USA:IVR US
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+You have received a new voice mail from ""+14242774931 -""CTBC Bank USA:IVR US""
+
+From:+14242774931
+To: 8040"" - ""TS"" ""SBSA""
+Received:""Friday, July 12, 2024 5:45:11 PM""
+Duration:""00:01:06""
+File:""vmail_+14242774931_8040_20240712174511""
+
+
+Transcription:
+Hi, uh, my name is Javier. Um, I'm calling from ctvc Bank. My phone number is area code. 424-277-4931 My email address is Javier Gomez at ctbc bank usa.com. I'm trying to run the sensitive data, um report. And it just times out I have the the log errors. I was trying to log into your portal. but it doesn't seem to be working the sign in button is disabled. So, um, not sure how to um send you the logs or I want to see if I could get support. Once again, my name is H. Gomez my phone number is area code 42.","RE: Netwrix Support Ticket #414901 -  - New Voicemail from +14242774931 - CTBC Bank USA:IVR US    [ ref:!00D70091pB.!500Qk0D0NYL:ref ]","techsupport@netwrix.com","Netwrix Support","javier.gomez@ctbcbankusa.com","","dusty.grayson@netwrix.com","true","2024-07-12T19:27:09.000Z","true"
+"02sQk00000CXwHeIAL","500Qk00000D0NYLIA3","2024-07-12T22:15:21.000Z","2024-07-12T22:15:21.000Z","ref:_00D7091pB._500Q000D0NYL:ref
+
+Dusty,
+
+Here's a screenshot of the PowerShell ISE output:
+[cid:image001.png@01DAD46B.30B1F890]
+
+Here's the text output:
+Name                                               Version    InstallDate
+----                                               -------    -----------
+StealthAUDIT Access Information Center             11.5.0.108 20220527
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.51  20220311
+StealthAUDIT V11.5                                 11.5.0.160 20220311
+Stealthbits Activity Monitor                       6.0.1111   20230331
+Stealthbits Activity Monitor Agent 64-bit          6.0.1111   20230331
+
+Here is a screenshot of StealthAudit License:
+[cid:image004.png@01DAD46D.65590EB0]
+Here's a screenshot of Stealthbits Activity Monitor:
+[cid:image007.png@01DAD46E.41A0CFC0]
+
+I was trying to run the Sensitive Data scan, and it started.  I disconnected (not logged off) my RDP session to the server, then checked on it a few hours later, but now StealthAudit is not responding:
+[cid:image005.png@01DAD46D.65590EB0]
+
+Here's a screenshot of the Task Manager:
+[cid:image006.png@01DAD46D.CDD345F0]
+
+Not sure if I should end task and start over, or wait to see it starts responding.
+
+Please advise.
+
+Sincerely,
+
+Javier Gomez
+Application Analyst II
+[CTBC Logo_WH_BG-01_Signature]
+http://www.ctbcbankusa.com
+801 S. Figueroa Street, Suite 2300
+Los Angeles, CA 90017
+Phone: (424) 277-4931
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 12:27 PM
+To: Javier Gomez <javier.gomez@ctbcbankusa.com>
+Subject: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+CAUTION: This email came from outside CTBC BANK USA. Use extra caution when opening attachments, clicking links, or responding to this email. Original sender: techsupport@netwrix.com.
+
+
+Javier,
+
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+Could I also get a screenshot of the Applications License details?
+
+Ref-image if needed:
+
+[Image_2024-07-12_15-26-58.png]
+
+Thank You for your time.
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!CnJW95SnPS--tQ!R6rg3MI7YgwDTvIZWtNgAV7jSCTK_4kPaIDHo9oQbf_V8QD15XY59DPxP5Yretvrrv6p6P1Ies3DycafrqgS5KRPUU0B1A$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!CnJW95SnPS--tQ!R6rg3MI7YgwDTvIZWtNgAV7jSCTK_4kPaIDHo9oQbf_V8QD15XY59DPxP5Yretvrrv6p6P1Ies3DycafrqgS5KRbktqEaQ$>
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: +14242774931 [phone.system@netwrix.com<mailto:phone.system@netwrix.com>]
+Sent: 7/12/2024 1:46 PM
+To: tssbsa@netwrix.com<mailto:tssbsa@netwrix.com>
+Subject: Netwrix Support Ticket #414901 - ref:_00D7091pB._500Q000D0NYL:ref - New Voicemail from +14242774931 - CTBC Bank USA:IVR US
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+You have received a new voice mail from ""+14242774931 -""CTBC Bank USA:IVR US""
+
+From:+14242774931
+To: 8040"" - ""TS"" ""SBSA""
+Received:""Friday, July 12, 2024 5:45:11 PM""
+Duration:""00:01:06""
+File:""vmail_+14242774931_8040_20240712174511""
+
+
+Transcription:
+Hi, uh, my name is Javier. Um, I'm calling from ctvc Bank. My phone number is area code. 424-277-4931 My email address is Javier Gomez at ctbc bank usa.com<https://urldefense.com/v3/__https:/usa.com__;!!CnJW95SnPS--tQ!R6rg3MI7YgwDTvIZWtNgAV7jSCTK_4kPaIDHo9oQbf_V8QD15XY59DPxP5Yretvrrv6p6P1Ies3DycafrqgS5KQ1Nwm08w$>. I'm trying to run the sensitive data, um report. And it just times out I have the the log errors. I was trying to log into your portal. but it doesn't seem to be working the sign in button is disabled. So, um, not sure how to um send you the logs or I want to see if I could get support. Once again, my name is H. Gomez my phone number is area code 42.
+[Image removed by sender.]
+
+________________________________
+
+California residents, please see our California Consumer Privacy Act (""CCPA"") Notice at Collection<https://www.ctbcbankusa.com/ContentDocumentHandler.ashx?documentId=68592>
+This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error, please notify the system manager. This message contains confidential information and is intended only for the individual named. If you are not the named addressee, you should not disseminate, distribute or copy this email. Please notify the sender immediately by email if you have received this email by mistake and delete this email from your system. If you are not the intended recipient, you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.","RE:  RE: Netwrix Support Ticket #414901 -  - New Voicemail from +14242774931 - CTBC Bank USA:IVR US    [ ref:!00D70091pB.!500Qk0D0NYL:ref ]","javier.gomez@ctbcbankusa.com","Javier Gomez","techsupport@netwrix.com","","","true","2024-07-12T22:15:03.000Z","true"
+"02sQk00000CYBtNIAX","500Qk00000D0NYLIA3","2024-07-12T22:57:50.000Z","2024-07-12T22:57:50.000Z","ref:_00D7091pB._500Q000D0NYL:ref
+
+Dusty,
+
+I ended the task and was going to scan just one server, BR29HQFS, but it has the status Offline:
+[cid:image008.png@01DAD473.D0393AB0]
+
+I know the server is online, because I connected to it and confirmed it has the SAM agent installed:
+[cid:image001.png@01DAD474.2F798980]
+
+It is also the SAM with no error:
+[cid:image002.png@01DAD474.2F798980]
+
+Please advise how to fix the Offline status in StealthAudit hosts.
+
+Sincerely,
+
+Javier Gomez
+Application Analyst II
+[CTBC Logo_WH_BG-01_Signature]
+http://www.ctbcbankusa.com
+801 S. Figueroa Street, Suite 2300
+Los Angeles, CA 90017
+Phone: (424) 277-4931
+
+From: Javier Gomez
+Sent: Friday, July 12, 2024 3:15 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: RE: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+Dusty,
+
+Here's a screenshot of the PowerShell ISE output:
+[cid:image010.png@01DAD473.D0393AB0]
+
+Here's the text output:
+Name                                               Version    InstallDate
+----                                               -------    -----------
+StealthAUDIT Access Information Center             11.5.0.108 20220527
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.51  20220311
+StealthAUDIT V11.5                                 11.5.0.160 20220311
+Stealthbits Activity Monitor                       6.0.1111   20230331
+Stealthbits Activity Monitor Agent 64-bit          6.0.1111   20230331
+
+Here is a screenshot of StealthAudit License:
+[cid:image011.png@01DAD473.D0393AB0]
+Here's a screenshot of Stealthbits Activity Monitor:
+[cid:image012.png@01DAD473.D0393AB0]
+
+I was trying to run the Sensitive Data scan, and it started.  I disconnected (not logged off) my RDP session to the server, then checked on it a few hours later, but now StealthAudit is not responding:
+[cid:image013.png@01DAD473.D0393AB0]
+
+Here's a screenshot of the Task Manager:
+[cid:image014.png@01DAD473.D0393AB0]
+
+Not sure if I should end task and start over, or wait to see it starts responding.
+
+Please advise.
+
+Sincerely,
+
+Javier Gomez
+Application Analyst II
+[CTBC Logo_WH_BG-01_Signature]
+http://www.ctbcbankusa.com
+801 S. Figueroa Street, Suite 2300
+Los Angeles, CA 90017
+Phone: (424) 277-4931
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, July 12, 2024 12:27 PM
+To: Javier Gomez <javier.gomez@ctbcbankusa.com<mailto:javier.gomez@ctbcbankusa.com>>
+Subject: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+CAUTION: This email came from outside CTBC BANK USA. Use extra caution when opening attachments, clicking links, or responding to this email. Original sender: techsupport@netwrix.com<mailto:techsupport@netwrix.com>.
+
+
+Javier,
+
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+Could I also get a screenshot of the Applications License details?
+
+Ref-image if needed:
+
+[Image_2024-07-12_15-26-58.png]
+
+Thank You for your time.
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!CnJW95SnPS--tQ!R6rg3MI7YgwDTvIZWtNgAV7jSCTK_4kPaIDHo9oQbf_V8QD15XY59DPxP5Yretvrrv6p6P1Ies3DycafrqgS5KRPUU0B1A$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!CnJW95SnPS--tQ!R6rg3MI7YgwDTvIZWtNgAV7jSCTK_4kPaIDHo9oQbf_V8QD15XY59DPxP5Yretvrrv6p6P1Ies3DycafrqgS5KRbktqEaQ$>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: +14242774931 [phone.system@netwrix.com<mailto:phone.system@netwrix.com>]
+Sent: 7/12/2024 1:46 PM
+To: tssbsa@netwrix.com<mailto:tssbsa@netwrix.com>
+Subject: Netwrix Support Ticket #414901 - ref:_00D7091pB._500Q000D0NYL:ref - New Voicemail from +14242774931 - CTBC Bank USA:IVR US
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+You have received a new voice mail from ""+14242774931 -""CTBC Bank USA:IVR US""
+
+From:+14242774931
+To: 8040"" - ""TS"" ""SBSA""
+Received:""Friday, July 12, 2024 5:45:11 PM""
+Duration:""00:01:06""
+File:""vmail_+14242774931_8040_20240712174511""
+
+
+Transcription:
+Hi, uh, my name is Javier. Um, I'm calling from ctvc Bank. My phone number is area code. 424-277-4931 My email address is Javier Gomez at ctbc bank usa.com<https://urldefense.com/v3/__https:/usa.com__;!!CnJW95SnPS--tQ!R6rg3MI7YgwDTvIZWtNgAV7jSCTK_4kPaIDHo9oQbf_V8QD15XY59DPxP5Yretvrrv6p6P1Ies3DycafrqgS5KQ1Nwm08w$>. I'm trying to run the sensitive data, um report. And it just times out I have the the log errors. I was trying to log into your portal. but it doesn't seem to be working the sign in button is disabled. So, um, not sure how to um send you the logs or I want to see if I could get support. Once again, my name is H. Gomez my phone number is area code 42.
+[Image removed by sender.]
+
+________________________________
+
+California residents, please see our California Consumer Privacy Act (""CCPA"") Notice at Collection<https://www.ctbcbankusa.com/ContentDocumentHandler.ashx?documentId=68592>
+This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error, please notify the system manager. This message contains confidential information and is intended only for the individual named. If you are not the named addressee, you should not disseminate, distribute or copy this email. Please notify the sender immediately by email if you have received this email by mistake and delete this email from your system. If you are not the intended recipient, you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.","RE:  RE: Netwrix Support Ticket #414901 -  - New Voicemail from +14242774931 - CTBC Bank USA:IVR US    [ ref:!00D70091pB.!500Qk0D0NYL:ref ]","javier.gomez@ctbcbankusa.com","Javier Gomez","techsupport@netwrix.com","","","true","2024-07-12T22:57:29.000Z","true"
+"02sQk00000CbwNtIAJ","500Qk00000D0NYLIA3","2024-07-15T12:30:05.000Z","2024-07-15T12:30:05.000Z","Javier,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=h4IYZEPW4f2gYPqaUEboZB3.GRVAPAbF.MF.7J.kZZk-Z&MeetingID=bhiU4Bnmj0W8PvsXA7nZ9.E_csO4WsOeB7fWLDzfWLE-Z
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Javier Gomez [javier.gomez@ctbcbankusa.com]
+Sent: 7/12/2024 6:57 PM
+To: techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+
+
+Dusty,
+
+ 
+
+I ended the task and was going to scan just one server, BR29HQFS, but it has the status Offline:
+
+
+
+ 
+
+I know the server is online, because I connected to it and confirmed it has the SAM agent installed:
+
+
+
+
+ 
+
+It is also the SAM with no error:
+
+
+
+ 
+
+Please advise how to fix the Offline status in StealthAudit hosts.
+
+ 
+
+Sincerely,
+
+ 
+
+Javier Gomez
+
+Application Analyst II
+
+
+http://www.ctbcbankusa.com
+
+801 S. Figueroa Street, Suite 2300
+
+Los Angeles, CA 90017
+
+Phone: (424) 277-4931
+
+
+ 
+
+
+
+From: Javier Gomez
+Sent: Friday, July 12, 2024 3:15 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: RE: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+
+
+ 
+
+Dusty,
+
+ 
+
+Here’s a screenshot of the PowerShell ISE output:
+
+
+ 
+
+Here’s the text output:
+Name                                               Version    InstallDate
+
+----                                               -------    -----------
+
+StealthAUDIT Access Information Center             11.5.0.108 20220527   
+
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.51  20220311   
+
+StealthAUDIT V11.5                                 11.5.0.160 20220311   
+
+Stealthbits Activity Monitor                       6.0.1111   20230331   
+
+Stealthbits Activity Monitor Agent 64-bit          6.0.1111   20230331   
+
+ 
+
+Here is a screenshot of StealthAudit License:
+
+
+Here’s a screenshot of Stealthbits Activity Monitor:
+
+
+
+ 
+
+I was trying to run the Sensitive Data scan, and it started.  I disconnected (not logged off) my RDP session to the server, then checked on it a few hours later, but now StealthAudit is not responding:
+
+
+
+ 
+
+Here’s a screenshot of the Task Manager:
+
+
+
+ 
+
+Not sure if I should end task and start over, or wait to see it starts responding.
+
+ 
+
+Please advise.
+
+ 
+
+Sincerely,
+
+ 
+
+
+Javier Gomez
+
+Application Analyst II
+
+
+http://www.ctbcbankusa.com
+
+801 S. Figueroa Street, Suite 2300
+
+Los Angeles, CA 90017
+
+Phone: (424) 277-4931
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 12:27 PM
+To: Javier Gomez <javier.gomez@ctbcbankusa.com>
+Subject: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+
+
+ 
+
+
+
+
+	
+		
+			
+			CAUTION: This email came from outside CTBC BANK USA. Use extra caution when opening attachments, clicking links, or responding to this email. Original sender: techsupport@netwrix.com.
+			
+		
+	
+
+
+
+ 
+
+
+Javier,
+
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object |  Format-Table Name,Version,InstallDate -AutoSize 
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+Could I also get a screenshot of the Applications License details?
+
+Ref-image if needed:
+
+
+
+Thank You for your time.
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: +14242774931 [phone.system@netwrix.com]
+Sent: 7/12/2024 1:46 PM
+To: tssbsa@netwrix.com
+Subject: Netwrix Support Ticket #414901 - ref:_00D7091pB._500Q000D0NYL:ref - New Voicemail from +14242774931 - CTBC Bank USA:IVR US
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+You have received a new voice mail from ""+14242774931 -""CTBC Bank USA:IVR US""
+
+From:+14242774931
+To: 8040"" - ""TS"" ""SBSA""
+Received:""Friday, July 12, 2024 5:45:11 PM""
+Duration:""00:01:06""
+File:""vmail_+14242774931_8040_20240712174511""
+
+
+Transcription:
+Hi, uh, my name is Javier. Um, I'm calling from ctvc Bank. My phone number is area code. 424-277-4931 My email address is Javier Gomez at ctbc bank  usa.com. I'm trying to run the sensitive data, um report. And it just times out I have the the log errors. I was trying to log into your portal. but it doesn't seem to be working the sign in button is disabled. So, um, not sure how to um send you the logs or I want to see if I could get support. Once again, my name is H. Gomez my phone number is area code 42.
+
+
+
+ 
+
+
+California residents, please see our California Consumer Privacy Act (""CCPA"")  Notice at Collection
+This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error, please notify the system manager. This message contains confidential information and is intended only for the individual named. If you are not the named addressee, you should not disseminate, distribute or copy this email. Please notify the sender immediately by email if you have received this email by mistake and delete this email from your system. If you are not the intended recipient, you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.","RE:  RE: Netwrix Support Ticket #414901 -  - New Voicemail from +14242774931 - CTBC Bank USA:IVR US    [ ref:!00D70091pB.!500Qk0D0NYL:ref ]","techsupport@netwrix.com","Netwrix Support","javier.gomez@ctbcbankusa.com","","","true","2024-07-15T12:30:04.000Z","true"
+"02sQk00000Ck0saIAB","500Qk00000D0NYLIA3","2024-07-17T17:40:28.000Z","2024-07-17T17:40:28.000Z","Javier,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+StealthAUDIT (SA)                               11.5.0.160 
+SA Access Information (AIC)               11.5.0.108    
+SA Sensitive Data (SDD)                      11.5.0.51   
+Stealthbits Activity Monitor (SAM)      6.0.1111 
+CrowdStrike                                           7.15.18513.0
+
+Found that the SEEK Scan ERROR was related to long path of 300+ char.
+
+We enabled the HKLM:SYSTEMCurrentControlSetControlFileSystem for  LongPathsEnabled = 1 
+***NOTED*** This requires a reboot  ***RECOMMENDED*** Setting this value on the Windows File Server as well.
+
+Found that the StealthAUDIT Web Server (StealthAUDITWeb) was not running which prevented the site from loading when the AIC was working as expected.
+
+Please let me know how the next set of scans complete.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/customer_training.html
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/15/2024 8:30 AM
+To: javier.gomez@ctbcbankusa.com
+Subject: RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+Javier,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=h4IYZEPW4f2gYPqaUEboZB3.GRVAPAbF.MF.7J.kZZk-Z&MeetingID=bhiU4Bnmj0W8PvsXA7nZ9.E_csO4WsOeB7fWLDzfWLE-Z
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Javier Gomez [javier.gomez@ctbcbankusa.com]
+Sent: 7/12/2024 6:57 PM
+To: techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+
+
+Dusty,
+
+ 
+
+I ended the task and was going to scan just one server, BR29HQFS, but it has the status Offline:
+
+
+
+ 
+
+I know the server is online, because I connected to it and confirmed it has the SAM agent installed:
+
+
+
+
+ 
+
+It is also the SAM with no error:
+
+
+
+ 
+
+Please advise how to fix the Offline status in StealthAudit hosts.
+
+ 
+
+Sincerely,
+
+ 
+
+Javier Gomez
+
+Application Analyst II
+
+
+http://www.ctbcbankusa.com
+
+801 S. Figueroa Street, Suite 2300
+
+Los Angeles, CA 90017
+
+Phone: (424) 277-4931
+
+
+ 
+
+
+
+From: Javier Gomez
+Sent: Friday, July 12, 2024 3:15 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: RE: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+
+
+ 
+
+Dusty,
+
+ 
+
+Here’s a screenshot of the PowerShell ISE output:
+
+
+ 
+
+Here’s the text output:
+Name                                               Version    InstallDate
+
+----                                               -------    -----------
+
+StealthAUDIT Access Information Center             11.5.0.108 20220527   
+
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.51  20220311   
+
+StealthAUDIT V11.5                                 11.5.0.160 20220311   
+
+Stealthbits Activity Monitor                       6.0.1111   20230331   
+
+Stealthbits Activity Monitor Agent 64-bit          6.0.1111   20230331   
+
+ 
+
+Here is a screenshot of StealthAudit License:
+
+
+Here’s a screenshot of Stealthbits Activity Monitor:
+
+
+
+ 
+
+I was trying to run the Sensitive Data scan, and it started.  I disconnected (not logged off) my RDP session to the server, then checked on it a few hours later, but now StealthAudit is not responding:
+
+
+
+ 
+
+Here’s a screenshot of the Task Manager:
+
+
+
+ 
+
+Not sure if I should end task and start over, or wait to see it starts responding.
+
+ 
+
+Please advise.
+
+ 
+
+Sincerely,
+
+ 
+
+
+Javier Gomez
+
+Application Analyst II
+
+
+http://www.ctbcbankusa.com
+
+801 S. Figueroa Street, Suite 2300
+
+Los Angeles, CA 90017
+
+Phone: (424) 277-4931
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 12:27 PM
+To: Javier Gomez <javier.gomez@ctbcbankusa.com>
+Subject: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+
+
+ 
+
+
+
+
+	
+		
+			
+			CAUTION: This email came from outside CTBC BANK USA. Use extra caution when opening attachments, clicking links, or responding to this email. Original sender: techsupport@netwrix.com.
+			
+		
+	
+
+
+
+ 
+
+
+Javier,
+
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object |  Format-Table Name,Version,InstallDate -AutoSize 
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+Could I also get a screenshot of the Applications License details?
+
+Ref-image if needed:
+
+
+
+Thank You for your time.
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: +14242774931 [phone.system@netwrix.com]
+Sent: 7/12/2024 1:46 PM
+To: tssbsa@netwrix.com
+Subject: Netwrix Support Ticket #414901 - ref:_00D7091pB._500Q000D0NYL:ref - New Voicemail from +14242774931 - CTBC Bank USA:IVR US
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+You have received a new voice mail from ""+14242774931 -""CTBC Bank USA:IVR US""
+
+From:+14242774931
+To: 8040"" - ""TS"" ""SBSA""
+Received:""Friday, July 12, 2024 5:45:11 PM""
+Duration:""00:01:06""
+File:""vmail_+14242774931_8040_20240712174511""
+
+
+Transcription:
+Hi, uh, my name is Javier. Um, I'm calling from ctvc Bank. My phone number is area code. 424-277-4931 My email address is Javier Gomez at ctbc bank  usa.com. I'm trying to run the sensitive data, um report. And it just times out I have the the log errors. I was trying to log into your portal. but it doesn't seem to be working the sign in button is disabled. So, um, not sure how to um send you the logs or I want to see if I could get support. Once again, my name is H. Gomez my phone number is area code 42.
+
+
+
+ 
+
+
+California residents, please see our California Consumer Privacy Act (""CCPA"")  Notice at Collection
+This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error, please notify the system manager. This message contains confidential information and is intended only for the individual named. If you are not the named addressee, you should not disseminate, distribute or copy this email. Please notify the sender immediately by email if you have received this email by mistake and delete this email from your system. If you are not the intended recipient, you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.","RE:  RE: Netwrix Support Ticket #414901 -  - New Voicemail from +14242774931 - CTBC Bank USA:IVR US    [ ref:!00D70091pB.!500Qk0D0NYL:ref ]","techsupport@netwrix.com","Netwrix Support","javier.gomez@ctbcbankusa.com","","","true","2024-07-17T17:40:27.000Z","true"
+"02sQk00000CkG7kIAF","500Qk00000D0NYLIA3","2024-07-17T19:15:21.000Z","2024-07-17T19:15:21.000Z","ref:_00D7091pB._500Q000D0NYL:ref
+
+Dusty,
+
+Thank you for your help.
+The scan of the file server that had failed over the weekend completed successfully after the adjustments you made.
+
+This ticket can be closed.
+
+Sincerely,
+
+Javier Gomez
+Application Analyst II
+801 S. Figueroa Street, Suite 2300 | Los Angeles, CA | 90017
+O: 424.277.4931
+Email: Javier.Gomez@ctbcbankusa.com<mailto:Javier.Gomez@ctbcbankusa.com>
+[cid:image001.png@01DAD842.EBCE54E0]
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, July 17, 2024 10:41 AM
+To: Javier Gomez <javier.gomez@ctbcbankusa.com>
+Subject: [External] RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+CAUTION: This email came from outside CTBC BANK USA. Use extra caution when opening attachments, clicking links, or responding to this email. Original sender: techsupport@netwrix.com.
+
+Javier,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+StealthAUDIT (SA)                               11.5.0.160
+SA Access Information (AIC)               11.5.0.108
+SA Sensitive Data (SDD)                      11.5.0.51
+Stealthbits Activity Monitor (SAM)      6.0.1111
+CrowdStrike                                           7.15.18513.0
+
+Found that the SEEK Scan ERROR was related to long path of 300+ char.
+
+We enabled the HKLM:SYSTEMCurrentControlSetControlFileSystem for  LongPathsEnabled = 1
+***NOTED*** This requires a reboot  ***RECOMMENDED*** Setting this value on the Windows File Server as well.
+
+Found that the StealthAUDIT Web Server (StealthAUDITWeb) was not running which prevented the site from loading when the AIC was working as expected.
+
+Please let me know how the next set of scans complete.
+
+Additional reference links you might like:
+New Customer Training  https://www.netwrix.com/customer_training.html<https://urldefense.com/v3/__https:/www.netwrix.com/customer_training.html__;!!CnJW95SnPS--tQ!TGzuQEJnIo5rriQD_9BBVVSLTbjTwBez2rxTBi5b_sJ4UYPo1myUTtODQ8ZUjUDWdEC79TeDxL9Fq7MQZKtQ4l_-GmUBlw$>
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!CnJW95SnPS--tQ!TGzuQEJnIo5rriQD_9BBVVSLTbjTwBez2rxTBi5b_sJ4UYPo1myUTtODQ8ZUjUDWdEC79TeDxL9Fq7MQZKtQ4l_KjtS9Gg$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!CnJW95SnPS--tQ!TGzuQEJnIo5rriQD_9BBVVSLTbjTwBez2rxTBi5b_sJ4UYPo1myUTtODQ8ZUjUDWdEC79TeDxL9Fq7MQZKtQ4l_eUWbLvg$>
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/15/2024 8:30 AM
+To: javier.gomez@ctbcbankusa.com
+Subject: RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+Javier,
+
+Thank You for the update.
+
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=h4IYZEPW4f2gYPqaUEboZB3.GRVAPAbF.MF.7J.kZZk-Z&MeetingID=bhiU4Bnmj0W8PvsXA7nZ9.E_csO4WsOeB7fWLDzfWLE-Z<https://urldefense.com/v3/__https:/nwxcorp.my.salesforce-sites.com/cts?Id=h4IYZEPW4f2gYPqaUEboZB3.GRVAPAbF.MF.7J.kZZk-Z&MeetingID=bhiU4Bnmj0W8PvsXA7nZ9.E_csO4WsOeB7fWLDzfWLE-Z__;!!CnJW95SnPS--tQ!TGzuQEJnIo5rriQD_9BBVVSLTbjTwBez2rxTBi5b_sJ4UYPo1myUTtODQ8ZUjUDWdEC79TeDxL9Fq7MQZKtQ4l_y2iNVqA$>
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!CnJW95SnPS--tQ!TGzuQEJnIo5rriQD_9BBVVSLTbjTwBez2rxTBi5b_sJ4UYPo1myUTtODQ8ZUjUDWdEC79TeDxL9Fq7MQZKtQ4l_KjtS9Gg$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!CnJW95SnPS--tQ!TGzuQEJnIo5rriQD_9BBVVSLTbjTwBez2rxTBi5b_sJ4UYPo1myUTtODQ8ZUjUDWdEC79TeDxL9Fq7MQZKtQ4l_eUWbLvg$>
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Javier Gomez [javier.gomez@ctbcbankusa.com]
+Sent: 7/12/2024 6:57 PM
+To: techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+
+Dusty,
+
+I ended the task and was going to scan just one server, BR29HQFS, but it has the status Offline:
+[cid:image002.png@01DAD842.EBCE54E0]
+
+I know the server is online, because I connected to it and confirmed it has the SAM agent installed:
+[cid:image003.png@01DAD842.EBCE54E0]
+
+It is also the SAM with no error:
+[cid:image004.png@01DAD842.EBCE54E0]
+
+Please advise how to fix the Offline status in StealthAudit hosts.
+
+Sincerely,
+
+Javier Gomez
+Application Analyst II
+[CTBC Logo_WH_BG-01_Signature]
+http://www.ctbcbankusa.com
+801 S. Figueroa Street, Suite 2300
+Los Angeles, CA 90017
+Phone: (424) 277-4931
+
+From: Javier Gomez
+Sent: Friday, July 12, 2024 3:15 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: RE: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+Dusty,
+
+Here's a screenshot of the PowerShell ISE output:
+[cid:image006.png@01DAD842.EBCE54E0]
+
+Here's the text output:
+Name                                               Version    InstallDate
+----                                               -------    -----------
+StealthAUDIT Access Information Center             11.5.0.108 20220527
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.51  20220311
+StealthAUDIT V11.5                                 11.5.0.160 20220311
+Stealthbits Activity Monitor                       6.0.1111   20230331
+Stealthbits Activity Monitor Agent 64-bit          6.0.1111   20230331
+
+Here is a screenshot of StealthAudit License:
+[cid:image007.png@01DAD842.EBCE54E0]
+Here's a screenshot of Stealthbits Activity Monitor:
+[cid:image008.png@01DAD842.EBCE54E0]
+
+I was trying to run the Sensitive Data scan, and it started.  I disconnected (not logged off) my RDP session to the server, then checked on it a few hours later, but now StealthAudit is not responding:
+[cid:image009.png@01DAD842.EBCE54E0]
+
+Here's a screenshot of the Task Manager:
+[cid:image010.png@01DAD842.EBCE54E0]
+
+Not sure if I should end task and start over, or wait to see it starts responding.
+
+Please advise.
+
+Sincerely,
+
+Javier Gomez
+Application Analyst II
+[CTBC Logo_WH_BG-01_Signature]
+http://www.ctbcbankusa.com
+801 S. Figueroa Street, Suite 2300
+Los Angeles, CA 90017
+Phone: (424) 277-4931
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, July 12, 2024 12:27 PM
+To: Javier Gomez <javier.gomez@ctbcbankusa.com<mailto:javier.gomez@ctbcbankusa.com>>
+Subject: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+CAUTION: This email came from outside CTBC BANK USA. Use extra caution when opening attachments, clicking links, or responding to this email. Original sender: techsupport@netwrix.com<mailto:techsupport@netwrix.com>.
+
+
+Javier,
+
+
+Thank you for reaching out to support.
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability.
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR
+
+Could I also get a screenshot of the Applications License details?
+
+Ref-image if needed:
+
+[cid:image011.png@01DAD842.EBCE54E0]
+
+Thank You for your time.
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!CnJW95SnPS--tQ!R6rg3MI7YgwDTvIZWtNgAV7jSCTK_4kPaIDHo9oQbf_V8QD15XY59DPxP5Yretvrrv6p6P1Ies3DycafrqgS5KRPUU0B1A$>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://urldefense.com/v3/__https:/www.netwrix.com/sign_in.html?rf=my_tickets.html__;!!CnJW95SnPS--tQ!R6rg3MI7YgwDTvIZWtNgAV7jSCTK_4kPaIDHo9oQbf_V8QD15XY59DPxP5Yretvrrv6p6P1Ies3DycafrqgS5KRbktqEaQ$>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: +14242774931 [phone.system@netwrix.com<mailto:phone.system@netwrix.com>]
+Sent: 7/12/2024 1:46 PM
+To: tssbsa@netwrix.com<mailto:tssbsa@netwrix.com>
+Subject: Netwrix Support Ticket #414901 - ref:_00D7091pB._500Q000D0NYL:ref - New Voicemail from +14242774931 - CTBC Bank USA:IVR US
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+You have received a new voice mail from ""+14242774931 -""CTBC Bank USA:IVR US""
+
+From:+14242774931
+To: 8040"" - ""TS"" ""SBSA""
+Received:""Friday, July 12, 2024 5:45:11 PM""
+Duration:""00:01:06""
+File:""vmail_+14242774931_8040_20240712174511""
+
+
+Transcription:
+Hi, uh, my name is Javier. Um, I'm calling from ctvc Bank. My phone number is area code. 424-277-4931 My email address is Javier Gomez at ctbc bank usa.com<https://urldefense.com/v3/__https:/usa.com__;!!CnJW95SnPS--tQ!R6rg3MI7YgwDTvIZWtNgAV7jSCTK_4kPaIDHo9oQbf_V8QD15XY59DPxP5Yretvrrv6p6P1Ies3DycafrqgS5KQ1Nwm08w$>. I'm trying to run the sensitive data, um report. And it just times out I have the the log errors. I was trying to log into your portal. but it doesn't seem to be working the sign in button is disabled. So, um, not sure how to um send you the logs or I want to see if I could get support. Once again, my name is H. Gomez my phone number is area code 42.
+[Image removed by sender.]
+
+________________________________
+
+California residents, please see our California Consumer Privacy Act (""CCPA"") Notice at Collection<https://www.ctbcbankusa.com/ContentDocumentHandler.ashx?documentId=68592>
+This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error, please notify the system manager. This message contains confidential information and is intended only for the individual named. If you are not the named addressee, you should not disseminate, distribute or copy this email. Please notify the sender immediately by email if you have received this email by mistake and delete this email from your system. If you are not the intended recipient, you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.[Image removed by sender.]
+ [Image removed by sender.]
+
+________________________________
+
+California residents, please see our California Consumer Privacy Act (""CCPA"") Notice at Collection<https://www.ctbcbankusa.com/ContentDocumentHandler.ashx?documentId=68592>
+This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error, please notify the system manager. This message contains confidential information and is intended only for the individual named. If you are not the named addressee, you should not disseminate, distribute or copy this email. Please notify the sender immediately by email if you have received this email by mistake and delete this email from your system. If you are not the intended recipient, you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.","RE:  RE:  RE: Netwrix Support Ticket #414901 -  - New Voicemail from +14242774931 - CTBC Bank USA:IVR US    [ ref:!00D70091pB.!500Qk0D0NYL:ref ]","javier.gomez@ctbcbankusa.com","Javier Gomez","techsupport@netwrix.com","","","true","2024-07-17T19:14:54.000Z","true"
+"02sQk00000CjdUeIAJ","500Qk00000D0NYLIA3","2024-07-17T19:16:23.000Z","2024-07-17T19:16:23.000Z","Javier,
+
+Thank You for the update, I will close out this ticket as noted.
+
+We have 30days to reopen once the closure email is received.
+
+To reopen we can just reply to that email to bring the case back into my queue.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. 
+
+Feel free to leave any feedback via the survey link.
+
+Have a great week.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Javier Gomez [javier.gomez@ctbcbankusa.com]
+Sent: 7/17/2024 3:14 PM
+To: techsupport@netwrix.com
+Subject: RE: RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+
+
+Dusty,
+
+ 
+
+Thank you for your help.
+
+The scan of the file server that had failed over the weekend completed successfully after the adjustments you made.
+
+ 
+
+This ticket can be closed.
+
+ 
+
+Sincerely,
+
+ 
+
+
+Javier Gomez
+
+Application Analyst II
+
+801 S. Figueroa Street, Suite 2300 | Los Angeles, CA | 90017
+
+O: 424.277.4931
+
+Email:  Javier.Gomez@ctbcbankusa.com
+
+
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, July 17, 2024 10:41 AM
+To: Javier Gomez <javier.gomez@ctbcbankusa.com>
+Subject: [External] RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+
+
+ 
+
+
+
+
+	
+		
+			
+			CAUTION: This email came from outside CTBC BANK USA. Use extra caution when opening attachments, clicking links, or responding to this email. Original sender: techsupport@netwrix.com.
+			
+		
+	
+
+
+
+ 
+
+
+Javier,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+StealthAUDIT (SA)                               11.5.0.160 
+SA Access Information (AIC)               11.5.0.108    
+SA Sensitive Data (SDD)                      11.5.0.51   
+Stealthbits Activity Monitor (SAM)      6.0.1111 
+CrowdStrike                                           7.15.18513.0
+
+Found that the SEEK Scan ERROR was related to long path of 300+ char.
+
+We enabled the HKLM:SYSTEMCurrentControlSetControlFileSystem for  LongPathsEnabled = 1 
+***NOTED*** This requires a reboot  ***RECOMMENDED*** Setting this value on the Windows File Server as well.
+
+Found that the StealthAUDIT Web Server (StealthAUDITWeb) was not running which prevented the site from loading when the AIC was working as expected.
+
+Please let me know how the next set of scans complete.
+
+Additional reference links you might like:
+New Customer Training   https://www.netwrix.com/customer_training.html
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 7/15/2024 8:30 AM
+To: javier.gomez@ctbcbankusa.com
+Subject: RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+Javier,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=h4IYZEPW4f2gYPqaUEboZB3.GRVAPAbF.MF.7J.kZZk-Z&MeetingID=bhiU4Bnmj0W8PvsXA7nZ9.E_csO4WsOeB7fWLDzfWLE-Z
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Javier Gomez [javier.gomez@ctbcbankusa.com]
+Sent: 7/12/2024 6:57 PM
+To: techsupport@netwrix.com
+Subject: RE: RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+ 
+
+
+Dusty,
+
+ 
+
+I ended the task and was going to scan just one server, BR29HQFS, but it has the status Offline:
+
+
+
+ 
+
+I know the server is online, because I connected to it and confirmed it has the SAM agent installed:
+
+
+
+
+ 
+
+It is also the SAM with no error:
+
+
+
+ 
+
+Please advise how to fix the Offline status in StealthAudit hosts.
+
+ 
+
+Sincerely,
+
+ 
+
+Javier Gomez
+
+Application Analyst II
+
+
+http://www.ctbcbankusa.com
+
+801 S. Figueroa Street, Suite 2300
+
+Los Angeles, CA 90017
+
+Phone: (424) 277-4931
+
+
+ 
+
+
+
+From: Javier Gomez
+Sent: Friday, July 12, 2024 3:15 PM
+To: Netwrix Support <techsupport@netwrix.com>
+Subject: RE: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+
+
+ 
+
+Dusty,
+
+ 
+
+Here’s a screenshot of the PowerShell ISE output:
+
+
+ 
+
+Here’s the text output:
+Name                                               Version    InstallDate
+
+----                                               -------    -----------
+
+StealthAUDIT Access Information Center             11.5.0.108 20220527   
+
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.51  20220311   
+
+StealthAUDIT V11.5                                 11.5.0.160 20220311   
+
+Stealthbits Activity Monitor                       6.0.1111   20230331   
+
+Stealthbits Activity Monitor Agent 64-bit          6.0.1111   20230331   
+
+ 
+
+Here is a screenshot of StealthAudit License:
+
+
+Here’s a screenshot of Stealthbits Activity Monitor:
+
+
+
+ 
+
+I was trying to run the Sensitive Data scan, and it started.  I disconnected (not logged off) my RDP session to the server, then checked on it a few hours later, but now StealthAudit is not responding:
+
+
+
+ 
+
+Here’s a screenshot of the Task Manager:
+
+
+
+ 
+
+Not sure if I should end task and start over, or wait to see it starts responding.
+
+ 
+
+Please advise.
+
+ 
+
+Sincerely,
+
+ 
+
+
+Javier Gomez
+
+Application Analyst II
+
+
+http://www.ctbcbankusa.com
+
+801 S. Figueroa Street, Suite 2300
+
+Los Angeles, CA 90017
+
+Phone: (424) 277-4931
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, July 12, 2024 12:27 PM
+To: Javier Gomez <javier.gomez@ctbcbankusa.com>
+Subject: [External] RE: Netwrix Support Ticket #414901 - - New Voicemail from +14242774931 - CTBC Bank USA:IVR US [ ref:!00D70091pB.!500Qk0D0NYL:ref ]
+
+
+
+ 
+
+
+
+
+	
+		
+			
+			CAUTION: This email came from outside CTBC BANK USA. Use extra caution when opening attachments, clicking links, or responding to this email. Original sender: techsupport@netwrix.com.
+			
+		
+	
+
+
+
+ 
+
+
+Javier,
+
+
+Thank you for reaching out to support. 
+
+To update/confirm our Technical Support Notes & start the investigation, could we get the text output (copy&past) from the following ADMIN PowerShell ISE script block on the systems that are running Netwrix/Stealth Server applications?
+
+Clear-Host  # Clears the console window for better readability. 
+#Netwrix/Stealth, PostgreSQL, Python application versions:
+Get-CimInstance -Class Win32_Product |
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue |
+Sort-Object |  Format-Table Name,Version,InstallDate -AutoSize 
+#Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) install path
+$env:SAINSTALLDIR 
+
+Could I also get a screenshot of the Applications License details?
+
+Ref-image if needed:
+
+
+
+Thank You for your time.
+
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: +14242774931 [phone.system@netwrix.com]
+Sent: 7/12/2024 1:46 PM
+To: tssbsa@netwrix.com
+Subject: Netwrix Support Ticket #414901 - ref:_00D7091pB._500Q000D0NYL:ref - New Voicemail from +14242774931 - CTBC Bank USA:IVR US
+
+ref:_00D7091pB._500Q000D0NYL:ref
+
+You have received a new voice mail from ""+14242774931 -""CTBC Bank USA:IVR US""
+
+From:+14242774931
+To: 8040"" - ""TS"" ""SBSA""
+Received:""Friday, July 12, 2024 5:45:11 PM""
+Duration:""00:01:06""
+File:""vmail_+14242774931_8040_20240712174511""
+
+
+Transcription:
+Hi, uh, my name is Javier. Um, I'm calling from ctvc Bank. My phone number is area code. 424-277-4931 My email address is Javier Gomez at ctbc bank  usa.com. I'm trying to run the sensitive data, um report. And it just times out I have the the log errors. I was trying to log into your portal. but it doesn't seem to be working the sign in button is disabled. So, um, not sure how to um send you the logs or I want to see if I could get support. Once again, my name is H. Gomez my phone number is area code 42.
+
+
+
+
+ 
+
+
+
+
+
+California residents, please see our California Consumer Privacy Act (""CCPA"")  Notice at Collection
+This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error, please notify the system manager. This message contains confidential information and is intended only for the individual named. If you are not the named addressee, you should not disseminate, distribute or copy this email. Please notify the sender immediately by email if you have received this email by mistake and delete this email from your system. If you are not the intended recipient, you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.
+ 
+
+ 
+
+
+California residents, please see our California Consumer Privacy Act (""CCPA"")  Notice at Collection
+This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you have received this email in error, please notify the system manager. This message contains confidential information and is intended only for the individual named. If you are not the named addressee, you should not disseminate, distribute or copy this email. Please notify the sender immediately by email if you have received this email by mistake and delete this email from your system. If you are not the intended recipient, you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.","RE:  RE:  RE: Netwrix Support Ticket #414901 -  - New Voicemail from +14242774931 - CTBC Bank USA:IVR US    [ ref:!00D70091pB.!500Qk0D0NYL:ref ]","techsupport@netwrix.com","Netwrix Support","javier.gomez@ctbcbankusa.com","","","true","2024-07-17T19:16:22.000Z","true"

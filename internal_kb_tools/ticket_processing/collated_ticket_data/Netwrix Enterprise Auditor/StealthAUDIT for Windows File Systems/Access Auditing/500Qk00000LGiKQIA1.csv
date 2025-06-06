@@ -1,0 +1,13 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LGiKQIA1","00434159","Support Ticket","A0775-APP2356-S - FSAA WIN Scan Certificate Validation Error","Need help diagnosing cause of the following error on the FSAA Win Scan
+""Failed to validate certificate from a0775-app2356-s: Friendly Name = , Thumbprint = FFF7A65C2E1A509E25DCE45D4F6F4958996DC894""","Run a FSAA scan","Error: Failed to validate certificate from a0775-app2356
+
+We have reviewed your environment and jobs, and found out using the following command
+ 
+Get-ChildItem -Path Cert:LocalMachineMy | Where-Object { $_.Thumbprint -eq ""YOUR_THUMBPRINT_HERE"" }
+
+That the certificate with this thumbprint does not exist. We checked a working machine and there is a certificate in a store we can't access. Regardless of that I advised you to contact your Security Team to provide you with a valid .pfx file that can be used in Query Properties > Applet, custom certificate, which will need to be added to the endpoint machine as well.","Waiting for an update","The FSAA scan was failing to start on multiple Enterprise Auditor servers. 
+
+We inspected settings of the FSAA query and found that the FSAA Applet startup was switched to ""Require FSAA applet running as a service"". 
+
+After switching to MS Task Scheduler start up type, we then proceeded to add individual target hosts to FSAA scan Job. The FSAA permission scan Job as well as Bulk Import job have completed successfully.","Incorrect configuration: Netwrix product","Artem Naskal","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.6","","19.9","Closed - Resolved","Allstate Insurance Company","Stealth Audit","2025-01-30T16:51:24.000Z","2025-02-19T14:47:06.000Z"

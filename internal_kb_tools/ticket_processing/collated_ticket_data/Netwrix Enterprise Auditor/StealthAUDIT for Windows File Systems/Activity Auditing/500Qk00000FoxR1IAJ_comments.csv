@@ -1,0 +1,104 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk0000098IAhIAM","500Qk00000FoxR1IAJ","sounds like a configuration issue
+sent meeting invite to review
+-included Tay in invite","0054u000007oss5AAA","2024-09-16T19:24:43.000Z","2024-09-16T19:24:43.000Z","false","false"
+"00aQk000009B7iXIAS","500Qk00000FoxR1IAJ","zoom meeting
+netapp filer
+
+agent already deployed
+fpolicy already setup
+
+agent on server SA1041V
+-windows server
+
+NEA -
+activity FSAC System scan
+-query properties
+-Specified Remote Server: SA1041V
+--looks correct
+
+activity is collection
+
+NEA v11.6.0.64
+
+client says they have another filer/proxy that's working
+
+looking at proxy server
+running old version of FS scanning proxy
+
+uninstalling old proxy and SDD apps
+
+client is downloading newer 11.6 files
+
+installing FS proxy
+-D drive
+-running as local system
+
+installing SDD
+
+changing query setting: ""require applet to be running as a service on target""
+
+creating a scheduled job for this scan
+running scheduled job
+
+Error:
+""there is no row at position zero""
+
+looking at debug logs to see what's happening
+looks like a trust issue with the cert
+""Unable to establish secure ....
+
+looks like we are going to need to update NEA","0054u000007oss5AAA","2024-09-18T18:31:55.000Z","2024-09-18T18:31:55.000Z","false","false"
+"00aQk000009Dz26IAC","500Qk00000FoxR1IAJ","used psexec to access the certificate management tool for the system account
+deleted bad certs in FSAA location for service account and system account
+
+in accordance with
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000WSvKAM.html","0054u000007oss5AAA","2024-09-20T18:23:49.000Z","2024-09-20T18:23:49.000Z","false","false"
+"00aQk000009EAOvIAO","500Qk00000FoxR1IAJ","zoom meeting (3:00PM EDT)
+-client had some audio issue
+-called in to meeting
+-getting started at 8:08PM EDT
+
+checking on current status of FSAC job
+Nick is taking control
+
+looking at logs
+
+found error """"there is no row at position zero""
+looking at log before error, it seems to be finding the file on proxy as expected
+
+looking at T2s
+""looks clean""
+
+looking at NAM
+-looks like Activity is writing to proxy
+=as expected
+
+looking for data on the proxy
+lots of old installs
+currently on D:stealthbitsstealthauditFSAASANAS01
+
+only 75GB available on the app server
+the T2s on the proxy server are 40+GB each
+-those are compressed
+may be a storage space issue
+
+trying manually copy the T2s
+
+still getting the same error
+
+this file server was used before by an old instance of NEA
+was on a different domain
+I could be that the old data is messing with the new instance trying to copy the new data
+
+checking SQL for any FSAA or FSAC data from that server:
+-nothing
+dropping data from that host from SQL sb
+-already had dropdata instant job created
+
+renaming T2 folder on proxy and application server to SANAS01_OLD
+
+running job again
+this time its working!
+
+client needs to let it run and let us know if it finishes","0054u000007oss5AAA","2024-09-20T20:03:44.000Z","2024-09-20T20:03:44.000Z","false","false"

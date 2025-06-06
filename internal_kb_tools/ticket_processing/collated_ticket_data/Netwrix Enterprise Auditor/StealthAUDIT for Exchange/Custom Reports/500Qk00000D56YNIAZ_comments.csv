@@ -1,0 +1,62 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007zNAAIA2","500Qk00000D56YNIAZ","[Meeting Notes 7/17/24]
+**Current Issue**
+Mail Enabled Group Listing With Manager report on GroupInfo is reporting all zeroes.
+
+**Troubleshooting Completed during Meeting**
+- Added the managedbyprincipalid to the MailEnabledGroupListingWithManager table
+
+**Logs/Screenshots Collected**
+- Export of the GroupInfo job group
+
+**Next Steps**
+- Adjust the SQL so it is counting correctly","0054u000007MiY9AAK","2024-07-17T19:07:38.000Z","2024-07-17T19:07:38.000Z","false","false"
+"00aQk000007zY3xIAE","500Qk00000D56YNIAZ","[Tiger Team]
+**Problem Statement/Business Impact**
+Mail Enabled Group Listing With Manager report on GroupInfo is reporting all zeroes.
+
+**Desired Outcome**
+GroupInfo reports to correctly count the number of groups with a manager and without.
+
+**Steps to Reproduce**
+Just run the job
+
+**Troubleshooting Completed/Notes**
+Verified the data is populating correctly in all the tables of the GroupInfo group. The was originally no managedbyprinicipalid column on the GroupsWithManagersTable but I was able to adjust that in the #2 analysis
+
+**Logs Uploaded**
+Export of the Custom GroupInfo job group","0054u000007MiY9AAK","2024-07-17T20:24:57.000Z","2024-07-17T20:24:57.000Z","false","false"
+"00aQk000008EScXIAW","500Qk00000D56YNIAZ","[Meeting Notes 7/30/24]
+**Current Issue**
+Mail Enabled Group Listing With Manager report on GroupInfo is reporting all zeroes.
+
+**Troubleshooting Completed during Meeting**
+- Backed up Exchange6.Distribution ListsMembership DetailsGroupInfo & GroupInfo_OLD
+- Paul Pitas corrected the script on the job to use the correct tables and columns for counting.
+
+**Updated Script for Analysis 3. Group Summary Count by Type**
+------------------------------------------------------------------+
+IF OBJECT_ID('[SA_GroupInfo_MailGroupManagerCount]','table') IS NULL
+CREATE TABLE [dbo].[SA_GroupInfo_MailGroupManagerCount](
+ [Description] [varchar](64) NOT NULL,
+ [SecurityGroupCount] INT NULL,
+ [DistributionGroupCount] INT NULL,
+ [TotalGroupCount] INT NULL
+) ELSE TRUNCATE TABLE SA_GroupInfo_MailGroupManagerCount;
+------------------------------------------------------------------+
+
+INSERT INTO SA_GroupInfo_MailGroupManagerCount
+ SELECT DISTINCT
+ 'Groups Without Manager' as [Description]
+ ,(SELECT COUNT([GroupSMTP]) FROM SA_GroupInfo_MailGroupListingNoManager WHERE GroupTarget = 'Security') as SecurityGroupCount
+ ,(SELECT COUNT([GroupSMTP]) FROM SA_GroupInfo_MailGroupListingNoManager WHERE GroupTarget = 'Distribution') as DistributionGroupCount
+ ,(SELECT COUNT([GroupSMTP]) FROM SA_GroupInfo_MailGroupListingNoManager ) as TotalGroupCount
+
+ UNION ALL
+
+ SELECT 
+ 'Groups With Manager'
+ ,(SELECT COUNT([GroupManagerDisplayName]) FROM SA_GroupInfo_MailGroupListingWithManager WHERE [GroupManagerDisplayName] <>'No Manager' AND GroupTarget = 'Security') as SecurityGroupCount
+ ,(SELECT COUNT([GroupManagerDisplayName]) FROM SA_GroupInfo_MailGroupListingWithManager WHERE [GroupManagerDisplayName] <> 'No Manager' AND GroupTarget = 'Distribution') as DistributionGroupCount
+ ,(SELECT COUNT([GroupManagerDisplayName]) FROM SA_GroupInfo_MailGroupListingWithManager WHERE [GroupManagerDisplayName] <> 'No Manager' ) as TotalGroupCount
+------------------------------------------------------------------+","0054u000007MiY9AAK","2024-07-30T14:37:52.000Z","2024-07-30T14:37:52.000Z","false","false"

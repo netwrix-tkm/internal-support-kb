@@ -1,0 +1,41 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Cq5ZQIAZ","00414497","Support Ticket","Database usage much higher than usual and job was stalled","I believe it was due to adding the Active Directory Permissions Analyzer to our license, but one of our regular weekly jobs was still running after 10 hours and had used disk space on our database of 800+ GB before we had to stop the job.  
+
+All jobs have been disabled until we can understand if this is expected behavior with the product or not and how to better plan for an anticipate jobs running and how they are changed due to this new module.","","","","Confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)                                                                11.5.0.257
+Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC)      11.5.0.136
+
+Looked at the Database Sizing which we seem well whit in for current usage.
+https://helpcenter.netwrix.com/bundle/StealthAUDIT_11.5/page/Content/StealthAUDIT/Install_Guides/SA_Install/2.StealthAUDIT_Database.htm#database_sizing
+
+
+
+Noted that the Transaction log is over 400GB with 100% of the space now listed as unused
+Recover is set to Full << recommend this be set to Simple for all Netwrix/Stealthbits related DBs  
+
+SQL Server is a failover
+
+Ran the following to clean up the bloated Tmp tables
+            truncate table [dbo].[SA_AD_GroupStamping_tmp3]
+            truncate table [dbo].[SA_AD_GroupStamping_tmp2]
+            truncate table [dbo].[SA_AD_GroupStamping_tmp]
+           
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SA_AD_GroupStamping_tmp3]') AND type in (N'U'))
+            DROP TABLE [SA_AD_GroupStamping_tmp3]
+           
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SA_AD_GroupStamping_tmp2]') AND type in (N'U'))
+            DROP TABLE [SA_AD_GroupStamping_tmp2]
+           
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SA_AD_GroupStamping_tmp]') AND type in (N'U'))
+            DROP TABLE [SA_AD_GroupStamping_tmp]
+
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].SA_AD_GroupStamping_Log') AND type in (N'U'))
+             DROP TABLE SA_AD_GroupStamping_Log
+
+            IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].SA_AD_GroupStamping_DailyActions') AND type in (N'U'))
+            DROP TABLE SA_AD_GroupStamping_DailyActions
+
+Reached out to Bridget Comito to correct the license.
+
+Had the DBA set the Recovery Mode on the DB to Simple as well as shrink the 94.3 unallocated Data space and 100% unused Log Space.","Insufficient hardware resources","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Database","11.5","257","16.9","Closed - Resolved","Osaic","James Foreman","2024-07-09T15:28:27.000Z","2024-07-26T12:51:40.000Z"

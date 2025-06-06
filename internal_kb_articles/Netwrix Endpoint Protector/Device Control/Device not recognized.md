@@ -1,103 +1,169 @@
-# Netwrix Endpoint Protector Knowledge Base: Device Control - Device Not Recognized
+# Knowledge Base Reference Guide: Troubleshooting "Device Not Recognized" Issues in Netwrix Endpoint Protector
 
 ## Overview
-Netwrix Endpoint Protector (EPP) is a robust platform designed to manage and secure devices across enterprise environments. The "Device Control" feature ensures that connected devices are recognized, managed, and controlled according to organizational policies. However, issues may arise where devices are not recognized or blocked unexpectedly. This article provides a comprehensive guide to troubleshooting, resolving, and preventing such issues.
+This guide provides a comprehensive reference for troubleshooting "Device Not Recognized" issues in Netwrix Endpoint Protector (EPP). These issues occur when devices fail to be identified, blocked, or managed as expected by the EPP platform. Understanding and resolving these problems is critical to maintaining device control, ensuring compliance with security policies, and minimizing disruptions to end users.
 
-## Issue Summary Table
-
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| Zebra USB printer not recognized | Printer blocked unless USB printing support enabled globally | Verify printer recognition with USB printing support enabled | Update to Windows agents version 6.2.3.0037 or later | [Zebra USB Printer Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BOQr3IAH/view) |
-| USB headset and camera not detected | Devices not recognized after enabling DLP | Collect logs, escalate to R&D, test build provided | Apply test build; fix included in version 5.9.5.0 | [DLP Device Recognition Conflict](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000ByhrmIAB/view) |
-| Domain migration reporting issue | Computers report old domain names in EPP console | Verify domain synchronization status | Synchronize new domain into EPP console | [Domain Migration Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000COD5FIAX/view) |
-| Update notification persists | Update applied but notification remains; no data logging | Investigate backend configuration | Correct backend settings via SSH | [Update Notification Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000CYomfIAD/view) |
-| Devices offline after license renewal | Devices appear offline; last seen date not updated | Check `epp.nginx.conf` file configuration | Adjust `epp.nginx.conf` to normal configuration | [License Renewal Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DBsLnIAL/view) |
-| Agent deployment visibility issue | Only 500 out of 1500 agents visible in WebUI | Verify SCCM deployment and communication | Known WebUI limitation; monitor updates | [Agent Deployment Visibility](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DkiBUIAZ/view) |
-| Card printer blocked | Printer offline despite being connected | Adjust device settings in EPP client | Correct device permissions in EPP client | [Card Printer Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000DnmDhIAJ/view) |
-| Intel LTE card hidden in Device Manager | Device disabled by EPP client | Check device status with and without EPP client | Correct EPP settings; reinstall client | [Intel LTE Card Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EAGEkIAP/view) |
-| AirDrop not detected | AirDrop functionality not recognized or blocked | Review device control settings | Adjust configuration to block AirDrop | [AirDrop Detection Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EAGEkIAP/view) |
-| MediaTek WiFi adapter not recognized | Device not visible in EPP console | Update server and client versions | Update EPP server to version 5.9.4.1 | [MediaTek WiFi Adapter Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EIj9vIAD/view) |
-| Canon scanner not recognized | Scanner not visible in server console | Check logs, whitelist using VID/PID | Whitelist device; monitor for patch updates | [Canon Scanner Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000FfsqDIAR/view) |
-| RFID reader marked as blocked | Device operational but marked as blocked | Verify device functionality | Issue resolved; no further action needed | [RFID Reader Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000H04GNIAZ/view) |
-| SD Card Reader security gap | Inbuilt SD Card Reader not controlled by EPP | Investigate SD Card identification limitations | Control SD Card Reader hardware | [SD Card Reader Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000LgnUsIAJ/view) |
-| Licensing issues on EPP panel | Machines offline; licenses not applied | Use zap tool to remove and reinstall agent | Reinstall agent using zap tool | [Licensing Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MtbezIAB/view) |
-| USB device missing from list | Deleted device not visible in device list | Reconnect device and update policies | Reconnect device; update policies | [USB Device Visibility Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000MUSDWIA5/view) |
-| Google Pixel device details missing | Device code/serial number not displayed | Reinstall EPP client; install DPI certificate | Correct client configuration; install DPI certificate | [Google Pixel Device Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000NQit2IAD/view) |
-| Docking stations blocked | Docking stations categorized as blocked | Adjust global rights settings | Allow USB and Unknown Devices in global rights | [Docking Station Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Od8KtIAJ/view) |
-| Linux servers not recognized | Servers not appearing in EPP console | Verify `options.sh` configuration | Correct `options.sh` file; reinstall client | [Linux Server Recognition Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000OOXRdIAP/view) |
+This document outlines key concepts, diagnostic methodologies, common scenarios, and best practices to help support engineers systematically address and resolve these issues.
 
 ---
 
-## Detailed Issues
+## Technical Background
+### Key Concepts
+- **Device Control**: A core feature of EPP that manages access to external devices (e.g., USB drives, printers, cameras) based on predefined policies.
+- **Device Recognition**: The process by which EPP identifies devices using attributes such as Vendor ID (VID), Product ID (PID), and serial numbers.
+- **Global Rights**: Settings that define default permissions for device types across the organization.
+- **Agent-Server Communication**: The EPP client (agent) installed on endpoints communicates with the EPP server to enforce policies and report device activity.
 
-### Zebra USB Printer Not Recognized
-**Symptoms:** Zebra USB printer blocked unless USB printing support enabled globally.  
-**Troubleshooting Steps:**  
-1. Verify printer recognition with USB printing support enabled.  
-2. Discuss potential exceptions with engineering.  
-3. Confirm resolution after enabling USB printing support.  
+### Common Terminology
+- **VID/PID**: Unique identifiers for devices used by EPP to recognize and manage them.
+- **DLP (Data Loss Prevention)**: Features that prevent unauthorized data transfer, which can sometimes conflict with device recognition.
+- **Backend Configuration**: Server-side settings that influence how devices are managed and logged.
 
-**Root Cause:** Default settings blocked recognition without USB printing support.  
-**Solution:** Update to Windows agents version 6.2.3.0037 or later.  
-**Source Ticket:** [Zebra USB Printer Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BOQr3IAH/view)
-
----
-
-### USB Headset and Camera Not Detected
-**Symptoms:** Devices not recognized after enabling DLP features.  
-**Troubleshooting Steps:**  
-1. Collect logs from affected devices.  
-2. Escalate issue to R&D team.  
-3. Provide test build for customer testing.  
-
-**Root Cause:** Conflict between DLP settings and device recognition.  
-**Solution:** Apply test build; fix included in version 5.9.5.0.  
-**Source Ticket:** [DLP Device Recognition Conflict](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000ByhrmIAB/view)
+### System Context
+EPP operates in a client-server architecture where:
+1. The **EPP Client** enforces policies on endpoints.
+2. The **EPP Server** manages configurations, logs, and device inventories.
+3. Devices are categorized and controlled based on their attributes and the applied policies.
 
 ---
 
-### Domain Migration Reporting Issue
-**Symptoms:** Computers report old domain names in EPP console.  
-**Troubleshooting Steps:**  
-1. Verify domain synchronization status.  
-2. Provide documentation for domain synchronization.  
-3. Follow up with customer post-synchronization.  
+## Issue Recognition & Triage
+### Symptoms
+- Devices appear as "Blocked" or "Offline" in the EPP console despite being connected.
+- Devices fail to appear in the EPP inventory or logs.
+- Specific device types (e.g., printers, cameras, docking stations) are not recognized.
+- Device functionality is impaired after enabling certain features (e.g., DLP).
 
-**Root Cause:** Lack of synchronization between new domain and EPP console.  
-**Solution:** Synchronize new domain into EPP console.  
-**Source Ticket:** [Domain Migration Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000COD5FIAX/view)
-
----
-
-### Update Notification Persists
-**Symptoms:** Update applied but notification remains; no data logging.  
-**Troubleshooting Steps:**  
-1. Investigate backend configuration.  
-2. Schedule SSH access session.  
-3. Correct backend settings via remote session.  
-
-**Root Cause:** Backend configuration issue post-update.  
-**Solution:** Correct backend settings via SSH.  
-**Source Ticket:** [Update Notification Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000CYomfIAD/view)
+### Priority Assessment
+- **High Priority**: Critical devices (e.g., printers, scanners) affecting business operations.
+- **Medium Priority**: Peripheral devices (e.g., headsets, cameras) causing user inconvenience.
+- **Low Priority**: Non-essential devices or cosmetic issues (e.g., incorrect status display).
 
 ---
 
-## Best Practices
-- **Regular Updates:** Ensure all EPP server and client versions are up-to-date to avoid compatibility issues.
-- **Configuration Reviews:** Periodically review global rights and device control settings to prevent unexpected behavior.
-- **Documentation:** Maintain detailed records of configuration changes for future reference.
-- **Testing:** Test new configurations in controlled environments before deploying to production systems.
-- **Communication:** Inform customers of known limitations and provide clear instructions for resolving issues.
+## Diagnostic Methodology
+### Systematic Approach
+1. **Verify Environment Details**:
+   - Confirm the EPP version (server and client).
+   - Identify the affected device type and connection method (USB, PCIe, etc.).
+   - Check for recent updates or configuration changes.
+
+2. **Reproduce the Issue**:
+   - Attempt to replicate the problem in a controlled environment.
+   - Test the device on another endpoint with the same EPP configuration.
+
+3. **Check Device Recognition**:
+   - Verify if the device appears in the EPP console or logs.
+   - Use VID/PID to manually search for the device.
+
+4. **Review Logs**:
+   - Collect client and server logs for errors related to device detection.
+   - Look for communication issues between the agent and server.
+
+5. **Test Configuration Changes**:
+   - Adjust global rights or device-specific policies.
+   - Temporarily disable conflicting features (e.g., DLP) to isolate the issue.
+
+6. **Escalate if Necessary**:
+   - Engage R&D for unresolved compatibility or backend issues.
+   - Provide detailed logs and reproduction steps.
 
 ---
 
-## Advanced Topics
-### Managing Inbuilt SD Card Readers
-Due to identification limitations, SD Cards cannot be controlled directly. Focus on managing the SD Card Reader hardware to enforce security policies effectively.
+## Information Collection
+### Questions to Ask Customers
+- What is the affected device type and model?
+- When did the issue first occur? Were there any recent changes (e.g., updates, migrations)?
+- Is the issue isolated to specific endpoints or widespread?
+- Are there any error messages or unusual behavior in the EPP console?
 
-### Using the Zap Tool
-The zap tool is an internal utility for removing EPP agents in extraordinary situations. Ensure it is deleted after use and not shared externally.
+### Data to Collect
+- **Logs**:
+  - Client logs (`epp.log`) from affected endpoints.
+  - Server logs for device recognition and communication errors.
+- **Configuration Files**:
+  - `epp.nginx.conf` for server settings.
+  - `options.sh` for Linux client installations.
+- **Device Details**:
+  - VID, PID, and serial number of the affected device.
+- **Screenshots**:
+  - EPP console views showing the device status.
 
 ---
 
-End of Article.
+## Common Scenarios & Solutions
+### Scenario 1: USB Printer Not Recognized
+- **Case Reference**: [500Qk00000BOQr3IAH](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000BOQr3IAH/view)
+- **Root Cause**: Default settings blocked the printer unless USB printing support was enabled.
+- **Solution**: Update to Windows agents version 6.2.3.0037 or later.
+
+### Scenario 2: Audio/Video Devices Blocked by DLP
+- **Case Reference**: [500Qk00000ByhrmIAB](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000ByhrmIAB/view)
+- **Root Cause**: Conflict between DLP settings and device recognition.
+- **Solution**: Apply a test build with improved audio device recognition.
+
+### Scenario 3: Domain Migration Issues
+- **Case Reference**: [500Qk00000COD5FIAX](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000COD5FIAX/view)
+- **Root Cause**: Lack of synchronization between the new domain and EPP console.
+- **Solution**: Synchronize the new domain into the EPP console.
+
+### Scenario 4: Docking Stations Blocked
+- **Case Reference**: [500Qk00000Od8KtIAJ](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000Od8KtIAJ/view)
+- **Root Cause**: Incorrect global rights configuration.
+- **Solution**: Allow "USB Device" and "Unknown Device" in global rights settings.
+
+---
+
+## Detailed Case Studies
+### Case Study: HP Laptops with MediaTek WiFi Adapter
+- **Case Reference**: [500Qk00000EIj9vIAD](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EIj9vIAD/view)
+- **Symptoms**: WiFi adapter not recognized in EPP console.
+- **Diagnostic Steps**:
+  - Verified server and client versions.
+  - Escalated to engineering for compatibility analysis.
+- **Resolution**: Updated EPP server to version 5.9.4.1, which included a fix for device recognition.
+- **Key Takeaways**: Always ensure compatibility with the latest hardware by keeping EPP updated.
+
+### Case Study: Google Meet Audio Device Issues
+- **Case Reference**: [500Qk00000KLsY9IAL](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000KLsY9IAL/view)
+- **Symptoms**: Delays in joining Google Meet due to audio device detection.
+- **Diagnostic Steps**:
+  - Reviewed logs and tested device behavior.
+  - Updated server and client versions.
+- **Resolution**: Resolved by upgrading to the latest EPP versions.
+- **Key Takeaways**: Monitor audio device compatibility after agent installations.
+
+---
+
+## Best Practices & Tips
+1. **Maintain Up-to-Date Software**:
+   - Regularly update EPP server and client versions to address known issues and improve compatibility.
+
+2. **Test Configurations in Controlled Environments**:
+   - Before deploying changes, test them on a small subset of devices to identify potential issues.
+
+3. **Document Changes**:
+   - Keep detailed records of configuration adjustments and troubleshooting steps for future reference.
+
+4. **Communicate Known Limitations**:
+   - Inform customers about product limitations (e.g., inbuilt SD Card Readers) to manage expectations.
+
+5. **Proactive Monitoring**:
+   - Use logs and reports to identify potential device recognition issues before they impact users.
+
+---
+
+## Escalation Guidelines
+- **When to Escalate**:
+  - Compatibility issues with new hardware.
+  - Persistent backend configuration problems.
+  - Unresolved issues after applying known fixes.
+
+- **How to Escalate**:
+  - Provide detailed logs, reproduction steps, and environment details.
+  - Include VID/PID and serial numbers for affected devices.
+  - Clearly document all troubleshooting steps taken.
+
+---
+
+This guide serves as a definitive reference for handling "Device Not Recognized" issues in Netwrix Endpoint Protector, enabling support engineers to resolve problems efficiently and consistently.

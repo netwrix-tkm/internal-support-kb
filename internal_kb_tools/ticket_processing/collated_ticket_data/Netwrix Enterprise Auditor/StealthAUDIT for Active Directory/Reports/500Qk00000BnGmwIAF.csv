@@ -1,0 +1,25 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000BnGmwIAF","00411850","Support Ticket","Customize group change report","I’m needing to create a group change report for a specific group and have it sent to an email address. Also, I’m wanting to discuss setting up activity details on a folder located under C: Program Files. Could we hop on a call to talk about?","","","","Confirmed that the current version of Stealth application(s) running in the Environment:
+
+StealthAUDIT (SA)                                                    11.5.0.205    
+StealthAUDIT Access Information Center (AIC)     11.5.0.120    
+SA Sensitive Data (SDD)                                           11.5.0.65
+Netwrix Activity Monitor (NAM) formally Stealthbits Activity Monitor (SAM) ????  We see the SAM Agent Services however we do not see the Control console.
+
+Created a job based on the prior Job group to filter with the following Analysis.
+
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = object_id(N'[dbo].[SA_PP_Groups]') AND TYPE in (N'U'))
+  DROP TABLE [SA_PP_Groups]
+SELECT * Into [SA_PP_Groups]
+From SA_AD_Changes_GroupMembershipChanges
+Where [Group] like '%PP-%' And [when discovered] >= DATEADD(day, -1, GETDATE())
+
+Updated the URL settings
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Reports via the Web Console > Securing the Web Console
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Reports/Secure.htm
+
+Netwrix Access Information Center 11.6 > Installation Overview > Securing the Access Information Center
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm
+
+
+Will need to update the Email recipients for the new PP-Groups Report based on the SA_AD_Changes_GroupMembershipChanges table.","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Reports","11.5","205","7.3","Closed - Resolved","University of Kansas Medical Center- Remote campus","Jason Rule","2024-06-13T13:34:15.000Z","2024-06-20T20:08:13.000Z"

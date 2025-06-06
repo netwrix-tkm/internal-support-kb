@@ -1,0 +1,2968 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MW7ivIAD","500Qk00000MUa7qIAD","2025-03-12T14:26:47.000Z","2025-03-12T14:56:37.000Z","ref:_00D7091pB._500Q000MUa7q:ref
+
+Hi Dusty,
+My sincerest apologies here. I overlooked your last email with the scheduling link and just seeing that now within this email. I am going on now to find some time for us to meet.
+
+Would you have any availability next week, the week of the 17th? It appears to be greyed out for me. Thank you,
+
+Doug
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 9:53 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+External Message. Exercise Caution.
+Hello Douglas,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor<https://System.Data.SQLite.SQLiteDataReader..ctor>' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task<https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step<https://System.Data.SQLite.SQLite3.Step>' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor<https://System.Data.SQLite.SQLiteDataReader..ctor>' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task<https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+________________________________
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors","dkupcha@oakhilladvisors.com","Kupcha, Douglas","techsupport@netwrix.com","","","false","2025-03-12T14:26:25.000Z","true"
+"02sQk00000MWKVDIA5","500Qk00000MUa7qIAD","2025-03-12T15:00:39.000Z","2025-03-12T15:00:39.000Z","Douglas,
+
+Thank You for the update.
+ 
+I have extended the opening window our from the original of 03/14/2025 till 03/21/2025
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tBrDXzwjLdW9JpauJu3vQTE6NUTEX.OCIuTAtG_2uBs-Z&MeetingID=ZeXOBJ632TdtW7uZnZ0zRl8BJgRCiJiNaOzYVHSlcRo-Z
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/12/2025 10:26 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+
+Hi Dusty,
+
+My sincerest apologies here. I overlooked your last email with the scheduling link and just seeing that now within this email. I am going on now to find some time for us to meet.
+
+ 
+
+Would you have any availability next week, the week of the 17th? It appears to be greyed out for me. Thank you,
+
+ 
+
+Doug 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 9:53 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+
+Hello Douglas,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+
+ 
+
+ Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 -  - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors    [ ref:!00D70091pB.!500Qk0MUa7q:ref ]","techsupport@netwrix.com","Netwrix Support","dkupcha@oakhilladvisors.com","","","false","2025-03-12T15:00:38.000Z","true"
+"02sQk00000MhdkbIAB","500Qk00000MUa7qIAD","2025-03-17T18:59:14.000Z","2025-03-17T18:59:14.000Z","Douglas,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA)    11.6.0.84
+NEA Sensitive Data (SDD)                11.6.0.11
+
+Odd that every other job is failing, there have been enhancements made to these jobs in later builds.
+Recommendations is to upgrade and test the scans after for any continuing issues.
+
+Adjusted the SEEK scan Performance from 10 to 4 to see if the Dev recommendation helps with the 13 server being scanned.
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Jobs > Job Properties Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=VqyL4UJGbenzwcLoUrDgyGWhoisZLVZZPGq13Ev8qls-Z&MeetingID=bzxhggTOXP9opmzh_31NdXX5QKTK6yR8JZOSAZWjrg4-Z
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Enterprise Auditor (NEA)                11.6.0.137+
+NEAAccess Information Center (AIC)          11.6.0.37+
+NEA Sensitive Data Discovery                      11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 11:00 AM
+To: dkupcha@oakhilladvisors.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Thank You for the update.
+ 
+I have extended the opening window our from the original of 03/14/2025 till 03/21/2025
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tBrDXzwjLdW9JpauJu3vQTE6NUTEX.OCIuTAtG_2uBs-Z&MeetingID=ZeXOBJ632TdtW7uZnZ0zRl8BJgRCiJiNaOzYVHSlcRo-Z
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/12/2025 10:26 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+
+Hi Dusty,
+
+My sincerest apologies here. I overlooked your last email with the scheduling link and just seeing that now within this email. I am going on now to find some time for us to meet.
+
+ 
+
+Would you have any availability next week, the week of the 17th? It appears to be greyed out for me. Thank you,
+
+ 
+
+Doug 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 9:53 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+
+Hello Douglas,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+
+ 
+
+ Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 -  - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors    [ ref:!00D70091pB.!500Qk0MUa7q:ref ]","techsupport@netwrix.com","Netwrix Support","dkupcha@oakhilladvisors.com","","","false","2025-03-17T18:59:13.000Z","true"
+"02sQk00000MsCyoIAF","500Qk00000MUa7qIAD","2025-03-21T18:01:20.000Z","2025-03-21T18:01:20.000Z","Doug,
+
+Per our call today we upgraded the current version of application(s) running in the Environment:
+
+FROM:
+Netwrix Enterprise Auditor (NEA)    11.6.0.84
+NEA Access Information (AIC)         11.6.0.10
+NEA Sensitive Data (SDD)                11.6.0.11
+
+TO:
+Netwrix Enterprise Auditor (NEA)     11.6.0.138
+NEA Access Information (AIC)          11.6.0.37
+NEA Sensitive Data Discovery           11.6.0.18
+
+We did have to recover some of the Customized SQL jobs for the upgraded archive that can be found in the jobs folder.
+Example: ""D:Program Files (x86)STEALTHbitsStealthAUDITJobs20221024061205.zip""
+     *This corrected the missing Scheule task.
+
+Please let me know how the next set of scans complete.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 2:59 PM
+To: dkupcha@oakhilladvisors.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA)    11.6.0.84
+NEA Sensitive Data (SDD)                11.6.0.11
+
+Odd that every other job is failing, there have been enhancements made to these jobs in later builds.
+Recommendations is to upgrade and test the scans after for any continuing issues.
+
+Adjusted the SEEK scan Performance from 10 to 4 to see if the Dev recommendation helps with the 13 server being scanned.
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Jobs > Job Properties Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=VqyL4UJGbenzwcLoUrDgyGWhoisZLVZZPGq13Ev8qls-Z&MeetingID=bzxhggTOXP9opmzh_31NdXX5QKTK6yR8JZOSAZWjrg4-Z
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Enterprise Auditor (NEA)                11.6.0.137+
+NEAAccess Information Center (AIC)          11.6.0.37+
+NEA Sensitive Data Discovery                      11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 11:00 AM
+To: dkupcha@oakhilladvisors.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Thank You for the update.
+ 
+I have extended the opening window our from the original of 03/14/2025 till 03/21/2025
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tBrDXzwjLdW9JpauJu3vQTE6NUTEX.OCIuTAtG_2uBs-Z&MeetingID=ZeXOBJ632TdtW7uZnZ0zRl8BJgRCiJiNaOzYVHSlcRo-Z
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/12/2025 10:26 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+
+Hi Dusty,
+
+My sincerest apologies here. I overlooked your last email with the scheduling link and just seeing that now within this email. I am going on now to find some time for us to meet.
+
+ 
+
+Would you have any availability next week, the week of the 17th? It appears to be greyed out for me. Thank you,
+
+ 
+
+Doug 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 9:53 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+
+Hello Douglas,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+
+ 
+
+ Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 -  - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors    [ ref:!00D70091pB.!500Qk0MUa7q:ref ]","techsupport@netwrix.com","Netwrix Support","dkupcha@oakhilladvisors.com","","","false","2025-03-21T18:01:20.000Z","true"
+"02sQk00000MzzEnIAJ","500Qk00000MUa7qIAD","2025-03-25T17:37:58.000Z","2025-03-25T20:08:09.000Z","ref:_00D7091pB._500Q000MUa7q:ref
+
+Hi Dusty,
+Just wanted to provide a quick update here regarding our jobs over the last few days.. looks like the SEEK System Scan job ran for 2days 11hrs and threw an error. But appears to have finished? Some snips below. Thanks for your continued assistance here! Doug
+
+File processing timeout of 0 seconds: File processing timeout (\NVA-FILE-1.OHPNY.COMoha-ny-sharedCLIENT_COVERAGERequestsWest VirginiaAttachmentsOHA_Form_ADV_Part_2A_2024.pdf<file://NVA-FILE-1.OHPNY.COM/oha-ny-shared/CLIENT_COVERAGE/Requests/West%20Virginia/Attachments/OHA_Form_ADV_Part_2A_2024.pdf>)
+
+[cid:image001.png@01DB9D8A.7B5DE3C0]
+
+The SEEK Bulk import job had some errors after 6m 29s.
+
+[cid:image002.png@01DB9D8A.E1601620]
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAELECTRA.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   --- End of inner exception stack trace ---
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database LDN-FILE-1.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   --- End of inner exception stack trace ---
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAOMSDB.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   --- End of inner exception stack trace ---
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   --- End of inner exception stack trace ---
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+PNYJOBS.OHPNY.COM  code = Corrupt (11), message = System.Data.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 2:01 PM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+External Message. Exercise Caution.
+Doug,
+
+Per our call today we upgraded the current version of application(s) running in the Environment:
+
+FROM:
+Netwrix Enterprise Auditor (NEA)    11.6.0.84<http://11.6.0.84>
+NEA Access Information (AIC)         11.6.0.10<http://11.6.0.10>
+NEA Sensitive Data (SDD)                11.6.0.11<http://11.6.0.11>
+
+TO:
+Netwrix Enterprise Auditor (NEA)     11.6.0.138<http://11.6.0.138>
+NEA Access Information (AIC)          11.6.0.37<http://11.6.0.37>
+NEA Sensitive Data Discovery           11.6.0.18<http://11.6.0.18>
+
+We did have to recover some of the Customized SQL jobs for the upgraded archive that can be found in the jobs folder.
+Example: ""D:Program Files (x86)STEALTHbitsStealthAUDITJobs20221024061205.zip""
+     *This corrected the missing Scheule task.
+
+Please let me know how the next set of scans complete.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://www.netwrix.com/sign_in.html?rf=my_tickets.html>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 2:59 PM
+To: dkupcha@oakhilladvisors.com<mailto:dkupcha@oakhilladvisors.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA)    11.6.0.84<http://11.6.0.84>
+NEA Sensitive Data (SDD)                11.6.0.11<http://11.6.0.11>
+
+Odd that every other job is failing, there have been enhancements made to these jobs in later builds.
+Recommendations is to upgrade and test the scans after for any continuing issues.
+
+Adjusted the SEEK scan Performance from 10 to 4 to see if the Dev recommendation helps with the 13 server being scanned.
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Jobs > Job Properties Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm<https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm>
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=VqyL4UJGbenzwcLoUrDgyGWhoisZLVZZPGq13Ev8qls-Z&MeetingID=bzxhggTOXP9opmzh_31NdXX5QKTK6yR8JZOSAZWjrg4-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=VqyL4UJGbenzwcLoUrDgyGWhoisZLVZZPGq13Ev8qls-Z&MeetingID=bzxhggTOXP9opmzh_31NdXX5QKTK6yR8JZOSAZWjrg4-Z>
+
+Day of the meeting Download and unblock<https://www.thewindowsclub.com/fix-windows-blocked-access-file> then copy over to the Server. netwrix.com/my_products_int.html<https://www.netwrix.com/my_products_int.html>
+Netwrix Enterprise Auditor (NEA)                11.6.0.137+
+NEAAccess Information Center (AIC)          11.6.0.37+
+NEA Sensitive Data Discovery                      11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://www.netwrix.com/sign_in.html?rf=my_tickets.html>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 11:00 AM
+To: dkupcha@oakhilladvisors.com<mailto:dkupcha@oakhilladvisors.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Thank You for the update.
+
+I have extended the opening window our from the original of 03/14/2025 till 03/21/2025
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tBrDXzwjLdW9JpauJu3vQTE6NUTEX.OCIuTAtG_2uBs-Z&MeetingID=ZeXOBJ632TdtW7uZnZ0zRl8BJgRCiJiNaOzYVHSlcRo-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=tBrDXzwjLdW9JpauJu3vQTE6NUTEX.OCIuTAtG_2uBs-Z&MeetingID=ZeXOBJ632TdtW7uZnZ0zRl8BJgRCiJiNaOzYVHSlcRo-Z>
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://www.netwrix.com/sign_in.html?rf=my_tickets.html>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/12/2025 10:26 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+Hi Dusty,
+My sincerest apologies here. I overlooked your last email with the scheduling link and just seeing that now within this email. I am going on now to find some time for us to meet.
+
+Would you have any availability next week, the week of the 17th? It appears to be greyed out for me. Thank you,
+
+Doug
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 12, 2025 9:53 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com<mailto:dkupcha@oakhilladvisors.com>>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+External Message. Exercise Caution.
+Hello Douglas,
+
+I'm following up on my previous email with the scheduling availability link, as I haven't seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor<https://System.Data.SQLite.SQLiteDataReader..ctor>' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task<https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step<https://System.Data.SQLite.SQLite3.Step>' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor<https://System.Data.SQLite.SQLiteDataReader..ctor>' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task<https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+________________________________
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.
+
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KRT8r&from=ext]
+
+________________________________
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 -  - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors    [ ref:!00D70091pB.!500Qk0MUa7q:ref ]","dkupcha@oakhilladvisors.com","Kupcha, Douglas","techsupport@netwrix.com","","","true","2025-03-25T17:37:29.000Z","true"
+"02sQk00000N0W13IAF","500Qk00000MUa7qIAD","2025-03-25T20:34:55.000Z","2025-03-25T20:34:55.000Z","Douglas,
+
+Thank You for the update.
+
+Could I get the output  from the attached ADMIN PowerShell ISE script (SA_JOBs_troubleshooting) the Netwrix Server?
+We can edit Line #13 $Working_Dir = ""$Homedesktop""   ## Edit to output to another path by default the desktop of the account that Runs the script will be used. ## 
+
+The Zipped files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/25/2025 1:37 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+
+Hi Dusty,
+
+Just wanted to provide a quick update here regarding our jobs over the last few days.. looks like the SEEK System Scan job ran for 2days 11hrs and threw an error. But appears to have finished? Some snips below. Thanks for your continued assistance here! Doug 
+
+ 
+
+File processing timeout of 0 seconds: File processing timeout (\NVA-FILE-1.OHPNY.COMoha-ny-sharedCLIENT_COVERAGERequestsWest VirginiaAttachmentsOHA_Form_ADV_Part_2A_2024.pdf)
+
+ 
+
+
+
+ 
+
+The SEEK Bulk import job had some errors after 6m 29s. 
+
+ 
+
+
+
+ 
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAELECTRA.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+
+no such table: DLPEX.version
+
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   --- End of inner exception stack trace ---
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database LDN-FILE-1.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+
+no such table: DLPEX.version
+
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   --- End of inner exception stack trace ---
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAOMSDB.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+
+no such table: DLPEX.version
+
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   --- End of inner exception stack trace ---
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+
+no such table: DLPEX.version
+
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   --- End of inner exception stack trace ---
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+PNYJOBS.OHPNY.COM  code = Corrupt (11), message = System.Data.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+
+database disk image is malformed
+
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 2:01 PM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+
+Doug,
+
+Per our call today we upgraded the current version of application(s) running in the Environment:
+
+FROM:
+Netwrix Enterprise Auditor (NEA)    11.6.0.84
+NEA Access Information (AIC)         11.6.0.10
+NEA Sensitive Data (SDD)                11.6.0.11
+
+TO:
+Netwrix Enterprise Auditor (NEA)      11.6.0.138
+NEA Access Information (AIC)          11.6.0.37
+NEA Sensitive Data Discovery           11.6.0.18
+
+We did have to recover some of the Customized SQL jobs for the upgraded archive that can be found in the jobs folder.
+Example: ""D:Program Files (x86)STEALTHbitsStealthAUDITJobs20221024061205.zip""
+     *This corrected the missing Scheule task.
+
+Please let me know how the next set of scans complete.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 2:59 PM
+To: dkupcha@oakhilladvisors.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA)    11.6.0.84
+NEA Sensitive Data (SDD)                11.6.0.11
+
+Odd that every other job is failing, there have been enhancements made to these jobs in later builds.
+Recommendations is to upgrade and test the scans after for any continuing issues.
+
+Adjusted the SEEK scan  Performance from 10 to 4 to see if the Dev recommendation helps with the 13 server being scanned.
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Jobs > Job Properties Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=VqyL4UJGbenzwcLoUrDgyGWhoisZLVZZPGq13Ev8qls-Z&MeetingID=bzxhggTOXP9opmzh_31NdXX5QKTK6yR8JZOSAZWjrg4-Z
+
+Day of the meeting Download and  unblock then copy over to the Server.  netwrix.com/my_products_int.html
+Netwrix Enterprise Auditor (NEA)                11.6.0.137+
+NEAAccess Information Center (AIC)          11.6.0.37+
+NEA Sensitive Data Discovery                      11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 11:00 AM
+To: dkupcha@oakhilladvisors.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Thank You for the update.
+ 
+I have extended the opening window our from the original of 03/14/2025 till 03/21/2025
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tBrDXzwjLdW9JpauJu3vQTE6NUTEX.OCIuTAtG_2uBs-Z&MeetingID=ZeXOBJ632TdtW7uZnZ0zRl8BJgRCiJiNaOzYVHSlcRo-Z
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels.  https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/12/2025 10:26 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+ 
+
+
+Hi Dusty,
+
+My sincerest apologies here. I overlooked your last email with the scheduling link and just seeing that now within this email. I am going on now to find some time for us to meet.
+
+ 
+
+Would you have any availability next week, the week of the 17th? It appears to be greyed out for me. Thank you,
+
+ 
+
+Doug 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 9:53 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+
+Hello Douglas,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+
+
+ 
+
+
+
+
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product. 
+ 
+ 
+
+
+ 
+
+ Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 -  - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors    [ ref:!00D70091pB.!500Qk0MUa7q:ref ]","techsupport@netwrix.com","Netwrix Support","dkupcha@oakhilladvisors.com","","","true","2025-03-25T20:34:54.000Z","true"
+"02sQk00000N0KQ0IAN","500Qk00000MUa7qIAD","2025-03-25T20:55:50.000Z","2025-03-26T13:17:53.000Z","ref:_00D7091pB._500Q000MUa7q:ref
+
+Thanks, Dusty.. so I think our email filters stripped out the attached script for security reasons. You might be able to just copy the text in the email body and I’ll move it over to run. Let me know if that works, too.. Thanks!
+
+Doug
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 4:35 PM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+External Message. Exercise Caution.
+Douglas,
+
+Thank You for the update.
+
+Could I get the output  from the attached ADMIN PowerShell ISE script (SA_JOBs_troubleshooting) the Netwrix Server?
+We can edit Line #13 $Working_Dir = ""$Homedesktop""   ## Edit to output to another path by default the desktop of the account that Runs the script will be used. ##
+
+The Zipped files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://www.netwrix.com/sign_in.html?rf=my_tickets.html>
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://www.netwrix.com/sign_in.html?rf=my_tickets.html>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/25/2025 1:37 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+Hi Dusty,
+Just wanted to provide a quick update here regarding our jobs over the last few days.. looks like the SEEK System Scan job ran for 2days 11hrs and threw an error. But appears to have finished? Some snips below. Thanks for your continued assistance here! Doug
+
+File processing timeout of 0 seconds: File processing timeout (http://\NVA-FILE-1.OHPNY.COMoha-ny-sharedCLIENT_COVERAGERequestsWest VirginiaAttachmentsOHA_Form_ADV_Part_2A_2024.pdf)
+
+[cid:image001.png@01DB9DA4.B5751C30]
+
+The SEEK Bulk import job had some errors after 6m 29s.
+
+[cid:image002.png@01DB9DA4.B5751C30]
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAELECTRA.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   --- End of inner exception stack trace ---
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database LDN-FILE-1.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   --- End of inner exception stack trace ---
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAOMSDB.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   --- End of inner exception stack trace ---
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   --- End of inner exception stack trace ---
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+PNYJOBS.OHPNY.COM<http://PNYJOBS.OHPNY.COM>  code = Corrupt (11), message = System.Data.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, March 21, 2025 2:01 PM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com<mailto:dkupcha@oakhilladvisors.com>>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+External Message. Exercise Caution.
+Doug,
+
+Per our call today we upgraded the current version of application(s) running in the Environment:
+
+FROM:
+Netwrix Enterprise Auditor (NEA)    11.6.0.84<http://11.6.0.84>
+NEA Access Information (AIC)         11.6.0.10<http://11.6.0.10>
+NEA Sensitive Data (SDD)                11.6.0.11<http://11.6.0.11>
+
+TO:
+Netwrix Enterprise Auditor (NEA)    11.6.0.138<http://11.6.0.138>
+NEA Access Information (AIC)          11.6.0.37<http://11.6.0.37>
+NEA Sensitive Data Discovery           11.6.0.18<http://11.6.0.18>
+
+We did have to recover some of the Customized SQL jobs for the upgraded archive that can be found in the jobs folder.
+Example: ""D:Program Files (x86)STEALTHbitsStealthAUDITJobs20221024061205.zip""
+     *This corrected the missing Scheule task.
+
+Please let me know how the next set of scans complete.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://www.netwrix.com/sign_in.html?rf=my_tickets.html>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 2:59 PM
+To: dkupcha@oakhilladvisors.com<mailto:dkupcha@oakhilladvisors.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA)    11.6.0.84<http://11.6.0.84>
+NEA Sensitive Data (SDD)                11.6.0.11<http://11.6.0.11>
+
+Odd that every other job is failing, there have been enhancements made to these jobs in later builds.
+Recommendations is to upgrade and test the scans after for any continuing issues.
+
+Adjusted the SEEK scan Performance from 10 to 4 to see if the Dev recommendation helps with the 13 server being scanned.
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Jobs > Job Properties Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm<https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm>
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=VqyL4UJGbenzwcLoUrDgyGWhoisZLVZZPGq13Ev8qls-Z&MeetingID=bzxhggTOXP9opmzh_31NdXX5QKTK6yR8JZOSAZWjrg4-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=VqyL4UJGbenzwcLoUrDgyGWhoisZLVZZPGq13Ev8qls-Z&MeetingID=bzxhggTOXP9opmzh_31NdXX5QKTK6yR8JZOSAZWjrg4-Z>
+
+Day of the meeting Download and unblock<https://www.thewindowsclub.com/fix-windows-blocked-access-file> then copy over to the Server. netwrix.com/my_products_int.html<https://www.netwrix.com/my_products_int.html>
+Netwrix Enterprise Auditor (NEA)                11.6.0.137+
+NEAAccess Information Center (AIC)          11.6.0.37+
+NEA Sensitive Data Discovery                      11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://www.netwrix.com/sign_in.html?rf=my_tickets.html>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 11:00 AM
+To: dkupcha@oakhilladvisors.com<mailto:dkupcha@oakhilladvisors.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Thank You for the update.
+
+I have extended the opening window our from the original of 03/14/2025 till 03/21/2025
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tBrDXzwjLdW9JpauJu3vQTE6NUTEX.OCIuTAtG_2uBs-Z&MeetingID=ZeXOBJ632TdtW7uZnZ0zRl8BJgRCiJiNaOzYVHSlcRo-Z<https://nwxcorp.my.salesforce-sites.com/cts?Id=tBrDXzwjLdW9JpauJu3vQTE6NUTEX.OCIuTAtG_2uBs-Z&MeetingID=ZeXOBJ632TdtW7uZnZ0zRl8BJgRCiJiNaOzYVHSlcRo-Z>
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html<https://www.netwrix.com/sign_in.html?rf=my_tickets.html>
+
+Emailing into support@stealthbits.com<mailto:support@stealthbits.com> has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/12/2025 10:26 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+Hi Dusty,
+My sincerest apologies here. I overlooked your last email with the scheduling link and just seeing that now within this email. I am going on now to find some time for us to meet.
+
+Would you have any availability next week, the week of the 17th? It appears to be greyed out for me. Thank you,
+
+Doug
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, March 12, 2025 9:53 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com<mailto:dkupcha@oakhilladvisors.com>>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+External Message. Exercise Caution.
+Hello Douglas,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor<https://System.Data.SQLite.SQLiteDataReader..ctor>' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task<https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step<https://System.Data.SQLite.SQLite3.Step>' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor<https://System.Data.SQLite.SQLiteDataReader..ctor>' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task<https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+________________________________
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.
+
+
+
+________________________________
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.
+
+________________________________
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 -  - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors    [ ref:!00D70091pB.!500Qk0MUa7q:ref ]","dkupcha@oakhilladvisors.com","Kupcha, Douglas","techsupport@netwrix.com","","","true","2025-03-25T20:55:28.000Z","true"
+"02sQk00000N1hCDIAZ","500Qk00000MUa7qIAD","2025-03-26T13:24:01.000Z","2025-03-26T13:24:01.000Z","Douglas,
+
+Thank You for the update.
+ 
+Let's schedule a web meeting to take a closer look.
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=m8yT9iXoD.7DHNqWG8QeN4R0UPW4ZXkr1gI7sWlU3Bw-Z&MeetingID=VnP4Wdvl2FqEjnTZ90RU.vNgX80gE5XWRpDeSVZ_SHs-Z
+
+For this meeting, we will need to have a Full Admin access to the following
+Netwrix Enterprise Auditor (NEA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/25/2025 4:55 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+Thanks, Dusty.. so I think our email filters stripped out the attached script for security reasons. You might be able to just copy the text in the email body and I’ll move it over to run. Let me know if that works, too.. Thanks!
+
+ 
+
+Doug
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 4:35 PM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+Douglas,
+
+Thank You for the update.
+
+Could I get the output  from the attached ADMIN PowerShell ISE script (SA_JOBs_troubleshooting) the Netwrix Server?
+We can edit Line #13 $Working_Dir = ""$Homedesktop""   ## Edit to output to another path by default the desktop of the account that Runs the script will be used. ##
+
+The Zipped files can be uploaded directly to the case once logged into the following site expand the ticket number there, we will see an Attachment option.
+https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Once the upload has completed reply to this email, so I know to pull the files.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/25/2025 1:37 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+ 
+
+Hi Dusty,
+
+Just wanted to provide a quick update here regarding our jobs over the last few days.. looks like the SEEK System Scan job ran for 2days 11hrs and threw an error. But appears to have finished? Some snips below. Thanks for your continued assistance here! Doug
+
+ 
+
+File processing timeout of 0 seconds: File processing timeout (http://\NVA-FILE-1.OHPNY.COMoha-ny-sharedCLIENT_COVERAGERequestsWest VirginiaAttachmentsOHA_Form_ADV_Part_2A_2024.pdf)
+
+ 
+
+
+
+ 
+
+The SEEK Bulk import job had some errors after 6m 29s.
+
+ 
+
+
+
+ 
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAELECTRA.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+
+no such table: DLPEX.version
+
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   --- End of inner exception stack trace ---
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database LDN-FILE-1.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+
+no such table: DLPEX.version
+
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   --- End of inner exception stack trace ---
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAOMSDB.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+
+no such table: DLPEX.version
+
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   --- End of inner exception stack trace ---
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+
+no such table: DLPEX.version ---> System.Data.SQLite.SQLiteException: SQL logic error
+
+no such table: DLPEX.version
+
+   at System.Data.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+
+   at System.Data.SQLite.SQLiteCommand.BuildNextCommand()
+
+   at System.Data.SQLite.SQLiteCommand.GetStatement(Int32 index)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader()
+
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   --- End of inner exception stack trace ---
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+PNYJOBS.OHPNY.COM  code = Corrupt (11), message = System.Data.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+
+database disk image is malformed
+
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+
+   at System.Data.SQLite.SQLiteCommand.ExecuteNonQuery()
+
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.BulkImportTask.InternalProcessRecord()
+
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 21, 2025 2:01 PM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+Doug,
+
+Per our call today we upgraded the current version of application(s) running in the Environment:
+
+FROM:
+Netwrix Enterprise Auditor (NEA)    11.6.0.84
+NEA Access Information (AIC)         11.6.0.10
+NEA Sensitive Data (SDD)                11.6.0.11
+
+TO:
+Netwrix Enterprise Auditor (NEA)    11.6.0.138
+NEA Access Information (AIC)          11.6.0.37
+NEA Sensitive Data Discovery           11.6.0.18
+
+We did have to recover some of the Customized SQL jobs for the upgraded archive that can be found in the jobs folder.
+Example: ""D:Program Files (x86)STEALTHbitsStealthAUDITJobs20221024061205.zip""
+     *This corrected the missing Scheule task.
+
+Please let me know how the next set of scans complete.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 2:59 PM
+To: dkupcha@oakhilladvisors.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Per our call today we confirmed that the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA)    11.6.0.84
+NEA Sensitive Data (SDD)                11.6.0.11
+
+Odd that every other job is failing, there have been enhancements made to these jobs in later builds.
+Recommendations is to upgrade and test the scans after for any continuing issues.
+
+Adjusted the SEEK scan Performance from 10 to 4 to see if the Dev recommendation helps with the 13 server being scanned.
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Jobs > Job Properties Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+For this 90min meeting, we will need to have a Full backup (internal procedures) & Admin access to the following
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) Server and Related SQL DB
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=VqyL4UJGbenzwcLoUrDgyGWhoisZLVZZPGq13Ev8qls-Z&MeetingID=bzxhggTOXP9opmzh_31NdXX5QKTK6yR8JZOSAZWjrg4-Z
+
+Day of the meeting Download and unblock then copy over to the Server. netwrix.com/my_products_int.html
+Netwrix Enterprise Auditor (NEA)                11.6.0.137+
+NEAAccess Information Center (AIC)          11.6.0.37+
+NEA Sensitive Data Discovery                      11.6.0.18+
+
+Please join from your Workstations to avoid any UAC issues on the Server:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 11:00 AM
+To: dkupcha@oakhilladvisors.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Douglas,
+
+Thank You for the update.
+ 
+I have extended the opening window our from the original of 03/14/2025 till 03/21/2025
+
+Scheduling Link
+nwxcorp.my.salesforce-sites.com/cts?Id=tBrDXzwjLdW9JpauJu3vQTE6NUTEX.OCIuTAtG_2uBs-Z&MeetingID=ZeXOBJ632TdtW7uZnZ0zRl8BJgRCiJiNaOzYVHSlcRo-Z
+
+For this meeting, we will need to have a Full Admin access to the Netwrix Enterprise Auditor (NEA) Server.
+
+Please join from your Workstations to avoid any UAC issues on the Server Stealthbits is running on:
+***NOTE*** The invite may not set the meeting reminder please adjust within your calendar once the Time is agreed on.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/12/2025 10:26 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+ 
+
+Hi Dusty,
+
+My sincerest apologies here. I overlooked your last email with the scheduling link and just seeing that now within this email. I am going on now to find some time for us to meet.
+
+ 
+
+Would you have any availability next week, the week of the 17th? It appears to be greyed out for me. Thank you,
+
+ 
+
+Doug
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 12, 2025 9:53 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+Hello Douglas,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+ 
+
+
+
+
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product. 
+ 
+ 
+
+ 
+
+
+
+
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product. 
+ 
+
+ Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 -  - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors    [ ref:!00D70091pB.!500Qk0MUa7q:ref ]","techsupport@netwrix.com","Netwrix Support","dkupcha@oakhilladvisors.com","","","true","2025-03-26T13:24:00.000Z","true"
+"02sQk00000N5v28IAB","500Qk00000MUa7qIAD","2025-03-27T20:37:06.000Z","2025-03-27T20:37:06.000Z","Douglas,
+
+Per our call today we looked at the Netwrix Enterprise Auditor (NEA) 11.6.138 FSAA issue noting a COM error for one of the file servers.
+
+It was also noted that Sensitive Data Discovery is not truly licensed and the related jobs were disabled.
+
+We were able to confirm during the call that there are currently no communications issues between the NEA host and the File Sever in question via the following.
+ping -a <HOST-NAME> -n 100   No dropped packets 
+
+Get-WmiObject -Namespace ""rootcimv2"" -Class Win32_computersystem -ComputerName <HOST-NAME>
+
+Test-WSMan -ComputerName $Server -Authentication Kerberos -Credential $cred 
+
+Both WMI calls completed successfully
+
+We did note that there was a SAJobEngine.dll error on 3/26 this might be more related to the SharePoint scan than FSAA based on its timestamp.
+
+*** Side note *** We found a stuck AD Activity running.lck file that had no current Running Instance connected to it however we did see the orphaned entry within task manager. 
+
+We found multiple .dmp files in the STEALTHbitsStealthAUDITSADatabase directory that were older than our install date to help clean these up we looked at the following
+
+Clear-Host
+# Delete all Files older than x day(s)
+$Path = ""$env:SAINSTALLDIRSADatabase""    # Path in question"
+"02sQk00000N5tA2IAJ","500Qk00000MUa7qIAD","2025-03-27T20:44:54.000Z","2025-03-27T20:56:14.000Z","ref:_00D7091pB._500Q000MUa7q:ref
+
+Hey Dusty,
+Thanks for working with me earlier. I was able to successfully upload the zip to our case and it's ready for your review.
+
+Have a good weekend!
+
+Doug
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 27, 2025 4:37 PM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Cc: colin.barr@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+External Message. Exercise Caution.
+Douglas,
+
+Per our call today we looked at the Netwrix Enterprise Auditor (NEA) 11.6.138 FSAA issue noting a COM error for one of the file servers.
+
+It was also noted that Sensitive Data Discovery is not truly licensed and the related jobs were disabled.
+
+We were able to confirm during the call that there are currently no communications issues between the NEA host and the File Sever in question via the following.
+ping -a <HOST-NAME> -n 100   No dropped packets
+
+Get-WmiObject -Namespace ""rootcimv2"" -Class Win32_computersystem -ComputerName <HOST-NAME>
+
+Test-WSMan -ComputerName $Server -Authentication Kerberos -Credential $cred
+
+Both WMI calls completed successfully
+
+We did note that there was a SAJobEngine.dll error on 3/26 this might be more related to the SharePoint scan than FSAA based on its timestamp.
+
+*** Side note *** We found a stuck AD Activity running.lck file that had no current Running Instance connected to it however we did see the orphaned entry within task manager.
+
+We found multiple .dmp files in the STEALTHbitsStealthAUDITSADatabase directory that were older than our install date to help clean these up we looked at the following
+
+Clear-Host
+# Delete all Files older than x day(s)
+$Path = ""$env:SAINSTALLDIRSADatabase""    # Path in question"
+"02sQk00000N8LwYIAV","500Qk00000MUa7qIAD","2025-03-28T19:06:45.000Z","2025-03-28T19:06:45.000Z","Hello Douglas,
+
+We have received your upload and the artifacts are under review.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/27/2025 4:44 PM
+To: techsupport@netwrix.com
+Cc: colin.barr@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+
+Hey Dusty,
+
+Thanks for working with me earlier. I was able to successfully upload the zip to our case and it’s ready for your review. 
+
+ 
+
+Have a good weekend! 
+
+ 
+
+Doug 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 27, 2025 4:37 PM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Cc: colin.barr@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+
+Douglas,
+
+Per our call today we looked at the Netwrix Enterprise Auditor (NEA) 11.6.138 FSAA issue noting a COM error for one of the file servers.
+
+It was also noted that Sensitive Data Discovery is not truly licensed and the related jobs were disabled.
+
+We were able to confirm during the call that there are currently no communications issues between the NEA host and the File Sever in question via the following.
+ping -a <HOST-NAME> -n 100   No dropped packets 
+
+Get-WmiObject -Namespace ""rootcimv2"" -Class Win32_computersystem -ComputerName <HOST-NAME>
+
+Test-WSMan -ComputerName $Server -Authentication Kerberos -Credential $cred 
+
+Both WMI calls completed successfully
+
+We did note that there was a SAJobEngine.dll error on 3/26 this might be more related to the SharePoint scan than FSAA based on its timestamp.
+
+*** Side note *** We found a stuck AD Activity running.lck file that had no current Running Instance connected to it however we did see the orphaned entry within task manager. 
+
+We found multiple .dmp files in the STEALTHbitsStealthAUDITSADatabase directory that were older than our install date to help clean these up we looked at the following
+
+Clear-Host
+# Delete all Files older than x day(s)
+$Path = ""$env:SAINSTALLDIRSADatabase""    # Path in question"
+"02sQk00000NE0VyIAL","500Qk00000MUa7qIAD","2025-03-31T22:49:57.000Z","2025-03-31T22:49:57.000Z","Douglas,
+I have posted to the internal Swat thread Colin noted about the DMP files we found.
+
+Per our last call we noted the following for the FSAA scan issue:
+Host in question is scanned via MSTask Task Scheduler – Creates a scheduled task on the target host that runs the applet
+Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector > FSAA: Applet Settings
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/AppletSettings.htm 
+with Automatic (Local for NAS device hosts, Remote for Windows hosts) – Applet is deployed to all targeted Windows servers. Other targeted devices, for example NAS, are scanned locally by the Enterprise Auditor Console server.
+The scan identifies Windows servers through the host inventory field OSType
+Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector > FSAA: Scan Server Selection
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/ScanServerSelection.htm
+
+Error noted in the 0.CollectionGROUP_0.CollectionGROUP_1.PermissionsJOB_1-FSAA System ScansOUTPUT1-FSAA System Scans_Log.tsv
+
+25/03/2025 20:39:51 ERROR FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""System.TimeoutException: Retry timeout exceeded ---> System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 10.192.64.46:8766   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)   --- End of inner exception stack trace --- ...
+
+Possible Causes
+Service Not Running: The Netwrix Applet or service on the target machine isn’t running or isn’t listening on port 8766.
+Firewall Blocking: A firewall on the target machine or network is preventing connections to port 8766.
+Network Issue: There’s a connectivity problem between the NEA server and the target machine (e.g., routing issues, incorrect IP, etc.).
+Configuration Error: The target machine’s IP or port settings in NEA might be misconfigured.
+Server Overload/Rejection: The target machine might be overloaded or explicitly configured to refuse connections.
+
+Check Target Machine:
+Ensure the Applet can listen on port 8766 (e.g., use netstat -an | find ""8766"" on Windows this should only list during a scan).
+Test Connectivity:
+From the NEA server, use tools like telnet 10.192.64.46 8766 or Test-NetConnection -ComputerName 10.192.64.46 -Port 8766 (PowerShell) to confirm the port is reachable.
+Review NEA Configuration:
+In the NEA management console, check the FSAA task settings to ensure the correct IP and port are specified for the target.
+Firewall and Network:
+Confirm that no firewall rules block traffic to 10.192.64.46:8766.
+Validate network connectivity between the NEA server and the target.
+
+Netwrix Enterprise Auditor v11.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm 
+ 
+We might also want to take a look at the Netwrix Enterprise Auditor v11.6 > Administration > Application Maintenance and Best Practices > Antivirus Exclusions
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Maintenance/AntivirusExclusions.htm 
+
+Please let me know what is found here
+
+Additional reference links you might like:
+NEW Netwrix Community https://community.netwrix.com/
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/28/2025 3:06 PM
+To: dkupcha@oakhilladvisors.com
+Cc: yaniq.campbell@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+Hello Douglas,
+
+We have received your upload and the artifacts are under review.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 3/27/2025 4:44 PM
+To: techsupport@netwrix.com
+Cc: colin.barr@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+
+Hey Dusty,
+
+Thanks for working with me earlier. I was able to successfully upload the zip to our case and it’s ready for your review. 
+
+ 
+
+Have a good weekend! 
+
+ 
+
+Doug 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, March 27, 2025 4:37 PM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Cc: colin.barr@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors [ ref:!00D70091pB.!500Qk0MUa7q:ref ]
+
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+
+Douglas,
+
+Per our call today we looked at the Netwrix Enterprise Auditor (NEA) 11.6.138 FSAA issue noting a COM error for one of the file servers.
+
+It was also noted that Sensitive Data Discovery is not truly licensed and the related jobs were disabled.
+
+We were able to confirm during the call that there are currently no communications issues between the NEA host and the File Sever in question via the following.
+ping -a <HOST-NAME> -n 100   No dropped packets 
+
+Get-WmiObject -Namespace ""rootcimv2"" -Class Win32_computersystem -ComputerName <HOST-NAME>
+
+Test-WSMan -ComputerName $Server -Authentication Kerberos -Credential $cred 
+
+Both WMI calls completed successfully
+
+We did note that there was a SAJobEngine.dll error on 3/26 this might be more related to the SharePoint scan than FSAA based on its timestamp.
+
+*** Side note *** We found a stuck AD Activity running.lck file that had no current Running Instance connected to it however we did see the orphaned entry within task manager. 
+
+We found multiple .dmp files in the STEALTHbitsStealthAUDITSADatabase directory that were older than our install date to help clean these up we looked at the following
+
+Clear-Host
+# Delete all Files older than x day(s)
+$Path = ""$env:SAINSTALLDIRSADatabase""    # Path in question"
+"02sQk00000NE2vxIAD","500Qk00000MUa7qIAD","2025-03-31T22:56:12.000Z","2025-04-01T12:34:09.000Z","ref:_00D7091pB._500Q000MUa7q:ref
+
+I am currently out of the office with limited access to email and voicemail. If you need immediate assistance, please contact OHA Support at support@oakhilladvisors.com or call 212.326.1599
+
+Thank You
+
+
+________________________________
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","Automatic reply: Netwrix Support Ticket #437497 -  - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors    [ ref:!00D70091pB.!500Qk0MUa7q:ref ]","dkupcha@oakhilladvisors.com","Kupcha, Douglas","techsupport@netwrix.com","","","false","2025-03-31T22:55:39.000Z","true"
+"02sQk00000NO7xbIAD","500Qk00000MUa7qIAD","2025-04-04T17:00:36.000Z","2025-04-04T19:44:08.000Z","ref:_00D7091pB._500Q000MUa7q:ref
+
+Hi Dusty,
+I think it might be safe to close this case out since after we disabled all the SEEK jobs, all of the other file system jobs have been running to completion and error free! And within an acceptable time frame, too (just around <9hrs to complete), not running for days long with SEEK enabled.
+
+Thanks!
+
+Doug
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:38 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+External Message. Exercise Caution.
+Hello Douglas,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor<https://System.Data.SQLite.SQLiteDataReader..ctor>' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task<https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step<https://System.Data.SQLite.SQLite3.Step>' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor<https://System.Data.SQLite.SQLiteDataReader..ctor>' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data<https://System.Data>' target='_blank'>System.Data<http://System.Data></a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA<https://Stealthbits.StealthAUDIT.DataCollectors.FSAA>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task<https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task>' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+________________________________
+Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors","dkupcha@oakhilladvisors.com","Kupcha, Douglas","techsupport@netwrix.com","","","false","2025-04-04T17:00:18.000Z","true"
+"02sQk00000NOZ7XIAX","500Qk00000MUa7qIAD","2025-04-04T19:48:48.000Z","2025-04-04T19:48:48.000Z","Doug,
+ 
+Thank You for the update, I will close out this ticket as noted.
+
+We have 30days to reopen once the closure email is received.
+
+To reopen we can just reply to that email to bring the case back into my queue.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. 
+
+Feel free to leave any feedback via the survey link.
+
+Have a great weekend.
+
+Again, thank You for your time.
+
+Dusty Grayson
+Sr. Support Engineer
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Cybersecurity That Works for You.
+6160 Warren Parkway, Suite 100,Frisco, TX 75034
+www.netwrix.com
+
+*****Please note Support communication changes*****
+Directly emailing Support Engineers is likely to result in oversight, as they do not handle cases through email correspondence.
+It is recommended to use the Support Portal for appropriate communication channels. https://www.netwrix.com/sign_in.html?rf=my_tickets.html
+
+Emailing into support@stealthbits.com has been disabled as well.
+
+
+--------------- Original Message ---------------
+From: Kupcha, Douglas [dkupcha@oakhilladvisors.com]
+Sent: 4/4/2025 1:00 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437497 - ref:_00D7091pB._500Q000MUa7q:ref - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+ref:_00D7091pB._500Q000MUa7q:ref
+
+
+
+Hi Dusty,
+
+I think it might be safe to close this case out since after we disabled all the SEEK jobs, all of the other file system jobs have been running to completion and error free! And within an acceptable time frame, too (just around <9hrs to complete), not running for days long with SEEK enabled. 
+
+ 
+
+Thanks! 
+
+ 
+
+Doug 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, April 3, 2025 8:38 AM
+To: Kupcha, Douglas <dkupcha@oakhilladvisors.com>
+Subject: RE: 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors
+
+
+
+ 
+
+
+External Message. Exercise Caution.
+
+
+
+Hello Douglas,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00437497
+Ticket Subject: FileSystem Scan issues, SEEK System and Bulk Import job errors
+Ticket Details: hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.BuildNextCommand()
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader()
+at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+--- End of inner exception stack trace ---
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+at <a href='https://System.Data.SQLite.SQLite3.Step' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Thank you!
+
+Dusty Grayson
+Sr. Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MUa7q:ref
+
+
+ 
+
+ Please consider the environment before printing this email or any attachments.
+
+This email and any attachment may contain information that is proprietary, confidential, and/or privileged information. If you are not the intended recipient, any review, copying, use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and then delete this email and any attachments permanently from your system. The sender does not waive confidentiality or any privilege by the unintended communication. This communication constitutes neither an offer to sell nor a solicitation to purchase any investment product.","RE: Netwrix Support Ticket #437497 -  - 00437497 - FileSystem Scan issues, SEEK System and Bulk Import job errors    [ ref:!00D70091pB.!500Qk0MUa7q:ref ]","techsupport@netwrix.com","Netwrix Support","dkupcha@oakhilladvisors.com","","","false","2025-04-04T19:48:48.000Z","true"

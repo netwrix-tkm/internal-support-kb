@@ -1,0 +1,117 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007XrMTIA0","500Qk00000CG4s2IAD","In the past I created custom job to cleanup host lists - please review to me if needed regarding this","0054u000006goPuAAI","2024-06-25T14:39:41.000Z","2024-06-25T14:39:41.000Z","false","false"
+"00aQk0000084VAHIA2","500Qk00000CG4s2IAD","Custom job to clean up the hosts was disabled.
+They are not scanning the AD domain in ADI for some reason. Ran the full ADI scan for the AD domain to verify if the computer objects are still marked as deleted or not.
+
+The custom cleanup job looks at ""IsDeleted"" attribute to clean up the discovered hosts from SA_HostMaster_Tbl, and it doesn't function properly, because every time the Host Discovery completes this custom cleanup job deletes the discovered hosts from SA_HostMaster_Tbl because they are marked as deleted, but in reality in the Active Directory - they are not!","0054u000007MeUDAA0","2024-07-22T12:40:08.000Z","2024-07-22T12:40:08.000Z","false","false"
+"00aQk000008PN86IAG","500Qk00000CG4s2IAD","Checking ticket history and troubleshooting steps with team.","0054u000007p4sbAAA","2024-08-08T06:37:22.000Z","2024-08-08T06:37:23.000Z","false","false"
+"00aQk000008Z25aIAC","500Qk00000CG4s2IAD","New hostlist now working as intended, waiting for Alex to review the custom one.","0054u000007p4sbAAA","2024-08-16T11:48:04.000Z","2024-08-16T11:48:04.000Z","false","false"
+"00aQk0000099IIHIA2","500Qk00000CG4s2IAD","appears to be working as expected. the order of schedule needs to be validated.","0054u000006goPuAAI","2024-09-17T14:36:46.000Z","2024-09-17T14:36:46.000Z","false","false"
+"00aQk0000099GegIAE","500Qk00000CG4s2IAD","should know by Thursday","0054u000006goPuAAI","2024-09-17T14:37:11.000Z","2024-09-17T14:37:11.000Z","false","false"
+"00aQk000009fLZZIA2","500Qk00000CG4s2IAD","The error when accessing host list is appearing inconsistently. Vinay is to confirm the timing for when this occurs.
+This may be related to the host list tables being updated by custom SQL and the SA/NEA console has not updated/refreshed correctly.","0054u000006goPuAAI","2024-10-15T10:47:48.000Z","2024-10-15T10:47:48.000Z","false","false"
+"00aQk000009fa8nIAA","500Qk00000CG4s2IAD","this seems like a defect please qualify and escalate:
+If the host discovery is finding computer objects they should exist in AD - can the customer show the object doesn't? - this seems to be the defect
+
+If ADI is discovering objects that don't exist - are they running a full scan or differential?","0050g000006QqyEAAS","2024-10-15T14:29:32.000Z","2024-10-15T14:29:32.000Z","false","false"
+"00aQk00000A1Fk1IAF","500Qk00000CG4s2IAD","Customer is running full ADI scans, aside of custom attributes warnings, ADI job finishes fine.
+
+On meeting we've reviewed troubled hostlists:
+1. GRM_AD_APPLICATIONS hostlist is working as intended, Vinay was comparing incorrect OU to hostlist query results, we've compared host count to AD host count for target OU, it matches.
+
+2. GRM_AD_AZURE - doesn't have hosts, on attempt to run query manually - insufficient permissions error - Vinay will speak to infra team to resolve this.
+
+3. GRM_AD_EMEA - correct number of hosts, but no details for collected hosts, disabled clean up job and requested to run query manually, waiting for results.
+
+So far the only issue left that might be on our side is hostlist that collects hostnames and count, but doesn't collect details - example - GRM_AD_EMEA hostlist, will clarify and escalate if this is still an issue after manual scan.","0054u000007p4sbAAA","2024-11-04T09:52:21.000Z","2024-11-04T09:52:21.000Z","false","false"
+"00aQk00000ANS5tIAH","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Account ACV has been changed to 2433945.166666666662.","0054u000007p4sbAAA","2024-11-22T12:04:16.000Z","2024-11-22T12:04:16.000Z","false","false"
+"00aQk00000ANS7VIAX","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Account ACV has been changed to 1216972.583333333331.","0054u000007p4sbAAA","2024-11-22T12:04:18.000Z","2024-11-22T12:04:18.000Z","false","false"
+"00aQk00000AbfOEIAZ","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the new comment has been added: Hi, was this one assigned?","0054u000007p4sbAAA","2024-12-06T14:01:26.000Z","2024-12-06T14:01:26.000Z","false","false"
+"00aQk00000AcNVhIAN","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-12-06T22:16:58.000Z","2024-12-06T22:16:58.000Z","false","false"
+"00aQk00000AcNVjIAN","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the new comment has been added: Ethan Israel:
+
+@Michael Burrofato @Helen Randall @Sanjay Meghani @WaitingOnEngineer - Just to update from out of band discussion. I reached out to Damir in teams with a list of questions around how they have host discovery configured and whether it's running on a schedule (and asked for some screenshots of host discovery and their targeted host list for ADI). Also asked about any other downstream impacts beyond just the one host not showing up in ADInventory_ComputersView and asked if we could lower priority if there's nothing else breaking. 
+
+[DevOps CommentId:11379537]","0054u000006gtWUAAY","2024-12-06T22:17:00.000Z","2024-12-06T22:17:00.000Z","false","false"
+"00aQk00000Afn8gIAB","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0050g000006QqyEAAS","2024-12-10T17:46:53.000Z","2024-12-10T17:46:53.000Z","false","false"
+"00aQk00000AhR8sIAF","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the new comment has been added: 1. Provide a screenshot of the host list assignments to Active Directory Inventory Scan
+ - customer provided a screenshot of an ADI Scan1 - targeting a custom hostlist, not matched to any host discovery. I explained our best practice to use 1 ADI scan to target 1 domain controller per domain.
+
+2.  Provide a screenshot of the Schedules Node showing all Host Discovery Queries are scheduled.
+ - noted as correct
+
+3.  enabling ""Perform the first inventory right away for newly discovered hosts""
+ - stated to be enabled, but no evidence provided
+
+4. Details of ZURAPP01111 - may not be scanned properly by AD Inventory.
+ - this host is not reported after the last discovery, suggesting the host was offline or decomm'd. Host discovery is configured to only keep hosts discovered during the most recent scan.
+
+These explanations have been communicated back to the customer and asked they schedule a meeting with me specific to this while Damir is out of office.","0050g000006QqyEAAS","2024-12-11T20:01:52.000Z","2024-12-11T20:01:52.000Z","false","false"
+"00aQk00000AuD6TIAV","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2024-12-24T09:09:53.000Z","2024-12-24T09:09:53.000Z","false","false"
+"00aQk00000B5K1NIAV","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Account ACV has been changed to 1217159.163333333336.
+Priority has been changed to Medium.","0050g000006QqyEAAS","2025-01-06T16:31:25.000Z","2025-01-06T16:31:25.000Z","false","false"
+"00aQk00000BCjUUIA1","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the new comment has been added: Hi, any update for this issue?","0054u000007p4sbAAA","2025-01-13T10:27:30.000Z","2025-01-13T10:27:30.000Z","false","false"
+"00aQk00000BDMxFIAX","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-01-13T17:52:33.000Z","2025-01-13T17:52:33.000Z","false","false"
+"00aQk00000BDMxHIAX","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the new comment has been added: Ethan Israel:
+
+@WaitingOnEngineer @Helen Randall Hey Damir, 
+
+We have a work item currently on the backlog to investigate this P3 but it will be a while before we have bandwidth to pull that on. Brandon provided some answers to our previous questions, however, based on the latest communication, I believe Brandon sent some explanations and further questions over to the customer and requested a call to discuss, do we know if that call happened or if there are any further details from the customer?
+
+[DevOps CommentId:11496055]","0054u000006gtWUAAY","2025-01-13T17:52:34.000Z","2025-01-13T17:52:34.000Z","false","false"
+"00aQk00000BE6ooIAD","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the new comment has been added: Hi Ethan, Brandon posted answers for questions earlier:
+
+1. Provide a screenshot of the host list assignments to Active Directory Inventory Scan
+- customer provided a screenshot of an ADI Scan1 - targeting a custom hostlist, not matched to any host discovery. I explained our best practice to use 1 ADI scan to target 1 domain controller per domain.
+
+2. Provide a screenshot of the Schedules Node showing all Host Discovery Queries are scheduled.
+- noted as correct
+
+3. enabling ""Perform the first inventory right away for newly discovered hosts""
+- stated to be enabled, but no evidence provided
+
+4. Details of ZURAPP01111 - may not be scanned properly by AD Inventory.
+- this host is not reported after the last discovery, suggesting the host was offline or decomm'd. Host discovery is configured to only keep hosts discovered during the most recent scan.
+
+I will ask Brandon if meeting was held, and if there's any further clarifications from his side.","0054u000007p4sbAAA","2025-01-14T08:36:29.000Z","2025-01-14T08:36:29.000Z","false","false"
+"00aQk00000BE6qPIAT","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-01-14T08:36:47.000Z","2025-01-14T08:36:47.000Z","false","false"
+"00aQk00000BgG5JIAV","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the new comment has been added: Michael Burrofato:
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11616656]","0054u000006gtWUAAY","2025-02-07T14:49:21.000Z","2025-02-07T14:49:21.000Z","false","false"
+"00aQk00000BgG5FIAV","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-02-07T14:49:21.000Z","2025-02-07T14:49:21.000Z","false","false"
+"00aQk00000BgG5IIAV","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the new comment has been added: Michael Burrofato:
+
+@Salesforce  Could we possibly get some more information from the customer while we dissect this ticket?:
+
+	 - 	can we get screenshots of the settings for GRM_AD_1DC?
+	 - 	details not showing up are because the host was offline at scan time? But can we please run this query after scan and share results?: SELECT * FROM SA_ADInventory_Computers c LEFT JOIN SA_ADInventory_Principals p ON c.PrincipalId = p.Id LEFT JOIN SA_ADInventory_Domains d ON d.Id = p.DomainId LEFT JOIN SA_ADInventory_DistinguishedNames dn ON dn.Id = p.DnId LEFT JOIN SA_ADInventory_DistinguishedNames dnM ON dnM.Id = p.ManagedById
+	 - 	enabling ""Perform the first inventory right away for newly discovered hosts""
+- stated to be enabled, but no evidence provided: can we confirm this, please?
+	 - 	what's their setting for 'Only refresh inventory items older then:'? Can we get a screenshot of settings->Host Inventory?
+
+[DevOps CommentId:11616654]","0054u000006gtWUAAY","2025-02-07T14:49:21.000Z","2025-02-07T14:49:21.000Z","false","false"
+"00aQk00000BiFGLIA3","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-02-10T05:18:31.000Z","2025-02-10T05:18:31.000Z","false","false"
+"00aQk00000BlMGTIA3","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Account ACV has been changed to 1529732.369999999999.
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-02-12T08:35:55.000Z","2025-02-12T08:35:55.000Z","false","false"
+"00aQk00000BlMOYIA3","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the new comment has been added: This support ticket will be closed, since support ticket was logged to cover issue with Host Management query not running, and we've confirmed that queries are running.
+
+I've created a separate ticket and R&D escalation to cover ADI Scan not picking up details for hosts ticket number is 00435556, ADO link https://dev.azure.com/NetwrixCorporation/StealthAUDIT/_workitems/edit/374977.","0054u000007p4sbAAA","2025-02-12T08:39:34.000Z","2025-02-12T08:39:34.000Z","false","false"
+"00aQk00000BlN9JIAV","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007p4sbAAA","2025-02-12T09:00:35.000Z","2025-02-12T09:00:35.000Z","false","false"
+"00aQk00000BlN9LIAV","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Account ACV has been changed to 3059464.739999999998.","0054u000007p4sbAAA","2025-02-12T09:00:38.000Z","2025-02-12T09:00:38.000Z","false","false"
+"00aQk00000BlNAvIAN","500Qk00000CG4s2IAD","On Escalation Ticket # 00427895 the Following Fields have been updated: 
+Account ACV has been changed to 1529732.369999999999.","0054u000007p4sbAAA","2025-02-12T09:00:42.000Z","2025-02-12T09:00:42.000Z","false","false"

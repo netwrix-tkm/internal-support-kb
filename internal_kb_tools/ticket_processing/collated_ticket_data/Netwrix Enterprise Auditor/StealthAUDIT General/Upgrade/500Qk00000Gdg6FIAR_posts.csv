@@ -1,0 +1,38 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000QCnzwKAD","500Qk00000Gdg6FIAR","TextPost","005Qk00000276ifIAA","2024-11-06T13:27:09.000Z","What We've Learned Updated: Here is a rough outline of the steps we followed in order to reconfigure NEA after exporting and importing the NEA database to a new physical MS SQL Server database server:
+
+
++++++
+Here are the steps to migrate the NEA database to a new MS SQL Server instance.
+On your end you will coordinate disabling all of the NEA scheduled jobs, taking the NEA database backup and restoring it to the new MS SQL Server instance (probably prior to our meeting).
++++++
+
+1) Stop all Jobs in NEA - Schedules > CRTL_SHIFT and select all ""Enabled"" jobs, Right-click and select ""Disable""
+2) Migrate SQL Server DB (or take backup and restore to the new DB server).
+3) Restart NEA services
+4) NEA > global Settings > Storage - point existing NEA v11.6 to new Server Name using Windows Auth or SQL Auth (Windows Auth preferred)
+5) You save it and then click ""Set as default"" to set it as the new default profile.
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm
+
+6) Find the StealthAUDIT installation directory from a CMD prompt:
+
+%SAInstallDir%
+
+Navigate to the DIR = %sainstalldir%web and open the file, Webserver.exe.config
+ 
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.exe.config
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.lic
+
+7) AIC Upgrade - appwiz.cpl - Uninstalled AIC - we had to uninstall the existing AIC application in order to also point it to the new database instance.
+8) %SAInstallDir%
+9) PS - dir Cert:LocalMachineMy
+10) PS - netsh http show sslcert
+11) ""AccessInformationCenter.Service.exe.Config""
+
+""https://+:481""
+
+C:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe.Config
+
++++++
++++++","","","","005Qk00000276ifIAA","2024-11-06T13:27:09.000Z"

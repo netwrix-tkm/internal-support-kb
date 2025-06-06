@@ -1,0 +1,2216 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000Mh8TwIAJ","500Qk00000Ici45IAB","2025-03-17T16:30:21.000Z","2025-03-17T16:30:21.000Z","Hey Jeff,
+
+It's my understanding that your team does not utilize Salesforce Chatter, so I am emailing from the support ticket. 
+
+Do you have the customer contact details for me to add to the support case so I can work directly with the client to resolve the issue at hand?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/4/2025 12:12 PM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+
+Hi Tay,
+
+ 
+
+Neither scan succeeded, and all the different scan types were only attempted due to the failure of the default scan modes failing. Endpoint security was supposed to have been turned off, and was checked multiple times throughout.
+
+ 
+
+Are we able to get a resource on a call with the customer where we can execute the scan in any way you'd like. I've exhausted all of my tools/tricks, and this has been dragged out fairly long because of the customer.
+
+ 
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 4, 2025 11:39
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ 
+
+
+Hey Jeff,
+
+Dev needs a bit more clarity on how the collection was verified by running against the localhost:
+
+	Was the local mode scan only used when targeting the localhost, or was PSFS01 targeted using local mode scans?
+	If PSFS01 used both local and remote scans, did the local mode scan succeed?
+
+
+Remote scanning uses the target host as a proxy if the target host is a Windows server, so if local mode scans are succeeding and remote scans are failing it would indicate that the problem is on the execution host. The logs indicate the FSAAScanHost.exe is being terminated during the scan, so I am trying to determine if the issue is specific to the execution host or if this issue is present regardless of the execution host.
+
+Dev would also like to know if there is any endpoint security software in the customer's environment that could be killing FSAAScanHost.exe, because this has been the cause for issues in the past with similar symptoms.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 2/28/2025 10:19 AM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+ 
+
+
+Hi Tay and team,
+
+ 
+
+Apologies for the delay, I was out for an appointment yesterday and am just catching up.
+
+ 
+
+The collection was both local and remote, no proxy though. It performed similarly with streaming appearing to capture results and nothing actually being brought to the database.
+
+ 
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, February 26, 2025 15:33
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ 
+
+
+Hey Jeff,
+
+The logs indicate that the scan is abruptly terminating. During the scan is there a spike in CPU and/or memory usage on the proxy? When confirming that collection worked against the local host was this a local or proxy mode scan targeting the local host?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/24/2025 10:04 AM
+To: jeff.forsyth@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+Hey Jeff,
+
+Those seem to be the right files. I'll let development know.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 2/24/2025 8:20 AM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+ 
+
+
+
+Hi Tay,
+
+ 
+
+Just checking in that the team noticed the logs got uploaded. Please let me know if they’re finally the correct ones. Also let me know if there’s anything else you need.
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, February 21, 2025 2:04 PM
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+
+
+ 
+
+Hey Jeff,
+
+Any update from the customer on those requested artifacts yet?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/10/2025 10:33 AM
+To: jeff.forsyth@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+Hey Jeff,
+
+Looks like the most recent upload from the customer is still not what dev is looking for- they want the entire FSAA JOB folder structure and SEEK JOB folder structure, or a screenshot of them so they can let the customer know which specific artifacts can be omitted.
+
+These folders can be found in the %SAInstallDir%JobsGROUP_FileSystem location.
+
+Let me know if you need any further assistance!
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 2/10/2025 10:24 AM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+ 
+
+
+Hi Tay,
+
+ 
+
+I just got off PTO, but the customer did try uploading while I was out of town. I’m gonna reach out and see what’s going on.
+
+ 
+
+Thanks for staying on top of this, I know this one must be showing up on all your reviews… 😬. Hopefully we can get them sorted in the new year!
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, February 10, 2025 10:12 AM
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+
+
+ 
+
+Hey Jeff,
+
+Just checking in- any luck getting the requested artifacts from the customer?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 1/30/2025 10:47 AM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+ 
+
+
+There might have been some confusion since it’s been so long since we communicated last. I resent what we need and am waiting on a reply.
+
+ 
+
+Thanks,
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, January 30, 2025 10:21 AM
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+
+
+ 
+
+Hey Jeff,
+
+If there is confusion over devs request, I would be happy to hop on a call with the customer to assist with the collection. Just send me an attendees list (with emails) and I can get a scheduling link sent over.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 1/30/2025 10:17 AM
+To: jeff.forsyth@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+Hey Jeff,
+
+While it looks like the customer uploaded some applet logs, development is looking for:
+
+From the logs, it looks like sensitive data is being collected. Could we get the latest FSAA and SEEK job folders with their entire log structures? If either is too large, could you screenshot the structures so we can advise which items can be omitted from the collection?
+
+Can you please have the customer upload the above or provide the screenshots for dev to narrow down the scope of what they need uploaded?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 1/30/2025 9:54 AM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+ 
+
+
+Hello Tay,
+
+ 
+
+We were able to get the customer to finally upload yesterday, it should be in the root of the shared folder.
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, January 30, 2025 9:51 AM
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+
+
+ 
+
+Hey Jeff,
+
+Just checking it to see if you were able to get those requested artifacts/screenshots from the customer?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 1/17/2025 9:50 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+ 
+
+
+FYI: We are communicating with the customer again and will have a status update this afternoon
+
+ 
+
+
+v/r 
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, January 7, 2025 4:39 PM
+To: Jeffrey Forsyth <Jeff.Forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+
+
+ 
+
+Hey Jeff,
+
+No problem- I'll put this ticket on hold and poke you at the end of next week if there still hasn't been any movement.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 1/7/2025 3:27 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+ 
+
+
+Hi Tay,
+
+
+
+ 
+
+
+
+I just contacted them yesterday and still no response. With the new year we're giving them the benefit of the doubt till next week.
+
+
+
+ 
+
+
+
+Thanks for staying on top of this and happy new year!
+
+
+
+ 
+
+
+
+v/r
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+
+ 
+
+
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, January 7, 2025 3:23:50 PM
+To: Jeffrey Forsyth <Jeff.Forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+
+ 
+
+
+
+
+Hey Jeff,
+
+Just checking in- any update from the customer on those requested files?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 12/27/2024 9:20 AM
+To: jeff.forsyth@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+Hey Jeff,
+
+Thank you for the update.
+
+Kindly,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 12/27/2024 8:57 AM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+ 
+
+
+
+The request was sent to the customer, it might take a while with the holidays.
+
+ 
+
+
+v/r 
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, December 25, 2024 11:41 AM
+To: Jeffrey Forsyth <Jeff.Forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+
+
+ 
+
+Hey Jeff,
+
+Any update on those requested files?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 12/20/2024 12:07 PM
+To: jeff.forsyth@netwrix.com
+Cc: kyle.vogley@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+Hey Jeff,
+
+I see the original logs, but not the most recent request from development.
+
+""From the logs, it looks like sensitive data is being collected. Could we get the latest FSAA and SEEK job folders with their entire log structures? If either is too large, could you screenshot the structures so we can advise which items can be omitted from the collection?""
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 12/20/2024 11:44 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #427819 - ref:_00D7091pB._500Q000Ici45:ref - 00427819 - NEA SEEK - SDD Data not returned
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+ 
+
+
+I absolutely still need assistance, I am working with Ethan and Farrah now. All the logs are there, and a single sensitive file will have been imported from a localhost check. Nothing else is getting imported.
+
+ 
+
+There also seems to have been a delay from my update, to when the ticket status changes rolled in from yesterday. The delay could be Salesforce or caching from my machine though.
+
+ 
+
+v/r 
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, December 20, 2024 11:38 AM
+To: Jeffrey Forsyth <Jeff.Forsyth@netwrix.com>
+Subject: RE: 00427819 - NEA SEEK - SDD Data not returned
+
+
+ 
+
+Hello Jeff,
+
+I’m reaching out to see if the instructions I sent in my last email helped resolve the issue you were experiencing. I haven’t heard back from you, so I wanted to check if everything is working smoothly now or if you still need further assistance.
+
+If you’re all set, just let me know, and I can close the ticket. If you still need help or have any questions, please don’t hesitate to reach out—I’m here to support you.
+
+Looking forward to your response!
+
+Ticket Number: 00427819
+Ticket Subject: NEA SEEK - SDD Data not returned
+Ticket Details: SEEK System Scan not returning results against a Windows Filer. Verified the collection is functional against the localhost.
+
+Thank you!
+
+Tay Caliguiri
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0Ici45:ref","Re: Netwrix Support Ticket #427819 -  - 00427819 - NEA SEEK - SDD Data not returned    [ ref:!00D70091pB.!500Qk0Ici45:ref ]","techsupport@netwrix.com","Netwrix Support","jeff.forsyth@netwrix.com","kyle.vogley@netwrix.com; ian.andersen@netwrix.com","taylor.caliguiri@netwrix.com","true","2025-03-17T16:30:20.000Z","true"
+"02sQk00000MmvQlIAJ","500Qk00000Ici45IAB","2025-03-19T17:41:50.000Z","2025-03-19T18:20:22.000Z","ref:_00D7091pB._500Q000Ici45:ref
+
+Hi Tay,
+
+I apologize for not having any updates, we are trying to work it out from the sales end and with the partner for what the best next steps are. This has been a protracted process because of them, EoY's for both companies, and how this issue has had no apparent resolution. There is no surprise here though, I don't normally come knocking unless there is an actual issue.
+
+The partner and ourselves are keeping it on life supportfor the time being, and will update once we are able to engage again. Thank you for continuing to check-in and work with us Tay!
+
+
+
+
+
+[See the source image]
+
+
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+M: (201)739-2819
+
+[See the source image]Jeff Forsyth<https://www.linkedin.com/in/jeffrey-forsyth-8aa00369/>
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 12:38
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: RE: 00427819 - NEA SEEK - SDD Data not returned
+
+Hello Jeff,
+
+I wanted to check in regarding your support ticket 00427819. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00427819
+Ticket Subject: NEA SEEK - SDD Data not returned
+Ticket Details: SEEK System Scan not returning results against a Windows Filer. Verified the collection is functional against the localhost.
+
+Thank you!
+
+Tay Caliguiri
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0Ici45:ref","Re: Netwrix Support Ticket #427819 - ref:_00D7091pB._500Q000Ici45:ref - 00427819 - NEA SEEK - SDD Data not returned","jeff.forsyth@netwrix.com","Jeffrey Forsyth","techsupport@netwrix.com","","","true","2025-03-19T17:41:42.000Z","true"
+"02sQk00000MmzfmIAB","500Qk00000Ici45IAB","2025-03-19T18:31:05.000Z","2025-03-19T18:31:05.000Z","Hi Jeff,
+
+At this time we have not received recent or artifacts demonstrating a true failure of Netwrix Enterprise Auditor.  We have seen evidence of the scan abruptly ending. We asked and did not receive any indication from you if there were sudden resource spikes around this time.
+
+We have been unable to to identify any indication of malfuction except for this abrupt ending which may be cause by any number of external factors.
+
+A fix was published in December 2024 for the Senstive Data add-on where resource consumption would grow unexpected and the scan would produce and out of memory or similar errors then crash. NEA 11.6.0.125 and SDD 11.6.0.14. We would need to know the most recent build of NEA nad the SDD Add-on to determine that this fix is implemented.
+
+If you are able to provide further results of a recent scan or include Tay in a meeting with the customer we can continue to investigate with you.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/19/2025 1:41 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - ref:_00D7091pB._500Q000Ici45:ref - 00427819 - NEA SEEK - SDD Data not returned
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+
+Hi Tay,
+
+ 
+
+I apologize for not having any updates, we are trying to work it out from the sales end and with the partner for what the best next steps are. This has been a protracted process because of them, EoY's for both companies, and how this issue has had no apparent resolution. There is no surprise here though, I don't normally come knocking unless there is an actual issue. 
+
+ 
+
+The partner and ourselves are keeping it on life supportfor the time being, and will update once we are able to engage again. Thank you for continuing to check-in and work with us Tay!
+
+ 
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 12:38
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: RE: 00427819 - NEA SEEK - SDD Data not returned
+
+ 
+
+
+Hello Jeff,
+
+I wanted to check in regarding your support ticket 00427819. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00427819
+Ticket Subject: NEA SEEK - SDD Data not returned
+Ticket Details: SEEK System Scan not returning results against a Windows Filer. Verified the collection is functional against the localhost.
+
+Thank you!
+
+Tay Caliguiri
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0Ici45:ref","Re: Netwrix Support Ticket #427819 -  - 00427819 - NEA SEEK - SDD Data not returned    [ ref:!00D70091pB.!500Qk0Ici45:ref ]","techsupport@netwrix.com","Netwrix Support","jeff.forsyth@netwrix.com","kyle.vogley@netwrix.com; jeff.forsyth@netwrix.com","","true","2025-03-19T18:31:03.000Z","true"
+"02sQk00000MnBYlIAN","500Qk00000Ici45IAB","2025-03-19T18:56:16.000Z","2025-03-19T19:31:20.000Z","ref:_00D7091pB._500Q000Ici45:ref
+
+Understood Tay,
+
+I would just ask again that if we are able to re-engage with them that yourself or someone on your team is able to join the call. Nothing about a version update/fix had been brought up until just now, but I'm happy to try that so long as someone from the team is able to join with us if the customer is amicable.
+
+I understand we were mired in trying to collect the logs around 'December 2024' when the suggested fix came out, but when was it identified as a possible solution for us to try for this particular issue? This is the first I'm hearing it as the last suggestion was it was a known issue the team had asked for information for on the 6th:
+
+00427819 — Tay Caliguiri
+
+March 6, 2025 at 11:07 AM
+@Jeff Forsyth​ This appears to be related to a known issue we have with a few other customers. To expedite the investigation of this, please update the ticket with the correct contact from the customer so we can continue. I will need to collect the debug job logs, and the Windows Event Application log from the customer in order to confirm our suspicions.
+
+
+
+Has this job been run since November '24? Despite the logs being uploaded recently, there are no updated runs from 2025. There is also a running.lck file in the SEEK System Scan folder.
+
+2 comments
+6 views
+
+Tay Caliguiri
+
+7 days ago
+@Jeff Forsyth​ any action on this?
+
+
+Jeff Forsyth
+
+6 days ago
+Hi Tay,
+
+
+
+We don't typically communicate through chatter, but I had passed this along to the team to try and arrange a call with them and yourselves on a call. we'll ask for dates/times from them if it's possible for someone to join the call with us
+
+
+
+
+There was some confusion with suddenly switching to chatter, was there somewhere else I should've been looking for this other suggestion?
+
+
+Thanks again for staying on top of this.
+
+
+
+
+[See the source image]
+
+
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+M: (201)739-2819
+
+[See the source image]Jeff Forsyth<https://www.linkedin.com/in/jeffrey-forsyth-8aa00369/>
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 14:31
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>; Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+Hi Jeff,
+
+At this time we have not received recent or artifacts demonstrating a true failure of Netwrix Enterprise Auditor.  We have seen evidence of the scan abruptly ending. We asked and did not receive any indication from you if there were sudden resource spikes around this time.
+
+We have been unable to to identify any indication of malfuction except for this abrupt ending which may be cause by any number of external factors.
+
+A fix was published in December 2024 for the Senstive Data add-on where resource consumption would grow unexpected and the scan would produce and out of memory or similar errors then crash. NEA 11.6.0.125 and SDD 11.6.0.14. We would need to know the most recent build of NEA nad the SDD Add-on to determine that this fix is implemented.
+
+If you are able to provide further results of a recent scan or include Tay in a meeting with the customer we can continue to investigate with you.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/19/2025 1:41 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - ref:_00D7091pB._500Q000Ici45:ref - 00427819 - NEA SEEK - SDD Data not returned
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+Hi Tay,
+
+I apologize for not having any updates, we are trying to work it out from the sales end and with the partner for what the best next steps are. This has been a protracted process because of them, EoY's for both companies, and how this issue has had no apparent resolution. There is no surprise here though, I don't normally come knocking unless there is an actual issue.
+
+The partner and ourselves are keeping it on life supportfor the time being, and will update once we are able to engage again. Thank you for continuing to check-in and work with us Tay!
+
+
+
+
+
+[See the source image]
+
+
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+M: (201)739-2819
+
+[See the source image]Jeff Forsyth<https://www.linkedin.com/in/jeffrey-forsyth-8aa00369/>
+
+
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 12:38
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: RE: 00427819 - NEA SEEK - SDD Data not returned
+
+Hello Jeff,
+
+I wanted to check in regarding your support ticket 00427819. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00427819
+Ticket Subject: NEA SEEK - SDD Data not returned
+Ticket Details: SEEK System Scan not returning results against a Windows Filer. Verified the collection is functional against the localhost.
+
+Thank you!
+
+Tay Caliguiri
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0Ici45:ref
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KMbKF&from=ext]","Re: Netwrix Support Ticket #427819 -  - 00427819 - NEA SEEK - SDD Data not returned    [ ref:!00D70091pB.!500Qk0Ici45:ref ]","jeff.forsyth@netwrix.com","Jeffrey Forsyth","techsupport@netwrix.com","kyle.vogley@netwrix.com; eric.garlepp@netwrix.com; ian.andersen@netwrix.com","","true","2025-03-19T18:56:04.000Z","true"
+"02sQk00000MnEzfIAF","500Qk00000Ici45IAB","2025-03-19T19:43:51.000Z","2025-03-19T19:43:51.000Z","Hey Jeff,
+
+I would be happy to meet with the customer.
+
+Please use the meeting link below with the customer to schedule a remote session:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=UYS1zOKP8WmBAkL.2sDqcCKm49y2UENdgM88BHMiL6I-Z&MeetingID=PmpxqbDnWcmFUq9MVIzrrhYICTa3Ru0aijYaNOGARro-Z
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/19/2025 2:56 PM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com; eric.garlepp@netwrix.com; ian.andersen@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+
+
+Understood Tay,
+
+ 
+
+I would just ask again that if we are able to re-engage with them that yourself or someone on your team is able to join the call. Nothing about a version update/fix had been brought up until just now, but I'm happy to try that so long as someone from the team is able to join with us if the customer is amicable.
+
+ 
+
+I understand we were mired in trying to collect the logs around 'December 2024' when the suggested fix came out, but when was it identified as a possible solution for us to try for this particular issue? This is the first I'm hearing it as the last suggestion was it was a known issue the team had asked for information for on the 6th:
+
+ 
+
+00427819 — Tay Caliguiri
+
+ 
+
+March 6, 2025 at 11:07 AM
+
+@Jeff Forsyth​ This appears to be related to a known issue we have with a few other customers. To expedite the investigation of this, please update the ticket with the correct contact from the customer so we can continue. I will need to collect the debug job logs, and the Windows Event Application log from the customer in order to confirm our suspicions.
+
+ 
+
+ 
+
+ 
+
+Has this job been run since November '24? Despite the logs being uploaded recently, there are no updated runs from 2025. There is also a running.lck file in the SEEK System Scan folder.
+
+ 
+
+2 comments
+
+6 views
+
+ 
+
+Tay Caliguiri
+
+ 
+
+7 days ago
+
+@Jeff Forsyth​ any action on this?
+
+ 
+
+ 
+
+Jeff Forsyth
+
+ 
+
+6 days ago
+
+Hi Tay,
+
+ 
+
+ 
+
+ 
+
+We don't typically communicate through chatter, but I had passed this along to the team to try and arrange a call with them and yourselves on a call. we'll ask for dates/times from them if it's possible for someone to join the call with us
+
+ 
+
+ 
+
+ 
+
+ 
+
+There was some confusion with suddenly switching to chatter, was there somewhere else I should've been looking for this other suggestion?
+
+ 
+
+ 
+
+Thanks again for staying on top of this.
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 14:31
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>; Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ 
+
+
+Hi Jeff,
+
+At this time we have not received recent or artifacts demonstrating a true failure of Netwrix Enterprise Auditor.  We have seen evidence of the scan abruptly ending. We asked and did not receive any indication from you if there were sudden resource spikes around this time.
+
+We have been unable to to identify any indication of malfuction except for this abrupt ending which may be cause by any number of external factors.
+
+A fix was published in December 2024 for the Senstive Data add-on where resource consumption would grow unexpected and the scan would produce and out of memory or similar errors then crash. NEA 11.6.0.125 and SDD 11.6.0.14. We would need to know the most recent build of NEA nad the SDD Add-on to determine that this fix is implemented.
+
+If you are able to provide further results of a recent scan or include Tay in a meeting with the customer we can continue to investigate with you.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/19/2025 1:41 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - ref:_00D7091pB._500Q000Ici45:ref - 00427819 - NEA SEEK - SDD Data not returned
+
+ref:_00D7091pB._500Q000Ici45:ref
+ 
+
+Hi Tay,
+
+ 
+
+I apologize for not having any updates, we are trying to work it out from the sales end and with the partner for what the best next steps are. This has been a protracted process because of them, EoY's for both companies, and how this issue has had no apparent resolution. There is no surprise here though, I don't normally come knocking unless there is an actual issue. 
+
+ 
+
+The partner and ourselves are keeping it on life supportfor the time being, and will update once we are able to engage again. Thank you for continuing to check-in and work with us Tay!
+
+ 
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 12:38
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: RE: 00427819 - NEA SEEK - SDD Data not returned
+
+ 
+
+
+Hello Jeff,
+
+I wanted to check in regarding your support ticket 00427819. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00427819
+Ticket Subject: NEA SEEK - SDD Data not returned
+Ticket Details: SEEK System Scan not returning results against a Windows Filer. Verified the collection is functional against the localhost.
+
+Thank you!
+
+Tay Caliguiri
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0Ici45:ref","Re: Netwrix Support Ticket #427819 -  - 00427819 - NEA SEEK - SDD Data not returned    [ ref:!00D70091pB.!500Qk0Ici45:ref ]","techsupport@netwrix.com","Netwrix Support","jeff.forsyth@netwrix.com","eric.garlepp@netwrix.com; kyle.vogley@netwrix.com; ian.andersen@netwrix.com; brandon.west@netwrix.com","taylor.caliguiri@netwrix.com","true","2025-03-19T19:43:49.000Z","true"
+"02sQk00000MnFR9IAN","500Qk00000Ici45IAB","2025-03-19T20:04:23.000Z","2025-03-19T22:43:55.000Z","ref:_00D7091pB._500Q000Ici45:ref
+
+Awesome, thank you Tay!
+
+Now we wait... ha
+
+We are trying our best to get the customer re-engaged, so it's a bit of a 'kid-glove' scenario at the moment unsurprisingly.Hopefully it's sooner than later, but we'll make sure to get your confirmation for any scheduling beforehand.
+
+
+Much appreciated,
+
+
+
+
+[See the source image]
+
+
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+M: (201)739-2819
+
+[See the source image]Jeff Forsyth<https://www.linkedin.com/in/jeffrey-forsyth-8aa00369/>
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 15:43
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Eric Garlepp <eric.garlepp@netwrix.com>; Kyle Vogley <kyle.vogley@netwrix.com>; Ian Andersen <ian.andersen@netwrix.com>; Brandon West <brandon.west@netwrix.com>
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+
+Hey Jeff,
+
+I would be happy to meet with the customer.
+
+Please use the meeting link below with the customer to schedule a remote session:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=UYS1zOKP8WmBAkL.2sDqcCKm49y2UENdgM88BHMiL6I-Z&MeetingID=PmpxqbDnWcmFUq9MVIzrrhYICTa3Ru0aijYaNOGARro-Z
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/19/2025 2:56 PM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com; eric.garlepp@netwrix.com; ian.andersen@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+
+Understood Tay,
+
+I would just ask again that if we are able to re-engage with them that yourself or someone on your team is able to join the call. Nothing about a version update/fix had been brought up until just now, but I'm happy to try that so long as someone from the team is able to join with us if the customer is amicable.
+
+I understand we were mired in trying to collect the logs around 'December 2024' when the suggested fix came out, but when was it identified as a possible solution for us to try for this particular issue? This is the first I'm hearing it as the last suggestion was it was a known issue the team had asked for information for on the 6th:
+
+00427819 — Tay Caliguiri
+
+March 6, 2025 at 11:07 AM
+@Jeff Forsyth​ This appears to be related to a known issue we have with a few other customers. To expedite the investigation of this, please update the ticket with the correct contact from the customer so we can continue. I will need to collect the debug job logs, and the Windows Event Application log from the customer in order to confirm our suspicions.
+
+
+
+Has this job been run since November '24? Despite the logs being uploaded recently, there are no updated runs from 2025. There is also a running.lck file in the SEEK System Scan folder.
+
+2 comments
+6 views
+
+Tay Caliguiri
+
+7 days ago
+@Jeff Forsyth​ any action on this?
+
+
+Jeff Forsyth
+
+6 days ago
+Hi Tay,
+
+
+
+We don't typically communicate through chatter, but I had passed this along to the team to try and arrange a call with them and yourselves on a call. we'll ask for dates/times from them if it's possible for someone to join the call with us
+
+
+
+
+There was some confusion with suddenly switching to chatter, was there somewhere else I should've been looking for this other suggestion?
+
+
+Thanks again for staying on top of this.
+
+
+
+
+[See the source image]
+
+
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+M: (201)739-2819
+
+[See the source image]Jeff Forsyth<https://www.linkedin.com/in/jeffrey-forsyth-8aa00369/>
+
+
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 14:31
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>; Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+Hi Jeff,
+
+At this time we have not received recent or artifacts demonstrating a true failure of Netwrix Enterprise Auditor.  We have seen evidence of the scan abruptly ending. We asked and did not receive any indication from you if there were sudden resource spikes around this time.
+
+We have been unable to to identify any indication of malfuction except for this abrupt ending which may be cause by any number of external factors.
+
+A fix was published in December 2024 for the Senstive Data add-on where resource consumption would grow unexpected and the scan would produce and out of memory or similar errors then crash. NEA 11.6.0.125 and SDD 11.6.0.14. We would need to know the most recent build of NEA nad the SDD Add-on to determine that this fix is implemented.
+
+If you are able to provide further results of a recent scan or include Tay in a meeting with the customer we can continue to investigate with you.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/19/2025 1:41 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - ref:_00D7091pB._500Q000Ici45:ref - 00427819 - NEA SEEK - SDD Data not returned
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+Hi Tay,
+
+I apologize for not having any updates, we are trying to work it out from the sales end and with the partner for what the best next steps are. This has been a protracted process because of them, EoY's for both companies, and how this issue has had no apparent resolution. There is no surprise here though, I don't normally come knocking unless there is an actual issue.
+
+The partner and ourselves are keeping it on life supportfor the time being, and will update once we are able to engage again. Thank you for continuing to check-in and work with us Tay!
+
+
+
+
+
+[See the source image]
+
+
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+M: (201)739-2819
+
+[See the source image]Jeff Forsyth<https://www.linkedin.com/in/jeffrey-forsyth-8aa00369/>
+
+
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 12:38
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: RE: 00427819 - NEA SEEK - SDD Data not returned
+
+Hello Jeff,
+
+I wanted to check in regarding your support ticket 00427819. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00427819
+Ticket Subject: NEA SEEK - SDD Data not returned
+Ticket Details: SEEK System Scan not returning results against a Windows Filer. Verified the collection is functional against the localhost.
+
+Thank you!
+
+Tay Caliguiri
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0Ici45:ref
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KMbKF&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KMuwF&from=ext]","Re: Netwrix Support Ticket #427819 -  - 00427819 - NEA SEEK - SDD Data not returned    [ ref:!00D70091pB.!500Qk0Ici45:ref ]","jeff.forsyth@netwrix.com","Jeffrey Forsyth","techsupport@netwrix.com","brandon.west@netwrix.com; eric.garlepp@netwrix.com; kyle.vogley@netwrix.com; ian.andersen@netwrix.com","","true","2025-03-19T20:04:12.000Z","true"
+"02sQk00000NIz4eIAD","500Qk00000Ici45IAB","2025-04-02T20:01:21.000Z","2025-04-02T20:01:21.000Z","Hey Jeff,
+
+Any new contact with the customer yet?
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/19/2025 4:04 PM
+To: techsupport@netwrix.com
+Cc: brandon.west@netwrix.com; eric.garlepp@netwrix.com; kyle.vogley@netwrix.com; ian.andersen@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+
+Awesome, thank you Tay!
+
+ 
+
+Now we wait... ha
+
+ 
+
+We are trying our best to get the customer re-engaged, so it's a bit of a 'kid-glove' scenario at the moment unsurprisingly.Hopefully it's sooner than later, but we'll make sure to get your confirmation for any scheduling beforehand.
+
+ 
+
+ 
+
+Much appreciated,
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 15:43
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Eric Garlepp <eric.garlepp@netwrix.com>; Kyle Vogley <kyle.vogley@netwrix.com>; Ian Andersen <ian.andersen@netwrix.com>; Brandon West <brandon.west@netwrix.com>
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ 
+
+
+Hey Jeff,
+
+I would be happy to meet with the customer.
+
+Please use the meeting link below with the customer to schedule a remote session:
+https://nwxcorp.my.salesforce-sites.com/cts?Id=UYS1zOKP8WmBAkL.2sDqcCKm49y2UENdgM88BHMiL6I-Z&MeetingID=PmpxqbDnWcmFUq9MVIzrrhYICTa3Ru0aijYaNOGARro-Z
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/19/2025 2:56 PM
+To: techsupport@netwrix.com
+Cc: kyle.vogley@netwrix.com; eric.garlepp@netwrix.com; ian.andersen@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ref:_00D7091pB._500Q000Ici45:ref
+ 
+
+Understood Tay,
+
+ 
+
+I would just ask again that if we are able to re-engage with them that yourself or someone on your team is able to join the call. Nothing about a version update/fix had been brought up until just now, but I'm happy to try that so long as someone from the team is able to join with us if the customer is amicable.
+
+ 
+
+I understand we were mired in trying to collect the logs around 'December 2024' when the suggested fix came out, but when was it identified as a possible solution for us to try for this particular issue? This is the first I'm hearing it as the last suggestion was it was a known issue the team had asked for information for on the 6th:
+
+ 
+
+00427819 — Tay Caliguiri
+
+ 
+
+March 6, 2025 at 11:07 AM
+
+@Jeff Forsyth​ This appears to be related to a known issue we have with a few other customers. To expedite the investigation of this, please update the ticket with the correct contact from the customer so we can continue. I will need to collect the debug job logs, and the Windows Event Application log from the customer in order to confirm our suspicions.
+
+ 
+
+ 
+
+ 
+
+Has this job been run since November '24? Despite the logs being uploaded recently, there are no updated runs from 2025. There is also a running.lck file in the SEEK System Scan folder.
+
+ 
+
+2 comments
+
+6 views
+
+ 
+
+Tay Caliguiri
+
+ 
+
+7 days ago
+
+@Jeff Forsyth​ any action on this?
+
+ 
+
+ 
+
+Jeff Forsyth
+
+ 
+
+6 days ago
+
+Hi Tay,
+
+ 
+
+ 
+
+ 
+
+We don't typically communicate through chatter, but I had passed this along to the team to try and arrange a call with them and yourselves on a call. we'll ask for dates/times from them if it's possible for someone to join the call with us
+
+ 
+
+ 
+
+ 
+
+ 
+
+There was some confusion with suddenly switching to chatter, was there somewhere else I should've been looking for this other suggestion?
+
+ 
+
+ 
+
+Thanks again for staying on top of this.
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 14:31
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Cc: Kyle Vogley <kyle.vogley@netwrix.com>; Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: Re: Netwrix Support Ticket #427819 - - 00427819 - NEA SEEK - SDD Data not returned [ ref:!00D70091pB.!500Qk0Ici45:ref ]
+
+ 
+
+
+Hi Jeff,
+
+At this time we have not received recent or artifacts demonstrating a true failure of Netwrix Enterprise Auditor.  We have seen evidence of the scan abruptly ending. We asked and did not receive any indication from you if there were sudden resource spikes around this time.
+
+We have been unable to to identify any indication of malfuction except for this abrupt ending which may be cause by any number of external factors.
+
+A fix was published in December 2024 for the Senstive Data add-on where resource consumption would grow unexpected and the scan would produce and out of memory or similar errors then crash. NEA 11.6.0.125 and SDD 11.6.0.14. We would need to know the most recent build of NEA nad the SDD Add-on to determine that this fix is implemented.
+
+If you are able to provide further results of a recent scan or include Tay in a meeting with the customer we can continue to investigate with you.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 3/19/2025 1:41 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - ref:_00D7091pB._500Q000Ici45:ref - 00427819 - NEA SEEK - SDD Data not returned
+
+ref:_00D7091pB._500Q000Ici45:ref
+ 
+
+Hi Tay,
+
+ 
+
+I apologize for not having any updates, we are trying to work it out from the sales end and with the partner for what the best next steps are. This has been a protracted process because of them, EoY's for both companies, and how this issue has had no apparent resolution. There is no surprise here though, I don't normally come knocking unless there is an actual issue. 
+
+ 
+
+The partner and ourselves are keeping it on life supportfor the time being, and will update once we are able to engage again. Thank you for continuing to check-in and work with us Tay!
+
+ 
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 12:38
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: RE: 00427819 - NEA SEEK - SDD Data not returned
+
+ 
+
+
+Hello Jeff,
+
+I wanted to check in regarding your support ticket 00427819. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00427819
+Ticket Subject: NEA SEEK - SDD Data not returned
+Ticket Details: SEEK System Scan not returning results against a Windows Filer. Verified the collection is functional against the localhost.
+
+Thank you!
+
+Tay Caliguiri
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0Ici45:ref","Re: Netwrix Support Ticket #427819 -  - 00427819 - NEA SEEK - SDD Data not returned    [ ref:!00D70091pB.!500Qk0Ici45:ref ]","techsupport@netwrix.com","Netwrix Support","jeff.forsyth@netwrix.com","kyle.vogley@netwrix.com; jeff.forsyth@netwrix.com","taylor.caliguiri@netwrix.com","true","2025-04-02T20:01:20.000Z","true"
+"02sQk00000NdyFEIAZ","500Qk00000Ici45IAB","2025-04-11T14:54:58.000Z","2025-04-11T15:33:43.000Z","ref:_00D7091pB._500Q000Ici45:ref
+
+Hi Tay,
+
+Apologies, I've been holding off hoping that the customer would get back to us.
+
+I would say it's up to you and what works best for your team on how to handle the ticket. If there's a 'stalled' state or something that'd be preferred in case they do get back to us, but that's up to you now.
+
+Thank you again for all the support.
+
+
+
+
+[See the source image]
+
+
+
+Jeff Forsyth
+
+Enterprise Solutions Engineer
+
+M: (201)739-2819
+
+[See the source image]Jeff Forsyth<https://www.linkedin.com/in/jeffrey-forsyth-8aa00369/>
+
+
+
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 11, 2025 10:38
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: RE: 00427819 - POC - NEA SEEK - SDD Data not returned
+
+Hello Jeff,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00427819
+Ticket Subject: POC - NEA SEEK - SDD Data not returned
+Ticket Details: SEEK System Scan not returning results against a Windows Filer. Verified the collection is functional against the localhost.
+
+Thank you!
+
+Tay Caliguiri
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com>
+
+ref:!00D70091pB.!500Qk0Ici45:ref","Re: Netwrix Support Ticket #427819 - ref:_00D7091pB._500Q000Ici45:ref - 00427819 - POC - NEA SEEK - SDD Data not returned","jeff.forsyth@netwrix.com","Jeffrey Forsyth","techsupport@netwrix.com","","","true","2025-04-11T14:54:42.000Z","true"
+"02sQk00000NdzhZIAR","500Qk00000Ici45IAB","2025-04-11T15:35:18.000Z","2025-04-11T15:35:18.000Z","Hey Jeff,
+
+I believe this issue has been resolved in a later build, and an upgrade is required. As you work to re-engage the customer, I'm going to close this ticket. If you need any assistance with the upgrade, or the upgrade does not resolve the issue, this ticket can be re-opened within 30 days.
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Jeffrey Forsyth [jeff.forsyth@netwrix.com]
+Sent: 4/11/2025 10:54 AM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #427819 - ref:_00D7091pB._500Q000Ici45:ref - 00427819 - POC - NEA SEEK - SDD Data not returned
+
+ref:_00D7091pB._500Q000Ici45:ref
+
+
+Hi Tay,
+
+ 
+
+Apologies, I've been holding off hoping that the customer would get back to us.
+
+ 
+
+I would say it's up to you and what works best for your team on how to handle the ticket. If there's a 'stalled' state or something that'd be preferred in case they do get back to us, but that's up to you now.
+
+ 
+
+Thank you again for all the support.
+
+ 
+
+
+
+	
+		
+			
+			 
+
+			
+			
+			
+			 
+			
+			
+			Jeff Forsyth
+
+			Enterprise Solutions Engineer
+
+			M: (201)739-2819
+
+			Jeff Forsyth
+			
+		
+	
+
+
+ 
+
+ 
+
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, April 11, 2025 10:38
+To: Jeffrey Forsyth <jeff.forsyth@netwrix.com>
+Subject: RE: 00427819 - POC - NEA SEEK - SDD Data not returned
+
+ 
+
+
+Hello Jeff,
+
+I’m following up on my previous email with the scheduling availability link, as I haven’t seen a meeting scheduled yet.
+
+If you need me to resend the link or if you have any questions, please feel free to reply to this email.
+
+Looking forward to connecting with you!
+
+Ticket Number: 00427819
+Ticket Subject: POC - NEA SEEK - SDD Data not returned
+Ticket Details: SEEK System Scan not returning results against a Windows Filer. Verified the collection is functional against the localhost.
+
+Thank you!
+
+Tay Caliguiri
+Senior Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0Ici45:ref","Re: Netwrix Support Ticket #427819 -  - 00427819 - POC - NEA SEEK - SDD Data not returned    [ ref:!00D70091pB.!500Qk0Ici45:ref ]","techsupport@netwrix.com","Netwrix Support","jeff.forsyth@netwrix.com","kyle.vogley@netwrix.com; jeff.forsyth@netwrix.com","taylor.caliguiri@netwrix.com","true","2025-04-11T15:35:17.000Z","true"

@@ -1,0 +1,14 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000ECruzIAD","00417634","Support Ticket","SPAA Bulk Import has Probable owner constraint Error","SPAA Bulk Import has Probable owner Error
+
+Setting up to split issues escalating per request of development.","","","","[Issue]
+SPAA Bulk Import throwing a foreign key constraint error on the Probable Owner analysis
+
+[Resolution]
+Modifed the USN to 0 for the SP host site. Use the ID and update the USN field like so:
+
+UPDATE SA_SPAA_HOSTS
+SET USN = 0
+WHERE ID = 1;
+
+Then after confirming the USN is now 0 then run the SPO Seek bulk import again","Root Cause Unknown","Nicholas Zimmer","","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Data Collection","","","17.7","Closed - Resolved","Medpace, Inc","Brittany Lac","2024-08-08T23:45:48.000Z","2024-08-26T16:33:03.000Z"

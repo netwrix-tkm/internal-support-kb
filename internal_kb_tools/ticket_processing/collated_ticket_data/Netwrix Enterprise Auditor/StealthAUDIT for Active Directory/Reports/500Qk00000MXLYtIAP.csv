@@ -1,0 +1,59 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MXLYtIAP","00437638","Support Ticket","Errors found in report","We pull a Sensitive Group Membership report on Sundays. This week the report showed that 2 users were part of the DnsAdmins group, however upon further investigation these users were not actually members. 
+
+I refreshed the report and the users were no longer listed. We then tried to determine when the group membership changed, but this activity is not found in any of the reports.
+
+How can we trust this data? Help me find the discrepancy or log showing the membership change.","","NEA > Jobs > .Active Directory Inventory > 1-AD_Scan_MSH 
+NEA > Jobs > Active Directory > AD Weekly Reports > Sensitive Group Membership
+
+AD inventory runs every day
+Sensitive Group Memebership runs every sunday
+
+on 03/02 the Sensitive Group Membersip report showed 2 users in a particular sensitive group but manually running the report shows those users are not in that group
+
+Confirmed Netwrix Threat Prevention is successfully collecting these events
+According to NTP the users were removed from the group on 02/24.
+No other activity on those accounts and groups since
+
+test change is correctly reported by NTP
+
+I can't find any errors in the logs but they were set to ERROR level
+
+The report from 03/02 seems to have the data from 02/24
+
+Client is going to make test change this weekend and see if the report picks it up
+
+---------------
+
+
+another test change over the weekend:
+User Ereyes01 was added to the MSHDnsAdmins group on Friday
+Report ran automatically as schedule with AD Inventory on Sunday
+Removed user from group on Monday
+
+The report from Sunday shows the user is in the group
+
+Ran the report manually on Tuesday
+-Still shows the user is a member of the group
+-this is different the previously observed behavior
+
+Debug Log Review from the Sunday run
+-no issues observed
+
+closest thing to an issue is an info line about a SID conflict, but it's for a different group.
+
+24/03/2025 02:03:43	INFO	ADINVENTORY	Stealthbits.StealthAUDIT.DataCollectors.ADInventory2.Tasks.ADInventoryScanTask.InternalProcessRecord	""Could not reconcile whether SamAccountName: M365 Level 4 User with ObjectSid: S-1-5-21-1851695309-2848023948-3570784906-42839, or object with ObjectSid: S-1-5-21-1851695309-2848023948-3570784906-42840 occupies DN: CN=M365 Level 4 User,OU=Groups,DC=MSH,DC=LOCAL in domain 2- M365 Level 4 User will be rescanned on the next differential scan""	NDCPMSHFSMO01A.MSH.LOCAL	DCExtract	5052	6480	8792
+
+
+scheduling a meeting for further review
+-should try full scan instead of dif
+
+need to check groupmembership view table","close ticket","Issue:
+The Sensitive Group Membership report contains users who are no longer in the group
+
+Cause:
+The client's job structure is heavily modified and complicated
+The job that was running the report and emailing it out on Sundays was not updating the referenced table first. The job that actually updated the table was running on Monday mornings. This resulted in the data in the emailed report to appear to be a week out of date.
+
+Resolution:
+Scheduled the job that updates the table to run on Sundays, after the AD inventory and before the job that generates and emails the report","Incorrect configuration: Netwrix product","Joshua Sexton","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Reports","11.6","","22.1","Closed - Resolved","AHS Management Company, Inc.","Nathan Funk","2025-03-04T13:17:43.000Z","2025-03-26T14:36:38.000Z"

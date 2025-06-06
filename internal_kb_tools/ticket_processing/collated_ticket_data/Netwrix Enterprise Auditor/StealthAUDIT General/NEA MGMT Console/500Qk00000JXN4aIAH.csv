@@ -1,0 +1,41 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000JXN4aIAH","00429909","Support Ticket","""Root element is missing"" error when navigating to Job settings.","Customer is currently on build 11.5.1349.1101
+ 
+When customer tries to access any Job properties or configuration - such as settings, hostlists, connection, the console then shows an error:
+""Root element is missing""","Have 11.5.1349.1101 NEA installed. 
+Try navigating to settings/parameters on any of the Job/Job groups/Solutions. 
+Observer error: ""Root element is missing""."," SADatabase logs display this error:
+16/12/2024 09:44:17	ALWAYS	StealthAUDIT	InitializeLog()	""SABuild:11.5.1349.1101""			2104	3416	9840
+16/12/2024 09:44:17	ERROR	Stealthbits.StealthAUDIT.Reporting	ReportUtility.CheckForUpgrade	""Failed to update files/folders at F:Program Files (x86)STEALTHbitsStealthAUDITReports. Error: System.Exception: Failed to migrate files/folders at F:Program Files (x86)STEALTHbitsStealthAUDITReports. Error: Root element is missing. ---> System.Xml.XmlException: Root element is missing.     at System.Xml.XmlTextReaderImpl.Throw(Exception e)     at System.Xml.XmlTextReaderImpl.ParseDocumentContent()     at System.Xml.XmlTextReaderImpl.Read()     at System.Xml.Linq.XDocument.Load(XmlReader reader, LoadOptions options)     ....
+
+As seen on log snippet above, it seems that the ""Root element is missing"" is caused by incorrect/corrupted xml in this folder on the Netwrix Enterprise Auditor server:
+F:Program Files (x86)STEALTHbitsStealthAUDITReports 
+
+Solution:
+1. Close Netwrix Enterprise Auditor console if it is running.
+
+2. Find this folder on the Enterprise Auditor server:
+F:Program Files (x86)STEALTHbitsStealthAUDITReports
+
+3. Rename the folder, for example by adding '_old' at the end of its name so that the folder name is ""Reports_old"".
+
+4. Start Netwrix Enterprise Auditor console. This will re-create the ""Reports"" folder. 
+Try navigating the console by opening settings for different jobs in File System and SharePoint solutions and let me know if the ""Root element is missing"" error appears again or not.","Customer replied that the issue is resolved after following the steps. 
+
+Customer had additional questions regarding application system requirements.","The following error message was appearing when navigating Netwrix Enterprise Auditor console:
+
+ERROR Stealthbits.StealthAUDIT.Reporting ReportUtility.CheckForUpgrade ""Failed to update files/folders at F:Program Files (x86)STEALTHbitsStealthAUDITReports. Error: System.Exception: Failed to migrate files/folders at F:Program Files (x86)STEALTHbitsStealthAUDITReports. Error: Root element is missing. ---> System.Xml.XmlException: Root element is missing
+
+As seen on log snippet above, it seems that the ""Root element is missing"" is caused by incorrect/corrupted xml in this folder on the Netwrix Enterprise Auditor server:
+F:Program Files (x86)STEALTHbitsStealthAUDITReports
+
+This error was resolved after following these steps:
+
+1. Close Netwrix Enterprise Auditor console if it is running.
+
+2. Find this folder on the Enterprise Auditor server:
+F:Program Files (x86)STEALTHbitsStealthAUDITReports
+
+3. Rename the folder, for example by adding '_old' at the end of its name so that the folder name is ""Reports_old"".
+
+4. Start Netwrix Enterprise Auditor console. This will re-create the ""Reports"" folder.","Product defect","Artem Naskal","Error","Netwrix Enterprise Auditor","StealthAUDIT General","NEA MGMT Console","11.5","","18.2","Closed - Resolved","Compétences & Développement - Education Network","Cyril Menigoz","2024-12-16T09:00:09.000Z","2025-01-03T14:49:19.000Z"

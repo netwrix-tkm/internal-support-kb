@@ -1,0 +1,56 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IdtqJIAR","00427860","Support Ticket","SQL Instance Discovery and Collection","SQL Data is not reliable collected
+
+--------
+17/01/2025
+--------
+SQL discovery and scanning appears to be working. One remaining error to sort out, it appears the passwordIssues job is trying to sign into local host with no user.
+
+14/01/2025 11:12:34	ERROR	POWERSHELL	ExecuteScript	"" : Unable to truncate table SA_Password_List. The following error was returned: Exception calling ""Open"" with ""0"" argument(s): ""Login failed for user ''.""  At line:74 char:9  +         throw ""Unable to truncate table SA_Password_List. The followi ...  +         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ""	OCVMNEA	DCExtract	31124	31048	31508","Investigate error in PasswordIssues job.
+
+14/01/2025 11:12:34	ERROR	POWERSHELL	ExecuteScript	"" : Unable to truncate table SA_Password_List. The following error was returned: Exception calling ""Open"" with ""0"" argument(s): ""Login failed for user ''.""  At line:74 char:9  +         throw ""Unable to truncate table SA_Password_List. The followi ...  +         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ""	OCVMNEA	DCExtract	31124	31048	31508","--------
+03/07/2025
+--------
+Dynamic lists setup for sql servers. validated all errors have cleared from SQL scans.
+
+Different SQL Collection jobs are reporting a variety of errors to targets.
+
+a.	The SQL Instance Discovery Job is used to find all Windows hosts in the environment that have an SQL Server Instance installed. This job was using a manually created SQL Hosts list.  We changed this to use All Windows Hosts (active) to discover new SQL hosts automatically and update the SQL Servers host list.
+b.	We set all other SQL Collection jobs to use the SQL Servers host list, which will only target SQL servers identified by the SQL Instance Discovery Job.
+c.	Many errors refer to network connectivity problems or database permission deficiencies. This document details the required permissions and ports to collect data.  Please review this with the respective parties at Eglin to verify the proper permissions and firewall rules are in place.
+
+--------
+12/12/2024
+--------
+SQL jobs state they have never run even though they have data. When running the jobs we see no errors or warnings and the job states that it completed in 3 seconds.
+Looking into the logs we see that the job just states it is waiting for abort and no other tasks. We attempted to change the host list but the results were the same.
+
+Environmental or database errors mentioned previously were not see on this run, but the job doesn't appear to do anything.
+
+
+--------
+10/01/2025
+--------
+remaining SQL servers that were not responding have been corrected with the exception of one that Glenda cannot login to as its permissions were setup wrong.
+
+FWVMIT - port not opened on firewall, SQLExpress was using high number port instead of default 1433
+FWVMLLA1 - SQL service is not enabled on IPv4 so all connections were rejected
+ITM2SQLDB - Firewall was only allowing specific IPs to connect, added NEA server IP to the list. waiting for after hours service reboot
+FWVMIT3 - No user permissions or access, SA is disabled and only local users have permissions.
+
+--------
+01/31/2025
+--------
+Last sql error is that the passwordIssues job cannot truncate. Awaiting meeting to look into this error.
+
+--------
+02/11/2025
+--------
+Truncate error seems to have resolved itself.
+Dynamic SQL list is possibly not updating as expected, need to test in labs.
+SQL activity shows no info, not sure if this is expected or not as there shouldn't be much activity.","Awaiting approval to close.","Issue:
+SQL dynamic list needs to be created for SQL scans.
+
+
+Resolution:
+Dynamic filter for servers running SQL was created and setup to run against the SQL database scans.","Guidance","Ian Ranstrom","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for SQL","Data Collection","11.6","","129.9","Closed - Resolved","Eglin Federal Credit Union","Glenda Coley","2024-11-21T21:58:20.000Z","2025-03-31T19:15:18.000Z"

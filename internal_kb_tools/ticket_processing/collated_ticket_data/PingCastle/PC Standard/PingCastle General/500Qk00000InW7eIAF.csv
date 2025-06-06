@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000InW7eIAF","00428110","Support Ticket","Check for Native administrator usage - Question","Hello,
+I ran the tool, and found out a section ""Check for Native administrator usage - recently used: 0 days ago"".
+However, I checked event viewer for all DC servers, services and task scheduler, the native administrator is not used at all.
+
+How can I solve this section?
+
+Thank you,
+Liav","","","","Here are the relevant log sections that show the DC it checked. Then it shows that the computation value is '0' meaning that it detected a 0 days totally as a difference between the generation date (when running the report) and the time of the last logon.
+
+The query below will query the administrator account and return all properties. We are looking specifically at the LastLogon property in PingCastle which is the domain controller specific version (Powershell uses the lastlogontimestamp by default so below query should be accurate to your case):
+
+Get-ADDomainController -Filter ""*"" | Foreach {
+    $DC = $_.HostName
+    Get-ADUser -Filter { ObjectSid -eq ""S-1-5-21-1644491937-746137067-682003330-500"" } -Properties * -Server $DC | 
+    Select SAMAccountName, @{ Name = ""LastLogonConverted"" ; Expression = { [DateTime]::FromFileTime($_.LastLogon) }}, @{ Name = ""DC"" ; Expression = {$DC}}
+    }
+
+
+The difference between LastLogonTimestamp and LastLogon is that the first one is replicated version of the latter, it replicates between DCs every 14 days which explains why you have it showing 25/11. LastLogon is not replicated so it shows the most recently updated value only on the DC that authenticated the logon. Our product is looking at LastLogon attribute to report the most accurate data.
+
+I may recommend to look for logon events on that one DC that has the most recent LastLogon attribute value. You may find more info in this MS article: https://learn.microsoft.com/en-us/archive/technet-wiki/22461.understanding-the-ad-account-attributes-lastlogon-lastlogontimestamp-and-lastlogondate","","Ali Asif","","PingCastle","PC Standard","PingCastle General","3.3","","15.3","Closed - Resolved","Willi-Food","Liav Avraham","2024-11-26T07:22:48.000Z","2024-12-11T15:11:48.000Z"

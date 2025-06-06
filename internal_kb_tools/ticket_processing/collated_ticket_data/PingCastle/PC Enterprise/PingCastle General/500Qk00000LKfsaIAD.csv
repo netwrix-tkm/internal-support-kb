@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LKfsaIAD","00434352","Support Ticket","PingCastle not collecting Azure data","Customer has tried to run the scan for their environment using a standard license RTU key and no azure data is populating.","Step 1: Install PingCastle version 3.3.0.11.  
+Step 2: Configure the scan using an enterprise license key.  
+Step 3: Run the Azure AD scan using the command-line version (pingcastle.exe).  
+Step 4: Ensure the scan account has Global Admin privileges.  
+Step 5: Review the scan results and verify if Azure data populates correctly.
+
+(Requested by Rejaul Uddin)","- The issue was caused by insufficient privileges for the scan account. PingCastle requires Global Admin privileges to successfully collect Azure data and populate indicators in the report.
+- Tests with different tenants and privilege levels confirmed that indicators only appear when using accounts with Global Admin privileges. Accounts with lower privileges resulted in incomplete or zero-score reports.
+- The problem was not related to the PingCastle version or license type, as the same behavior was observed across multiple builds and configurations.
+- The customer confirmed that using an account with Global Admin privileges resolved the issue, allowing the scan to collect Azure data and populate indicators as expected.
+- The ticket was closed after verifying that the resolution was effective and no further issues were reported.
+
+(Requested by Rejaul Uddin)","Client has resolved the issue
+
+(Requested by Rejaul Uddin)","Issue: The customer attempted to run a scan of their Azure environment using PingCastle with a standard license RTU key, but no Azure data was populated in the report. Subsequent tests with different tenants and privilege levels yielded inconsistent results, with indicators only appearing when using accounts with Global Admin privileges.
+
+Cause: The issue was determined to be related to insufficient privileges for the scan account. PingCastle requires Global Admin privileges to successfully collect Azure data and populate indicators in the report.
+
+Resolution: The customer confirmed that using an account with Global Admin privileges resolved the issue. The scan was able to collect Azure data and populate indicators as expected. The ticket was closed after confirming the resolution.
+
+(Requested by Rejaul Uddin)","Account Permission Issue","Rejaul Uddin","Unexpected Behavior","PingCastle","PC Enterprise","PingCastle General","3.3","","114.5","Closed - Resolved","HP INC","Christopher Keil","2025-01-31T21:12:51.000Z","2025-05-26T08:35:47.000Z"

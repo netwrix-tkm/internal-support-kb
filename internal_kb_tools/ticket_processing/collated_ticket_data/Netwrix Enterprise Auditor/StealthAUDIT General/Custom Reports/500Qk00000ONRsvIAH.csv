@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000ONRsvIAH","00442966","Support Ticket","Recreate/Import custom AD Scan Analysis?","Same issue when we upgrade to 11.5 in case 00411545. Tried the steps from that case here, but didn't seem to correct it.
+
+Under version 11.5 (previously 11), we had an analysis created for our AD user summary (for licensing), but it seems to have disappeared in the GUI since our upgrade to 11.6. 
+I see C:Program Files (x86)STEALTHbitsStealthAUDITJobsGROUP_.Active Directory InventoryJOB_1-AD_Scan<a href='https://VIEW_SA_ADInventoryWLGORE_LicenseUsers.INI.xml' target='_blank'>VIEW_SA_ADInventoryWLGORE_LicenseUsers.INI.xml</a> still exists in the files, but not sure how to import or recreate it in StealthAudit?","Performing a Full Upgrade of the AD Solutions.","N/A","N/A","Symptom
+
+Same issue when we upgrade to 11.5 in case 00411545. Tried the steps from that case here, but didn't seem to correct it.
+
+Under version 11.5 (previously 11), we had an analysis created for our AD user summary (for licensing), but it seems to have disappeared in the GUI since our upgrade to 11.6.
+I see C:Program Files (x86)STEALTHbitsStealthAUDITJobsGROUP_.Active Directory InventoryJOB_1-AD_Scan<a href='https://VIEW_SA_ADInventoryWLGORE_LicenseUsers.INI.xml' target='_blank'>VIEW_SA_ADInventoryWLGORE_LicenseUsers.INI.xml</a> still exists in the files, but not sure how to import or recreate it in StealthAudit?
+
+Cause
+
+Possibly caused by a full upgrade. 
+
+Resolution
+
+1. Close all open instances of StealthAUDIT
+2. Copy the JOB_1-AD_Scan folder from the archived jobs folder in %SAInstallDir%Jobs to %SAInstallDir%JobsGROUP_.Active Directory Inventory
+3. Right-click and verify it's not blocked, and remove the checkbox for ""Read Only""
+4. Go to Control Panel, and select ""Change"" then ""Repair"" on StealthAUDIT
+5. Once the repair is complete, you should be able to see the analysis for ""SA_ADInventoryWLGORE_LicenseUsers""","Advanced Configuration Change","Scottie Taylor","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","Custom Reports","11.6","","0.1","Closed - Resolved","W. L. Gore & Associates, Inc.","Connie Liang","2025-04-23T18:02:54.000Z","2025-04-23T20:08:03.000Z"

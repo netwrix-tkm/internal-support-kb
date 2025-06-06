@@ -1,0 +1,54 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KpwRUIAZ","00432846","Support Ticket","To understand Disovery run for windows server.","We ran Nov month discovery run for windows share servers. The result is different. Need to have some understanding about the report. 
+In which column new shares is mentioned in the result report? 
+Which column contains source server name and Destination server ?
+How the discovery run result, finds the new windows shares? so that we can add the newly found windows share server for SA monitoring. 
+Please refer the attached report.","","Saveetha uploaded some custom documents which look like internal documents from Hydro Group Norway. 
+
+Inside these documents I can see that a custom job that consists of a custom analysis task called ""GET SHARE WIN"". If my understanding is correct - this task is supposed to perform discovery of Windows Shares within Hydro Group Norway environment. 
+
+This ""GET SHARE WIN"" job does not look like a built in NEA job, but instead looks like a custom job that was made either by Hydro Group Norway themselves or by Netwrix ProServ team. 
+
+Saveetha would like to better understand how this ""GET SHARE WIN"" job is working and how to understand the ""GET SHARE WIN"" job`s results.
+
+--------
+
+19.02.2025 
+
+Customer discussed the ""GET SHARE WIN"" job with Professional services team.
+Customer is now asking how to make only a single host appear in the HOST column within HOSTS table which is a table that is produced by ""GetHostShares1"" job.
+
+
+-----------
+25.02.2025 
+
+Customer needs additional assistance from professional services team to configure the ""GetHostShares1"" job so that it only shows single server in the ""HOST"" column in the resulting table. 
+
+I have sent a request to profession services team and to Kyle Vogley (Kyndryl Company Account owner) in this email thread:
+RE: Kyndryl | Netwrix Enterprise Auditor | Questions about custom job for discovering Shares on Windows hosts 
+
+In the meantime, will ask customer to provide ""hosts"" settings for “1.GetHostList1” and “GetHostShares1” jobs.","Customer will provide more details about their current concern.","Customer had qustions about custom job that was configured for them by Professional Services team. 
+
+The following information are answers to customer`s questions, parts of this information was acquired through communication with Professional Services:
+
+According to conversation with Profession Services team the Job group (job folder) consists of these two jobs:“1.GetHostList1” and “GetHostShares1” jobs.
+These jobs must be configured with the following host lists settings:
+
+“1.GetHostList1” - this job must be configured with ""GET SHARE WIN"" list (with list of servers for scanning).
+“GetHostShares1” - this job must have its own separate ""hosts"" settings. for this job you must add only StealthAudit server (AZITSBITS01). 
+
+These jobs will produce a ""Hosts"" table. The ""HOST"" column within that table shows a server from which the PowerShell job ""GetHostShares1"" was running from.
+If there are multiple servers there - then you must check the ""HostList"" of the ""GetHostShares1"" job to see which servers are added there. This HostList (for the ""GetHostShares1"" job) should only have StealthAudit server. 
+
+The ""Remark"" column will show text that was added to the comments when the Windows Share was created.  
+
+The final report does not show which shares are newly found and which were already found during previous job run. Currently the ""GetHostShares1"" job does not have such functionality. 
+
+The ShareType column represents the type of share that was identified during job processing:
+
+This is most likely related to the Microsoft Windows types of shares, which are the following:
+
+0 (Admin)	Hidden shares used for system administration	C$, Admin$, IPC$, Print$
+1 (Default)	User-created file shares for general use	Documents, Public
+2 (Printer)	Shares for printers	Printer share (e.g., HP_Printer)
+3 (Special)	Non-standard, specialized shares	Mailslot, service-specific shares","Guidance","Artem Naskal","Question","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.5","","49.1","Closed - Resolved","Hydro Group Norway","saveetha Anesh","2025-01-20T11:37:08.000Z","2025-03-10T14:26:59.000Z"

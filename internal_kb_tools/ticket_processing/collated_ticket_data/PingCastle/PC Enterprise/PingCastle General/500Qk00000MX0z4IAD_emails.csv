@@ -1,0 +1,1452 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MT2BYIA1","500Qk00000MX0z4IAD","2025-03-11T14:17:19.000Z","2025-03-11T14:17:19.000Z","Hello Korepu Akhil,
+
+I wanted to check in regarding your support ticket 00437607. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437607
+Ticket Subject: Issues with Stale Objects rule (False Positive) for one of the domain.
+Ticket Details: Hi Team,Good day!!There is an issue with one of the stale object rules -- ""Number of computers without password change for at least 3 months: 14""Here the 14 accounts have changed the password recently but it is still showing as Vulnerability under stale Object rules.NOTE -- It is showing future values for the computer accounts under last used.please schedule a call so that we can discuss this issue as soon as possible.please find the attached screenshot for your reference.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:06 AM
+To: korepuakhil.kumar@it.eurofinseu.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+Hi Akhil,
+
+Good day!
+
+Thanks for letting me know. Looking forward to your updates once you've had a chance to review everything. Let me know if you need any further details in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/4/2025 5:02 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437607 - ref:_00D7091pB._500Q000MX0z4:ref - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+
+
+Hi Lulia,
+
+ 
+
+Good day!!
+
+ 
+
+Thanks for the update and I will update once after reviewing all these details.
+
+ 
+
+Thanks,
+
+Akhil
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 04 March 2025 15:28
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			 
+			
+			
+			Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+			
+		
+	
+
+
+ 
+
+
+Dear Akhil,
+
+I have reviewed the issue regarding the stale object rule indicating ""Number of computers without password change for at least 3 months: 14,"" despite these accounts having recently updated their passwords.
+
+Based on our internal checks, this rule relies on the pwdLastSet and lastLogonTimestamp attributes. PingCastle has built-in validation to handle future timestamps by assuming the current date, but it appears that these accounts are still being flagged incorrectly.
+
+Potential Causes:
+
+
+	Future Timestamps in AD – The affected computer accounts may have incorrect timestamps, leading to misinterpretation by PingCastle.
+	Replication Delays – If domain controllers are not synchronized, stale data might still be present.
+	Timezone or System Clock Issues – If system clocks on these machines or DCs are inconsistent, timestamps could be skewed.
+	Internal Logic Handling in PingCastle – Even though there is validation, certain cases might not be handled properly.
+
+
+Suggested Next Steps:
+
+
+	Check AD Attributes for the Affected Computers: Get-ADComputer -Filter * -Properties Name, pwdLastSet, lastLogonTimestamp | Where-Object { $_.Name -in @(""Computer1"", ""Computer2"", ...) } | Select-Object Name, pwdLastSet, lastLogonTimestamp
+
+
+This will help confirm if timestamps are set incorrectly.
+
+
+	Verify Domain Controller Replication: repadmin /showrepl
+
+
+Ensuring replication is functioning correctly will help rule out delays.
+
+
+	Test a Manual Password Reset for One Affected Computer:
+
+
+If resetting the password updates the timestamp correctly, replication or time drift may be the root cause.
+
+
+	Check Domain Controller Time Synchronization: w32tm /query /status
+
+
+Inconsistent time settings across DCs could contribute to incorrect evaluations.
+
+Please let me know if you would like me to investigate further or if you need additional details.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MX0z4:ref","RE: Netwrix Support Ticket #437607 -  - Issues with Stale Objects rule (False Positive) for one of the domain.    [ ref:!00D70091pB.!500Qk0MX0z4:ref ]","techsupport@netwrix.com","Netwrix Support","korepuakhil.kumar@it.eurofinseu.com","","iulia.apatachioaei@netwrix.com","false","2025-03-11T14:17:18.000Z","true"
+"02sQk00000MTQH3IAP","500Qk00000MX0z4IAD","2025-03-11T14:58:40.000Z","2025-03-11T17:51:59.000Z","ref:_00D7091pB._500Q000MX0z4:ref
+
+Hi Lulia,
+
+Good day!!
+
+We followed all the mentioned steps provided by you and everything is perfect on their server.
+
+There is still an issue with the stale object rule.
+
+
+
+Thanks and Regards,
+Akhilkumar korepu
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 11 March 2025 19:47
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+
+Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+
+Hello Korepu Akhil,
+
+I wanted to check in regarding your support ticket 00437607. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437607
+Ticket Subject: Issues with Stale Objects rule (False Positive) for one of the domain.
+Ticket Details: Hi Team,
+
+Good day!!
+
+There is an issue with one of the stale object rules --
+""Number of computers without password change for at least 3 months: 14""
+
+Here the 14 accounts have changed the password recently but it is still showing as Vulnerability under stale Object rules.
+
+NOTE -- It is showing future values for the computer accounts under last used.
+
+
+please schedule a call so that we can discuss this issue as soon as possible.
+
+please find the attached screenshot for your reference.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:06 AM
+To: korepuakhil.kumar@it.eurofinseu.com<mailto:korepuakhil.kumar@it.eurofinseu.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+Hi Akhil,
+
+Good day!
+
+Thanks for letting me know. Looking forward to your updates once you've had a chance to review everything. Let me know if you need any further details in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/4/2025 5:02 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #437607 - ref:_00D7091pB._500Q000MX0z4:ref - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+
+Hi Lulia,
+
+Good day!!
+
+Thanks for the update and I will update once after reviewing all these details.
+
+Thanks,
+Akhil
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: 04 March 2025 15:28
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com<mailto:KorepuAkhil.Kumar@it.eurofinseu.com>>
+Subject: Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+
+Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+
+Dear Akhil,
+
+I have reviewed the issue regarding the stale object rule indicating ""Number of computers without password change for at least 3 months: 14,"" despite these accounts having recently updated their passwords.
+
+Based on our internal checks, this rule relies on the pwdLastSet and lastLogonTimestamp attributes. PingCastle has built-in validation to handle future timestamps by assuming the current date, but it appears that these accounts are still being flagged incorrectly.
+
+Potential Causes:
+
+  1.  Future Timestamps in AD – The affected computer accounts may have incorrect timestamps, leading to misinterpretation by PingCastle.
+  2.  Replication Delays – If domain controllers are not synchronized, stale data might still be present.
+  3.  Timezone or System Clock Issues – If system clocks on these machines or DCs are inconsistent, timestamps could be skewed.
+  4.  Internal Logic Handling in PingCastle – Even though there is validation, certain cases might not be handled properly.
+Suggested Next Steps:
+
+  1.  Check AD Attributes for the Affected Computers: Get-ADComputer -Filter * -Properties Name, pwdLastSet, lastLogonTimestamp | Where-Object { $_.Name -in @(""Computer1"", ""Computer2"", ...) } | Select-Object Name, pwdLastSet, lastLogonTimestamp
+This will help confirm if timestamps are set incorrectly.
+
+  1.  Verify Domain Controller Replication: repadmin /showrepl
+Ensuring replication is functioning correctly will help rule out delays.
+
+  1.  Test a Manual Password Reset for One Affected Computer:
+If resetting the password updates the timestamp correctly, replication or time drift may be the root cause.
+
+  1.  Check Domain Controller Time Synchronization: w32tm /query /status
+Inconsistent time settings across DCs could contribute to incorrect evaluations.
+
+Please let me know if you would like me to investigate further or if you need additional details.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MX0z4:ref","RE: Netwrix Support Ticket #437607 -  - Issues with Stale Objects rule (False Positive) for one of the domain.    [ ref:!00D70091pB.!500Qk0MX0z4:ref ]","korepuakhil.kumar@it.eurofinseu.com","Korepu Akhil Kumar","techsupport@netwrix.com","","","false","2025-03-11T14:58:25.000Z","true"
+"02sQk00000MVatoIAD","500Qk00000MX0z4IAD","2025-03-12T09:22:46.000Z","2025-03-12T09:22:46.000Z","Good morning Akhil,
+
+Thank you for your updates. As we continue investigating, I wanted to check, are you running the latest version of PingCastle? Would you be able to upgrade to the latest version and rerun the health check to see if the issue persists? There have been several improvements and fixes in recent versions, and this could potentially resolve the issue.
+
+Let us know once you’ve had a chance to test, and we’ll take it from there.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/11/2025 10:58 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+
+
+Hi Lulia,
+
+ 
+
+Good day!!
+
+ 
+
+We followed all the mentioned steps provided by you and everything is perfect on their server.
+
+ 
+
+There is still an issue with the stale object rule.
+
+ 
+
+ 
+
+ 
+
+Thanks and Regards,
+
+Akhilkumar korepu
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 11 March 2025 19:47
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			 
+			
+			
+			Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+			
+		
+	
+
+
+ 
+
+
+Hello Korepu Akhil,
+
+I wanted to check in regarding your support ticket 00437607. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437607
+Ticket Subject: Issues with Stale Objects rule (False Positive) for one of the domain.
+Ticket Details: Hi Team,
+
+Good day!!
+
+There is an issue with one of the stale object rules --
+""Number of computers without password change for at least 3 months: 14""
+
+Here the 14 accounts have changed the password recently but it is still showing as Vulnerability under stale Object rules.
+
+NOTE -- It is showing future values for the computer accounts under last used.
+
+
+please schedule a call so that we can discuss this issue as soon as possible.
+
+please find the attached screenshot for your reference.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:06 AM
+To: korepuakhil.kumar@it.eurofinseu.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+Hi Akhil,
+
+Good day!
+
+Thanks for letting me know. Looking forward to your updates once you've had a chance to review everything. Let me know if you need any further details in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/4/2025 5:02 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437607 - ref:_00D7091pB._500Q000MX0z4:ref - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+ 
+
+
+Hi Lulia,
+
+ 
+
+Good day!!
+
+ 
+
+Thanks for the update and I will update once after reviewing all these details.
+
+ 
+
+Thanks,
+
+Akhil
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 04 March 2025 15:28
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			 
+			
+			
+			Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+			
+		
+	
+
+
+ 
+
+
+Dear Akhil,
+
+I have reviewed the issue regarding the stale object rule indicating ""Number of computers without password change for at least 3 months: 14,"" despite these accounts having recently updated their passwords.
+
+Based on our internal checks, this rule relies on the pwdLastSet and lastLogonTimestamp attributes. PingCastle has built-in validation to handle future timestamps by assuming the current date, but it appears that these accounts are still being flagged incorrectly.
+
+Potential Causes:
+
+
+	Future Timestamps in AD – The affected computer accounts may have incorrect timestamps, leading to misinterpretation by PingCastle.
+	Replication Delays – If domain controllers are not synchronized, stale data might still be present.
+	Timezone or System Clock Issues – If system clocks on these machines or DCs are inconsistent, timestamps could be skewed.
+	Internal Logic Handling in PingCastle – Even though there is validation, certain cases might not be handled properly.
+
+
+Suggested Next Steps:
+
+
+	Check AD Attributes for the Affected Computers: Get-ADComputer -Filter * -Properties Name, pwdLastSet, lastLogonTimestamp | Where-Object { $_.Name -in @(""Computer1"", ""Computer2"", ...) } | Select-Object Name, pwdLastSet, lastLogonTimestamp
+
+
+This will help confirm if timestamps are set incorrectly.
+
+
+	Verify Domain Controller Replication: repadmin /showrepl
+
+
+Ensuring replication is functioning correctly will help rule out delays.
+
+
+	Test a Manual Password Reset for One Affected Computer:
+
+
+If resetting the password updates the timestamp correctly, replication or time drift may be the root cause.
+
+
+	Check Domain Controller Time Synchronization: w32tm /query /status
+
+
+Inconsistent time settings across DCs could contribute to incorrect evaluations.
+
+Please let me know if you would like me to investigate further or if you need additional details.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MX0z4:ref","RE: Netwrix Support Ticket #437607 -  - Issues with Stale Objects rule (False Positive) for one of the domain.    [ ref:!00D70091pB.!500Qk0MX0z4:ref ]","techsupport@netwrix.com","Netwrix Support","korepuakhil.kumar@it.eurofinseu.com","","iulia.apatachioaei@netwrix.com","false","2025-03-12T09:22:45.000Z","true"
+"02sQk00000Mg9jlIAB","500Qk00000MX0z4IAD","2025-03-17T08:29:36.000Z","2025-03-17T08:29:36.000Z","Hello Korepu Akhil,
+
+I wanted to check in regarding your support ticket 00437607. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437607
+Ticket Subject: Issues with Stale Objects rule (False Positive) for one of the domain.
+Ticket Details: Hi Team,Good day!!There is an issue with one of the stale object rules -- ""Number of computers without password change for at least 3 months: 14""Here the 14 accounts have changed the password recently but it is still showing as Vulnerability under stale Object rules.NOTE -- It is showing future values for the computer accounts under last used.please schedule a call so that we can discuss this issue as soon as possible.please find the attached screenshot for your reference.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 5:22 AM
+To: korepuakhil.kumar@it.eurofinseu.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+Good morning Akhil,
+
+Thank you for your updates. As we continue investigating, I wanted to check, are you running the latest version of PingCastle? Would you be able to upgrade to the latest version and rerun the health check to see if the issue persists? There have been several improvements and fixes in recent versions, and this could potentially resolve the issue.
+
+Let us know once you’ve had a chance to test, and we’ll take it from there.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/11/2025 10:58 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+
+
+Hi Lulia,
+
+ 
+
+Good day!!
+
+ 
+
+We followed all the mentioned steps provided by you and everything is perfect on their server.
+
+ 
+
+There is still an issue with the stale object rule.
+
+ 
+
+ 
+
+ 
+
+Thanks and Regards,
+
+Akhilkumar korepu
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 11 March 2025 19:47
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			 
+			
+			
+			Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+			
+		
+	
+
+
+ 
+
+
+Hello Korepu Akhil,
+
+I wanted to check in regarding your support ticket 00437607. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437607
+Ticket Subject: Issues with Stale Objects rule (False Positive) for one of the domain.
+Ticket Details: Hi Team,
+
+Good day!!
+
+There is an issue with one of the stale object rules --
+""Number of computers without password change for at least 3 months: 14""
+
+Here the 14 accounts have changed the password recently but it is still showing as Vulnerability under stale Object rules.
+
+NOTE -- It is showing future values for the computer accounts under last used.
+
+
+please schedule a call so that we can discuss this issue as soon as possible.
+
+please find the attached screenshot for your reference.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:06 AM
+To: korepuakhil.kumar@it.eurofinseu.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+Hi Akhil,
+
+Good day!
+
+Thanks for letting me know. Looking forward to your updates once you've had a chance to review everything. Let me know if you need any further details in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/4/2025 5:02 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437607 - ref:_00D7091pB._500Q000MX0z4:ref - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+ 
+
+
+Hi Lulia,
+
+ 
+
+Good day!!
+
+ 
+
+Thanks for the update and I will update once after reviewing all these details.
+
+ 
+
+Thanks,
+
+Akhil
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 04 March 2025 15:28
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			 
+			
+			
+			Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+			
+		
+	
+
+
+ 
+
+
+Dear Akhil,
+
+I have reviewed the issue regarding the stale object rule indicating ""Number of computers without password change for at least 3 months: 14,"" despite these accounts having recently updated their passwords.
+
+Based on our internal checks, this rule relies on the pwdLastSet and lastLogonTimestamp attributes. PingCastle has built-in validation to handle future timestamps by assuming the current date, but it appears that these accounts are still being flagged incorrectly.
+
+Potential Causes:
+
+
+	Future Timestamps in AD – The affected computer accounts may have incorrect timestamps, leading to misinterpretation by PingCastle.
+	Replication Delays – If domain controllers are not synchronized, stale data might still be present.
+	Timezone or System Clock Issues – If system clocks on these machines or DCs are inconsistent, timestamps could be skewed.
+	Internal Logic Handling in PingCastle – Even though there is validation, certain cases might not be handled properly.
+
+
+Suggested Next Steps:
+
+
+	Check AD Attributes for the Affected Computers: Get-ADComputer -Filter * -Properties Name, pwdLastSet, lastLogonTimestamp | Where-Object { $_.Name -in @(""Computer1"", ""Computer2"", ...) } | Select-Object Name, pwdLastSet, lastLogonTimestamp
+
+
+This will help confirm if timestamps are set incorrectly.
+
+
+	Verify Domain Controller Replication: repadmin /showrepl
+
+
+Ensuring replication is functioning correctly will help rule out delays.
+
+
+	Test a Manual Password Reset for One Affected Computer:
+
+
+If resetting the password updates the timestamp correctly, replication or time drift may be the root cause.
+
+
+	Check Domain Controller Time Synchronization: w32tm /query /status
+
+
+Inconsistent time settings across DCs could contribute to incorrect evaluations.
+
+Please let me know if you would like me to investigate further or if you need additional details.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MX0z4:ref","RE: Netwrix Support Ticket #437607 -  - Issues with Stale Objects rule (False Positive) for one of the domain.    [ ref:!00D70091pB.!500Qk0MX0z4:ref ]","techsupport@netwrix.com","Netwrix Support","korepuakhil.kumar@it.eurofinseu.com","","iulia.apatachioaei@netwrix.com","false","2025-03-17T08:29:35.000Z","true"
+"02sQk00000MgB2QIAV","500Qk00000MX0z4IAD","2025-03-17T08:54:55.000Z","2025-03-17T09:39:34.000Z","ref:_00D7091pB._500Q000MX0z4:ref
+
+Hi Lulia,
+
+Good day.
+
+Thanks a lot for your help.
+
+You can close this ticket.
+
+
+Thanks and Regards,
+Akhilkumar korepu
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 17 March 2025 14:00
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+
+Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+
+Hello Korepu Akhil,
+
+I wanted to check in regarding your support ticket 00437607. We haven't heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you're still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We're here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437607
+Ticket Subject: Issues with Stale Objects rule (False Positive) for one of the domain.
+Ticket Details: Hi Team,
+
+Good day!!
+
+There is an issue with one of the stale object rules --
+""Number of computers without password change for at least 3 months: 14""
+
+Here the 14 accounts have changed the password recently but it is still showing as Vulnerability under stale Object rules.
+
+NOTE -- It is showing future values for the computer accounts under last used.
+
+
+please schedule a call so that we can discuss this issue as soon as possible.
+
+please find the attached screenshot for your reference.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 5:22 AM
+To: korepuakhil.kumar@it.eurofinseu.com<mailto:korepuakhil.kumar@it.eurofinseu.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+Good morning Akhil,
+
+Thank you for your updates. As we continue investigating, I wanted to check, are you running the latest version of PingCastle? Would you be able to upgrade to the latest version and rerun the health check to see if the issue persists? There have been several improvements and fixes in recent versions, and this could potentially resolve the issue.
+
+Let us know once you've had a chance to test, and we'll take it from there.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/11/2025 10:58 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+
+Hi Lulia,
+
+Good day!!
+
+We followed all the mentioned steps provided by you and everything is perfect on their server.
+
+There is still an issue with the stale object rule.
+
+
+
+Thanks and Regards,
+Akhilkumar korepu
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: 11 March 2025 19:47
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com<mailto:KorepuAkhil.Kumar@it.eurofinseu.com>>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+
+Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+
+Hello Korepu Akhil,
+
+I wanted to check in regarding your support ticket 00437607. We haven't heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you're still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We're here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437607
+Ticket Subject: Issues with Stale Objects rule (False Positive) for one of the domain.
+Ticket Details: Hi Team,
+
+Good day!!
+
+There is an issue with one of the stale object rules --
+""Number of computers without password change for at least 3 months: 14""
+
+Here the 14 accounts have changed the password recently but it is still showing as Vulnerability under stale Object rules.
+
+NOTE -- It is showing future values for the computer accounts under last used.
+
+
+please schedule a call so that we can discuss this issue as soon as possible.
+
+please find the attached screenshot for your reference.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:06 AM
+To: korepuakhil.kumar@it.eurofinseu.com<mailto:korepuakhil.kumar@it.eurofinseu.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+Hi Akhil,
+
+Good day!
+
+Thanks for letting me know. Looking forward to your updates once you've had a chance to review everything. Let me know if you need any further details in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<http://www.netwrix.com/>
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/4/2025 5:02 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #437607 - ref:_00D7091pB._500Q000MX0z4:ref - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+
+Hi Lulia,
+
+Good day!!
+
+Thanks for the update and I will update once after reviewing all these details.
+
+Thanks,
+Akhil
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: 04 March 2025 15:28
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com<mailto:KorepuAkhil.Kumar@it.eurofinseu.com>>
+Subject: Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+
+Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+
+Dear Akhil,
+
+I have reviewed the issue regarding the stale object rule indicating ""Number of computers without password change for at least 3 months: 14,"" despite these accounts having recently updated their passwords.
+
+Based on our internal checks, this rule relies on the pwdLastSet and lastLogonTimestamp attributes. PingCastle has built-in validation to handle future timestamps by assuming the current date, but it appears that these accounts are still being flagged incorrectly.
+
+Potential Causes:
+
+  1.  Future Timestamps in AD - The affected computer accounts may have incorrect timestamps, leading to misinterpretation by PingCastle.
+  2.  Replication Delays - If domain controllers are not synchronized, stale data might still be present.
+  3.  Timezone or System Clock Issues - If system clocks on these machines or DCs are inconsistent, timestamps could be skewed.
+  4.  Internal Logic Handling in PingCastle - Even though there is validation, certain cases might not be handled properly.
+Suggested Next Steps:
+
+  1.  Check AD Attributes for the Affected Computers: Get-ADComputer -Filter * -Properties Name, pwdLastSet, lastLogonTimestamp | Where-Object { $_.Name -in @(""Computer1"", ""Computer2"", ...) } | Select-Object Name, pwdLastSet, lastLogonTimestamp
+This will help confirm if timestamps are set incorrectly.
+
+  1.  Verify Domain Controller Replication: repadmin /showrepl
+Ensuring replication is functioning correctly will help rule out delays.
+
+  1.  Test a Manual Password Reset for One Affected Computer:
+If resetting the password updates the timestamp correctly, replication or time drift may be the root cause.
+
+  1.  Check Domain Controller Time Synchronization: w32tm /query /status
+Inconsistent time settings across DCs could contribute to incorrect evaluations.
+
+Please let me know if you would like me to investigate further or if you need additional details.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MX0z4:ref","RE: Netwrix Support Ticket #437607 -  - Issues with Stale Objects rule (False Positive) for one of the domain.    [ ref:!00D70091pB.!500Qk0MX0z4:ref ]","korepuakhil.kumar@it.eurofinseu.com","Korepu Akhil Kumar","techsupport@netwrix.com","","","false","2025-03-17T08:54:42.000Z","true"
+"02sQk00000MgDCIIA3","500Qk00000MX0z4IAD","2025-03-17T09:41:49.000Z","2025-03-17T09:41:49.000Z","Hello Korepu Akhil,
+
+I am glad that we were able to get your issue resolved. The following is a summary of the ticket for your records.
+
+Symptom
+The PingCastle scan incorrectly flags 14 computer accounts as not having changed their passwords for at least three months, even though their passwords were recently updated.
+Some of these accounts display future timestamps in the last used attribute.
+AD attributes pwdLastSet and lastLogonTimestamp may not reflect recent changes due to replication delays or incorrect timestamps.
+
+Cause
+Future Timestamps in AD – Some computer accounts in Active Directory show timestamps in the future, which may lead to misinterpretation.
+Replication Delays – Domain controllers may be out of sync, causing PingCastle to receive stale data.
+Timezone or System Clock Issues – Inconsistent time settings across domain controllers and machines could distort timestamp calculations.
+Internal Logic Handling in PingCastle – The tool may not account for specific edge cases, leading to false positives in security scans.
+
+Resolution
+Check AD Attributes for Affected Computers:
+Run the following PowerShell command to verify timestamps:
+Get-ADComputer -Filter * -Properties Name, pwdLastSet, lastLogonTimestamp |
+Where-Object { $_.Name -in @(""Computer1"", ""Computer2"", ...) } |
+Select-Object Name, pwdLastSet, lastLogonTimestamp
+Verify Domain Controller Replication:
+Ensure replication is functioning correctly across all DCs:
+repadmin /showrepl
+Reset the password for one of the affected computers.
+Check if the timestamps update correctly. If they do, the issue may be replication delays or time drift.
+Check Domain Controller Time Synchronization:
+Run the following command to check for time inconsistencies:
+w32tm /query /status
+If necessary, synchronize time settings across domain controllers.
+Review PingCastle's Handling of Timestamps:
+Validate whether PingCastle is correctly processing timestamps and handling future dates.
+If needed, report a potential bug or logic flaw in the tool.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/17/2025 4:54 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+
+
+Hi Lulia,
+
+ 
+
+Good day.
+
+ 
+
+Thanks a lot for your help.
+
+ 
+
+You can close this ticket.
+
+ 
+
+ 
+
+Thanks and Regards,
+
+Akhilkumar korepu
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 17 March 2025 14:00
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			 
+			
+			
+			Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+			
+		
+	
+
+
+ 
+
+
+Hello Korepu Akhil,
+
+I wanted to check in regarding your support ticket 00437607. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437607
+Ticket Subject: Issues with Stale Objects rule (False Positive) for one of the domain.
+Ticket Details: Hi Team,
+
+Good day!!
+
+There is an issue with one of the stale object rules --
+""Number of computers without password change for at least 3 months: 14""
+
+Here the 14 accounts have changed the password recently but it is still showing as Vulnerability under stale Object rules.
+
+NOTE -- It is showing future values for the computer accounts under last used.
+
+
+please schedule a call so that we can discuss this issue as soon as possible.
+
+please find the attached screenshot for your reference.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/12/2025 5:22 AM
+To: korepuakhil.kumar@it.eurofinseu.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+Good morning Akhil,
+
+Thank you for your updates. As we continue investigating, I wanted to check, are you running the latest version of PingCastle? Would you be able to upgrade to the latest version and rerun the health check to see if the issue persists? There have been several improvements and fixes in recent versions, and this could potentially resolve the issue.
+
+Let us know once you’ve had a chance to test, and we’ll take it from there.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/11/2025 10:58 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+ 
+
+
+Hi Lulia,
+
+ 
+
+Good day!!
+
+ 
+
+We followed all the mentioned steps provided by you and everything is perfect on their server.
+
+ 
+
+There is still an issue with the stale object rule.
+
+ 
+
+ 
+
+ 
+
+Thanks and Regards,
+
+Akhilkumar korepu
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 11 March 2025 19:47
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			 
+			
+			
+			Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+			
+		
+	
+
+
+ 
+
+
+Hello Korepu Akhil,
+
+I wanted to check in regarding your support ticket 00437607. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437607
+Ticket Subject: Issues with Stale Objects rule (False Positive) for one of the domain.
+Ticket Details: Hi Team,
+
+Good day!!
+
+There is an issue with one of the stale object rules --
+""Number of computers without password change for at least 3 months: 14""
+
+Here the 14 accounts have changed the password recently but it is still showing as Vulnerability under stale Object rules.
+
+NOTE -- It is showing future values for the computer accounts under last used.
+
+
+please schedule a call so that we can discuss this issue as soon as possible.
+
+please find the attached screenshot for your reference.
+
+Thank you!
+
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/5/2025 3:06 AM
+To: korepuakhil.kumar@it.eurofinseu.com
+Subject: RE: Netwrix Support Ticket #437607 - - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+Hi Akhil,
+
+Good day!
+
+Thanks for letting me know. Looking forward to your updates once you've had a chance to review everything. Let me know if you need any further details in the meantime.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Korepu Akhil Kumar [korepuakhil.kumar@it.eurofinseu.com]
+Sent: 3/4/2025 5:02 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437607 - ref:_00D7091pB._500Q000MX0z4:ref - Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+ref:_00D7091pB._500Q000MX0z4:ref
+
+ 
+
+
+Hi Lulia,
+
+ 
+
+Good day!!
+
+ 
+
+Thanks for the update and I will update once after reviewing all these details.
+
+ 
+
+Thanks,
+
+Akhil
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: 04 March 2025 15:28
+To: Korepu Akhil Kumar <KorepuAkhil.Kumar@it.eurofinseu.com>
+Subject: Issues with Stale Objects rule (False Positive) for one of the domain. [ ref:!00D70091pB.!500Qk0MX0z4:ref ]
+
+
+
+ 
+
+
+	
+		
+			
+			 
+			
+			
+			Unverified Sender: The sender of this email has not been verified. Review the content of the message carefully and verify the identity of the sender before acting on this email: replying, opening attachments or clicking links.
+			
+		
+	
+
+
+ 
+
+
+Dear Akhil,
+
+I have reviewed the issue regarding the stale object rule indicating ""Number of computers without password change for at least 3 months: 14,"" despite these accounts having recently updated their passwords.
+
+Based on our internal checks, this rule relies on the pwdLastSet and lastLogonTimestamp attributes. PingCastle has built-in validation to handle future timestamps by assuming the current date, but it appears that these accounts are still being flagged incorrectly.
+
+Potential Causes:
+
+
+	Future Timestamps in AD – The affected computer accounts may have incorrect timestamps, leading to misinterpretation by PingCastle.
+	Replication Delays – If domain controllers are not synchronized, stale data might still be present.
+	Timezone or System Clock Issues – If system clocks on these machines or DCs are inconsistent, timestamps could be skewed.
+	Internal Logic Handling in PingCastle – Even though there is validation, certain cases might not be handled properly.
+
+
+Suggested Next Steps:
+
+
+	Check AD Attributes for the Affected Computers: Get-ADComputer -Filter * -Properties Name, pwdLastSet, lastLogonTimestamp | Where-Object { $_.Name -in @(""Computer1"", ""Computer2"", ...) } | Select-Object Name, pwdLastSet, lastLogonTimestamp
+
+
+This will help confirm if timestamps are set incorrectly.
+
+
+	Verify Domain Controller Replication: repadmin /showrepl
+
+
+Ensuring replication is functioning correctly will help rule out delays.
+
+
+	Test a Manual Password Reset for One Affected Computer:
+
+
+If resetting the password updates the timestamp correctly, replication or time drift may be the root cause.
+
+
+	Check Domain Controller Time Synchronization: w32tm /query /status
+
+
+Inconsistent time settings across DCs could contribute to incorrect evaluations.
+
+Please let me know if you would like me to investigate further or if you need additional details.
+
+Best regards,
+Iulia Apatachioaei
+Sr. Support Engineer
+____________________ _________
+Powerful Data Security Made Easy
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MX0z4:ref","RE: Netwrix Support Ticket #437607 -  - Issues with Stale Objects rule (False Positive) for one of the domain.    [ ref:!00D70091pB.!500Qk0MX0z4:ref ]","techsupport@netwrix.com","Netwrix Support","korepuakhil.kumar@it.eurofinseu.com","","iulia.apatachioaei@netwrix.com","false","2025-03-17T09:41:48.000Z","true"

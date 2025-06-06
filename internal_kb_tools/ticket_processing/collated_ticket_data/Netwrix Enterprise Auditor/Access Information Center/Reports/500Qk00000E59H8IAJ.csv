@@ -1,0 +1,9 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000E59H8IAJ","00417269","Support Ticket","Cert issue is AIC","Please help fix the cert issue on the AIC @ John Deere.","","","","[Issue]
+The following error is received when searching for a username in the AIC, and then selecting the ""Permissions"" report: url: /v2/admins/data/audit/reports/trustee/applied-permissions status: 500
+
+[Root Cause]
+This report relies on the SharePointSPAA System Scan & SharePointSPAA Bulk Import to run as it creates the SPAA_PermissionsView this report relies on.
+
+[Resolution]
+We upgraded the Netwrix AIC to v11.6.0.21 (from v11.6.0.12) to rule out any recently fixed bugs. After the upgrade, we took a look at the log and saw it was attempting to call a view that has not been created. At this time, you are fine with that report not running as that group is not setup.","Incorrect configuration: Netwrix product","Tay Caliguiri","","Netwrix Enterprise Auditor","Access Information Center","Reports","","","2.0","Closed - Resolved","John Deere Company","Scott Prigge","2024-08-06T15:50:44.000Z","2024-08-08T15:33:08.000Z"

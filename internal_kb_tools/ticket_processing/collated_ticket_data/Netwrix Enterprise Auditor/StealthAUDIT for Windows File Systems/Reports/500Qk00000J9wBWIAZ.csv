@@ -1,0 +1,31 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000J9wBWIAZ","00429063","Support Ticket","SA_FS_OpenAccess_OpenResources Table","Hi team
+
+As you know I am working through a problem to fix what we call Open Shares.  An Open Share can be defined as a share that has content that is accessible to all our employees as incorrect NTFS permissions have been applied.
+
+For example, a share or some sub-folders of a share may have permissions granted to Authenticated Users, Users, Domain Users or Everyone.
+
+I run regular FSAA scan and FSAA Import jobs and execute the Open Access report on a regular basis and to help track our open data I have created a series of Power BI reports that connect to the StealthAudit database and specifically the SA_FS_OpenAccess_OpenResources table.
+
+I have a report for each Isilon to make it easier to track and now I have fixed a lot of Open Shares I can see some incorrect data.
+
+For example, even though Open Shares have been fixed on our Isilon in Adelaide and Melbourne the data we are seeing in the SA_FS_OpenAccess_OpenResources table suggests there is still open content.  However, the folders it reports do not exist.
+
+I have run a FSAA scan, Import and Open Access report three times in recent days and the same incorrect data is showing.
+
+What can be done to correct this problem as its skewing my reports and undermining my confidence in the product.
+
+Regards
+Mark","","Customer miscalculated the open folder count in the share and upon meeting them they confirmed that comment of folder count discrepancy can be ignored.
+
+The count that shows in NAA and the share is correct.","Customer have recently experienced the issue in Perth where they fixed the open share but the report informed me there were a few open folders which didn’t exist. 
+
+They created them as there were only a few, re-scanned, imported and re-ran the report only for a different folder to be identified as open.
+
+They are going to enable debug logs and share that with us.
+
+I have also requested to share scan settings configurations.","After analyzing logs and other artifacts we come to the conclusion that legacy folders are showing up in the report if the folder existed, got scanned, then was deleted or renamed afterwards. Since the reported resource has the default folder name when creating 8 folders (7) this will state this behavior. 
+
+Customer has done multiple testing with different Isilon hosts in different remote locations and confirm this behavior is not observed with newly created folders.
+
+As the application is working as expected he confirmed the ticket can be closed.","Incorrect Configuration - Netwrix Product/System","Pasan Illege","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Reports","11.5","11.5.1331","158.5","Closed - Resolved","Westpac Banking Corporation","Mark Chambers","2024-12-05T22:18:11.000Z","2025-05-13T09:07:06.000Z"

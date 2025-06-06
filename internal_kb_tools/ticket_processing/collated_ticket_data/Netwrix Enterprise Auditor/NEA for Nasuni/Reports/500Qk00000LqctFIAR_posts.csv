@@ -1,0 +1,103 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000WxVP8KAN","500Qk00000LqctFIAR","TextPost","0054u000008ATVZAA4","2025-02-13T16:10:36.000Z","Description: 00420680 needs to be linked.
+
+We began receiving 'Invalid length parameter passed to the LEFT or SUBSTRING function. This statement has been terminated.' error on the 1. Resolve links analysis task on the FSAA System Scans job ever since we successfully got the 3. Nasuni analysis task on the FSAA Bulk Import job to succeed. We also ran their 0-FSDFS System Scans job for the first time before we started getting those errors.
+
+Their SA_FSDFS_Links table contains the inserted entries from their Nasuni filers as well as some of the dfs namespaces found via the 0-FSDFS System Scans job.
+- For the Nasuni entries there are unique rows for each of them each with their own unique HOST, ID, and NamespaceID. The NamespaceName and DfsPath for each of the Nasuni entries is in this format '\NASUNIFILERFQDN$'. The Nasuni entries each have the same DfsResourceID and their DfsHostID is different and matching the HOST column values. Each of the Nasuni entries has '\DEDICATEDNASUNIEDGEAPPLIANCEFQDN' in the TargetPath column. None of the Nasuni entries have any values for the TargetHostID, TargetGateID, TargetResourceID, State, Timeout, and DfsGuid columns.
+- For the non-Nasuni dfs namespace entries, they seem mostly normal except having null values for the DfsResourceID, DfsHostID, TargetHostID, TargetGateID, and TargetResourceID columns.
+
+I do believe they were receiving a number of errors scanning the identified dfs hosts using the scoped dfs scans with FSAA due to not having permissions setup for our scan account to those servers. I'm not sure if the fact we are scanning those properly might be causing issues, or with how we insert the Nasuni filer entries into the dfs tables with the 3. Nasuni analysis task being the problem. I've attached the screenshot of the data we could see from that table to the ticket.
+
+Seems like dev is planning to take this on to be reviewed on upcoming sprint (2/19).","","","","0054u000008ATVZAA4","2025-02-13T16:10:36.000Z"
+"0D5Qk00000Yeyt7KAB","500Qk00000LqctFIAR","TextPost","0050g000006QqyEAAS","2025-03-07T18:22:12.000Z","<p>@Scottie Taylor​ please update the ticket summary</p>","","","","0050g000006QqyEAAS","2025-03-07T18:22:12.000Z"
+"0D5Qk00000YeCVTKA3","500Qk00000LqctFIAR","TextPost","0054u000007MdqrAAC","2025-03-07T18:24:31.000Z","What We've Learned Updated: Still awaiting a response from R&D regarding this issue. 
+
+This was included on the sprint on 3/5/25. 
+
+I have requested for any updates from development on 3/7/25.","","","","0054u000007MdqrAAC","2025-03-07T18:24:31.000Z"
+"0D5Qk00000aRY1eKAG","500Qk00000LqctFIAR","TextPost","0054u000007MdqrAAC","2025-03-27T19:25:42.000Z","Invitation updated. Attendees: No attendees listed","","","","0054u000007MdqrAAC","2025-03-27T19:25:42.000Z"
+"0D5Qk00000aRY1gKAG","500Qk00000LqctFIAR","TextPost","0054u000007MdqrAAC","2025-03-27T19:25:43.000Z","Invitation updated. Attendees: Scottie Taylor, Dean Bardowell","","","","0054u000007MdqrAAC","2025-03-27T19:25:43.000Z"
+"0D5Qk00000aRY1fKAG","500Qk00000LqctFIAR","TextPost","0054u000007MdqrAAC","2025-03-27T19:25:43.000Z","Invitation updated. Attendees: Scottie Taylor","","","","0054u000007MdqrAAC","2025-03-27T19:25:43.000Z"
+"0D5Qk00000aSBECKA4","500Qk00000LqctFIAR","TextPost","0050g000005liulAAA","2025-03-27T21:20:43.000Z","<p><b>@Scottie Taylor</b>​ <b>- Automatic Follow-Up has been disabled for the following reason:</b></p><p>This ticket is currently escalated to Management.</p><p> </p><p>As part of a recently implemented policy, Automatic Follow-Up is not allowed on tickets escalated to Management. Please follow up with the customer manually. Once the escalation is resolved or closed, you may resume using Automatic Follow-Up..</p><p> </p><p>If you have any questions, please see your Support Manager.</p>","","","","0050g000005liulAAA","2025-03-27T21:20:43.000Z"
+"0D5Qk00000asLdyKAE","500Qk00000LqctFIAR","TextPost","005Qk0000018eMHIAY","2025-04-02T14:16:07.000Z","<p>@Scottie Taylor​ can we reach out to Dean to remind him to schedule a meeting to apply the hotfix?</p>","","","","005Qk0000018eMHIAY","2025-04-02T14:24:59.000Z"
+"0D5Qk00000bqEfJKAU","500Qk00000LqctFIAR","TextPost","0050g000006QqyEAAS","2025-04-14T19:08:47.000Z","Invitation updated. Attendees: Nicholas Zimmer, Dean Bardowell","","","","0050g000006QqyEAAS","2025-04-14T19:08:47.000Z"
+"0D5Qk00000bqEfIKAU","500Qk00000LqctFIAR","TextPost","0050g000006QqyEAAS","2025-04-14T19:08:47.000Z","Invitation updated. Attendees: Nicholas Zimmer","","","","0050g000006QqyEAAS","2025-04-14T19:08:47.000Z"
+"0D5Qk00000c5kWMKAY","500Qk00000LqctFIAR","TextPost","0054u000006gpoAAAQ","2025-04-18T21:05:58.000Z","<p>Forgot to touch base on this one.</p><p>I think this is behaving but will circle back on next comunication with them.</p>","","","","0054u000006gpoAAAQ","2025-04-18T21:05:58.000Z"
+"0D5Qk00000dU1E6KAK","500Qk00000LqctFIAR","TextPost","005Qk0000018eMHIAY","2025-05-06T17:11:49.000Z","<p>@Scottie Taylor​ do we know if the fix had been implemented after the upgrade was completed? Do we know the results? Thanks, Stacy</p>","","","","005Qk0000018eMHIAY","2025-05-06T17:23:45.000Z"
+"0D5Qk00000dYqmWKAS","500Qk00000LqctFIAR","TextPost","005Qk0000018eMHIAY","2025-05-07T17:47:26.000Z","<p>@Joshua Sexton​ - there was a fix provided which was going to be implemented after they recently upgraded. There is no indication in this ticket if the fix actually resolved this issue. It looks like Scottie did not hear back from them and Nick was not sure of the status also.</p><p>Can we confirm this on our meeting for 441618 to be held on 09May at 11am eastern?</p><p>I&#39;d hate to sound disjointed when we have consolidated cases into your queue for ease of communication.</p><p>Let&#39;s ensure that we double check this on the call.</p>","","","","005Qk0000018eMHIAY","2025-05-07T17:47:26.000Z"
+"0D5Qk00000dzU2mKAE","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-12T20:35:49.000Z","Next Steps Updated: confirm if FSAA Resolve links analysis task is still erroring
+This ticket is stalled due to NEA install drive running out of space
+
+Given the temperature of the client and the consolidation of their tickets to a single engineer to simplify working on multiple issues on their end, I will be checking on the status of this ticket while in a follow-up meeting on another ticket,","","","","0054u000007oss5AAA","2025-05-12T20:35:49.000Z"
+"0D5Qk00000dzU2lKAE","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-12T20:35:49.000Z","What We've Learned Updated: my understanding is that an update was applied that is expected to help with this issue
+however, I haven't yet been able to confirm if the error persists post update.
+
+I emailed the client and asked, but the last I knew, their NEA install drive was out of space, so all collections is halted. I will be following up on the drive space issue on another ticket.","","","","0054u000007oss5AAA","2025-05-12T20:35:49.000Z"
+"0D5Qk00000dzGOhKAM","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-12T20:48:00.000Z","Invitation updated. Attendees: Joshua Sexton, Stacy Petruzzi, Dean Bardowell","","","","0054u000007oss5AAA","2025-05-12T20:48:00.000Z"
+"0D5Qk00000dzGOgKAM","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-12T20:48:00.000Z","Invitation updated. Attendees: Joshua Sexton, Stacy Petruzzi","","","","0054u000007oss5AAA","2025-05-12T20:48:00.000Z"
+"0D5Qk00000dzHeCKAU","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-12T20:48:52.000Z","Next Steps Updated: meet to review results of latest scans
+-invite sent
+
+Given the temperature of the client and the consolidation of their tickets to a single engineer to simplify working on multiple issues on their end, I will be checking on the status of this ticket while in a follow-up meeting on another ticket,","","","","0054u000007oss5AAA","2025-05-12T20:48:52.000Z"
+"0D5Qk00000dzSpRKAU","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-12T20:49:38.000Z","What We've Learned Updated: my understanding is that an update was applied that is expected to help with this issue
+however, I haven't yet been able to confirm if the error persists post update.
+
+client added space and scans are currently running
+sent schedule link to review this and other tickets","","","","0054u000007oss5AAA","2025-05-12T20:49:38.000Z"
+"0D5Qk00000eC3i4KAC","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-15T19:00:52.000Z","What We've Learned Updated: Update 11.6.0.139 has been applied
+Reviewing the Nasuni FSAA scan job, I don't see the 
+""Invalid length parameter passed to the LEFT or SUBSTRING function.  The statement has been terminated.""
+
+error
+
+There are however lots of other FSAA errors","","","","0054u000007oss5AAA","2025-05-15T19:00:52.000Z"
+"0D5Qk00000eCDCMKA4","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-15T19:00:58.000Z","<p>I can confirm that the CU that should include a fix for this, 11.6.0.139 is installed</p><p>I don&#39;t see the error with the resolve links task as much as there are lots and lots of errors for FSAA:</p><p>screenshot attached</p><p><img src=""sfdc://069Qk00000ONP38IAH"" alt=""00435774 NASUNI FSAA System Scans messages table""></img> </p>","","","","0054u000007oss5AAA","2025-05-15T19:00:58.000Z"
+"0D5Qk00000eCFihKAG","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-15T19:07:49.000Z","What We've Learned Updated: Update 11.6.0.139 has been applied
+Reviewing the Nasuni FSAA scan job, I don't see the 
+""Invalid length parameter passed to the LEFT or SUBSTRING function.  The statement has been terminated.""
+
+error
+
+There are however lots of other FSAA errors:
+""Path not found scanning:...""
+""Error Expanding Folder...""
+""Error Enumerating TFolderEnumerator: Unable to perform folder scan for...""
+""Error getting Security desciptor for sahre, dafaulting to ""Everyone/FullControll""
+
+That last one likely explains why most shares in AIC show everyone permission on most shares","","","","0054u000007oss5AAA","2025-05-15T19:07:49.000Z"
+"0D5Qk00000eC83LKAS","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-15T19:09:42.000Z","Next Steps Updated: meet to review results of latest scans
+-invite sent
+
+Given the temperature of the client and the consolidation of their tickets to a single engineer to simplify working on multiple issues on their end, I will be checking on the status of this ticket while in a follow-up meeting on another ticket: 00441618","","","","0054u000007oss5AAA","2025-05-15T19:09:42.000Z"
+"0D5Qk00000eigncKAA","500Qk00000LqctFIAR","TextPost","005Qk000004methIAA","2025-05-20T21:02:29.000Z","Next Steps Updated: 1. Dean Bardowell will confirm if the FSAA Resolve Links analysis task error persists after the update and provide details once the current scans are completed.  
+2. Joshua Sexton will schedule a remote session with Dean Bardowell to review the status of the FSAA scans and other related tickets.  
+3. Joshua Sexton will research supported Nasuni versions to ensure compatibility and provide additional details.  
+4. Joshua Sexton will review the DEBUG logs from Netwrix Activity Monitor to investigate the overloaded Proxy Service.  
+5. Joshua Sexton will partner with Devon Anderson to gain better context for the implementation and identify potential improvements.  
+6. Joshua Sexton will determine the best course of action to reduce Netwrix Enterprise Auditor's drive space usage, likely by removing unnecessary data from previous Nasuni Activity Collection deployments.  
+7. Dean Bardowell will spot-check the accuracy of share permissions listed in the Access Information Center to verify if the permissions are being reported correctly.  
+8. Joshua Sexton will research ways to configure the Nasuni Proxy Service's performance to address the overburdened service issue.  
+9. Joshua Sexton will close this ticket (00435774) and continue addressing related issues through other tickets.","","","","005Qk000004methIAA","2025-05-20T21:02:29.000Z"
+"0D5Qk00000ejLdyKAE","500Qk00000LqctFIAR","TextPost","0054u000007MiY9AAK","2025-05-20T21:04:33.000Z","Next Steps Updated: Dean Bardowell will:
+1. confirm if the FSAA Resolve Links analysis task error persists after the update and provide details once the current scans are completed.
+2. spot-check the accuracy of share permissions listed in the Access Information Center to verify if the permissions are being reported correctly.
+
+Joshua Sexton will:
+1. schedule a remote session with Dean Bardowell to review the status of the FSAA scans and other related tickets.
+2. research supported Nasuni versions to ensure compatibility and provide additional details.
+3. close this ticket (00435774) and continue addressing related issues through other tickets.
+4. review the DEBUG logs from Netwrix Activity Monitor to investigate the overloaded Proxy Service.
+5. partner with Devon Anderson to gain better context for the implementation and identify potential improvements.
+6. determine the best course of action to reduce Netwrix Enterprise Auditor's drive space usage, likely by removing unnecessary data from previous Nasuni Activity Collection deployments.
+7. research ways to configure the Nasuni Proxy Service's performance to address the overburdened service issue.","","","","0054u000007MiY9AAK","2025-05-20T21:04:33.000Z"
+"0D5Qk00000f4oRKKAY","500Qk00000LqctFIAR","TextPost","0054u000007oss5AAA","2025-05-22T21:05:59.000Z","<p>this ticket should be closed after the management escalation is closed</p>","","","","0054u000007oss5AAA","2025-05-22T21:05:59.000Z"
+"0D5Qk00000f6hFtKAI","500Qk00000LqctFIAR","TextPost","005Qk000004methIAA","2025-05-23T11:18:22.000Z","Steps to Reproduce Updated: Step 1: Run the ""0-FSDFS System Scans"" job on the Netwrix Enterprise Auditor (NEA) platform.  
+Step 2: Run the ""3. Nasuni analysis task"" on the FSAA Bulk Import job.  
+Step 3: Run the ""1. Resolve links analysis task"" on the FSAA System Scans job.  
+Step 4: Observe the error message: ""Invalid length parameter passed to the LEFT or SUBSTRING function. This statement has been terminated.""  
+
+Note: Ensure that the SA_FSDFS_Links table contains entries from Nasuni filers and DFS namespaces, as described in the ticket.
+
+(Requested by Rejaul Uddin)","","","","005Qk000004methIAA","2025-05-23T11:18:22.000Z"
+"0D5Qk00000fSHZOKA4","500Qk00000LqctFIAR","TextPost","0050g000006QqyEAAS","2025-05-27T13:56:08.000Z","Next Steps Updated: The plan moving forward is to close ticket 00435774 because the issue with the resolve links seems to have been resolved with the hotfix. We will continue to address the other issue with the other tickets.","","","","0050g000006QqyEAAS","2025-05-27T13:56:08.000Z"

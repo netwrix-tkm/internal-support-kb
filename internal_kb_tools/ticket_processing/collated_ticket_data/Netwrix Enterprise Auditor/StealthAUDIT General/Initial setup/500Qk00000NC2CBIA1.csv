@@ -1,0 +1,40 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NC2CBIA1","00439665","Support Ticket","Oracle scanning error","Customer is experiencing this error on a few of their Oracle database scans, and wants to understand if they are missing any specific roles/permissions that might cause this.
+
+HOST     SA_HOST             JobRunTimeKey MSG_TYPE          TableName         MESSAGE            TaskName           SequenceID                MessageTimestamp
+<a href='https://A1SPRAPX07.RGIS.COM' target='_blank'>A1SPRAPX07.RGIS.COM</a> WIS-OPTIV-01   3/21/2025 12:05:00 PM ERROR  DEFAULT              Failed to collect database schema: Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-00942: table or view does not exist
+   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.Oracle.OracleDataCollectorBase.AddCurrentInstance()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.Oracle.OracleDataCollectorBase.SetupCollection()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.Oracle.ServerDataCollectors.OracleDatabaseSchemaDataCollector.PerformCollection()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.Oracle.ServerDataCollectors.OracleDatabaseSchemaDataCollector.BeginPerformCollection()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.Oracle.Tasks.SensitiveDataDiscoveryTask.DoQuery(ISqlDataSource datasource)                                        3/21/2025 12:05:33 PM
+<a href='https://A1SPRAPX07.RGIS.COM' target='_blank'>A1SPRAPX07.RGIS.COM</a> WIS-OPTIV-01   3/21/2025 12:05:00 PM ERROR  DEFAULT              ORA-00942: table or view does not exist                                    3/21/2025 12:05:33 PM
+<a href='https://DC01VSPRSODB006.RGIS.COM' target='_blank'>DC01VSPRSODB006.RGIS.COM</a>  WIS-OPTIV-01   3/21/2025 12:05:00 PM ERROR  DEFAULT              Failed to collect database schema: Oracle.ManagedDataAccess.Client.OracleException (0x80004005): ORA-00942: table or view does not exist
+   at OracleInternal.ServiceObjects.OracleConnectionImpl.VerifyExecution(Int32& cursorId, Boolean bThrowArrayBindRelatedErrors, SqlStatementType sqlStatementType, Int32 arrayBindCount, OracleException& exceptionForArrayBindDML, Boolean& hasMoreRowsInDB, Boolean bFirstIterationDone)
+   at OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   at Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.Oracle.OracleDataCollectorBase.AddCurrentInstance()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.Oracle.OracleDataCollectorBase.SetupCollection()
+   at <a href='https://Stealthbits.StealthAUDIT.DataColle... [The description has been cut, review the attached email for details]","Uninstall AIC and run the job again.","Today we:
+
+Investigated an error that was generated during the Oracle SDD Import process. The job that is affected is the 2-Oracle_SensitiveDataScan. 
+
+We replaced the job with a fresh job and attempted to re-run the scan. This resulted in an error as well. We then identified that the AIC wasn't installed which is what caused the AIC table errors on the job.","Our next steps are:
+I will:
+
+Postpone the ticket to allow time to check server credentials. I will reach back out next week for an update.","Symptom
+
+When running the  2-Oracle_SensitiveDataScan job an error was encountered displaying the inability to create multiple AIC tables.
+
+Cause
+
+Investigated an error that was generated during the Oracle SDD Import process. The job that is affected is the 2-Oracle_SensitiveDataScan. 
+
+Resolution
+
+We replaced the job with a fresh job and attempted to re-run the scan. This resulted in an error as well. We then identified that the AIC wasn't installed which is what caused the AIC table errors on the job.","Guidance","Scottie Taylor","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","","20.9","Closed - Resolved","Optiv","robert parsons","2025-03-21T18:15:40.000Z","2025-04-11T16:12:46.000Z"

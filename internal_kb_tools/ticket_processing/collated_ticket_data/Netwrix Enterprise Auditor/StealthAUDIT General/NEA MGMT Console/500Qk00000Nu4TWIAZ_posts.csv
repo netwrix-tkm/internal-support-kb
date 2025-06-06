@@ -1,0 +1,20 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000bUOsbKAG","500Qk00000Nu4TWIAZ","TextPost","0054u000008ARZjAAO","2025-04-10T12:08:04.000Z","Description: I would like to understand how to derive the list of Host Groups that a given Host is a member of. If there is no way to determine this from UI navigation, then I'd like some help building a Job that can report such output. We have a very large number of hosts and host groups, and I've had several use cases for this information. The latest is that owner of a particular Host has been transferred to me without any historical context - other then it may be related to Netwrix. I would like to know which Host Groups the host is a member of so I make an assessment on if the Host was replaced, what Jobs run against it, if it is acting as a proxy for Auditing, and other such questions.","","","","0054u000008ARZjAAO","2025-04-10T12:08:04.000Z"
+"0D5Qk00000bUW0qKAG","500Qk00000Nu4TWIAZ","TextPost","0054u000006gpoAAAQ","2025-04-10T13:29:31.000Z","<p>Definitely going to want to clarify but I assume they are talking about host lists.</p><p><a href=""https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists.htm"" alt=""https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/HostManagement/Lists.htm"" target=""_blank"">Hosts Lists</a></p><p> </p><p>May need to hop on a call to confirm for sure that they aren&#39;t talking about something else.</p>","","","","0054u000006gpoAAAQ","2025-04-10T13:29:31.000Z"
+"0D5Qk00000bajLpKAI","500Qk00000Nu4TWIAZ","TextPost","005Qk00000276ifIAA","2025-04-11T21:26:06.000Z","What We've Learned Updated: DECLARE @Server NVARCHAR(50) = 'MCANDON-FS';
+SELECT Name from HostListsTbl where listID in (
+	SELECT listID FROM HostListsContentTbl where hostID = (
+		SELECT hostID FROM SA_HostMasterTbl where Name = @Server));
+
+##
+##
+
+select hmt.name as Host_Name
+, hlt.name as list_name
+from HostListsContentTbl hlct
+join HostListsTbl hlt on hlt.listID = hlct.listID
+join SA_HostMasterTbl hmt on hmt.hostID = hlct.hostID
+order by hmt.name, hlt.name 
+;","","","","005Qk00000276ifIAA","2025-04-11T21:26:06.000Z"
+"0D5Qk00000bavCLKAY","500Qk00000Nu4TWIAZ","TextPost","005Qk00000276ifIAA","2025-04-11T21:26:38.000Z","Next Steps Updated: 2025_0411: Anticipating feedback from the customer on Monday.","","","","005Qk00000276ifIAA","2025-04-11T21:26:38.000Z"
+"0D5Qk00000bavH2KAI","500Qk00000Nu4TWIAZ","TextPost","005Qk00000276ifIAA","2025-04-11T21:27:20.000Z","<p>DECLARE @Server NVARCHAR(50) = &#39;MCANDON-FS&#39;;</p><p>SELECT Name from HostListsTbl where listID in (</p><p>	SELECT listID FROM HostListsContentTbl where hostID = (</p><p>		SELECT hostID FROM SA_HostMasterTbl where Name = @Server));</p><p> </p><p>++</p><p>++</p><p> </p><p>select <a href=""https://hmt.name/"" alt=""https://hmt.name/"" target=""_blank"">hmt.name</a> as Host_Name</p><p>, <a href=""https://hlt.name/"" alt=""https://hlt.name/"" target=""_blank"">hlt.name</a> as list_name</p><p>from HostListsContentTbl hlct</p><p>join HostListsTbl hlt on hlt.listID = hlct.listID</p><p>join SA_HostMasterTbl hmt on hmt.hostID = hlct.hostID</p><p>order by hmt.name, <a href=""https://hlt.name/"" alt=""https://hlt.name/"" target=""_blank"">hlt.name</a> </p><p>;</p><p> </p>","","","","005Qk00000276ifIAA","2025-04-11T21:27:20.000Z"

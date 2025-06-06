@@ -1,0 +1,91 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000UBln7KAD","500Qk00000KBQwXIAX","TextPost","0054u000008ARZjAAO","2025-01-03T14:04:09.000Z","Description: Hello,
+We are getting the following error when running the scan portion of the filesystem Activity collection Job in Enterprise Auditor. 
+
+Error getting scan database from execution host: Unable to read data from the transport connection: The connection was closed.","","","","0054u000008ARZjAAO","2025-01-03T14:04:09.000Z"
+"0D5Qk00000UBu9XKAT","500Qk00000KBQwXIAX","TextPost","005Qk00000276ifIAA","2025-01-03T16:19:57.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk00000276ifIAA","2025-01-03T16:19:57.000Z"
+"0D5Qk00000UBu9ZKAT","500Qk00000KBQwXIAX","TextPost","005Qk00000276ifIAA","2025-01-03T16:19:58.000Z","Invitation updated. Attendees: Mike Candon, Nicholas Zimmer, Peter Sterianos","","","","005Qk00000276ifIAA","2025-01-03T16:19:58.000Z"
+"0D5Qk00000UBu9YKAT","500Qk00000KBQwXIAX","TextPost","005Qk00000276ifIAA","2025-01-03T16:19:58.000Z","Invitation updated. Attendees: Mike Candon, Nicholas Zimmer","","","","005Qk00000276ifIAA","2025-01-03T16:19:58.000Z"
+"0D5Qk00000UC3aqKAD","500Qk00000KBQwXIAX","TextPost","005Qk00000276ifIAA","2025-01-03T16:30:37.000Z","<p>+++++</p><p>2024_0103: log file analysis (from Nick)</p><p>+++++</p><p>1) LOG LOCATION: [OneDrive - Netwrix CorporationData00431108Stealth Audit Logs 1-3-25Stealth Audit Logs 1-3-250.Collection ActivityGROUP_0.Collection ActivityJOB_1-FSAC System Scans EMCOutput1-FSAC System Scans EMC_Log_20250102_084900] </p><p> </p><p>2) LOG FILE NAME: &quot;1-FSAC System Scans EMC_Log_20250102_084900.tsv&quot;</p><p> </p><p>3) Line 3003: 02/01/2025 09:36:17	ERROR	FILESYSTEMACCESS	ActivityScanTask	&quot;Error getting scan database from execution host: Unable to read data from the transport connection: The connection was closed.&quot;	IS-TEST	DCExtract	7120	9864	8708</p><p> </p><p>4) This indicates that there is an issue with the Tier 2 database.</p>","","","","005Qk00000276ifIAA","2025-01-03T16:30:37.000Z"
+"0D5Qk00000UNrojKAD","500Qk00000KBQwXIAX","TextPost","005Qk00000276ifIAA","2025-01-07T17:00:14.000Z","What We've Learned Updated: +++++
+2024_0103: log file analysis (from Nick)
++++++
+
+1) LOG LOCATION: [OneDrive - Netwrix CorporationData00431108Stealth Audit Logs 1-3-25Stealth Audit Logs 1-3-250.Collection ActivityGROUP_0.Collection ActivityJOB_1-FSAC System Scans EMCOutput1-FSAC System Scans EMC_Log_20250102_084900]
+
+2) LOG FILE NAME: ""1-FSAC System Scans EMC_Log_20250102_084900.tsv""
+
+3) Line 3003: 02/01/2025 09:36:17 ERROR FILESYSTEMACCESS ActivityScanTask ""Error getting scan database from execution host: Unable to read data from the transport connection: The connection was closed."" IS-TEST DCExtract 7120 9864 8708
+
+4) This indicates that there is an issue with the Tier 2 database.
++++++","","","","005Qk00000276ifIAA","2025-01-07T17:00:14.000Z"
+"0D5Qk00000UO2ysKAD","500Qk00000KBQwXIAX","TextPost","005Qk00000276ifIAA","2025-01-07T17:42:15.000Z","Next Steps Updated: +++++
+2024_0107: We met today and here is a summary of the meeting:
++++++
+1) IS-TEST and IS-FS2 are hosts feeding through a proxy server which error in the ""1-FSAC System Scans EMC"" job.
+
+2) On 2 of the proxy servers we navigated to the following folder:
+
+E:Program Files (x86)STEALTHbitsStealthAUDITFSAA
+
+We sorted by type and found old *.tmp files that we deleted for IS-TEST.
+We also confirmed that the customer has adequate disk space.
+
+3) On the customer's FSA Proxy server, the folders for IS-TEST and IS-FS2 had multiple files that appear when copies fail and have a variety of fabricated file extensions.
+These files are junk and can occupy up large amounts of disk space unnecessarily.  We deleted multiple occurrences of these files in the IS-TEST and IS-PROD directories on the FSA Proxy server.
+
+4) On the FSA Proxy server, we also navigated up to the ""FSAA"" directory and re-named the IS-FS2 and IS-TEST directories as IS-FS2_OLD and IS-TEST_OLD so that new directories will be created on the next run.
+We also deleted any ""*Failed.zip"" files (IS-FS2Failed.zip as an example) in these directories.
+
+5) The schedules for these jobs were running right now and would take another day or so so we will let them finish and they start roughly every 6 hours for 3-4 days of the week. 
+
+6) The customer will reach out to use through the case once the next run has begun executing and/or completes successfully.
++++++","","","","005Qk00000276ifIAA","2025-01-07T17:42:15.000Z"
+"0D5Qk00000VqMylKAF","500Qk00000KBQwXIAX","TextPost","005Qk00000276ifIAA","2025-01-30T23:32:12.000Z","<p>Here is a summary of our meeting yesterday (2025_0128):</p><p> </p><p>+++++</p><p>Running NEA v11.6.0.111</p><p>Running NEA File System Scanning Proxy v11.6.0.29</p><p>+++++</p><p> </p><p>+++++</p><p>2025_0128: New error in NEA v11.6.0.111 that you are seeing:</p><p>IS-TEST - Detected Tier 2 databases on remote applet server are newer than local databases. Retrieving databases and skipping scan.</p><p>+++++</p><p> </p><p>+++++</p><p>Other errors</p><p>+++++</p><p>IS-PROD - Cannot scan, Activity Scan needs bulk import.</p><p>IS-TEST - Detected Tier 2 databases on remote applet server are newer than local databases. Retrieving databases and skipping scan.</p><p>IS-FS1 - Cannot scan, Activity Scan needs bulk import.</p><p>+++++</p><p>IS-FS2 seems to be working after the last &quot;fix&quot;.</p><p>IS-TEST on 2025_0126 - Error getting scan database from execution host: Unable to read data from the transport connection. The connection was closed.</p><p>+++++</p><p> </p><p>+++++</p><p>Nick asked - Do you delete the local version of the Tier 2 before you copy or do you merge them? </p><p> </p><p>Peter renames the folder, and it creates a new one, and then he deletes the old folder after it processes.</p><p>Is space a factor or an intermittent issue because of having to rename folders (containing old &quot;duplicate&quot; data) in order to re-process?</p><p> </p><p>Nick - Rather than forcing it to copy. I&#39;d probably do the manual copy ourselves again. </p><p>So I would wipe out the local folder for this one, or at least rename it, and then let&#39;s copy it off of the proxy.</p><p> </p><p>We reviewed the &quot;IS-TEST&quot; folder which was not looking bad with failures (no failures at all). </p><p> </p><p>+++++</p><p>TASK performed on the 2025_0128 call: Copied IS-TEST folder from proxy to local.</p><p>+++++</p><p> </p><p>+++++</p><p>In the future we will want to review the &quot;Event Viewer&quot; to see if anything is getting logged around the time that the NEA FileSystem Activity Scan is failing.</p><p>+++++</p>","","","","005Qk00000276ifIAA","2025-01-30T23:32:12.000Z"
+"0D5Qk00000WbTJQKA3","500Qk00000KBQwXIAX","TextPost","005Qk00000276ifIAA","2025-02-10T18:09:59.000Z","Next Steps Updated: +++++
+2025_0210: Re-test the 'FileSystem Activity' Job at some point by the end of this week.
++++++
+
++++++
+2024_0107: We met today and here is a summary of the meeting:
++++++
+1) IS-TEST and IS-FS2 are hosts feeding through a proxy server which error in the ""1-FSAC System Scans EMC"" job.
+
+2) On 2 of the proxy servers we navigated to the following folder:
+
+E:Program Files (x86)STEALTHbitsStealthAUDITFSAA
+
+We sorted by type and found old *.tmp files that we deleted for IS-TEST.
+We also confirmed that the customer has adequate disk space.
+
+3) On the customer's FSA Proxy server, the folders for IS-TEST and IS-FS2 had multiple files that appear when copies fail and have a variety of fabricated file extensions.
+These files are junk and can occupy up large amounts of disk space unnecessarily.  We deleted multiple occurrences of these files in the IS-TEST and IS-PROD directories on the FSA Proxy server.
+
+4) On the FSA Proxy server, we also navigated up to the ""FSAA"" directory and re-named the IS-FS2 and IS-TEST directories as IS-FS2_OLD and IS-TEST_OLD so that new directories will be created on the next run.
+We also deleted any ""*Failed.zip"" files (IS-FS2Failed.zip as an example) in these directories.
+
+5) The schedules for these jobs were running right now and would take another day or so so we will let them finish and they start roughly every 6 hours for 3-4 days of the week. 
+
+6) The customer will reach out to use through the case once the next run has begun executing and/or completes successfully.
++++++","","","","005Qk00000276ifIAA","2025-02-10T18:09:59.000Z"
+"0D5Qk00000WbTJPKA3","500Qk00000KBQwXIAX","TextPost","005Qk00000276ifIAA","2025-02-10T18:09:59.000Z","What We've Learned Updated: +++++
+2025_0210: 
++++++
+1) NEA was upgrade to version 11.6 on Thursday, 06-Feb-2025.
+ 
+2) There was a Upgrade done on Thursday. I was able to finish the incomplete File System Activity jobs after I manually moved the data to the server, but I have not yet tried a complete run from the start of the schedule without moving the data first.
+
+3) I have a couple other jobs that are failing, and I am trying to get them caught up before doing another run of the 'FileSystem Activity' Job. I will let you know when I am finally caught up and can retest the activity job. Might not be until later this week.
+
++++++
+2024_0103: log file analysis (from Nick)
++++++
+
+1) LOG LOCATION: [OneDrive - Netwrix CorporationData00431108Stealth Audit Logs 1-3-25Stealth Audit Logs 1-3-250.Collection ActivityGROUP_0.Collection ActivityJOB_1-FSAC System Scans EMCOutput1-FSAC System Scans EMC_Log_20250102_084900]
+
+2) LOG FILE NAME: ""1-FSAC System Scans EMC_Log_20250102_084900.tsv""
+
+3) Line 3003: 02/01/2025 09:36:17 ERROR FILESYSTEMACCESS ActivityScanTask ""Error getting scan database from execution host: Unable to read data from the transport connection: The connection was closed."" IS-TEST DCExtract 7120 9864 8708
+
+4) This indicates that there is an issue with the Tier 2 database.
++++++","","","","005Qk00000276ifIAA","2025-02-10T18:09:59.000Z"

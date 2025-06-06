@@ -1,0 +1,1632 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000HSzgHIAT","500Qk00000HTOMyIAP","2024-11-04T15:58:12.000Z","2024-11-04T15:58:12.000Z","Hi Frank,
+
+1) The data not displaying in AIC for some days last week may have been to a delay in data processing.
+Everything in Stealthbits AIC (Netwrix AIC) looked good today.
+You are not in the SteathAUDIT and AIC environments often (at this point in time).
+
+2) In the new year (2025), you should submit separate tickets for the following upgrades:
+
+a) Upgrade StealthAUDIT 11.5 to Netwrix Enterprise Auditor 11.6 - we should also perform a Netwrix AIC upgrade.
+b) Upgrade StealthINTERCEPT (SI) 7.3.7 to Netwrix Threat Prevention (NTP) 7.3.9 or 7.4 and also upgrade NTM Reporting Module - additionally review your ST/NTP database maintenance job
+c) Upgrade StealthDEFEND to the latest available version of Netwrix Threat Manager. 
+
+As per our meeting today, I will close this case.
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 11/1/2024 11:05 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+
+
+
+Thanks, I just scheduled something for Monday.
+
+ 
+
+The query I ran was something along these lines:
+
+ 
+
+ 
+
+use StealthAudit
+
+ 
+
+select  *
+
+from dbo.SA_FSAC_ActivityEventsView
+
+with (nolock)
+
+where accesstime >= '2024-10-30 00:00:00.0000000'
+
+and path like ‘%Avolve%’ 
+
+ 
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, November 1, 2024 10:58 AM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+Can you please provide the query that you ran against the database?
+
+Here is a meeting invite for you to book a meeting so that we can investigate this issue in your environment:
+
+nwxcorp.my.salesforce-sites.com/cts?Id=QSkNqcgxIeCL.OMXcmdwOVzw2RjS52TYiLDw19f0khw-Z&MeetingID=1BmcrSC7uG6uT2Zf4ZTCxhMXaHvypYdg0vmJdIk4r1E-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 11/1/2024 8:35 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+
+ 
+
+
+All of these have run seemingly successfully, but the data is still not present in the web interface.
+
+ 
+
+
+	
+		
+			
+			SA Host
+			
+			
+			Job Name
+			
+			
+			Latest Run
+			
+			
+			Error Count
+			
+			
+			Aborted
+			
+			
+			Host Count
+			
+			
+			Average Host Count
+			
+			
+			Times Run
+			
+			
+			Job Duration
+			
+			
+			Job Standard Deviations
+			
+			
+			Analysis Duration
+			
+			
+			Analysis Standard Deviations
+			
+		
+		
+			
+			STEALTHBITS1
+			
+			
+			1-FSAC System Scans
+			
+			
+			10/31/2024 18:00
+			
+			
+			0
+			
+			
+			FALSE
+			
+			
+			1
+			
+			
+			1
+			
+			
+			65
+			
+			
+			0:00:01:40
+			
+			
+			-0.49
+			
+			
+			0:00:00:00
+			
+			
+			0
+			
+		
+		
+			
+			STEALTHBITS1
+			
+			
+			2-FSAC Bulk Import
+			
+			
+			10/31/2024 18:01
+			
+			
+			0
+			
+			
+			FALSE
+			
+			
+			1
+			
+			
+			1
+			
+			
+			67
+			
+			
+			0:00:16:49
+			
+			
+			-0.75
+			
+			
+			0:00:00:00
+			
+			
+			0
+			
+		
+		
+			
+			STEALTHBITS1
+			
+			
+			3-FSAC Exceptions
+			
+			
+			10/31/2024 18:18
+			
+			
+			0
+			
+			
+			FALSE
+			
+			
+			0
+			
+			
+			0
+			
+			
+			65
+			
+			
+			0:00:21:26
+			
+			
+			-0.18
+			
+			
+			0:00:21:26
+			
+			
+			-0.18
+			
+		
+	
+
+
+ 
+
+ 
+
+Please send me a link to schedule a session with you.
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, October 31, 2024 7:21 PM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+Now that the Repair ran successfully, you would need to run again in order:
+ 
+1-FSAC System Scans
+2-FSAC Bulk Import
+
+Do you want me to send a meeting invite to you so that we can investigate this problem more closely in your environment?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 10/31/2024 1:37 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+
+ 
+
+
+It ended up only taking an hour or so to complete the repair and it looks like the import job ran successfully.
+
+ 
+
+However, when I go to the Stealthbits web page > Access > Resource Audit web page I see that Activity Details from 10/24/2024 to 10/31/2024 seems to be blank. I am looking at a folder that I know has activity and I queried the database directly and see the activity in there.
+
+ 
+
+I had some similar issue like this recently.
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, October 30, 2024 11:26 AM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+1) I see from your email that the Repair tool did complete so this is better news at this time.
+
+2) How long is the Repair option taking to complete?
+Is it a couple (2) of hours or 8-10+ hours?
+If if is 8-10+ hours in the future can you try to run it overnight by setting a Scheduled job?
+
+3) In your installation directory = %SAInstallDir%FSAA (there is a folder called FSAA)
+or something similar to: 
+E:Program Files (x86)STEALTHbitsStealthAUDITFSAA (as an example)
+
+In this FSAA directory where you run the ""Reset Hosts"" option it will generate a log called ""2024_09_09T10_11_47ResetHosts.log"" (as an example).
+In this FSAA directory where you run the ""Repair"" (hosts) option it will generate a log called ""2024_10_30T11_11_49RepairTool.log"" (as an example).
+
+I do not believe that we need them now but please keep them in mind for future reference.
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 10/30/2024 10:54 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+
+ 
+
+
+It did finally complete.
+
+ 
+
+I am running the import now. So far it seems to be working, but I am waiting for it to complete.
+
+ 
+
+I will keep you posted.
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Salah, Frank
+Sent: Wednesday, October 30, 2024 9:03 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+Great thanks!
+
+ 
+
+I did the reset, but the bulk import still seemed to fail with the same error.
+
+ 
+
+I am doing the repair option, but it seems to just stop at 20%. I am not sure if it just takes a long time to run or if it is stuck.
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, October 29, 2024 12:05 PM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+Using ""Reset Hosts"" should not cause data loss nor data duplication.
+
+It also will have no effect on the other (NetApp) hosts.
+
++++++
+NEA - Potential reasons for why we need to reset the GUID in the first place:
++++++
+1) Usually  interrupted scans due to reboot or a job crash. 
+2) Sometimes multiple scans on the same host at the same time attempting to run.
+3) If you are using proxies or targeting windows hosts sometimes network issues can cause partial copy's of the tier 2 storage so when you import the data, it isn't as it should be.
++++++
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 10/29/2024 9:35 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+ 
+
+
+Also, is there a way to determine what would cause this issue that we need to reset the GUID in the first place?
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Salah, Frank
+Sent: Tuesday, October 29, 2024 9:35 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+Thanks for the explanation and thanks for providing the link.
+
+ 
+
+Will this cause any data loss, or does it just cause possible data duplication?
+
+ 
+
+Also, in my environment, we have our NetApp displaying like this in the database (see screenshot) to resolve an issue and maintain previous data. I want to make sure this will not impact this or cause any further issues with this. There should be existing tickets that explains why things were done this way.
+
+ 
+
+ 
+
+
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, October 28, 2024 3:59 PM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+
+	Reset Hosts – Resets the Access GUID column value in the SA_FSAA_Hosts table for the Hosts selected. Allows data to be bulk imported when there is a GUID mismatch.
+
+
+So then when you run your next bulk import it will attempt to do a full import of data regardless of whether the data is there or not.
+
+Please see the following documentation:
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/QuerySelection.htm
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 10/28/2024 9:52 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - ref:_00D7091pB._500Q000HTOMy:ref - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+ 
+
+
+Hi Mike,
+
+ 
+
+Thanks for providing these steps. Before I take any action on this, could you explain exactly what “Reset Hosts” does?
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, October 25, 2024 10:11 AM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+Let me know if you would like to meet.
+Here are the steps that should resolve your issue.
+Please see the attached screenshot.
+
++++++
+1) Open NEA
+
+2) Navigate to: Jobs > FileSystem > ""0.Collection"" > ""1-FSAC System Scans"" > Configure > Queries
+
+3) Click the ""Query Properties"" hyperlink and in the ""Query Properties"" mini-window, click the ""Configure"" button to open the ""File System Access Auditor Data Collector Wizard"".
+
+4) Next in the ""File System Access Auditor Data Collector Wizard"" mini-window, click the ""Maintenance"" button.
+
+5) Take the default option of ""Reset Hosts"" and click the ""Next"" button and select the host(s) for which you want to reset the SQL data.
+
+6) Next run the ""2-FSAC Bulk Import"" which will send you a warning to let you know that it is resetting but it should run cleanly if it works.
+
+** 7) IF this does not resolve your issue then follow the same steps but select ""Maintenance type"" = ""Repair"" on the ""Maintenance Selection"" mini-window.
++++++
+
+
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0HTOMy:ref","RE: Netwrix Support Ticket #425083 -  - Error with 2-FSAC Bulk Import Step    [ ref:!00D70091pB.!500Qk0HTOMy:ref ]","techsupport@netwrix.com","Netwrix Support","fsalah@howardcountymd.gov","eric.szymanski@netwrix.com","","true","2024-11-04T15:58:11.000Z","true"
+"02sQk00000HT18bIAD","500Qk00000HTOMyIAP","2024-11-04T16:03:14.000Z","2024-11-04T16:03:14.000Z","Hi Frank,
+
+I am glad that we were able to get your issue resolved.
+The following is a summary of the ticket for your records.
+
+1) The data not displaying in AIC for some days last week may have been to a delay in data processing.
+Everything in Stealthbits AIC (Netwrix AIC) looked good today.
+You are not in the SteathAUDIT and AIC environments often (at this point in time).
+
+2) In the new year (2025), you should submit separate tickets for the following upgrades:
+
+a) Upgrade StealthAUDIT 11.5 to Netwrix Enterprise Auditor 11.6 - we should also perform a Netwrix AIC upgrade.
+b) Upgrade StealthINTERCEPT (SI) 7.3.7 to Netwrix Threat Prevention (NTP) 7.3.9 or 7.4 and also upgrade NTM Reporting Module - additionally review your ST/NTP database maintenance job
+c) Upgrade StealthDEFEND to the latest available version of Netwrix Threat Manager. 
+
+As per our meeting today, I will close this case.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/4/2024 10:58 AM
+To: fsalah@howardcountymd.gov
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+Hi Frank,
+
+1) The data not displaying in AIC for some days last week may have been to a delay in data processing.
+Everything in Stealthbits AIC (Netwrix AIC) looked good today.
+You are not in the SteathAUDIT and AIC environments often (at this point in time).
+
+2) In the new year (2025), you should submit separate tickets for the following upgrades:
+
+a) Upgrade StealthAUDIT 11.5 to Netwrix Enterprise Auditor 11.6 - we should also perform a Netwrix AIC upgrade.
+b) Upgrade StealthINTERCEPT (SI) 7.3.7 to Netwrix Threat Prevention (NTP) 7.3.9 or 7.4 and also upgrade NTM Reporting Module - additionally review your ST/NTP database maintenance job
+c) Upgrade StealthDEFEND to the latest available version of Netwrix Threat Manager. 
+
+As per our meeting today, I will close this case.
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 11/1/2024 11:05 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+
+
+
+Thanks, I just scheduled something for Monday.
+
+ 
+
+The query I ran was something along these lines:
+
+ 
+
+ 
+
+use StealthAudit
+
+ 
+
+select  *
+
+from dbo.SA_FSAC_ActivityEventsView
+
+with (nolock)
+
+where accesstime >= '2024-10-30 00:00:00.0000000'
+
+and path like ‘%Avolve%’ 
+
+ 
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, November 1, 2024 10:58 AM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+Can you please provide the query that you ran against the database?
+
+Here is a meeting invite for you to book a meeting so that we can investigate this issue in your environment:
+
+nwxcorp.my.salesforce-sites.com/cts?Id=QSkNqcgxIeCL.OMXcmdwOVzw2RjS52TYiLDw19f0khw-Z&MeetingID=1BmcrSC7uG6uT2Zf4ZTCxhMXaHvypYdg0vmJdIk4r1E-Z
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 11/1/2024 8:35 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+
+ 
+
+
+All of these have run seemingly successfully, but the data is still not present in the web interface.
+
+ 
+
+
+	
+		
+			
+			SA Host
+			
+			
+			Job Name
+			
+			
+			Latest Run
+			
+			
+			Error Count
+			
+			
+			Aborted
+			
+			
+			Host Count
+			
+			
+			Average Host Count
+			
+			
+			Times Run
+			
+			
+			Job Duration
+			
+			
+			Job Standard Deviations
+			
+			
+			Analysis Duration
+			
+			
+			Analysis Standard Deviations
+			
+		
+		
+			
+			STEALTHBITS1
+			
+			
+			1-FSAC System Scans
+			
+			
+			10/31/2024 18:00
+			
+			
+			0
+			
+			
+			FALSE
+			
+			
+			1
+			
+			
+			1
+			
+			
+			65
+			
+			
+			0:00:01:40
+			
+			
+			-0.49
+			
+			
+			0:00:00:00
+			
+			
+			0
+			
+		
+		
+			
+			STEALTHBITS1
+			
+			
+			2-FSAC Bulk Import
+			
+			
+			10/31/2024 18:01
+			
+			
+			0
+			
+			
+			FALSE
+			
+			
+			1
+			
+			
+			1
+			
+			
+			67
+			
+			
+			0:00:16:49
+			
+			
+			-0.75
+			
+			
+			0:00:00:00
+			
+			
+			0
+			
+		
+		
+			
+			STEALTHBITS1
+			
+			
+			3-FSAC Exceptions
+			
+			
+			10/31/2024 18:18
+			
+			
+			0
+			
+			
+			FALSE
+			
+			
+			0
+			
+			
+			0
+			
+			
+			65
+			
+			
+			0:00:21:26
+			
+			
+			-0.18
+			
+			
+			0:00:21:26
+			
+			
+			-0.18
+			
+		
+	
+
+
+ 
+
+ 
+
+Please send me a link to schedule a session with you.
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, October 31, 2024 7:21 PM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+Now that the Repair ran successfully, you would need to run again in order:
+ 
+1-FSAC System Scans
+2-FSAC Bulk Import
+
+Do you want me to send a meeting invite to you so that we can investigate this problem more closely in your environment?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 10/31/2024 1:37 PM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+
+ 
+
+
+It ended up only taking an hour or so to complete the repair and it looks like the import job ran successfully.
+
+ 
+
+However, when I go to the Stealthbits web page > Access > Resource Audit web page I see that Activity Details from 10/24/2024 to 10/31/2024 seems to be blank. I am looking at a folder that I know has activity and I queried the database directly and see the activity in there.
+
+ 
+
+I had some similar issue like this recently.
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, October 30, 2024 11:26 AM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+1) I see from your email that the Repair tool did complete so this is better news at this time.
+
+2) How long is the Repair option taking to complete?
+Is it a couple (2) of hours or 8-10+ hours?
+If if is 8-10+ hours in the future can you try to run it overnight by setting a Scheduled job?
+
+3) In your installation directory = %SAInstallDir%FSAA (there is a folder called FSAA)
+or something similar to: 
+E:Program Files (x86)STEALTHbitsStealthAUDITFSAA (as an example)
+
+In this FSAA directory where you run the ""Reset Hosts"" option it will generate a log called ""2024_09_09T10_11_47ResetHosts.log"" (as an example).
+In this FSAA directory where you run the ""Repair"" (hosts) option it will generate a log called ""2024_10_30T11_11_49RepairTool.log"" (as an example).
+
+I do not believe that we need them now but please keep them in mind for future reference.
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 10/30/2024 10:54 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+
+ 
+
+
+It did finally complete.
+
+ 
+
+I am running the import now. So far it seems to be working, but I am waiting for it to complete.
+
+ 
+
+I will keep you posted.
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Salah, Frank
+Sent: Wednesday, October 30, 2024 9:03 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+Great thanks!
+
+ 
+
+I did the reset, but the bulk import still seemed to fail with the same error.
+
+ 
+
+I am doing the repair option, but it seems to just stop at 20%. I am not sure if it just takes a long time to run or if it is stuck.
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, October 29, 2024 12:05 PM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+Using ""Reset Hosts"" should not cause data loss nor data duplication.
+
+It also will have no effect on the other (NetApp) hosts.
+
++++++
+NEA - Potential reasons for why we need to reset the GUID in the first place:
++++++
+1) Usually  interrupted scans due to reboot or a job crash. 
+2) Sometimes multiple scans on the same host at the same time attempting to run.
+3) If you are using proxies or targeting windows hosts sometimes network issues can cause partial copy's of the tier 2 storage so when you import the data, it isn't as it should be.
++++++
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 10/29/2024 9:35 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+ 
+
+
+Also, is there a way to determine what would cause this issue that we need to reset the GUID in the first place?
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Salah, Frank
+Sent: Tuesday, October 29, 2024 9:35 AM
+To: Netwrix Support <techsupport@netwrix.com>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+Thanks for the explanation and thanks for providing the link.
+
+ 
+
+Will this cause any data loss, or does it just cause possible data duplication?
+
+ 
+
+Also, in my environment, we have our NetApp displaying like this in the database (see screenshot) to resolve an issue and maintain previous data. I want to make sure this will not impact this or cause any further issues with this. There should be existing tickets that explains why things were done this way.
+
+ 
+
+ 
+
+
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, October 28, 2024 3:59 PM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+
+	Reset Hosts – Resets the Access GUID column value in the SA_FSAA_Hosts table for the Hosts selected. Allows data to be bulk imported when there is a GUID mismatch.
+
+
+So then when you run your next bulk import it will attempt to do a full import of data regardless of whether the data is there or not.
+
+Please see the following documentation:
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/QuerySelection.htm
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 10/28/2024 9:52 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: RE: Netwrix Support Ticket #425083 - ref:_00D7091pB._500Q000HTOMy:ref - Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+ref:_00D7091pB._500Q000HTOMy:ref
+ 
+
+
+Hi Mike,
+
+ 
+
+Thanks for providing these steps. Before I take any action on this, could you explain exactly what “Reset Hosts” does?
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, October 25, 2024 10:11 AM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com
+Subject: Error with 2-FSAC Bulk Import Step [ ref:!00D70091pB.!500Qk0HTOMy:ref ]
+
+
+
+ 
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+
+ 
+
+
+Hi Frank,
+
+Let me know if you would like to meet.
+Here are the steps that should resolve your issue.
+Please see the attached screenshot.
+
++++++
+1) Open NEA
+
+2) Navigate to: Jobs > FileSystem > ""0.Collection"" > ""1-FSAC System Scans"" > Configure > Queries
+
+3) Click the ""Query Properties"" hyperlink and in the ""Query Properties"" mini-window, click the ""Configure"" button to open the ""File System Access Auditor Data Collector Wizard"".
+
+4) Next in the ""File System Access Auditor Data Collector Wizard"" mini-window, click the ""Maintenance"" button.
+
+5) Take the default option of ""Reset Hosts"" and click the ""Next"" button and select the host(s) for which you want to reset the SQL data.
+
+6) Next run the ""2-FSAC Bulk Import"" which will send you a warning to let you know that it is resetting but it should run cleanly if it works.
+
+** 7) IF this does not resolve your issue then follow the same steps but select ""Maintenance type"" = ""Repair"" on the ""Maintenance Selection"" mini-window.
++++++
+
+
+
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0HTOMy:ref","RE: Netwrix Support Ticket #425083 -  - Error with 2-FSAC Bulk Import Step    [ ref:!00D70091pB.!500Qk0HTOMy:ref ]","techsupport@netwrix.com","Netwrix Support","fsalah@howardcountymd.gov","eric.szymanski@netwrix.com","","true","2024-11-04T16:03:13.000Z","true"

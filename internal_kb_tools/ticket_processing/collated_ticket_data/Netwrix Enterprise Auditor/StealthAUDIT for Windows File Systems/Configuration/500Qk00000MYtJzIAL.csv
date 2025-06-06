@@ -1,0 +1,38 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MYtJzIAL","00437726","Support Ticket","DFS Server Not In Scan","We have a DFS server that is in the ""ALL WINDOWS SERVERS (NO DCS)"" host group, which is being used by the file system jobs, but have no data.","Current understanding is the the needed job was pointed a the wrong host and was not able to correctly populate the data.","•	What is the impact of the issue on your business? 
+	Logging/Monitoring not present for large amount of files.  Unable to look into security issues if they arise.
+•	Who is affected by this issue? 
+	IS Dept
+•	What steps to troubleshoot the issue have already been taken?
+	Verified StealthAudit is able to communicate with server
+•	Is this a new configuration, data collection or report?
+	Server is new, but not anything else
+•	When did this issue start?  
+	Unknown, server was added to environment a few months ago.
+
+It would take 24+ hours for all the jobs to complete that include this server.  I would like to take a look with someone before that time frame.  I have uploaded the existing logs from the last run with ERROR level.","Awaiting Meeting 3/13/2025 10:00 AM","Sean,
+
+Per our call today we again noted the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) 11.5.0.240
+
+We now see that the 0-FSDFS System Scans is completing successfully and we have the missing file server reporting under the needed Flexential job group.
+
+It is not clear as to why updating the FSDFS job to look at a DC rather than a list of host corrected the issue.
+
+The related FSAA/FSAC/SEEK Scans are not referencing the DFS HOST LIST, rather an admin built list of all non DCs
+
+We Confirmed that there is data for the missing server within the FSAA Tables as well as within the AIC.
+I will close out this ticket as we noted.
+
+We have 30days to reopen once the closure email is received.
+
+To reopen we can just reply to that email to bring the case back into my queue.
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. 
+
+Feel free to leave any feedback via the survey link.
+
+Have a great weekend.
+
+Again, thank You for your time.","Incorrect configuration: Netwrix product","Dusty Grayson","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Configuration","11.5","240","8.8","Closed - Resolved","SpecialtyCare","Sean Dion","2025-03-04T21:28:34.000Z","2025-03-13T16:00:27.000Z"

@@ -1,0 +1,54 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000Qa69sKAB","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-11-11T13:59:14.000Z","Description: Post 11.6 upgrade (ticket 00421116)
+multiple FSAA scans are in ""running"" status, but don't seem to have ever started to scan.
+It was 6 servers, but we cleared the running.lck file from the job's folder and restarted the job
+
+Now old 3 servers seem stuck in running status","","","","0054u000007oss5AAA","2024-11-11T13:59:14.000Z"
+"0D5Qk00000RUaEoKAL","500Qk00000I9TLOIA3","TextPost","0054u000007MiY9AAK","2024-11-21T22:14:08.000Z","<p>@Joshua Sexton​ </p><p>Can you pull which ones are marked as still running from the recording? Or ask the customer?</p>","","","","0054u000007MiY9AAK","2024-11-25T18:53:07.000Z"
+"0D5Qk00000Rk12WKAR","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-11-25T19:43:48.000Z","Description Updated: Post 11.6 upgrade (ticket 00421116)
+multiple FSAA scans are in ""running"" status, but don't seem to have ever started to scan.
+It was 6 servers, but we cleared the running.lck file from the job's folder and restarted the job
+
+Now only 3 servers seem stuck in running status","","","","0054u000007oss5AAA","2024-11-25T19:43:48.000Z"
+"0D5Qk00000Rk3zzKAB","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-11-25T19:43:59.000Z","Steps to Reproduce Updated: running FSAA jobs","","","","0054u000007oss5AAA","2024-11-25T19:43:59.000Z"
+"0D5Qk00000RjvrjKAB","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-11-25T19:45:49.000Z","Next Steps Updated: marked for discussion in TKS","","","","0054u000007oss5AAA","2024-11-25T19:45:49.000Z"
+"0D5Qk00000RjvriKAB","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-11-25T19:45:49.000Z","What We've Learned Updated: The servers that are hung in ""running"" status are:
+AM-PBRFS-S121
+ML-PI3RCRD-S121
+SHQFL001
+
+provided logs to T2 (Tay)
+
+From T2:
+Error:
+30/10/2024 20:24:38 ERROR FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""System.InvalidCastException: Unable to cast COM object of type 'System.__ComObject' to interface type 'Stealthbits.StealthAUDIT.DataCollectors.ISADCTaskHost'. This operation failed because the QueryInterface call on the COM component for the interface with IID '{D921D431-43E4-4750-93C9-577AE47C86AC}' failed due to the following error: Interface not registered (Exception from HRESULT: 0x80040155).   at System.StubHelpers.StubHelpers.GetCOMIPFromRCW(Object objSrc, IntPtr pCPCMD, IntPtr& ppTarget, Boolean& pfNeedsRelease)   at Stealthbits.StealthAUDIT.DataCollectors.ISADCTaskHost.WriteInformation(String scope, String message)   at Stealthbits.StealthAUDIT.DataCollectors.Logging.DCLogWriter.Write(TraceEventType severity, String methodName, String message)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Log.Write(TraceEventType type, String message)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.Log.Info(String message)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.AccessScanTask.<InternalProcessRecordAsync>d__2.MoveNext() --- End of stack trace from previous location where exception was thrown ---   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.AccessScanTask.InternalProcessRecord()   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()"" AM-PBRFS-S122 DCExtract 32 7512 2024
+
+ It looks like ML-PI3RCRD-S121 gets 79% done but then vanishes from the log. SHQFL001 does scan 100% but may not be ending gracefully.","","","","0054u000007oss5AAA","2024-11-25T19:45:49.000Z"
+"0D5Qk00000RnQnHKAV","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-11-26T16:18:19.000Z","Next Steps Updated: marked for discussion in TKS
+
+check the timing of the job
+there could be something affecting it such as backup
+
+double check Task Manager
+-check for hung processes
+-or just reboot","","","","0054u000007oss5AAA","2024-11-26T16:18:19.000Z"
+"0D5Qk00000S5smTKAR","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-12-02T14:58:10.000Z","<p>based on TKS meeting:</p><p> </p><p>Things to look at</p><p> </p><ul><li>Check bulk import for the erroring hosts- is anything hung?</li><li>What mode are these scans using? (Proxy, local, applet)</li><li>Resource limitation on the SQL server</li><li>Is other things going on in the SQL db? (ie. backups, other FS scans/bulk imports)</li><li>Check task manager for any hung processes in memory --worth a reboot<ul><li>Reboot already completed</li></ul></li></ul><p> </p>","","","","0054u000007oss5AAA","2024-12-02T14:58:10.000Z"
+"0D5Qk00000S801HKAR","500Qk00000I9TLOIA3","TextPost","0054u000007MiY9AAK","2024-12-02T22:21:10.000Z","<p>#EAM -- T. Caliguiri</p><p>Current Status: Awaiting Client</p><p>Last Update: Waiting for the customer to schedule a meeting so we can review the job schedule and verify resources</p><p> </p><p>Additional Info/Follow Up: </p>","","","","0054u000007MiY9AAK","2024-12-02T22:21:10.000Z"
+"0D5Qk00000TMpTCKA1","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-12-19T19:34:40.000Z","<p>NEA 11.6.0.113</p><p>right now, just that particular job</p><p> </p><p>SEEK scan running for 27 days and counting</p><p>including SHQFL001</p><p>-still seems to be working</p><p> </p><p>SHQFL001</p><p>ML-PI3RCRD-S121</p><p>FSAA scan is still &quot;running&quot;</p><p> </p><p>Another server, AM-PBRFS-S121 also stuck in &quot;running&quot; but it&#39;s been decommissioned</p><p> </p><p>all servers run backup at 8-9PM every night</p><p> </p><p>creating a test FSAA scan for just server ML-P13RCRD-S121</p><p>seems to be working</p><p>-it&#39;s a busy, big server</p><p> </p><p>Maybe a UI issue</p><p> </p><p>checking the bulk import statistics on previous runs, it looks to be importing millions of files form the problematic servers each time it&#39;s ran</p><p>-really looking like a UI issue</p><p>doesn&#39;t look like any related bug fixes have are in newer builds</p><p> </p><p>client is going to let the SEEL scan finish and then run the FSAA scan</p><p> </p><p>keeping ticket open in the meantime</p><p> </p><p> </p><p> </p><p> </p>","","","","0054u000007oss5AAA","2024-12-19T19:34:40.000Z"
+"0D5Qk00000TMhpCKAT","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-12-19T19:37:09.000Z","What We've Learned Updated: The servers that are hung in ""running"" status are:
+AM-PBRFS-S121
+ML-PI3RCRD-S121
+SHQFL001
+
+---------------
+investigating the bulk imports, it seems like the servers are actually finishing and uploading
+this might just be a UI issue
+
+We ran a test on ML-P13RCRD-S121
+-it seems to be working
+
+client will kick off the FSAA scan again when the current SEEK scan finishes
+27 days and counting
+-this is expected","","","","0054u000007oss5AAA","2024-12-19T19:37:09.000Z"
+"0D5Qk00000TMhpDKAT","500Qk00000I9TLOIA3","TextPost","0054u000007oss5AAA","2024-12-19T19:37:09.000Z","Next Steps Updated: wait for SEEK scan to finish then kick off FSAA scan again
+client will let us know when SEEK finishes","","","","0054u000007oss5AAA","2024-12-19T19:37:09.000Z"

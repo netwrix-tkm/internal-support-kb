@@ -1,0 +1,173 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000K97GTIAZ","00431040","Support Ticket","Database - old data cleanup","Previous administrators of StealthAudit look to have created a ton of SQL tables that are no longer being used.  What is the best way to remove these?  I will attach a screenshot showing a sample.
+
+Also, possibly database related - When I am in Settings > Connections, I see domains listed that I don't believe should be there. I'm not sure where they came from or how to remove them.","","+++++
+StealthAudit Database backup guidelines using the MS SQL Server Management Studio Console:
++++++
+
+1) Open NEA and and click on Running Instances to ensure that no jobs are running.  
+You should disable all NRA Jobs that may try to run during the time frame that the MS SQL Server database backup of the StealthAudit DB is running.
+
+2) Open ""Services.msc"", disable and shutdown the NEA ""AccessInformationCenter"" and ""NetwrixEnterpriseAuditorWeb"" services
+
+OR use the following PowerShell commands or equivalent to do so:
+ 
+# BEFORE conducting the NEA StealthAudit DB backup
+
+Get-Service | Where-Object {($_.Name -Like ""*NetwrixEn*"" -or $_.Name -Like ""*AccessInfo*"")} | Select Status, Name, DisplayName, StartType;
+
+Stop-Service  -Name AccessInformationCenter |  Set-Service  -StartupType ""Disabled"";
+Stop-Service  -Name NetwrixEnterpriseAuditorWeb | Set-Service  -StartupType ""Disabled"";
+
+3) Open the MS SQL Server Management Studio Console and expand the databases.
+Right-click on the ""StealthAudit"" database and select ""Tasks"" > ""Back Up"" and select options and the location for the backup using the built-in functionality.
+
+4) Ensure that that the StealthAudit database backup is complete.
+
+5) In the Services console on your application server where NEA is running
+, re-enable and start the the NEA ""AccessInformationCenter"" and ""NetwrixEnterpriseAuditorWeb"" services.
+
+OR use the following PowerShell commands: 
+
+# AFTER THE BACKUP HAS COMPLETED
+
+Set-Service -Name AccessInformationCenter -StartupType ""Automatic"";
+Start-Service -Name AccessInformationCenter;
+
+Set-Service -Name NetwrixEnterpriseAuditorWeb -StartupType ""Automatic"";
+Start-Service -Name NetwrixEnterpriseAuditorWeb; 
+
+6) If you further compress the MS SQL Server ""StealthAudit.bak"" file, you may find that you can additionally reduce the size of the backup for archiving and storage purposes.
+
+
++++++
++++++","","+++++
+2025_0114: Meeting Notes
++++++
+--
+-- Purge_Data_from_SA_Messages_table
+--
+
+Use [StealthAudit];
+
+-- drop table [dbo].[SA_Messages_BAK];
+
+select count(*) from [StealthAudit].[dbo].[SA_Messages];
+select * from [StealthAudit].[dbo].[SA_Messages];
+select * from [StealthAudit].[dbo].[SA_Messages_BAK];
+
+
+-- 1) CORRECT method to create the table = StealthAudit.[dbo].[SA_Messages_BAK]
+
+-- select * into StealthAudit.[dbo].[SA_Messages_BAK] from StealthAudit.[dbo].[SA_Messages] where JobRunTimeKey >= '2020-01-01';
+
+select * into [dbo].[SA_Messages_BAK] from [dbo].[SA_Messages] where JobRunTimeKey >= '2024-01-01';
+
+
+
+-- 2) Build OOTB indexes on the StealthAudit.[dbo].[SA_Messages_BAK] table that you created in Step 1
+
+SET ANSI_PADDING ON;
+ 
+CREATE NONCLUSTERED INDEX [Messages_Host_Index] ON [dbo].[SA_Messages_BAK]
+(	[HOST] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
+ 
+SET ANSI_PADDING ON;
+ 
+CREATE NONCLUSTERED INDEX [Messages_JobName_Index] ON [dbo].[SA_Messages_BAK]
+(	[JobName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
+ 
+CREATE NONCLUSTERED INDEX [Messages_JobRuntimeKey_Index] ON [dbo].[SA_Messages_BAK]
+(   [JobRunTimeKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
+ 
+SET ANSI_PADDING ON;
+ 
+CREATE UNIQUE NONCLUSTERED INDEX [Messages_PK_Index] ON [dbo].[SA_Messages_BAK]
+(	[SA_HOST] ASC,
+	[rowGUID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY];
+
+ 
+ALTER TABLE [dbo].[SA_Messages_BAK] ADD DEFAULT (newsequentialid()) FOR [rowGUID];
+
+select db_name();
+
+Use StealthAudit;
+-- 3) Drop the table = StealthAudit.[dbo].[SA_Messages]
+-- IF EXISTS ((SELECT * from sys.tables where name IN ('SA_Messages')) INTERSECT (SELECT * from sys.tables where name IN ('SA_Messages_BAK)')))  DROP TABLE [dbo].[SA_Messages];
+-- IF EXISTS (SELECT * from sys.tables where name IN ('SA_Messages','SA_Messages_BAK)')) DROP TABLE [dbo].[SA_Messages];
+
+-- drop table dbo.SA_Messages_BAK;
+
+
+-- 4) Rename the table = StealthAudit.[dbo].[SA_Messages_BAK] to StealthAudit.[dbo].[SA_Messages]
+
+EXEC sp_rename 'SA_Messages_BAK', 'SA_Messages';
+
++++++
+
+Use StealthAUDIT;
+
+select concat('drop table ', db_name(),'.dbo.[',name,'];') from StealthAudit.sys.tables st where name like 'DB_E%';
+
+select * from StealthAudit.sys.tables st where name like 'SA_September2011%';
+select * from StealthAudit.sys.tables st where name like 'SA_September2012%';
+
+select concat('drop table ', db_name(),'.dbo.[',name,'];') from StealthAudit.sys.tables st where name like 'SA_September2011%';
+
+select concat('drop table ', db_name(),'.dbo.[',name,'];') from StealthAudit.sys.tables st where name like 'SA_September2012%';
+
++++++
++++++
+ 
+Remove Domain Audit Data from Reports − Drop Domains
+
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000000R3RKAU.html
+
++++++
++++++
+
++++++
+StealthAudit Database backup guidelines using the MS SQL Server Management Studio Console:
++++++
+
+1) Open NEA and and click on Running Instances to ensure that no jobs are running.  
+You should disable all NRA Jobs that may try to run during the time frame that the MS SQL Server database backup of the StealthAudit DB is running.
+
+2) Open ""Services.msc"", disable and shutdown the NEA ""AccessInformationCenter"" and ""NetwrixEnterpriseAuditorWeb"" services
+
+OR use the following PowerShell commands or equivalent to do so:
+ 
+# BEFORE conducting the NEA StealthAudit DB backup
+
+Get-Service | Where-Object {($_.Name -Like ""*NetwrixEn*"" -or $_.Name -Like ""*AccessInfo*"")} | Select Status, Name, DisplayName, StartType;
+
+Stop-Service  -Name AccessInformationCenter |  Set-Service  -StartupType ""Disabled"";
+Stop-Service  -Name NetwrixEnterpriseAuditorWeb | Set-Service  -StartupType ""Disabled"";
+
+3) Open the MS SQL Server Management Studio Console and expand the databases.
+Right-click on the ""StealthAudit"" database and select ""Tasks"" > ""Back Up"" and select options and the location for the backup using the built-in functionality.
+
+4) Ensure that that the StealthAudit database backup is complete.
+
+5) In the Services console on your application server where NEA is running
+, re-enable and start the the NEA ""AccessInformationCenter"" and ""NetwrixEnterpriseAuditorWeb"" services.
+
+OR use the following PowerShell commands: 
+
+# AFTER THE BACKUP HAS COMPLETED
+
+Set-Service -Name AccessInformationCenter -StartupType ""Automatic"";
+Start-Service -Name AccessInformationCenter;
+
+Set-Service -Name NetwrixEnterpriseAuditorWeb -StartupType ""Automatic"";
+Start-Service -Name NetwrixEnterpriseAuditorWeb; 
+
+6) If you further compress the MS SQL Server ""StealthAudit.bak"" file, you may find that you can additionally reduce the size of the backup for archiving and storage purposes.
+
+
++++++
++++++","Guidance","Mike Candon","Question","Netwrix Enterprise Auditor","StealthAUDIT General","Health Check Request","11.6","","12.2","Closed - Resolved","Nexidia","Angie Sawyer","2025-01-02T16:52:17.000Z","2025-01-14T21:50:04.000Z"

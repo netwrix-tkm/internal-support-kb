@@ -1,0 +1,84 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008OTx7IAG","500Qk00000E2QWDIA3","1-FSAA System Scans - BWI03APPSP00123_Log_20240802_182000.tsv
+
+
+02/08/2024 18:20:39	INFO	FILESYSTEMACCESS	AccessScanTask	""Lock already held at D:STEALTHbitsStealthAUDITFSAAfsaa_certificate_exchange.lock, waiting to retry...""	BWI1BFILEP00002.AERO.LOCAL	DCExtract	17332	17396	12016
+02/08/2024 18:20:39	DEBUG	FILESYSTEMACCESS	AccessScanTask	""Using certificate authority: Friendly Name = FSAA Certificate Authority 6/19/2024 1:58:07 PM, Thumbprint = B3E31ACCB4D4188F5065355FEB18286ED6973897""	BWI03FILEP00003.WYLE.COM	DCExtract	4236	17396	12016
+02/08/2024 18:20:39	INFO	FILESYSTEMACCESS	AccessScanTask	""Lock already held at D:STEALTHbitsStealthAUDITFSAAfsaa_certificate_exchange.lock, waiting to retry...""	BWI1AFILEP00001.AERO.LOCAL	DCExtract	8508	17396	12016
+02/08/2024 18:20:39	INFO	FILESYSTEMACCESS	AccessScanTask	""Lock already held at D:STEALTHbitsStealthAUDITFSAAfsaa_certificate_exchange.lock, waiting to retry...""	BWI03FILEP00008.AERO.LOCAL	DCExtract	17128	17396	12016","00570000003KXurAAG","2024-08-07T15:09:56.000Z","2024-08-07T15:09:56.000Z","false","false"
+"00aQk000008P1E1IAK","500Qk00000E2QWDIA3","Check the gpo/secpol.msc for an entry 
+
+""Network access: Restrict clients allowed to make remote calls to SAM"" Local Policies > Security Options privilege
+
+...
+
+****Local Policies/Security inplace:
+Policy: Network access: Restrict clients allowed to make remote calls to SAM	
+Setting"" O:BAG:BAD:(A;;RC;;;BA)
+
+****Copilot Breakdown of this settings  ****
+The policy “Network access: Restrict clients allowed to make remote calls to SAM” controls which users can remotely access the Security Accounts Manager (SAM) database. This database contains user account information and security descriptors for users and groups.
+
+The setting “O:BAG:BAD:(A;;RC;;;BA)” is a Security Descriptor Definition Language (SDDL) string. Here’s a breakdown of what it means:
+
+O:BAG:BAD: This part defines the owner and group of the object. “BA” stands for Built-in Administrators.
+(A;;RC;;;BA): This part is an Access Control Entry (ACE). It grants the “RC” (Read Control) permission to the “BA” (Built-in Administrators) group.
+In simpler terms, this policy setting allows only the Built-in Administrators group to make remote calls to the SAM database.
+
+This policy is important for security because it restricts who can remotely query user and group information, reducing the risk of unauthorized access.
+
+References:
+Network access: Restrict clients allowed to make remote calls to SAM
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/network-access-restrict-clients-allowed-to-make-remote-sam-calls
+
+Restrict clients allowed to make remote sam calls
+https://learn.microsoft.com/en-us/answers/questions/421171/restrict-clients-allowed-to-make-remote-sam-calls","00570000003KXurAAG","2024-08-07T20:44:12.000Z","2024-08-08T12:49:37.000Z","false","false"
+"00aQk000008OyZWIA0","500Qk00000E2QWDIA3","Netwrix Enterprise Auditor v11.6 > Administration > Global Settings > Access > Role Based Access > Roles & the Schedule Service Account
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RoleBased/ScheduleServiceAccount.htm","00570000003KXurAAG","2024-08-07T20:47:16.000Z","2024-08-07T20:47:16.000Z","false","false"
+"00aQk000008Q91SIAS","500Qk00000E2QWDIA3","Common Language Runtime (CLR) overview
+https://learn.microsoft.com/en-us/dotnet/standard/clr
+
+Log Name:      Application
+Source:        Windows Error Reporting
+Date:          7/26/2024 8:02:01 AM
+Event ID:      1001
+Task Category: None
+Level:         Information
+Keywords:      Classic
+User:          N/A
+Computer:      
+Description:
+Fault bucket 1213112004677044059, type 1
+Event Name: APPCRASH
+Response: Not available
+Cab Id: 0
+
+Problem signature:
+P1: StealthAudit.EXE
+P2: 11.6.1414.275
+P3: 663b69f5
+P4: clr.dll
+P5: 4.7.4101.0
+P6: 665f7eb9
+P7: c0000005
+P8: 0003a0ce
+P9: 
+P10: 
+
+Attached files:
+\?C:ProgramDataMicrosoftWindowsWERTempWER9732.tmp.mdmp
+\?C:ProgramDataMicrosoftWindowsWERTempWER9BE6.tmp.WERInternalMetadata.xml
+\?C:ProgramDataMicrosoftWindowsWERTempWER9C93.tmp.xml
+\?C:ProgramDataMicrosoftWindowsWERTempWER9CA0.tmp.csv
+\?C:ProgramDataMicrosoftWindowsWERTempWER9CF0.tmp.txt
+
+These files may be available here:
+\?C:ProgramDataMicrosoftWindowsWERReportArchiveAppCrash_StealthAudit.EXE_51c7555b9397092977d31f625da5e5827f86d88_75aede5e_0294a26d
+
+Analysis symbol: 
+Rechecking for solution: 0
+Report Id: 71fbf5f1-b881-4e90-936a-52ec921af2f5
+Report Status: 268435456
+Hashed bucket: 204a8efcf9e7a3bb60d5d6f0df89875b
+Cab Guid: 0","00570000003KXurAAG","2024-08-08T18:51:03.000Z","2024-08-08T18:51:03.000Z","false","false"

@@ -1,0 +1,28 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NXG0nIAH","00440529","Support Ticket","Bulk delete FSAA data","Hello,
+
+We would like to delete FSAA data for a number of hosts in bulk. How can we safely accomplish this?
+
+Thanks,
+Iurii Druchuk","","They are not collecting FSAC data
+looks like they should be able to as part of STA-FSI license
+
+need to confirm
+
+Since they don't have FSAC data, should be able to drop the desired host according to KB for decommissioned FS hosts
+
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+---------------
+
+client want to keep SDD scan data for those hosts, so I don't think the decommissioned host plan will work. That should delete everything
+
+---------------
+The client's use case is related to ticket 00412142
+they are using a custom script to omit workstations from broken inheritance scans
+they don't like using custom scripts but I don't think there is another option
+
+They want to setup FSAC
+this will require it's own ticket","waiting for confirmation from client on how they'd like to proceed","We have had issues with analyzing Broken Inheritance and data for our workstations, the main issue being that the Broken Inheritance analysis task would run endlessly, filing up the tempdb in the process. The workaround was to modify the SQL Query for Broken Inheritance and limit it to only run against our file server, and skip processing all the FSAA data from around 300 workstations. You can find more details can be found in ticket 00412142. 
+
+Naturally, we wanted to avoid having custom SQL queries in our configurations, hence the idea to stop scanning FSAA on workstations and delete any currently existing data. However, it does seem like this is not the option, and we may need to continue having the custom SQL query.","Data validation / interpretation","Joshua Sexton","Performance","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.6","138","8.7","Closed - Resolved","Columbia University","Columbia University IT Department","2025-03-31T20:12:28.000Z","2025-04-09T13:16:42.000Z"

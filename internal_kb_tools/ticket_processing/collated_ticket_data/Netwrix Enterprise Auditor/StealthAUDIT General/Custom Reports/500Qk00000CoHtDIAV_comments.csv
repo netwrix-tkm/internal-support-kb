@@ -1,0 +1,201 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007ojkIIAQ","500Qk00000CoHtDIAV","I'd bet some of these reports were running during a Bulk import. 
+Confirm run times and see if there was any overlap. Or possibly multiple reports were running at the same time.","0054u000006gpoAAAQ","2024-07-09T13:37:31.000Z","2024-07-22T14:03:56.000Z","false","false"
+"00aQk000008Dm3pIAC","500Qk00000CoHtDIAV","appears that proxies were inadvertently installed to incorrect drive during last upgrade which was likely causing issues due to lack of drive space. proxies are now installed to correct drive and follow up meeting scheduled for 7/31 3pm ET.","0054u000006goFUAAY","2024-07-29T23:06:45.000Z","2024-07-29T23:07:31.000Z","false","false"
+"00aQk000008fKqzIAE","500Qk00000CoHtDIAV","Issue
+
+Permission scanning errors and issues
+
+Cause
+
+A network share caused the FSAA system scan to run for extended periods before ultimately aborting the scan. 
+
+Resolution
+
+Discovered that shares weren't accessible due to an access denied error for some shares/subfolders existing on a NetApp server. We determined that having another meeting after running the scan additional exclusions for share is needed for further investigation. 
+
+We discovered that the FSAA proxies were installed in a different directory than what originally was scanned. This may have caused a storage issue with the tier 2 data compression process. We uninstalled the proxies and installed them on the designated drives with an increased amount of space. Additionally, we included folder and share exclusions for a problematic share prompting access denied within the FSAA scans.
+
+We discovered that the scheduled FSAA task started a secondary scan after the initial scan started. We then investigated job logs and discovered that the scheduled task timed out and then the secondary task was initiated. We then made changes to the query properties of the FSAA scan not to restart and continue where the scan left off. We then restarted the scan and suggested monitoring the scan after changes were made. 
+
+We discovered that the FSAA system scan was able to progress past the network share that was causing it to previously hang. We suggested allowing for the scan to run again, monitor the job and if you experience a hang time with the FSAA system scan again please generate a process dump on the FSAA proxy host using the steps provided in the documentation below.","0054u000007MdqrAAC","2024-08-21T21:20:45.000Z","2024-08-21T21:20:45.000Z","false","false"
+"00aQk000008kAKjIAM","500Qk00000CoHtDIAV","Problem Statement/Business Impact:
+
+Describe specifically what the customer is trying to accomplish.
+
+FSAA System Scan is hanging for extended periods of time causing the customer to manually abort the job. Due to the hanging of the FSAA System Scan the customer has either had to run an incomplete file system bulk import or has had to postpone his Bulk Import jobs to allow for a resolution of this issue. 
+
+After running the job multiple times in an attempt to identify the root cause of this issue there initially was a cause for concern on a specific network share that caused the job to hang for abnormal amounts of time. Upon gathering process dumps, job log exports and reviewing the SQL scripts associated with the analysis task of the job. We decided to exclude the network share mentioned in the logs correlating to the time displayed in the running instances. 
+
+Once this network share was excluded we then attempted to run the again and received a successful run. As of 8/26/2024, the customer has reported that the job has gotten stuck again and has provided additional process dumps of the job as well as reports of the data analysis tasks. I have also requested that the customer provide a msinfo32 dump of the NEA server as well. 
+
+Desired Outcome:
+
+How should the results appear or be presented to the user?
+
+The user is expecting to view file system permissions without the job hanging and never completing. 
+
+What is the expected outcome?
+
+To run the file system permissions scans successfully without experiencing the job being in a suspended or hanging state and successfully getting results for the file system permission scans.
+
+Troubleshooting completed/Notes: 
+
+Discovered that shares weren't accessible due to an access denied error for some shares/subfolders existing on a NetApp server. We determined that having another meeting after running the scan additional exclusions for share is needed for further investigation.
+
+We discovered that the FSAA proxies were installed in a different directory than what originally was scanned. This may have caused a storage issue with the tier 2 data compression process. We uninstalled the proxies and installed them on the designated drives with an increased amount of space. Additionally, we included folder and share exclusions for a problematic share prompting access denied within the FSAA scans.
+
+We discovered that the scheduled FSAA task started a secondary scan after the initial scan started. We then investigated job logs and discovered that the scheduled task timed out and then the secondary task was initiated. We then made changes to the query properties of the FSAA scan so as not to restart and continue where the scan left off. We then restarted the scan and suggested monitoring the scan after changes were made.
+
+We discovered that the FSAA system scan was able to progress past the network share that was causing it to previously hang. We suggested allowing for the scan to run again, monitor the job and if you experience a hang time with the FSAA system scan again please generate a process dump on the FSAA proxy host using the steps provided in the documentation below.
+
+Ensure relevant logs are uploaded to SPO:
+
+All process dumps, msinfo32 exports, proxy logs and screenshots uploaded to the ticket.","0054u000007MdqrAAC","2024-08-26T17:23:44.000Z","2024-08-26T17:23:44.000Z","false","false"
+"00aQk000008s2bJIAQ","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Account ACV has been changed to 758569.00.","0054u000006gpoAAAQ","2024-09-02T16:16:29.000Z","2024-09-02T16:16:29.000Z","false","false"
+"00aQk000008s2cvIAA","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Account ACV has been changed to 379284.50.","0054u000006gpoAAAQ","2024-09-02T16:16:30.000Z","2024-09-02T16:16:30.000Z","false","false"
+"00aQk000008vg4MIAQ","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-05T15:46:29.000Z","2024-09-05T15:46:29.000Z","false","false"
+"00aQk000008vg4OIAQ","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: Adam DeSapio:
+
+@Salesforce @Michael Burrofato 
+
+Going through the job logs, it looks like there is evidence of the hang on a scan started on 8/24. We don't have rpc (parent and child) or applet logs corresponding to this scan at debug level for the problematic host, which would help to investigate this issue.
+The error code in the msinfo32 dump says there is heap corruption.
+This may be related to another issue already being investigated scanning NFS exports in 11.6.
+
+[DevOps CommentId:10884000]","0054u000006gtWUAAY","2024-09-05T15:46:30.000Z","2024-09-05T15:46:30.000Z","false","false"
+"00aQk000008w6ZzIAI","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-09-05T18:28:36.000Z","2024-09-05T18:28:36.000Z","false","false"
+"00aQk0000091lu9IAA","500Qk00000CoHtDIAV","Hey guys can you review the newer log,
+logs_dump_2024-09-01.zip
+
+I have requested the rpc logs. to go with but they have the job exported as well as the RPC dump file.","0054u000006gpoAAAQ","2024-09-10T20:14:36.000Z","2024-09-10T20:14:36.000Z","false","false"
+"00aQk0000091lqxIAA","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: Hey guys can you review the newer log,
+logs_dump_2024-09-01.zip
+
+I have requested the rpc logs. to go with but they have the job exported as well as the RPC dump file.","0054u000006gpoAAAQ","2024-09-10T21:24:14.000Z","2024-09-10T21:24:14.000Z","false","false"
+"00aQk0000092gQzIAI","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-11T15:30:44.000Z","2024-09-11T15:30:44.000Z","false","false"
+"00aQk0000092gR1IAI","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: Ethan Israel:
+
+@Salesforce @Helen Randall - hey Nick, dev already reviewed that zip during the initial triage of this escalation. Based on the full review of the provided artifacts we're thinking this may be related to an NFS scanning issue that another customer is seeing that's already being worked on but we'll need the requested RPC and applet logs to confirm or to do any further investigation. 
+
+[DevOps CommentId:10912843]","0054u000006gtWUAAY","2024-09-11T15:30:44.000Z","2024-09-11T15:30:44.000Z","false","false"
+"00aQk0000092yZDIAY","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-09-11T19:03:55.000Z","2024-09-11T19:03:55.000Z","false","false"
+"00aQk0000092yapIAA","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-11T19:04:06.000Z","2024-09-11T19:04:06.000Z","false","false"
+"00aQk0000094Ql7IAE","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-09-12T18:18:00.000Z","2024-09-12T18:18:00.000Z","false","false"
+"00aQk00000961M2IAI","500Qk00000CoHtDIAV","What we want:  Proof of a scan that hangs. 
+Id check current job logs and scan times to see if you can find a recent one where it did hang.
+If you find one then we need any and all corresponding Debug Job logs/Applet logs/RPClogs in the FSAA folder. on the NEA HOST and Proxy.
+If you don't find one. I believe there were exclusions set up to avoid a specific share.  If youcan modify those and kick off a fresh scan and then it hangs collect those artifacts.
+While not necessary if you kick a fresh one off also try to get a procdump. 
+If unsure poke Ethan Israel for confirmation or any questions.","0054u000006gpoAAAQ","2024-09-13T21:43:22.000Z","2024-09-13T21:43:22.000Z","false","false"
+"00aQk000009BMxiIAG","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: Artifacts can be found in NEA 09172024.zip in the SP. (disregard the AIC folder, that was for another case)","0054u000007MiY9AAK","2024-09-18T21:25:06.000Z","2024-09-18T21:25:06.000Z","false","false"
+"00aQk000009DWhdIAG","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-09-20T13:20:43.000Z","2024-09-20T13:20:43.000Z","false","false"
+"00aQk000009HertIAC","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-24T14:49:12.000Z","2024-09-24T14:49:12.000Z","false","false"
+"00aQk000009HervIAC","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: Adam DeSapio:
+
+@Chris Brooks @Salesforce 
+
+The job logs for the FSAA scans are not at debug level.
+We are going to need to get all the logs from a run that experiences the issue with the job log at debug level
+
+[DevOps CommentId:10969747]","0054u000006gtWUAAY","2024-09-24T14:49:13.000Z","2024-09-24T14:49:13.000Z","false","false"
+"00aQk000009IADSIA4","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-09-24T20:02:23.000Z","2024-09-24T20:02:23.000Z","false","false"
+"00aQk000009L7fdIAC","500Qk00000CoHtDIAV","Sent Pod LInk to do a full upgrade of NEA and all other NEA components to the latest 11.6 versions. 
+Then at that point we need all FS related jobs and logs set to debug to see if problems continue and gather results for development.","0054u000006gpoAAAQ","2024-09-26T21:16:38.000Z","2024-09-26T21:16:38.000Z","false","false"
+"00aQk000009QePdIAK","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-02T05:03:27.000Z","2024-10-02T05:03:27.000Z","false","false"
+"00aQk000009QePfIAK","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-24 18:01 UTC and the last detected comment from support was 2024-09-18 21:25 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11001932]","0054u000006gtWUAAY","2024-10-02T05:03:28.000Z","2024-10-02T05:03:28.000Z","false","false"
+"00aQk000009RRDSIA4","500Qk00000CoHtDIAV","I created a new ticket for the upgrade and did a preflight meeting.
+We can resume this ticket once the upgrade is completed.","0054u000007osjSAAQ","2024-10-02T18:03:35.000Z","2024-10-02T18:03:35.000Z","false","false"
+"00aQk000009YgNqIAK","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-24 18:01 UTC and the last detected comment from support was 2024-09-18 21:25 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11031430]","0054u000006gtWUAAY","2024-10-09T05:03:39.000Z","2024-10-09T05:03:39.000Z","false","false"
+"00aQk000009Z3x7IAC","500Qk00000CoHtDIAV","upgrade is set to happen 10/14. Holding until then.","0054u000006gpoAAAQ","2024-10-09T13:24:02.000Z","2024-10-09T13:24:02.000Z","false","false"
+"00aQk000009edGnIAI","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-10-14T18:55:01.000Z","2024-10-14T18:55:01.000Z","false","false"
+"00aQk000009ffzhIAA","500Qk00000CoHtDIAV","I will meet with the customer today, Oct 15, at 1 PM Eastern time on ticket # 00422743","0054u000007osjSAAQ","2024-10-15T15:11:30.000Z","2024-10-15T15:11:30.000Z","false","false"
+"00aQk000009gRA4IAM","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-16T05:03:47.000Z","2024-10-16T05:03:47.000Z","false","false"
+"00aQk000009gRA6IAM","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-24 18:01 UTC and the last detected comment from support was 2024-09-18 21:25 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11065154]","0054u000006gtWUAAY","2024-10-16T05:03:47.000Z","2024-10-16T05:03:47.000Z","false","false"
+"00aQk000009joBZIAY","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-10-18T13:36:09.000Z","2024-10-18T13:36:09.000Z","false","false"
+"00aQk000009oVoDIAU","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Account ACV has been changed to 421797.53.
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-23T05:03:41.000Z","2024-10-23T05:03:41.000Z","false","false"
+"00aQk000009oVoFIAU","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-24 18:01 UTC and the last detected comment from support was 2024-09-18 21:25 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11097607]","0054u000006gtWUAAY","2024-10-23T05:03:42.000Z","2024-10-23T05:03:42.000Z","false","false"
+"00aQk000009ou1pIAA","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-10-23T13:23:29.000Z","2024-10-23T13:23:29.000Z","false","false"
+"00aQk000009rCaXIAU","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-25T05:03:43.000Z","2024-10-25T05:03:43.000Z","false","false"
+"00aQk000009rCaZIAU","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-24 18:01 UTC and the last detected comment from support was 2024-09-18 21:25 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11110402]","0054u000006gtWUAAY","2024-10-25T05:03:43.000Z","2024-10-25T05:03:43.000Z","false","false"
+"00aQk000009rCcAIAU","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-09-24 18:01 UTC and the last detected comment from support was 2024-09-18 21:25 UTC.
+
+This escalation will now be archived in Azure DevOps. If this escalation is still active, please add a comment to automatically reopen the escalation in DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11110402]","0054u000006gtWUAAY","2024-10-25T05:03:45.000Z","2024-10-25T05:03:45.000Z","false","false"
+"00aQk000009rY81IAE","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2024-10-25T13:06:16.000Z","2024-10-25T13:06:16.000Z","false","false"
+"00aQk00000AAsMMIA1","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Account ACV has been changed to 383280.50.
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2024-11-11T23:28:18.000Z","2024-11-11T23:28:18.000Z","false","false"
+"00aQk00000AAsMOIA1","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Account ACV has been changed to 766561.00.","0054u000006gpoAAAQ","2024-11-11T23:28:21.000Z","2024-11-11T23:28:21.000Z","false","false"
+"00aQk00000AAtVJIA1","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Account ACV has been changed to 383280.50.","0054u000006gtWUAAY","2024-11-11T23:28:33.000Z","2024-11-11T23:28:33.000Z","false","false"
+"00aQk00000ABFIwIAP","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Account ACV has been changed to 323837.399999999984.","0054u000006gtWUAAY","2024-11-12T10:55:41.000Z","2024-11-12T10:55:41.000Z","false","false"
+"00aQk00000CZhb3IAD","500Qk00000CoHtDIAV","On Escalation Ticket # 00419774 the Following Fields have been updated: 
+Account ACV has been changed to 352749.083333333354.","0054u000006gtWUAAY","2025-03-27T13:37:41.000Z","2025-03-27T13:37:41.000Z","false","false"

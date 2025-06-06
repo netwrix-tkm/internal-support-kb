@@ -1,0 +1,1426 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000ITDvfIAH","500Qk00000InW7eIAF","2024-11-27T14:39:47.000Z","2024-11-27T14:39:47.000Z","Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+ 
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour). 
+ 
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version). 
+ 
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+ 
+Logic can be seen here for checking the logs https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+ref:!00D70091pB.!500Qk0InW7e:ref","Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","techsupport@netwrix.com","Netwrix Support","liav.a@willi-food.co.il","","ali.asif@netwrix.com","false","2024-11-27T14:39:46.000Z","true"
+"02sQk00000ITGOsIAP","500Qk00000InW7eIAF","2024-11-27T14:57:15.000Z","2024-11-27T14:58:01.000Z","ref:_00D7091pB._500Q000InW7e:ref
+
+Hi Ali,
+
+Thank you for your response.
+
+Where can I find the trace.log file?
+Also, the output in the report point to 2 domain controllers we have.
+
+Checked the event logs, they are configured to audit logins, and I can see it in the results, but no events for builtin administrator account found.
+
+What else can I check?
+
+Thank you,
+Liav
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 4:40 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour).
+
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version).
+
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+
+Logic can be seen here for checking the logs https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0InW7e:ref","RE: Netwrix Support Ticket #428110 - ref:_00D7091pB._500Q000InW7e:ref - Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","liav.a@willi-food.co.il","Liav Avraham","techsupport@netwrix.com","shmulik@arcserve.co.il","","false","2024-11-27T14:57:01.000Z","true"
+"02sQk00000ITQ4qIAH","500Qk00000InW7eIAF","2024-11-27T15:03:27.000Z","2024-11-27T15:03:27.000Z","Hi Liav,
+
+You just need to add --log to the command line. It will output a .txt file.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 7:57 PM
+To: techsupport@netwrix.com
+Cc: shmulik@arcserve.co.il
+Subject: RE: Netwrix Support Ticket #428110 - ref:_00D7091pB._500Q000InW7e:ref - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+
+Hi Ali,
+
+ 
+
+Thank you for your response.
+
+ 
+
+Where can I find the trace.log file?
+
+Also, the output in the report point to 2 domain controllers we have.
+
+ 
+
+Checked the event logs, they are configured to audit logins, and I can see it in the results, but no events for builtin administrator account found.
+
+ 
+
+What else can I check?
+
+ 
+
+Thank you,
+
+Liav
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 4:40 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+ 
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour). 
+ 
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version). 
+ 
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+ 
+Logic can be seen here for checking the logs  https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0InW7e:ref","RE: Netwrix Support Ticket #428110 -  - Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","techsupport@netwrix.com","Netwrix Support","liav.a@willi-food.co.il","","ali.asif@netwrix.com","false","2024-11-27T15:03:26.000Z","true"
+"02sQk00000ITMhCIAX","500Qk00000InW7eIAF","2024-11-27T15:14:41.000Z","2024-11-27T15:31:59.000Z","ref:_00D7091pB._500Q000InW7e:ref
+
+Hi Ali,
+Ok, I have the log.
+But I don't see anything special about administrator activity.
+Can you please point me to what I need to search?
+
+Thank you.
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 5:03 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+You just need to add --log to the command line. It will output a .txt file.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 7:57 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: shmulik@arcserve.co.il<mailto:shmulik@arcserve.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - ref:_00D7091pB._500Q000InW7e:ref - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+Hi Ali,
+
+Thank you for your response.
+
+Where can I find the trace.log file?
+Also, the output in the report point to 2 domain controllers we have.
+
+Checked the event logs, they are configured to audit logins, and I can see it in the results, but no events for builtin administrator account found.
+
+What else can I check?
+
+Thank you,
+Liav
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, November 27, 2024 4:40 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il<mailto:Liav.A@willi-food.co.il>>
+Subject: Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour).
+
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version).
+
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+
+Logic can be seen here for checking the logs https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0InW7e:ref","RE: Netwrix Support Ticket #428110 -  - Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","liav.a@willi-food.co.il","Liav Avraham","techsupport@netwrix.com","","","false","2024-11-27T15:14:25.000Z","true"
+"02sQk00000IVQGoIAP","500Qk00000InW7eIAF","2024-11-28T12:15:24.000Z","2024-11-28T12:15:24.000Z","Hi Liav,
+
+Can you please send the logs over to us to review?
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 8:14 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+
+Hi Ali,
+
+Ok, I have the log.
+
+But I don't see anything special about administrator activity.
+
+Can you please point me to what I need to search?
+
+ 
+
+Thank you.
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 5:03 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+You just need to add --log to the command line. It will output a .txt file.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 7:57 PM
+To: techsupport@netwrix.com
+Cc: shmulik@arcserve.co.il
+Subject: RE: Netwrix Support Ticket #428110 - ref:_00D7091pB._500Q000InW7e:ref - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+ 
+
+
+Hi Ali,
+
+ 
+
+Thank you for your response.
+
+ 
+
+Where can I find the trace.log file?
+
+Also, the output in the report point to 2 domain controllers we have.
+
+ 
+
+Checked the event logs, they are configured to audit logins, and I can see it in the results, but no events for builtin administrator account found.
+
+ 
+
+What else can I check?
+
+ 
+
+Thank you,
+
+Liav
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 4:40 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+ 
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour). 
+ 
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version). 
+ 
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+ 
+Logic can be seen here for checking the logs  https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0InW7e:ref","RE: Netwrix Support Ticket #428110 -  - Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","techsupport@netwrix.com","Netwrix Support","liav.a@willi-food.co.il","","ali.asif@netwrix.com","false","2024-11-28T12:15:23.000Z","true"
+"02sQk00000IVW9MIAX","500Qk00000InW7eIAF","2024-11-28T12:24:14.000Z","2024-11-28T12:37:56.000Z","ref:_00D7091pB._500Q000InW7e:ref
+
+Hi Ali,
+Yes, please.
+
+Attached the log file.
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, November 28, 2024 2:15 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+Can you please send the logs over to us to review?
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 8:14 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+Hi Ali,
+Ok, I have the log.
+But I don't see anything special about administrator activity.
+Can you please point me to what I need to search?
+
+Thank you.
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, November 27, 2024 5:03 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il<mailto:Liav.A@willi-food.co.il>>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+You just need to add --log to the command line. It will output a .txt file.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 7:57 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: shmulik@arcserve.co.il<mailto:shmulik@arcserve.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - ref:_00D7091pB._500Q000InW7e:ref - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+Hi Ali,
+
+Thank you for your response.
+
+Where can I find the trace.log file?
+Also, the output in the report point to 2 domain controllers we have.
+
+Checked the event logs, they are configured to audit logins, and I can see it in the results, but no events for builtin administrator account found.
+
+What else can I check?
+
+Thank you,
+Liav
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, November 27, 2024 4:40 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il<mailto:Liav.A@willi-food.co.il>>
+Subject: Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour).
+
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version).
+
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+
+Logic can be seen here for checking the logs https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0InW7e:ref
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Gkq5f&from=ext]","RE: Netwrix Support Ticket #428110 -  - Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","liav.a@willi-food.co.il","Liav Avraham","techsupport@netwrix.com","","","true","2024-11-28T12:23:46.000Z","true"
+"02sQk00000IX1PdIAL","500Qk00000InW7eIAF","2024-11-29T14:14:42.000Z","2024-11-29T14:14:42.000Z","Hi Liav,
+
+Thank you for the logs. Please allow us some time to review it and will get back to you. Thank you for your patience.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/28/2024 5:23 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+
+Hi Ali,
+
+Yes, please.
+
+ 
+
+Attached the log file.
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, November 28, 2024 2:15 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+Can you please send the logs over to us to review?
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 8:14 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+ 
+
+
+Hi Ali,
+
+Ok, I have the log.
+
+But I don't see anything special about administrator activity.
+
+Can you please point me to what I need to search?
+
+ 
+
+Thank you.
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 5:03 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+You just need to add --log to the command line. It will output a .txt file.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 7:57 PM
+To: techsupport@netwrix.com
+Cc: shmulik@arcserve.co.il
+Subject: RE: Netwrix Support Ticket #428110 - ref:_00D7091pB._500Q000InW7e:ref - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+ 
+
+
+Hi Ali,
+
+ 
+
+Thank you for your response.
+
+ 
+
+Where can I find the trace.log file?
+
+Also, the output in the report point to 2 domain controllers we have.
+
+ 
+
+Checked the event logs, they are configured to audit logins, and I can see it in the results, but no events for builtin administrator account found.
+
+ 
+
+What else can I check?
+
+ 
+
+Thank you,
+
+Liav
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 4:40 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+ 
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour). 
+ 
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version). 
+ 
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+ 
+Logic can be seen here for checking the logs  https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0InW7e:ref","RE: Netwrix Support Ticket #428110 -  - Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","techsupport@netwrix.com","Netwrix Support","liav.a@willi-food.co.il","","ali.asif@netwrix.com","false","2024-11-29T14:14:41.000Z","true"
+"02sQk00000IbkhVIAR","500Qk00000InW7eIAF","2024-12-02T16:41:06.000Z","2024-12-02T16:41:06.000Z","Hello Liav,
+
+Thank you for your patience. 
+We have investigated the logs and according to those, the account seems to be in use.
+
+
+
+Here are the relevant log sections that show the DC it checked. Then it shows that the computation value is '0' meaning that it detected a 0 days totally as a difference between the generation date (when running the report) and the time of the last logon.
+
+The query below will query the administrator account and return all properties. We are looking specifically at the LastLogon property in PingCastle which is the domain controller specific version (Powershell uses the lastlogontimestamp by default so below query should be accurate to your case):
+
+Get-ADDomainController -Filter ""*"" | Foreach {
+    $DC = $_.HostName
+    Get-ADUser -Filter { ObjectSid -eq ""S-1-5-21-1644491937-746137067-682003330-500"" } -Properties * -Server $DC | 
+    Select SAMAccountName, @{ Name = ""LastLogonConverted"" ; Expression = { [DateTime]::FromFileTime($_.LastLogon) }}, @{ Name = ""DC"" ; Expression = {$DC}}
+    }
+
+
+Please let us know about your results.
+
+
+Thank you,
+
+
+German Kurdyumov
+Technical Support Manager
+1-949-407-5125 x7016
+______________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/29/2024 6:14 PM
+To: liav.a@willi-food.co.il
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+Thank you for the logs. Please allow us some time to review it and will get back to you. Thank you for your patience.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/28/2024 5:23 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+
+Hi Ali,
+
+Yes, please.
+
+ 
+
+Attached the log file.
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, November 28, 2024 2:15 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+Can you please send the logs over to us to review?
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 8:14 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+ 
+
+
+Hi Ali,
+
+Ok, I have the log.
+
+But I don't see anything special about administrator activity.
+
+Can you please point me to what I need to search?
+
+ 
+
+Thank you.
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 5:03 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+You just need to add --log to the command line. It will output a .txt file.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 7:57 PM
+To: techsupport@netwrix.com
+Cc: shmulik@arcserve.co.il
+Subject: RE: Netwrix Support Ticket #428110 - ref:_00D7091pB._500Q000InW7e:ref - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+ 
+
+
+Hi Ali,
+
+ 
+
+Thank you for your response.
+
+ 
+
+Where can I find the trace.log file?
+
+Also, the output in the report point to 2 domain controllers we have.
+
+ 
+
+Checked the event logs, they are configured to audit logins, and I can see it in the results, but no events for builtin administrator account found.
+
+ 
+
+What else can I check?
+
+ 
+
+Thank you,
+
+Liav
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 4:40 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+ 
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour). 
+ 
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version). 
+ 
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+ 
+Logic can be seen here for checking the logs  https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0InW7e:ref","RE: Netwrix Support Ticket #428110 -  - Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","techsupport@netwrix.com","Netwrix Support","liav.a@willi-food.co.il","","","true","2024-12-02T16:41:05.000Z","true"
+"02sQk00000Ic4LFIAZ","500Qk00000InW7eIAF","2024-12-02T18:27:35.000Z","2024-12-03T13:44:46.000Z","ref:_00D7091pB._500Q000InW7e:ref
+
+Hello German,
+
+Thank you for the quick response!
+I'm trying to figure out where is the administrator account is used, but I have double checked and it's not being used for at least a week.
+There is no services, opened sessions or any software that use this account.
+
+Also, I tried to search for event ID 4624 and found nothing in both DC servers.
+
+[cid:image001.png@01DB44F8.3B784EC0]
+
+However, whenever I run the query you mentioned, I get the same time as the query started.
+Also, I found out the LastLogonTimestamp value is about a week ago, but the LastLogon value is now...
+I really don't understand what is going on.
+
+[cid:image003.png@01DB44F8.9221FA00]
+
+
+Thank you,
+Liav
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, December 2, 2024 6:41 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hello Liav,
+
+Thank you for your patience.
+We have investigated the logs and according to those, the account seems to be in use.
+
+[cid:image002.png@01DB44F8.3B784EC0]
+
+Here are the relevant log sections that show the DC it checked. Then it shows that the computation value is '0' meaning that it detected a 0 days totally as a difference between the generation date (when running the report) and the time of the last logon.
+
+The query below will query the administrator account and return all properties. We are looking specifically at the LastLogon property in PingCastle which is the domain controller specific version (Powershell uses the lastlogontimestamp by default so below query should be accurate to your case):
+
+Get-ADDomainController -Filter ""*"" | Foreach {
+    $DC = $_.HostName
+    Get-ADUser -Filter { ObjectSid -eq ""S-1-5-21-1644491937-746137067-682003330-500"" } -Properties * -Server $DC |
+    Select SAMAccountName, @{ Name = ""LastLogonConverted"" ; Expression = { [DateTime]::FromFileTime($_.LastLogon) }}, @{ Name = ""DC"" ; Expression = {$DC}}
+    }
+
+
+Please let us know about your results.
+
+
+Thank you,
+
+
+German Kurdyumov
+Technical Support Manager
+1-949-407-5125 x7016
+______________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/29/2024 6:14 PM
+To: liav.a@willi-food.co.il<mailto:liav.a@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+Thank you for the logs. Please allow us some time to review it and will get back to you. Thank you for your patience.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/28/2024 5:23 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+Hi Ali,
+Yes, please.
+
+Attached the log file.
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Thursday, November 28, 2024 2:15 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il<mailto:Liav.A@willi-food.co.il>>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+Can you please send the logs over to us to review?
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 8:14 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+Hi Ali,
+Ok, I have the log.
+But I don't see anything special about administrator activity.
+Can you please point me to what I need to search?
+
+Thank you.
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, November 27, 2024 5:03 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il<mailto:Liav.A@willi-food.co.il>>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+You just need to add --log to the command line. It will output a .txt file.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 7:57 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Cc: shmulik@arcserve.co.il<mailto:shmulik@arcserve.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - ref:_00D7091pB._500Q000InW7e:ref - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+Hi Ali,
+
+Thank you for your response.
+
+Where can I find the trace.log file?
+Also, the output in the report point to 2 domain controllers we have.
+
+Checked the event logs, they are configured to audit logins, and I can see it in the results, but no events for builtin administrator account found.
+
+What else can I check?
+
+Thank you,
+Liav
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Wednesday, November 27, 2024 4:40 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il<mailto:Liav.A@willi-food.co.il>>
+Subject: Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour).
+
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version).
+
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+
+Logic can be seen here for checking the logs https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0InW7e:ref","RE: Netwrix Support Ticket #428110 -  - Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","liav.a@willi-food.co.il","Liav Avraham","techsupport@netwrix.com","shahar@willi-food.co.il","","true","2024-12-02T18:27:14.000Z","true"
+"02sQk00000IeIAOIA3","500Qk00000InW7eIAF","2024-12-03T14:00:24.000Z","2024-12-03T14:00:24.000Z","Hello Liav,
+
+The difference between LastLogonTimestamp and LastLogon is that the first one is replicated version of the latter, it replicates between DCs every 14 days which explains why you have it showing 25/11. LastLogon is not replicated so it shows the most recently updated value only on the DC that authenticated the logon. Our product is looking at LastLogon attribute to report the most accurate data.
+
+I may recommend to look for logon events on that one DC that has the most recent LastLogon attribute value. You may find more info in this MS article: https://learn.microsoft.com/en-us/archive/technet-wiki/22461.understanding-the-ad-account-attributes-lastlogon-lastlogontimestamp-and-lastlogondate
+
+Let me know if you have any further questions.
+
+Thank you,
+
+
+German Kurdyumov
+Technical Support Manager
+1-949-407-5125 x7016
+______________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 12/2/2024 10:27 PM
+To: techsupport@netwrix.com
+Cc: shahar@willi-food.co.il
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+
+
+Hello German,
+
+ 
+
+Thank you for the quick response!
+
+I'm trying to figure out where is the administrator account is used, but I have double checked and it's not being used for at least a week.
+
+There is no services, opened sessions or any software that use this account.
+
+ 
+
+Also, I tried to search for event ID 4624 and found nothing in both DC servers.
+
+ 
+
+
+
+ 
+
+However, whenever I run the query you mentioned, I get the same time as the query started.
+
+Also, I found out the LastLogonTimestamp value is about a week ago, but the LastLogon value is now...
+
+I really don't understand what is going on.
+
+ 
+
+
+
+ 
+
+ 
+
+Thank you,
+
+Liav
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, December 2, 2024 6:41 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hello Liav,
+
+Thank you for your patience. 
+We have investigated the logs and according to those, the account seems to be in use.
+
+
+
+Here are the relevant log sections that show the DC it checked. Then it shows that the computation value is '0' meaning that it detected a 0 days totally as a difference between the generation date (when running the report) and the time of the last logon.
+
+The query below will query the administrator account and return all properties. We are looking specifically at the LastLogon property in PingCastle which is the domain controller specific version (Powershell uses the lastlogontimestamp by default so below query should be accurate to your case):
+
+Get-ADDomainController -Filter ""*"" | Foreach {
+    $DC = $_.HostName
+    Get-ADUser -Filter { ObjectSid -eq ""S-1-5-21-1644491937-746137067-682003330-500"" } -Properties * -Server $DC | 
+    Select SAMAccountName, @{ Name = ""LastLogonConverted"" ; Expression = { [DateTime]::FromFileTime($_.LastLogon) } }, @{ Name = ""DC"" ; Expression = {$DC} }
+    }
+
+
+Please let us know about your results.
+
+
+Thank you,
+
+
+German Kurdyumov
+Technical Support Manager
+1-949-407-5125 x7016
+______________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/29/2024 6:14 PM
+To: liav.a@willi-food.co.il
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+Hi Liav,
+
+Thank you for the logs. Please allow us some time to review it and will get back to you. Thank you for your patience.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/28/2024 5:23 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+ 
+
+
+Hi Ali,
+
+Yes, please.
+
+ 
+
+Attached the log file.
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Thursday, November 28, 2024 2:15 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+Can you please send the logs over to us to review?
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 8:14 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+ 
+
+
+Hi Ali,
+
+Ok, I have the log.
+
+But I don't see anything special about administrator activity.
+
+Can you please point me to what I need to search?
+
+ 
+
+Thank you.
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 5:03 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: RE: Netwrix Support Ticket #428110 - - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+You just need to add --log to the command line. It will output a .txt file.
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Liav Avraham [liav.a@willi-food.co.il]
+Sent: 11/27/2024 7:57 PM
+To: techsupport@netwrix.com
+Cc: shmulik@arcserve.co.il
+Subject: RE: Netwrix Support Ticket #428110 - ref:_00D7091pB._500Q000InW7e:ref - Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+ref:_00D7091pB._500Q000InW7e:ref
+
+ 
+
+
+Hi Ali,
+
+ 
+
+Thank you for your response.
+
+ 
+
+Where can I find the trace.log file?
+
+Also, the output in the report point to 2 domain controllers we have.
+
+ 
+
+Checked the event logs, they are configured to audit logins, and I can see it in the results, but no events for builtin administrator account found.
+
+ 
+
+What else can I check?
+
+ 
+
+Thank you,
+
+Liav
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, November 27, 2024 4:40 PM
+To: Liav Avraham‏ <Liav.A@willi-food.co.il>
+Subject: Check for Native administrator usage - Question [ ref:!00D70091pB.!500Qk0InW7e:ref ]
+
+
+
+ 
+
+Hi Liav,
+
+Thank you for contacting Netwrix Technical Support.
+
+It would potentially be helpful to see the trace.log file for this using --log for more information. Also just seeing the output on the report would be usefult to.
+ 
+This check queries the LastLogon attribute from all domainControllers and should output the domain controller name in the report if it was detected on a specific dc (the default behaviour). 
+ 
+If for whatever reason it has fallenback to the previous behaviour it uses LastLogonTimestamp (the replicated version). 
+ 
+If you have actually checked the event logs and cant see anything for the builtin administrator account (The rid -500) account then you may need to check your event logs to ensure that they are logging the correct events.
+ 
+Logic can be seen here for checking the logs  https://github.com/netwrix/pingcastle/blob/2d9ab43ba1f4343f5daa983a840a7de08bf28378/Healthcheck/Rules/HeatlcheckRulePrivilegedAdminLogin.cs#L57
+
+Regards,
+Ali Asif
+Technical Support Engineer
+1-949-407-5125 x1
+____________________ _______
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0InW7e:ref","RE: Netwrix Support Ticket #428110 -  - Check for Native administrator usage - Question    [ ref:!00D70091pB.!500Qk0InW7e:ref ]","techsupport@netwrix.com","Netwrix Support","liav.a@willi-food.co.il","shahar@willi-food.co.il","","true","2024-12-03T14:00:23.000Z","true"

@@ -1,0 +1,129 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000Ce30HIAR","500Qk00000NR20cIAD","On Escalation Ticket # 00440504 the Following Fields have been updated: 
+Account ACV has been changed to 3076951.7666666663982.
+Priority has been changed to Critical.","0050g000006QqyEAAS","2025-03-31T17:29:49.000Z","2025-03-31T17:29:49.000Z","false","false"
+"00aQk00000Ce33VIAR","500Qk00000NR20cIAD","On Escalation Ticket # 00440504 the Following Fields have been updated: 
+Account ACV has been changed to 1538475.8833333331991.","0050g000006QqyEAAS","2025-03-31T17:29:51.000Z","2025-03-31T17:29:51.000Z","false","false"
+"00aQk00000Ce3BaIAJ","500Qk00000NR20cIAD","On Escalation Ticket # 00440504 the new comment has been added: Ben Warren:
+27/03/2025 08:37:10  ERROR  SQLSERVER  TSPSQLServerConfigItf.RunSQLScripts  ""File: ""OneDcPerDomain.func"", error: Invalid column name 'IsDomainController'  ""      6132  6992  1808
+
+Under the hood it looks like this function is using a cursor based on:
+
+SELECT DISTINCT [WindowsDomain] FROM [SA_HostMasterTbl]
+
+ So either there is no HostMasterTbl or there is a jacked up HostMasterTbl
+ Or they have an issue with their SQL service account and it can't see the HostMasterTbl
+
+  if they can use that exact account, via SSMS, to do
+
+ SELECT TOP(1) [Name] 
+FROM [SA_HostMasterTbl] 
+WHERE ([IsDomainController] = 'True')
+
+That will see if they can actually reference the IsDomainController column that is throwing the error.","0050g000006QqyEAAS","2025-03-31T17:31:08.000Z","2025-03-31T17:31:08.000Z","false","false"
+"00aQk00000CfEswIAF","500Qk00000NR20cIAD","On Escalation Ticket # 00440504 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-01T15:40:20.000Z","2025-04-01T15:40:20.000Z","false","false"
+"00aQk00000CfEsyIAF","500Qk00000NR20cIAD","On Escalation Ticket # 00440504 the new comment has been added: Carlos Mejia:
+
+@Salesforce @WaitingOnEngineer @Adam Mielke  @Laura Suter Met with Micron to investigate pending devs findings:
+Provided LPA Model for DBA permissions. Applied and provided documentation found here:
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Database.htm
+
+ 
+
+USE [master]GRANT VIEW ANY DEFINITION TO [<SA User ID>]
+
+GO
+
+USE [<SA Database>]
+
+GO
+
+EXEC sp_addrolemember 'db_datareader', '<SA User ID>'
+
+GO
+
+EXEC sp_addrolemember 'db_datawriter', '<SA User ID>'
+
+GO
+
+GRANT CREATE TABLE TO [<SA User ID>]
+
+GO
+
+GRANT CREATE VIEW TO [<SA User ID>]
+
+GO
+
+GRANT CREATE PROCEDURE TO [<SA User ID>]
+
+GO
+
+GRANT CREATE FUNCTION TO [<SA User ID>]
+
+GO
+
+GRANT CREATE TYPE TO [<SA User ID>]
+
+GO
+
+GRANT REFERENCES ON SCHEMA::dbo TO [<SA User ID>]
+
+GO
+
+GRANT ALTER ON SCHEMA::dbo TO [<SA User ID>]
+
+GO
+
+GRANT EXECUTE ON SCHEMA::dbo TO [<SA User ID>]
+
+GO
+
+GRANT INSERT ON SCHEMA::dbo TO [<SA User ID>]
+
+GO
+
+GRANT UPDATE ON SCHEMA::dbo TO [<SA User ID>]
+
+GO
+
+
+Alter User [<SA User ID>] with DEFAULT_SCHEMA = dbo
+
+
+Dev Guidance is as follows: 
+
+So far it looks like they are failing to create AD tables with an error on column 'name'. We only use the column 'name' when querying for objects in the system tables. 
+
+ 
+
+We only use the column 'name' to check in:
+
+	 - 	sys.indexes
+	 - 	sys.columns
+	 - 	sys.key_constraints
+	 - 	sys.default_constraints
+	 - 	sys.types
+
+
+select top 1 name from sys.indexes
+select top 1 name from sys.columns
+select top 1 name from sys.key_constraints
+select top 1 name from sys.default_constraints
+select top 1 name from sys.types
+After reviewing these items on call, found DB Collation may be at fault here. Customer has server level collations set to case sensitive when we require case insensitive. Documentation on that topic can be found here: https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/OtherLanguages.htm.
+
+
+Customer's next steps: Reinstall SQL server with required collation server setting and reinstall NEA. ETA is 24-48 hours due to compliance/process on customer side. Next call scheduled for tomorrow (4/2) at 10:30AM EST.
+
+[DevOps CommentId:11875463]","0054u000006gtWUAAY","2025-04-01T15:40:21.000Z","2025-04-01T15:40:21.000Z","false","false"
+"00aQk00000Cge70IAB","500Qk00000NR20cIAD","On Escalation Ticket # 00440504 the new comment has been added: Carlos Mejia:
+
+@Salesforce @Michael Burrofato  @Adam Mielke  @Laura Suter @Farrah Gamboa @Benjamin Warren Met with customer today and confirmed the SQL Server Collation was the issue. Job running now without issue. Closing this out.
+
+[DevOps CommentId:11881267]","0054u000006gtWUAAY","2025-04-02T15:05:52.000Z","2025-04-02T15:05:52.000Z","false","false"
+"00aQk00000Ch2Z8IAJ","500Qk00000NR20cIAD","On Escalation Ticket # 00440504 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2025-04-02T19:51:23.000Z","2025-04-02T19:51:23.000Z","false","false"
+"00aQk00000Ch66TIAR","500Qk00000NR20cIAD","On Escalation Ticket # 00440504 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007MiY9AAK","2025-04-02T19:55:19.000Z","2025-04-02T19:55:19.000Z","false","false"

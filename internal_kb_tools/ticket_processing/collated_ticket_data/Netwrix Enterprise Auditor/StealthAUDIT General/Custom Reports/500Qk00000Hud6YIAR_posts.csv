@@ -1,0 +1,12 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000Q8KpkKAF","500Qk00000Hud6YIAR","TextPost","005Qk000002AJWTIA4","2024-11-05T16:00:07.000Z","Description: I need a report that will give me a AD group – members of the group- and the groups each users is a member of.  security, distro groups ext…","","","","005Qk000002AJWTIA4","2024-11-05T16:00:07.000Z"
+"0D5Qk00000Q8XyxKAF","500Qk00000Hud6YIAR","TextPost","005Qk000002AJWTIA4","2024-11-05T17:49:15.000Z","What We've Learned Updated: Created a new job with the following analysis.
+
+--Create table
+SELECT * into SA_Custom_Group_Membership from (Select GroupSamAccountName, MemberSamAccountName from dbo.SA_ADInventory_GroupMembersView where MemberSamAccountName in (Select MemberSamAccountName from dbo.SA_ADInventory_GroupMembersView where GroupSamAccountName = 'Domain Admins')) as tmp;
+
+--Clear table contents
+truncate table SA_Custom_Group_Membership;
+
+--Populate table
+insert into SA_Custom_Group_Membership SELECT * from (Select GroupSamAccountName, MemberSamAccountName from dbo.SA_ADInventory_GroupMembersView where MemberSamAccountName in (Select MemberSamAccountName from dbo.SA_ADInventory_GroupMembersView where GroupSamAccountName = 'Domain Admins')) as tmp;","","","","005Qk000002AJWTIA4","2024-11-05T17:49:15.000Z"

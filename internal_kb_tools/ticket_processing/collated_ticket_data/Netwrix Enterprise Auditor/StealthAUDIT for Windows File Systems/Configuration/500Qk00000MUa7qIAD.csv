@@ -1,0 +1,76 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MUa7qIAD","00437497","Support Ticket","FileSystem Scan issues, SEEK System and Bulk Import job errors","hi there,
+It appears that we are having some recent scan issues with the following jobs. Which is preventing other scan jobs father down the tree from starting, which might result in a loss of auditing data for us. The specific jobs that have been throwing errors are:
+
+FileSystem Scan - SEEK System and Bulk Import jobs
+
+I've attached a few snippets of the jobs here, and some of the errors in txt format below.. Happy to extract some job logs for review as well.. Thanks! Doug 
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Failed to maintain SDD Tier 2 database PNVAWSOAPP2.OHPNY.COM_DLPEX.fsaadb: SQL logic error
+no such table: DLPEX.version ---> <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException: SQL logic error
+no such table: DLPEX.version
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Prepare(SQLiteConnection cnn, String strSql, SQLiteStatement previous, UInt32 timeoutMS, String& strRemain)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.BuildNextCommand()
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.GetStatement(Int32 index)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+   at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader()
+   at DLPStorageFileQueue.SqliteStorageMigration.GetDbVersion(SQLiteConnection connection, String alias)
+   at DLPStorageFileQueue.SqliteStorageMigration.Migrate(SQLiteConnection connection, Action`1 logInfo, String alias)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   --- End of inner exception stack trace ---
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+------------------------------
+
+
+code = Corrupt (11), message = <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteException (0x800007EF): database disk image is malformed
+database disk image is malformed
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at <a href='https://System.Data.SQLite.SQLite3.Step' target='_blank'>System.Data.SQLite.SQLite3.Step</a>(SQLiteStatement stmt)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteDataReader.NextResult()
+   at <a href='https://System.Data.SQLite.SQLiteDataReader..ctor' target='_blank'>System.Data.SQLite.SQLiteDataReader..ctor</a>(SQLiteCommand cmd, CommandBehavior behave)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery(CommandBehavior behavior)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SQLite.SQLiteCommand.ExecuteNonQuery()
+   at Dapper.SqlMapper.ExecuteCommand(IDbConnection cnn, CommandDefinition& command, Action`2 paramReader)
+   at Dapper.SqlMapper.ExecuteImpl(IDbConnection cnn, CommandDefinition& command)
+   at Dapper.SqlMapper.Execute(IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.Tier2.OpenTier2(String dbPath, String host, ScanType dbType, DatabaseFiles dbFiles)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()","Root cause currently unknown","No steps have been taking to resolve these issues. 
+They appear to have started on or around 2/15 with sporadic results it seems. 
+I can’t tell you what exactly is affecting in our reporting at the moment. 
+I’ve asked our IT Risk team to provide feedback there. 
+I will grab the latest full job export and status messages once I re-run the jobs shortly.","Awaiting Meeting 3/17/2025 1:00 PM","Noted the current installed version Netwrix Enterprise Auditor (NEA) 11.6.138 FSAA issue noting a COM error for one of the file servers.
+
+It was also noted that Sensitive Data Discovery is not truly licensed and the related jobs were disabled.
+
+We were able to confirm during the call that there are currently no communications issues between the NEA host and the File Sever in question via the following.
+ping -a <HOST-NAME> -n 100   No dropped packets
+
+Get-WmiObject -Namespace ""rootcimv2"" -Class Win32_computersystem -ComputerName <HOST-NAME>
+
+Test-WSMan -ComputerName $Server -Authentication Kerberos -Credential $cred
+
+Both WMI calls completed successfully
+
+We did note that there was a SAJobEngine.dll error on 3/26 this might be more related to the SharePoint scan than FSAA based on its timestamp.
+
+*** Side note *** We found a stuck AD Activity running.lck file that had no current Running Instance connected to it however we did see the orphaned entry within task manager.
+
+Error noted in the 0.CollectionGROUP_0.CollectionGROUP_1.PermissionsJOB_1-FSAA System ScansOUTPUT1-FSAA System Scans_Log.tsv
+
+25/03/2025 20:39:51 ERROR FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""System.TimeoutException: Retry timeout exceeded ---> System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: No connection could be made because the target machine actively refused it 10.192.64.46:8766   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)   --- End of inner exception stack trace --- ...
+
+Netwrix Enterprise Auditor v11.6 > Requirements > File System Solution > File System Scan Options > Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+ 
+We might also want to take a look at the Netwrix Enterprise Auditor v11.6 > Administration > Application Maintenance and Best Practices > Antivirus Exclusions
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Maintenance/AntivirusExclusions.htm
+
+Contact noted the following: Close this case out since after we disabled all the SEEK jobs, all of the other file system jobs have been running to completion and error free! And within an acceptable time frame, too (just around <9hrs to complete), not running for days long with SEEK enabled.","Incorrect configuration: Netwrix product","Dusty Grayson","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Configuration","11.6","138","37.3","Closed - Resolved","Oak Hill Advisors","Douglas Kupcha","2025-03-03T13:23:53.000Z","2025-04-09T20:30:07.000Z"

@@ -1,0 +1,35 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000Pa54PKAR","500Qk00000HaHdFIAV","TextPost","0054u000008ARZjAAO","2024-10-28T19:17:41.000Z","Description: When performing the SQL scan on production hosts we are receiving the following error messages: Please advise if this is an informational message or an actual error message and if we should stop the scan which is currently in progress.
+
+Error CollectEffectiveRoleMembership(): SA_SQLServer_EffectiveRoleMembership, Sql Server Error: <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+Operation cancelled by user. ---> System.ComponentModel.Win32Exception (0x80004005): The wait operation timed out
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlCommand.ExecuteNonQuery()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.SQLServer.ServerDataCollection.EffectiveRoleMembershipCollector.ClearOldData(IDbConnection dbConnection, IDbTransaction transaction, Int32 sqlCommandTimeout)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.SQLServer.ServerDataCollection.EffectiveRoleMembershipCollector.CollectEffectiveRoleMembership(IDbConnection db, String context, Int32 sqlCommandTimeout)
+ClientConnectionId:03177ddb-291e-45eb-92d8-42de4eb07274
+Error Number:-2,State:0,Class:11","","","","0054u000008ARZjAAO","2024-10-28T19:17:41.000Z"
+"0D5Qk00000PhUMIKA3","500Qk00000HaHdFIAV","TextPost","0054u000007ow49AAA","2024-10-30T11:59:22.000Z","What We've Learned Updated: That this customer SYSTEMATICALLY ignores basic instructions and requirements
+Need to check everything from the SQL side as well as what hostlists and settings are used","","","","0054u000007ow49AAA","2024-10-30T11:59:22.000Z"
+"0D5Qk00000PhXwqKAF","500Qk00000HaHdFIAV","TextPost","0054u000007ow49AAA","2024-10-30T12:04:08.000Z","Next Steps Updated: Checking what they've sent","","","","0054u000007ow49AAA","2024-10-30T12:04:08.000Z"
+"0D5Qk00000PhfzfKAB","500Qk00000HaHdFIAV","TextPost","0050g000006QqyEAAS","2024-10-30T14:08:06.000Z","What We've Learned Updated: This is preventing a POC from closing.
+
+Reviewed the SQL timeouts as set in the Job Properties and Settings > Storage to 9999 minutes.
+
+Settings > Storage was set to 60 minutes which is equal to the run time of most errored tasks. Job was set to 9999 minutes.
+
+-----
+
+That this customer SYSTEMATICALLY ignores basic instructions and requirements
+Need to check everything from the SQL side as well as what hostlists and settings are used","","","","0050g000006QqyEAAS","2024-10-30T14:08:06.000Z"
+"0D5Qk00000PhikuKAB","500Qk00000HaHdFIAV","TextPost","0050g000006QqyEAAS","2024-10-30T14:08:52.000Z","<p>Customer stop and restarted SQL_PermissionsScan after increasing Settings &gt; Storage - Execution Timeout to 9999</p>","","","","0050g000006QqyEAAS","2024-10-30T14:08:52.000Z"
+"0D5Qk00000Phh0oKAB","500Qk00000HaHdFIAV","TextPost","0050g000006QqyEAAS","2024-10-30T14:09:25.000Z","Next Steps Updated: Receive results from current running scan - started 30-Oct","","","","0050g000006QqyEAAS","2024-10-30T14:09:25.000Z"
+"0D5Qk00000PhrXSKAZ","500Qk00000HaHdFIAV","TextPost","0050g000006QqyEAAS","2024-10-30T14:14:55.000Z","Steps to Reproduce Updated: 1. change Settings > Storage - Execution Timeout to 60 minutes
+2. change SQL_PermissionsScan - Properties - general - execution timeout to 9999 minutes
+3. run job against a database large enough to require more than 60minutes to collect
+4. note execution timeout error","","","","0050g000006QqyEAAS","2024-10-30T14:14:55.000Z"

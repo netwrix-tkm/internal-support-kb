@@ -1,0 +1,54 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008EZxNIAW","500Qk00000DlAm1IAF","Hotfix to correct filesystem action module DLLs:
+https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk0000002sifIAA/view","0050g000006QqyEAAS","2024-07-30T15:40:48.000Z","2024-07-30T15:40:48.000Z","false","false"
+"00aQk000008G77PIAS","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the Following Fields have been updated: 
+Account ACV has been changed to 1152730.891999999990.","0050g000006QqyEAAS","2024-07-31T15:09:21.000Z","2024-07-31T15:09:21.000Z","false","false"
+"00aQk000008GBR7IAO","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the Following Fields have been updated: 
+Account ACV has been changed to 576365.445999999995.","0050g000006QqyEAAS","2024-07-31T15:09:22.000Z","2024-07-31T15:09:22.000Z","false","false"
+"00aQk000008GZy7IAG","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the new comment has been added: Michael Rubacky:
+
+@Salesforce 
+
+My leading theory is that the applet service is running in an unexpected location. There is a part of the action module on the first page of the wizard where you can select ""Remove the applet service from a host"". This will uninstall the applet service and it should be reinstalled in the correct location upon the next run of any action.
+
+ 
+
+If you want to find and show where the applet is installed, you should check the ""Path to executable"" property of the action module service in the Services panel. Or search all drives for StealthAUDITRPCFSAM.exe
+
+ 
+
+Once I receive logs I'll look to see if there's more leads in there, this is what I think is likely after viewing the video and the code.
+
+[DevOps CommentId:10656662]","0054u000006gtWUAAY","2024-07-31T18:45:46.000Z","2024-07-31T18:45:46.000Z","false","false"
+"00aQk000008GZy5IAG","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-07-31T18:45:46.000Z","2024-07-31T18:45:46.000Z","false","false"
+"00aQk000008Gf7SIAS","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the new comment has been added: available logs are uploaded
+https://nwxcorp.sharepoint.com/:u:/r/sites/CustomerSupportFiles/Data/00416540/ActionModule_Upload_20240731T085703.zip?csf=1&web=1&e=LXl2by","0050g000006QqyEAAS","2024-07-31T19:30:38.000Z","2024-07-31T19:30:38.000Z","false","false"
+"00aQk000008GdFKIA0","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0050g000006QqyEAAS","2024-07-31T19:43:09.000Z","2024-07-31T19:43:09.000Z","false","false"
+"00aQk000008GfPDIA0","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the new comment has been added: [3:42 PM] Michael Rubacky
+After checking the logs, it appears everything is in order with the versions and where it's trying to deploy to, but it doesn't update the service executable path when it already exists. My best guess is still that the service is pointing to an executable path in some old install directory, maybe on another drive. 
+ 
+[3:43 PM] Michael Rubacky
+I'd prefer checking the executable path in the service properties page to confirm or rule this possibility out. And if it's not in the right location, uninstall the service and re-run the action","0050g000006QqyEAAS","2024-07-31T19:45:10.000Z","2024-07-31T19:45:10.000Z","false","false"
+"00aQk000008HYTiIAO","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the new comment has been added: Customer has provided “Path to executable” of STEALTHbits File System Action Module Applet. 
+
+""D:STEALTHbitsStealthAUDITFileSystemAMStealthAUDITRPCFSAM.exe"" FileSystemAMApplet.dll -p ncacn_np -e pipeStealthAUDITRPC_FSAM -d ""D:STEALTHbitsStealthAUDITFileSystemAMRPCLogs"" -q","0050g000006QqyEAAS","2024-08-01T13:55:28.000Z","2024-08-01T13:55:28.000Z","false","false"
+"00aQk000008HvBmIAK","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-08-01T18:17:03.000Z","2024-08-01T18:17:03.000Z","false","false"
+"00aQk000008HvBoIAK","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the new comment has been added: Michael Rubacky:
+
+@Salesforce 
+
+Ah yes, the install directory of ""D:STEALTHbitsStealthAUDIT"" is different than the currently configured install dir of ""D:STEALTHbits"". The applet files are being sent to """"D:STEALTHbits"""" the correct directory"," but the service still references """"D:STEALTHbitsStealthAUDIT"""". Uninstalling the service either through the NEA UI or through the services panel should resolve the issue."
+"00aQk000008HzGzIAK","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0050g000006QqyEAAS","2024-08-01T18:24:13.000Z","2024-08-01T18:24:13.000Z","false","false"
+"00aQk000008LPbVIAW","500Qk00000DlAm1IAF","Meeting Notes 5-Aug:
+customer was a no-show
+Sent link to reschedule along with instructions to uninstall AM via CMD","0050g000006QqyEAAS","2024-08-05T13:17:19.000Z","2024-08-05T13:17:19.000Z","false","false"
+"00aQk000008LuVdIAK","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0050g000006QqyEAAS","2024-08-05T18:07:12.000Z","2024-08-05T18:07:12.000Z","false","false"
+"00aQk000008PxptIAC","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the Following Fields have been updated: 
+Account ACV has been changed to 1152730.891999999990.","0050g000006QqyEAAS","2024-08-08T16:01:28.000Z","2024-08-08T16:01:28.000Z","false","false"
+"00aQk00000CZhPlIAL","500Qk00000DlAm1IAF","On Escalation Ticket # 00416678 the Following Fields have been updated: 
+Account ACV has been changed to 576365.445999999995.","0054u000006gtWUAAY","2025-03-27T13:36:50.000Z","2025-03-27T13:36:50.000Z","false","false"

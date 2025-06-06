@@ -1,0 +1,44 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CLO0PIAX","00413163","Support Ticket","Domain Controllers Overview returns error","Chart element """" has not been configure to display data
+When running the job we get the following 3 errors
+Invalid column name ""Bridgehead_Server""
+Invalid object name 'dbo.SA_AD_DCSummary_List'
+Encountered error: ""Invalid object name 'dbo.SA_AD_DCSummary_DomainSummary"" while generating report","","","","Collected evidence of the duplicate/quadruplicate entries in the Active Directory > 5.Domains > 0.Collection > AD_TimeSync job that the Product team member was inquiring about.
+
+Could we add the following Instant Job to the xSandBox group?
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Instant Job Wizard
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/InstantJobs/Overview.htm
+
+Netwrix Enterprise Auditor v11.6 > Administration > Jobs Tree > Instant Job Wizard > SAS_ExecutionStatistics Job
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/InstantJobs/SAS_ExecutionStatistics.htm
+Image1 https://nwxcorp.file.force.com/servlet/servlet.FileDownload?file=00PQk000009XiUx
+Image2 https://nwxcorp.file.force.com/servlet/servlet.FileDownload?file=00PQk000009XiUy 
+This will list all the Jobs that a Host is referenced during a Scan.
+
+Once in place we can just run this job.
+
+Within SSMS we can Query to filter for our host in question.
+EXAMPL:
+SELECT * FROM SA_SAS_ExecutionStatistics_HostQueryDetails
+WHERE [HOST] LIKE '%HOST-NETBIOS-NAME%'   --  This should resole in both the NETBIOS and FQDN to be returned
+
+Found that in the StealthAUDIT (SA) DB had duplicate objects in the Tables from older SA_Host collections. 
+
+Deleted From the following.  
+HostMaster_SANodeFilter
+HostListsTbl
+SA_AD_DomainControllers_AllDCs
+SA_AD_DomainControllers_Bridgehead
+SA_AD_DomainControllers_GC
+SA_AD_DomainControllers_PreferredBridgehead
+SA_AD_DomainControllers_Significant
+SA_AD_DomainInfo_Domains
+SA_AD_DomainInfo_DomainSummary
+SA_AD_DomainInfo_Filtering
+SA_AD_DomainInfo_Sites
+SA_AD_DomainInfo_TrustDetails
+SA_AD_DomainInfo_Trusts
+
+WHERE SA_HOST LIKE 'NVM305%'
+
+Re-ran the jobs in question and all seemed to be correct.","Incorrect configuration: Netwrix server","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Database","11.5","276","63.1","Closed - Resolved","Charles Schwab & Co., Inc.","Lori Crane","2024-06-26T19:18:54.000Z","2024-08-28T21:05:59.000Z"

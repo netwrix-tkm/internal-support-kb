@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EAmuXIAT","00417555","Support Ticket","AIC not working as expected after upgrade [PERN]","Hello,
+
+We upgraded Enterprise Auditor core and Access Information Center to the latest versions (11.6) recently at PERN and now there are some issues with this portal:
+- Polish translation not working for Manage Access and Access Request 
+- Admin users from AD cannot login to the portal (only built-in admin works)
+- One option is missed from the portal - Owners cannot change access to resources 
+
+Sending logs from the client env and we need to quickly resolve that in Monday - last date. If not, client will restore previous version from snapshot, which is very unconviniet for us.
+
+Could we schedule a session together on Monday?
+
+Regards,
+Adam","","","","Issue
+Customer couldn't find ""Change Owner"" button after upgrade of AIC.
+Cause
+Customer didn't enable AD groups to make any changes in AIC settings.
+
+Resolution
+Changed setting in AIC configuration file
+
+  <add key=""ADServiceAllowChanges"" value=""False"" /> to True
+
+After that change the issue was resolved.","Incorrect configuration: Netwrix product","Damir Akhmatshin","","Netwrix Enterprise Auditor","Access Information Center","Configuration","11.6","11.6.0.21","11.9","Closed - Resolved","PERN S.A.","Support Appeal","2024-08-08T12:09:12.000Z","2024-08-20T10:21:09.000Z"

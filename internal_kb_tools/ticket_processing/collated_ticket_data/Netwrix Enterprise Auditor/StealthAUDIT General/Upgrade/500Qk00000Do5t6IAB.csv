@@ -1,0 +1,12 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Do5t6IAB","00416657","Support Ticket","Scans won't work after upgrade","Completed an upgrade to 11.6 but after the upgrade the scans are not working. The error I am seeing on most of them can be seen below. 
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Unable to start scan: Could not initialize scan session with any proxy host supplied
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.ActivityScanTask.d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.ActivityScanTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()","","","","Had to role back the 11.6.0.83  upgrade to the 11.5 install due to 11.6 security requirements for TLS 1.2 communication with the SQL backend.
+
+This caused us to have to uninstall the 11.6 proxies and re-install the 11.5 version as well as correct the Proxy host environmental variables to point to the correct historical location on the host where the T2 dbs and log files were located.","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","Upgrade","11.6","83","63.2","Closed - Resolved","American Express","Alex Parsa","2024-07-31T13:48:10.000Z","2024-10-02T18:35:56.000Z"

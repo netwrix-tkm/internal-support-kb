@@ -1,0 +1,33 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007qerlIAA","500Qk00000Ctd8HIAR","Delegable Admins – Administrator account is allowed to be delegated to a service
+
+https://blog.netwrix.com/2016/10/27/detecting-delegated-permissions-in-active-directory/
+
+https://blog.netwrix.com/2022/11/14/active_directory_delegation/#:~:text=How%20do%20I%20check%20delegation%20in%20Active%20Directory%3F,the%20Security%20tab%20to%20view%20the%20delegated%20permissions.
+
+https://learn.microsoft.com/en-us/archive/technet-wiki/6477.active-directory-how-to-view-or-delete-delegated-permissions","0054u000007MiY9AAK","2024-07-10T16:16:43.000Z","2024-07-10T16:16:43.000Z","false","false"
+"00aQk000007rusrIAA","500Qk00000Ctd8HIAR","Not sure we should reference  SpecOps page as they are a competitor
+
+
+[Yesterday 3:44 PM] Kevin Joyce
+essentially accounts that are administrators (i believe it just checks admincount = 1) and are not marked as 'sensitive and cannot be delegated'
+ 
+[Yesterday 3:45 PM] Kevin Joyce
+admin accounts should not be delegated as they can be abused in a ton of ways, that is why that setting in AD exists
+ 
+[Yesterday 3:45 PM] Kevin Joyce
+https://specopssoft.com/blog/securing-authentication-tokens-by-preventing-delegation-of-admin-accounts/
+Securing authentication tokens by preventing delegation of admin accounts
+Recommended settings in Active Directory that mitigate the risk associated with account delegation on insecure computers and administrator accounts.
+ 
+[Yesterday 3:46 PM] Kevin Joyce
+Security implications of delegable admins
+Using freely available tools, attackers only need to compromise a client and access a standard account. Once they have their foot in the door, they can use tools like Meterpreter to list the available delegate tokens. Privileged accounts with delegation tokens available can lead to the attacker being able to steal a privileged user token, such as a domain admin account. Once the attacker has a domain admin-level account, the possibilities are endless.
+Once they have high-level privileged accounts, they often go after backup files that may contain prized targets, such as backups of the NTDS.DIT database of Active Directory. If found, they can copy the database offsite and run an offline tool to compromise accounts in the organization further.
+ 
+[Yesterday 3:46 PM] Kevin Joyce
+The “Account is sensitive and cannot be delegated” setting
+Microsoft has provided a setting in Active Directory Domain Services that can help mitigate the issue. In addition, an Active Directory setting is recommended to be enabled for privileged accounts in the domain. The setting is “account is sensitive and cannot be delegated” within the account properties.
+When configured, this setting strips the delegate-level token from the user, removing the user credentials. When configured, the logon becomes an ANONYMOUS login with no resource permissions.
+ 
+***IMAGE***  https://teams.microsoft.com/l/message/19:8b1602728b7a48df8548a42144ef0d51@thread.tacv2/1720640797859?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1720637316997&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=StealthAUDIT%20AD%2C%20Azure%20AD&createdTime=1720640797859","00570000003KXurAAG","2024-07-11T13:16:15.000Z","2024-07-11T13:16:15.000Z","false","false"

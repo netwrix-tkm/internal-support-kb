@@ -1,0 +1,44 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Jcf0EIAR","00430150","Support Ticket","custom report","Trying to create custom report but it is not working","","","","Symptom
+
+Trying to create custom report but it is not working
+
+Cause
+
+Identified that the custom report was targeting the FSAC_ActivityEventsView table that would take significantly longer to query and return results versus the FSAA_ResourceView table and targeting the ResoruceID to quickly generate a new report. 
+
+Resolution
+
+Queried the SA_FSAA_ResourceView table using the below SQL script:
+
+SELECT TOP (1000) [HostID]
+      ,[HostName]
+      ,[ID]
+      ,[ParentResourceID]
+      ,[Name]
+      ,[Path]
+      ,[ResourceType]
+      ,[ResourceTypeDescription]
+      ,[OwnerID]
+      ,[RightsProxyID]
+      ,[GatesProxyID]
+      ,[NestedLevel]
+      ,[Size]
+      ,[LastModified]
+      ,[LastAccessed]
+      ,[Created]
+      ,[USN]
+      ,[DeletedUSN]
+      ,[PermissionChange]
+      ,[InheritedPermission]
+      ,[DirectPermission]
+  FROM [Netwrix Enterprise Auditor].[dbo].[SA_FSAA_ResourcesView]
+  WHERE ResourceID =
+
+Targeting the desired ResourceID. Alternatively, we located this ResourceID by targeting the path using the WHERE clause below:
+
+WHERE hostID = ( HostID Number) AND Path LIKE (File Path)
+
+Once these two pieces of information were discovered we then updated the old analysis task SQL script to include the new resourceID and changed the time parameters from @lastweek to @lastmonth within a 30 day time frame. This newly modified script provided the correct information we needed.
+
+Additionally, we deleted an old report that was experiencing issues with exporting as a CSV and included the above script into a newly created report which successfully generated.","Advanced Configuration Change","Scottie Taylor","Question","Netwrix Enterprise Auditor","StealthAUDIT General","Custom Reports","11.6","11.6.0.115","13.0","Closed - Resolved","The Doctors Company","Chad Fontanini","2024-12-17T21:49:03.000Z","2024-12-30T22:35:21.000Z"

@@ -1,0 +1,129 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009IB1RIAW","500Qk00000GCmdzIAD","Looks like a Windows thing: https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-security/error-add-user-to-security-permissions","0054u000007MiY9AAK","2024-09-24T20:02:39.000Z","2024-09-24T20:02:39.000Z","false","false"
+"00aQk000009RSCjIAO","500Qk00000GCmdzIAD","Putting into postponed reply to allow the customer enough time to resolve the access issues they are experiencing with the NEA application server.","0054u000007MdqrAAC","2024-10-02T17:44:46.000Z","2024-10-02T17:44:46.000Z","false","false"
+"00aQk000009WtiXIAS","500Qk00000GCmdzIAD","Script for us to verify count and size of ACLs
+
+# Define the user (replace 'CN=Jake Colon,OU=USERS,OU=IT,DC=internal,DC=hillsclerk,DC=com' with your user's distinguished name)
+$userDN = ""CN=Jake Colon,OU=USERS,OU=IT,DC=internal,DC=hillsclerk,DC=com""
+
+# Get the user object from Active Directory
+$user = [ADSI]""LDAP://$userDN""
+
+# Retrieve the security descriptor (which contains the ACL)
+$sd = $user.psbase.ObjectSecurity.GetSecurityDescriptorBinaryForm()
+
+# Output the size of the security descriptor in bytes
+$size = $sd.Length
+""Size of ACL: $size bytes""
+
+# Get the ACL for the user
+$acl = $user.psbase.ObjectSecurity.Access
+
+# Display the ACL entries and count them
+$aclCount = $acl | ForEach-Object { $_ } | Measure-Object
+
+""Number of ACEs: $($aclCount.Count)""","0054u000007MiY9AAK","2024-10-07T20:10:20.000Z","2024-10-07T20:10:20.000Z","false","false"
+"00aQk000009X0AXIA0","500Qk00000GCmdzIAD","Data Source or component affected: NEA 1-AD_Scan
+
+Version Number: 11.6
+
+Current Issue: Maximum number of access control entries in the access control list
+
+Reason for Escalation: We have determined that this is a windows limitation but the NEA application needs to be able to identify this as a WARNING instead of an ERROR. This would allow for the 1-AD_Scan to fully complete without distrupting the scan entirely. 
+
+Troubleshooting completed/Notes: Gathered all logs listed below.
+
+Program Files (x86)StealthAuditJobsGROUP_.Active Directory InventoryJOB_1-AD_ScanOUTPUT
+
+""Program Files (x86)StealthAuditSADatabaseLogsApplication""
+
+""Program Files (x86)StealthAuditSADatabaseLogsSAJobEngine""
+
+msinfo32 dump
+
+Customer will provide an update to the ticket once the artifacts have been uploaded.","0054u000007MdqrAAC","2024-10-07T21:22:42.000Z","2024-10-07T21:22:42.000Z","false","false"
+"00aQk000009XktLIAS","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: Michael Burrofato:
+
+@Salesforce Dev team has pulled this onto the sprint and is reviewing.
+
+[DevOps CommentId:11030016]","0054u000006gtWUAAY","2024-10-08T14:28:41.000Z","2024-10-08T14:28:41.000Z","false","false"
+"00aQk000009XktJIAS","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-08T14:28:41.000Z","2024-10-08T14:28:41.000Z","false","false"
+"00aQk000009XpY1IAK","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-10-08T15:10:40.000Z","2024-10-08T15:10:40.000Z","false","false"
+"00aQk000009Xry1IAC","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Account has been changed to Hillsborough County Clerk of the Court.
+Account ACV has been changed to 76536.40.","0054u000007MiY9AAK","2024-10-08T15:31:51.000Z","2024-10-08T15:31:51.000Z","false","false"
+"00aQk000009XscMIAS","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: The desired outcome/fix is for the scan to throw a warning then continue scanning remainder of AD
+
+Currently the ADI fails to continue","0050g000006QqyEAAS","2024-10-08T15:38:58.000Z","2024-10-08T15:38:58.000Z","false","false"
+"00aQk000009XsioIAC","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: Bonus: give a report of all accounts exceeding maximum ACLs","0050g000006QqyEAAS","2024-10-08T15:39:44.000Z","2024-10-08T15:39:44.000Z","false","false"
+"00aQk000009bfQRIAY","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: Michael Burrofato:
+
+@Salesforce Dev is actively working on a fix. Will provide updates as they come.
+
+[DevOps CommentId:11048097]","0054u000006gtWUAAY","2024-10-11T11:07:33.000Z","2024-10-11T11:07:33.000Z","false","false"
+"00aQk000009bfQPIAY","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-11T11:07:33.000Z","2024-10-11T11:07:33.000Z","false","false"
+"00aQk000009bundIAA","500Qk00000GCmdzIAD","UNABLE TO RESPOND/CHANGE STATUS ON TICKET. | SalesForce and B. West are aware.","0054u000007MiY9AAK","2024-10-11T15:01:09.000Z","2024-10-11T15:01:09.000Z","false","false"
+"00aQk000009c8kBIAQ","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Pending Fix Availability.","0054u000007MiY9AAK","2024-10-11T18:23:14.000Z","2024-10-11T18:23:14.000Z","false","false"
+"00aQk000009c8kDIAQ","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Account ACV has been changed to 153072.80.","0054u000007MiY9AAK","2024-10-11T18:23:16.000Z","2024-10-11T18:23:16.000Z","false","false"
+"00aQk000009cBzlIAE","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Account ACV has been changed to 76536.40.","0054u000007MiY9AAK","2024-10-11T18:23:18.000Z","2024-10-11T18:23:18.000Z","false","false"
+"00aQk000009fOsQIAU","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-15T13:08:31.000Z","2024-10-15T13:08:31.000Z","false","false"
+"00aQk000009fOsSIAU","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: Carlos Mejia:
+
+@Salesforce  @Ethan Israel I was reviewing previous instances of when the ADI Long ACL error came up in the past and saw we had that same issue with another customer two years back. I see the error message indicates which user is giving us an issue: CN=Jake Colon,OU=USERS,OU=IT,DC=internal,DC=hillsclerk,DC=com' 'Length of the access control list exceed the allowed maximum.
+
+
+Can you ask/confirm with the customer if they are willing to clean up the ACL? We are trying to reproduce this but having difficulty since that ACL is massive and just not practical as per MS best practices due to performance degradation issues. 
+
+[DevOps CommentId:11062830]","0054u000006gtWUAAY","2024-10-15T13:08:32.000Z","2024-10-15T13:08:32.000Z","false","false"
+"00aQk000009fUZeIAM","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: Customer is a bit touchy and looking for a workaround that doesn’t involve them having to rework groups/users as their current project is beginning to fall behind due to this issue. Ultimately, they’ll have to correct the root issue, but a list of affected users in the form of Warnings on the Messages table would definitely help.","0054u000007MiY9AAK","2024-10-15T13:33:50.000Z","2024-10-15T13:33:50.000Z","false","false"
+"00aQk000009fUeTIAU","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-10-15T13:34:30.000Z","2024-10-15T13:34:30.000Z","false","false"
+"00aQk000009fhmzIAA","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Pending Fix Availability.","0054u000007MiY9AAK","2024-10-15T15:28:13.000Z","2024-10-15T15:28:13.000Z","false","false"
+"00aQk000009iqgtIAA","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: Michael Burrofato:
+
+@Salesforce @Carlos Mejia @Ethan Israel A fix has been made and will be available in tomorrow's CU.
+A hotfix will also be posted. Expect link shortly.
+
+[DevOps CommentId:11078425]","0054u000006gtWUAAY","2024-10-17T18:16:53.000Z","2024-10-17T18:16:53.000Z","false","false"
+"00aQk000009iqgrIAA","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-17T18:16:53.000Z","2024-10-17T18:16:53.000Z","false","false"
+"00aQk000009irjNIAQ","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-10-17T18:31:37.000Z","2024-10-17T18:31:37.000Z","false","false"
+"00aQk000009itd8IAA","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: Hotfix available in this kb article: https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk0000006mzdIAA/view","0054u000006goGXAAY","2024-10-17T18:53:38.000Z","2024-10-17T18:53:38.000Z","false","false"
+"00aQk000009jv1pIAA","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007MiY9AAK","2024-10-18T15:32:33.000Z","2024-10-18T15:32:33.000Z","false","false"
+"00aQk000009pElJIAU","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-23T16:51:51.000Z","2024-10-23T16:51:51.000Z","false","false"
+"00aQk000009pElLIAU","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: Michael Burrofato:
+
+@Salesforce A problem was identified with the ADI hotfix we sent out where users are unable to open up the ADI DC UI. A fix is being worked on and we will update this case when it's available.
+
+[DevOps CommentId:11103929]","0054u000006gtWUAAY","2024-10-23T16:51:52.000Z","2024-10-23T16:51:52.000Z","false","false"
+"00aQk000009pbraIAA","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: A bug was found in the hotfix that was sent out previously.  A fix was made, and we've repackaged the hotfix as 53a:
+
+https://releases.netwrix.com/products/auditor-enterprise/11.6/auditor-enterprise-hotfix-11.6.0.053a.zip","0054u000006goGXAAY","2024-10-23T20:52:07.000Z","2024-10-23T20:52:07.000Z","false","false"
+"00aQk000009pcxJIAQ","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-10-23T21:06:40.000Z","2024-10-23T21:06:40.000Z","false","false"
+"00aQk000009tl9BIAQ","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-28T11:48:19.000Z","2024-10-28T11:48:19.000Z","false","false"
+"00aQk000009tl9DIAQ","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the new comment has been added: Michael Burrofato:
+
+@Salesforce @Helen Randall @Ethan Israel Per our automation setup, a fix has been provided and there's no further action required from dev at this time. Therefore, I am closing this on our end. Ticket will re-open if problem persists.
+
+[DevOps CommentId:11119014]","0054u000006gtWUAAY","2024-10-28T11:48:20.000Z","2024-10-28T11:48:20.000Z","false","false"
+"00aQk000009tzgnIAA","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-10-28T14:44:46.000Z","2024-10-28T14:44:46.000Z","false","false"
+"00aQk000009vrVRIAY","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007MiY9AAK","2024-10-29T19:40:41.000Z","2024-10-29T19:40:41.000Z","false","false"
+"00aQk000009wnT0IAI","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Account ACV has been changed to 153072.80.","0054u000007MiY9AAK","2024-10-30T15:17:21.000Z","2024-10-30T15:17:21.000Z","false","false"
+"00aQk000009wnWDIAY","500Qk00000GCmdzIAD","On Escalation Ticket # 00423205 the Following Fields have been updated: 
+Account ACV has been changed to 76536.40.","0054u000006gtWUAAY","2024-10-30T15:17:32.000Z","2024-10-30T15:17:32.000Z","false","false"

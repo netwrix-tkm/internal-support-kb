@@ -1,0 +1,59 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000awTT7KAM","500Qk00000NdfZ7IAJ","TextPost","0054u000008ARZjAAO","2025-04-03T06:53:43.000Z","Description: Hi Support,
+
+I have been trying to setup Claims and Role Configurations in PingCastle Enterprise.
+
+Unforetunately, none of this is working.
+Further, the Documentation is incorrect on available claims and where to find current Values.
+
+Finally, there´s a visibility Issue with the Scheduler.
+
+Claim Configuration Example:
+
+Under Entities i have a SubFolder ""Production"", containing 2 Folder ""Primary Domain"" and ""Staging Domain"", each containing 5 Domains to be scanned by PingCastle.
+
+The ""Production"" Entity is setup with the following Claim Configuration:
+
+ClaimType: <a href='http://schemas.microsoft.com/ws/2008/06/identity/claims/role' target='_blank'>http://schemas.microsoft.com/ws/2008/06/identity/claims/role</a>
+ClaimValue: Operator
+Authorization: Operator
+
+My Test User is signing in via SSO (Microsoft Entra ID) and is receiving the Role via the Entra Role Assignment.
+However, the User cannot see anything within the System. 
+No Domains, No Dashboard, no Entities.
+
+Testing the Same Configuration on ""root"" level entities gives the same result.
+
+Documentation Issues:
+
+The Documentation states that a User can see his indiviual claims:
+
+<a href='https://helpcenter.netwrix.com/bundle/PingCastle_3.3_EnterpriseUser/page/Authorization.html' target='_blank'>https://helpcenter.netwrix.com/bundle/PingCastle_3.3_EnterpriseUser/page/Authorization.html</a>
+You can also open the “View my user’s claims page in “Manage your account” to see what claims have been pushed to Ping Castle.
+
+This Page does not exist. While i found a way to show the ""debugging claims"", these should be available easier / reflected in the documentation.
+
+Scheduler Issues:
+
+The Scheduler Page is not showing all Tasks that are Setup via Task Scheduler.
+The Scheduler Page only shows single Domain Scan Agent Tasks.
+
+Tasks manually edited/setup with wildcards, which is fully Supported as per your documentation, do not show in the scheduler Page.
+Scanning <a href='https://home.example.com' target='_blank'>home.example.com</a> => Showing on the scheduler Page
+Scanning *<a href='https://.example.com' target='_blank'>.example.com</a> => Not showing on the scheduler Page
+
+Please investigate and provide Solutions for the Issue.
+
+Thank you,
+Philipp","","","","0054u000008ARZjAAO","2025-04-03T06:53:43.000Z"
+"0D5Qk00000axCmzKAE","500Qk00000NdfZ7IAJ","TextPost","005Qk000003cQkXIAU","2025-04-03T13:04:19.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000003cQkXIAU","2025-04-03T13:04:19.000Z"
+"0D5Qk00000axCn0KAE","500Qk00000NdfZ7IAJ","TextPost","005Qk000003cQkXIAU","2025-04-03T13:04:20.000Z","Invitation updated. Attendees: Rejaul Uddin","","","","005Qk000003cQkXIAU","2025-04-03T13:04:20.000Z"
+"0D5Qk00000axCn1KAE","500Qk00000NdfZ7IAJ","TextPost","005Qk000003cQkXIAU","2025-04-03T13:04:20.000Z","Invitation updated. Attendees: Rejaul Uddin, Philipp Buchwald, Joe Dibley","","","","005Qk000003cQkXIAU","2025-04-03T13:04:20.000Z"
+"0D5Qk00000bwsYGKAY","500Qk00000NdfZ7IAJ","TextPost","005Qk000003cQkXIAU","2025-04-16T14:54:39.000Z","What We've Learned Updated: Claims and Domains via SSO: We investigated the issues with viewing Claims and Domains using a test user via SSO. Various methods were tested, including changing the username to an email address.
+- Task Scheduler: Problems with the Task Scheduler were identified. The command was modified from --server domain.local to -server *, which resolved the issue.
+- Scanning and Reporting: It was noted that failed scans are only visible in the logs. A suggestion was made to improve the reporting page visuals to clearly indicate ""Scan failed (check logs).""","","","","005Qk000003cQkXIAU","2025-04-16T14:54:39.000Z"
+"0D5Qk00000bx2wgKAA","500Qk00000NdfZ7IAJ","TextPost","005Qk000003cQkXIAU","2025-04-16T14:55:13.000Z","Next Steps Updated: escalated to R&D. Escalation ticket no: 0040964
+
+No specific timeline for the resolution.","","","","005Qk000003cQkXIAU","2025-04-16T14:55:13.000Z"
+"0D5Qk00000cruG4KAI","500Qk00000NdfZ7IAJ","TextPost","005Qk000003cQkXIAU","2025-04-28T15:15:53.000Z","Steps to Reproduce Updated: Attempt setting up claims and role configurations. Assign entra role and test visibility for a test user.
+Create schedules and see if all schedules appear.","","","","005Qk000003cQkXIAU","2025-04-28T15:15:53.000Z"

@@ -1,0 +1,81 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IMTM0IAP","00427208","Support Ticket","Bulk Import not working for SG NAS","Bulk Import not working for SG NAS we are getting timeout error. Screenshots are attached for reference","N/A","NEA version is 11.0.1232.1297  
+
+Scanned host is:
+SVRSG001SIN0002.GLOBALANZ.COM
+
+Proxy with Tier2 DBs (it was used to scan the host above last couple times):
+APPSG001SIN0012
+
+----------------------------------
+
+According to the latest logs the Bulk Import receives timeout each time after it tries to perform this action:
+10/11/2024 20:55:05    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    203244    202188    157836
+11/11/2024 20:55:08    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    202188    157836
+
+As seen in other log files, this pattern happens each time during the last Bulk Import job runs:
+12/11/2024 17:06:29    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    50212    112200    82528
+13/11/2024 17:06:32    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    112200    82528
+
+And each time, after this operation starts, it takes exactly 3 seconds before the timeout appears. 
+
+As such, support assisted customer during meeting by starting ""Repair"" job for the ""SVRSG001SIN0002"" host via File System data collector query properties. 
+
+However, repair operation also failed. 
+
+According to the repair operation`s logs there is no disk space left on the drive where NEA database is stored:
+2024-12-11T09:19:32.4024011+11:00   DEBUG       Getting list of duplicates for Access (1)
+2024-12-11T15:16:33.1829949+11:00   ERROR       System.AggregateException: One or more errors occurred. ---> System.Data.SQLite.SQLiteException: database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+...
+
+This error indicates that the disk where Tier 2 SQLlite database is located is out of space most likely.
+
+Customer replied that they have re-set the host ""SVRSG001SIN0002"" and that they will start FSAA and FSAC syncs from scratch.
+
+-----------------------
+
+Resetting the host did not help. Customer is still getting timeout error during Bulk Import, and the error again appears during the same ""Import SA_FSAA_Resources"" step. 
+
+-----------------------
+
+On the APPSG001SIN0012 proxy I found that StealthAuditRPC.exe process was hanging doing nothing. 
+We ended this task and then tried running bulk import again. This time import failed with different error ""SQL exception. No table found"" 
+
+Customer will try resetting host again and we will restart Full FSAA scan after that, then try Importing data once more.
+
+-----------------------
+After reseting host via FSAA scan job the job was still failing. This time with this error:
+code = Error (1), message = System.Data.SQLite.SQLiteException (0x800007BF): SQL logic error
+no such table: TBL_FSAA_Status
+
+As such: 
+1. we agreed to drop all tables related to SVRSG001SIN0002.GLOBALANZ.COM host from the main StealthAudit database.
+2. As well as remove local Tier 2 (fsaadb files) databases from both StealthAudit console server and the APPSG001SIN0012 proxy. 
+3. After we did that, we re-created SQL DB schema for SVRSG001SIN0002.GLOBALANZ.COM host once more 
+4. and started FSAA scan for it.
+
+At the moment new FSAA scan is running.","Customer is monitoring FSAA scan progress and will get back to us once they have an update.","Bulk import was failing with timeout each time after it tries to perform this action:
+10/11/2024 20:55:05 DEBUG FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""Importing SA_FSAA_Resources"" SVRSG001SIN0002.GLOBAL.ANZ.COM DCExtract 203244 202188 157836
+11/11/2024 20:55:08 ERROR StealthAUDIT(TDispatch) TDispatch.ExecuteJob ""Aborting thread (timeout)"" SVRSG001SIN0002.GLOBAL.ANZ.COM 0 202188 157836
+
+As seen in other log files, this pattern happened each time during the Bulk Import job runs:
+12/11/2024 17:06:29 DEBUG FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""Importing SA_FSAA_Resources"" SVRSG001SIN0002.GLOBAL.ANZ.COM DCExtract 50212 112200 82528
+13/11/2024 17:06:32 ERROR StealthAUDIT(TDispatch) TDispatch.ExecuteJob ""Aborting thread (timeout)"" SVRSG001SIN0002.GLOBAL.ANZ.COM 0 112200 82528
+
+After resetting SVRSG001SIN0002 hosts data via FSAA scan job the job was still failing. This time with this error:
+code = Error (1), message = System.Data.SQLite.SQLiteException (0x800007BF): SQL logic error
+no such table: TBL_FSAA_Status
+
+As such, we agreed to perform these steps in pursuit of restarting both FSAA scan and Bulk Import from scratch:
+
+1. we agreed to drop all tables related to SVRSG001SIN0002.GLOBALANZ.COM host from the main StealthAudit database using FSAA drop tables Instant Job.
+2. As well as remove local Tier 2 (fsaadb files) databases from both StealthAudit console server and the APPSG001SIN0012 proxy.
+3. After we did that, we re-created SQL DB schema for SVRSG001SIN0002.GLOBALANZ.COM host once more
+4. and started FSAA scan for it.
+
+After completing these steps FSAA Bulk import for SVRSG001SIN0002.GLOBALANZ.COM host completed successfully.","Root Cause Unknown","Artem Naskal","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.0","11.0.0.250","76.0","Closed - Resolved","ANZ","Ritwij Raj","2024-11-15T10:45:38.000Z","2025-01-30T10:10:13.000Z"

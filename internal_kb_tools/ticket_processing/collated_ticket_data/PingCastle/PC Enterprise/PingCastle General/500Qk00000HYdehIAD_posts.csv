@@ -1,0 +1,44 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PY88MKAT","500Qk00000HYdehIAD","TextPost","0054u000008ARZjAAO","2024-10-28T10:38:21.000Z","Description: Depuis quelques temps, nous avons une erreur sur l’API de PingCastle 
+The remote server returned an error: (405) Method Not Allowed.
+
+Le script que nous utilisons fonctionne depuis plusieurs mois, mais erreur depuis peu.
+
+Script en question :
+
+Param(
+    [Parameter(Mandatory=$true)]
+    $AppSecret,
+    [Parameter(Mandatory=$true)]
+    $UserId
+)
+
+$PingCastleServer = ""serverping.domain.local""
+
+$Authentication = @{
+    apikey   = $AppSecret
+    location = $PingCastleServer
+}
+
+$Parameters = @{
+    Method      = ""POST""
+    Uri         = ""https://$PingCastleServer/api/Agent/Login""
+    Body        = ($Authentication | ConvertTo-Json)
+    ContentType = ""application/json""
+}
+$Token = Invoke-RestMethod @Parameters
+$headers = @{
+    Authorization = ""$Token""
+}
+
+$response = Invoke-RestMethod ""https://$PingCastleServer/api/Users/$UserId"" -Method 'DELETE' -Headers $headers
+$response | ConvertTo-Json","","","","0054u000008ARZjAAO","2024-10-28T10:38:21.000Z"
+"0D5Qk00000PmImdKAF","500Qk00000HYdehIAD","TextPost","0054u000007Mdn4AAC","2024-10-31T10:29:41.000Z","What We've Learned Updated: There is a bug in the API deletion. It seems that when any session is open, even after closing the browser, as the session stays in the DB for some time, and then can't delete the user and any permission granted to Azure AD.
+The team is working on a hotfix for it, so you will be notified once the hotfix is out.
+
+Something worth to mention, is that if you use the UI, it works, so you can use the UI while the team works on the solution.","","","","0054u000007Mdn4AAC","2024-10-31T10:29:41.000Z"
+"0D5Qk00000PmYavKAF","500Qk00000HYdehIAD","TextPost","0054u000007Mdn4AAC","2024-10-31T10:29:52.000Z","Next Steps Updated: Wait for the hotfix","","","","0054u000007Mdn4AAC","2024-10-31T10:29:52.000Z"
+"0D5Qk00000QD30NKAT","500Qk00000HYdehIAD","TextPost","0054u000007Mdn4AAC","2024-11-06T14:57:38.000Z","Next Steps Updated: Wait for the hotfix.
+Confirmed it will be included in the next release","","","","0054u000007Mdn4AAC","2024-11-06T14:57:38.000Z"
+"0D5Qk00000SeI9zKAF","500Qk00000HYdehIAD","TextPost","0054u000007Mdn4AAC","2024-12-10T16:24:03.000Z","Next Steps Updated: Wait for customer confirmation after explaining it was fixed in the latest release","","","","0054u000007Mdn4AAC","2024-12-10T16:24:03.000Z"
+"0D5Qk00000SegQPKAZ","500Qk00000HYdehIAD","TextPost","0054u000007Mdn4AAC","2024-12-10T16:24:27.000Z","<p>This was fixed in the latest release. </p><p>Sent information to customer</p>","","","","0054u000007Mdn4AAC","2024-12-10T16:24:27.000Z"

@@ -1,0 +1,72 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk0000095dbRIAQ","500Qk00000FjjbSIAR","Description in the case is referencing StealthAUDIT which is now EnterpiseAuditor.
+Reassigning case to team lead queue so it can get assigned to the correct team.","0054u000006gzMzAAI","2024-09-13T16:34:49.000Z","2024-09-13T16:34:49.000Z","false","false"
+"00aQk0000097KxhIAE","500Qk00000FjjbSIAR","The customer is from the US","0054u000007MeUDAA0","2024-09-16T05:22:15.000Z","2024-09-16T05:22:15.000Z","false","false"
+"00aQk000009GefRIAS","500Qk00000FjjbSIAR","Will need to ask why Saviynt is trying to to connect Stealthaudit, what are they trying to accomplish.","00570000003KXurAAG","2024-09-23T19:24:48.000Z","2024-09-23T19:24:48.000Z","false","false"
+"00aQk000009IFOPIA4","500Qk00000FjjbSIAR","Netwrix Enterprise Auditor v11.6 > Administration > Global Settings > Access > Web Service REST API for Applications Accessing Data Remotely >
+Assign Application Access through the Web Service
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RESTAPI/AssignAppAccess.htm","00570000003KXurAAG","2024-09-24T20:52:26.000Z","2024-09-24T20:52:26.000Z","false","false"
+"00aQk000009JGK2IAO","500Qk00000FjjbSIAR","Netwrix Enterprise Auditor v11.6 > Administration > Global Settings > Access > Web Service REST API for Applications Accessing Data Remotely >
+
+*** Assign Application Access through the Web Service ***
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RESTAPI/AssignAppAccess.htm
+
+PowerShell Commands for the REST API
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Settings/Access/RESTAPI/PowerShellCommands.htm
+
+My Lab example script 
+Clear-Host
+$body = @{
+  client_id=""1417764""
+  client_secret=""jiOf4abNYKxsyrlAuMT9vM1I8TZ6tPGLaiaCQdtAvYo=""
+  grant_type=""client_credentials""
+}
+ 
+$response = Invoke-WebRequest -Method POST -uri http://localhost:8082/api/v1/token -Body $body -ContentType ""application/json""
+$content = $response.Content | ConvertFrom-Json 
+ 
+$access_token = $content.access_token;
+#$access_token
+$refresh_token = $content.refresh_token;
+#$refresh_token
+
+$headers = @{  
+Authorization=""Bearer $access_token""
+}
+#$response = Invoke-WebRequest -Method GET -uri http://localhost:8082/api/v1/data/SA_ADInventory_UsersView/rows -Headers  $headers
+$response = Invoke-WebRequest -Method GET -uri http://localhost:8082/api/v1/data/SA_ADInventory_ComputersView/rows -Headers $headers
+#$response
+$response.Content | ConvertFrom-Json
+#$content =  $content","00570000003KXurAAG","2024-09-25T16:50:09.000Z","2024-09-25T16:50:09.000Z","false","false"
+"00aQk000009iukTIAQ","500Qk00000FjjbSIAR","This query should be providing the needed data.
+
+SELECT TOP (1000) [HostName]
+      --,[HostId]
+      --,[WebAppId]
+      --,[UrlId]
+      --,[UrlZone]
+      ,[SiteCollectionName]
+      --,[SiteCollectionId]
+      --,[ResourceId]
+      --,[ParentResourceId]
+      --,[ResourceType]
+      ,[ResourceDescription]
+      ,[ResourceName]
+      ,[NestedLevel]
+      ,[RelativePath]
+      ,[FullPath]
+      ,[SPObjectId]
+      --,[ResourceDeletedUSN]
+      --,[AllowRights]
+      --,[DenyRights]
+      ,[TrusteeDomain]
+      ,[TrusteeSamAccountName]
+      ,[TrusteeNTStyleName]
+      ,[TrusteeDisplayName]
+      ,[TrusteeSID]
+      --,[TrusteeType]
+      ,[TrusteeTypeDescription]
+      --,[DirectTrustee]
+  FROM [Enterprise].[dbo].[SA_SPAA_EffectiveAccessView]
+
+----","00570000003KXurAAG","2024-10-17T19:04:34.000Z","2024-10-17T19:04:34.000Z","false","false"

@@ -1,0 +1,84 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NllcXIAR","00441125","Support Ticket","Netwrix Enterprise Auditor database migration","Case is for providing assistance with migration of NEA 11.6 database to a new server","","-------------
+07.04.2025 
+Artem Naskal 
+
+After confirming successful restoration of NEA database on a new SQL server we attempted to change the storage profile in the Enterprise Auditor console.
+However, we faced the following error:
+""remote server refused connection""
+
+To check if this issue is caused due to SQL server port been blocked we did the following:
+
+1. We checked the SQL server settings with DBA team and confirmed that server is configured to accept connections on port 1433.
+2. We also performed Test-NetConnection command from Enterprise Auditor against new SQL server on port 1433 - test net connection was a success.
+
+We then created a .udl file and attempted connection to SQL server directly outside of Enterprise Auditor and faced the same error as well as an error related to SSL/TLS connection issue.
+However, .udl test was successful when we tried connecting to the old SQL Server from Enterprise Auditor server.
+
+We also tried disabling TLS 1.0 and TLS 1.1 types for Enterprise Auditor server to see if this resolves the issue - result was the same error in the .udl test.
+
+As of now the .udl test is not successful. We agreed that you will engage DBA and networking team to resolve the .udl test issues.
+Once you can confirm that .udl connection test is successful from Enterprise Auditor to new SQL server - then you can proceed with updating Enterprise Auditor storage profile and configure it to connect to a new SQL server.
+
+----------
+15.04.2025 
+Artem Naskal 
+
+Customer needs additional time to resolve Stealth Audit SQL DB connection issue. 
+Placing ticket into postponed reply.
+
+------------------
+17.04.2025 
+Artem Naskal 
+
+Had a meeting with Vinay today. We were troubleshooting NAA server connection to a new SQL server. 
+
+We installed OleDB 18 Provider on the Netwrix Enterprise Auditor server.
+After this connection to new SQL server via .udl file was successful for ad_wwgrm.stb_ai account using Windows Authentication.
+
+We then tested the same connection via Netwrix Enterprise Auditor console - connection was successful but we could not get the list of available databases due to missing VIEW ANY DEFINITION permission on the 'master' db.
+For testing purposes the VIEW ANY DEFINITION permission was provided for ad_wwgrm.stb_ai account.
+
+After this we opened Netwrix Enterprise Auditor console using ad_wwgrm.stb_ai account and tested connection to new SQL server again - it was successful and there was no issue with getting list of available databases.
+
+This confirms that Netwrix Enterprise Auditor as well as ad_wwgrm.stb_ai account are ready for migration to a new SQL server.
+
+-------------------------
+23.04.2025 
+Artem Naskal 
+
+After updating the Storage profile for the Netwrix Access Analyzer (Enterprise Auditor) we confirmed successful connection to Published Reports.
+However, Access Information Center web page could not be secured. As such, we have updated certificate binding for port 481 (AIC service port on your server) using latest certificate.
+
+As a result we were able to open secure connection to AIC, but we were presented with another issue - AIC was still trying to connect to old SQL db.
+According to information from this helpcenter article:
+https://helpcenter.netwrix.com/bundle/AIC_12.0/page/Content/Access/InformationCenter/Admin/Configuration/Database.htm
+AIC SQL db connection can be changed either during installation, or after logging into AIC.
+
+Since we were unable to login into AIC (because original StealthAudit DB is in read-only mode) - we uninstalled and installed AIC version 11.6.0.37.
+During installation we provided connection information for a new SQL DB.
+We also noticed that DB connection using UPN format times out. As such, we switched to NetBIOS name format (domainuser) for the service log on settings and connection was successful as confirmed by DBA. 
+After installing new AIC we changed AIC exe config file and provided ""https"" value in the site binding parameter instead of ""http"". Current AIC exe config should have a binding for ""https"" on port 481.
+
+As of now AIC is running an indexing script against StealthAudit db on a new SQL server. We agreed to leave it running for 30-60 minutes, then check results.
+
+---------------------
+23.04.2025 
+Artem Naskal
+
+After increasing timeout on a new SQL server the Access Information Center service was able to finalize indexing script and successfully connected to new SQL db.
+Then we also did an upgrade to 11.6.0.141 build for the Netwrix Access Analyzer (Enterprise Auditor) core installation - upgrade was performed in-place without removing sandbox folder jobs.
+
+Currently installed AIC and NAA are:
+AIC - 11.6.0.37
+NAA - 11.6.0.141","Support will follow up with customer on 28th of April to check if new SQL db has any issues. 
+If everything is good - customer will decommission old SQL server.","Netwrix Access Analyzer Database migration was successful after needed permissions for connection to a new database were provided to this account:
+ad_wwgrm.stb_ai
+
+We also faced a couple of issues with starting Access Information Center.
+We had to use NetBIOS user name to connect to StealthAudit database and a SQL server (new SQL server) connection timeout had to be increased to allow indexing script to complete successfully.
+After this we were able to open AIC page without an issue
+
+Currently installed Access Information Center and Netwrix Access Analyzer are:
+AIC - 11.6.0.3
+NAA - 11.6.0.141","Deployment/Installation","Artem Naskal","Request","Netwrix Enterprise Auditor","StealthAUDIT General","Migration","11.6","11.6.0.141","28.1","Closed - Resolved","GroupM","Vinay Singh","2025-04-07T11:37:04.000Z","2025-05-05T13:26:49.000Z"

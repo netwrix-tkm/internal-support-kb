@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NGVU7IAP","00439782","Support Ticket","Invalid URI: The format of the URI could not be determined.","After kicking off the SPAC System Scan for SPO, we're getting an invalid URI error. This is post upgrading to NEA v11.6.0.138. Data is successfully being collected by NAM, but NEA seems unable to ingest it.","1. Collect data successfully from SPO in NAM
+2. Run SPAC System Scan against same NAM monitored SPO host
+3. Job fails within 10 minutes, no data ingested","Issue began after upgrading to NEA v11.6.0.138
+
+Looks like it happens when compressing T2s, but there is no indication in that any logs have been parsed yet.","SPAC System Scan is currently running and processing logs - check in Monday to see if the scan completed (there is a backlog of event logs to get through)","1. Open the SPAC.db3 database with DB Browser for SQLite
+2. Run code #1 below
+3. Run code #2 below
+4. Hit ""Write Changes"" in DB Browser
+5. Run SPAC System scan and bulk import
+
+---CODE #1 ---
+UPDATE ActivitySiteCollections SET URL = CONCAT('https://medpace-my.sharepoint.com/personal/' , SUBSTR(URL,11,INSTR(SUBSTR(URL,11,LENGTH(URL)),'/')-1)) WHERE URL LIKE '/personal/%';
+
+UPDATE ActivitySiteCollections SET URL = CONCAT('https://medpace.sharepoint.com/sites/' , SUBSTR(URL,8,INSTR(SUBSTR(URL,8,LENGTH(URL)),'/')-1)) WHERE URL LIKE '/sites/%';
+
+UPDATE ActivitySiteCollections SET URL = CONCAT('https://medpace.sharepoint.com/teams/' , SUBSTR(URL,8,INSTR(SUBSTR(URL,8,LENGTH(URL)),'/')-1)) WHERE URL LIKE '/teams/%';
+---CODE #1---
+
+---CODE #2---
+SELECT * FROM ActivitySiteCollections WHERE URL NOT LIKE 'http%';
+---CODE #2---","External Patch/Update Impact","Tay Caliguiri","Error","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Activity Auditing","11.6","138","42.0","Closed - Resolved","Medpace, Inc","Brittany Lac","2025-03-24T15:41:15.000Z","2025-05-05T15:29:07.000Z"

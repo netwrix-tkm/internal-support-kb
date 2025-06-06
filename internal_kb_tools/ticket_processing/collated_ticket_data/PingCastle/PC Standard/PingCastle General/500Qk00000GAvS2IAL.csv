@@ -1,0 +1,16 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GAvS2IAL","00421899","Support Ticket","this is for 3.3 version: error crash when lunch the exe file","When i lunch the pingcastle v3.3 on a DC, the application crash with this error :
+
+[10:06:41] An exception occured when doing the task: application domain
+Note: you can run the program with the switch --log to get more detail
+Exception: Impossible de charger le fichier ou l'assembly '<a href='https://System.Net.Http' target='_blank'>System.Net.Http</a>, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' ou une de ses dépendances. Le fichier spécifié est introuvable.
+<a href='https://file:System.Net.Http' target='_blank'>file:System.Net.Http</a>, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+   à PingCastle.Cloud.Common.HttpClientHelper.EnableLoging(SazGenerator generator)
+   à <a href='https://PingCastle.Program.Main' target='_blank'>PingCastle.Program.Main</a>(String[] args)
+
+Exception non gérée : <a href='https://System.IO' target='_blank'>System.IO</a>.FileNotFoundException: Impossible de charger le fichier ou l'assembly '<a href='https://System.Net.Http' target='_blank'>System.Net.Http</a>, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' ou une de ses dépendances. Le fichier spécifié est introuvable.
+   à PingCastle.Cloud.Common.HttpClientHelper.EnableLoging(SazGenerator generator)
+   à <a href='https://PingCastle.Program.Main' target='_blank'>PingCastle.Program.Main</a>(String[] args)","","","","ISSUE: Same as described.
+
+RESOLUTION: This is a most certainly a .NET Framework error. You should be able to install .NET Framework and be good to go.
+Please be aware that PingCastle works best when run from a Server/Workstation, not a domain controller as it cannot confirm certain findings locally such as Domain Controller Coercion.","","Ali Asif","","PingCastle","PC Standard","PingCastle General","3.2.0.1","","2.3","Closed - Resolved","METSYS","Thierry Plantive","2024-09-24T08:14:54.000Z","2024-09-26T15:43:17.000Z"

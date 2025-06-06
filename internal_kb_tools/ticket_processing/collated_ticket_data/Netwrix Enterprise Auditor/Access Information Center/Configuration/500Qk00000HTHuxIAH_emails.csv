@@ -1,0 +1,499 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000HV5mPIAT","500Qk00000HTHuxIAH","2024-11-05T06:17:49.000Z","2024-11-05T06:17:49.000Z","Hi Lorcan,
+
+Are there any updates since the last email?
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Lorcan O'Sullivan [lorcan.osullivan@kerry.ie]
+Sent: 11/1/2024 4:03 PM
+To: techsupport@netwrix.com
+Cc: cameron.bowlds@kerry.com; georges.chahwan@netwrix.com
+Subject: RE: [EXTERNAL] RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners' [ ref:!00D70091pB.!500Qk0HTHux:ref ]
+
+ref:_00D7091pB._500Q000HTHux:ref
+
+
+
+Hi,
+
+ 
+
+I believe this scan is now running but I am unable to confirm f this has resolved the issue as we have another technical issue preventing us accessing the portal. I believe a separate ticket has been opened for this.
+
+ 
+
+If you can keep this ticket open until next week please?
+
+ 
+
+Regards,
+
+Lorcan
+
+ 
+
+
+Lorcan O’Sullivan
+ICT Cyber Security Analyst
+
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, November 1, 2024 7:13 AM
+To: Lorcan O'Sullivan <lorcan.osullivan@kerry.ie>
+Cc: georges.chahwan@netwrix.com
+Subject: [EXTERNAL] RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners' [ ref:!00D70091pB.!500Qk0HTHux:ref ]
+
+
+
+ 
+
+Hi Lorcan,
+
+Have you had a chance to check my previous email?
+
+Were you able to run the AD Scan and check if you can select the other domain in AIC?
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/30/2024 11:52 AM
+To: lorcan.osullivan@kerry.ie
+Cc: georges.chahwan@netwrix.com
+Subject: RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners' [ ref:!00D70091pB.!500Qk0HTHux:ref ]
+
+Hi Lorcan,
+
+Thank you for your time.
+
+Please make sure that the Host List assigned reflects all your necessary domains in it and then you can kick off the "".Active Directory Inventory"" group scan manually or on schedule. You can check if you have a scheduled task for this job here:
+
+
+
+
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Lorcan O'Sullivan [lorcan.osullivan@kerry.ie]
+Sent: 10/29/2024 6:59 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'
+
+ref:_00D7091pB._500Q000HTHux:ref
+
+Hi, Yes the AD account that was created to run these jobs was disabled in our AD. This has now been re-enabled. What action needs to be done to get these scans going again? 
+
+
+ 
+
+
+
+ 
+
+
+
+******************************************************************
+""Notice: This e-mail and any files transmitted are confidential and may also be privileged. This communication is intended solely for the use of the individual or entity to which it is addressed. If you are the intended recipient of this information, please treat it as confidential information and take all necessary action to keep it secure. If you are not the intended recipient, you are hereby notified that any use, dissemination, forwarding, or copying of this communication is strictly prohibited. If you have received this communication in error, please notify the sender at once by reply e-mail and destroy all copies of the original message.""
+******************************************************************","RE: [EXTERNAL] RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'    [ ref:!00D70091pB.!500Qk0HTHux:ref ]","techsupport@netwrix.com","Netwrix Support","lorcan.osullivan@kerry.ie","georges.chahwan@netwrix.com","aleksandr.timofeev@netwrix.com","true","2024-11-05T06:17:48.000Z","true"
+"02sQk00000HZ2ZpIAL","500Qk00000HTHuxIAH","2024-11-06T14:46:52.000Z","2024-11-06T16:00:40.000Z","ref:_00D7091pB._500Q000HTHux:ref
+
+Hi Aleksandr,
+
+I believe the scans are back up and running but I still see no change in the portal when trying to select an owner, I only see 'ICT'.
+
+Regards,
+Lorcan","Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'","lorcan.osullivan@kerry.ie","Lorcan O'Sullivan","techsupport@netwrix.com","","","false","2024-11-06T14:46:52.000Z","true"
+"02sQk00000HZMwkIAH","500Qk00000HTHuxIAH","2024-11-06T16:43:10.000Z","2024-11-06T16:43:10.000Z","Hi Lorcan,
+
+Thank you for the reply.
+
+I think I found the root cause. You need to add non-ICT domains in the ""AuthSearchDomain"" field in the ""AccessInformationCenter.Service.exe.config"" file.
+By default, it's located in the ""C:Program FilesStealthbitsAccess Information Center"" folder."
+"02sQk00000HcAhOIAV","500Qk00000HTHuxIAH","2024-11-07T15:45:50.000Z","2024-11-07T16:19:11.000Z","ref:_00D7091pB._500Q000HTHux:ref
+
+Hi, Thank you for this information. I have added our domains to the config file as suggested and re-ran the 1-AD_Scan which completed successfully. Unfortunately there was no change when trying add the owners, I still ONLY see the ICT domain....","Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'","lorcan.osullivan@kerry.ie","Lorcan O'Sullivan","techsupport@netwrix.com","","","false","2024-11-07T15:45:50.000Z","true"
+"02sQk00000Hc2tbIAB","500Qk00000HTHuxIAH","2024-11-07T16:23:53.000Z","2024-11-07T16:23:53.000Z","Hi Lorcan,
+
+Thank you for the reply.
+
+I forgot you need to restart the ""Netwrix Access Information Center"" service after the config change.
+
+Please try to do that and let me know the results. There is no need to rerun the 1-AD_Sync job.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Lorcan O'Sullivan [lorcan.osullivan@kerry.ie]
+Sent: 11/7/2024 7:45 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'
+
+ref:_00D7091pB._500Q000HTHux:ref
+
+Hi, Thank you for this information. I have added our domains to the config file as suggested and re-ran the 1-AD_Scan which completed successfully. Unfortunately there was no change when trying add the owners, I still ONLY see the ICT domain....","RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'    [ ref:!00D70091pB.!500Qk0HTHux:ref ]","techsupport@netwrix.com","Netwrix Support","lorcan.osullivan@kerry.ie","","aleksandr.timofeev@netwrix.com","false","2024-11-07T16:23:52.000Z","true"
+"02sQk00000HjqqJIAR","500Qk00000HTHuxIAH","2024-11-11T06:17:22.000Z","2024-11-11T06:17:22.000Z","Hi Lorcan,
+
+Have you had a chance to check my previous email?
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/7/2024 8:23 PM
+To: lorcan.osullivan@kerry.ie
+Subject: RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners' [ ref:!00D70091pB.!500Qk0HTHux:ref ]
+
+Hi Lorcan,
+
+Thank you for the reply.
+
+I forgot you need to restart the ""Netwrix Access Information Center"" service after the config change.
+
+Please try to do that and let me know the results. There is no need to rerun the 1-AD_Sync job.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Lorcan O'Sullivan [lorcan.osullivan@kerry.ie]
+Sent: 11/7/2024 7:45 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'
+
+ref:_00D7091pB._500Q000HTHux:ref
+
+Hi, Thank you for this information. I have added our domains to the config file as suggested and re-ran the 1-AD_Scan which completed successfully. Unfortunately there was no change when trying add the owners, I still ONLY see the ICT domain....","RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'    [ ref:!00D70091pB.!500Qk0HTHux:ref ]","techsupport@netwrix.com","Netwrix Support","lorcan.osullivan@kerry.ie","georges.chahwan@netwrix.com","aleksandr.timofeev@netwrix.com","false","2024-11-11T06:17:21.000Z","true"
+"02sQk00000HkO7BIAV","500Qk00000HTHuxIAH","2024-11-11T10:41:22.000Z","2024-11-11T11:51:18.000Z","ref:_00D7091pB._500Q000HTHux:ref
+
+Yes I did. I have not got a chance to perform the AIC restart yet. Once I do I will get back to you later today.
+
+Regards,
+Lorcan
+
+Lorcan O’Sullivan
+ICT Cyber Security Analyst
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, November 11, 2024 6:17 AM
+To: Lorcan O'Sullivan <lorcan.osullivan@kerry.ie>
+Cc: georges.chahwan@netwrix.com
+Subject: [EXTERNAL] RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners' [ ref:!00D70091pB.!500Qk0HTHux:ref ]
+
+Hi Lorcan, Have you had a chance to check my previous email? Best regards, Aleksandr Timofeev Technical Support Engineer EMEA ____________________ _________ Cybersecurity That Works for You 6160 Warren Parkway, Suite 100, Frisco, TX, US 75034 www.netwrix.com<http://www.netwrix.com> --------------- Origi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+[https://image-processing-service.eu-2.mimecastcybergraph.com/v2/banners?e=-RbTxpeSIwccdkqn4kEciGxTz0j97VTMHzjrZPFe_5Yg4_Ox9SDzaQ1YEhGZYNl1VbviB3-G7pe1MA7Ufv32ghCb4qQIkKX51rEkXspBt-18mRowPfTkeh1OcFVOQnAnioyOhLUajAV6Cgm7iSJmbkmLjcB9Uslw5ElmAPzPpe5Jjbaosz1P_x5cpfGDG4vtkx5qGeIHRuWF7gLR6ZY7DsPOnYCd3kRvDUiqY_RNEmpQwdpmmzmPrZiiTw1XSdqljm3KY2Wp7rq3YmliEwtDK7lIuONuEh4Mm6JSJqArYMn3QEmcnl-wVXUfZ1GyzvMFRJ3xOKzUk7mnakBxWlYd5SMDE0NRYsAqxhzdHCI6hPw_DvYVexFWe0pAENL_QvYWZg==]<https://report.mimecastcybergraph.com/?magiclink=https%3A%2F%2Fapi.services.mimecast.com%2Foauth2%2Fauthorize%3Fresponse_type%3Dcode%26client_id%3Do20nRkVXf7VUVnANkXhoOwGytEwGN0YAlyeDJn7oBTGNl2kN%26state%3DeyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2R0NNIn0.UDE8IA5Yla31yOhv0gDC7c2ZdPbFHITU-GJQmS8FA7XdGBwTqjpL8T2Lpw_jytukZWAcjrQBP5z2HKzW4ExEj6mLkr3roKeXid6_RxB_Iy23KmUi_PDPTKKiHU0trRiLxy1-E54YceFKyS9QhEk_5SRJdLt30xrFuP0pfyoLpmnuYKv_OgkP2YnecpsPoizLBEjI7YLxfmjS8m-B-_j4Eqfi0kMHT8JWlFrP50M24ErrzOzRx3jrjADERcjXhJEci0sxZDgVMnEgm9wBi-Ax3y_TJ_q6T6Seo3o9IzqjzRGK3y3Bb-3KSOoQvFUpUOJibez4qRJASiYfaH7jg660Rg.o9eMOw5efT5zdxpN.Fq58waEXN1OOzHucBQxQxlQowALdFG9sMDVGfwOC8eTwCDYo_KTmJC_NPVLx8-W9NaHiGEvIX7u-3UyAE-DkDEYAnCInan06ZjiUXnnqJGpESUJCwwJs3AkgB1OhaBQC78Fotudi4NvWmEqZ67VeOBwEypQQc-3vhrqMveFWRkzMrEux_gM5vcMh6HSfD7rYuvXjeDbZ-bpzguR4Ie7VoLRzKDayVccSO_5VciJdZaXTE9FA3erf1acQbeHfOvGzU2qeXJMhI52G_u9cWQzwMWWedvdE_IR1ZomTwCKKZIJil_9iuyt9X-dVhC9iElNs__NgFwR94uHGFVxlIjBXDWPHX7Eiz-DejApRyd-8349wXCtcC2hBUP9PbD7uIkeS9k_WQze8WxITQEXHPHtj0_GAKaBu0Z5jQWQwRbmwkMqHCl_3wl1XcZZtOsQX3wXW8bTtnvRxvcivvAwDNhWJzQErTza9gb6WDEbKeauDjKDzkbfwVvTnhxWF5pfH4iSuFExUNd-DXAZkdYNTeKphDkBihc05EZU5hELGAe_hz1BNEll2UbzFL6sFhIdYlXcWMvWx1CEo5R7GMh9eWKQw-u81afilGFLLE9S8z6fWXnKrUQtUR7rzNeKVC2M1cJcjwl1SfZL0U9oBoSYkdEqgSRkzFiRzpoUL5Fy1g9cERTqzkKUn2IB50SuzuUUhR5c9Rimw0ieSOYH28caiyNZPFTwa5C07byuazi6kS5CAPGwoZbfap1HAVUEiGAif5N9lrT0UHDX4SdtnFNeUCDSQ0---LagNPEizUWDuL4mljKap4OsOf8SOvlF5hF1_nsP0D_gNM5N6KZiKUxAC2EhHJ2lnpuygbY3MX60hJBchWqINkwvYW6bZag0SA5GLgEikl_iyI3hKzlXtcX4ReIO-xeFXitPsNV9LDC3yL0uwhmTd83kH34UzU9Z36g.Dp7JW1adYCnl5pKyzdi_xw%26redirect_uri%3Dhttps%3A%2F%2Freport.mimecastcybergraph.com%2Fcallback>
+CGBANNERINDICATOR
+Hi Lorcan,
+
+Have you had a chance to check my previous email?
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/7/2024 8:23 PM
+To: lorcan.osullivan@kerry.ie<mailto:lorcan.osullivan@kerry.ie>
+Subject: RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners' [ ref:!00D70091pB.!500Qk0HTHux:ref ]
+
+Hi Lorcan,
+
+Thank you for the reply.
+
+I forgot you need to restart the ""Netwrix Access Information Center"" service after the config change.
+
+Please try to do that and let me know the results. There is no need to rerun the 1-AD_Sync job.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com<http://www.netwrix.com>
+
+
+--------------- Original Message ---------------
+From: Lorcan O'Sullivan [lorcan.osullivan@kerry.ie<mailto:lorcan.osullivan@kerry.ie>]
+Sent: 11/7/2024 7:45 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'
+
+ref:_00D7091pB._500Q000HTHux:ref
+
+Hi, Thank you for this information. I have added our domains to the config file as suggested and re-ran the 1-AD_Scan which completed successfully. Unfortunately there was no change when trying add the owners, I still ONLY see the ICT domain....
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000G6xLx&from=ext]
+
+
+******************************************************************
+""Notice: This e-mail and any files transmitted are confidential and may also be privileged. This communication is intended solely for the use of the individual or entity to which it is addressed. If you are the intended recipient of this information, please treat it as confidential information and take all necessary action to keep it secure. If you are not the intended recipient, you are hereby notified that any use, dissemination, forwarding, or copying of this communication is strictly prohibited. If you have received this communication in error, please notify the sender at once by reply e-mail and destroy all copies of the original message.""
+******************************************************************","RE: [EXTERNAL] RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'    [ ref:!00D70091pB.!500Qk0HTHux:ref ]","lorcan.osullivan@kerry.ie","Lorcan O'Sullivan","techsupport@netwrix.com","georges.chahwan@netwrix.com","","false","2024-11-11T10:41:02.000Z","true"
+"02sQk00000Hl8ErIAJ","500Qk00000HTHuxIAH","2024-11-11T16:06:28.000Z","2024-11-12T05:28:34.000Z","ref:_00D7091pB._500Q000HTHux:ref
+
+Hi Aleksandr - can you please specify what we need to do to restart the AIC service ?","Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'","lorcan.osullivan@kerry.ie","Lorcan O'Sullivan","techsupport@netwrix.com","","","false","2024-11-11T16:06:28.000Z","true"
+"02sQk00000Hn4ogIAB","500Qk00000HTHuxIAH","2024-11-12T05:35:21.000Z","2024-11-12T05:35:21.000Z","Hi Lorcan,
+
+You can restart the service in Powershell.
+Open Powershell as Administrator and run the following command: Restart-Service AccessInformationCenter
+
+You can also open the Services console by typing ""services.msc"" in the search field near the Windows ""Start"" and restart the ""Netwrix Access Information Center"" service.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Lorcan O'Sullivan [lorcan.osullivan@kerry.ie]
+Sent: 11/11/2024 8:06 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'
+
+ref:_00D7091pB._500Q000HTHux:ref
+
+Hi Aleksandr - can you please specify what we need to do to restart the AIC service ?","RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'    [ ref:!00D70091pB.!500Qk0HTHux:ref ]","techsupport@netwrix.com","Netwrix Support","lorcan.osullivan@kerry.ie","","aleksandr.timofeev@netwrix.com","false","2024-11-12T05:35:20.000Z","true"
+"02sQk00000Hs5sCIAR","500Qk00000HTHuxIAH","2024-11-13T16:40:02.000Z","2024-11-13T16:40:02.000Z","ref:_00D7091pB._500Q000HTHux:ref
+
+Hi Aleksandr,
+
+The AIC has been restarted but this has not resolved the issue so I can still only see 'ICT' as an option.
+
+I have checked on the CONFIG file and this seemed to have deleted the changes I made adding in the additional domains under 'AuthSearchDomains'.
+
+I could update the file again but I am not sure if this will take affect once the AIC is restarted again.
+
+Can you advise? Is there a way to have the changes take affect with the AIC being restarted?","Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'","lorcan.osullivan@kerry.ie","Lorcan O'Sullivan","techsupport@netwrix.com","","","false","2024-11-13T16:40:02.000Z","true"
+"02sQk00000HuFtpIAF","500Qk00000HTHuxIAH","2024-11-14T06:15:47.000Z","2024-11-14T06:15:47.000Z","Hi Lorcan,
+
+Please try to change the config file again and ensure it is saved.
+Sometimes this happens when you don't have enough permissions to save the file. Service restart should not remove your configurations.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Lorcan O'Sullivan [lorcan.osullivan@kerry.ie]
+Sent: 11/13/2024 8:40 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'
+
+ref:_00D7091pB._500Q000HTHux:ref
+
+Hi Aleksandr,
+
+The AIC has been restarted but this has not resolved the issue so I can still only see 'ICT' as an option.
+
+I have checked on the CONFIG file and this seemed to have deleted the changes I made adding in the additional domains under 'AuthSearchDomains'.
+
+I could update the file again but I am not sure if this will take affect once the AIC is restarted again.
+
+Can you advise? Is there a way to have the changes take affect with the AIC being restarted?","RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'    [ ref:!00D70091pB.!500Qk0HTHux:ref ]","techsupport@netwrix.com","Netwrix Support","lorcan.osullivan@kerry.ie","georges.chahwan@netwrix.com","aleksandr.timofeev@netwrix.com","false","2024-11-14T06:15:46.000Z","true"
+"02sQk00000I3bANIAZ","500Qk00000HTHuxIAH","2024-11-18T07:22:53.000Z","2024-11-18T07:22:53.000Z","Hi Lorcan,
+
+Are there any updates since the last email?
+
+Have you tried to change the config again?
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/14/2024 10:15 AM
+To: lorcan.osullivan@kerry.ie
+Cc: georges.chahwan@netwrix.com
+Subject: RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners' [ ref:!00D70091pB.!500Qk0HTHux:ref ]
+
+Hi Lorcan,
+
+Please try to change the config file again and ensure it is saved.
+Sometimes this happens when you don't have enough permissions to save the file. Service restart should not remove your configurations.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Lorcan O'Sullivan [lorcan.osullivan@kerry.ie]
+Sent: 11/13/2024 8:40 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'
+
+ref:_00D7091pB._500Q000HTHux:ref
+
+Hi Aleksandr,
+
+The AIC has been restarted but this has not resolved the issue so I can still only see 'ICT' as an option.
+
+I have checked on the CONFIG file and this seemed to have deleted the changes I made adding in the additional domains under 'AuthSearchDomains'.
+
+I could update the file again but I am not sure if this will take affect once the AIC is restarted again.
+
+Can you advise? Is there a way to have the changes take affect with the AIC being restarted?","RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'    [ ref:!00D70091pB.!500Qk0HTHux:ref ]","techsupport@netwrix.com","Netwrix Support","lorcan.osullivan@kerry.ie","georges.chahwan@netwrix.com","aleksandr.timofeev@netwrix.com","false","2024-11-18T07:22:52.000Z","true"
+"02sQk00000IB7VQIA1","500Qk00000HTHuxIAH","2024-11-20T16:41:37.000Z","2024-11-20T16:41:37.000Z","Hi Lorcan,
+
+I wanted to follow up because I have not heard from you since my last email.
+
+Have you tried to change the config again?
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/18/2024 11:22 AM
+To: lorcan.osullivan@kerry.ie
+Cc: georges.chahwan@netwrix.com
+Subject: RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners' [ ref:!00D70091pB.!500Qk0HTHux:ref ]
+
+Hi Lorcan,
+
+Are there any updates since the last email?
+
+Have you tried to change the config again?
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 11/14/2024 10:15 AM
+To: lorcan.osullivan@kerry.ie
+Cc: georges.chahwan@netwrix.com
+Subject: RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners' [ ref:!00D70091pB.!500Qk0HTHux:ref ]
+
+Hi Lorcan,
+
+Please try to change the config file again and ensure it is saved.
+Sometimes this happens when you don't have enough permissions to save the file. Service restart should not remove your configurations.
+
+Best regards,
+
+Aleksandr Timofeev
+Technical Support Engineer EMEA
+____________________ _________
+Cybersecurity That Works for You
+6160 Warren Parkway, Suite 100, Frisco, TX, US 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Lorcan O'Sullivan [lorcan.osullivan@kerry.ie]
+Sent: 11/13/2024 8:40 PM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'
+
+ref:_00D7091pB._500Q000HTHux:ref
+
+Hi Aleksandr,
+
+The AIC has been restarted but this has not resolved the issue so I can still only see 'ICT' as an option.
+
+I have checked on the CONFIG file and this seemed to have deleted the changes I made adding in the additional domains under 'AuthSearchDomains'.
+
+I could update the file again but I am not sure if this will take affect once the AIC is restarted again.
+
+Can you advise? Is there a way to have the changes take affect with the AIC being restarted?","RE: Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'    [ ref:!00D70091pB.!500Qk0HTHux:ref ]","techsupport@netwrix.com","Netwrix Support","lorcan.osullivan@kerry.ie","georges.chahwan@netwrix.com","aleksandr.timofeev@netwrix.com","false","2024-11-20T16:41:36.000Z","true"
+"02sQk00000IDkHBIA1","500Qk00000HTHuxIAH","2024-11-21T12:09:50.000Z","2024-11-21T16:09:11.000Z","ref:_00D7091pB._500Q000HTHux:ref
+
+Hi Aleksandr, sorry about this as the portal was inaccessible for a few days. Its back up and I can now see the other options when searching for the resource owners. I think this ticket can be closed now. Thanks for your support.","Netwrix Support Ticket #425074 - Unable to add non-ICT domain owners in 'resource owners'","lorcan.osullivan@kerry.ie","Lorcan O'Sullivan","techsupport@netwrix.com","","","false","2024-11-21T12:09:50.000Z","true"

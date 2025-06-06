@@ -1,0 +1,314 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000Bwu6jIAB","500Qk00000CRkr7IAD","2024-06-28T21:36:30.000Z","2024-06-28T21:36:30.000Z","Hey Robert,
+
+Thank you for contacting Netwrix technical support.
+
+There used to be a Lockout job that relied on the SMARTLog data collector, but unfortunately it was kindly slow and clunky and no longer supported. NEA now has the Lockout report bundled as part of the AD Activity job: https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/ActiveDirectory/Activity/AD_Lockouts.htm
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+ref:!00D70091pB.!500Qk0CRkr7:ref","locked out accounts report?    [ ref:!00D70091pB.!500Qk0CRkr7:ref ]","techsupport@netwrix.com","Netwrix Support","robert.parsons@optiv.com","","taylor.caliguiri@netwrix.com","false","2024-06-28T21:36:29.000Z","true"
+"02sQk00000C4b72IAB","500Qk00000CRkr7IAD","2024-07-02T14:22:36.000Z","2024-07-02T14:22:36.000Z","ref:_00D7091pB._500Q000CRkr7:ref
+
+Thanks Tay!  I haven’t set up the activity yet for the customer I am working with, so I hadn’t looked at that group yet.  That makes sense.
+FYI – It looks like the Active Directory Inventory changes job also has lockouts in one of the user events SQL tables.  Unfortunately in my case, this means if the helpdesk “fixes” the lockout before ADI runs again, there’s no state change to observe between the two ADI runs.  So I will need to use activity I think, to get what I want.
+
+
+I am reasonably sure that these days you can import/ship over the activity info from Threat Manger to Netwrix Enterprise Auditor.  I haven’t set that up before, can you please send me directions on how to set that up?  You can make a separate case for that if it helps your metrics.
+
+I HAVE set up importing the activity from StealthDEFEND, but you have to “grab” it from each individual machine (meaning each domain controller).  This isn’t ideal, and I don’t remember how to set that up either.   Can you please also send directions on how to do that?  If it helps to keep things organized, you can make that a separate case too.
+
+
+If you create different cases for those requests, you can close this case.  Thanks in advance for the help; it’s always nice to work with you.
+
+-Robert
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, June 28, 2024 2:37 PM
+To: Robert Parsons <robert.parsons@optiv.com>
+Subject: locked out accounts report? [ ref:!00D70091pB.!500Qk0CRkr7:ref ]
+
+Hey Robert,
+
+Thank you for contacting Netwrix technical support.
+
+There used to be a Lockout job that relied on the SMARTLog data collector, but unfortunately it was kindly slow and clunky and no longer supported. NEA now has the Lockout report bundled as part of the AD Activity job: https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/ActiveDirectory/Activity/AD_Lockouts.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/ActiveDirectory/Activity/AD_Lockouts.htm__;!!CiF3mHgEawk!BFiaphUmJjewRCGEAb43iYYztoOWDjHh5cp6c0ciZjdUS8H7JM0AGbrFw0ZqVHAujH-VemHViwDd6BmyqwQ6TwdAiA$>
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!CiF3mHgEawk!BFiaphUmJjewRCGEAb43iYYztoOWDjHh5cp6c0ciZjdUS8H7JM0AGbrFw0ZqVHAujH-VemHViwDd6BmyqwSvQOwYoA$>
+
+ref:!00D70091pB.!500Qk0CRkr7:ref","RE: Netwrix Support Ticket #413496 - ref:_00D7091pB._500Q000CRkr7:ref - locked out accounts report?    [ ref:!00D70091pB.!500Qk0CRkr7:ref ]","robert.parsons@optiv.com","Robert Parsons","techsupport@netwrix.com","","","false","2024-07-02T14:22:06.000Z","true"
+"02sQk00000C4wGEIAZ","500Qk00000CRkr7IAD","2024-07-02T15:23:19.000Z","2024-07-02T15:23:19.000Z","Hey Robert,
+
+There's no way currently to send AD activity data to NTM/SD from NEA. The workflow for AD Activity would look more like:
+
+	Activity Monitor collects the AD Activity data and sends it to NEA and NTM
+	Enterprise Auditor then can create AD Activity Reports
+
+NTM/NAM Integration: https://helpcenter.netwrix.com/bundle/ThreatManager_2.8/page/Content/ThreatManager/Install/Integration/ActivityMonitor.htm
+
+AD Activity Configuration NAM/NEA: https://helpcenter.netwrix.com/bundle/ActivityMonitor_7.0/page/Content/Config/ActiveDirectory/Activity.htm
+
+Let me know if those help or if you have any additional questions!
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Robert Parsons [robert.parsons@optiv.com]
+Sent: 7/2/2024 10:22 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #413496 - ref:_00D7091pB._500Q000CRkr7:ref - locked out accounts report? [ ref:!00D70091pB.!500Qk0CRkr7:ref ]
+
+ref:_00D7091pB._500Q000CRkr7:ref
+
+
+
+Thanks Tay!  I haven’t set up the activity yet for the customer I am working with, so I hadn’t looked at that group yet.  That makes sense.
+
+FYI – It looks like the Active Directory Inventory changes job also has lockouts in one of the user events SQL tables.  Unfortunately in my case, this means if the helpdesk “fixes” the lockout before ADI runs again, there’s no state change to observe between the two ADI runs.  So I will need to use activity I think, to get what I want.
+
+ 
+
+ 
+
+I am reasonably sure that these days you can import/ship over the activity info from Threat Manger to Netwrix Enterprise Auditor.  I haven’t set that up before, can you please send me directions on how to set that up?  You can make a separate case for that if it helps your metrics.
+
+ 
+
+I HAVE set up importing the activity from StealthDEFEND, but you have to “grab” it from each individual machine (meaning each domain controller).  This isn’t ideal, and I don’t remember how to set that up either.   Can you please also send directions on how to do that?  If it helps to keep things organized, you can make that a separate case too.
+
+ 
+
+ 
+
+If you create different cases for those requests, you can close this case.  Thanks in advance for the help; it’s always nice to work with you.
+
+ 
+
+-Robert
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, June 28, 2024 2:37 PM
+To: Robert Parsons <robert.parsons@optiv.com>
+Subject: locked out accounts report? [ ref:!00D70091pB.!500Qk0CRkr7:ref ]
+
+
+
+ 
+
+Hey Robert,
+
+Thank you for contacting Netwrix technical support.
+
+There used to be a Lockout job that relied on the SMARTLog data collector, but unfortunately it was kindly slow and clunky and no longer supported. NEA now has the Lockout report bundled as part of the AD Activity job: https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/ActiveDirectory/Activity/AD_Lockouts.htm
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0CRkr7:ref","RE: Netwrix Support Ticket #413496 -  - locked out accounts report?    [ ref:!00D70091pB.!500Qk0CRkr7:ref ]","techsupport@netwrix.com","Netwrix Support","robert.parsons@optiv.com","","taylor.caliguiri@netwrix.com","false","2024-07-02T15:23:17.000Z","true"
+"02sQk00000C5FxDIAV","500Qk00000CRkr7IAD","2024-07-02T16:39:08.000Z","2024-07-02T16:39:08.000Z","ref:_00D7091pB._500Q000CRkr7:ref
+
+Thanks for the reply, Tay.  This is a complicated topic, so I might not be phrasing my question right.  Here’s that data flow diagram, and let me explain more what I am asking.
+
+[cid:image001.png@01DACC61.27271E20]
+
+Because you can’t install both Activity Monitor and the StealthDefend agent on the same machine, there’s a provision to have the SD agent make the same kind of logs that Activity Monitor makes, that can be imported by NEA as activity.  This is #1 in the diagram.  I know I have done this for file system activity and am 90% sure you can also do it for AD activity.  (Activity Monitor and the SD agent are based of the same code base for the data collection portion, unless something has significantly changed since I worked there.)  It would be nice to have a remind how to set up this #1 portion, especially with respect to AD activity.  [lower priority unless #2 is not possible]
+
+However, what I REALLY would prefer to do is item #2, where all the aggregated activity data in Theat Manager is used by NEA for activity information.  I am not sure if this mechanism is a push or pull, but I am nearly certain that this was a feature of SD in the past (and presumably still is for TM).  I just have not set that part up before, but I remember there being some sort of bridge (that was not obvious how to set up) that allows for this.  It would be far less complex to get all the aggregated data from TM (#2) than individually import activity from every domain controller (#1).
+
+If you don’t have the information on how to do that, please take my question to engineering and ask them about it.  As always, I appreciate all your help.  I know my case are usually a little complicated or touch on some obscure piece, so thanks for helping me navigate through them.
+
+-Robert
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, July 2, 2024 8:23 AM
+To: Robert Parsons <robert.parsons@optiv.com>
+Subject: RE: Netwrix Support Ticket #413496 - - locked out accounts report? [ ref:!00D70091pB.!500Qk0CRkr7:ref ]
+
+Hey Robert,
+
+There's no way currently to send AD activity data to NTM/SD from NEA. The workflow for AD Activity would look more like:
+
+  *   Activity Monitor collects the AD Activity data and sends it to NEA and NTM
+  *   Enterprise Auditor then can create AD Activity Reports
+NTM/NAM Integration: https://helpcenter.netwrix.com/bundle/ThreatManager_2.8/page/Content/ThreatManager/Install/Integration/ActivityMonitor.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/ThreatManager_2.8/page/Content/ThreatManager/Install/Integration/ActivityMonitor.htm__;!!CiF3mHgEawk!DU5-5kNzZmEo12-2BG6XIdmQL3H_XBYaNViP9PjSalUurE7upLZfTjLL6YbmTrAQaHVtR-AVxsOtibKhJu8THMiBAA$>
+
+AD Activity Configuration NAM/NEA: https://helpcenter.netwrix.com/bundle/ActivityMonitor_7.0/page/Content/Config/ActiveDirectory/Activity.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/ActivityMonitor_7.0/page/Content/Config/ActiveDirectory/Activity.htm__;!!CiF3mHgEawk!DU5-5kNzZmEo12-2BG6XIdmQL3H_XBYaNViP9PjSalUurE7upLZfTjLL6YbmTrAQaHVtR-AVxsOtibKhJu9ICJgeYA$>
+
+Let me know if those help or if you have any additional questions!
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!CiF3mHgEawk!DU5-5kNzZmEo12-2BG6XIdmQL3H_XBYaNViP9PjSalUurE7upLZfTjLL6YbmTrAQaHVtR-AVxsOtibKhJu8ccTPW2Q$>
+
+
+--------------- Original Message ---------------
+From: Robert Parsons [robert.parsons@optiv.com]
+Sent: 7/2/2024 10:22 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: RE: Netwrix Support Ticket #413496 - ref:_00D7091pB._500Q000CRkr7:ref - locked out accounts report? [ ref:!00D70091pB.!500Qk0CRkr7:ref ]
+
+ref:_00D7091pB._500Q000CRkr7:ref
+
+
+Thanks Tay!  I haven’t set up the activity yet for the customer I am working with, so I hadn’t looked at that group yet.  That makes sense.
+FYI – It looks like the Active Directory Inventory changes job also has lockouts in one of the user events SQL tables.  Unfortunately in my case, this means if the helpdesk “fixes” the lockout before ADI runs again, there’s no state change to observe between the two ADI runs.  So I will need to use activity I think, to get what I want.
+
+
+I am reasonably sure that these days you can import/ship over the activity info from Threat Manger to Netwrix Enterprise Auditor.  I haven’t set that up before, can you please send me directions on how to set that up?  You can make a separate case for that if it helps your metrics.
+
+I HAVE set up importing the activity from StealthDEFEND, but you have to “grab” it from each individual machine (meaning each domain controller).  This isn’t ideal, and I don’t remember how to set that up either.   Can you please also send directions on how to do that?  If it helps to keep things organized, you can make that a separate case too.
+
+
+If you create different cases for those requests, you can close this case.  Thanks in advance for the help; it’s always nice to work with you.
+
+-Robert
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, June 28, 2024 2:37 PM
+To: Robert Parsons <robert.parsons@optiv.com<mailto:robert.parsons@optiv.com>>
+Subject: locked out accounts report? [ ref:!00D70091pB.!500Qk0CRkr7:ref ]
+
+Hey Robert,
+
+Thank you for contacting Netwrix technical support.
+
+There used to be a Lockout job that relied on the SMARTLog data collector, but unfortunately it was kindly slow and clunky and no longer supported. NEA now has the Lockout report bundled as part of the AD Activity job: https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/ActiveDirectory/Activity/AD_Lockouts.htm<https://urldefense.com/v3/__https:/helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/ActiveDirectory/Activity/AD_Lockouts.htm__;!!CiF3mHgEawk!BFiaphUmJjewRCGEAb43iYYztoOWDjHh5cp6c0ciZjdUS8H7JM0AGbrFw0ZqVHAujH-VemHViwDd6BmyqwQ6TwdAiA$>
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!CiF3mHgEawk!BFiaphUmJjewRCGEAb43iYYztoOWDjHh5cp6c0ciZjdUS8H7JM0AGbrFw0ZqVHAujH-VemHViwDd6BmyqwSvQOwYoA$>
+
+ref:!00D70091pB.!500Qk0CRkr7:ref","RE: Netwrix Support Ticket #413496 -  - locked out accounts report?    [ ref:!00D70091pB.!500Qk0CRkr7:ref ]","robert.parsons@optiv.com","Robert Parsons","techsupport@netwrix.com","","","true","2024-07-02T16:38:41.000Z","true"
+"02sQk00000C65KgIAJ","500Qk00000CRkr7IAD","2024-07-02T20:04:50.000Z","2024-07-02T20:04:50.000Z","Hi robert,
+
+
+
+Please use the link below to schedule ""Netwrix Support Ticket #00413496 | AD Activity Integration"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+
+
+ 
+
+
+Thanks!
+Tay Caliguiri
+
+Tay Caliguiri
+
+Senior Technical Support Engineer 
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com","Schedule Meeting for ""Netwrix Support Ticket #00413496 | AD Activity Integration""","taylor.caliguiri@netwrix.com","Tay Caliguiri","robert.parsons@optiv.com","","","false","2024-07-02T20:04:50.000Z","true"
+"02sQk00000CPnjPIAT","500Qk00000CRkr7IAD","2024-07-10T15:50:32.000Z","2024-07-10T15:50:32.000Z","Hey Robert,
+
+Thank you for meeting with us today. We reviewed how AD Activity integrates through the Stealth/Netwrix suite.
+
+Following this email, you will receive an automated confirmation that the case is closed. Feel free to leave any feedback via the survey link!
+
+Thank you,
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Tay Caliguiri [taylor.caliguiri@netwrix.com]
+Sent: 7/2/2024 4:04 PM
+To: robert.parsons@optiv.com
+Subject: Schedule Meeting for ""Netwrix Support Ticket #00413496 | AD Activity Integration""
+
+Hi robert,
+
+
+Please use the link below to schedule ""Netwrix Support Ticket #00413496 | AD Activity Integration"". Clicking the link will launch a scheduling page that displays attendees and available meeting times. Please select a time, add any additional information, click ""Schedule Meeting"", and you will receive a confirmation email.
+
+We look forward to speaking with you soon!
+
+
+
+
+
+Thanks!
+Tay Caliguiri
+
+
+Tay Caliguiri
+
+Senior Technical Support Engineer
+__________________ _________
+Cybersecurity That Works for You
+
+300 Spectrum Ctr Dr #200, Irvine, CA 92618
+www.netwrix.com
+ref:!00D70091pB.!500Qk0CRkr7:ref","RE: Schedule Meeting for ""Netwrix Support Ticket #00413496 | AD Activity Integration""    [ ref:!00D70091pB.!500Qk0CRkr7:ref ]","techsupport@netwrix.com","Netwrix Support","robert.parsons@optiv.com","","taylor.caliguiri@netwrix.com","true","2024-07-10T15:50:31.000Z","true"

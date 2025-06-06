@@ -1,0 +1,22 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000E2pUdIAJ","00417131","Support Ticket","Customized Report for Accounts Expiring in 30 days","One of our reports is supposed to email  any AD account that will expire within 30 days.   This report is not finding certain users which are about to expire.   It's only some of the accounts though","","","","Issue
+
+Customized Report for Accounts Expiring in 30 days
+
+One of our reports is supposed to email any AD account that will expire within 30 days. This report is not finding certain users which are about to expire. It's only some of the accounts though
+
+Cause
+
+Discovered that the SQL script for the Analysis task was targeting a range of dates going in a future and past direction instead of only accounting for accounts that were going to expire within the set number of days.
+
+We also discovered that a similar report capturing the last 14 days was on capturing 7 days within the SQL script.
+
+Resolution
+
+Resolved the issue by modifying the SQL script using
+
+AND X.[DaysUntilExpiration] >=
+
+AND [AccountExpires] getdate ()
+
+Once these changes were made to the SQL script we then ran the job again and the report displayed the correct range of accounts that will expire.","Guidance","Scottie Taylor","","Netwrix Enterprise Auditor","StealthAUDIT General","Custom Reports","11.6","","3.1","Closed - Resolved","Woodmen of the World Life Insurance Society","Jeremy Kaiser","2024-08-05T20:10:25.000Z","2024-08-08T22:48:52.000Z"

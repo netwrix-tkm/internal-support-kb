@@ -1,0 +1,66 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PPb1XKAT","500Qk00000HTOMyIAP","TextPost","0054u000008ARZjAAO","2024-10-25T12:17:04.000Z","Description: I recently had some issues with the File System Scan job. I noticed that the drive on the server had limited space, so I expanded the drive.
+
+When the File System Scan job runs the 1-FSAC System Scans has a warning that says ""Cannot scan, Activity Scan needs bulk import.""
+
+When the 2-FSAC Bulk Import step runs in errors with the following message 
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: ID 32368372 mapping not found in ResourceMap
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util</a>.RunInBackground[TResult](Action statusAction, Func`1 execAction)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util</a>.RunInBackground(Action statusAction, Action execAction)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+
+Please advise.
+
+Thanks,
+Frank","","","","0054u000008ARZjAAO","2024-10-25T12:17:04.000Z"
+"0D5Qk00000PPihPKAT","500Qk00000HTOMyIAP","TextPost","005Qk00000276ifIAA","2024-10-25T12:39:44.000Z","<p><a href=""https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka04u00000116OVAAY/view"" alt=""https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka04u00000116OVAAY/view"" target=""_blank"">Title = Errors after upgrading to 8.2 | Article Number = 000007395</a></p>","","","","005Qk00000276ifIAA","2024-10-25T12:39:44.000Z"
+"0D5Qk00000Pe2RLKAZ","500Qk00000HTOMyIAP","TextPost","005Qk00000276ifIAA","2024-10-29T16:03:56.000Z","What We've Learned Updated: No using ""Reset Hosts"" - This should not cause data loss nor data duplication.
+
+It also will have no effect on the other (NetApp) hosts.
+
++++++
+NEA - Potential reasons for why we need to reset the GUID in the first place:
++++++
+1) Usually  interrupted scans due to reboot or a job crash. 
+2) Sometimes multiple scans on the same host at the same time attempting to run.
+3) If you are using proxies or targeting windows hosts sometimes network issues can cause partial copy's of the tier 2 storage so when you import the data, it isn't as it should be.
++++++
+
+
+#####
+Reset Hosts – Resets the Access GUID column value in the SA_FSAA_Hosts table for the Hosts selected. Allows data to be bulk imported when there is a GUID mismatch.
+#####","","","","005Qk00000276ifIAA","2024-10-29T16:03:56.000Z"
+"0D5Qk00000PdqFQKAZ","500Qk00000HTOMyIAP","TextPost","005Qk00000276ifIAA","2024-10-29T16:05:03.000Z","What We've Learned Updated: Using ""Reset Hosts"" should not cause data loss nor data duplication.
+
+It also will have no effect on the other (NetApp) hosts.
+
++++++
+NEA - Potential reasons for why we need to reset the GUID in the first place:
++++++
+1) Usually  interrupted scans due to reboot or a job crash. 
+2) Sometimes multiple scans on the same host at the same time attempting to run.
+3) If you are using proxies or targeting windows hosts sometimes network issues can cause partial copy's of the tier 2 storage so when you import the data, it isn't as it should be.
++++++
+
+
+#####
+Reset Hosts – Resets the Access GUID column value in the SA_FSAA_Hosts table for the Hosts selected. Allows data to be bulk imported when there is a GUID mismatch.
+#####","","","","005Qk00000276ifIAA","2024-10-29T16:05:03.000Z"
+"0D5Qk00000PpZofKAF","500Qk00000HTOMyIAP","TextPost","005Qk00000276ifIAA","2024-10-31T21:14:04.000Z","Next Steps Updated: From Frank Salah:
++++++
+1) The Repair job ended up only taking an hour or so to complete and it looks like the import job ran successfully.
+
+2) However, when I go to the Stealthbits web page > Access > Resource Audit web page I see that ""Activity Details"" from 10/24/2024 to 10/31/2024 seems to be blank. I am looking at a folder that I know has activity and I queried the database directly and see the activity in there.
+
+3) I had some similar issue like this recently.
++++++
+
++++++
+Next Steps:
++++++
+He will most likely have to run FSAC scan and import again.","","","","005Qk00000276ifIAA","2024-10-31T21:14:04.000Z"
+"0D5Qk00000PtJQQKA3","500Qk00000HTOMyIAP","TextPost","005Qk00000276ifIAA","2024-11-01T16:01:33.000Z","<p>+++++</p><p>Query that Frank used to confirm that there is data in the table which he believes should be displayed in the UI:</p><p>+++++</p><p>use StealthAudit;</p><p> </p><p>select * from dbo.SA_FSAC_ActivityEventsView with (nolock)</p><p>where accesstime &gt;= &#39;2024-10-30 00:00:00.0000000&#39;</p><p>and path like ‘%Avolve%’;</p>","","","","005Qk00000276ifIAA","2024-11-01T16:01:33.000Z"
+"0D5Qk00000Q2LytKAF","500Qk00000HTOMyIAP","TextPost","005Qk00000276ifIAA","2024-11-04T16:00:00.000Z","<p>++++</p><p>2024_1104: CLOSURE EMAIL: Plan to upgrade in early 2025</p><p>+++++</p><p>Hi Frank,</p><p> </p><p>1) The data not displaying in AIC for some days last week may have been to a delay in data processing.</p><p>Everything in Stealthbits AIC (Netwrix AIC) looked good today.</p><p>You are not in the SteathAUDIT and AIC environments often (at this point in time).</p><p> </p><p>2) In the new year (2025), you should submit separate tickets for the following upgrades:</p><p> </p><p>a) Upgrade StealthAUDIT 11.5 to Netwrix Enterprise Auditor 11.6 - we should also perform a Netwrix AIC upgrade.</p><p>b) Upgrade StealthINTERCEPT (SI) 7.3.7 to Netwrix Threat Prevention (NTP) 7.3.9 or 7.4 and also upgrade NTM Reporting Module - additionally review your ST/NTP database maintenance job</p><p>c) Upgrade StealthDEFEND to the latest available version of Netwrix Threat Manager. </p><p> </p><p>As per our meeting today, I will close this case.</p>","","","","005Qk00000276ifIAA","2024-11-04T16:00:00.000Z"

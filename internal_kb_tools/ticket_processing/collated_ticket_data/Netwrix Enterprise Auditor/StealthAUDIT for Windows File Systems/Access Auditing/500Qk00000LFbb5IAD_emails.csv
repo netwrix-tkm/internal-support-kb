@@ -1,0 +1,1758 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MnVvgIAF","500Qk00000LFbb5IAD","2025-03-19T21:31:13.000Z","2025-03-19T21:31:13.000Z","Aparently that question was a wild goose chase.
+
+Long story short, I think it comes down to some missing documentation on this end.
+
+Dev thinks that prior runs may have laid down the certs which is why it wasn't a ""problem"" until we cleared them again. They believe both credentials are required in a case like this, and most likely while testing / running the job interactively maybe we ""missed"" laying down the certs and then everything was happy.
+
+I'll be creating an internal KB for the team to flesh out for this kind of things and make it public when ready.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/11/2025 2:51 PM
+To: justin@eevabits.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+""Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.""
+
+That is the question I wanted to ask Development but couldn't come up with it. So I'll see if I can get an answer on that front.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/11/2025 2:49 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+
+Hi Nicholas, 
+
+ 
+
+If this is an added feature/change, can I see the documentation that states the new task(domain) type requirement for proxy/file system scanning? I do not see mention in release notes as well to the change. We were on 11.6.0.112 and upgraded to 11.6.0.127 in December, this I suspect is where the feature was added or something broke.
+
+ 
+
+Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, February 11, 2025 6:30 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+I know they have made several changes with proxies since 11.6 after the initial addition of certificates.
+
+This is what I got from Development
+
+""The account the scheduled task runs as is not used to select the account for certificate exchange.
+The account that is used will be a Task(domain) credential in the connection profile, or the job credentials.
+The job credentials are picked by core as the first credential that can contact the remote host.""
+
+I am guessing this is a recent change as well. 
+
+I'd imagine after the initial run at least until 2 years when the cert expires you could pull the task domain credential and only run the FS account.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/10/2025 5:41 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+Hi Nicholas,
+
+ 
+
+Making FS account first and INF account second as a Task(Domain) type works, I applied the connection profile on the job that ran in the schedule. However, I've never had to do this before since the release of 11.6 on any customer or lab environment. It should be taking the Schedule configured task account. At least that's how I understood it worked before (any 11.6 version except maybe somewhere around 11.6.0.127) . Also, if that's the case, what would be the use case of setting the scheduled task account other than potential NEA DB access?
+
+ 
+
+Also, I fear clearing certs on the console server will then break all 10+ other proxies requiring manual intervention to clear certs or use the two-credential connection profile.
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, February 10, 2025 11:42 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+Alright. Not sure how related but Dev asked about cleaning up certs on the App server as well.
+
+More importantly. Got this from Development
+
+""I believe they want a connection profile with the FS account of AD type first then the INF as Task(domain) type.
+That way the FS acc will be the job credentials and sent to the scan for impersonation, 
+but the INF acc will be used to exchange certs.""
+
+So both credentials but make sure they are FS account using the AD credential and INF as the Task(domain)
+
+Could you run that through and see how it goes?
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/6/2025 1:14 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+Hi Nicholas,
+
+ 
+
+Good idea! I tried it where inf is first account and fs is second in a connection profile. The certificates get laid down without issue but get access denied on the file system scan to target file system host.
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, February 5, 2025 3:18 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+Weird Idea for you to try.
+
+Can you make a connection profile and assign it to the job. Curious if you put both Infra and FS account in there. preferably Infra account first.
+
+Does it lay down certs and run successfully?
+
+I would expect some errors to pop for the wrong creds but curious if it tries the second one and works.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/5/2025 10:37 AM
+To:  techsupport@netwrix.com
+Subject: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+Logs attached from today's remote session. Thank you, Josh and Nick!
+NEA 11.6.0.127
+Proxy 11.6.0.37","Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied    [ ref:!00D70091pB.!500Qk0LFbb5:ref ]","techsupport@netwrix.com","Netwrix Support","justin@eevabits.com","eric.haverly@netwrix.com; yaniq.campbell@netwrix.com","nicholas.zimmer@netwrix.com","false","2025-03-19T21:31:12.000Z","true"
+"02sQk00000MngfoIAB","500Qk00000LFbb5IAD","2025-03-19T22:53:09.000Z","2025-03-19T23:03:59.000Z","ref:_00D7091pB._500Q000LFbb5:ref
+
+Hello Nicholas,
+
+I do not think this is correct. The problem was no certs were being sent until we used a ""task"" credential or changed the job credential. It is not honoring the actual account running the task when running through schedules. I've run into a similar thing at another new customer there's is a little bit different though. I have also not been able to replicate this in my lab. There may be an environmental thing going on here which I think we need to get down to the bottom of. So, it may not be a NEA problem per say, but something NEA relies on the OS level causing a challenge. I'm working on seeing if I can narrow this down since my lab has very limited GPOs applied to it and it works. Our new customer has nearly a hundred policies applied to servers and the current workaround for this problem is run the proxy service as inf account, run job connection as a profile with inf as task-domain and FS service account. This works, however, not the way we have configured many other customers in the past.
+
+Thoughts?
+
+Thank you,
+Justin.
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 2:31 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Aparently that question was a wild goose chase.
+
+Long story short, I think it comes down to some missing documentation on this end.
+
+Dev thinks that prior runs may have laid down the certs which is why it wasn't a ""problem"" until we cleared them again. They believe both credentials are required in a case like this, and most likely while testing / running the job interactively maybe we ""missed"" laying down the certs and then everything was happy.
+
+I'll be creating an internal KB for the team to flesh out for this kind of things and make it public when ready.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/11/2025 2:51 PM
+To: justin@eevabits.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+""Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.""
+
+That is the question I wanted to ask Development but couldn't come up with it. So I'll see if I can get an answer on that front.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/11/2025 2:49 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hi Nicholas,
+
+If this is an added feature/change, can I see the documentation that states the new task(domain) type requirement for proxy/file system scanning? I do not see mention in release notes as well to the change. We were on 11.6.0.112 and upgraded to 11.6.0.127 in December, this I suspect is where the feature was added or something broke.
+
+Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.
+
+Thank you,
+Justin.
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, February 11, 2025 6:30 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+I know they have made several changes with proxies since 11.6 after the initial addition of certificates.
+
+This is what I got from Development
+
+""The account the scheduled task runs as is not used to select the account for certificate exchange.
+The account that is used will be a Task(domain) credential in the connection profile, or the job credentials.
+The job credentials are picked by core as the first credential that can contact the remote host.""
+
+I am guessing this is a recent change as well.
+
+I'd imagine after the initial run at least until 2 years when the cert expires you could pull the task domain credential and only run the FS account.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/10/2025 5:41 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hi Nicholas,
+
+Making FS account first and INF account second as a Task(Domain) type works, I applied the connection profile on the job that ran in the schedule. However, I've never had to do this before since the release of 11.6 on any customer or lab environment. It should be taking the Schedule configured task account. At least that's how I understood it worked before (any 11.6 version except maybe somewhere around 11.6.0.127) . Also, if that's the case, what would be the use case of setting the scheduled task account other than potential NEA DB access?
+
+Also, I fear clearing certs on the console server will then break all 10+ other proxies requiring manual intervention to clear certs or use the two-credential connection profile.
+
+Thank you,
+Justin.
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, February 10, 2025 11:42 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Alright. Not sure how related but Dev asked about cleaning up certs on the App server as well.
+
+More importantly. Got this from Development
+
+""I believe they want a connection profile with the FS account of AD type first then the INF as Task(domain) type.
+That way the FS acc will be the job credentials and sent to the scan for impersonation,
+but the INF acc will be used to exchange certs.""
+
+So both credentials but make sure they are FS account using the AD credential and INF as the Task(domain)
+
+Could you run that through and see how it goes?
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/6/2025 1:14 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hi Nicholas,
+
+Good idea! I tried it where inf is first account and fs is second in a connection profile. The certificates get laid down without issue but get access denied on the file system scan to target file system host.
+
+Thank you,
+Justin.
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, February 5, 2025 3:18 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Weird Idea for you to try.
+
+Can you make a connection profile and assign it to the job. Curious if you put both Infra and FS account in there. preferably Infra account first.
+
+Does it lay down certs and run successfully?
+
+I would expect some errors to pop for the wrong creds but curious if it tries the second one and works.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com<mailto:justin@eevabits.com>]
+Sent: 2/5/2025 10:37 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+Logs attached from today's remote session. Thank you, Josh and Nick!
+NEA 11.6.0.127
+Proxy 11.6.0.37
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000IzNbe&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000J8fBA&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000JAdGX&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000JBnAl&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KNEmj&from=ext]","Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied    [ ref:!00D70091pB.!500Qk0LFbb5:ref ]","justin@eevabits.com","Justin Cahill","techsupport@netwrix.com","eric.haverly@netwrix.com; yaniq.campbell@netwrix.com","","false","2025-03-19T22:52:54.000Z","true"
+"02sQk00000N0SbuIAF","500Qk00000LFbb5IAD","2025-03-25T20:47:35.000Z","2025-03-25T20:47:35.000Z","Hi Justin,
+
+I'm getting caught up on this ticket.  
+
+I want to be sure I understand you most recent message - you have configured the File System Scan to use 2 account types in the connection profile - Task Domain and Active Directory account, but you have entered the same credential for each account type?
+
+Running the scan interactively with only the Active Directory account type in the connection profile.
+But running the same scan from the scheduled task failed without the additional Task Domain account type?
+
+And in all of these scenarios these are all new proxies, which you noted in your original description.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 3/19/2025 6:52 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hello Nicholas,
+
+ 
+
+I do not think this is correct. The problem was no certs were being sent until we used a ""task"" credential or changed the job credential. It is not honoring the actual account running the task when running through schedules. I've run into a similar thing at another new customer there's is a little bit different though. I have also not been able to replicate this in my lab. There may be an environmental thing going on here which I think we need to get down to the bottom of. So, it may not be a NEA problem per say, but something NEA relies on the OS level causing a challenge. I'm working on seeing if I can narrow this down since my lab has very limited GPOs applied to it and it works. Our new customer has nearly a hundred policies applied to servers and the current workaround for this problem is run the proxy service as inf account, run job connection as a profile with inf as task-domain and FS service account. This works, however, not the way we have configured many other customers in the past.
+
+ 
+
+Thoughts?
+
+Thank you,
+
+Justin.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 2:31 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+
+Aparently that question was a wild goose chase.
+
+Long story short, I think it comes down to some missing documentation on this end.
+
+Dev thinks that prior runs may have laid down the certs which is why it wasn't a ""problem"" until we cleared them again. They believe both credentials are required in a case like this, and most likely while testing / running the job interactively maybe we ""missed"" laying down the certs and then everything was happy.
+
+I'll be creating an internal KB for the team to flesh out for this kind of things and make it public when ready.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/11/2025 2:51 PM
+To: justin@eevabits.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+""Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.""
+
+That is the question I wanted to ask Development but couldn't come up with it. So I'll see if I can get an answer on that front.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/11/2025 2:49 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+
+
+Hi Nicholas, 
+
+ 
+
+If this is an added feature/change, can I see the documentation that states the new task(domain) type requirement for proxy/file system scanning? I do not see mention in release notes as well to the change. We were on 11.6.0.112 and upgraded to 11.6.0.127 in December, this I suspect is where the feature was added or something broke.
+
+ 
+
+Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, February 11, 2025 6:30 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+I know they have made several changes with proxies since 11.6 after the initial addition of certificates.
+
+This is what I got from Development
+
+""The account the scheduled task runs as is not used to select the account for certificate exchange.
+The account that is used will be a Task(domain) credential in the connection profile, or the job credentials.
+The job credentials are picked by core as the first credential that can contact the remote host.""
+
+I am guessing this is a recent change as well. 
+
+I'd imagine after the initial run at least until 2 years when the cert expires you could pull the task domain credential and only run the FS account.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/10/2025 5:41 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+Hi Nicholas,
+
+ 
+
+Making FS account first and INF account second as a Task(Domain) type works, I applied the connection profile on the job that ran in the schedule. However, I've never had to do this before since the release of 11.6 on any customer or lab environment. It should be taking the Schedule configured task account. At least that's how I understood it worked before (any 11.6 version except maybe somewhere around 11.6.0.127) . Also, if that's the case, what would be the use case of setting the scheduled task account other than potential NEA DB access?
+
+ 
+
+Also, I fear clearing certs on the console server will then break all 10+ other proxies requiring manual intervention to clear certs or use the two-credential connection profile.
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, February 10, 2025 11:42 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+Alright. Not sure how related but Dev asked about cleaning up certs on the App server as well.
+
+More importantly. Got this from Development
+
+""I believe they want a connection profile with the FS account of AD type first then the INF as Task(domain) type.
+That way the FS acc will be the job credentials and sent to the scan for impersonation, 
+but the INF acc will be used to exchange certs.""
+
+So both credentials but make sure they are FS account using the AD credential and INF as the Task(domain)
+
+Could you run that through and see how it goes?
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/6/2025 1:14 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+Hi Nicholas,
+
+ 
+
+Good idea! I tried it where inf is first account and fs is second in a connection profile. The certificates get laid down without issue but get access denied on the file system scan to target file system host.
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, February 5, 2025 3:18 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+Weird Idea for you to try.
+
+Can you make a connection profile and assign it to the job. Curious if you put both Infra and FS account in there. preferably Infra account first.
+
+Does it lay down certs and run successfully?
+
+I would expect some errors to pop for the wrong creds but curious if it tries the second one and works.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/5/2025 10:37 AM
+To:  techsupport@netwrix.com
+Subject: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+Logs attached from today's remote session. Thank you, Josh and Nick!
+NEA 11.6.0.127
+Proxy 11.6.0.37","Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied    [ ref:!00D70091pB.!500Qk0LFbb5:ref ]","techsupport@netwrix.com","Netwrix Support","justin@eevabits.com","eric.haverly@netwrix.com; yaniq.campbell@netwrix.com","","false","2025-03-25T20:47:33.000Z","true"
+"02sQk00000N3WarIAF","500Qk00000LFbb5IAD","2025-03-26T22:48:59.000Z","2025-03-28T20:50:22.000Z","ref:_00D7091pB._500Q000LFbb5:ref
+
+Thank you for following up Brandon!
+
+
+  1.
+Connection profile has two credentials.
+     *
+Infrastructure (LA on console and proxy server) as Task-Domain
+     *
+File Service account as Active Directory
+  2.
+Interactive works with the one File Service account as Active Directory type since my account running the console is LA on console and proxy
+
+In all scenarios, these are effectively new proxies since we can clear out the certificates and test.
+
+Thank you,
+Justin.
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 1:47 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+Hi Justin,
+
+I'm getting caught up on this ticket.
+
+I want to be sure I understand you most recent message - you have configured the File System Scan to use 2 account types in the connection profile - Task Domain and Active Directory account, but you have entered the same credential for each account type?
+
+Running the scan interactively with only the Active Directory account type in the connection profile.
+But running the same scan from the scheduled task failed without the additional Task Domain account type?
+
+And in all of these scenarios these are all new proxies, which you noted in your original description.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 3/19/2025 6:52 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+Hello Nicholas,
+
+I do not think this is correct. The problem was no certs were being sent until we used a ""task"" credential or changed the job credential. It is not honoring the actual account running the task when running through schedules. I've run into a similar thing at another new customer there's is a little bit different though. I have also not been able to replicate this in my lab. There may be an environmental thing going on here which I think we need to get down to the bottom of. So, it may not be a NEA problem per say, but something NEA relies on the OS level causing a challenge. I'm working on seeing if I can narrow this down since my lab has very limited GPOs applied to it and it works. Our new customer has nearly a hundred policies applied to servers and the current workaround for this problem is run the proxy service as inf account, run job connection as a profile with inf as task-domain and FS service account. This works, however, not the way we have configured many other customers in the past.
+
+Thoughts?
+
+Thank you,
+Justin.
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 2:31 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Aparently that question was a wild goose chase.
+
+Long story short, I think it comes down to some missing documentation on this end.
+
+Dev thinks that prior runs may have laid down the certs which is why it wasn't a ""problem"" until we cleared them again. They believe both credentials are required in a case like this, and most likely while testing / running the job interactively maybe we ""missed"" laying down the certs and then everything was happy.
+
+I'll be creating an internal KB for the team to flesh out for this kind of things and make it public when ready.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/11/2025 2:51 PM
+To: justin@eevabits.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+""Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.""
+
+That is the question I wanted to ask Development but couldn't come up with it. So I'll see if I can get an answer on that front.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/11/2025 2:49 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hi Nicholas,
+
+If this is an added feature/change, can I see the documentation that states the new task(domain) type requirement for proxy/file system scanning? I do not see mention in release notes as well to the change. We were on 11.6.0.112 and upgraded to 11.6.0.127 in December, this I suspect is where the feature was added or something broke.
+
+Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.
+
+Thank you,
+Justin.
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, February 11, 2025 6:30 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+I know they have made several changes with proxies since 11.6 after the initial addition of certificates.
+
+This is what I got from Development
+
+""The account the scheduled task runs as is not used to select the account for certificate exchange.
+The account that is used will be a Task(domain) credential in the connection profile, or the job credentials.
+The job credentials are picked by core as the first credential that can contact the remote host.""
+
+I am guessing this is a recent change as well.
+
+I'd imagine after the initial run at least until 2 years when the cert expires you could pull the task domain credential and only run the FS account.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/10/2025 5:41 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hi Nicholas,
+
+Making FS account first and INF account second as a Task(Domain) type works, I applied the connection profile on the job that ran in the schedule. However, I've never had to do this before since the release of 11.6 on any customer or lab environment. It should be taking the Schedule configured task account. At least that's how I understood it worked before (any 11.6 version except maybe somewhere around 11.6.0.127) . Also, if that's the case, what would be the use case of setting the scheduled task account other than potential NEA DB access?
+
+Also, I fear clearing certs on the console server will then break all 10+ other proxies requiring manual intervention to clear certs or use the two-credential connection profile.
+
+Thank you,
+Justin.
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, February 10, 2025 11:42 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Alright. Not sure how related but Dev asked about cleaning up certs on the App server as well.
+
+More importantly. Got this from Development
+
+""I believe they want a connection profile with the FS account of AD type first then the INF as Task(domain) type.
+That way the FS acc will be the job credentials and sent to the scan for impersonation,
+but the INF acc will be used to exchange certs.""
+
+So both credentials but make sure they are FS account using the AD credential and INF as the Task(domain)
+
+Could you run that through and see how it goes?
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/6/2025 1:14 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hi Nicholas,
+
+Good idea! I tried it where inf is first account and fs is second in a connection profile. The certificates get laid down without issue but get access denied on the file system scan to target file system host.
+
+Thank you,
+Justin.
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, February 5, 2025 3:18 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Weird Idea for you to try.
+
+Can you make a connection profile and assign it to the job. Curious if you put both Infra and FS account in there. preferably Infra account first.
+
+Does it lay down certs and run successfully?
+
+I would expect some errors to pop for the wrong creds but curious if it tries the second one and works.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com<mailto:justin@eevabits.com>]
+Sent: 2/5/2025 10:37 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+Logs attached from today's remote session. Thank you, Josh and Nick!
+NEA 11.6.0.127
+Proxy 11.6.0.37
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000IzNbe&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000J8fBA&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000JAdGX&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000JBnAl&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KNEmj&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KYRVz&from=ext]","Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied    [ ref:!00D70091pB.!500Qk0LFbb5:ref ]","justin@eevabits.com","Justin Cahill","techsupport@netwrix.com","eric.haverly@netwrix.com; yaniq.campbell@netwrix.com","","false","2025-03-26T22:48:43.000Z","true"
+"02sQk00000NJN2CIAX","500Qk00000LFbb5IAD","2025-04-02T21:47:47.000Z","2025-04-02T21:47:47.000Z","Sorry for the delayed response, its been an interesting week.
+
+Forgive me, but what do you mean by ""LA""
+
+I want to make sure I have ducks in a row to discuss further internally. I don't want to mess up the facts. 
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 3/26/2025 5:48 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+
+Thank you for following up Brandon!
+
+ 
+
+
+	
+	Connection profile has two credentials.
+
+	
+		
+		Infrastructure (LA on console and proxy server) as Task-Domain
+		
+		
+		File Service account as Active Directory
+		
+	
+	
+	
+	Interactive works with the one File Service account as Active Directory type since my account running the console is LA on console and proxy
+	
+
+
+ 
+
+In all scenarios, these are effectively new proxies since we can clear out the certificates and test. 
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 1:47 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+Hi Justin,
+
+I'm getting caught up on this ticket.  
+
+I want to be sure I understand you most recent message - you have configured the File System Scan to use 2 account types in the connection profile - Task Domain and Active Directory account, but you have entered the same credential for each account type?
+
+Running the scan interactively with only the Active Directory account type in the connection profile.
+But running the same scan from the scheduled task failed without the additional Task Domain account type?
+
+And in all of these scenarios these are all new proxies, which you noted in your original description.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 3/19/2025 6:52 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+
+Hello Nicholas,
+
+ 
+
+I do not think this is correct. The problem was no certs were being sent until we used a ""task"" credential or changed the job credential. It is not honoring the actual account running the task when running through schedules. I've run into a similar thing at another new customer there's is a little bit different though. I have also not been able to replicate this in my lab. There may be an environmental thing going on here which I think we need to get down to the bottom of. So, it may not be a NEA problem per say, but something NEA relies on the OS level causing a challenge. I'm working on seeing if I can narrow this down since my lab has very limited GPOs applied to it and it works. Our new customer has nearly a hundred policies applied to servers and the current workaround for this problem is run the proxy service as inf account, run job connection as a profile with inf as task-domain and FS service account. This works, however, not the way we have configured many other customers in the past.
+
+ 
+
+Thoughts?
+
+Thank you,
+
+Justin.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 2:31 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+
+Aparently that question was a wild goose chase.
+
+Long story short, I think it comes down to some missing documentation on this end.
+
+Dev thinks that prior runs may have laid down the certs which is why it wasn't a ""problem"" until we cleared them again. They believe both credentials are required in a case like this, and most likely while testing / running the job interactively maybe we ""missed"" laying down the certs and then everything was happy.
+
+I'll be creating an internal KB for the team to flesh out for this kind of things and make it public when ready.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/11/2025 2:51 PM
+To: justin@eevabits.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+""Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.""
+
+That is the question I wanted to ask Development but couldn't come up with it. So I'll see if I can get an answer on that front.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/11/2025 2:49 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+
+
+Hi Nicholas, 
+
+ 
+
+If this is an added feature/change, can I see the documentation that states the new task(domain) type requirement for proxy/file system scanning? I do not see mention in release notes as well to the change. We were on 11.6.0.112 and upgraded to 11.6.0.127 in December, this I suspect is where the feature was added or something broke.
+
+ 
+
+Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, February 11, 2025 6:30 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+I know they have made several changes with proxies since 11.6 after the initial addition of certificates.
+
+This is what I got from Development
+
+""The account the scheduled task runs as is not used to select the account for certificate exchange.
+The account that is used will be a Task(domain) credential in the connection profile, or the job credentials.
+The job credentials are picked by core as the first credential that can contact the remote host.""
+
+I am guessing this is a recent change as well. 
+
+I'd imagine after the initial run at least until 2 years when the cert expires you could pull the task domain credential and only run the FS account.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/10/2025 5:41 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+Hi Nicholas,
+
+ 
+
+Making FS account first and INF account second as a Task(Domain) type works, I applied the connection profile on the job that ran in the schedule. However, I've never had to do this before since the release of 11.6 on any customer or lab environment. It should be taking the Schedule configured task account. At least that's how I understood it worked before (any 11.6 version except maybe somewhere around 11.6.0.127) . Also, if that's the case, what would be the use case of setting the scheduled task account other than potential NEA DB access?
+
+ 
+
+Also, I fear clearing certs on the console server will then break all 10+ other proxies requiring manual intervention to clear certs or use the two-credential connection profile.
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, February 10, 2025 11:42 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+Alright. Not sure how related but Dev asked about cleaning up certs on the App server as well.
+
+More importantly. Got this from Development
+
+""I believe they want a connection profile with the FS account of AD type first then the INF as Task(domain) type.
+That way the FS acc will be the job credentials and sent to the scan for impersonation, 
+but the INF acc will be used to exchange certs.""
+
+So both credentials but make sure they are FS account using the AD credential and INF as the Task(domain)
+
+Could you run that through and see how it goes?
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/6/2025 1:14 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+ 
+
+Hi Nicholas,
+
+ 
+
+Good idea! I tried it where inf is first account and fs is second in a connection profile. The certificates get laid down without issue but get access denied on the file system scan to target file system host.
+
+ 
+
+Thank you,
+
+Justin.
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, February 5, 2025 3:18 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ 
+
+
+Weird Idea for you to try.
+
+Can you make a connection profile and assign it to the job. Curious if you put both Infra and FS account in there. preferably Infra account first.
+
+Does it lay down certs and run successfully?
+
+I would expect some errors to pop for the wrong creds but curious if it tries the second one and works.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/5/2025 10:37 AM
+To:  techsupport@netwrix.com
+Subject: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+Logs attached from today's remote session. Thank you, Josh and Nick!
+NEA 11.6.0.127
+Proxy 11.6.0.37","Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied    [ ref:!00D70091pB.!500Qk0LFbb5:ref ]","techsupport@netwrix.com","Netwrix Support","justin@eevabits.com","eric.haverly@netwrix.com; yaniq.campbell@netwrix.com","nicholas.zimmer@netwrix.com","false","2025-04-02T21:47:45.000Z","true"
+"02sQk00000NJXuHIAX","500Qk00000LFbb5IAD","2025-04-02T22:29:27.000Z","2025-04-03T14:16:18.000Z","ref:_00D7091pB._500Q000LFbb5:ref
+
+Hi Nicholas,
+
+Totally makes sense, best to ask then to assume ?
+LA = Local Administrator
+
+Thank you,
+Justin.
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, April 2, 2025 2:47 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Sorry for the delayed response, its been an interesting week.
+
+Forgive me, but what do you mean by ""LA""
+
+I want to make sure I have ducks in a row to discuss further internally. I don't want to mess up the facts.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 3/26/2025 5:48 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Thank you for following up Brandon!
+
+
+  1.
+Connection profile has two credentials.
+     *
+Infrastructure (LA on console and proxy server) as Task-Domain
+     *
+File Service account as Active Directory
+  2.
+Interactive works with the one File Service account as Active Directory type since my account running the console is LA on console and proxy
+
+
+In all scenarios, these are effectively new proxies since we can clear out the certificates and test.
+
+Thank you,
+Justin.
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, March 25, 2025 1:47 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+Hi Justin,
+
+I'm getting caught up on this ticket.
+
+I want to be sure I understand you most recent message - you have configured the File System Scan to use 2 account types in the connection profile - Task Domain and Active Directory account, but you have entered the same credential for each account type?
+
+Running the scan interactively with only the Active Directory account type in the connection profile.
+But running the same scan from the scheduled task failed without the additional Task Domain account type?
+
+And in all of these scenarios these are all new proxies, which you noted in your original description.
+
+Thank you,
+
+Brandon West
+Technical Support Manager
+Phone: 1-949-407-5125 | Toll-free: 888-638-9749
+____________________ __________
+Powerful Data Security Made Easy
+
+6160 warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 3/19/2025 6:52 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+Hello Nicholas,
+
+I do not think this is correct. The problem was no certs were being sent until we used a ""task"" credential or changed the job credential. It is not honoring the actual account running the task when running through schedules. I've run into a similar thing at another new customer there's is a little bit different though. I have also not been able to replicate this in my lab. There may be an environmental thing going on here which I think we need to get down to the bottom of. So, it may not be a NEA problem per say, but something NEA relies on the OS level causing a challenge. I'm working on seeing if I can narrow this down since my lab has very limited GPOs applied to it and it works. Our new customer has nearly a hundred policies applied to servers and the current workaround for this problem is run the proxy service as inf account, run job connection as a profile with inf as task-domain and FS service account. This works, however, not the way we have configured many other customers in the past.
+
+Thoughts?
+
+Thank you,
+Justin.
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, March 19, 2025 2:31 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Aparently that question was a wild goose chase.
+
+Long story short, I think it comes down to some missing documentation on this end.
+
+Dev thinks that prior runs may have laid down the certs which is why it wasn't a ""problem"" until we cleared them again. They believe both credentials are required in a case like this, and most likely while testing / running the job interactively maybe we ""missed"" laying down the certs and then everything was happy.
+
+I'll be creating an internal KB for the team to flesh out for this kind of things and make it public when ready.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 2/11/2025 2:51 PM
+To: justin@eevabits.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+""Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.""
+
+That is the question I wanted to ask Development but couldn't come up with it. So I'll see if I can get an answer on that front.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/11/2025 2:49 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hi Nicholas,
+
+If this is an added feature/change, can I see the documentation that states the new task(domain) type requirement for proxy/file system scanning? I do not see mention in release notes as well to the change. We were on 11.6.0.112 and upgraded to 11.6.0.127 in December, this I suspect is where the feature was added or something broke.
+
+Also, how come when I run the job manually as my account it takes those creds and uses them for the certificate exchange only then uses the job credentials for the actual FS scan? I'd imagine that would be the same case as schedule task credentials are who is running the task.
+
+Thank you,
+Justin.
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, February 11, 2025 6:30 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+I know they have made several changes with proxies since 11.6 after the initial addition of certificates.
+
+This is what I got from Development
+
+""The account the scheduled task runs as is not used to select the account for certificate exchange.
+The account that is used will be a Task(domain) credential in the connection profile, or the job credentials.
+The job credentials are picked by core as the first credential that can contact the remote host.""
+
+I am guessing this is a recent change as well.
+
+I'd imagine after the initial run at least until 2 years when the cert expires you could pull the task domain credential and only run the FS account.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/10/2025 5:41 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hi Nicholas,
+
+Making FS account first and INF account second as a Task(Domain) type works, I applied the connection profile on the job that ran in the schedule. However, I've never had to do this before since the release of 11.6 on any customer or lab environment. It should be taking the Schedule configured task account. At least that's how I understood it worked before (any 11.6 version except maybe somewhere around 11.6.0.127) . Also, if that's the case, what would be the use case of setting the scheduled task account other than potential NEA DB access?
+
+Also, I fear clearing certs on the console server will then break all 10+ other proxies requiring manual intervention to clear certs or use the two-credential connection profile.
+
+Thank you,
+Justin.
+
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, February 10, 2025 11:42 AM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Alright. Not sure how related but Dev asked about cleaning up certs on the App server as well.
+
+More importantly. Got this from Development
+
+""I believe they want a connection profile with the FS account of AD type first then the INF as Task(domain) type.
+That way the FS acc will be the job credentials and sent to the scan for impersonation,
+but the INF acc will be used to exchange certs.""
+
+So both credentials but make sure they are FS account using the AD credential and INF as the Task(domain)
+
+Could you run that through and see how it goes?
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com]
+Sent: 2/6/2025 1:14 PM
+To: techsupport@netwrix.com
+Cc: eric.haverly@netwrix.com; yaniq.campbell@netwrix.com
+Subject: Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+
+Hi Nicholas,
+
+Good idea! I tried it where inf is first account and fs is second in a connection profile. The certificates get laid down without issue but get access denied on the file system scan to target file system host.
+
+Thank you,
+Justin.
+
+________________________________
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Wednesday, February 5, 2025 3:18 PM
+To: Justin Cahill <justin@eevabits.com>
+Cc: eric.haverly@netwrix.com <eric.haverly@netwrix.com>; yaniq.campbell@netwrix.com <yaniq.campbell@netwrix.com>
+Subject: RE: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied [ ref:!00D70091pB.!500Qk0LFbb5:ref ]
+
+
+Weird Idea for you to try.
+
+Can you make a connection profile and assign it to the job. Curious if you put both Infra and FS account in there. preferably Infra account first.
+
+Does it lay down certs and run successfully?
+
+I would expect some errors to pop for the wrong creds but curious if it tries the second one and works.
+
+Thanks,
+
+Nicholas Zimmer
+Technical Support Engineer Tier II
+
+____________________ _________
+Powerful Data Security Made Easy
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Justin Cahill [justin@eevabits.com<mailto:justin@eevabits.com>]
+Sent: 2/5/2025 10:37 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied
+
+ref:_00D7091pB._500Q000LFbb5:ref
+
+Logs attached from today's remote session. Thank you, Josh and Nick!
+NEA 11.6.0.127
+Proxy 11.6.0.37
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000IzNbe&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000J8fBA&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000JAdGX&from=int]
+
+[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000JBnAl&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KNEmj&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KYRVz&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000KpTnf&from=ext]","Re: Netwrix Support Ticket #434073 - PCB - Unable to start scan: Could not initialize scan session with any proxy host supplied    [ ref:!00D70091pB.!500Qk0LFbb5:ref ]","justin@eevabits.com","Justin Cahill","techsupport@netwrix.com","eric.haverly@netwrix.com; yaniq.campbell@netwrix.com","","false","2025-04-02T22:29:11.000Z","true"

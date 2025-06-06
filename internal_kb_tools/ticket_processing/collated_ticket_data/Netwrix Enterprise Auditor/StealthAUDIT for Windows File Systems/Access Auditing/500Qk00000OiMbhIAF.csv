@@ -1,0 +1,20 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OiMbhIAF","00443903","Support Ticket","Reports have a lot of old data","Many of our reports have data from servers that were decomissioned years ago. For example, the OpenAccess reports have folders and shares that havent existed in 2 years. How can I make sure the outdated data is purged so we know the data we are looking at is accurate?","","we removed the old decom'd server data from the database, but the client says some data is still showing on reports with !Removed in front of it.
+
+This usually means the FSDropTables job didn't finish properly
+I had him run it a couple more times and it seems to be finishing but he said its better but he still sees some instances of !Removed in reports
+
+I asked for more details on which reports and servers are still showing !Removed
+
+I haven't gotten a response","waiting for client to provide examples of reports with !Removed still showing","issue:
+data from old decommissioned servers still showing in reports
+
+cause:
+data from old servers still in NAA database
+
+resolution:
+followed KB to drop decommissioned servers:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html
+
+If failed partway through so needed to follow this KB, and run the drophostjob a couple more times:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qxRKAQ.html","Data Validation/Interpretation","Joshua Sexton","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.5","","19.2","Closed - Resolved","College Ave Student Loan","Amir Sardarizadeh","2025-05-02T13:39:43.000Z","2025-05-21T18:40:22.000Z"

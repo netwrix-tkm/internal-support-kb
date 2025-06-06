@@ -1,0 +1,356 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000QwqQ3KAJ","500Qk00000IMTM0IAP","TextPost","0054u000008ARZjAAO","2024-11-15T10:45:39.000Z","Description: Bulk Import not working for SG NAS we are getting timeout error. Screenshots are attached for reference","","","","0054u000008ARZjAAO","2024-11-15T10:45:39.000Z"
+"0D5Qk00000RLWIJKA5","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-11-20T07:58:08.000Z","What We've Learned Updated: Customer has 11.0.0.250 Stealth Audit installed. 
+
+Customer is experiencing issues with FSAA BulkImport job for the NAS device. 
+The Bulk Import job is failing due to a timeout error. 
+Customer provided debug logs.","","","","005Qk000002b4gDIAQ","2024-11-20T07:58:08.000Z"
+"0D5Qk00000RL0yjKAD","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-11-20T07:59:01.000Z","What We've Learned Updated: Customer has 11.0.0.250 Stealth Audit installed. 
+
+Customer is experiencing issues with FSAA BulkImport job for the NAS device to which customer refers to as SG NAS. 
+
+The Bulk Import job is failing due to a timeout error. 
+Customer provided debug logs.","","","","005Qk000002b4gDIAQ","2024-11-20T07:59:01.000Z"
+"0D5Qk00000RLUMxKAP","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-11-20T07:59:11.000Z","Steps to Reproduce Updated: N/A","","","","005Qk000002b4gDIAQ","2024-11-20T07:59:11.000Z"
+"0D5Qk00000RMMQaKAP","500Qk00000IMTM0IAP","TextPost","00570000003KXurAAG","2024-11-20T14:28:56.000Z","<p>MSG_TYPE   TableName   MESSAGE                                                                    TaskName</p><p>WARNING    Access         Abort request received   </p><p>ERROR                           Host process was terminated (DC did not abort timely)   Bulk import</p><p> </p>","","","","00570000003KXurAAG","2024-11-20T14:28:56.000Z"
+"0D5Qk00000RMBdrKAH","500Qk00000IMTM0IAP","TextPost","00570000003KXurAAG","2024-11-20T14:30:39.000Z","<p>CONTINUED...</p><p>13/11/2024 17:06:32 DEBUG          TSPADOEngineTransportItf.DebugLog           TSPEngineTransportItf.PrepareForTable     &quot;<b>End</b>&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM           Messages           67188 112200           82528</p><p>13/11/2024 17:16:33 <b>WARNING</b>   StealthAUDIT(TDispatch)           TDispatch.ExecuteJob           &quot;<b>Aborted exceeded grace period</b>&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       0           112200           82528</p><p>13/11/2024 17:16:33 <b>ERROR</b>         StealthAUDIT(TDispatch)           TDispatch.ResetThread         &quot;Releasing thread reference and re-creating &quot;                                   -1        112200           82528</p><p>13/11/2024 17:16:33 <b>ERROR</b>         StealthAUDIT(TDispatch)           TDispatch.ResetThread         &quot;Thread exceeded threshold, Thread: 0, HOST: SVR**REDACTED**N0002.GLOBAL.ANZ.COM&quot;                                  -1           112200           82528</p><p>13/11/2024 17:16:33 <b>ERROR</b>         StealthAUDIT(TDispatch)           TDispatch.ResetThread         &quot;Releasing thread reference and re-creating &quot;                                   -1        112200           82528</p><p>13/11/2024 17:16:33 INFO  StealthAUDIT(TDispatch)    TDispatch.ResetThread           &quot;<b>Stopping data pipe</b>&quot; SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       0         112200           82528</p><p>13/11/2024 17:16:34 DEBUG          TDCThread    TDCThread.ThreadWasOrphaned           &quot;<b>Start</b>&quot; SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       0           112200           82528</p><p>13/11/2024 17:16:34 DEBUG          TDCThread    TDCThread.ThreadWasOrphaned           &quot;<b>End</b>&quot; SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       0           112200           82528</p><p>13/11/2024 17:16:34 DEBUG          TSPADOEngineTransportItf.DebugLog           TSPEngineTransportItf.PrepareForTable     &quot;<b>Start</b>&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       67188           112200           82528</p><p>13/11/2024 17:16:34 DEBUG          TSPADOEngineTransportItf.DebugLog           TSPEngineTransportItf.PrepareForTable     &quot;<b>End</b>&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM           Messages           67188 112200           82528</p>","","","","00570000003KXurAAG","2024-11-20T14:30:39.000Z"
+"0D5Qk00000RKojDKAT","500Qk00000IMTM0IAP","TextPost","00570000003KXurAAG","2024-11-20T14:36:39.000Z","<p>Looking at this log was the how was this job kicked off?  </p><p>It looks like the console was either closed and the job was run via the right click menu option or the scheudled task/running job was <b>Stopped </b>as the job only ran for<b> 32 minutes</b> which should be well within the SQL time out settings as default is 24hrs.</p><p> </p><p><b>The following points to a soft abort.</b></p><p>***004272081.Permissions_ModifiedGROUP_1.Permissions_ModifiedJOB_2-FSAA Bulk Import1OUTPUT<b>2-FSAA Bulk Import1_Log.tsv</b></p><p> </p><p>12/11/2024 17:06:29 INFO  FILESYSTEMACCESS           Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.<b>Start</b>Execute           &quot;Importing SA_FSAA_TrusteeEquivalence, 0k rows...&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM           DCExtract           50212 112200           82528</p><p>12/11/2024 17:06:29 DEBUG          SPFILE           TSPHostDBEngine.ParseAndCommitHostRow()    &quot;Processing row: 0&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM           Access 50212           112200           82528</p><p>12/11/2024 17:06:29 DEBUG          FILESYSTEMACCESS           Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.<b>Start</b>Execute           &quot;Importing SA_FSAA_Resources&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM           DCExtract           50212 112200           82528</p><p>13/11/2024 17:06:32 <b>ERROR</b>         StealthAUDIT(TDispatch)           TDispatch.ExecuteJob           <b>&quot;Aborting thread (timeout)&quot;</b>           SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       0           112200           82528</p><p>13/11/2024 17:06:32 DEBUG          TDCThread    TDCThread.AbortCurrentWork           &quot;<b>Thread requested to abort</b>&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       0           112200           82528</p><p>13/11/2024 17:06:32 DEBUG          TDCThread    TDCThread.AbortCurrentWork           &quot;<b>Notifying DC to abort&quot;</b>           SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       0           112200           82528</p><p>13/11/2024 17:06:32 <b>WARNING</b>   FILESYSTEMACCESS           TDCEngineExtractItf.SetAbortRequested    &quot;Abort request received&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM           DCExtract           67188 112200           82528</p><p>13/11/2024 17:06:32 DEBUG          TSPADOEngineTransportItf.DebugLog           TSPEngineTransportItf.DoneWithCurrentTable      &quot;<b>Start</b>&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM           Access 67188           112200           82528</p><p>13/11/2024 17:06:32 DEBUG          TSPADOEngineTransportItf.DebugLog           TSPEngineTransportItf.DoneWithCurrentTable      &quot;<b>End</b>&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       67188           112200           82528</p><p>13/11/2024 17:06:32 DEBUG          TSPADOEngineTransportItf.DebugLog           TSPEngineTransportItf.PrepareForTable     &quot;<b>Start</b>&quot;           SVR**REDACTED**N0002.GLOBAL.ANZ.COM                       67188           112200           82528</p>","","","","00570000003KXurAAG","2024-11-20T14:36:39.000Z"
+"0D5Qk00000RXNJSKA5","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-11-22T10:14:15.000Z","What We've Learned Updated: Customer has 11.0.0.250 Stealth Audit installed. 
+
+Customer is experiencing issues with FSAA BulkImport job for the NAS device to which customer refers to as SG NAS. 
+
+The Bulk Import job is failing due to a timeout error. 
+Customer provided debug logs.
+
+According to the logs, the Bulk Import was stopped after running for around 32 minutes, which is not even close to the default SQL timeout of 24 hours. 
+
+The timeout error customer referred to - is the timeout for the Job session abort. What is more, the job session status shows that the job received an abort request, which means that either job was started manually, and the console was then closed, or the job started on schedule and was then stopped:
+MSG_TYPE   TableName   MESSAGE    TaskName
+
+WARNING    Access    Abort request received   
+
+ERROR        Host process was terminated (DC did not abort timely)   Bulk import
+
+
+Customer replied that they run maintenance on the FSAA job using Maintenance Wizard as described in this article (Maintenance Wizard part)
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/QuerySelection.htm
+
+And after that they restarted the job.","","","","005Qk000002b4gDIAQ","2024-11-22T10:14:15.000Z"
+"0D5Qk00000RXTIKKA5","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-11-22T10:14:51.000Z","Next Steps Updated: Support will clarify how the job was started after using Maintenance Wizard. 
+Support asked customer to reply back with results of the Bulk Import.","","","","005Qk000002b4gDIAQ","2024-11-22T10:14:51.000Z"
+"0D5Qk00000SdIUtKAN","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-12-10T08:22:47.000Z","Next Steps Updated: Customer is currently running ""Repair"" from the FSAA scan query ""Maintenance"" for the SVRSG001SIN0002 host. 
+Customer will retry FSAA scan > FSAA Bulk Import once the repair has completed.","","","","005Qk000002b4gDIAQ","2024-12-10T08:22:47.000Z"
+"0D5Qk00000T6C2fKAF","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-12-16T12:03:24.000Z","What We've Learned Updated: According to the latest logs the Bulk Import receives timeout each time after it tries to perform this action:
+10/11/2024 20:55:05    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    203244    202188    157836
+11/11/2024 20:55:08    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    202188    157836
+
+As seen in other log files, this pattern happens each time during the last Bulk Import job runs:
+12/11/2024 17:06:29    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    50212    112200    82528
+13/11/2024 17:06:32    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    112200    82528
+
+And each time it takes exactly 3 seconds after this operation starts before the timeout appears. 
+
+As such, support assisted customer during meeting by starting ""Repair"" job for the ""SVRSG001SIN0002"" host via File System data collector query properties. 
+
+However, repair operation also failed. 
+
+According to the repair operation logs there is no disk space left on the drive where NEA database is stored:
+2024-12-11T09:19:32.4024011+11:00   DEBUG       Getting list of duplicates for Access (1)
+2024-12-11T15:16:33.1829949+11:00   ERROR       System.AggregateException: One or more errors occurred. ---> System.Data.SQLite.SQLiteException: database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Dapper.SqlMapper.<ExecuteReaderImplAsync>d__59.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.UI.RepairTools.RemoveDuplicatesBase.GetDuplicates()
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.UI.RepairTools.RemoveDuplicatesBase.FindAndRemoveDuplicates()
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.UI.RepairTools.DuplicateRemovalTool.RemoveDuplicatesFromHost(SqlConnection sql, SqlTransaction trans, String host, String fsaaPath)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.UI.RepairTools.DuplicateRemovalTool.Run(List`1 hosts, String fsaaPath)
+---> (Inner Exception #0) code = Full (13), message = System.Data.SQLite.SQLiteException (0x800007FF): database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Dapper.SqlMapper.<ExecuteReaderImplAsync>d__59.MoveNext()<---","","","","005Qk000002b4gDIAQ","2024-12-16T12:03:24.000Z"
+"0D5Qk00000T6FACKA3","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-12-16T12:03:47.000Z","What We've Learned Updated: According to the latest logs the Bulk Import receives timeout each time after it tries to perform this action:
+10/11/2024 20:55:05    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    203244    202188    157836
+11/11/2024 20:55:08    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    202188    157836
+
+As seen in other log files, this pattern happens each time during the last Bulk Import job runs:
+12/11/2024 17:06:29    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    50212    112200    82528
+13/11/2024 17:06:32    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    112200    82528
+
+And each time it takes exactly 3 seconds after this operation starts before the timeout appears. 
+
+As such, support assisted customer during meeting by starting ""Repair"" job for the ""SVRSG001SIN0002"" host via File System data collector query properties. 
+
+However, repair operation also failed. 
+
+According to the repair operation`s logs there is no disk space left on the drive where NEA database is stored:
+2024-12-11T09:19:32.4024011+11:00   DEBUG       Getting list of duplicates for Access (1)
+2024-12-11T15:16:33.1829949+11:00   ERROR       System.AggregateException: One or more errors occurred. ---> System.Data.SQLite.SQLiteException: database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Dapper.SqlMapper.<ExecuteReaderImplAsync>d__59.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.UI.RepairTools.RemoveDuplicatesBase.GetDuplicates()
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.UI.RepairTools.RemoveDuplicatesBase.FindAndRemoveDuplicates()
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.UI.RepairTools.DuplicateRemovalTool.RemoveDuplicatesFromHost(SqlConnection sql, SqlTransaction trans, String host, String fsaaPath)
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.UI.RepairTools.DuplicateRemovalTool.Run(List`1 hosts, String fsaaPath)
+---> (Inner Exception #0) code = Full (13), message = System.Data.SQLite.SQLiteException (0x800007FF): database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+   at System.Data.SQLite.SQLiteCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SQLite.SQLiteCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Dapper.SqlMapper.<ExecuteReaderImplAsync>d__59.MoveNext()<---","","","","005Qk000002b4gDIAQ","2024-12-16T12:03:47.000Z"
+"0D5Qk00000T6GJHKA3","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-12-16T12:04:27.000Z","Next Steps Updated: According to the latest repair job`s logs it seems like there is no space left on the Database disk. 
+Support is asking customer to clarify if there is any space left on the sql database disk.","","","","005Qk000002b4gDIAQ","2024-12-16T12:04:27.000Z"
+"0D5Qk00000T6VrrKAF","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-12-16T14:29:02.000Z","What We've Learned Updated: According to the latest logs the Bulk Import receives timeout each time after it tries to perform this action:
+10/11/2024 20:55:05    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    203244    202188    157836
+11/11/2024 20:55:08    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    202188    157836
+
+As seen in other log files, this pattern happens each time during the last Bulk Import job runs:
+12/11/2024 17:06:29    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    50212    112200    82528
+13/11/2024 17:06:32    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    112200    82528
+
+And each time it takes exactly 3 seconds after this operation starts before the timeout appears. 
+
+As such, support assisted customer during meeting by starting ""Repair"" job for the ""SVRSG001SIN0002"" host via File System data collector query properties. 
+
+However, repair operation also failed. 
+
+According to the repair operation`s logs there is no disk space left on the drive where NEA database is stored:
+2024-12-11T09:19:32.4024011+11:00   DEBUG       Getting list of duplicates for Access (1)
+2024-12-11T15:16:33.1829949+11:00   ERROR       System.AggregateException: One or more errors occurred. ---> System.Data.SQLite.SQLiteException: database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+...
+
+This error indicates that the disk where Tier 2 SQLlite database is located is out of space most likely.","","","","005Qk000002b4gDIAQ","2024-12-16T14:29:02.000Z"
+"0D5Qk00000T6C0AKAV","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-12-16T14:29:26.000Z","Next Steps Updated: Support will schedule a meeting with customer to check the Tier 2 database location on the SVRSG001SIN0002 server.","","","","005Qk000002b4gDIAQ","2024-12-16T14:29:26.000Z"
+"0D5Qk00000TFJ1qKAH","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-12-18T10:55:31.000Z","What We've Learned Updated: According to the latest logs the Bulk Import receives timeout each time after it tries to perform this action:
+10/11/2024 20:55:05    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    203244    202188    157836
+11/11/2024 20:55:08    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    202188    157836
+
+As seen in other log files, this pattern happens each time during the last Bulk Import job runs:
+12/11/2024 17:06:29    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    50212    112200    82528
+13/11/2024 17:06:32    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    112200    82528
+
+And each time it takes exactly 3 seconds after this operation starts before the timeout appears. 
+
+As such, support assisted customer during meeting by starting ""Repair"" job for the ""SVRSG001SIN0002"" host via File System data collector query properties. 
+
+However, repair operation also failed. 
+
+According to the repair operation`s logs there is no disk space left on the drive where NEA database is stored:
+2024-12-11T09:19:32.4024011+11:00   DEBUG       Getting list of duplicates for Access (1)
+2024-12-11T15:16:33.1829949+11:00   ERROR       System.AggregateException: One or more errors occurred. ---> System.Data.SQLite.SQLiteException: database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+...
+
+This error indicates that the disk where Tier 2 SQLlite database is located is out of space most likely.
+
+Customer replied that they have re-set the host ""SVRSG001SIN0002"" and that they will start FSAA and FSAC syncs from scratch.","","","","005Qk000002b4gDIAQ","2024-12-18T10:55:31.000Z"
+"0D5Qk00000TFJ1rKAH","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-12-18T10:55:31.000Z","Next Steps Updated: null","","","","005Qk000002b4gDIAQ","2024-12-18T10:55:31.000Z"
+"0D5Qk00000TFLDBKA5","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2024-12-18T10:56:22.000Z","Next Steps Updated: Customer decided to reset the host and start a fresh scan. 
+Support is waiting for customer`s reply with results. Placing ticket in postponed reply.","","","","005Qk000002b4gDIAQ","2024-12-18T10:56:22.000Z"
+"0D5Qk00000VNZrMKAX","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2025-01-23T10:10:42.000Z","What We've Learned Updated: According to the latest logs the Bulk Import receives timeout each time after it tries to perform this action:
+10/11/2024 20:55:05    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    203244    202188    157836
+11/11/2024 20:55:08    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    202188    157836
+
+As seen in other log files, this pattern happens each time during the last Bulk Import job runs:
+12/11/2024 17:06:29    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    50212    112200    82528
+13/11/2024 17:06:32    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    112200    82528
+
+And each time, after this operation starts, it takes exactly 3 seconds before the timeout appears. 
+
+As such, support assisted customer during meeting by starting ""Repair"" job for the ""SVRSG001SIN0002"" host via File System data collector query properties. 
+
+However, repair operation also failed. 
+
+According to the repair operation`s logs there is no disk space left on the drive where NEA database is stored:
+2024-12-11T09:19:32.4024011+11:00   DEBUG       Getting list of duplicates for Access (1)
+2024-12-11T15:16:33.1829949+11:00   ERROR       System.AggregateException: One or more errors occurred. ---> System.Data.SQLite.SQLiteException: database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+...
+
+This error indicates that the disk where Tier 2 SQLlite database is located is out of space most likely.
+
+Customer replied that they have re-set the host ""SVRSG001SIN0002"" and that they will start FSAA and FSAC syncs from scratch.","","","","005Qk000002b4gDIAQ","2025-01-23T10:10:42.000Z"
+"0D5Qk00000VNmbdKAD","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2025-01-23T12:32:44.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002b4gDIAQ","2025-01-23T12:32:44.000Z"
+"0D5Qk00000VNmbeKAD","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2025-01-23T12:32:45.000Z","Invitation updated. Attendees: Artem Naskal","","","","005Qk000002b4gDIAQ","2025-01-23T12:32:45.000Z"
+"0D5Qk00000VNmbfKAD","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2025-01-23T12:32:45.000Z","Invitation updated. Attendees: Artem Naskal, Ritwij Raj","","","","005Qk000002b4gDIAQ","2025-01-23T12:32:45.000Z"
+"0D5Qk00000VNju6KAD","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2025-01-23T12:34:32.000Z","Next Steps Updated: Customer re-opened ticket. 
+Support asked to upload latest logs. 
+Support will schedule remote support session with customer to continue troubleshooting.","","","","005Qk000002b4gDIAQ","2025-01-23T12:34:32.000Z"
+"0D5Qk00000VRuu4KAD","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2025-01-24T09:00:00.000Z","What We've Learned Updated: NEA version is 11.0.1232.1297  
+
+Scanned host is:
+SVRSG001SIN0002.GLOBALANZ.COM
+
+Proxy with Tier2 DBs (it was used to scan the host above last couple times):
+APPSG001SIN0012
+
+----------------------------------
+
+According to the latest logs the Bulk Import receives timeout each time after it tries to perform this action:
+10/11/2024 20:55:05    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    203244    202188    157836
+11/11/2024 20:55:08    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    202188    157836
+
+As seen in other log files, this pattern happens each time during the last Bulk Import job runs:
+12/11/2024 17:06:29    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    50212    112200    82528
+13/11/2024 17:06:32    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    112200    82528
+
+And each time, after this operation starts, it takes exactly 3 seconds before the timeout appears. 
+
+As such, support assisted customer during meeting by starting ""Repair"" job for the ""SVRSG001SIN0002"" host via File System data collector query properties. 
+
+However, repair operation also failed. 
+
+According to the repair operation`s logs there is no disk space left on the drive where NEA database is stored:
+2024-12-11T09:19:32.4024011+11:00   DEBUG       Getting list of duplicates for Access (1)
+2024-12-11T15:16:33.1829949+11:00   ERROR       System.AggregateException: One or more errors occurred. ---> System.Data.SQLite.SQLiteException: database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+...
+
+This error indicates that the disk where Tier 2 SQLlite database is located is out of space most likely.
+
+Customer replied that they have re-set the host ""SVRSG001SIN0002"" and that they will start FSAA and FSAC syncs from scratch.
+
+-----------------------
+
+Resetting the host did not help. Customer is still getting timeout error during Bulk Import, and the error again appears during the same ""Import SA_FSAA_Resources"" step. 
+
+-----------------------
+
+On the APPSG001SIN0012 proxy I found that StealthAuditRPC.exe process was hanging doing nothing. 
+We ended this task and then tried running bulk import again. This time import failed with different error ""SQL exception. No table found"" 
+
+Customer will try resetting host again and we will restart Full FSAA scan after that, then try Importing data once more.","","","","005Qk000002b4gDIAQ","2025-01-24T09:00:00.000Z"
+"0D5Qk00000VS9zNKAT","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2025-01-24T10:40:11.000Z","Next Steps Updated: We reconfigured these jobs so that they remove SQL data related to ""SVRSG001SIN0002"" host:
+""zCustom > 1-FSAA System Scans_AU3"" 
+""zzImports > 2-FSAA Bulk Import1""
+
+The FSAA System Scan is still removing data. As such, customer was asked to perform these steps:
+
+1. Once FSAA System Scan job finishes its current task, please, run the ""0. Create Schema"" job. We reconfigured this job by explicitly adding host ""SVRSG001SIN0002"" to the job`s host list. 
+
+2. Once the ""SVRSG001SIN0002"" host`s data is reset, and Schema is re-created - connect to APPSG001SIN0012 proxy and check for StealthAuditRPC.exe process. It should not be running prior to FSAA scan. 
+
+3. Then, start the ""zCustom > 1-FSAA System Scans_AU3"" again. 
+
+4. Once scan has completed, run ""zzImports > 2-FSAA Bulk Import1"" again and let me know the results.","","","","005Qk000002b4gDIAQ","2025-01-24T10:40:11.000Z"
+"0D5Qk00000Va5CFKAZ","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2025-01-27T10:07:27.000Z","What We've Learned Updated: NEA version is 11.0.1232.1297  
+
+Scanned host is:
+SVRSG001SIN0002.GLOBALANZ.COM
+
+Proxy with Tier2 DBs (it was used to scan the host above last couple times):
+APPSG001SIN0012
+
+----------------------------------
+
+According to the latest logs the Bulk Import receives timeout each time after it tries to perform this action:
+10/11/2024 20:55:05    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    203244    202188    157836
+11/11/2024 20:55:08    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    202188    157836
+
+As seen in other log files, this pattern happens each time during the last Bulk Import job runs:
+12/11/2024 17:06:29    DEBUG    FILESYSTEMACCESS    Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute    ""Importing SA_FSAA_Resources""    SVRSG001SIN0002.GLOBAL.ANZ.COM    DCExtract    50212    112200    82528
+13/11/2024 17:06:32    ERROR    StealthAUDIT(TDispatch)    TDispatch.ExecuteJob    ""Aborting thread (timeout)""    SVRSG001SIN0002.GLOBAL.ANZ.COM        0    112200    82528
+
+And each time, after this operation starts, it takes exactly 3 seconds before the timeout appears. 
+
+As such, support assisted customer during meeting by starting ""Repair"" job for the ""SVRSG001SIN0002"" host via File System data collector query properties. 
+
+However, repair operation also failed. 
+
+According to the repair operation`s logs there is no disk space left on the drive where NEA database is stored:
+2024-12-11T09:19:32.4024011+11:00   DEBUG       Getting list of duplicates for Access (1)
+2024-12-11T15:16:33.1829949+11:00   ERROR       System.AggregateException: One or more errors occurred. ---> System.Data.SQLite.SQLiteException: database or disk is full
+database or disk is full
+   at System.Data.SQLite.SQLite3.Reset(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLite3.Step(SQLiteStatement stmt)
+   at System.Data.SQLite.SQLiteDataReader.NextResult()
+   at System.Data.SQLite.SQLiteDataReader..ctor(SQLiteCommand cmd, CommandBehavior behave)
+...
+
+This error indicates that the disk where Tier 2 SQLlite database is located is out of space most likely.
+
+Customer replied that they have re-set the host ""SVRSG001SIN0002"" and that they will start FSAA and FSAC syncs from scratch.
+
+-----------------------
+
+Resetting the host did not help. Customer is still getting timeout error during Bulk Import, and the error again appears during the same ""Import SA_FSAA_Resources"" step. 
+
+-----------------------
+
+On the APPSG001SIN0012 proxy I found that StealthAuditRPC.exe process was hanging doing nothing. 
+We ended this task and then tried running bulk import again. This time import failed with different error ""SQL exception. No table found"" 
+
+Customer will try resetting host again and we will restart Full FSAA scan after that, then try Importing data once more.
+
+-----------------------
+After reseting host via FSAA scan job the job was still failing. This time with this error:
+code = Error (1), message = System.Data.SQLite.SQLiteException (0x800007BF): SQL logic error
+no such table: TBL_FSAA_Status
+
+As such: 
+1. we agreed to drop all tables related to SVRSG001SIN0002.GLOBALANZ.COM host from the main StealthAudit database.
+2. As well as remove local Tier 2 (fsaadb files) databases from both StealthAudit console server and the APPSG001SIN0012 proxy. 
+3. After we did that, we re-created SQL DB schema for SVRSG001SIN0002.GLOBALANZ.COM host once more 
+4. and started FSAA scan for it.
+
+At the moment new FSAA scan is running.","","","","005Qk000002b4gDIAQ","2025-01-27T10:07:27.000Z"
+"0D5Qk00000Va4OEKAZ","500Qk00000IMTM0IAP","TextPost","005Qk000002b4gDIAQ","2025-01-27T10:08:00.000Z","Next Steps Updated: Customer is monitoring FSAA scan progress and will get back to us once they have an update.","","","","005Qk000002b4gDIAQ","2025-01-27T10:08:00.000Z"

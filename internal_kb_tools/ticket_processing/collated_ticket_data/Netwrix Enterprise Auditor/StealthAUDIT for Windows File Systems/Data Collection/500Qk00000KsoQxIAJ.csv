@@ -1,0 +1,33 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000KsoQxIAJ","00432976","Support Ticket","Continuation: File Types report Pie Chart works but no detailed data is available","File Types report job timeout was increased. 
+As a result, the File Types job is completing successfully. However, there is still no detailed data available in the report. 
+
+Report has a Filter configuration: 
+File Size Less or Equal to 100.  
+
+However, when we try removing this filter from the report, then Fyle Types report job starts failing with:
+ ""A severe error occurred on the current command. The results, if any, should be discarded. Operation canceled by user. The statement has been terminated.""","Have ""FS_FileTypes"" report job configured. 
+Have a default filter configured for the Details Grid: [Size rank] is less than or equal to 100 
+Remove this filter
+Run ""FS_FileTypes"" report job 
+Job fails with:
+""A severe error occurred on the current command. The results, if any, should be discarded. Operation canceled by user. The statement has been terminated.""
+
+The resulted report has correct Pie Chart, but the bottom grid is empty.","This ticket is a continuation of this one:
+00423239 - File Types report chart works but no detailed data is available
+
+After increasing FS_FileTypes job timeout the job now completes successfully. 
+However, the Filter on the ""File Types"" is still in place and there are no details visible bellow the Pie Chart. 
+
+According to information provided by Fenilkumar, when we try to remove the filter from ""File Type"" report and run the FS_FileTypes job again, this error appears:
+""A severe error occurred on the current command. The results, if any, should be discarded. Operation canceled by user. The statement has been terminated.""
+And the FS_FileTypes job fails to complete. 
+
+Currently the FS_FileTypes job is running, and the ""File Types"" report is configured to have a filter.","Support is waiting for customer to reply after ""FS_FileType"" job completes. 
+After that support will schedule another meeting with customer to test if the ""FS_FileType"" job fails when the Filter is removed from ""File Types"" report.","The ""FS_FileTypes"" Job was failing due to time out error. 
+After increasing the timeout for the ""FS_FileTypes"" Report Job to 7 days the job started running as expected. 
+
+Timeout was increased using the FS_FileTypes  job properties using these steps:
+Right - Click the FS_FileTypes job > select ""Properties"" > in the ""General"" tab will be a ""Timeout"" parameter. 
+
+The FS_FileTypes job eventually completed successfully and both Pie Chart and the Details table below were populated with corresponding information successfully.","Incorrect configuration: Netwrix product","Artem Naskal","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.5","11.5.0.182","15.9","Closed - Resolved","Kyndryl","Fenilkumar S","2025-01-21T13:52:59.000Z","2025-02-06T11:31:14.000Z"

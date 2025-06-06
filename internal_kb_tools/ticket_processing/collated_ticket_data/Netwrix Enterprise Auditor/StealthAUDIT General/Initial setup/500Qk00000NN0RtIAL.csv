@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000NN0RtIAL","00440108","Support Ticket","Unable to pull in new DFS configs for server replacement","Error enumerating links for namespace \<a href='https://excellus.com' target='_blank'>excellus.com</a>DFSTest (Domain): The RPC server is unavailable.  But we are using a different DFS config and unable to access or update in Audit","","Today we:
+
+Reviewed the FSDFS System Scan and discovered errors when targeting the One Domain Controller Per Domain host list versus the DFS Host. Once the DFS server was targeted we were able to get a successful scan and populated updated DFS Namespace information with a successful FSAA Bulk Import. We then tested this information within the AIC with a fresh Bulk Import and was able to run a search against the new DFS Namespace target path. We further tested this information by running a SQL query filtering against an old host and wasn't able to generate any entries but was able to generate entries running a query against the new host. 
+
+-------------------------------------------------------
+- Removed an older duplicate entry on the FSDFS_Links table (confirmed this did not have an ID that matched any links)
+
+- Enabled the Resolve Links tasks on both the FSAA System Scan and the FSAA Bulk Import","Our next steps are:
+
+Further investigate the file structure in the AIC and FSAA system scan against the desired hosts.
+
+-----------------------------------------------------
+Full FS Group kicks off 3/28 @ 5:30pm - Gary will update us on how the AIC looks after that completes","Symptom
+
+Error enumerating links for namespace \<a href='https://excellus.com' target='_blank'>excellus.com</a>DFSTest (Domain): The RPC server is unavailable. But we are using a different DFS config and unable to access or update in Audit
+
+Cause
+
+Host list assignment for the job was only targeting ""One Domain Controller Per Domain"" which does not have the DFS Namespace Server. 
+
+Resolution
+
+Targeted the DFS Namespace server and was able to get a successful DFS scan. We verified the update folder paths in SQL server running a search query against the FSDFS_Links table.
+
+Removed the duplicate DFS namespace and enabled the resolve links analysis.","Guidance","Scottie Taylor","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.6","","11.8","Closed - Resolved","Excellus Health Plan, Inc.","Gary Bender","2025-03-26T20:14:40.000Z","2025-04-07T14:46:44.000Z"

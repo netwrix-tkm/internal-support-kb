@@ -1,0 +1,16 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000E40HXIAZ","00417179","Support Ticket","Sensitive data job fails post upgrade to 11.6","Hello
+I have recently upgraded to v11.6  and since the upgrade my Sensitive Data job has not run.
+The first error Is saw was:  <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Tier 1 database schema is not up to date, run the Create Schema job
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.AccessScanTask.d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.AccessScanTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()
+
+Having run the create schema job,  I now get this error and the job does not complete:  Error during processing:  Could not load file or assembly '<a href='https://System.Data' target='_blank'>System.Data</a>.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+
+Please can you advise","","","","Outdated System.Data.SQLite.dll library version 1.0.112.0 in C:Program Files (x86)STEALTHbitsStealthAUDITFSAA folder after the upgrade.
+
+Replaced with System.Data.SQLite.dll version 1.0.117.0 from any other folder in NEA and now the scan works fine.","Incorrect configuration: Netwrix product","Aleksandr Timofeev","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Sensitive Data","11.6","","6.1","Closed - Resolved","Assystem Energy & Infrastructure Limited","James Allen","2024-08-06T07:55:35.000Z","2024-08-12T09:43:58.000Z"

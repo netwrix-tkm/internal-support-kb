@@ -1,0 +1,421 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MguE7IAJ","500Qk00000MfywQIAR","2025-03-17T15:39:35.000Z","2025-03-17T15:39:35.000Z","Hello Frank,
+
+Thank you for taking the time to meet today.
+
+Today we:
+
+Performed the pre-flight process in preparation for the official NEA upgrade to 11.6. The pre-flight included the following:
+
+	Take screenshots of the global settings and custom job settings
+	Full backups of the Jobs folder, GlobalOptions and SPProfiles.xml. 
+	Backups of the SSLCert Bindings for all web applications.
+
+
+Our next steps are:
+
+You will:
+
+For the official upgrade the below will need to be performed:
+
+	Snapshot of the application server.
+	Backup of the StealthAudit database.
+	You will need to download the latest version of the installer from your netwrix.com customer account as well as verify that the installer has been unblocked. The latest installers needed are:
+	
+		Netwrix Enterprise Auditor Management Platform
+		Sensitive Data Discovery
+		Access Information Center
+	
+	
+	Ensure no scheduled jobs are running or will run during the upgrade process.
+
+Please use this link to schedule our next meeting at your convenience
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OSo9TobztoCONk6hNdyFNBKau_pPBTx82WBQeo47GN4-Z&MeetingID=lStlmmzSm9ISZ8azj1L1o2XKcoHAH_3tWaec4Klc090-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/7/2025 12:41 PM
+To: fsalah@howardcountymd.gov
+Cc: eric.szymanski@netwrix.com
+Subject: Re: Netwrix Support Ticket #438076 - - Assistance Upgrading Products [ ref:!00D70091pB.!500Qk0MfywQ:ref ]
+
+Hi Frank,
+
+Thank you for the updated information. If there isn't a PGSQL on the application server you ran the PowerShell command on then StealthDEFEND is on another server. 
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=lrhCOMyKcrhAIQC5J9lPD7G_S4XqQG9sG9nQzxA875E-Z&MeetingID=z.EKi.D5_LCq8UJHKV.GuFEAV9MVc6cCJ7KPlHtCeLA-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 3/7/2025 11:33 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: Re: Netwrix Support Ticket #438076 - ref:_00D7091pB._500Q000MfywQ:ref - Assistance Upgrading Products [ ref:!00D70091pB.!500Qk0MfywQ:ref ]
+
+ref:_00D7091pB._500Q000MfywQ:ref
+
+
+Here is the requested information. I have also attached it to this email. There is no PostgreSQL. 
+
+ 
+
+Could you please provide the link to schedule a session with you?
+
+ 
+
+ 
+
+Name                                               Version    InstallDate
+
+----                                               -------    -----------
+
+StealthAUDIT Access Information Center             11.5.0.130 20230911  
+
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.65  20230911  
+
+StealthAUDIT V11.5                                 11.5.0.245 20230911  
+
+Stealthbits Activity Monitor                       6.0.1214   20230911  
+
+Stealthbits Activity Monitor Agent 64-bit          6.0.1214   20230911   
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+This content was drafted and edited with the assistance of an artificial intelligence (AI) tool, Copilot. The content has been reviewed and verified to be complete and accurate and represents the objectives and intentions of Frank Salah.
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 10:53 AM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com <eric.szymanski@netwrix.com>
+Subject: Assistance Upgrading Products [ ref:!00D70091pB.!500Qk0MfywQ:ref ]
+
+ 
+
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+ 
+
+Hello Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. Can you please provide a text output of the results to the PowerShell command below on each application server?
+
+#Netwrix/Stealth, PostgreSQL, Python application versions: 
+Get-CimInstance -Class Win32_Product | 
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue | 
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize  
+ 
+#PostgreSQL installed version  
+(Get-ItemProperty  -Path ""HKLM:\SOFTWAREPostgreSQLInstallationspostgresql-x64*"" -ErrorAction SilentlyContinue ).Version  
+
+Multiple tickets will need to be created for each additional product as the each product has a different upgrade process. I will designate this ticket as a Netwrix Enterprise Auditor upgrade ticket. The initial meeting for this issue will be a pre-flight process and the following will be conducted:
+
+
+	Taking screenshots of your global settings and custom jobs.
+	Performing full backups of the Jobs folder.
+	Performing backups of the GlobalOptions.xml and SPProfiles.xml
+
+Please let me know if you have any additional questions.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0MfywQ:ref","Re: Netwrix Support Ticket #438076 -  - Assistance Upgrading Products    [ ref:!00D70091pB.!500Qk0MfywQ:ref ]","techsupport@netwrix.com","Netwrix Support","fsalah@howardcountymd.gov","eric.szymanski@netwrix.com","","false","2025-03-17T15:39:34.000Z","true"
+"02sQk00000MpHgYIAV","500Qk00000MfywQIAR","2025-03-20T15:47:36.000Z","2025-03-20T15:47:36.000Z","Hello Frank,
+
+I am glad that we were able to get your issue resolved. The following is a summary of the ticket for your records.
+
+Symptom
+
+I want to schedule a time to get assistance with upgrading StealthAudit, StealthDefend, and StealthIntercept.
+
+I would also like to review the certificate used for StealthDefend and possibly create a new certificate with our internal certificate authority
+
+Cause
+
+Proactive Upgrade
+
+Resolution
+
+Upgraded the StealthAudit 11.5 console and all associated applications to NEA 11.6.0.137 using the process described in the document below:
+ 
+
+	Enterprise Auditor Core Upgrade Instructions
+
+Also updated the ssl certificate bindings for both the AIC and Published Reports. During this process I discovered that the currently used certificate was not installed on the application server and may have possibly been expired. Due to this a new certificate will need to be generated and applied to the applications using the steps below:
+
+
+	Run CMD - netsh http del sslcert ipport=0.0.0.0:8082 to delete current cert
+	 
+	To add new cert run CMD - netsh http add sslcert ipport=0.0.0.0:8082 appid= certhash=
+	 
+
+Changing the port numbers to target both the AIC (481) and the Published Reports (8082) to apply these changes as well as including the updated cert hash when adding the new binding.
+
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/17/2025 10:39 AM
+To: fsalah@howardcountymd.gov
+Cc: eric.szymanski@netwrix.com
+Subject: Re: Netwrix Support Ticket #438076 - - Assistance Upgrading Products [ ref:!00D70091pB.!500Qk0MfywQ:ref ]
+
+Hello Frank,
+
+Thank you for taking the time to meet today.
+
+Today we:
+
+Performed the pre-flight process in preparation for the official NEA upgrade to 11.6. The pre-flight included the following:
+
+	Take screenshots of the global settings and custom job settings
+	Full backups of the Jobs folder, GlobalOptions and SPProfiles.xml. 
+	Backups of the SSLCert Bindings for all web applications.
+
+
+Our next steps are:
+
+You will:
+
+For the official upgrade the below will need to be performed:
+
+	Snapshot of the application server.
+	Backup of the StealthAudit database.
+	You will need to download the latest version of the installer from your netwrix.com customer account as well as verify that the installer has been unblocked. The latest installers needed are:
+	
+		Netwrix Enterprise Auditor Management Platform
+		Sensitive Data Discovery
+		Access Information Center
+	
+	
+	Ensure no scheduled jobs are running or will run during the upgrade process.
+
+Please use this link to schedule our next meeting at your convenience
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=OSo9TobztoCONk6hNdyFNBKau_pPBTx82WBQeo47GN4-Z&MeetingID=lStlmmzSm9ISZ8azj1L1o2XKcoHAH_3tWaec4Klc090-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 3/7/2025 12:41 PM
+To: fsalah@howardcountymd.gov
+Cc: eric.szymanski@netwrix.com
+Subject: Re: Netwrix Support Ticket #438076 - - Assistance Upgrading Products [ ref:!00D70091pB.!500Qk0MfywQ:ref ]
+
+Hi Frank,
+
+Thank you for the updated information. If there isn't a PGSQL on the application server you ran the PowerShell command on then StealthDEFEND is on another server. 
+
+If you would like to schedule a meeting you may use the link below:
+
+https://nwxcorp.my.salesforce-sites.com/cts?Id=lrhCOMyKcrhAIQC5J9lPD7G_S4XqQG9sG9nQzxA875E-Z&MeetingID=z.EKi.D5_LCq8UJHKV.GuFEAV9MVc6cCJ7KPlHtCeLA-Z
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+
+--------------- Original Message ---------------
+From: Salah, Frank [fsalah@howardcountymd.gov]
+Sent: 3/7/2025 11:33 AM
+To: techsupport@netwrix.com
+Cc: eric.szymanski@netwrix.com
+Subject: Re: Netwrix Support Ticket #438076 - ref:_00D7091pB._500Q000MfywQ:ref - Assistance Upgrading Products [ ref:!00D70091pB.!500Qk0MfywQ:ref ]
+
+ref:_00D7091pB._500Q000MfywQ:ref
+
+
+Here is the requested information. I have also attached it to this email. There is no PostgreSQL. 
+
+ 
+
+Could you please provide the link to schedule a session with you?
+
+ 
+
+ 
+
+Name                                               Version    InstallDate
+
+----                                               -------    -----------
+
+StealthAUDIT Access Information Center             11.5.0.130 20230911  
+
+StealthAUDIT Sensitive Data Discovery Add-On V11.5 11.5.0.65  20230911  
+
+StealthAUDIT V11.5                                 11.5.0.245 20230911  
+
+Stealthbits Activity Monitor                       6.0.1214   20230911  
+
+Stealthbits Activity Monitor Agent 64-bit          6.0.1214   20230911   
+
+ 
+
+
+Thanks,
+
+Frank
+
+ 
+
+Frank Salah
+
+Security Architect Engineer
+
+Howard County Government
+
+Department of Technology and Communication Services (DTCS)
+
+Email: fsalah@howardcountymd.gov
+
+Phone: 410-313-4464
+
+This content was drafted and edited with the assistance of an artificial intelligence (AI) tool, Copilot. The content has been reviewed and verified to be complete and accurate and represents the objectives and intentions of Frank Salah.
+
+ 
+
+
+ 
+
+ 
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, March 7, 2025 10:53 AM
+To: Salah, Frank <fsalah@howardcountymd.gov>
+Cc: eric.szymanski@netwrix.com <eric.szymanski@netwrix.com>
+Subject: Assistance Upgrading Products [ ref:!00D70091pB.!500Qk0MfywQ:ref ]
+
+ 
+
+
+[Note: This email originated from outside of the organization. Please only click on links or attachments if you know the sender.]
+ 
+
+Hello Frank,
+
+Thank you for reaching out to Netwrix support regarding your issue. I would be happy to assist you. Can you please provide a text output of the results to the PowerShell command below on each application server?
+
+#Netwrix/Stealth, PostgreSQL, Python application versions: 
+Get-CimInstance -Class Win32_Product | 
+Where-Object {($_.Name -Like ""Stealth*"" -or $_.Name -like ""Netwrix*"" -or $_.Name -like ""*Postg*"" -or ` $_.Name -like ""Python*"")} -ErrorAction SilentlyContinue | 
+Sort-Object | Format-Table Name,Version,InstallDate -AutoSize  
+ 
+#PostgreSQL installed version  
+(Get-ItemProperty  -Path ""HKLM:\SOFTWAREPostgreSQLInstallationspostgresql-x64*"" -ErrorAction SilentlyContinue ).Version  
+
+Multiple tickets will need to be created for each additional product as the each product has a different upgrade process. I will designate this ticket as a Netwrix Enterprise Auditor upgrade ticket. The initial meeting for this issue will be a pre-flight process and the following will be conducted:
+
+
+	Taking screenshots of your global settings and custom jobs.
+	Performing full backups of the Jobs folder.
+	Performing backups of the GlobalOptions.xml and SPProfiles.xml
+
+Please let me know if you have any additional questions.
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+ref:!00D70091pB.!500Qk0MfywQ:ref","Re: Netwrix Support Ticket #438076 -  - Assistance Upgrading Products    [ ref:!00D70091pB.!500Qk0MfywQ:ref ]","techsupport@netwrix.com","Netwrix Support","fsalah@howardcountymd.gov","eric.szymanski@netwrix.com","","false","2025-03-20T15:47:34.000Z","true"

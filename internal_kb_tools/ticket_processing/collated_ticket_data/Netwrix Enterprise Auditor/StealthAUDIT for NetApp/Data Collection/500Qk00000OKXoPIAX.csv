@@ -1,0 +1,31 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OKXoPIAX","00442798","Support Ticket","MERGE statement error message","I am getting an error message with the Bulk Import: The MERGE statement attempted to UPDATE or DELETE the same row more than once.  This is only happening with one host. I am not sure how to go about finding what row in the database is causing this. The error is happening during the FSAA Bulk Import. Looking at the log, I don't know if other records for this host are getting imported or if the job fails at this point.","run the FSAA bulk import job","5-9   Applied hotfix today from development.
+Repair ran successfully. Bulk Import started but was taking a long time. over 30 minutes on Merging resources alone. 
+
+merge error while importing data into our new 12.0 table, SA_FSAA_ResourcesScanTypeDetails
+
+NetApp server having the issue, but other NetApp servers are not having the issue
+
+""21/04/2025 22:42:17 ERROR FILESYSTEMACCESS Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute ""Netwrix.CoordinationLibrary.Processes.FSAABulkImportProcess|Failed to import SA_FSAA_Resources: The MERGE statement attempted to UPDATE or DELETE the same row more than once. This happens when a target row matches more than one source row. A MERGE statement cannot UPDATE/DELETE the same row of the target table multiple times. Refine the ON clause to ensure a target row matches at most one source row, or use the GROUP BY clause to group the source rows."" DRF-ERNIE2 DCExtract 17120 11324 12156""
+
+Partnered with T2 and would like to escalate
+its likely a repair will fix the issue, but still want to escalate to identify root cause
+
+---------------
+
+gathered logs and attached to ticket
+-FSAA System Scan job export
+-FSAA Bulk Import job export
+-Proxy logs
+-T2s from Proxy
+
+---------------
+
+copied T2s and client's bulk import job to my lab, targeted the host having issues (DRF-ERNIE2) and ran it
+bulk imported without issue
+
+Provided client with instructions to repair the database for that host","escalate ticket
+waiting to hear if the repair resolved the issue
+
+5-9 waiting on results of Import after hotfix.","seems to have resolved itself.
+most  likely due to copying t2s from proxies.","Root Cause Unknown","Nicholas Zimmer","Error","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Data Collection","12.0","12.0.0.1053","30.9","Closed - Resolved","Hawaii Pacific Health","Steven Schiesl","2025-04-22T17:03:28.000Z","2025-05-23T15:03:01.000Z"

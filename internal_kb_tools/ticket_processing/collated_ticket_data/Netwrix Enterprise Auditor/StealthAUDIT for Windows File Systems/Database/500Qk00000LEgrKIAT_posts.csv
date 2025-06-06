@@ -1,0 +1,90 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000VkyAhKAJ","500Qk00000LEgrKIAT","TextPost","0054u000008ARZjAAO","2025-01-29T21:14:16.000Z","Description: We have two fileshares on a NAS server two fileshares appear to be connected, same file share paths.   Need help investigating why StealthAudit is reporting fileshares incorrectly.","","","","0054u000008ARZjAAO","2025-01-29T21:14:16.000Z"
+"0D5Qk00000VuA0YKAV","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-01-31T20:58:58.000Z","Invitation updated. Attendees: Ian Ranstrom, Tay Caliguiri","","","","005Qk000002AJWTIA4","2025-01-31T20:58:58.000Z"
+"0D5Qk00000VuA0XKAV","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-01-31T20:58:58.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002AJWTIA4","2025-01-31T20:58:58.000Z"
+"0D5Qk00000VuA0ZKAV","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-01-31T20:58:59.000Z","Invitation updated. Attendees: Ian Ranstrom, Tay Caliguiri, Taylor Van Orden","","","","005Qk000002AJWTIA4","2025-01-31T20:58:59.000Z"
+"0D5Qk00000WPzYGKA1","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-07T21:34:37.000Z","Steps to Reproduce Updated: Select * from SA_FSAA_DirectPermissionsView where where ID = '23892' or ID = '23893';","","","","005Qk000002AJWTIA4","2025-02-07T21:34:37.000Z"
+"0D5Qk00000WQCS2KAP","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-07T21:36:02.000Z","What We've Learned Updated: SQL query indicates that the shareID for one resource, and the folderID of another sub folder both come back as 23892.
+This is leading to permissions getting crossed as these two resources are not related and should not be possible on the same server.","","","","005Qk000002AJWTIA4","2025-02-07T21:36:02.000Z"
+"0D5Qk00000WQ4txKAD","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-07T21:36:17.000Z","Next Steps Updated: Awaiting output from SQL command
+select * from dbo.SA_FSAA_Resources where ID = '23892' or ID = '23893';","","","","005Qk000002AJWTIA4","2025-02-07T21:36:17.000Z"
+"0D5Qk00000WV5PWKA1","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-08T01:26:37.000Z","What We've Learned Updated: SQL query indicates that the shareID for one resource, and the folderID of another sub folder both come back as 23892.
+This is leading to permissions getting crossed as these two resources are not related and should not be possible on the same server.
+
+--------
+02/07/2025
+--------
+Modified the customer script to filter by resource type as the issue appears to be that folders and shares are allowed to have the same resource ID and need further filtering.
+The additional field of ResourceType allows us to filter by a share resource (0) or a folder resource (2,3,5).","","","","005Qk000002AJWTIA4","2025-02-08T01:26:37.000Z"
+"0D5Qk00000WV5PXKA1","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-08T01:26:37.000Z","Next Steps Updated: Awaiting test of new query.
+
+SELECT [HostID],[HostName],[ResourceID],[ParentResourceID],ParentResourceID,ResourcePath,RightsSource,[TrusteeDisplayName],[TrusteeNTStyleName],AllowMaskDescription
+    FROM [SA_FSAA_PermissionsView]
+        where HostID = '30435'
+            and ((ResourceID = '19092' and ResourceType = '0')
+            or (ResourceID = '19093' and ResourceType IN (2,3,5)))
+            order by ResourceID asc;","","","","005Qk000002AJWTIA4","2025-02-08T01:26:37.000Z"
+"0D5Qk00000WdHP5KAN","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-10T20:02:06.000Z","Next Steps Updated: Awaiting test of new query.
+
+SELECT [HostID],[HostName],[ResourceID],ParentResourceID,ResourcePath,RightsSource,[TrusteeDisplayName],[TrusteeNTStyleName],AllowMaskDescription
+    FROM [SA_FSAA_PermissionsView]
+        where HostID = '30435'
+            and ((ResourceID = '19092' and ResourceType = '0')
+            or (ResourceID = '19093' and ResourceType IN (2,3,5)))
+            order by ResourceID asc;","","","","005Qk000002AJWTIA4","2025-02-10T20:02:06.000Z"
+"0D5Qk00000X3lyoKAB","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-14T23:09:32.000Z","Invitation updated. Attendees: Ian Ranstrom","","","","005Qk000002AJWTIA4","2025-02-14T23:09:32.000Z"
+"0D5Qk00000X3lypKAB","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-14T23:09:33.000Z","Invitation updated. Attendees: Ian Ranstrom, Gregory Meyer","","","","005Qk000002AJWTIA4","2025-02-14T23:09:33.000Z"
+"0D5Qk00000XvSawKAF","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-27T22:27:57.000Z","What We've Learned Updated: --------
+02/27/2025
+--------
+Upon using the new query we found that the subfolder no longer shows up, but one server does not show shares either. When we query the gates table we see that the folder has a shareID and a folder ID, but the share ID does not exist on the host. We were able to find the share, but the ID is completely wrong.
+----------------------------------------------------------
+SQL query indicates that the shareID for one resource, and the folderID of another sub folder both come back as 23892.
+This is leading to permissions getting crossed as these two resources are not related and should not be possible on the same server.
+
+--------
+02/07/2025
+--------
+Modified the customer script to filter by resource type as the issue appears to be that folders and shares are allowed to have the same resource ID and need further filtering.
+The additional field of ResourceType allows us to filter by a share resource (0) or a folder resource (2,3,5).","","","","005Qk000002AJWTIA4","2025-02-27T22:27:57.000Z"
+"0D5Qk00000XvSaxKAF","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-02-27T22:27:57.000Z","Next Steps Updated: Create script to find shares that may have a similar mismatch.","","","","005Qk000002AJWTIA4","2025-02-27T22:27:57.000Z"
+"0D5Qk00000ZbLVzKAN","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-03-17T23:06:15.000Z","Next Steps Updated: Review custom views to determine how to correct the error in permission presentation.","","","","005Qk000002AJWTIA4","2025-03-17T23:06:15.000Z"
+"0D5Qk00000ZbLVyKAN","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-03-17T23:06:15.000Z","What We've Learned Updated: --------
+03/17/2025
+--------
+The issue is being generated by custom views built by the Netwrix team. The views are not properly filtering out data from the gates table, leading to the customer seeing subfolders on some queries and the wrong permissions being removed in the environment.
+--------
+02/27/2025
+--------
+Upon using the new query we found that the subfolder no longer shows up, but one server does not show shares either. When we query the gates table we see that the folder has a shareID and a folder ID, but the share ID does not exist on the host. We were able to find the share, but the ID is completely wrong.
+----------------------------------------------------------
+SQL query indicates that the shareID for one resource, and the folderID of another sub folder both come back as 23892.
+This is leading to permissions getting crossed as these two resources are not related and should not be possible on the same server.
+
+--------
+02/07/2025
+--------
+Modified the customer script to filter by resource type as the issue appears to be that folders and shares are allowed to have the same resource ID and need further filtering.
+The additional field of ResourceType allows us to filter by a share resource (0) or a folder resource (2,3,5).","","","","005Qk000002AJWTIA4","2025-03-17T23:06:15.000Z"
+"0D5Qk00000akt0eKAA","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-03-31T17:00:18.000Z","Next Steps Updated: Follow up with Greg after cleanup of remaining servers has been completed.","","","","005Qk000002AJWTIA4","2025-03-31T17:00:18.000Z"
+"0D5Qk00000akt0dKAA","500Qk00000LEgrKIAT","TextPost","005Qk000002AJWTIA4","2025-03-31T17:00:18.000Z","What We've Learned Updated: --------
+03/31/2025
+--------
+Drop of host data in FSAA cleared up the mismatch that was being seen. Greg is now working to resolve the other 21 hosts and has a target date of completion for April 14th.
+--------
+03/17/2025
+--------
+The issue is being generated by custom views built by the Netwrix team. The views are not properly filtering out data from the gates table, leading to the customer seeing subfolders on some queries and the wrong permissions being removed in the environment.
+--------
+02/27/2025
+--------
+Upon using the new query we found that the subfolder no longer shows up, but one server does not show shares either. When we query the gates table we see that the folder has a shareID and a folder ID, but the share ID does not exist on the host. We were able to find the share, but the ID is completely wrong.
+----------------------------------------------------------
+SQL query indicates that the shareID for one resource, and the folderID of another sub folder both come back as 23892.
+This is leading to permissions getting crossed as these two resources are not related and should not be possible on the same server.
+
+--------
+02/07/2025
+--------
+Modified the customer script to filter by resource type as the issue appears to be that folders and shares are allowed to have the same resource ID and need further filtering.
+The additional field of ResourceType allows us to filter by a share resource (0) or a folder resource (2,3,5).","","","","005Qk000002AJWTIA4","2025-03-31T17:00:18.000Z"

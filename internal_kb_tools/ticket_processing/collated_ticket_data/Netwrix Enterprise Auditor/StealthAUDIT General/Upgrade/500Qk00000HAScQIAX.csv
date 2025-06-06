@@ -1,0 +1,48 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HAScQIAX","00424315","Support Ticket","StealthAudit Upgrade assistance","Upgrade the following to Netwrix Enterprise Auditor (NEA) 11.6.x.xxx
+StealthAUDIT (SA)                      11.5.0.232      
+SA Access Information (AIC)       11.5.0.108","","Reporting folder was not update correctly from the 11.5.0.232 install.
+Rebuilt the Reports folder in the %sainstalldir% path 
+Re-piblished the reports for the main jobs by re-running the related scheduled task","","Upgraded the current version of Stealth application(s) running in the Environment:
+FROM:
+StealthAUDIT (SA)                            11.5.0.232
+SA Access Information (AIC)            11.5.0.108
+
+TO:
+Netwrix Enterprise Auditor (NEA)                11.6.0.113
+Netwrix Access Information Center (AIC)    11.6.0.25
+
+
+Netwrix Enterprise Auditor v11.6 > Installation > Installation & Configuration Overview > Enterprise Auditor Console Upgrade
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Install/Application/Upgrade/Overview.htm
+Netwrix Access Information Center 11.6 > Installation Overview > Upgrade Procedure
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Upgrade.htm
+
+IIS was also uninstalled from the server via the Windows Server Manager.
+within the Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA) console we completed the following to correct the reporting error.
+Symptom:
+NEA 11.6 report failed to update.
+
+Cause:
+Reporting folder was not update correctly from the 11.5.0.232 install.
+
+Resolution:
+Rebuilt the Reports folder in the %sainstalldir% path.
+Re-published the reports for the main jobs by re-running the related scheduled task.
+
+Symptom:
+FileSystem job noted an error for the “Tier 1 database schema is not up to date, run the Create Schema job”
+
+Cause:
+0-Create Schema was missing from the collection group
+Resolution:
+Added 0-Create Schema back into the job group and ran 2x to confirm all tables are correct.
+
+Symptom:
+Post for the zSandbox > DLMembership11 Job is not fully completing.
+Cause:
+The issue was that the ADI job was not longer collecting the Extended Attribute of the “physicalDe1iveryOfficeName”.
+Resolution:
+Corrected in the Jobs >> .Active Directory Inventory>> 1-AD_Scan Query by adding the needed Extended Attribute. 
+The SA_ADInventory_ExtendedAttributesPivotView correctly populated post the next full job run.
+The DLMembership11 job completed Successfully.","Guidance","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT General","Upgrade","11.5","232","27.0","Closed - Resolved","West Yavapai Guidance Clinic, DBA Polara Health","Josh Taylor","2024-10-17T18:02:53.000Z","2024-11-13T18:51:39.000Z"

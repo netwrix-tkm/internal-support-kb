@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CI6CxIAL","00413004","Support Ticket","""Error during processing:  StealthAUDIT Sensitive Data Components are not installed on...","Post Proxy, SDD upgrade and environment variable we get the noted subject.","","","","Noted the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA)                                        11.6.0.79
+NEA Access Information Center (AIC)                                 11.6.0.15
+NEA Sensitive Data Discovery (SDD)                                  11.6.0.12
+NEA FSAA Proxy                                                                  11.6.0.25
+
+All File Servers are Windows based.
+
+No Scoping outside of the 12 level Depth.
+
+ We Ran my SA_JOBs_troubleshooting & FSAA_Proxy_Details scripts on the NEA host and our test Proxy.
+
+It was found that the Log Maintenance that is used to clean up the Proxy FSAA logs was also removing the Log Maintenance README.txt file from the Proxy host. 
+
+To correct this, we removed the '.txt' from the Save Last Analysis the noted txt files are not longer getting added to the 1-LogCleanup table so the 2-DeleteFiles should no longer reference for the 
+
+foreach ($i in $input) {
+  Remove-Item -path $i.PathAndName
+}
+
+
+
+Contact noted:
+The scans have completed successfully multiple times since our call since we made the change.","Incorrect configuration: Netwrix server","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Proxy","11.6","79","21.9","Closed - Resolved","Extron Electronics","Stephen Byrd","2024-06-25T20:06:44.000Z","2024-07-17T18:48:19.000Z"

@@ -1,0 +1,25 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LdNrtIAF","00435172","Support Ticket","AD_WeakPasswords job does not work when ran via scheduled task","AD_WeakPasswords is getting to 'Beginning analysis of Active Directory accounts' step in the job log and then ends right away abruptly leaving a running.lck file in the folder and showing it as running successfully for 0 seconds in the console. They have 2015-2019 Visual C++ redistrubtable (x86) installed on the app server. Not sure what the problem is here. Scheduled tasks work fine for all other jobs and when I run AD_WeakPasswords job interactively it works fine. Deleting the scheduled task and recreating doesn't fix it and deleting job and adding job back from instant solutions doesn't fix it. procdump.exe in the StealthAUDIT folder does not generate and dump files when the task abruptly stops and no concerning event logs could be found at the time of the task running. Job folder with debug logs is attached to the ticket.","Run AD_WeakPasswords job from scheduled tasks and the job stops after 1 second.
+Run AD_WeakPasswords job from the job tree and the job runs as expected.","AV was killing the background tasks that was being run from task scheduler.","Customer will implement exclusions
+
+Symptom
+WeakPasswords job stops when running from scheduled jobs.
+
+Cause
+Security tool was killing the background process when it tried to access sensitive data from active directory.
+
+Resolution
+Disabled the security tool to allow the job to run.
+Implement the exclusions documented below to prevent this in the future.
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Maintenance/AntivirusExclusions.htm","Symptom
+WeakPasswords job stops when running from scheduled jobs.
+
+Cause
+Security tool was killing the background process when it tried to access sensitive data from active directory.
+
+Resolution
+Disabled the security tool to allow the job to run.
+Implement the exclusions documented below to prevent this in the future.
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Maintenance/AntivirusExclusions.htm","Guidance","Ian Ranstrom","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Password Analyzer","11.6","11.6.0.129","6.0","Closed - Resolved","TeamHealth","Filmore Thomas","2025-02-07T22:59:33.000Z","2025-02-13T23:08:28.000Z"

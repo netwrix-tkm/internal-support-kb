@@ -1,0 +1,74 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000Gdg6FIAR","00422968","Support Ticket","SQL Server Upgrade for NEA/StealthAudit and StealthIntercept application servers","Need assistance to migrate to new SQL server 2022","","Here is a rough outline of the steps we followed in order to reconfigure NEA after exporting and importing the NEA database to a new physical MS SQL Server database server:
+
+
++++++
+Here are the steps to migrate the NEA database to a new MS SQL Server instance.
+On your end you will coordinate disabling all of the NEA scheduled jobs, taking the NEA database backup and restoring it to the new MS SQL Server instance (probably prior to our meeting).
++++++
+
+1) Stop all Jobs in NEA - Schedules > CRTL_SHIFT and select all ""Enabled"" jobs, Right-click and select ""Disable""
+2) Migrate SQL Server DB (or take backup and restore to the new DB server).
+3) Restart NEA services
+4) NEA > global Settings > Storage - point existing NEA v11.6 to new Server Name using Windows Auth or SQL Auth (Windows Auth preferred)
+5) You save it and then click ""Set as default"" to set it as the new default profile.
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm
+
+6) Find the StealthAUDIT installation directory from a CMD prompt:
+
+%SAInstallDir%
+
+Navigate to the DIR = %sainstalldir%web and open the file, Webserver.exe.config
+ 
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.exe.config
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.lic
+
+7) AIC Upgrade - appwiz.cpl - Uninstalled AIC - we had to uninstall the existing AIC application in order to also point it to the new database instance.
+8) %SAInstallDir%
+9) PS - dir Cert:LocalMachineMy
+10) PS - netsh http show sslcert
+11) ""AccessInformationCenter.Service.exe.Config""
+
+""https://+:481""
+
+C:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe.Config
+
++++++
++++++","","Here is a rough outline of the steps we followed in order to reconfigure NEA after exporting and importing the NEA database to a new physical MS SQL Server database server:
+
+
++++++
+Here are the steps to migrate the NEA database to a new MS SQL Server instance.
+On your end you will coordinate disabling all of the NEA scheduled jobs, taking the NEA database backup and restoring it to the new MS SQL Server instance (probably prior to our meeting).
++++++
+
+1) Stop all Jobs in NEA - Schedules > CRTL_SHIFT and select all ""Enabled"" jobs, Right-click and select ""Disable""
+2) Migrate SQL Server DB (or take backup and restore to the new DB server).
+3) Restart NEA services
+4) NEA > global Settings > Storage - point existing NEA v11.6 to new Server Name using Windows Auth or SQL Auth (Windows Auth preferred)
+5) You save it and then click ""Set as default"" to set it as the new default profile.
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Installation/Secure.htm
+
+6) Find the StealthAUDIT installation directory from a CMD prompt:
+
+%SAInstallDir%
+
+Navigate to the DIR = %sainstalldir%web and open the file, Webserver.exe.config
+ 
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.exe.config
+E:Program Files (x86)STEALTHbitsStealthAUDITStealthAUDIT.lic
+
+7) AIC Upgrade - appwiz.cpl - Uninstalled AIC - we had to uninstall the existing AIC application in order to also point it to the new database instance.
+8) %SAInstallDir%
+9) PS - dir Cert:LocalMachineMy
+10) PS - netsh http show sslcert
+11) ""AccessInformationCenter.Service.exe.Config""
+
+""https://+:481""
+
+C:Program FilesSTEALTHbitsAccess Information CenterAccessInformationCenter.Service.exe.Config
+
++++++
++++++","Proactive Upgrade","Mike Candon","","Netwrix Enterprise Auditor","StealthAUDIT General","Upgrade","11.6","","33.0","Closed - Resolved","Woodmen of the World Life Insurance Society","Jeremy Kaiser","2024-10-04T13:06:17.000Z","2024-11-06T13:28:22.000Z"

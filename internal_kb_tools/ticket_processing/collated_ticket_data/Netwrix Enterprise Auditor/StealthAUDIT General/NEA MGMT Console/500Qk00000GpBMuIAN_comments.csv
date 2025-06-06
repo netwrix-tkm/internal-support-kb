@@ -1,0 +1,68 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009epLBIAY","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the Following Fields have been updated: 
+Account ACV has been changed to 1044495.0509803921544.","0054u000006gpoAAAQ","2024-10-14T21:24:20.000Z","2024-10-14T21:24:20.000Z","false","false"
+"00aQk000009emIUIAY","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the Following Fields have been updated: 
+Account ACV has been changed to 522247.5254901960772.","0054u000006gpoAAAQ","2024-10-14T21:24:21.000Z","2024-10-14T21:24:21.000Z","false","false"
+"00aQk000009mup7IAA","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the Following Fields have been updated: 
+Account ACV has been changed to 473135.9254901960772.","0054u000006gpoAAAQ","2024-10-21T21:38:23.000Z","2024-10-21T21:38:23.000Z","false","false"
+"00aQk00000A3eZSIAZ","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the new comment has been added: Is this active on the sprint?","0050g000006QqyEAAS","2024-11-05T21:23:00.000Z","2024-11-05T21:23:00.000Z","false","false"
+"00aQk00000A4NDCIA3","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-06T14:21:51.000Z","2024-11-06T14:21:51.000Z","false","false"
+"00aQk00000A4NDEIA3","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the new comment has been added: Ethan Israel:
+
+@Salesforce@Helen Randall - no this is not yet active on the sprint. 
+
+[DevOps CommentId:11179565]","0054u000006gtWUAAY","2024-11-06T14:21:52.000Z","2024-11-06T14:21:52.000Z","false","false"
+"00aQk00000A4YuzIAF","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2024-11-06T16:38:03.000Z","2024-11-06T16:38:03.000Z","false","false"
+"00aQk00000AD8N0IAL","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the new comment has been added: Michael Burrofato:
+
+@Salesforce @James Anderson @Ethan Israel This ticket has been pulled onto our sprint and is being investigated.
+
+[DevOps CommentId:11211410]","0054u000006gtWUAAY","2024-11-13T15:51:27.000Z","2024-11-13T15:51:27.000Z","false","false"
+"00aQk00000AD8OcIAL","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the new comment has been added: Michael Burrofato:
+
+@Salesforce @James Anderson @Ethan Israel This ticket has been pulled onto our sprint and is being investigated.
+
+[DevOps CommentId:11211410]","0054u000006gtWUAAY","2024-11-13T15:51:29.000Z","2024-11-13T15:51:29.000Z","false","false"
+"00aQk00000AaTIgIAN","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the new comment has been added: Update for James
+
+One host initially threw this error ""Error executing query on instance 'FW-ITSQL-2.OHPNY.COMMSSQLSERVER' and database 'master' : 'USE master"" and the rest of the script is listed too.
+
+Now after a few runs all hosts are doing that.  Customer has uploaded Debug logs.","0054u000006gpoAAAQ","2024-12-05T15:33:22.000Z","2024-12-05T15:33:22.000Z","false","false"
+"00aQk00000Abl8iIAB","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the new comment has been added: Laura Suter:
+
+@Ethan Israel @James Anderson @Michael Burrofato @Helen Randall @Salesforce Regarding the error reported yesterday - it seems that this is custom SQL written for the 4-SQL_ServerLogons_default_trace job that is failing. We don't maintain this script.
+
+[DevOps CommentId:11375903]","0054u000006gtWUAAY","2024-12-06T15:19:25.000Z","2024-12-06T15:19:25.000Z","false","false"
+"00aQk00000AeGMsIAN","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the new comment has been added: James Anderson:
+
+@Laura Suter @Ethan Israel @Michael Burrofato @Helen Randall @Salesforce 
+
+Looks like we are hitting the execution timeout now. 
+
+
+
+This job creates 5 X 50MB files by default. If they fill it rolls over back to the first file, so it never uses more than 250MB. If pulling the data back is taking too long then reducing the size of the files should help. This will require more frequent collection to avoid losing entries.
+
+
+The file size can be edited on this line near the top 
+
+--- CODE ---
+ADD TARGET package0.event_file(SET filename=N'netwrix-enterprise-auditor--successful-logins', max_file_size=(50))
+--- CODE ---
+
+Just alter the 50 to the size needed. Then delete the extended events session if it already exists and then run the job to create the extended event session again with the new file size
+
+[DevOps CommentId:11385074]","0054u000006gtWUAAY","2024-12-09T16:05:51.000Z","2024-12-09T16:05:51.000Z","false","false"
+"00aQk00000AiwgsIAB","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the new comment has been added: We can close this one up.
+Permissions is behaving as a whole. We have some weirdness with a few hosts but overall the perms job is running.
+I have also spun off a ticket for the activity.","0054u000006gpoAAAQ","2024-12-12T22:06:01.000Z","2024-12-12T22:06:01.000Z","false","false"
+"00aQk00000AiyKTIAZ","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2024-12-12T22:23:41.000Z","2024-12-12T22:23:41.000Z","false","false"
+"00aQk00000AiyKVIAZ","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the Following Fields have been updated: 
+Account ACV has been changed to 946271.8509803921544.","0054u000006gpoAAAQ","2024-12-12T22:23:45.000Z","2024-12-12T22:23:45.000Z","false","false"
+"00aQk00000AiyNhIAJ","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the Following Fields have been updated: 
+Account ACV has been changed to 473135.9254901960772.","0054u000006gtWUAAY","2024-12-12T22:23:59.000Z","2024-12-12T22:23:59.000Z","false","false"
+"00aQk00000CZaOKIA1","500Qk00000GpBMuIAN","On Escalation Ticket # 00423877 the Following Fields have been updated: 
+Account ACV has been changed to 730006.6454901960772.","0054u000006gtWUAAY","2025-03-27T13:08:23.000Z","2025-03-27T13:08:23.000Z","false","false"

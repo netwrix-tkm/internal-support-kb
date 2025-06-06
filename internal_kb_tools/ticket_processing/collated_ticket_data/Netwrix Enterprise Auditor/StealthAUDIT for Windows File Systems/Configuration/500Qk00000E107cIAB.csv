@@ -1,0 +1,12 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000E107cIAB","00417053","Support Ticket","Remove/Revert Instant Job","Inadvertently added instant job (don't recall which), but need to remove it. I've tried to remove the jobs manually, but they seem to be interspersed. Can I restore C:Program Files (x86)STEALTHbitsStealthAUDITJobs from a previous day and repair to remove the added jobs?","","","","Looked at the current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)   11.5.0.260
+
+Removed the duplicate Job Group C:Program Files (x86)STEALTHbitsStealthAUDITJobsGROUP_FileSystemGROUP_0.CollectionGROUP_1.PermissionsGROUP_FileSystem
+
+After comparing with the jobs from the backup C:RestoreJobsGROUP_FileSystem
+
+We removed the File System Activity (FSAC) related jobs from the console by renaming them the thew BU_ (bakup) to leave anything that had been collected from being removed from the SQL DB.
+
+Found a few other oddities with the configuration that we might want to have sales set up a Health Check to confirm we are collecting the needed data.","Incorrect configuration: Netwrix product","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Configuration","11.5","206","2.2","Closed - Resolved","W. L. Gore & Associates, Inc.","Connie Liang","2024-08-05T13:05:00.000Z","2024-08-07T18:45:20.000Z"

@@ -1,0 +1,138 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009YHXVIA4","500Qk00000GIxBiIAL","Dusty Grayson: Proxy SSD scan issue Cannot scan. SDD Differential Scan needs bulk ...
+posted in SWAT Teams: Product Discussions, PM Q&A, Feedback / StealthAUDIT DAG on Tuesday, October 8, 2024 8:21 AM
+ 
+https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1728390113928?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1728390113928&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=StealthAUDIT%20DAG&createdTime=1728390113928","00570000003KXurAAG","2024-10-08T19:42:34.000Z","2024-10-08T19:42:34.000Z","false","false"
+"00aQk000009c957IAA","500Qk00000GIxBiIAL","Problem Statement/Business Impact:
+Some SDD jobs complete with a warning that the SEEK Bulk imported is needed.
+
+When looking at the related jobs Bulk imported it notes that it completed Successfully 
+
+Scanned Host
+----
+ARGO
+CYCLOPS
+DRF-ERNIE2
+DRF-RINGO2
+DRFSIRYN
+ELEKTRA
+INFORMATICS
+KARMA
+
+Noticed that the Proxies FSAA Host path is missing the SDD logs for this host.
+
+Out of the Servers listed on the following have SDD logs.
+DRF-RINGO2
+ARGO
+
+Desired Outcome:
+For the SDD job to scan data via the proxy as other host using the same proxy are able to.
+
+Then Import to SQL as normal
+
+Steps to Reproduce:
+Unable to replicated in my lab.
+
+Reliably Repro'd in Customer Envi
+
+Troubleshooting completed/Notes: 
+Ran the Repair and Rest on the scanned host in question.
+
+Tried a local scan to update the %sainstalldir%fsaahost files still the same result.
+
+Ensure relevant logs are uploaded to SPO:
+Application Logs
+Job Logs
+FSAA Proxy/Applet Logs
+
+
+
+-----","00570000003KXurAAG","2024-10-11T17:46:26.000Z","2024-10-11T17:51:21.000Z","false","false"
+"00aQk000009njJlIAI","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Account ACV has been changed to 849474.410512820482.","0054u000007MiY9AAK","2024-10-22T15:29:50.000Z","2024-10-22T15:29:50.000Z","false","false"
+"00aQk000009njLNIAY","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Account ACV has been changed to 424737.205256410241.","0054u000007MiY9AAK","2024-10-22T15:29:52.000Z","2024-10-22T15:29:52.000Z","false","false"
+"00aQk000009qI25IAE","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-24T13:59:00.000Z","2024-10-24T13:59:00.000Z","false","false"
+"00aQk000009qI27IAE","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the new comment has been added: Mike Longo:
+
+@Salesforce 
+For host DRF-ERNIE2 the SDD job logs indicate that a scan was run where the warning mentioned was thrown, then bulk import was run successfully import ~10 million match hits, and then the scan was never run again. So, I would suggest running the scan again since the data is now successfully imported.
+
+For host DRF-RINGO2 there was not a lot of information to get from the logs because they are not debug level, so it is not clear the SDD bulk import completed successfully. I would suggest running bulk import with debug logging enabled and if that is successful try scanning again, otherwise please provide the debug level logs.
+
+For hosts DRFSIRYN, WILCOX, and PALIMOMI I do not see the warning mentioned in the latest SDD scan log provided.
+
+It does not look like there are logs for all the hosts mentioned in the description, but this is my analysis of the logs provided.
+
+[DevOps CommentId:11109005]","0054u000006gtWUAAY","2024-10-24T13:59:01.000Z","2024-10-24T13:59:01.000Z","false","false"
+"00aQk000009qTrxIAE","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","00570000003KXurAAG","2024-10-24T15:42:27.000Z","2024-10-24T15:42:27.000Z","false","false"
+"00aQk000009qLqWIAU","500Qk00000GIxBiIAL","Priority server
+PROXY logs
+Https:/nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00422238/FSAAProxy_info_10_07_2024_08_41_01/FSAA_Proxy_Logs/DRF-ERNIE2
+
+JOB Logs
+Https:/nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00422238/0.Collection_ERNIE2
+26/09/2024 04:30:12	WARNING	FILESYSTEMACCESS	Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute	""Cannot scan, SDD Differential Scan needs bulk import""	DRF-ERNIE2	DCExtract	11796	14392	7132
+
+Https:/nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00422238/0.Collection_ERNIE2/GROUP_0.Collection_ERNIE2/GROUP_2.SDD/JOB_2-SEEK Bulk Import ERNIE2/OUTPUT/2-SEEK Bulk Import ERNIE2_Log.tsv
+26/09/2024 04:39:52	INFO	FILESYSTEMACCESS	Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute	""Importing SA_FSDLP_MatchHits, 10617k rows..""	DRF-ERNIE2	DCExtract	11260	14392	7132
+26/09/2024 04:39:52	DEBUG	SPFILE	TSPHostDBEngine.ParseAndCommitHostRow()	""Processing row: 0""	DRF-ERNIE2	DLP	11260	14392	7132
+26/09/2024 04:39:52	DEBUG	FILESYSTEMACCESS	Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute	""Importing SA_FSDLP_MatchHits_SubjectProfile""	DRF-ERNIE2	DCExtract	11260	14392	7132
+26/09/2024 04:39:55	INFO	FILESYSTEMACCESS	Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute	""Importing SA_FSDLP_MatchHits_SubjectProfile, 0k rows...""	DRF-ERNIE2	DCExtract	11260	14392	7132
+26/09/2024 04:39:55	DEBUG	SPFILE	TSPHostDBEngine.ParseAndCommitHostRow()	""Processing row: 0""	DRF-ERNIE2	DLP	11260	14392	7132
+
+MEETING IMAGEs: 
+https:/nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00422238/10032024/Zoom_20241003_14_39_18.png?csf=1&web=1&e=1E4bMy
+https:/nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00422238/10032024/Zoom_20241003_14_40_36.png?csf=1&web=1&e=Jlk1Xb
+
+ 
+
+NO updated SSD logs on the Proxy for this host past 9/26 when the jobs showes it ran on 10/3
+Https:/nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00422238/FSAAProxy_info_10_07_2024_08_41_01/FSAA_Proxy_Logs/DRF-ERNIE2
+
+
+PROXY logs
+Https:/nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00422238/FSAAProxy_info_10_07_2024_08_41_01/FSAA_Proxy_Logs/DRF-RINGO2
+JOB Logs Https:/nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00422238/0.Collection_RINGO2
+
+
+
+----","00570000003KXurAAG","2024-10-24T15:48:08.000Z","2024-10-24T15:48:08.000Z","false","false"
+"00aQk000009wm3uIAA","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-10-30T15:18:14.000Z","2024-10-30T15:18:14.000Z","false","false"
+"00aQk00000A16vGIAR","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Account ACV has been changed to 515962.801666666631.
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-04T05:05:00.000Z","2024-11-04T05:05:00.000Z","false","false"
+"00aQk00000A16vIIAR","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Awaiting Support' since 2024-10-25 09:18 UTC and no response has been detected.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11162321]","0054u000006gtWUAAY","2024-11-04T05:05:01.000Z","2024-11-04T05:05:01.000Z","false","false"
+"00aQk00000A1nNXIAZ","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the new comment has been added: Logs attached in the SP","0054u000007MiY9AAK","2024-11-04T16:41:36.000Z","2024-11-04T16:41:36.000Z","false","false"
+"00aQk00000A1oY5IAJ","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-11-04T16:41:44.000Z","2024-11-04T16:41:44.000Z","false","false"
+"00aQk00000ATd3SIAT","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the new comment has been added: Helen Randall:
+
+@Salesforce this one remains on the backlog. Currently P3s are unlikely to be looked at until 2025.
+
+[DevOps CommentId:11290625]","0054u000006gtWUAAY","2024-11-28T12:30:07.000Z","2024-11-28T12:30:07.000Z","false","false"
+"00aQk00000B5r8bIAB","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Account ACV has been changed to 652821.921666666631.","0054u000006gtWUAAY","2025-01-06T22:10:16.000Z","2025-01-06T22:10:16.000Z","false","false"
+"00aQk00000B9LJqIAN","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the new comment has been added: Customer upgrading to latest NEA 11.6 as they're on an older version","0054u000007MiY9AAK","2025-01-09T15:55:59.000Z","2025-01-09T15:55:59.000Z","false","false"
+"00aQk00000CG5JNIA1","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Account ACV has been changed to 878523.601666666631.","0054u000006gtWUAAY","2025-03-11T13:01:39.000Z","2025-03-11T13:01:39.000Z","false","false"
+"00aQk00000CG5JPIA1","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the new comment has been added: Michael Burrofato:
+
+@Salesforce This P3 remains on the backlog awaiting dev bandwidth.
+
+[DevOps CommentId:11766146]","0054u000006gtWUAAY","2025-03-11T13:01:40.000Z","2025-03-11T13:01:40.000Z","false","false"
+"00aQk00000CJdl8IAD","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","00570000003KXurAAG","2025-03-13T20:20:52.000Z","2025-03-13T20:20:52.000Z","false","false"
+"00aQk00000DLkrZIAT","500Qk00000GIxBiIAL","On Escalation Ticket # 00424700 the Following Fields have been updated: 
+Account ACV has been changed to 985659.601666666631.","0054u000006gtWUAAY","2025-05-08T09:10:24.000Z","2025-05-08T09:10:24.000Z","false","false"

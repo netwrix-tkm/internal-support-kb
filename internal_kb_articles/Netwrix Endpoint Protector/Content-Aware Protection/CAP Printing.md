@@ -1,169 +1,138 @@
-# Netwrix Endpoint Protector Knowledge Base: Content-Aware Protection (CAP) Printing
+# Netwrix Endpoint Protector Knowledge Base Reference Guide  
+## Content-Aware Protection (CAP) Printing  
 
-## Overview
-The Content-Aware Protection (CAP) Printing feature in Netwrix Endpoint Protector is designed to monitor and control printing activities to prevent data leakage. Common issues with CAP Printing include blocked print jobs, missing shadowing logs, and compatibility problems with specific applications like Microsoft Outlook. This article provides a detailed guide to troubleshooting, resolving, and preventing these issues.
+### **Overview**  
+Content-Aware Protection (CAP) Printing is a critical feature of Netwrix Endpoint Protector designed to monitor, block, or report sensitive data being printed from endpoints. This functionality is essential for organizations aiming to enforce data security policies and prevent data leakage through printed materials. Understanding CAP Printing issues is vital for ensuring seamless operation and compliance with organizational policies.  
 
----
+### **Technical Background**  
+CAP Printing operates by analyzing print jobs based on predefined policies. These policies can block, report, or allow printing based on the content being printed. Key components include:  
+- **File Shadowing**: Captures copies of printed files for auditing purposes.  
+- **Advanced Scanning Exceptions**: Allows specific processes or applications to bypass CAP scanning.  
+- **Browser Extensions**: Enables CAP functionality for print jobs initiated from web browsers.  
+- **OCR Scanning**: Detects sensitive content in images attached to emails or printed documents.  
 
-## Issue Summary Table
+CAP Printing policies are configured in the Netwrix Endpoint Protector console and rely on proper system settings, including the "Advanced printing and MTP scanning" feature.  
 
-| Issue | Symptoms | Key Troubleshooting Steps | Solution | Case Reference |
-|-------|----------|---------------------------|----------|----------------|
-| Missing shadowing logs | Unable to generate reports for client printing activities | Verify File Shadowing settings and test external repository | Adjust policy settings to be less restrictive | [Missing Shadowing Logs](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000C4SekIAF/view) |
-| Printing blocked in Outlook after update | Print jobs blocked with "Content Threat Blocked" event | Check CAP policy and logs for blocked processes | Add "Outlook" to Advanced Scanning Exceptions | [Outlook Printing Blocked](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000E0W4iIAF/view) |
-| CAP policies set to "Report only" still blocking printing | Print jobs blocked despite policies set to "Report only" | Verify CAP policy settings and logs | Add "Outlook" to Advanced printers MTP scanning exceptions | [CAP Report Only Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000E7XC6IAN/view) |
-| Misconfigured "Browser Printing" policy | Printing blocked due to policy confusion | Review and clean up policies | Correctly configure policies and remove outdated ones | [Browser Printing Policy Misconfiguration](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EWRBYIA5/view) |
-| Isolated user printing issue | One user unable to print from Outlook | Check CAP logs and verify policies | Add "Outlook" to Advanced Scanning Exceptions | [Isolated User Printing Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000F1E9xIAF/view) |
-| Compatibility issue with Outlook | Printing blocked unnecessarily | Upgrade Outlook to latest version | Ensure compatibility with CAP settings | [Outlook Compatibility Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000G9rGoIAJ/view) |
-| Browser print blocking limitation | Print jobs from browsers not blocked | Enable CAP browser extension for Chrome/Edge | Install and configure browser extension | [Browser Print Blocking Limitation](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HhqXsIAJ/view) |
-| CAP print policies not triggering | Policies not reporting sensitive information printing | Enable "Advanced printing and MTP scanning" | Activate feature and test policies | [CAP Print Policies Not Triggering](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000K9Z9YIAV/view) |
-| OCR scanning delays in Outlook | OCR scanning slow and causing "Not responding" errors | Test OCR functionality and disable Outlook Add-in | Add "Outlook" to Advanced Scanning Exceptions | [OCR Scanning Delays](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000KOla9IAD/view) |
-| Missing file tracing events | Printed file events not visible | Enable MTP Advanced Scanning and Printing | Activate feature and restart PC | [Missing File Tracing Events](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000OBpsdIAD/view) |
+### **Issue Recognition & Triage**  
+#### **Symptoms**  
+- Print jobs blocked unexpectedly.  
+- Delays or performance issues during printing.  
+- Missing shadowing logs for printed files.  
+- Compatibility issues with specific applications (e.g., Microsoft Outlook).  
+- Policies not triggering as expected.  
 
----
+#### **Priority Assessment**  
+- **High Priority**: Printing of sensitive data is blocked or not reported correctly.  
+- **Medium Priority**: Performance issues or delays affecting user productivity.  
+- **Low Priority**: Minor configuration discrepancies or non-critical functionality gaps.  
 
-## Detailed Issues
+### **Diagnostic Methodology**  
+1. **Verify Policy Settings**: Ensure CAP policies are correctly configured in the console.  
+2. **Check System Features**: Confirm that "Advanced printing and MTP scanning" is enabled.  
+3. **Reproduce the Issue**: Attempt to replicate the problem in a controlled environment.  
+4. **Review Logs**: Analyze CAP logs for blocked events or errors.  
+5. **Test Exceptions**: Add processes or applications to the Advanced Scanning Exceptions list to isolate the issue.  
+6. **Check Compatibility**: Verify compatibility between CAP and the affected application or environment.  
 
-### Missing Shadowing Logs
-**Symptoms:** Unable to generate reports for client printing activities; shadowing logs not generated.  
-**Troubleshooting Steps:**  
-1. Verify that File Shadowing is enabled under **Device Control > Computer Settings**.  
-2. Recommend configuring an external file shadow repository instead of using the default internal repository.  
-3. Test the settings on the development server.  
-4. Schedule a remote session for further investigation if initial steps fail.  
+### **Information Collection**  
+#### **Customer Questions**  
+- What application or process is being used for printing?  
+- Are specific policies blocking the print jobs?  
+- Has the system been updated recently?  
+- Are there any performance issues or delays?  
 
-**Root Cause:** Policy settings may be overly restrictive, preventing shadowing logs from being generated.  
-**Solution:** Adjust policy settings to be less restrictive. Consider using an external repository for better performance.  
-**Source Ticket:** [Missing Shadowing Logs](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000C4SekIAF/view)  
+#### **Logs/Data to Collect**  
+- CAP logs from the Netwrix Endpoint Protector console.  
+- Shadowing logs (if enabled).  
+- System configuration details (e.g., enabled features, policy settings).  
+- Application version details (e.g., Outlook version).  
 
----
+### **Common Scenarios & Solutions**  
+#### **Scenario 1: Missing Shadowing Logs**  
+**Symptoms**: Shadowing logs not generated despite correct policy settings.  
+**Solution**:  
+- Confirm File Shadowing is enabled.  
+- Recommend using an external file shadow repository for better performance.  
 
-### Printing Blocked in Outlook After Update
-**Symptoms:** Print jobs blocked with "Content Threat Blocked" event in the console.  
-**Troubleshooting Steps:**  
-1. Verify the issue by attempting to print from Outlook.  
-2. Check CAP policy logs for blocked processes.  
-3. Investigate new functionality introduced in the latest client version.  
+#### **Scenario 2: Printing Blocked in Outlook**  
+**Symptoms**: Print jobs blocked for Outlook emails, while other applications work fine.  
+**Solution**:  
+- Add "Outlook" to Advanced Scanning Exceptions.  
+- Verify CAP policy settings for Outlook-specific rules.  
 
-**Root Cause:** New functionality in the updated client version monitors and blocks printing from Outlook due to existing CAP policies.  
-**Solution:** Add "Outlook" to **System Parameters -> Advanced Scanning Exceptions** to prevent monitoring and blocking during printing.  
-**Source Ticket:** [Outlook Printing Blocked](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000E0W4iIAF/view)  
+#### **Scenario 3: Browser Printing Not Blocked**  
+**Symptoms**: Print jobs from browsers bypass CAP policies.  
+**Solution**:  
+- Install and configure the CAP browser extension for Chrome or Edge.  
+- Confirm browser compatibility with CAP features.  
 
----
+#### **Scenario 4: Policies Not Triggering**  
+**Symptoms**: CAP print policies fail to report or block sensitive data.  
+**Solution**:  
+- Enable "Advanced printing and MTP scanning" in Global Settings.  
+- Restart the endpoint to apply changes.  
 
-### CAP Policies Set to "Report Only" Still Blocking Printing
-**Symptoms:** Print jobs blocked despite CAP policies set to "Report only."  
-**Troubleshooting Steps:**  
-1. Verify CAP policy settings and logs.  
-2. Attempt to reproduce the issue by printing from Outlook.  
+#### **Scenario 5: OCR Scanning Performance Issues**  
+**Symptoms**: OCR scanning delays or causes Outlook to become unresponsive.  
+**Solution**:  
+- Add "Outlook" to Advanced Scanning Exceptions.  
+- Test OCR functionality without the Outlook Add-in.  
 
-**Root Cause:** CAP settings inadvertently blocked print actions due to scanning exceptions not being configured.  
-**Solution:** Add "Outlook" to Advanced printers MTP scanning exceptions.  
-**Source Ticket:** [CAP Report Only Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000E7XC6IAN/view)  
+### **Detailed Case Studies**  
+#### **Case Study 1: Missing Shadowing Logs**  
+**Ticket ID**: [500Qk00000C4SekIAF](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000C4SekIAF/view)  
+**Symptoms**: Shadowing logs not generated for client printing activities.  
+**Diagnostic Steps**:  
+- Verified File Shadowing settings.  
+- Recommended external shadow repository.  
+**Resolution**: Adjusted policy settings to be less restrictive.  
+**Key Takeaways**: Ensure File Shadowing is enabled and policies are not overly restrictive.  
 
----
+#### **Case Study 2: Outlook Printing Blocked**  
+**Ticket ID**: [500Qk00000E0W4iIAF](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000E0W4iIAF/view)  
+**Symptoms**: Printing blocked in Outlook after client update.  
+**Diagnostic Steps**:  
+- Verified CAP logs showing "Content Threat Blocked."  
+- Added "Outlook" to Advanced Scanning Exceptions.  
+**Resolution**: Exception allowed printing to proceed.  
+**Key Takeaways**: Monitor new functionality in updates and adjust exceptions accordingly.  
 
-### Misconfigured "Browser Printing" Policy
-**Symptoms:** Printing blocked due to confusion over policy configuration.  
-**Troubleshooting Steps:**  
-1. Review existing policies for misconfigurations.  
-2. Investigate residual policies from previous configurations.  
+#### **Case Study 3: Browser Printing Not Blocked**  
+**Ticket ID**: [500Qk00000HhqXsIAJ](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HhqXsIAJ/view)  
+**Symptoms**: Print jobs from Google Docs bypass CAP policies.  
+**Diagnostic Steps**:  
+- Confirmed browser extension was not installed.  
+- Provided documentation for CAP browser extension setup.  
+**Resolution**: Installed browser extension to block print jobs.  
+**Key Takeaways**: Ensure browser extensions are installed for CAP functionality.  
 
-**Root Cause:** Misconfiguration or outdated policies interfering with printing functionality.  
-**Solution:** Correctly configure policies and remove outdated or conflicting ones.  
-**Source Ticket:** [Browser Printing Policy Misconfiguration](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000EWRBYIA5/view)  
+#### **Case Study 4: OCR Scanning Delays**  
+**Ticket ID**: [500Qk00000KOla9IAD](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000KOla9IAD/view)  
+**Symptoms**: OCR scanning caused Outlook to become unresponsive.  
+**Diagnostic Steps**:  
+- Tested OCR functionality without Outlook Add-in.  
+- Added "Outlook" to Advanced Scanning Exceptions.  
+**Resolution**: Improved performance by bypassing OCR scanning for Outlook.  
+**Key Takeaways**: Use exceptions to optimize performance for critical applications.  
 
----
+### **Best Practices & Tips**  
+- **Policy Configuration**: Regularly review CAP policies to ensure they align with organizational needs.  
+- **Feature Enablement**: Always enable "Advanced printing and MTP scanning" for CAP print policies.  
+- **Browser Extensions**: Install CAP browser extensions for Chrome and Edge to enforce print blocking.  
+- **Exceptions Management**: Use Advanced Scanning Exceptions to optimize performance for critical applications.  
+- **Documentation**: Maintain clear documentation of policies and configurations to avoid confusion.  
+- **Customer Communication**: Provide clear instructions and follow up to ensure resolution.  
 
-### Isolated User Printing Issue
-**Symptoms:** One user unable to print from Outlook; other users unaffected.  
-**Troubleshooting Steps:**  
-1. Review CAP logs for blocked processes.  
-2. Verify that no specific policies are causing the issue.  
+### **Escalation Guidelines**  
+#### **Criteria for Escalation**  
+- Issue persists despite following standard troubleshooting steps.  
+- Compatibility problems with unsupported applications or environments.  
+- Feature limitations requiring development input or feature requests.  
 
-**Root Cause:** "Browser Policy" inadvertently blocking printing for the user.  
-**Solution:** Add "Outlook" to Advanced Scanning Exceptions.  
-**Source Ticket:** [Isolated User Printing Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000F1E9xIAF/view)  
+#### **Escalation Procedure**  
+1. Gather all relevant logs and customer environment details.  
+2. Document troubleshooting steps taken and results.  
+3. Submit a detailed escalation request to the development team or product management.  
+4. Communicate escalation status and expected timelines to the customer.  
 
----
-
-### Compatibility Issue with Outlook
-**Symptoms:** Printing blocked unnecessarily due to compatibility issues.  
-**Troubleshooting Steps:**  
-1. Verify CAP settings and policies.  
-2. Test printing functionality with the latest version of Outlook.  
-
-**Root Cause:** Compatibility problem between Outlook and CAP settings.  
-**Solution:** Upgrade Outlook to the latest version to ensure compatibility.  
-**Source Ticket:** [Outlook Compatibility Issue](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000G9rGoIAJ/view)  
-
----
-
-### Browser Print Blocking Limitation
-**Symptoms:** Print jobs from browsers not blocked despite CAP settings.  
-**Troubleshooting Steps:**  
-1. Confirm CAP browser extension installation for Chrome/Edge.  
-2. Enable Advanced printers option in Global Settings.  
-
-**Root Cause:** CAP print blocking feature limited to Windows environments with browser extensions.  
-**Solution:** Install and configure CAP browser extension for Chrome or Edge.  
-**Source Ticket:** [Browser Print Blocking Limitation](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000HhqXsIAJ/view)  
-
----
-
-### CAP Print Policies Not Triggering
-**Symptoms:** CAP print policies not reporting sensitive information printing.  
-**Troubleshooting Steps:**  
-1. Verify CAP policy configurations.  
-2. Enable "Advanced printing and MTP scanning" feature.  
-
-**Root Cause:** "Advanced printing and MTP scanning" feature disabled, preventing CAP policies from functioning.  
-**Solution:** Enable the feature and test policies.  
-**Source Ticket:** [CAP Print Policies Not Triggering](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000K9Z9YIAV/view)  
-
----
-
-### OCR Scanning Delays in Outlook
-**Symptoms:** OCR scanning slow and causing "Not responding" errors in Outlook.  
-**Troubleshooting Steps:**  
-1. Test OCR functionality with and without the Outlook Add-in.  
-2. Add "Outlook" to Advanced Scanning Exceptions.  
-
-**Root Cause:** Outlook Add-in causing performance lags during OCR scanning.  
-**Solution:** Add "Outlook" to Advanced Scanning Exceptions or disable the Add-in.  
-**Source Ticket:** [OCR Scanning Delays](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000KOla9IAD/view)  
-
----
-
-### Missing File Tracing Events
-**Symptoms:** Printed file events not visible in the EPP console.  
-**Troubleshooting Steps:**  
-1. Check if MTP Advanced Scanning and Printing feature is enabled.  
-2. Restart the PC after enabling the feature.  
-
-**Root Cause:** MTP Advanced Scanning and Printing feature not enabled.  
-**Solution:** Enable the feature and restart the PC.  
-**Source Ticket:** [Missing File Tracing Events](https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000OBpsdIAD/view)  
-
----
-
-## Best Practices
-- **Policy Configuration:** Regularly review and clean up outdated policies to prevent conflicts.  
-- **External Repositories:** Use external file shadow repositories for larger groups of computers to improve performance.  
-- **Advanced Scanning Exceptions:** Add commonly used applications like Outlook to exceptions to prevent unnecessary blocking.  
-- **Feature Activation:** Ensure features like "Advanced printing and MTP scanning" are enabled for CAP policies to function correctly.  
-- **Browser Extensions:** Install CAP browser extensions for Chrome and Edge to enable print blocking from browsers.  
-- **Compatibility Checks:** Keep applications like Outlook updated to ensure compatibility with CAP settings.  
-
----
-
-## Advanced Topics
-### CAP Browser Extension Limitations
-The CAP print blocking feature is currently limited to Windows environments and requires browser extensions for Chrome and Edge. Linux and MacOS are not supported. Submit feature requests for future support of these operating systems.
-
-### SIEM Integration
-For exporting data to third-party tools, use the SIEM integration section in the UI to send Syslog-type logs to external services.
-
---- 
-
-End of Article.
+This guide serves as a comprehensive reference for handling CAP Printing issues, ensuring consistent and effective resolution across support teams.  

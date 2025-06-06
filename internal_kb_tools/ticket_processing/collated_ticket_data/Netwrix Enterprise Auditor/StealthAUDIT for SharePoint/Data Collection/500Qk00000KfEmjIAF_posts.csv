@@ -1,0 +1,28 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000UuF3TKAV","500Qk00000KfEmjIAF","TextPost","0050g000006QqyEAAS","2025-01-15T20:32:55.000Z","Description: The collection does not appear to be working, since we definitely have sites within the web app they want scanned (https://banknotes.liberty-bank.com/) and in which we were granted permissions to scan. I have attached the debug job logs to the ticket. I've also attached screenshots showing the content database associated with the above mentioned web app and our permissions to that content database on the SharePoint SQL server (LH2PRDSPSQL01). Apparently they have another content database called LBPRD_MySites that is for their personal sites and that we wouldn't have been granted permissions to, but we have not configured the scan job to scan for personal sites (see attached dataCollectionSettings.png), so it wouldn't make sense to need permissions to that one right? I've also attached a screenshot of their config database seen in central admin and our permissions to that same database on the sql server. We are using the LIBBANKnwxad service account for the scanning. I confirmed and show in screenshots that we have a Site Collection Auditor policy set on the web app we want scanned that grants the Open Items permissions and that our libbanknwxad account has been added to on the web app. They also set up a Farm Read group on the same level as the Farm Administrators group in central admin with the Read Level granted to it and our libbanknwxad as a member (seen in attached screenshots). We also verified our LIBBANKnwxad account was added to the Backup Operators and WSS_WPG local groups on the SharePoint central admin app server (LH2PRDSPAPP01) and show that in screenshots. We tested ports (they have firewall quite open across these servers in their environment) and those succeeded. I included screenshots of all the system scan settings we have configured and the results we are seeing. Our service account seems to be getting granted access to the central admin app server and sees some things but struggling to see folders and files. The Access Report test seemed to have issues with accessing the config database and content databases despite us verifying permissions and ports to the sql server, so not sure if thats just a problem with the test itself on our job or the actual problem as to why we're unable to see everything we want to see. I've attached the results of that report to the ticket as well. The debug logs also seem to show a number of errors on scanning what looks like personal sites to me despite us having unchecked the checkbox to scan personal sites. We also see a lot of these types of errors:
+""[C:21] Error querying Resource(Site|1075|Operational Risk Committee).ISharePointList Error:Field or property ""IsSystemList"" does not exist.""
+
+Any assistance to get this scan working right would be greatly appreciated here.","","","","0050g000006QqyEAAS","2025-01-15T20:32:55.000Z"
+"0D5Qk00000UuI2yKAF","500Qk00000KfEmjIAF","TextPost","0050g000006QqyEAAS","2025-01-15T20:33:48.000Z","<p>@Devon Anderson​ Support is assuming ownership of the SPSEEK scan problem at Liberty Bank. Please provide the correct contact to work with.</p>","","","","0050g000006QqyEAAS","2025-01-16T15:01:27.000Z"
+"0D5Qk00000Uuv2OKAR","500Qk00000KfEmjIAF","TextPost","0054u000007MiY9AAK","2025-01-15T23:00:18.000Z","<p>Reached out to Devon and Allison via Teams to get a better sense of where we currently are with this issue</p>","","","","0054u000007MiY9AAK","2025-01-15T23:00:18.000Z"
+"0D5Qk00000VanViKAJ","500Qk00000KfEmjIAF","TextPost","0054u000007MiY9AAK","2025-01-27T16:06:37.000Z","<p>Email from Allison asking Karolis to reach out to customer for their participation</p>","","","","0054u000007MiY9AAK","2025-01-27T16:06:37.000Z"
+"0D5Qk00000WATJyKAP","500Qk00000KfEmjIAF","TextPost","0050g000006QqyEAAS","2025-02-05T16:46:48.000Z","Next Steps Updated: follow up on the artifacts Devon requested last month:
+
+A screenshot confirming the alias points the correct server
+  Log in to the SharePoint Central Administration server.
+  Open SQL Server Configuration Manager:
+  Press Win + S, type SQL Server Configuration Manager, and select it.
+  If you don’t see it, navigate to the path manually:
+
+  For SQL Server 2017 or later: 
+    C:WindowsSysWOW64SQLServerManager<Version>.msc (e.g., 
+    SQLServerManager15.msc for SQL Server 2019).
+    Navigate to SQL Native Client Configuration → Aliases.
+    Look for the alias configured for the SQL Server used in Central Administration 
+    (checking to see if alias ‘SP2013PRDB’ points to ‘LH2PRDSPSQL01’.
+  
+  Also, would you be able to check in NEA under SharePoint -> 0.Collection -> Permissions SDD -> SPO (or a path similar to that in your environment) if the SPSEEK Bulk Import job is still erroring out? 
+
+You can find that out by clicking on the job in the list on the left and looking at its Job Statistics on the right to see when it last run. You can then click on the Status icon from that run in the same location and it should bring you to Messages. The job was erroring out in less than a minute before, and there should never be any errors on that job if it is working as expected.
+
+After collecting the above, please upload them to the ticket in the Netwrix Customer Portal so our developers can continue working on resolving your issues.","","","","0050g000006QqyEAAS","2025-02-05T16:46:48.000Z"

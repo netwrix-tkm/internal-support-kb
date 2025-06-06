@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000H9bUoIAJ","00424237","Support Ticket","DB Collation","We have migrated the DB to a new server with the same setting and receive the below error when trying to run jobs and also when launching the application:
+
+Error while running script: <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlException (0x80131904): Cannot resolve the collation conflict between ""Latin1_General_CI_AS"" and ""SQL_Latin1_General_CP1_CI_AS"" in the equal to operation.
+Cannot resolve the collation conflict between ""Latin1_General_CI_AS"" and ""SQL_Latin1_General_CP1_CI_AS"" in the equal to operation.
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Stealthbits.StealthAUDIT.DataCollectors.ADInventory2.SqlCommandExt.ExecuteNonQueryLogged(SqlCommand cmd)
+   at Stealthbits.StealthAUDIT.DataCollectors.ADInventory2.Database.ADInventoryDatabase.RunBatchScript(IEnumerable`1 batchScripts)
+ClientConnectionId:0f1866a2-88ea-49e2-90ad-d19acdec11df
+Error Number:468,State:9,Class:16
+
+Implicit conversion of varchar value to varchar cannot be performed because the collation of the value is unresolved due to a collation conflict between ""Latin1_General_CI_AS"" and ""SQL_Latin1_General_CP1_CI_AS"" in add operator.
+
+Could not find stored procedure '#SA_ImportObject'.
+Could not find stored procedure '#SA_ImportObject'.
+Could not find stored procedure '#SA_ImportObject'.
+Could not find stored procedure '#SA_ImportObject'.
+Could not find stored procedure '#SA_ImportObject'.
+Could not find stored procedure '#SA_ImportObject'.","","","","The issue was caused by the discrepancy between Server collation and migrated DB collation.
+I've provided you with explanation and possible ways to solve this, and you've successfully done so.","Incorrect configuration: target server software","Ilya Kotov","","Netwrix Enterprise Auditor","StealthAUDIT General","Migration","11.6","","6.9","Closed - Resolved","Liberty Bank","ziyaad Rasool","2024-10-17T12:52:27.000Z","2024-10-24T09:36:32.000Z"

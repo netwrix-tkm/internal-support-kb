@@ -1,0 +1,16 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000FKtEFIA1","00420048","Support Ticket","SPAC Bulk Import Error","SPAC Bulk Import is prompting the below error: 
+
+ERROR  SHAREPOINTACCESS  Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute  ""[C:8] Unable to perform bulk import Error: The MERGE statement conflicted with the FOREIGN KEY constraint ""FK_SA_SPAC_GroupMembershipChanges_HOST_ID"". The conflict occurred in database ""StealthAudit"", table ""dbo.SA_SPAC_ActivityEvents"". The statement has been terminated.""  POINT32HEALTH.SHAREPOINT.COM  DCExtract  8640  6516  6284","","","","Issue
+
+SPAC Bulk Import is prompting the below error:
+
+ERROR  SHAREPOINTACCESS  Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute  ""[C:8] Unable to perform bulk import Error: The MERGE statement conflicted with the FOREIGN KEY constraint ""FK_SA_SPAC_GroupMembershipChanges_HOST_ID"". The conflict occurred in database ""StealthAudit"", table ""dbo.SA_SPAC_ActivityEvents"". The statement has been terminated.""  POINT32HEALTH.SHAREPOINT.COM  DCExtract  8640  6516  6284
+
+Cause
+
+The SPAC Bulk Import was unable to be completed due to a foreign key constraint merge between the SP_SPAC_GroupMembershipChanges table and the SA_SPAC_ActiviyEvents table. 
+
+Resolution
+
+We removed all SPAA and SPAC tables since there's a 180-day retention period on SP activity. Once all tables were removed from the database we then reran the SPSEEK jobs and verified that the tables were repopulated on the database. We suggest allowing these scans to run and monitor the SPAC bulk import job. After monitoring the job it was confirmed that the SPAC Bulk Import job was successful.","Guidance","Scottie Taylor","","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Activity Auditing","11.6","","7.9","Closed - Resolved","Point32Health Services, Inc.","Peter Sterianos","2024-09-04T19:43:37.000Z","2024-09-12T17:16:39.000Z"

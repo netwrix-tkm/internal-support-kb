@@ -1,0 +1,45 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000M1wjdIAB","00436194","Support Ticket","FSAA applet logging not matching with the Console settings","Console setting notes Warning yet Applet log is collection Debug","","For the FSAA applet logging not matching with the Console settings.
+
+R&D notes that the applet server logs default to DEBUG, but even at the DEBUG level, they shouldn't be very large.
+
+The log level for the FSAA_Applet_Server log is controlled by the NLog.config file in the FSAA folder for proxy servers installed as a service, and for automatic deployment, by the NLog.config file on the NEA server under *StealthAUDITPrivateAssembliesFILESYSTEMACCESSApplet.
+
+On the Applet host under install path Example of Default ""C:Program Files (x86)STEALTHbitsStealthAUDITFSAANLog.config""
+
+To edit set the following as needed   options Error, Debug, Info, Warn
+Would not recommend a limit lower than Error.
+<rules>
+<logger name=""*FSAA*"" minlevel=""Debug"" writeTo=""ServerFile"" />
+<logger name=""*Kestrel*"" minlevel=""Info"" writeTo=""ServerFile"" />
+<logger name=""*HttpsConnectionMiddleware*"" minlevel=""Debug"" writeTo=""ServerFile"" />
+<logger name=""*"" minlevel=""Warn"" writeTo=""ServerFile"" />
+</rules>
+***RECOMMNED*** Use Notepad++ or similar simple code editor when making any changes.
+
+This is not the same as the following for the Scans:
+Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector > FSAA: Applet Settings
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/AppletSettings.htm","Awaiting Client reply top the new case.","Symptom:
+FSAA_Applet_Server log level adjustment from Debug to lower logging to mitigate disk usage.
+Cause:
+The applet server logs default to Debug
+Resolution:
+R&D notes that the default Debug level should not be very large.
+
+The log level for the FSAA_Applet_Server log is controlled by the NLog.config file in the FSAA folder for proxy servers installed as a service, and for automatic deployment, by the NLog.config file on the NEA server under *StealthAUDITPrivateAssembliesFILESYSTEMACCESSApplet.
+
+On the Applet/Proxy host under install path Example of Default ""C:Program Files (x86)STEALTHbitsStealthAUDITFSAANLog.config""
+
+To edit set the following as needed:  Options are Error, Debug, Info, Warn
+Would not recommend a limit lower than Error.
+<rules>
+<logger name=""*FSAA*"" minlevel=""Debug"" writeTo=""ServerFile"" />
+<logger name=""*Kestrel*"" minlevel=""Info"" writeTo=""ServerFile"" />
+<logger name=""*HttpsConnectionMiddleware*"" minlevel=""Debug"" writeTo=""ServerFile"" />
+<logger name=""*"" minlevel=""Warn"" writeTo=""ServerFile"" />
+</rules>
+***RECOMMNED*** Use Notepad++ or similar simple code editor when making any changes.
+
+This is not the same as the following for the Scans:
+Netwrix Enterprise Auditor v11.6 > Administration > Data Collectors > FileSystemAccess Data Collector > FSAA: Applet Settings
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/AppletSettings.htm","Guidance","Dusty Grayson","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Configuration","11.6","70","0.2","Closed - Resolved","John Deere Company","Scott Prigge","2025-02-18T18:18:33.000Z","2025-02-18T23:02:16.000Z"

@@ -1,0 +1,12 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000JxcrCIAR","00430821","Support Ticket","Activity Scan and Bulk Import Failing","Our Activity Scan is failing saying a bulk import is needed but the Bulk Import is repeatedly failing immediately upon startup with the following error:
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: ID 484474776 mapping not found in ResourceMap
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util</a>.RunInBackground[TResult](Action statusAction, Func`1 execAction)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA.Util</a>.RunInBackground(Action statusAction, Action execAction)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.BulkImportTask.InternalProcessRecord()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task</a>.StartExecute()","1. Run FSAC System Scan
+2. Run FSAC Bulk Import
+3. Receive ID mapping error","It looks like we fixed the constant RESET error message occurring, but the ""Strong proxy affinity (only run scans on last proxy to scan host, unless no longer in proxy host list)"" may be affecting the scan as they are using Host Mapping for a multi-agent set up
+---
+FSAC Bulk Import last status: Merging 157980k Resources...","Disabled ""Strong proxy affinity (only run scans on last proxy to scan host, unless no longer in proxy host list)"" and waiting for next scan results","Upgrading from NEA v11.6.0.112 to v11.6.0.134 seems to have resolved the issue.","Root Cause Unknown","Tay Caliguiri","Error","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Data Collection","11.6","","76.0","Closed - Resolved","Government of Nova Scotia","Gregory Osborne","2024-12-27T12:46:27.000Z","2025-03-13T13:32:40.000Z"

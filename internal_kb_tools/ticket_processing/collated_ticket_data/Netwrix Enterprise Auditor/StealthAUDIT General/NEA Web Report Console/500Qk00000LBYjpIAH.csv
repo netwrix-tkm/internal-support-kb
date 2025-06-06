@@ -1,0 +1,15 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LBYjpIAH","00433902","Support Ticket","Odd Behavior when running reports","I am trying to generate a report that shows the age of files on my file shares. However, there seems to be a limitation as to how many rows are getting generated. I like to have a complete report on my file shares and like to know how this can be possible.  the job seems to be working, i just can see the data in its entirety.","","","","Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)   11.5.0.160
+
+Looked at the Custom Report (FileSystem_Aging) that is looking at a table with 4.2+ million rows of data filtering on objects that are older than 84 months.
+
+Adjusted the Export, Max Row limit, and Grid Filter options.
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Report/Wizard/Widgets.htm#grid
+
+NOTE: Limits that are larger than the default may slow down the run time.
+The reports cannot exceed 1 million rows as they will not be able to load.
+
+Alternatively, we should be able to Run the Select portion of the Query with more restrictive WHERE clauses within SQL Server Management Studio (SSMS).
+
+Will utilize the Export from there to CSV.","Guidance","Dusty Grayson","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","NEA Web Report Console","11.5","160","28.7","Closed - Resolved","Horizon Media","Angelo DiPietro","2025-01-28T20:10:16.000Z","2025-02-26T13:30:26.000Z"

@@ -1,0 +1,17 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GUwNBIA1","00422604","Support Ticket","When account is locked out, sometimes, it does not create an alert.","Sometimes, account lockout job missing an alert for when account is locked out.
+Attached is the logs from Lockout job.","","","","+++++
+
+Below is a summary of what we addressed on 08-Oct-2024 on the Zoom meeting for the following job in StealthAUDIT 11.5:
+
+""Active Directory"" > Lockouts > AD_AccountLockouts
+
+1) You adjusted the job to the correct host list (16 Public Domain Controllers)
+
+2) You configured the scheduled task so the job repeats every 15 minutes starting at 7 AM (for a period of Indefinitely).  
+It was previously set to run every 15 minutes, for 1 day, once a week or thereabouts.
+
+3) The Event Log type must be enabled on your 16 Public DCs and the log size must be big enough so that there is no rollover of the event log between scans.  
+Scans are set for every 15 minutes.
+
++++++","Data validation / interpretation","Mike Candon","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Data Collection","11.5","","21.0","Closed - Resolved","AON Service Corporation","Divyang Shah","2024-10-01T18:47:48.000Z","2024-10-22T18:38:13.000Z"

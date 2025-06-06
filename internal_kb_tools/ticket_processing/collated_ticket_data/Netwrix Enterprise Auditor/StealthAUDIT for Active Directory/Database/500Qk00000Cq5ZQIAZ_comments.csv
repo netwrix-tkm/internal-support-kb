@@ -1,0 +1,18 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007pVNVIA2","500Qk00000Cq5ZQIAZ","Make sure this is in place in addition to other requirements by solution
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/ActiveDirectoryPermissionsAnalyzer.htm","0054u000006gpoAAAQ","2024-07-09T19:58:51.000Z","2024-07-09T19:58:51.000Z","false","false"
+"00aQk000007pa5RIAQ","500Qk00000Cq5ZQIAZ","DBAs have ID an issue with the following SQL Query 
+
+select [tr].[Group],
+[tr].[Scan Type] + char(10) + substring(
+(select char(10) + [dbo].[SA_AD_GroupStamping_tmp].[Resource]
+from [dbo].[SA_AD_GroupStamping_tmp]
+where [SA_AD_GroupStamping_tmp].[Group] = tr.[Group]
+and [dbo].[SA_AD_GroupStamping_tmp].[Scan Type] = tr.[Scan Type]
+for xml path('')),2,2000000) as tmpResults
+into
+[SA_AD_GroupStamping_tmp2]
+from [dbo].[SA_AD_GroupStamping_tmp] as [tr]
+
+
+Job Parent path: *** GROUP_Active DirectoryGROUP_CleanupGROUP_1.GroupsGROUP_2. Group StampingJOB_AD_GroupStamping","00570000003KXurAAG","2024-07-09T20:50:13.000Z","2024-07-09T20:50:13.000Z","false","false"

@@ -1,0 +1,684 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000HXNNRIA5","500Qk00000GExqGIAT","2024-11-05T21:40:54.000Z","2024-11-05T21:40:54.000Z","Hi Ryan,
+
+Paul Staz has indicated that this case can be closed.
+Do you agree?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Paul Staz [paul.staz@netwrix.com]
+Sent: 11/1/2024 5:35 PM
+To: techsupport@netwrix.com
+Subject: Re: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+ref:_00D7091pB._500Q000GExqG:ref
+
+
+
+Hi Mike,
+
+ 
+
+They have signed their renewal quote and can use their regular license. Unless I’m missing something, you can likely close this case.
+
+ 
+
+Thanks for your help.
+
+ 
+
+Paul
+
+
+ 
+Get Outlook for iOS
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Friday, November 1, 2024 5:33:06 PM
+To: Paul Staz <paul.staz@netwrix.com>
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+ 
+
+
+Hi Paul,
+
+Is there a status update on this issue/request?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 10/9/2024 7:51 AM
+To: techsupport@netwrix.com; kfraser@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+ref:_00D7091pB._500Q000GExqG:ref
+ 
+
+
+
+Good day Netwrix Support,
+
+ 
+
+This case is still ongoing as we are awaiting feedback on a new quotation.
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Ryan Tyson
+
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+
+
+	
+		
+			
+			
+			
+			
+			Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+
+			Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt
+			
+		
+	
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, October 8, 2024 5:33 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>; Kevin Fraser <kfraser@central-bank.org.tt>
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+
+
+ 
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+
+
+
+Hi Ryan and Kevin,   
+
+Are you all set with this case?
+May I close this case?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/4/2024 1:34 PM
+To:  rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+Hi Ryan,
+
+Are you all set with this case?
+May I close this case?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/1/2024 1:28 PM
+To:  rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+Hi Ryan,
+
+Here is the more verbose PowerShell script from Dusty (and I think Josh):
+
++++++
+2024_0927: PowerShell script - ""Get-ADOrganizationalUnit"" counts and names - Josh and Dusty
++++++
+
+#####
+#####
+
+# Get all Organizational Units
+$OUs = Get-ADOrganizationalUnit -Filter *
+
+# Initialize an array to store the results
+$results = @()
+
+foreach ($OU in $OUs) {
+    # Get the distinguished name of the OU
+    $OUName = $OU.DistinguishedName
+
+    # Count active users in the OU
+    $activeUsers = Get-ADUser -Filter {Enabled -eq $true} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Count disabled users in the OU
+    $disabledUsers = Get-ADUser -Filter {Enabled -eq $false} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Add the results to the array
+    $results += [PSCustomObject]@{
+        OUName        = $OUName
+        ActiveUsers   = $activeUsers
+        DisabledUsers = $disabledUsers
+    }
+}
+
+# Output the results
+$results | Format-Table -AutoSize
+
+#####
+#####
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/1/2024 1:26 PM
+To:  rtyson@central-bank.org.tt
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+Hi Ryan,
+
+The 2 smaller but useful PowerShell scripts are at the beginning of this email.
+Then I included a summary of the meeting which I should have sent to you last week on 25-Sep-2024.
+I will send the other more verbose PowerShell script from Dusty and Josh in a second email.
+
++++++
+1) 2024_0927: PowerShell script from Dusty for ""get-aduser"" with output to TXT file
++++++
+
+get-aduser -filter * -Properties * | where {$_.enabled -eq ""True""} | Sort-Object DistinguishedName | FT Name, DistinguishedName, Enabled -AutoSize | Tee-Object ""c:tempEnabled_AD_Users_per_OU_2024_0927.txt""
+
++++++
+2) 2024_0927: Also a PowerShell Script from Dusty to ""get-aduser"" counts of Active, Inactive and Total AD Users
++++++
+
+# +++++
+# PowerShell ISE - need a server with AD Tools installed
+# +++++
+
+Clear-Host
+##Import-Module ActiveDirectory
+$enabled = (get-aduser -filter *|where {$_.enabled -eq ""True""}).count
+Write-host ""Enabled users total =  $enabled"" -f green
+$disabled = (get-aduser -filter *|where {$_.enabled -ne ""False""}).count
+Write-host ""Disabled users total =  $disabled"" -f yellow
+$TotalADCount = (get-aduser -Filter *).count
+Write-host ""All users total = $TotalADCount"" -f red
+
+
+#####
+#####
+
++++++
+2024_0927: Rough summary of the meeting today with Kevin Fraser and Ryan Tyson:
++++++
+
++++++
+2024_0927: This ticket is mostly about obtaining/confirming AD-User  counts for the purpose of licensing with Sales and the customer renewing their licenses.
++++++
+CASE SUBJECT: Live session required to review Sealthbits application compliance objects to review the count
++++++
+Central Bank of Trinidad and Tobago participants:
++++++
+Kevin Fraser
+Ryan Tyson
++++++
+Dusty
+Josh
+ 
++++++
+When we count the AD objects - Exchange Help Mail boxes count as well.
++++++
+Account Manager = Paul Staz
+650 user count - licensed for this perhaps at this time???
++++++
+Enabled users total = 926
+Disabled user total = 207
+TOTAL = 1133
++++++
+Users = 1133
+Groups = 1996
+Computers = 1425
++++++
+Best for NEA to look at the Report under 
+Jobs  >> .Active Directory Inventory >> 1-AD_Scan > Active Directory Summary
++++++
+I think some of the issue is that they are NEA users 
+with Admin rights to the NEA server but are not Sysadmins. 
++++++
+
++++++
+FROM Dusty:
++++++
+If I recall:
+1) NEA/AIC Licenses are based on Active user count.
+2) SI Licenses are based on servers
+3) SAM/NAM will use the NEA License
+4) I'm pretty sure NEA is licensed by active user accounts, but that AD inventory includes all accounts. 
+Licensing does count mailboxes and other non-user user accounts, but doesn't include disabled accounts
+Would need to confirm with Sales.
++++++
+
+Josh prior to the meeting: Perhaps Ryan is referring to the ""AD inventory summary count"" 
++++++
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 10/1/2024 11:55 AM
+To: techsupport@netwrix.com
+Subject: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count
+
+ref:_00D7091pB._500Q000GExqG:ref
+
+Good day Mike and Team,
+
+Can you send the commands suggested within the meeting we previously conducted?
+ 
+ 
+ 
+
+
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","Re: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count    [ ref:!00D70091pB.!500Qk0GExqG:ref ]","techsupport@netwrix.com","Netwrix Support","rtyson@central-bank.org.tt","","","true","2024-11-05T21:40:53.000Z","true"
+"02sQk00000HYa5hIAD","500Qk00000GExqGIAT","2024-11-06T11:49:17.000Z","2024-11-06T13:15:25.000Z","ref:_00D7091pB._500Q000GExqG:ref
+
+Good day Netwrix,
+
+Yes, this can be closed.
+
+
+Regards,
+
+Ryan Tyson
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+[cid:image007.jpg@01DAE356.9024BBB0]
+
+Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt<http://www.central-bank.org.tt/>
+
+[cid:image001.png@01DAE7E0.2296CE10][cid:image002.png@01DAE7E0.2296CE10]
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Tuesday, November 5, 2024 5:41 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt>
+Subject: Re: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+Hi Ryan,
+
+Paul Staz has indicated that this case can be closed.
+Do you agree?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!JZOTCKm0_REFjHLBYKkNWlsNn8k0IIn35BaXmVKFv2K5kUetGVgJZtipgPGuvMoBnPVsyblRDHGe2IFHZWDYfNfbUEE9$>
+
+
+--------------- Original Message ---------------
+From: Paul Staz [paul.staz@netwrix.com]
+Sent: 11/1/2024 5:35 PM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Re: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+ref:_00D7091pB._500Q000GExqG:ref
+
+
+Hi Mike,
+
+They have signed their renewal quote and can use their regular license. Unless I’m missing something, you can likely close this case.
+
+Thanks for your help.
+
+Paul
+
+Get Outlook for iOS<https://urldefense.com/v3/__https:/aka.ms/o0ukef__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!JZOTCKm0_REFjHLBYKkNWlsNn8k0IIn35BaXmVKFv2K5kUetGVgJZtipgPGuvMoBnPVsyblRDHGe2IFHZWDYfEOOvKlr$>
+________________________________
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Friday, November 1, 2024 5:33:06 PM
+To: Paul Staz <paul.staz@netwrix.com<mailto:paul.staz@netwrix.com>>
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+Hi Paul,
+
+Is there a status update on this issue/request?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!JZOTCKm0_REFjHLBYKkNWlsNn8k0IIn35BaXmVKFv2K5kUetGVgJZtipgPGuvMoBnPVsyblRDHGe2IFHZWDYfNfbUEE9$>
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt]
+Sent: 10/9/2024 7:51 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>; kfraser@central-bank.org.tt<mailto:kfraser@central-bank.org.tt>
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+ref:_00D7091pB._500Q000GExqG:ref
+
+
+Good day Netwrix Support,
+
+
+
+This case is still ongoing as we are awaiting feedback on a new quotation.
+
+
+
+
+
+Regards,
+
+
+
+Ryan Tyson
+
+Senior Technical Analyst, Security | Financial Technology and Information Security Department
+
+[cid:image007.jpg@01DAE356.9024BBB0]
+
+
+Central Bank of Trinidad & Tobago | Eric Williams Plaza, Independence Square, Port-of-Spain
+
+Phone: 1 868 621-2288, Ext. 2247 | Website: http://www.central-bank.org.tt<http://www.central-bank.org.tt/>
+
+
+[cid:image001.png@01DAE7E0.2296CE10][cid:image002.png@01DAE7E0.2296CE10]
+
+
+
+
+
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com<mailto:techsupport@netwrix.com>>
+Sent: Tuesday, October 8, 2024 5:33 PM
+To: Ryan Tyson <rtyson@central-bank.org.tt<mailto:rtyson@central-bank.org.tt>>; Kevin Fraser <kfraser@central-bank.org.tt<mailto:kfraser@central-bank.org.tt>>
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+
+
+CAUTION: This email originated outside of the Central Bank of Trinidad and Tobago. Do not click on links or open attachments unless you recognize the sender and know the content is safe.
+
+Hi Ryan and Kevin,
+
+Are you all set with this case?
+May I close this case?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!OcDyHQOY2x_iFZqmQX8Mw8qESqf4QCtaXc7c8K8oZlEGVJQqsoICeu2QqKdd9w-i1HFqsFVFkNEw3uRJHounT_-Ts6ST$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/4/2024 1:34 PM
+To: rtyson@central-bank.org.tt<mailto:rtyson@central-bank.org.tt>
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+Hi Ryan,
+
+Are you all set with this case?
+May I close this case?
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!OcDyHQOY2x_iFZqmQX8Mw8qESqf4QCtaXc7c8K8oZlEGVJQqsoICeu2QqKdd9w-i1HFqsFVFkNEw3uRJHounT_-Ts6ST$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/1/2024 1:28 PM
+To: rtyson@central-bank.org.tt<mailto:rtyson@central-bank.org.tt>
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+Hi Ryan,
+
+Here is the more verbose PowerShell script from Dusty (and I think Josh):
+
++++++
+2024_0927: PowerShell script - ""Get-ADOrganizationalUnit"" counts and names - Josh and Dusty
++++++
+
+#####
+#####
+
+# Get all Organizational Units
+$OUs = Get-ADOrganizationalUnit -Filter *
+
+# Initialize an array to store the results
+$results = @()
+
+foreach ($OU in $OUs) {
+    # Get the distinguished name of the OU
+    $OUName = $OU.DistinguishedName
+
+    # Count active users in the OU
+    $activeUsers = Get-ADUser -Filter {Enabled -eq $true} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Count disabled users in the OU
+    $disabledUsers = Get-ADUser -Filter {Enabled -eq $false} -SearchBase $OUName -SearchScope Subtree | Measure-Object | Select-Object -ExpandProperty Count
+
+    # Add the results to the array
+    $results += [PSCustomObject]@{
+        OUName        = $OUName
+        ActiveUsers   = $activeUsers
+        DisabledUsers = $disabledUsers
+    }
+}
+
+# Output the results
+$results | Format-Table -AutoSize
+
+#####
+#####
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!OcDyHQOY2x_iFZqmQX8Mw8qESqf4QCtaXc7c8K8oZlEGVJQqsoICeu2QqKdd9w-i1HFqsFVFkNEw3uRJHounT_-Ts6ST$>
+
+
+--------------- Original Message ---------------
+From: Netwrix Support [techsupport@netwrix.com]
+Sent: 10/1/2024 1:26 PM
+To: rtyson@central-bank.org.tt<mailto:rtyson@central-bank.org.tt>
+Subject: RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count [ ref:!00D70091pB.!500Qk0GExqG:ref ]
+
+Hi Ryan,
+
+The 2 smaller but useful PowerShell scripts are at the beginning of this email.
+Then I included a summary of the meeting which I should have sent to you last week on 25-Sep-2024.
+I will send the other more verbose PowerShell script from Dusty and Josh in a second email.
+
++++++
+1) 2024_0927: PowerShell script from Dusty for ""get-aduser"" with output to TXT file
++++++
+
+get-aduser -filter * -Properties * | where {$_.enabled -eq ""True""} | Sort-Object DistinguishedName | FT Name, DistinguishedName, Enabled -AutoSize | Tee-Object ""c:tempEnabled_AD_Users_per_OU_2024_0927.txt""
+
++++++
+2) 2024_0927: Also a PowerShell Script from Dusty to ""get-aduser"" counts of Active, Inactive and Total AD Users
++++++
+
+# +++++
+# PowerShell ISE - need a server with AD Tools installed
+# +++++
+
+Clear-Host
+##Import-Module ActiveDirectory
+$enabled = (get-aduser -filter *|where {$_.enabled -eq ""True""}).count
+Write-host ""Enabled users total =  $enabled"" -f green
+$disabled = (get-aduser -filter *|where {$_.enabled -ne ""False""}).count
+Write-host ""Disabled users total =  $disabled"" -f yellow
+$TotalADCount = (get-aduser -Filter *).count
+Write-host ""All users total = $TotalADCount"" -f red
+
+
+#####
+#####
+
++++++
+2024_0927: Rough summary of the meeting today with Kevin Fraser and Ryan Tyson:
++++++
+
++++++
+2024_0927: This ticket is mostly about obtaining/confirming AD-User  counts for the purpose of licensing with Sales and the customer renewing their licenses.
++++++
+CASE SUBJECT: Live session required to review Sealthbits application compliance objects to review the count
++++++
+Central Bank of Trinidad and Tobago participants:
++++++
+Kevin Fraser
+Ryan Tyson
++++++
+Dusty
+Josh
+
++++++
+When we count the AD objects - Exchange Help Mail boxes count as well.
++++++
+Account Manager = Paul Staz
+650 user count - licensed for this perhaps at this time???
++++++
+Enabled users total = 926
+Disabled user total = 207
+TOTAL = 1133
++++++
+Users = 1133
+Groups = 1996
+Computers = 1425
++++++
+Best for NEA to look at the Report under
+Jobs  >> .Active Directory Inventory >> 1-AD_Scan > Active Directory Summary
++++++
+I think some of the issue is that they are NEA users
+with Admin rights to the NEA server but are not Sysadmins.
++++++
+
++++++
+FROM Dusty:
++++++
+If I recall:
+1) NEA/AIC Licenses are based on Active user count.
+2) SI Licenses are based on servers
+3) SAM/NAM will use the NEA License
+4) I'm pretty sure NEA is licensed by active user accounts, but that AD inventory includes all accounts.
+Licensing does count mailboxes and other non-user user accounts, but doesn't include disabled accounts
+Would need to confirm with Sales.
++++++
+
+Josh prior to the meeting: Perhaps Ryan is referring to the ""AD inventory summary count""
++++++
+
+Thank you,
+Mike Candon
+Senior Technical Support Engineer
+__________________ _________
+Powerful Data Security Made Easy
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://urldefense.com/v3/__http:/www.netwrix.com__;!!Jfh8dnMswhwehvGkEgMdNwO-BBtfQg!OcDyHQOY2x_iFZqmQX8Mw8qESqf4QCtaXc7c8K8oZlEGVJQqsoICeu2QqKdd9w-i1HFqsFVFkNEw3uRJHounT_-Ts6ST$>
+
+
+--------------- Original Message ---------------
+From: Ryan Tyson [rtyson@central-bank.org.tt<mailto:rtyson@central-bank.org.tt>]
+Sent: 10/1/2024 11:55 AM
+To: techsupport@netwrix.com<mailto:techsupport@netwrix.com>
+Subject: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count
+
+ref:_00D7091pB._500Q000GExqG:ref
+
+Good day Mike and Team,
+
+Can you send the commands suggested within the meeting we previously conducted?[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000EhVJr&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000EhZCD&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000EqMNl&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000ExqQo&from=int]
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.[https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Fpt3S&from=int]
+ [https://nwxcorp.my.salesforce.com/servlet/servlet.ImageServer?oid=00D7000000091pB&esid=018Qk00000Fx9WU&from=ext]
+DISCLAIMER: This e-mail (including any attachments) is intended for the sole use of the recipient/s to whom it is addressed and may contain material that is CONFIDENTIAL AND PRIVATE. It is the property of the Bank in which all rights are reserved where so indicated. If you are not the intended recipient, please be advised that unauthorized use, disclosure, disseminating, copying, distributing or taking any action in reliance on the contents of this information is STRICTLY PROHIBITED AND MAY BE UNLAWFUL. If you are not the intended recipient, please contact the sender by e-mail and delete all copies. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender and the Bank therefore do not accept liability for any damage caused by any virus, errors or omissions in the contents of this message, which arise as a result of e-mail transmission.","RE: Netwrix Support Ticket #422078 - Live session required to review Sealthbits application compliance objects to review the count    [ ref:!00D70091pB.!500Qk0GExqG:ref ]","rtyson@central-bank.org.tt","Ryan Tyson","techsupport@netwrix.com","","","true","2024-11-06T11:49:01.000Z","true"

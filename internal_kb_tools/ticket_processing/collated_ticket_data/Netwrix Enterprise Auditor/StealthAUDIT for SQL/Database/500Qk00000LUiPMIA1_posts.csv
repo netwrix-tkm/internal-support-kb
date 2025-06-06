@@ -1,0 +1,634 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000W9qd1KAB","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-05T12:42:17.000Z","Description: SQL server permissions scan is running for more than 6 days.","","","","005Qk000002b4gDIAQ","2025-02-05T12:42:17.000Z"
+"0D5Qk00000W9h91KAB","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-05T13:10:01.000Z","Steps to Reproduce Updated: Configure SQL Permissions scan on 11.6.0.113 NEA. 
+Start the job.","","","","005Qk000002b4gDIAQ","2025-02-05T13:10:01.000Z"
+"0D5Qk00000WA6ZiKAL","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-05T13:10:28.000Z","What We've Learned Updated: Customer reporting low performance on the SQL Permissions scan. 
+Collected support logs.","","","","005Qk000002b4gDIAQ","2025-02-05T13:10:28.000Z"
+"0D5Qk00000WA3yeKAD","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-05T13:11:00.000Z","Next Steps Updated: Support will analyze collected logs to isolate the cause of issue. 
+I will provide update to customer once I finish checking the logs.","","","","005Qk000002b4gDIAQ","2025-02-05T13:11:00.000Z"
+"0D5Qk00000WAZLlKAP","500Qk00000LUiPMIA1","TextPost","0050g000006QqyEAAS","2025-02-05T15:53:03.000Z","<p>What is the normal runtime/expected run time on this job?</p><p>Why is 6 days considered a long runtime?</p>","","","","0050g000006QqyEAAS","2025-02-05T15:53:03.000Z"
+"0D5Qk00000WAblhKAD","500Qk00000LUiPMIA1","TextPost","0050g000006QqyEAAS","2025-02-05T16:01:05.000Z","TempDB is doing ok after addressing the uncommitted transactions last week. Enabled &quot;Limit Probable Owner to [5]&quot; on 1 FSAA Collection Noted that there are 638M rows on the ShareTraversalView - contributing to long runtime of OpenAccess analysis.  While OpenAcess is progressing successfully AllState will begin identifying decom&#39;d FS hosts that need to be removed and will use the Remove Host Data feature of the FSAA Data Collector to clean up and reduce stored data. How to Drop Data for Decommissioned File Servers - Knowledge BaseNetwrix Enterprise AuditorStealthbitshttps://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA0Qk0000001qvpKAA.html total active tickets: 400429550 - Neither Netwrix or AllState will be able to act on this before MarchNew Tickets:00434159 - A0775-APP2356-S - FSAA WIN Scan Certificate Validation Error00434705 - SQL Permissions Performance is low - unknown baseline expectation00434681 - A0775-APP2356-S FSAA NAS Scan - No RPC Calls, customer noted the StealthAuditRPC.exe was not present in the details tab of task manager; the are accustom to seeing this during FS scans.  inspection of Data Collector logs show activity upto the current minute. allow to complete Closed:00432213 - closed 4-Feb00433016 - closed 4-Feb00431465 - closed 27-Jan","","","","0050g000006QqyEAAS","2025-02-05T16:01:05.000Z"
+"0D5Qk00000WFeeTKAT","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-06T16:20:31.000Z","What We've Learned Updated: Customer reporting low performance on the SQL Permissions scan. 
+Collected support logs.
+
+-------
+02.06.2025 
+
+The Data Collector for the SQL Permissions scan consists of a SQL script. This SQL script is executed on each individual SQL server host added to the Host List of the SQL Permissions scan. After SQL Script is executed on the SQL server the resulted data is then transported back to Enterprise Auditor server and finally gets written into Netwrix Database. 
+
+As such, there might be several places where scan could experience a bottleneck.
+For example:
+
+On each individual SQL server script might take different amounts of time to complete. It depends on the number of databases that need to be scanned on each SQL server.
+If there are multiple target SQL servers to scan - then scan performance will also depend on the number of servers scanned at the same time. Number of SQL servers scanned simultaneously depends on the number of concurrent threads configured for the job. At the moment 
+Connection between each SQL server and Netwrix server might also become a bottleneck. 
+Netwrix SQL database where data is eventually written could become a bottleneck as well. 
+According to this, I would like to suggest the following:
+
+1. It is important to check the list of databases that need to be scanned on each SQL server in the host list. 
+If you find databases that are not eligible for Permissions Scans or if permission scan is not needed for some databases because they are not actively used - then you can set up a filter to skip processing these databases. 
+Filter is configured in the Query settings for SQL Permissions scan data collector. Please, refer to this article for more details about this process:
+SQL: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/SQL/Filter.htm
+This will help decrease time to process each individual SQL server. 
+
+2. To continue, since you have multiple SQL servers in target Host List - then you can try increasing the number of concurrent threads on the Permission scan. 
+Currently you have a default of 10 Threads configured for the SQL Permissions scan. I would recommend increasing the number of concurrent threads to 15 to begin with. 
+Please note that each concurrent thread requires additional CPU and RAM resources. 
+
+Number of threads can be increased in ""Performance"" tab which is available in the job`s ""Properties"". Please, refer to this article for an example of this tab:
+Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+3. May I ask you to check the Netwrix`s SQL Database recovery mode? Is it set to Simple or Full recovery mode?
+It is important to check this because depending on the recovery mode the database instance will be using transaction logs differently which can further reduce the scan performance due to lower performance of the SQL instance. The best practice is to leave Netwrix Enterprise Auditor`s SQL database in Simple recovery mode for the best performance.","","","","005Qk000002b4gDIAQ","2025-02-06T16:20:31.000Z"
+"0D5Qk00000WFt1lKAD","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-06T16:21:53.000Z","Next Steps Updated: Support is waiting for customers reply after suggesting changes that could improve SQL permission scan performance. 
+Customer will clarify the NEA`s SQL db recovery mode.","","","","005Qk000002b4gDIAQ","2025-02-06T16:21:53.000Z"
+"0D5Qk00000WbG6fKAF","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-10T16:14:12.000Z","Next Steps Updated: Customer will contact their DBA team to apply suggested steps to improve SQL Permission scan performance.","","","","005Qk000002b4gDIAQ","2025-02-10T16:14:12.000Z"
+"0D5Qk00000XE7BYKA1","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-18T15:50:22.000Z","Invitation updated. Attendees: No attendees listed","","","","005Qk000002b4gDIAQ","2025-02-18T15:50:22.000Z"
+"0D5Qk00000XE7BaKAL","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-18T15:50:23.000Z","Invitation updated. Attendees: Artem Naskal, Stealth Audit, Alison Mills","","","","005Qk000002b4gDIAQ","2025-02-18T15:50:23.000Z"
+"0D5Qk00000XE7BZKA1","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-18T15:50:23.000Z","Invitation updated. Attendees: Artem Naskal","","","","005Qk000002b4gDIAQ","2025-02-18T15:50:23.000Z"
+"0D5Qk00000XI9IYKA1","500Qk00000LUiPMIA1","TextPost","0050g000006QqyEAAS","2025-02-19T14:34:41.000Z","Get to Green Update: 435588 - Opened and closed since last meeting. Details received when the ticket was opened were cryptic, not specific about the issue. NEA makes use of multiple certificates and site. specifying which component or certificate is not working always help to expedite resolution. Rebound Web Reports cert 429550 - TempDB use. Final checkup since clearing uncommitted transactions. New DBA, asked to clean up TempDB, AllState to follow up. Close today and reopen if problem returns. 434705 - SQL Permissions Performance. Has the DBA Team taken the recommended action? Confirm which databases need to be scanned and filter out unwanted targets. Suggested increasing concurrent threads. Artem requested a meeting be scheduled. 14 hours to scan 2 servers. Increased threads to 15 and rerun. 434681 - No RPC Calls FSAA Scan. Process has been replaced with FSAAScanHosts.exe. R&amp;D recommend to upgrade. FSAA Applet log is present. Scan is progressing. Blocked by not having trusted FSAA Proxy Certs. Closed by Alison 434159 - FSAA WIN Scan Certificate Validation Error. Appeared to be a certificate error but was really configuration error. Artem, closing today. Had to do with query configuration.  ","","","","0050g000006QqyEAAS","2025-02-19T14:34:41.000Z"
+"0D5Qk00000XsuvZKAR","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-02-27T10:13:59.000Z","Invitation updated. Attendees: Artem Naskal, Stealth Audit","","","","005Qk000002b4gDIAQ","2025-02-27T10:13:59.000Z"
+"0D5Qk00000Y5sqgKAB","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-03-03T12:58:13.000Z","What We've Learned Updated: Customer reporting low performance on the SQL Permissions scan. 
+Collected support logs.
+
+-------
+02.06.2025 
+
+The Data Collector for the SQL Permissions scan consists of a SQL script. This SQL script is executed on each individual SQL server host added to the Host List of the SQL Permissions scan. After SQL Script is executed on the SQL server the resulted data is then transported back to Enterprise Auditor server and finally gets written into Netwrix Database. 
+
+As such, there might be several places where scan could experience a bottleneck.
+For example:
+
+On each individual SQL server script might take different amounts of time to complete. It depends on the number of databases that need to be scanned on each SQL server.
+If there are multiple target SQL servers to scan - then scan performance will also depend on the number of servers scanned at the same time. Number of SQL servers scanned simultaneously depends on the number of concurrent threads configured for the job. At the moment 
+Connection between each SQL server and Netwrix server might also become a bottleneck. 
+Netwrix SQL database where data is eventually written could become a bottleneck as well. 
+According to this, I would like to suggest the following:
+
+1. It is important to check the list of databases that need to be scanned on each SQL server in the host list. 
+If you find databases that are not eligible for Permissions Scans or if permission scan is not needed for some databases because they are not actively used - then you can set up a filter to skip processing these databases. 
+Filter is configured in the Query settings for SQL Permissions scan data collector. Please, refer to this article for more details about this process:
+SQL: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/SQL/Filter.htm
+This will help decrease time to process each individual SQL server. 
+
+2. To continue, since you have multiple SQL servers in target Host List - then you can try increasing the number of concurrent threads on the Permission scan. 
+Currently you have a default of 10 Threads configured for the SQL Permissions scan. I would recommend increasing the number of concurrent threads to 15 to begin with. 
+Please note that each concurrent thread requires additional CPU and RAM resources. 
+
+Number of threads can be increased in ""Performance"" tab which is available in the job`s ""Properties"". Please, refer to this article for an example of this tab:
+Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+3. May I ask you to check the Netwrix`s SQL Database recovery mode? Is it set to Simple or Full recovery mode?
+It is important to check this because depending on the recovery mode the database instance will be using transaction logs differently which can further reduce the scan performance due to lower performance of the SQL instance. The best practice is to leave Netwrix Enterprise Auditor`s SQL database in Simple recovery mode for the best performance.
+
+-----
+03.03.2025 
+
+Currently it is not clear what is causing the SQL Permission scan to take 10-13 hours to scan 2 SQL servers. 
+
+To isolate the issue and find the bottleneck I suggested selecting a single SQL server, and within that server select only a single SQL DB to scan:
+
+SQL:
+a0185-dbs0079-s
+
+DB:
+DUDDBA
+
+As such, we performed SQL instance discovery on the a0185-dbs0079-s server, then added it to the SQL permission scan ""hosts"". 
+
+Currently the job is running. Alison will collect Debug support logs once the job has completed and will upload logs to the ticket. 
+We will then schedule next meeting to set up filter for another SQLserver/Database.","","","","005Qk000002b4gDIAQ","2025-03-03T12:58:13.000Z"
+"0D5Qk00000Y67vIKAR","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-03-03T15:04:59.000Z","Next Steps Updated: Customer will provide logs for the SQL Permission scan job against a single SQL server / single DB","","","","005Qk000002b4gDIAQ","2025-03-03T15:04:59.000Z"
+"0D5Qk00000YRcsSKAT","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-03-06T15:40:09.000Z","What We've Learned Updated: Customer reporting low performance on the SQL Permissions scan. 
+Collected support logs.
+
+-------
+02.06.2025 
+
+The Data Collector for the SQL Permissions scan consists of a SQL script. This SQL script is executed on each individual SQL server host added to the Host List of the SQL Permissions scan. After SQL Script is executed on the SQL server the resulted data is then transported back to Enterprise Auditor server and finally gets written into Netwrix Database. 
+
+As such, there might be several places where scan could experience a bottleneck.
+For example:
+
+On each individual SQL server script might take different amounts of time to complete. It depends on the number of databases that need to be scanned on each SQL server.
+If there are multiple target SQL servers to scan - then scan performance will also depend on the number of servers scanned at the same time. Number of SQL servers scanned simultaneously depends on the number of concurrent threads configured for the job. At the moment 
+Connection between each SQL server and Netwrix server might also become a bottleneck. 
+Netwrix SQL database where data is eventually written could become a bottleneck as well. 
+According to this, I would like to suggest the following:
+
+1. It is important to check the list of databases that need to be scanned on each SQL server in the host list. 
+If you find databases that are not eligible for Permissions Scans or if permission scan is not needed for some databases because they are not actively used - then you can set up a filter to skip processing these databases. 
+Filter is configured in the Query settings for SQL Permissions scan data collector. Please, refer to this article for more details about this process:
+SQL: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/SQL/Filter.htm
+This will help decrease time to process each individual SQL server. 
+
+2. To continue, since you have multiple SQL servers in target Host List - then you can try increasing the number of concurrent threads on the Permission scan. 
+Currently you have a default of 10 Threads configured for the SQL Permissions scan. I would recommend increasing the number of concurrent threads to 15 to begin with. 
+Please note that each concurrent thread requires additional CPU and RAM resources. 
+
+Number of threads can be increased in ""Performance"" tab which is available in the job`s ""Properties"". Please, refer to this article for an example of this tab:
+Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+3. May I ask you to check the Netwrix`s SQL Database recovery mode? Is it set to Simple or Full recovery mode?
+It is important to check this because depending on the recovery mode the database instance will be using transaction logs differently which can further reduce the scan performance due to lower performance of the SQL instance. The best practice is to leave Netwrix Enterprise Auditor`s SQL database in Simple recovery mode for the best performance.
+
+-----
+03.03.2025 
+
+Currently it is not clear what is causing the SQL Permission scan to take 10-13 hours to scan 2 SQL servers. 
+
+To isolate the issue and find the bottleneck I suggested selecting a single SQL server, and within that server select only a single SQL DB to scan:
+
+SQL:
+a0185-dbs0079-s
+
+DB:
+DUDDBA
+
+As such, we performed SQL instance discovery on the a0185-dbs0079-s server, then added it to the SQL permission scan ""hosts"". 
+
+Currently the job is running. Alison will collect Debug support logs once the job has completed and will upload logs to the ticket. 
+We will then schedule next meeting to set up filter for another SQLserver/Database.
+
+-----------
+06.03.2025 
+Got the logs of the test job for the DUDDBA database. 
+
+Found possible bottleneck:
+03/03/2025 09:46:52    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""[189265] Sql Server effective members found.""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 09:47:05    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Begin InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 14:41:01    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""End InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+The permission auditing on the database object that happens prior to ""InsertEffectiveRoleMembership"" task completes quite fast actually:
+03/03/2025 07:39:57    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): Begin Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+------
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): END Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+But then Job starts committing data into SQL database - and this is where the most time is spent:
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Committing data : [A0185-DBS0079-SDU01]  0""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+This is then followed by a presumed bottleneck - an ""InsertEffectiveRoleMembership(): ADI"" task that lasts from 09:47:05 to 14:41:01. 
+
+Also noticed that job seemingly did nothing here (it could have been waiting for NEA DB at that moment):
+03/03/2025 07:40:04	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""End ClearOldData(): SA_SQLServer_EffectiveRoleMembership""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+03/03/2025 09:03:23	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""Begin InsertEffectiveRoleMembership(): Sql Server""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+
+Need to clarify in SWAT what can be done to improve these times. 
+Also, need more test job runs against single DB. 
+
+Asked customer to provide specs of SQL server and DB storage and how far they are located from NEA server.","","","","005Qk000002b4gDIAQ","2025-03-06T15:40:09.000Z"
+"0D5Qk00000YRa1DKAT","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-03-06T15:42:25.000Z","Next Steps Updated: Support will prepare questions to SWAT channel - will ask: 
+1. what we can do to improve completion time of ""InsertEffectiveRoleMembership(): ADI"" task. 
+
+2. And what could be happening between ""End ClearOldData(): SA_SQLServer_EffectiveRoleMembership"" and ""Begin InsertEffectiveRoleMembership(): Sql Server"". 
+
+Customer will reply back with SQL server and DB storage specifications and location information.","","","","005Qk000002b4gDIAQ","2025-03-06T15:42:25.000Z"
+"0D5Qk00000YYd3cKAD","500Qk00000LUiPMIA1","TextPost","0050g000006QqyEAAS","2025-03-07T14:22:43.000Z","<p>@Artem Naskal​ please check older tickets - we received details of their SQL host resources recently.</p><p> </p><p>Please search salesforce for other recent and related tickets, then let me know if we should create an incident ticket to track a common issue. </p><p> </p><p>@Rejaul Uddin​ </p>","","","","0050g000006QqyEAAS","2025-03-07T14:22:43.000Z"
+"0D5Qk00000YYJgAKAX","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-03-07T15:07:05.000Z","What We've Learned Updated: Customer reporting low performance on the SQL Permissions scan. 
+Collected support logs.
+
+-------
+02.06.2025 
+
+The Data Collector for the SQL Permissions scan consists of a SQL script. This SQL script is executed on each individual SQL server host added to the Host List of the SQL Permissions scan. After SQL Script is executed on the SQL server the resulted data is then transported back to Enterprise Auditor server and finally gets written into Netwrix Database. 
+
+As such, there might be several places where scan could experience a bottleneck.
+For example:
+
+On each individual SQL server script might take different amounts of time to complete. It depends on the number of databases that need to be scanned on each SQL server.
+If there are multiple target SQL servers to scan - then scan performance will also depend on the number of servers scanned at the same time. Number of SQL servers scanned simultaneously depends on the number of concurrent threads configured for the job. At the moment 
+Connection between each SQL server and Netwrix server might also become a bottleneck. 
+Netwrix SQL database where data is eventually written could become a bottleneck as well. 
+According to this, I would like to suggest the following:
+
+1. It is important to check the list of databases that need to be scanned on each SQL server in the host list. 
+If you find databases that are not eligible for Permissions Scans or if permission scan is not needed for some databases because they are not actively used - then you can set up a filter to skip processing these databases. 
+Filter is configured in the Query settings for SQL Permissions scan data collector. Please, refer to this article for more details about this process:
+SQL: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/SQL/Filter.htm
+This will help decrease time to process each individual SQL server. 
+
+2. To continue, since you have multiple SQL servers in target Host List - then you can try increasing the number of concurrent threads on the Permission scan. 
+Currently you have a default of 10 Threads configured for the SQL Permissions scan. I would recommend increasing the number of concurrent threads to 15 to begin with. 
+Please note that each concurrent thread requires additional CPU and RAM resources. 
+
+Number of threads can be increased in ""Performance"" tab which is available in the job`s ""Properties"". Please, refer to this article for an example of this tab:
+Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+3. May I ask you to check the Netwrix`s SQL Database recovery mode? Is it set to Simple or Full recovery mode?
+It is important to check this because depending on the recovery mode the database instance will be using transaction logs differently which can further reduce the scan performance due to lower performance of the SQL instance. The best practice is to leave Netwrix Enterprise Auditor`s SQL database in Simple recovery mode for the best performance.
+
+-----
+03.03.2025 
+
+Currently it is not clear what is causing the SQL Permission scan to take 10-13 hours to scan 2 SQL servers. 
+
+To isolate the issue and find the bottleneck I suggested selecting a single SQL server, and within that server select only a single SQL DB to scan:
+
+SQL:
+a0185-dbs0079-s
+
+DB:
+DUDDBA
+
+As such, we performed SQL instance discovery on the a0185-dbs0079-s server, then added it to the SQL permission scan ""hosts"". 
+
+Currently the job is running. Alison will collect Debug support logs once the job has completed and will upload logs to the ticket. 
+We will then schedule next meeting to set up filter for another SQLserver/Database.
+
+-----------
+06.03.2025 
+Got the logs of the test job for the DUDDBA database. 
+
+Found possible bottleneck:
+03/03/2025 09:46:52    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""[189265] Sql Server effective members found.""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 09:47:05    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Begin InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 14:41:01    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""End InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+The permission auditing on the database object that happens prior to ""InsertEffectiveRoleMembership"" task completes quite fast actually:
+03/03/2025 07:39:57    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): Begin Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+------
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): END Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+But then Job starts committing data into SQL database - and this is where the most time is spent:
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Committing data : [A0185-DBS0079-SDU01]  0""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+This is then followed by a presumed bottleneck - an ""InsertEffectiveRoleMembership(): ADI"" task that lasts from 09:47:05 to 14:41:01. 
+
+Also noticed that job seemingly did nothing here (it could have been waiting for NEA DB at that moment):
+03/03/2025 07:40:04	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""End ClearOldData(): SA_SQLServer_EffectiveRoleMembership""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+03/03/2025 09:03:23	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""Begin InsertEffectiveRoleMembership(): Sql Server""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+
+Need to clarify in SWAT what can be done to improve these times. 
+Also, need more test job runs against single DB. 
+
+Asked customer to provide specs of SQL server and DB storage and how far they are located from NEA server.
+
+---------
+07.03.2025 
+Asked in SWAT channel what could be the cause of high waiting time to complete InsertEffectiveRoleMembership(): ADI and if there is anything we can do about it from our side:
+https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1741359933407?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1741359933407&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=NEA%20DAG&createdTime=1741359933407","","","","005Qk000002b4gDIAQ","2025-03-07T15:07:05.000Z"
+"0D5Qk00000YmytQKAR","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-03-10T14:37:15.000Z","<p>@Brandon West​ </p><p>I could not find info on SQL resources in recent tickets. </p><p>I will schedule meeting with customer to check on the current state of the issue, set up next SQL permission scan test against single db (last test was against DUDDBA db). </p><p>Will need to check the logs of the next test SQL permission scan to see if the pattern repeats. </p><p>Does not look like this needs an incident, at least right now I do not see how this affects or causes other issues. </p>","","","","005Qk000002b4gDIAQ","2025-03-10T14:37:15.000Z"
+"0D5Qk00000YpP96KAF","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-03-10T15:32:49.000Z","Next Steps Updated: Support is waiting for an update in SWAT thread. 
+
+Support will schedule meeting with customer to configure next test job and review SQL server resources and load.","","","","005Qk000002b4gDIAQ","2025-03-10T15:32:49.000Z"
+"0D5Qk00000YyBICKA3","500Qk00000LUiPMIA1","TextPost","005Qk000002b4gDIAQ","2025-03-11T13:32:06.000Z","Next Steps Updated: Customer will upload logs of the next sql permission scan for a0185-dbs0079-s sql server (TempDB).","","","","005Qk000002b4gDIAQ","2025-03-11T13:32:06.000Z"
+"0D5Qk00000ZZ1znKAD","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-03-17T10:23:17.000Z","Invitation updated. Attendees: Damir Akhmatshin, Stealth Audit","","","","0054u000007p4sbAAA","2025-03-17T10:23:17.000Z"
+"0D5Qk00000ZZ1zmKAD","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-03-17T10:23:17.000Z","Invitation updated. Attendees: Damir Akhmatshin","","","","0054u000007p4sbAAA","2025-03-17T10:23:17.000Z"
+"0D5Qk00000ZclhxKAB","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-03-18T11:12:06.000Z","What We've Learned Updated: Customer reporting low performance on the SQL Permissions scan. 
+Collected support logs.
+
+-------
+02.06.2025 
+
+The Data Collector for the SQL Permissions scan consists of a SQL script. This SQL script is executed on each individual SQL server host added to the Host List of the SQL Permissions scan. After SQL Script is executed on the SQL server the resulted data is then transported back to Enterprise Auditor server and finally gets written into Netwrix Database. 
+
+As such, there might be several places where scan could experience a bottleneck.
+For example:
+
+On each individual SQL server script might take different amounts of time to complete. It depends on the number of databases that need to be scanned on each SQL server.
+If there are multiple target SQL servers to scan - then scan performance will also depend on the number of servers scanned at the same time. Number of SQL servers scanned simultaneously depends on the number of concurrent threads configured for the job. At the moment 
+Connection between each SQL server and Netwrix server might also become a bottleneck. 
+Netwrix SQL database where data is eventually written could become a bottleneck as well. 
+According to this, I would like to suggest the following:
+
+1. It is important to check the list of databases that need to be scanned on each SQL server in the host list. 
+If you find databases that are not eligible for Permissions Scans or if permission scan is not needed for some databases because they are not actively used - then you can set up a filter to skip processing these databases. 
+Filter is configured in the Query settings for SQL Permissions scan data collector. Please, refer to this article for more details about this process:
+SQL: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/SQL/Filter.htm
+This will help decrease time to process each individual SQL server. 
+
+2. To continue, since you have multiple SQL servers in target Host List - then you can try increasing the number of concurrent threads on the Permission scan. 
+Currently you have a default of 10 Threads configured for the SQL Permissions scan. I would recommend increasing the number of concurrent threads to 15 to begin with. 
+Please note that each concurrent thread requires additional CPU and RAM resources. 
+
+Number of threads can be increased in ""Performance"" tab which is available in the job`s ""Properties"". Please, refer to this article for an example of this tab:
+Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+3. May I ask you to check the Netwrix`s SQL Database recovery mode? Is it set to Simple or Full recovery mode?
+It is important to check this because depending on the recovery mode the database instance will be using transaction logs differently which can further reduce the scan performance due to lower performance of the SQL instance. The best practice is to leave Netwrix Enterprise Auditor`s SQL database in Simple recovery mode for the best performance.
+
+-----
+03.03.2025 
+
+Currently it is not clear what is causing the SQL Permission scan to take 10-13 hours to scan 2 SQL servers. 
+
+To isolate the issue and find the bottleneck I suggested selecting a single SQL server, and within that server select only a single SQL DB to scan:
+
+SQL:
+a0185-dbs0079-s
+
+DB:
+DUDDBA
+
+As such, we performed SQL instance discovery on the a0185-dbs0079-s server, then added it to the SQL permission scan ""hosts"". 
+
+Currently the job is running. Alison will collect Debug support logs once the job has completed and will upload logs to the ticket. 
+We will then schedule next meeting to set up filter for another SQLserver/Database.
+
+-----------
+06.03.2025 
+Got the logs of the test job for the DUDDBA database. 
+
+Found possible bottleneck:
+03/03/2025 09:46:52    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""[189265] Sql Server effective members found.""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 09:47:05    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Begin InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 14:41:01    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""End InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+The permission auditing on the database object that happens prior to ""InsertEffectiveRoleMembership"" task completes quite fast actually:
+03/03/2025 07:39:57    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): Begin Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+------
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): END Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+But then Job starts committing data into SQL database - and this is where the most time is spent:
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Committing data : [A0185-DBS0079-SDU01]  0""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+This is then followed by a presumed bottleneck - an ""InsertEffectiveRoleMembership(): ADI"" task that lasts from 09:47:05 to 14:41:01. 
+
+Also noticed that job seemingly did nothing here (it could have been waiting for NEA DB at that moment):
+03/03/2025 07:40:04	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""End ClearOldData(): SA_SQLServer_EffectiveRoleMembership""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+03/03/2025 09:03:23	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""Begin InsertEffectiveRoleMembership(): Sql Server""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+
+Need to clarify in SWAT what can be done to improve these times. 
+Also, need more test job runs against single DB. 
+
+Asked customer to provide specs of SQL server and DB storage and how far they are located from NEA server.
+
+---------
+07.03.2025 
+Asked in SWAT channel what could be the cause of high waiting time to complete InsertEffectiveRoleMembership(): ADI and if there is anything we can do about it from our side:
+https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1741359933407?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1741359933407&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=NEA%20DAG&createdTime=1741359933407
+
+3/18/2025
+
+It looks like scans of the same server take different amount of time depending on execution server, which might indicate an issue with infrastructure.","","","","0054u000007p4sbAAA","2025-03-18T11:12:06.000Z"
+"0D5Qk00000ZcXM2KAN","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-03-18T11:12:45.000Z","Next Steps Updated: Customer will upload logs of the next sql permission scan for a0185-dbs0079-s sql server (TempDB).
+
+3/18/2025
+
+Following up with devs, increased priority","","","","0054u000007p4sbAAA","2025-03-18T11:12:45.000Z"
+"0D5Qk00000Zcq1cKAB","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-03-18T11:31:21.000Z","What We've Learned Updated: Customer reporting low performance on the SQL Permissions scan. 
+Collected support logs.
+
+-------
+02.06.2025 
+
+The Data Collector for the SQL Permissions scan consists of a SQL script. This SQL script is executed on each individual SQL server host added to the Host List of the SQL Permissions scan. After SQL Script is executed on the SQL server the resulted data is then transported back to Enterprise Auditor server and finally gets written into Netwrix Database. 
+
+As such, there might be several places where scan could experience a bottleneck.
+For example:
+
+On each individual SQL server script might take different amounts of time to complete. It depends on the number of databases that need to be scanned on each SQL server.
+If there are multiple target SQL servers to scan - then scan performance will also depend on the number of servers scanned at the same time. Number of SQL servers scanned simultaneously depends on the number of concurrent threads configured for the job. At the moment 
+Connection between each SQL server and Netwrix server might also become a bottleneck. 
+Netwrix SQL database where data is eventually written could become a bottleneck as well. 
+According to this, I would like to suggest the following:
+
+1. It is important to check the list of databases that need to be scanned on each SQL server in the host list. 
+If you find databases that are not eligible for Permissions Scans or if permission scan is not needed for some databases because they are not actively used - then you can set up a filter to skip processing these databases. 
+Filter is configured in the Query settings for SQL Permissions scan data collector. Please, refer to this article for more details about this process:
+SQL: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/SQL/Filter.htm
+This will help decrease time to process each individual SQL server. 
+
+2. To continue, since you have multiple SQL servers in target Host List - then you can try increasing the number of concurrent threads on the Permission scan. 
+Currently you have a default of 10 Threads configured for the SQL Permissions scan. I would recommend increasing the number of concurrent threads to 15 to begin with. 
+Please note that each concurrent thread requires additional CPU and RAM resources. 
+
+Number of threads can be increased in ""Performance"" tab which is available in the job`s ""Properties"". Please, refer to this article for an example of this tab:
+Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+3. May I ask you to check the Netwrix`s SQL Database recovery mode? Is it set to Simple or Full recovery mode?
+It is important to check this because depending on the recovery mode the database instance will be using transaction logs differently which can further reduce the scan performance due to lower performance of the SQL instance. The best practice is to leave Netwrix Enterprise Auditor`s SQL database in Simple recovery mode for the best performance.
+
+-----
+03.03.2025 
+
+Currently it is not clear what is causing the SQL Permission scan to take 10-13 hours to scan 2 SQL servers. 
+
+To isolate the issue and find the bottleneck I suggested selecting a single SQL server, and within that server select only a single SQL DB to scan:
+
+SQL:
+a0185-dbs0079-s
+
+DB:
+DUDDBA
+
+As such, we performed SQL instance discovery on the a0185-dbs0079-s server, then added it to the SQL permission scan ""hosts"". 
+
+Currently the job is running. Alison will collect Debug support logs once the job has completed and will upload logs to the ticket. 
+We will then schedule next meeting to set up filter for another SQLserver/Database.
+
+-----------
+06.03.2025 
+Got the logs of the test job for the DUDDBA database. 
+
+Found possible bottleneck:
+03/03/2025 09:46:52    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""[189265] Sql Server effective members found.""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 09:47:05    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Begin InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 14:41:01    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""End InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+The permission auditing on the database object that happens prior to ""InsertEffectiveRoleMembership"" task completes quite fast actually:
+03/03/2025 07:39:57    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): Begin Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+------
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): END Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+But then Job starts committing data into SQL database - and this is where the most time is spent:
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Committing data : [A0185-DBS0079-SDU01]  0""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+This is then followed by a presumed bottleneck - an ""InsertEffectiveRoleMembership(): ADI"" task that lasts from 09:47:05 to 14:41:01. 
+
+Also noticed that job seemingly did nothing here (it could have been waiting for NEA DB at that moment):
+03/03/2025 07:40:04	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""End ClearOldData(): SA_SQLServer_EffectiveRoleMembership""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+03/03/2025 09:03:23	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""Begin InsertEffectiveRoleMembership(): Sql Server""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+
+Need to clarify in SWAT what can be done to improve these times. 
+Also, need more test job runs against single DB. 
+
+Asked customer to provide specs of SQL server and DB storage and how far they are located from NEA server.
+
+---------
+07.03.2025 
+Asked in SWAT channel what could be the cause of high waiting time to complete InsertEffectiveRoleMembership(): ADI and if there is anything we can do about it from our side:
+https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1741359933407?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1741359933407&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=NEA%20DAG&createdTime=1741359933407
+
+3/18/2025
+
+It looks like scans of the same server take different amount of time depending on execution server, which might indicate an issue with infrastructure.
+
+It takes 40 minutes to scan from Y0185-APP0443-S and 7 hours from A0185-APP2750-S, both servers are targeting A0185-DBS0079-S. Logs for both scans uploaded to SP.
+
+Which again suggests an issue with infrastructure.","","","","0054u000007p4sbAAA","2025-03-18T11:31:21.000Z"
+"0D5Qk00000Zk68hKAB","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-03-20T07:32:41.000Z","What We've Learned Updated: Customer reporting low performance on the SQL Permissions scan. 
+Collected support logs.
+
+-------
+02.06.2025 
+
+The Data Collector for the SQL Permissions scan consists of a SQL script. This SQL script is executed on each individual SQL server host added to the Host List of the SQL Permissions scan. After SQL Script is executed on the SQL server the resulted data is then transported back to Enterprise Auditor server and finally gets written into Netwrix Database. 
+
+As such, there might be several places where scan could experience a bottleneck.
+For example:
+
+On each individual SQL server script might take different amounts of time to complete. It depends on the number of databases that need to be scanned on each SQL server.
+If there are multiple target SQL servers to scan - then scan performance will also depend on the number of servers scanned at the same time. Number of SQL servers scanned simultaneously depends on the number of concurrent threads configured for the job. At the moment 
+Connection between each SQL server and Netwrix server might also become a bottleneck. 
+Netwrix SQL database where data is eventually written could become a bottleneck as well. 
+According to this, I would like to suggest the following:
+
+1. It is important to check the list of databases that need to be scanned on each SQL server in the host list. 
+If you find databases that are not eligible for Permissions Scans or if permission scan is not needed for some databases because they are not actively used - then you can set up a filter to skip processing these databases. 
+Filter is configured in the Query settings for SQL Permissions scan data collector. Please, refer to this article for more details about this process:
+SQL: Filter
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/SQL/Filter.htm
+This will help decrease time to process each individual SQL server. 
+
+2. To continue, since you have multiple SQL servers in target Host List - then you can try increasing the number of concurrent threads on the Permission scan. 
+Currently you have a default of 10 Threads configured for the SQL Permissions scan. I would recommend increasing the number of concurrent threads to 15 to begin with. 
+Please note that each concurrent thread requires additional CPU and RAM resources. 
+
+Number of threads can be increased in ""Performance"" tab which is available in the job`s ""Properties"". Please, refer to this article for an example of this tab:
+Performance Tab
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/Jobs/Job/Properties/Performance.htm
+
+3. May I ask you to check the Netwrix`s SQL Database recovery mode? Is it set to Simple or Full recovery mode?
+It is important to check this because depending on the recovery mode the database instance will be using transaction logs differently which can further reduce the scan performance due to lower performance of the SQL instance. The best practice is to leave Netwrix Enterprise Auditor`s SQL database in Simple recovery mode for the best performance.
+
+-----
+03.03.2025 
+
+Currently it is not clear what is causing the SQL Permission scan to take 10-13 hours to scan 2 SQL servers. 
+
+To isolate the issue and find the bottleneck I suggested selecting a single SQL server, and within that server select only a single SQL DB to scan:
+
+SQL:
+a0185-dbs0079-s
+
+DB:
+DUDDBA
+
+As such, we performed SQL instance discovery on the a0185-dbs0079-s server, then added it to the SQL permission scan ""hosts"". 
+
+Currently the job is running. Alison will collect Debug support logs once the job has completed and will upload logs to the ticket. 
+We will then schedule next meeting to set up filter for another SQLserver/Database.
+
+-----------
+06.03.2025 
+Got the logs of the test job for the DUDDBA database. 
+
+Found possible bottleneck:
+03/03/2025 09:46:52    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""[189265] Sql Server effective members found.""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 09:47:05    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Begin InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+03/03/2025 14:41:01    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""End InsertEffectiveRoleMembership(): ADI""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+The permission auditing on the database object that happens prior to ""InsertEffectiveRoleMembership"" task completes quite fast actually:
+03/03/2025 07:39:57    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): Begin Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+------
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""SqlServerDataCollectorBase.CollectPerDatabase(): END Processing Database 'DUDDBA'""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+But then Job starts committing data into SQL database - and this is where the most time is spent:
+03/03/2025 07:40:00    DEBUG    SQL    Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord    ""Committing data : [A0185-DBS0079-SDU01]  0""    A0185-DBS0079-S    DCExtract    13440    16996    17524
+
+This is then followed by a presumed bottleneck - an ""InsertEffectiveRoleMembership(): ADI"" task that lasts from 09:47:05 to 14:41:01. 
+
+Also noticed that job seemingly did nothing here (it could have been waiting for NEA DB at that moment):
+03/03/2025 07:40:04	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""End ClearOldData(): SA_SQLServer_EffectiveRoleMembership""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+03/03/2025 09:03:23	DEBUG	SQL	Stealthbits.StealthAUDIT.DataCollectors.SQL.Providers.TaskBase.InternalProcessRecord	""Begin InsertEffectiveRoleMembership(): Sql Server""	A0185-DBS0079-S	DCExtract	13440	16996	17524
+
+Need to clarify in SWAT what can be done to improve these times. 
+Also, need more test job runs against single DB. 
+
+Asked customer to provide specs of SQL server and DB storage and how far they are located from NEA server.
+
+---------
+07.03.2025 
+Asked in SWAT channel what could be the cause of high waiting time to complete InsertEffectiveRoleMembership(): ADI and if there is anything we can do about it from our side:
+https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1741359933407?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1741359933407&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=NEA%20DAG&createdTime=1741359933407
+
+3/18/2025
+
+It looks like scans of the same server take different amount of time depending on execution server, which might indicate an issue with infrastructure.
+
+It takes 40 minutes to scan from Y0185-APP0443-S and 7 hours from A0185-APP2750-S, both servers are targeting A0185-DBS0079-S. Logs for both scans uploaded to SP.
+
+Which again suggests an issue with infrastructure.
+
+3/20/2025
+
+Both app servers are in same physical location, collected ms32info from both servers.","","","","0054u000007p4sbAAA","2025-03-20T07:32:41.000Z"
+"0D5Qk00000ZkYFfKAN","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-03-20T07:33:09.000Z","Next Steps Updated: Customer will upload logs of the next sql permission scan for a0185-dbs0079-s sql server (TempDB).
+
+3/18/2025
+
+Following up with devs, increased priority
+
+3/20/2025
+
+Waiting on ping tests, updated R&D with additional details.","","","","0054u000007p4sbAAA","2025-03-20T07:33:09.000Z"
+"0D5Qk00000aI2aNKAS","500Qk00000LUiPMIA1","TextPost","0054u000007MiY9AAK","2025-03-25T17:13:30.000Z","Next Steps Updated: Dev is pulling on a spike story to investigate this issue more deeply this sprint, TSE has provided artifacts and environment info.","","","","0054u000007MiY9AAK","2025-03-25T17:13:30.000Z"
+"0D5Qk00000aI2aMKAS","500Qk00000LUiPMIA1","TextPost","0054u000007MiY9AAK","2025-03-25T17:13:30.000Z","What We've Learned Updated: Y0185-APP0443-S is dev (non-prod) and A0185-APP2750-S is prod. A0185-DBS0079-S is prod. All servers are in the .AD.Allstate domain.
+
+Servers are in same physical location - screenshot uploaded.
+
+I've collected system information - ms32info from both servers, they look identical to me, even disk size, page file size, ram
+
+Ping latency also looks very low","","","","0054u000007MiY9AAK","2025-03-25T17:13:30.000Z"
+"0D5Qk00000aOqIcKAK","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-03-27T05:19:55.000Z","What We've Learned Updated: Y0185-APP0443-S is dev (non-prod) and A0185-APP2750-S is prod. A0185-DBS0079-S is prod. All servers are in the .AD.Allstate domain.
+
+Servers are in same physical location - screenshot uploaded.
+
+I've collected system information - ms32info from both servers, they look identical to me, even disk size, page file size, ram
+
+Ping latency also looks very low.
+
+3/27/2025
+Development team advised that the issue has been identified and fix is in works.","","","","0054u000007p4sbAAA","2025-03-27T05:19:55.000Z"
+"0D5Qk00000apeRvKAI","500Qk00000LUiPMIA1","TextPost","0054u000007MiY9AAK","2025-04-01T19:10:45.000Z","Next Steps Updated: Dev has identified issues with effective membership calculation that are causing these slowdowns and are currently working this sprint to address them.","","","","0054u000007MiY9AAK","2025-04-01T19:10:45.000Z"
+"0D5Qk00000b0F8DKAU","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-04-04T06:10:08.000Z","What We've Learned Updated: Y0185-APP0443-S is dev (non-prod) and A0185-APP2750-S is prod. A0185-DBS0079-S is prod. All servers are in the .AD.Allstate domain.
+
+Servers are in same physical location - screenshot uploaded.
+
+I've collected system information - ms32info from both servers, they look identical to me, even disk size, page file size, ram
+
+Ping latency also looks very low.
+
+3/27/2025
+Development team advised that the issue has been identified and fix is in works.
+
+4/4/2025
+
+Hotfix provided to customer.","","","","0054u000007p4sbAAA","2025-04-04T06:10:08.000Z"
+"0D5Qk00000b03DbKAI","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-04-04T06:10:35.000Z","Next Steps Updated: Dev has identified issues with effective membership calculation that are causing these slowdowns and are currently working this sprint to address them.
+
+
+Hotfix provided to customer, waiting for them to install and to provide feedback.","","","","0054u000007p4sbAAA","2025-04-04T06:10:35.000Z"
+"0D5Qk00000bM8zKKAS","500Qk00000LUiPMIA1","TextPost","0054u000007p4sbAAA","2025-04-08T11:44:29.000Z","What We've Learned Updated: Y0185-APP0443-S is dev (non-prod) and A0185-APP2750-S is prod. A0185-DBS0079-S is prod. All servers are in the .AD.Allstate domain.
+
+Servers are in same physical location - screenshot uploaded.
+
+I've collected system information - ms32info from both servers, they look identical to me, even disk size, page file size, ram
+
+Ping latency also looks very low.
+
+3/27/2025
+Development team advised that the issue has been identified and fix is in works.
+
+4/4/2025
+
+Hotfix provided to customer.
+
+4/8/2025
+
+Hotfix applied, waiting for customer to report on scan duration.","","","","0054u000007p4sbAAA","2025-04-08T11:44:29.000Z"
+"0D5Qk00000bshL1KAI","500Qk00000LUiPMIA1","TextPost","0054u000007MiY9AAK","2025-04-15T13:57:19.000Z","Next Steps Updated: Last scan ran successful within 6 hrs. Customer may still be having a permissions issue, but is working on that separately - good to close","","","","0054u000007MiY9AAK","2025-04-15T13:57:19.000Z"
+"0D5Qk00000bx6ipKAA","500Qk00000LUiPMIA1","TextPost","005Qk000003cQkXIAU","2025-04-16T15:31:15.000Z","<p>@Tay Caliguiri​ Thank you</p>","","","","005Qk000003cQkXIAU","2025-04-16T15:31:15.000Z"

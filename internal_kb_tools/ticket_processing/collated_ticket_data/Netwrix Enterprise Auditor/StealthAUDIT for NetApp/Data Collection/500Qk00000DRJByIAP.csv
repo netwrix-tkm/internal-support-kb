@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DRJByIAP","00415776","Support Ticket","Long running scan and scan errors","We recently added new NetApp SVM scan targets.  One of the targets has been scanning for 6 days.  several of the other SVM targets have errors on the scan.","","","","Contact noted:  We have validated our fpolicy against a single SVM and working to apply that fpolicy to all SVMs. 
+
+
+The most recent StealthAUDIT (SA) 11.5 scan we are down to 46 issues all seeming to point to Share locations that no longer exist. 
+
+Selected the Import incomplete scan data for the NetApp FSAA Job group.
+
+We looked at setting the Schedule back to the top of the FileSystem Group folder to mitigate overlapping FSAA bulk-imports and Reporting from locking the DB.
+
+Stopped the current FSAA Scan, Selected the Import incomplete scan data option.
+FSAA: Bulk Import Settings
+https://helpcenter.netwrix.com/search?page=1&rpp=10&sort.field=score&sort.value=desc
+
+Kicked off the Related NetApp Bulk-import once completed we will need to run the Reports schedule task or let it kick off tomorrow as set in the console.
+
+Set the schedule to only run the Root Job Group Folder for FileSystem.
+
+We will need to look at the Scan again once the needed FPolicy has been updated.
+
+Dev confirmation that the [IP_ADDRESS,…] is the SA hosts details under Create External Engine for Empty FPolicy
+vserver fpolicy policy external-engine create -vserver [SVM_NAME] -engine-name StealthAUDITEngine -primary-servers [IP_ADDRESS,…] -port 9999 -extern-engine-type asynchronous -ssl-option no-auth
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/Config/NetAppCMode/ConfigureEmptyFPolicy.htm#create_external_engine_for_empty_fpolicy","Incorrect configuration: target server software","Dusty Grayson","","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Data Collection","11.5","177","20.1","Closed - Resolved","USAA","Justin Snyder","2024-07-23T15:26:18.000Z","2024-08-12T18:27:22.000Z"

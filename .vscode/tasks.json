@@ -1,0 +1,67 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run KB Tool Stage 1",
+            "type": "shell",
+            "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+            "args": [
+                "run_kb_tool.py",
+                "--stage",
+                "1",
+                "--path",
+                "${input:productPath}"
+            ],
+            "options": {
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": ["/c"]
+                }
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "detail": "Run Stage 1 processing to organize data and generate case summaries"
+        },
+        {
+            "label": "Run KB Tool Stage 2",
+            "type": "shell",
+            "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+            "args": [
+                "run_kb_tool.py",
+                "--stage",
+                "2",
+                "--path",
+                "${input:productPath}"
+            ],
+            "options": {
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": ["/c"]
+                }
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "problemMatcher": [],
+            "detail": "Run Stage 2 processing to generate knowledge base articles"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "productPath",
+            "description": "Enter product path (e.g., 'Netwrix Endpoint Protector' or 'Netwrix Endpoint Protector/Client/Client - BSOD')",
+            "default": "Netwrix Endpoint Protector",
+            "type": "promptString"
+        }
+    ]
+}

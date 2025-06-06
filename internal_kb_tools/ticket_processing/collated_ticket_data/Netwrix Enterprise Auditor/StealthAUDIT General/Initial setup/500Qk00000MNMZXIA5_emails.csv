@@ -1,0 +1,548 @@
+"Id","ParentId","CreatedDate","LastModifiedDate","TextBody","Subject","FromAddress","FromName","ToAddress","CcAddress","BccAddress","HasAttachment","MessageDate","IsExternallyVisible"
+"02sQk00000MT8iSIAT","500Qk00000MNMZXIA5","2025-03-11T13:21:05.000Z","2025-03-11T15:06:31.000Z","ref:_00D7091pB._500Q000MNMZX:ref
+
+I still have the LDAP error and blank reports under the Group Policy job.
+
+The issue I have working on the problems are I have a very limited window to do tests. The FileSystem job from Friday is still running, one server on the FSAC system scan takes over 60hrs and a couple servers on the SEEK System Scans take over 40hrs, when it's not crashing.
+
+So until this job finishes, I won't be able to make any test runs for the Group Policy job.
+
+(todays console error)
+[cid:image001.png@01DB925D.3CC244E0]
+
+
+
+Thanks
+
+[cid:image002.jpg@01DB925D.3CC244E0]
+Steve Young | Technical Lead - Systems Engineering/Database/IAM
+Bexar County Information Technology
+126 East Nueva | San Antonio, TX 78204
+210.557.7354
+steve.young@bexar.org<mailto:steve.young@bexar.org> | www.bexar.org<http://www.bexar.org/>
+Accountability | Respect | Integrity | Teamwork | Excellence
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 10, 2025 7:09 PM
+To: Young, Steve (BCIT) <Steve.Young@bexar.org>
+Subject: RE: 00437260 - Multiple issues with new implementation
+
+NOTICE:
+This email originated from an EXTERNAL email address outside of bexar.org. Please use caution when clicking links or opening attachments from email senders that you do not know.
+If you feel it is suspicious, please forward this email to BCERT@bexar.org or click the Report button in Outlook
+________________________________
+Hello Steve,
+
+I wanted to check in regarding your support ticket 00437260. We haven't heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you're still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We're here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437260
+Ticket Subject: Multiple issues with new implementation
+Ticket Details: Error trying to run job 4.Group Policy - PrepareTask for DC 'LDAP' for task 'Fine-grained Policies' failed: Unspecified error
+
+All reports under that group are blank.
+
+Job AD_WeakPasswords fails : Could not update dictionary: System.AggregateException: One or more errors occurred. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: The underlying connection was closed: An unexpected error occurred on a send. ---> <a href='https://System.IO' target='_blank'>System.IO</a>.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.CallProcessAuthentication(Object state)
+at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.ProcessAuthentication(LazyAsyncResult result)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.PooledStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.ConnectStream.WriteHeaders(Boolean async)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net' target='_blank'>System.Net</a>.HttpWebRequest.GetResponse()
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.DownloadDictionary(CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.UpdateDictionary(String finalPath, CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.c__DisplayClass5_0.b__6()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.InnerInvoke()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.Execute()
+--- End of inner exception stack trace ---
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(TimeSpan timeout)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.InternalProcessRecord()
+---> (Inner Exception #0) <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: ... [The description has been cut, review the attached email for details]
+
+Thank you!
+
+Scottie Taylor
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0MNMZX:ref","RE: Netwrix Support Ticket #437260 - ref:_00D7091pB._500Q000MNMZX:ref - 00437260 - Multiple issues with new implementation","steve.young@bexar.org","Young, Steve","techsupport@netwrix.com","","","true","2025-03-11T13:20:51.000Z","true"
+"02sQk00000MTHH3IAP","500Qk00000MNMZXIA5","2025-03-11T15:20:06.000Z","2025-03-11T15:20:06.000Z","Hello Steve,
+
+I have provided my previous response below that addresses the LDAP Data Collector configuration error in the case that it wasn't received.
+-------------------------------------------------------------------------------------------------------------------------------------
+Hi Steve,
+
+Thank you for the updated information. I will include this in the ticket. That portion of the documentation is referring to the CN that exist within Systems path on the DC itself. Running the job to scan the Password Settings Container only requires read permissions but accessing that host requires the Domain Admin group for the data collector since that's what's being leveraged to perform the query which is why the credential is failing to connect to the server when the job has run as well as when you attempt to access the query configurations. 
+
+Thank you,
+----------------------------------------------------------------------------------------------------------------------------------
+This ticket's primary issue was addressing the AD_WeakPasswords job's dictionary issues, which have been resolved, and the LDAP Data Collector configuration error for the AD_PasswordsPolicies job is resolved with a connection profile that is in the Domain Admins group. 
+
+To address the additional issues that are a result of a new implementation I highly recommend reaching out to you account owner for a full health check with our professional services team as they are the ones that perform health checks as well as implementation. 
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+
+
+--------------- Original Message ---------------
+From: Young, Steve [steve.young@bexar.org]
+Sent: 3/11/2025 8:20 AM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437260 - ref:_00D7091pB._500Q000MNMZX:ref - 00437260 - Multiple issues with new implementation
+
+ref:_00D7091pB._500Q000MNMZX:ref
+
+
+
+I still have the LDAP error and blank reports under the Group Policy job.
+
+ 
+
+The issue I have working on the problems are I have a very limited window to do tests. The FileSystem job from Friday is still running, one server on the FSAC system scan takes over 60hrs and a couple servers on the SEEK System Scans take over 40hrs, when it’s not crashing.
+
+ 
+
+So until this job finishes, I won’t be able to make any test runs for the Group Policy job.
+
+ 
+
+(todays console error)
+
+
+
+ 
+
+ 
+
+ 
+
+Thanks
+
+ 
+
+
+	
+		
+			
+			
+			
+			
+			Steve Young | Technical Lead – Systems Engineering/Database/IAM
+
+			Bexar County Information Technology
+			126 East Nueva | San Antonio, TX 78204
+			210.557.7354
+
+			steve.young@bexar.org | www.bexar.org
+			Accountability | Respect | Integrity | Teamwork | Excellence
+			
+		
+	
+
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 10, 2025 7:09 PM
+To: Young, Steve (BCIT) <Steve.Young@bexar.org>
+Subject: RE: 00437260 - Multiple issues with new implementation
+
+
+
+ 
+
+NOTICE: 
+
+This email originated from an EXTERNAL email address outside of bexar.org. Please use caution when clicking links or opening attachments from email senders that you do not know.
+
+If you feel it is suspicious, please forward this email to BCERT@bexar.org or click the Report button in Outlook
+
+
+
+
+
+Hello Steve,
+
+I wanted to check in regarding your support ticket 00437260. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437260
+Ticket Subject: Multiple issues with new implementation
+Ticket Details: Error trying to run job 4.Group Policy - PrepareTask for DC 'LDAP' for task 'Fine-grained Policies' failed: Unspecified error
+
+All reports under that group are blank.
+
+Job AD_WeakPasswords fails : Could not update dictionary: System.AggregateException: One or more errors occurred. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: The underlying connection was closed: An unexpected error occurred on a send. ---> <a href='https://System.IO' target='_blank'>System.IO</a>.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.CallProcessAuthentication(Object state)
+at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.ProcessAuthentication(LazyAsyncResult result)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.PooledStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.ConnectStream.WriteHeaders(Boolean async)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net' target='_blank'>System.Net</a>.HttpWebRequest.GetResponse()
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.DownloadDictionary(CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.UpdateDictionary(String finalPath, CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.c__DisplayClass5_0.b__6()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.InnerInvoke()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.Execute()
+--- End of inner exception stack trace ---
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(TimeSpan timeout)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.InternalProcessRecord()
+---> (Inner Exception #0) <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: ... [The description has been cut, review the attached email for details]
+
+Thank you!
+
+Scottie Taylor
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MNMZX:ref","RE: Netwrix Support Ticket #437260 -  - 00437260 - Multiple issues with new implementation    [ ref:!00D70091pB.!500Qk0MNMZX:ref ]","techsupport@netwrix.com","Netwrix Support","steve.young@bexar.org","","","true","2025-03-11T15:20:04.000Z","true"
+"02sQk00000MhFjvIAF","500Qk00000MNMZXIA5","2025-03-17T17:17:15.000Z","2025-03-17T17:28:10.000Z","ref:_00D7091pB._500Q000MNMZX:ref
+
+I still have the issues with the Group Policy job running the password feature.
+
+Since we're not making any progress, lets go ahead and close this ticket until further notice.
+
+
+Thanks
+
+[cid:image001.jpg@01DB9736.7E890A20]
+Steve Young | Technical Lead - Systems Engineering/Database/IAM
+Bexar County Information Technology
+126 East Nueva | San Antonio, TX 78204
+210.557.7354
+steve.young@bexar.org<mailto:steve.young@bexar.org> | www.bexar.org<http://www.bexar.org/>
+Accountability | Respect | Integrity | Teamwork | Excellence
+
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:39 AM
+To: Young, Steve (BCIT) <Steve.Young@bexar.org>
+Subject: RE: 00437260 - Multiple issues with new implementation
+
+NOTICE:
+This email originated from an EXTERNAL email address outside of bexar.org. Please use caution when clicking links or opening attachments from email senders that you do not know.
+If you feel it is suspicious, please forward this email to BCERT@bexar.org<mailto:BCERT@bexar.org> or click the Report button in Outlook
+________________________________
+Hello Steve,
+
+I wanted to check in regarding your support ticket 00437260. We haven't heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you're still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We're here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437260
+Ticket Subject: Multiple issues with new implementation
+Ticket Details: Error trying to run job 4.Group Policy - PrepareTask for DC 'LDAP' for task 'Fine-grained Policies' failed: Unspecified error
+
+All reports under that group are blank.
+
+Job AD_WeakPasswords fails : Could not update dictionary: System.AggregateException: One or more errors occurred. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: The underlying connection was closed: An unexpected error occurred on a send. ---> <a href='https://System.IO' target='_blank'>System.IO</a>.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.CallProcessAuthentication(Object state)
+at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.ProcessAuthentication(LazyAsyncResult result)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.PooledStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.ConnectStream.WriteHeaders(Boolean async)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net' target='_blank'>System.Net</a>.HttpWebRequest.GetResponse()
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.DownloadDictionary(CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.UpdateDictionary(String finalPath, CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.c__DisplayClass5_0.b__6()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.InnerInvoke()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.Execute()
+--- End of inner exception stack trace ---
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(TimeSpan timeout)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.InternalProcessRecord()
+---> (Inner Exception #0) <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: ... [The description has been cut, review the attached email for details]
+
+Thank you!
+
+Scottie Taylor
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com<https://www.netwrix.com/>
+
+ref:!00D70091pB.!500Qk0MNMZX:ref","RE: Netwrix Support Ticket #437260 - ref:_00D7091pB._500Q000MNMZX:ref - 00437260 - Multiple issues with new implementation","steve.young@bexar.org","Young, Steve","techsupport@netwrix.com","","","true","2025-03-17T17:17:05.000Z","true"
+"02sQk00000MiA3pIAF","500Qk00000MNMZXIA5","2025-03-17T22:16:59.000Z","2025-03-17T22:16:59.000Z","Hello Steve,
+
+I am glad that we were able to get your issue resolved. The following is a summary of the ticket for your records.
+
+Symptom
+
+Error trying to run job 4.Group Policy - PrepareTask for DC 'LDAP' for task 'Fine-grained Policies' failed: Unspecified error
+
+All reports under that group are blank.
+
+Job AD_WeakPasswords fails : Could not update dictionary: System.AggregateException: One or more errors occurred. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: The underlying connection was closed: An unexpected error occurred on a send. ---> <a href='https://System.IO' target='_blank'>System.IO</a>.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.CallProcessAuthentication(Object state)
+at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.ProcessAuthentication(LazyAsyncResult result)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.PooledStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.ConnectStream.WriteHeaders(Boolean async)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net' target='_blank'>System.Net</a>.HttpWebRequest.GetResponse()
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.DownloadDictionary(CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.UpdateDictionary(String finalPath, CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.c__DisplayClass5_0.b__6()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.InnerInvoke()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.Execute()
+--- End of inner exception stack trace ---
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(TimeSpan timeout)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.InternalProcessRecord()
+---> (Inner Exception #0) <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: ... [The description has been cut, review the attached email for details]
+
+Cause
+
+No internet connection on the application server for dictionary update. Requires domain admin privileges to successfully configure and run the AD_PasswordsPolicies since this uses the LDAP Data Collector and it targets a DC.
+
+Resolution
+
+Manually downloaded the dictionary for the AD_WeakPasswords job to resolve the error below:
+
+ob AD_WeakPasswords fails : Could not update dictionary: System.AggregateException: One or more errors occurred. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: The underlying connection was closed: An unexpected error occurred on a send.
+
+Utilizing a connection profile with a credential that has domain admin privileges to resolve the ""Can't connect to the (Named DC)"" errors presented in the AD_PasswordsPolicies.
+
+
+Following this email, you will receive an automated confirmation that the case is closed, along with the ability to re-open the case if any related errors return. In addition, you will also receive a separate email with a survey where you can let us know how we did. Feel free to leave any feedback via the survey link!
+
+Thank you,
+
+Scottie Taylor
+Technical Support Engineer
+____________________________
+Cybersecurity That Works For You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+
+--------------- Original Message ---------------
+From: Young, Steve [steve.young@bexar.org]
+Sent: 3/17/2025 12:17 PM
+To: techsupport@netwrix.com
+Subject: RE: Netwrix Support Ticket #437260 - ref:_00D7091pB._500Q000MNMZX:ref - 00437260 - Multiple issues with new implementation
+
+ref:_00D7091pB._500Q000MNMZX:ref
+
+
+
+I still have the issues with the Group Policy job running the password feature.
+
+ 
+
+Since we’re not making any progress, lets go ahead and close this ticket until further notice.
+
+ 
+
+ 
+
+Thanks
+
+ 
+
+
+	
+		
+			
+			
+			
+			
+			Steve Young | Technical Lead – Systems Engineering/Database/IAM
+
+			Bexar County Information Technology
+			126 East Nueva | San Antonio, TX 78204
+			210.557.7354
+
+			steve.young@bexar.org | www.bexar.org
+			Accountability | Respect | Integrity | Teamwork | Excellence
+			
+		
+	
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+From: Netwrix Support <techsupport@netwrix.com>
+Sent: Monday, March 17, 2025 10:39 AM
+To: Young, Steve (BCIT) <Steve.Young@bexar.org>
+Subject: RE: 00437260 - Multiple issues with new implementation
+
+
+
+ 
+
+NOTICE: 
+
+This email originated from an EXTERNAL email address outside of bexar.org. Please use caution when clicking links or opening attachments from email senders that you do not know.
+
+If you feel it is suspicious, please forward this email to BCERT@bexar.org or click the Report button in Outlook
+
+
+
+
+
+Hello Steve,
+
+I wanted to check in regarding your support ticket 00437260. We haven’t heard from you in a while, and I just wanted to see if you still need assistance with this issue.
+
+If you’re still experiencing problems or have any updates to share, please let me know. If the issue has been resolved, I can go ahead and close the ticket on my end.
+
+Please feel free to reply to this email with any updates or questions. We’re here to help you get the most out of your Netwrix products.
+
+Ticket Number: 00437260
+Ticket Subject: Multiple issues with new implementation
+Ticket Details: Error trying to run job 4.Group Policy - PrepareTask for DC 'LDAP' for task 'Fine-grained Policies' failed: Unspecified error
+
+All reports under that group are blank.
+
+Job AD_WeakPasswords fails : Could not update dictionary: System.AggregateException: One or more errors occurred. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: The underlying connection was closed: An unexpected error occurred on a send. ---> <a href='https://System.IO' target='_blank'>System.IO</a>.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host. ---> <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net.Sockets.NetworkStream.Read' target='_blank'>System.Net.Sockets.NetworkStream.Read</a>(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.FixedSizeReader.ReadPacket(Byte[] buffer, Int32 offset, Int32 count)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartReceiveBlob(Byte[] buffer, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ForceAuthentication(Boolean receiveFirst, Byte[] buffer, AsyncProtocolRequest asyncRequest, Boolean renegotiation)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.Security.SslState.ProcessAuthentication(LazyAsyncResult lazyResult)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.CallProcessAuthentication(Object state)
+at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+at <a href='https://System.Threading.ExecutionContext.Run' target='_blank'>System.Threading.ExecutionContext.Run</a>(ExecutionContext executionContext, ContextCallback callback, Object state)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.ProcessAuthentication(LazyAsyncResult result)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.TlsStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.PooledStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+at <a href='https://System.Net' target='_blank'>System.Net</a>.ConnectStream.WriteHeaders(Boolean async)
+--- End of inner exception stack trace ---
+at <a href='https://System.Net' target='_blank'>System.Net</a>.HttpWebRequest.GetResponse()
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.DownloadDictionary(CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.DictionaryUpdater.UpdateDictionary(String finalPath, CancellationToken cancelToken)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.c__DisplayClass5_0.b__6()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.InnerInvoke()
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.Execute()
+--- End of inner exception stack trace ---
+at <a href='https://System.Threading.Tasks.Task' target='_blank'>System.Threading.Tasks.Task</a>.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+at <a href='https://System.Threading.Tasks.Task.Wait' target='_blank'>System.Threading.Tasks.Task.Wait</a>(TimeSpan timeout)
+at Stealthbits.StealthAUDIT.DataCollectors.PasswordSecurity.Tasks.WeakPasswordsScanTask.InternalProcessRecord()
+---> (Inner Exception #0) <a href='https://System.Net' target='_blank'>System.Net</a>.WebException: ... [The description has been cut, review the attached email for details]
+
+Thank you!
+
+Scottie Taylor
+Technical Support Engineer
+____________________ _________
+Cybersecurity That Works for You
+
+6160 Warren Parkway, Suite 100, Frisco, TX 75034
+www.netwrix.com
+
+ref:!00D70091pB.!500Qk0MNMZX:ref","RE: Netwrix Support Ticket #437260 -  - 00437260 - Multiple issues with new implementation    [ ref:!00D70091pB.!500Qk0MNMZX:ref ]","techsupport@netwrix.com","Netwrix Support","steve.young@bexar.org","","","true","2025-03-17T22:16:58.000Z","true"

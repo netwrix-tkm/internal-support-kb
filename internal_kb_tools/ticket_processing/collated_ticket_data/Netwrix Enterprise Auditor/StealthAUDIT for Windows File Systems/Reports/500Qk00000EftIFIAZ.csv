@@ -1,0 +1,34 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EftIFIAZ","00418572","Support Ticket","The Permission Change scan job in the Report section of STEALTHAudit","Hello Netwrix Support, 
+I am requesting that the Permission Change scan job in the report section of the Filesystem in STEALTHBits Audit be redone or formatted. The job keeps failing due to the following error “Unexpected exception: Error while publishing report. Exiting with message: Sequence contains more than one matching element”. 
+Due to this error, I am unable to view any new changes under the following selection STEALTHAudit reports. Home> Filesystem> Reports> Activity> Forensics> Permission Change. It will only show information from 09/2021. 
+Please let me know if you have any additional questions.  
+
+Respectfully,
+
+James Monteria | Network Security Specialist | Virginia Lottery 
+600 East Main Street, Richmond, VA 23219 
+PH: +1 804-692-7221 
+<a href='https://JMonteria@VALOTTERY.COM' target='_blank'>JMonteria@VALOTTERY.COM</a>","","","","Issue
+
+The Permission Change scan job in the Report section of STEALTHAudit
+
+Hello Netwrix Support,
+I am requesting that the Permission Change scan job in the report section of the Filesystem in STEALTHBits Audit be redone or formatted. The job keeps failing due to the following error “Unexpected exception: Error while publishing report. Exiting with message: Sequence contains more than one matching element”.
+Due to this error, I am unable to view any new changes under the following selection STEALTHAudit reports. Home> Filesystem> Reports> Activity> Forensics> Permission Change. It will only show information from 09/2021.
+Please let me know if you have any additional questions.
+
+Cause
+
+Discovered a bug within the reports element configuration on NEA version 11.6.0.49.
+
+If the display type is set to chart the report element will not be saved even if you confirm changes and select finish.
+
+Resolution
+
+
+Resolved this issue by changing the display type from chart to grid and saving the information. Once this change was made we were able to run the FS_PermissionChanges report again and successfully generate the report.
+
+I also attempted to reproduce this bug within my own lab on NEA version 11.6.0.89 and was unsuccessful in reproducing the error with the chart enabled as my display type with the report configuration.
+
+I recommended upgrading from NEA version 11.6.0.49 to a later version of NEA to possibly resolve this bug.","Guidance","Scottie Taylor","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Reports","11.6","","3.2","Closed - Resolved","Virginia Lottery","James Monteria","2024-08-20T13:06:40.000Z","2024-08-23T18:37:19.000Z"

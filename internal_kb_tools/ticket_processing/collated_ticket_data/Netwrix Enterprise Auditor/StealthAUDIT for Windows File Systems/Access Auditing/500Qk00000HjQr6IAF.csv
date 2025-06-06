@@ -1,0 +1,37 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HjQr6IAF","00425730","Support Ticket","Bulk import is throwing error","A single Bulk import job is returning these error message:
+""SQL logic error unknown database strucmap""","run the bulk import job","Issues identified:
+The latest bulk import didn't even try to start
+-It looks like this is because the FSAA system scan failed to complete. 
+
+Most recent FSAA System Scan failed after only a couple hours
+-previous scans took a couple days
+-scan time has been increasing as depth has increased, as expected
+-currently set to 8 levels deep
+Errors identified:
+Bulk import error:
+""Host is offline""
+-This is expected for a server that appears to have been decommissioned.
+
+Error in Application log on Netwrix Server:
+.NET runtime ""unhandled exception"" error with StealthAUDIT.exe
+-This appears to be what killed the most recent scan
+
+FSAA System Scan job error:
+""Error 110 parsing tags the system cannot open the device or files specified"" - Path to file
+-This is a common error when scanning related to file access at the time of the scan
+Changes made:
+Bulk import:
+-disabled skipping over hosts that don't respond to ping
+-enabled uploading partial scans
+--This way, the bulk import should run even if the FSAA System Scan fails to fully complete
+
+This is unrelated to the FSAA scan issues, but we did make a change in Netwrix Activity Monitor.
+-Changed the monitored Hosts to report their host name as FQND
+-This is important for when you enable FSAC (File Activity) auditing","waiting to hear back from the client
+
+request logs from job after setting to debug","Ran bulk import repair on the host having the problem.
+
+FSAA Bulk import job > Configure > Query > Query properties > Configure > Maintenance > Repair
+
+That seemed to fix it.","Root Cause Unknown","Joshua Sexton","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.6","","19.1","Closed - Resolved","Sierra Nevada Corporation","Kellen Carl","2024-10-31T18:59:03.000Z","2024-11-19T22:05:02.000Z"

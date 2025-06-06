@@ -1,0 +1,55 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CG4s2IAD","00412891","Support Ticket","Host Management Query Not Running","Hello Team,
+
+Query defined in Host Management section does not show any host list, it displays as """".
+Request you to refer attached screenshot for same and suggest further.
+
+Regards,
+Vinay","","What We've Learned Updated: Original issue was with empty hostlist - host list appeared empty due to one of the custom jobs created by Alex Buchta performing clean up operation for hostlists, Alex Buchta advised Vinay that this is an issue with job schedule and customer should have adjusted that.
+
+Customer advised that issue still not resolved and showed troubled hostlist ""AC - DC"". We've reviewed the hostlist you AD - DC and a lot of hosts were missing data and were in either ""in queue"" or ""in progress"" state, after refreshing all of the hosts it seems like query started populating the data.
+
+Customer took few days to test and advised that issue is still not resolved, pointing out following:
+
+""Below is the host count based on region & OU structure, it should match to the various host query output however its not matching.
+APAC 150
+APAC-Singapore 2
+Applications 39
+Domain Controllers 110
+EMEA 118
+EMEA-London 1
+EMEA-NHBR 16
+In Azure 953
+INFR 7
+LTAM 23
+NTAM 16
+NTAM-Raleigh 1
+NTAM-Washington 6""
+
+On meeting with customer to address last issue we're tried to launch troubled hostlist query manually to see if it's picking up any data, hostlist query failed to launch due to permissions issue.
+
+
+Customer is running full ADI scans, aside of custom attributes warnings, ADI job finishes fine.
+
+On meeting we've reviewed troubled hostlists:
+1. GRM_AD_APPLICATIONS hostlist is working as intended, Vinay was comparing incorrect OU to hostlist query results, we've compared host count to AD host count for target OU, it matches.
+
+2. GRM_AD_AZURE - doesn't have hosts, on attempt to run query manually - insufficient permissions error - Vinay will speak to infra team to resolve this.
+
+3. GRM_AD_EMEA - correct number of hosts, but no details for collected hosts, disabled clean up job and requested to run query manually, waiting for results.
+
+So far the only issue left that might be on our side is hostlist that collects hostnames and count, but doesn't collect details - example - GRM_AD_EMEA hostlist, will clarify and escalate if this is still an issue after manual scan.","The error when accessing host list is appearing inconsistently. Vinay is to confirm the timing for when this occurs.
+
+This may be related to the host list tables being updated by custom SQL and the SA/NEA console has not updated/refreshed correctly.
+
+Disabled clean up job and requested to run query manually, waiting for results.
+
+So far the only issue left that might be on our side is hostlist that collects hostnames and count, but doesn't collect details - example - GRM_AD_EMEA hostlist, will clarify and escalate if this is still an issue after manual scan.","Symptom
+Query defined in Host Management section does not show any host list, it displays as """".
+
+Cause
+We reviewed the results and found the AD_Scan transaction was allegedly blocked by the scheduled SQL database backup and the same time the scan was running.
+
+
+Resolution
+Scheduling AD_Scan to a different time so SQL backup doesn't interfere.","Third-party system failure","Damir Akhmatshin","Error","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Data Collection","11.6","","232.0","Closed - Resolved","GroupM","Vinay Singh","2024-06-25T09:18:32.000Z","2025-02-12T09:00:34.000Z"

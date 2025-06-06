@@ -1,0 +1,38 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000IkqdxIAB","00428004","Support Ticket","AD_StaleUsers job and report","Customer needs AD_StaleUsers job report on stale users that have not logged on for the last 30 days instead of the pre-configured 60.","","""AD_StaleUsers"" job > ""User Details"" analysis SQL query is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD. 
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table. 
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+To summarize, in order to change criteria for the data that gets written to the ""AD_StaleUsers"" job report, perform these steps:
+
+1. Navigate to "".Active Directory Inventory"" solution > ""3-AD_Exceptions"" job > ""Analysis"" > select ""Stale Users"" analysis. 
+
+2. Select ""Analysis Configuration"" 
+
+3. Scroll the variables list until you find @STALE_THRESHOLD
+
+4. Change the value from 60 to 30 - this will make ""3-AD_Exceptions"" job treat users who haven`t logged on for more than or equal to 30 days as stale users (instead of default 60 days). 
+
+5. Let the "".Active Directory Inventory"" and ""Active Directory"" solutions run and complete.
+Afterward, inspect the ""AD_StaleUsers"" job report and let me know the results.","Support provided customer with instructions to modify the Stale users` threshold. 
+Customer will reply back on Monday,  2nd of December, with results.","""AD_StaleUsers"" job > ""User Details"" analysis SQL query is joining information from these two tables:
+ADInventory_UsersView (Created by ""1-AD_Scan"" job)
+ADInventory_ExceptionsView (Created by ""3-AD_Exceptions"" job)
+
+ADInventory_ExceptionsView table is generated based on several analysis tasks, one of which is called ""Stale Users"".
+This is the source of the 60 days criteria as this analysis task`s query finds stale users based on parameter @STALE_THRESHOLD.
+
+By leveraging ""Stale Users"" task, the ""3-AD_Exceptions"" job puts users whom last logon was more than 60 days (by default) into the ADInventory_ExceptionsView table.
+These users are then cross checked with the ADInventory_UsersView (Created by ""1-AD_Scan"" job) table.
+
+As such, the number of days since last login to be considered stale (by default 60 days) can be customized within the .Active Directory Inventory > 3-AD_Exceptions job's Stale Users analysis task.
+
+This information was added to the help center article as a note as well:
+AD_StaleUsers Job
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Solutions/ActiveDirectory/Users/AD_StaleUsers.htm","Inaccurate documentation","Artem Naskal","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Database","11.6","","9.1","Closed - Resolved","Assystem Energy & Infrastructure Limited","James Allen","2024-11-25T09:53:46.000Z","2024-12-04T13:07:59.000Z"

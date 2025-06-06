@@ -1,0 +1,12 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HZVyTIAX","00425267","Support Ticket","Ongoing Merge Statement with Foreign Constraint Error","[C:18059] Unable to perform bulk import Error: The MERGE statement conflicted with the FOREIGN KEY constraint ""FK_SA_SPAA_Trustees_SiteCollectionId"". The conflict occurred in database ""StealthauditDB"", table ""dbo.SA_SPAA_Resources"".
+The statement has been terminated. Needs sent to R&D Eng for escalation","1. Run SPAA scan
+2. Run SPAA Bulk Import
+3. Get error","**SPAC Scan kicked off 3/3 is still running at 20hrs in. Previously, was failing at 24min.**
+
+- Found a DLL error from our last HF patch on 1/30
+--- It looks like instructions to resolve this were sent out 1/31 but no response.
+--- We resolved this issue by unblocking all of the SharePoint DLLs in the PrivateAssemblies folder with the date of 01/30/2025 and then kicked off a new SPAC System Scan.
+
+- Investigated the SP Bulk Import error (Foreign Key constraint) with development and found that the USN was much higher than the expected value. 
+--- A fix for this is expected from development some time next week.","Overall issue seems resolved. There are some errors on individual resources, and I've requested logs to better organize and resolve.","Dev developed a code fix and we implemented by upgrading to NEA v11.6.0.138. We then reset the USN value to 0 on the SPAA_Hosts table for the SPO host before kicking off the scans.","Product defect","Tay Caliguiri","Error","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Access Auditing","11.6","","161.0","Closed - Resolved","American Fidelity Assurance Company","Calvin Minnick","2024-10-28T16:12:12.000Z","2025-04-07T16:21:27.000Z"

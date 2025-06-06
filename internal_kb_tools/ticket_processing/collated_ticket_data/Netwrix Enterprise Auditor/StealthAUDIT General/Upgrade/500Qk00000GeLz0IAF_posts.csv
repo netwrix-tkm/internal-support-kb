@@ -1,0 +1,46 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PdNdcKAF","500Qk00000GeLz0IAF","TextPost","0054u000007oss5AAA","2024-10-29T14:36:20.000Z","What We've Learned Updated: client can't install zoom so no remote control
+on teams
+-client's admin block remote control
+
+talking the client through the preflight
+Didn't take screen shots but recorded the meeting in Teams
+
+does have azure scheduled job that will need renamed
+
+1 FS proxy:
+Nasune (10)
+NetAPP Filer (1)
+Windows Filer (blank)
+AIC: port 481
+
+cert still good but will need configured
+-previously used IIS
+-installed on D:
+--D:inetpupwwwrootStealthAUDIT Compliance","","","","0054u000007oss5AAA","2024-10-29T14:36:20.000Z"
+"0D5Qk00000PdNddKAF","500Qk00000GeLz0IAF","TextPost","0054u000007oss5AAA","2024-10-29T14:36:20.000Z","Next Steps Updated: upgrade NEA
+meeting is scheduled","","","","0054u000007oss5AAA","2024-10-29T14:36:20.000Z"
+"0D5Qk00000Pjhr3KAB","500Qk00000GeLz0IAF","TextPost","0054u000007oss5AAA","2024-10-30T17:47:28.000Z","<p>Zoom meeting (11:30 AM EDT)</p><p>will be unable to request control</p><p>plan for meeting</p><p>upgrade NEA and NAM</p><p>-only licensed for File system</p><p> </p><p>taking snapshot of application server and proxy server</p><p> </p><p>downloading latest installers</p><p>-NEA</p><p>-FSproxy</p><p>-AIC</p><p>-NAM</p><p> </p><p>uninstalling NEA 11.5</p><p> </p><p>client is having trouble finding service account password</p><p>-svc_netwrix</p><p> </p><p>installing NEA 11.6.115</p><p> </p><p>while waiting, copying FSproxy installer to proxy server</p><p>npnetwrixpxy101</p><p>uninstalling proxy server</p><p> </p><p>back to NEA</p><p>replaced old azure scheduled job with intra job</p><p>ran the AD inverntory scan</p><p>rant the FSAC scema job</p><p>-redisabled it</p><p> </p><p>uninstalling and reinstalling AIC</p><p>-no longer IIS</p><p>-installed into D:</p><p> </p><p>updating agents in NAM</p><p> </p><p>checking monitored hosts</p><p>Nasuni servers all throwing the same error:</p><p> </p><p>10/30/2024 9:37:16 AM	Error	SYSLOG: UDP://NPNETWRIXSD101:10000 - npnfiler102: QuerySysInfo failed. <b>An item with the same key has already been added</b>. npnfiler102: UpdateVolumeIds failed. An item with the same key has already been added. npnfiler102: UpdateAccessPoints failed. An item with the same key has already been added. npnfiler102: SetupAmqpDestinationSettings failed. An item with the same key has already been added.</p><p> </p><p>trying to work with the clients &quot;storage guy&quot;</p><p>he can&#39;t join the call but is trying tohelp over the client&#39;s teams</p><p> </p><p>recreating keys on nasuni didn&#39;t help</p><p>new keys with a new name didn&#39;t help either</p><p> </p><p>rolling back to snapshot</p><p>rolling back proxy as well</p><p> </p><p>installing NEA again</p><p> </p><p>Tay was on this call and already talking to Dev about it</p><p>they are having her escalate it</p><p>she will use other ticket, 00423204 for escalation</p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p>","","","","0054u000007oss5AAA","2024-10-30T17:47:28.000Z"
+"0D5Qk00000PjkqMKAR","500Qk00000GeLz0IAF","TextPost","0054u000007oss5AAA","2024-10-30T18:40:37.000Z","What We've Learned Updated: upgraded NEA, and AIC, but upgrading NAM broke their Nasumi sources in NAM
+getting this error:
+
+10/30/2024 9:37:16 AM Error SYSLOG: UDP://NPNETWRIXSD101:10000 - npnfiler102: QuerySysInfo failed. An item with the same key has already been added. npnfiler102: UpdateVolumeIds failed. An item with the same key has already been added. npnfiler102: UpdateAccessPoints failed. An item with the same key has already been added. npnfiler102: SetupAmqpDestinationSettings failed. An item with the same key has already been added.
+
+tried new API keys
+-same error
+
+Tay talked with Dev and they requested escalation
+She took ownership of other ticket (the one for just upgrading NAM - 00423204)
+escalating that ticket
+
+rolled back client to revert NAM changes
+had to then re-upgrade NAM because we already ran the new FS create schema job
+re-upgraded the AIC
+
+Also rolled back the proxyserver because of updated NAM agent that needed reverted
+re-upgraded FSproxy service
+
+confirmed that NAM was working
+ NAM is back to version 6","","","","0054u000007oss5AAA","2024-10-30T18:40:37.000Z"
+"0D5Qk00000QaUprKAF","500Qk00000GeLz0IAF","TextPost","0054u000007oss5AAA","2024-11-11T15:23:51.000Z","Next Steps Updated: sent 3 emails trying to confirm ticket is good to close
+failed to get a response, so I'm closing the ticket","","","","0054u000007oss5AAA","2024-11-11T15:23:51.000Z"

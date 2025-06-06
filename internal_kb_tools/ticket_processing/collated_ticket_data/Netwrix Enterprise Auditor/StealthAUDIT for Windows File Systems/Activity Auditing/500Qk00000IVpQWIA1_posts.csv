@@ -1,0 +1,35 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000RFKmOKAX","500Qk00000IVpQWIA1","TextPost","005Qk000002b4gDIAQ","2024-11-19T15:21:29.000Z","Description: 1_FSAC_SystemScans job is failing for FC02 file server as well as for other file servers with the following error:
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Unable to start scan: GetSessions failed with code 0x80004005
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.ActivityScanTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute()","","","","005Qk000002b4gDIAQ","2024-11-19T15:21:29.000Z"
+"0D5Qk00000RFQWhKAP","500Qk00000IVpQWIA1","TextPost","005Qk000002b4gDIAQ","2024-11-19T15:49:23.000Z","What We've Learned Updated: Scanned host: 
+Windows File server FC02 
+
+FSAC scan is failing with:
+Stealthbits.StealthAUDIT.DataCollectors.FSAA.FSAAException: Unable to start scan: GetSessions failed with code 0x80004005
+   at Stealthbits.StealthAUDIT.DataCollectors.FSAA.ActivityScanTask.InternalProcessRecord()
+   at Stealthbits.StealthAUDIT.DataCollectors.Tasks.Task.StartExecute
+
+query settings:
+Applet launch mechanism ""MS Task Scheduler"" 
+
+Scan server selection:
+Automatic
+
+Checked both FC02 and Stealth Audit server for lingering StealthauditRPC process - there is no such process on either of these machines. 
+
+As such, it seems like the issue might be caused by the lack of permissions for the File System Applet mode scan on the FC02.","","","","005Qk000002b4gDIAQ","2024-11-19T15:49:23.000Z"
+"0D5Qk00000RFmYJKA1","500Qk00000IVpQWIA1","TextPost","005Qk000002b4gDIAQ","2024-11-19T16:19:02.000Z","Next Steps Updated: Support asked customer to do the following:
+please, review this article and make sure that the same permissions are provided to the account specified in Connection Profile that is used by 1_FSAC_SystemScans job:
+Applet Mode Permissions
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePermissions.htm
+The Connection Profile should be assigned under the FileSystem > 0.Collection job’s Properties window on the Connection tab.
+
+To continue, very that the following port requirements are met between the StealthAudit Server and the FC02 server:
+Applet Mode Port Requirements
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem/AppletModePorts.htm
+
+As a workaround to the issue at hand I would also suggest switching the ""Scan Server selection"" to ""Local server"". You can set this setting by navigating down this path:
+1_FSAC_SystemScans> Configure> Queries > Right-Click Activity Scan Query > select properties > Click ""Configure"" > set Scan Server selection to Local Server 
+Run the 1_FSAC_SystemScans after changing this setting to test if Local Server scan option is working correctly for the FC02 server and let me know the results.","","","","005Qk000002b4gDIAQ","2024-11-19T16:19:02.000Z"

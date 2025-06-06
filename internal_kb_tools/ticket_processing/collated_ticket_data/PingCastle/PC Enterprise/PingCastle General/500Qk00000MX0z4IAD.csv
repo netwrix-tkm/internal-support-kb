@@ -1,0 +1,43 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MX0z4IAD","00437607","Support Ticket","Issues with Stale Objects rule (False Positive) for one of the domain.","The stale object rule ""Number of computers without password change for at least 3 months: 14"" is incorrectly flagging computer accounts as vulnerable, despite their passwords having been recently changed. Additionally, some computer accounts display future timestamps under the last used attribute.","Run a PingCastle security scan, specifically checking the stale object rules.
+Observe that the rule ""Number of computers without password change for at least 3 months"" flags 14 computer accounts.
+Verify that these accounts have recently updated their passwords.
+Check the last used timestamps for these accounts and note that some show future values.
+Attempt to validate the pwdLastSet and lastLogonTimestamp attributes in Active Directory.","PingCastle relies on the pwdLastSet and lastLogonTimestamp attributes to determine password change status.
+PingCastle has built-in validation for future timestamps but may not be handling certain cases correctly.
+Potential Causes:
+Future Timestamps in AD – If timestamps are incorrect, PingCastle may misinterpret them.
+Replication Delays – Out-of-sync domain controllers might be providing stale data.
+Timezone or System Clock Issues – Inconsistent time settings on machines or domain controllers could skew timestamps.
+Internal Logic Handling in PingCastle – Some scenarios might not be covered by its validation logic.","Check AD Attributes for Affected Computers:
+Run the following PowerShell command to confirm pwdLastSet and lastLogonTimestamp values:
+Get-ADComputer -Filter * -Properties Name, pwdLastSet, lastLogonTimestamp | 
+Where-Object { $_.Name -in @(""Computer1"", ""Computer2"", ...) } | 
+Select-Object Name, pwdLastSet, lastLogonTimestamp
+Verify Domain Controller Replication:
+Run:
+repadmin /showrepl
+Ensure replication is functioning properly and data is consistent across DCs.
+Test a Manual Password Reset for One Affected Computer:
+If resetting the password updates the timestamp correctly, replication or time drift may be the root cause.
+Check Domain Controller Time Synchronization:
+Run:
+w32tm /query /status
+Identify any inconsistencies in time settings across DCs.","Check AD Attributes for Affected Computers:
+Run the following PowerShell command to verify timestamps:
+Get-ADComputer -Filter * -Properties Name, pwdLastSet, lastLogonTimestamp |
+Where-Object { $_.Name -in @(""Computer1"", ""Computer2"", ...) } |
+Select-Object Name, pwdLastSet, lastLogonTimestamp
+Verify Domain Controller Replication:
+Ensure replication is functioning correctly across all DCs:
+repadmin /showrepl
+Test a Manual Password Reset:
+Reset the password for one of the affected computers.
+Check if the timestamps update correctly. If they do, the issue may be replication delays or time drift.
+Check Domain Controller Time Synchronization:
+Run the following command to check for time inconsistencies:
+w32tm /query /status
+If necessary, synchronize time settings across domain controllers.
+Review PingCastle's Handling of Timestamps:
+Validate whether PingCastle is correctly processing timestamps and handling future dates.
+If needed, report a potential bug or logic flaw in the tool.","","Iulia Apatachioaei","Unexpected Behavior","PingCastle","PC Enterprise","PingCastle General","3.2.0.1","","13.0","Closed - Resolved","Eurofins GSC IT Poland Sp. z.o.o.","Korepu Akhil Kumar","2025-03-04T09:22:33.000Z","2025-03-17T09:42:51.000Z"

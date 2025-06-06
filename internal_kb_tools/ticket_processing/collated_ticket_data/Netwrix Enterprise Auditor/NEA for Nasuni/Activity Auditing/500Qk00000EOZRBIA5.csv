@@ -1,0 +1,14 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EOZRBIA5","00418009","Support Ticket","FSAC Scan Job Error","Hi team
+
+I have recently created a FSAC scan job that scans an Activity Monitor agent to activity data on our Isilon filesystem.
+
+There are a number of Access Zones on our Isilon that send activity events to our Activity Monitor agent.  The scan works as expected for 10 out of 11 Access Zones however, one of them fails and this error is geneerated:
+
+Error during processing:  Could not open registry key SYSTEMCurrentControlSetServicesSBTLoggingParameters for reading: The system cannot find the file specified (2); local: False
+
+Please assist.
+
+Thanks
+Mark","","","","According to the article specified - the error ""Could not open registry key SYSTEMCurrentControlSetServicesSBTLoggingParameters for reading: 
+The system cannot find the file specified (2); local: False"" is a symptom of the fact that Netwrix Activity Monitor agents are not installed in the affected hosts. But as a first step, I would add a point to double-check the host details page in StealthAUDIT - Host Management. We need to check that ""OS Name"", and ""OS Type"" are populated properly.","Incorrect configuration: audit settings","Ilia Kudashev","","Netwrix Enterprise Auditor","NEA for Nasuni","Activity Auditing","11.5","","0.2","Closed - Resolved","Westpac Banking Corporation","Mark Chambers","2024-08-14T01:01:30.000Z","2024-08-14T06:25:18.000Z"

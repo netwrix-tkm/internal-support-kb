@@ -1,0 +1,19 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000ExrY5IAJ","00419190","Support Ticket","Unable to run Databases --> .Instance Discovery jobs for Oracle DB's","We recently migrated Oracle DB's from AIX to RHEL Operating Systems. In RHEL, they are using container DB's approach. I am unable to find Oracle DB Instance while scanning the server hosting the DB. Although I am able to connect to the DB manually giving connection Details.
+
+In the attached screen from Oracle Server Log, attempt is made to connect to Oracle   DB container instead of Oracle DB","","","","Update from the customer on 9/13/2024:
+
+We were able to resolve the issue by updating the instance Discovery oracle servers job. This ticket can be closed.
+
+Attempted to get more information on what exactly was updated and the customer did not respond. 
+--------------------------------------------------------------------------------------------------------
+
+The process I suggested to use before the above response was provided:
+
+Today we reviewed the logs for the Oracle .InstanceDiscovery job and identified a username/password logon denied permissions for the container hosting the pluggable database. We also discovered that the container does not have a user credential created for it and therefore could possibly be causing the permissions error for the Oracle .InstanceDiscovery job.
+
+We recommend creating a user account for the container hosting the pluggable database and verifying that the connection profile used to run the job has the below permissions:
+
+CONTAINER_DATA=ALL FOR %NAME_OF_PLUGGABLE_DATABASE% CONTAINER = CURRENT;
+
+Once a credential has been created for the container and the above permission has been applied to the credential at the root of the container please run the .InstanceDiscovery scan again","Guidance","Scottie Taylor","","Netwrix Enterprise Auditor","NEA for Oracle","Instance Discovery","11.6","","28.9","Closed - Resolved","Electric Reliability Council of Texas, Inc.","Heena Suneja","2024-08-26T21:43:19.000Z","2024-09-24T19:39:02.000Z"

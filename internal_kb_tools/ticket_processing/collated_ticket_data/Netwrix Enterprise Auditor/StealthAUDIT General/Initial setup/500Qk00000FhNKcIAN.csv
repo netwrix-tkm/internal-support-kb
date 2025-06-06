@@ -1,0 +1,18 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000FhNKcIAN","00420916","Support Ticket","Audit, discovery, and activity have become dilapidated","Hi, we've owned audit, sensitive data discovery, and activity for a while now but have not fully utilized withing our companies procedures and workflows.  It appears this software has become dilapidated and is no longer providing output.  Can we do a healthcheck, maybe any needed updates, and take a look at a few issues?  Thanks","","","","Issue
+
+Audit, discovery, and activity have become dilapidated
+
+Hi, we've owned audit, sensitive data discovery, and activity for a while now but have not fully utilized withing our companies procedures and workflows. It appears this software has become dilapidated and is no longer providing output. Can we do a healthcheck, maybe any needed updates, and take a look at a few issues? Thanks
+
+Cause
+
+Discovered that the Panzura Job Collection was not pointed to the Panzura hosts and did not have a similar configuration to the Windows file server job collection. 
+
+Resolution
+
+We performed a light health check of the NEA and NAM applications. Discovered that a few desired jobs were missing within the Panzura Collections job group. These jobs were the Open Access Job, Direct Permissions Job, Broken Inheritance Job, Content Job, and Sensitive Data Job groups. We identified that the Windows Filers Collection Job group had all of these jobs. We decided to copy those jobs and move them to the Panzura Collection and changed the host lists to target the Panzura servers. We then ran the entire file system group.
+
+We also identified an error with the ADI scan prompting duplicate domains. We discovered duplicate domains in the host management and set the ADI scan hosts list to target one domain controller per domain. Setting this host list configuration resolved the duplicate domain error and completed it with warnings.
+
+We also identified an issue with the NAM agents not being able to communicate over port 4498. We verified that port 4498 is established and listening bidirectionally with an ""allowed restricted"" tag. This issue was further investigated and discovered that there was a bug regarding NTLM authentication and has been resolved in version 7.0.3099. I have created ticket# 00421953 to address this issue.","Guidance","Scottie Taylor","","Netwrix Enterprise Auditor","StealthAUDIT General","Initial setup","11.5","","11.7","Closed - Resolved","Psomas","Jonathan Ross","2024-09-12T22:09:32.000Z","2024-09-24T15:55:24.000Z"

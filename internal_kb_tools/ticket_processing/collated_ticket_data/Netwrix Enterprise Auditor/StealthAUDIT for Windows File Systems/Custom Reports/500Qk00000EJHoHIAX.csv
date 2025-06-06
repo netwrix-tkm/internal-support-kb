@@ -1,0 +1,19 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000EJHoHIAX","00417793","Support Ticket","Need help with job tracking folder permissions changes","Need help with job tracking folder permissions changes","","","","[Issue]
+Customer is looking for a report that tracks permission changes on the first level of folders
+
+[Resolution]
+Implemented a SQLView job that uses the below filter on the FSAC_ActivityEvents table:
+
+OperationDescription like 'Permission%' -- Filter for Permission Changes
+
+AND [ResourceTypeDescription] = 'Folder'
+AND (
+-- Filter for top-level or second-level folders
+LEN([Path]) - LEN(REPLACE([Path], '', '')) <= 2
+)
+
+AND CAST([AccessTime] AS DATE) >= CAST(GETDATE() - 7 AS DATE)
+AND CAST([AccessTime] AS DATE) <= CAST(GETDATE() AS DATE)
+
+We couldn't do every day due to FSAC scan and bulk import schedules, but this will pull permission changes on the top 2 levels of folders for the last 7 days","Guidance","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Custom Reports","11.6","","11.3","Closed - Resolved","ConocoPhillips Company","Frank McNickle","2024-08-12T13:31:20.000Z","2024-08-23T20:59:51.000Z"

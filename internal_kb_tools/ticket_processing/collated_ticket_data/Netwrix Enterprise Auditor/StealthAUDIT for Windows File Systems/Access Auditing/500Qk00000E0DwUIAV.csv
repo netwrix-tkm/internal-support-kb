@@ -1,0 +1,23 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000E0DwUIAV","00416997","Support Ticket","Open Shares Query","Hi team
+
+I have a query around StealthAudits ability to detect a share that has open resources.
+
+Our network shares are controlled by NTFS permissions and StealthAudit has been invaluable in identifying shares that are open by granting access to shares and sub-folders by permissions being applied to:
+
+Authenticated Users
+Everyone
+Users
+Domain Users
+
+StealthAudit reports the level of access that is granted to these ""groups"" for example:
+
+Read
+Write
+Full Control
+
+But it doesn't appear to report whether one of these groups has List Folder Contents.
+
+Can you confirm whether StealthAudit sees this scenario as an open share?
+
+Regards","","","","we will not be able to see a folder in the “OpenResources” results if only “List folder contents” permissions are assigned to it. The tests were executed using version 11.6 of Netwrix Enterprise Auditor. Therefore, there is no bug with permissions scanning—StealthAUDIT does not recognize that OpenAccess has been granted to a folder if “List folder contents” permissions have been assigned to Everyone etc.","Guidance","Ilia Kudashev","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Access Auditing","11.5","","14.2","Closed - Resolved","Westpac Banking Corporation","Mark Chambers","2024-08-05T01:55:56.000Z","2024-08-19T07:40:45.000Z"

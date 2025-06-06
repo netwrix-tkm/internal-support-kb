@@ -1,0 +1,92 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000Pc5ENKAZ","500Qk00000CG4s2IAD","TextPost","0054u000007p4sbAAA","2024-10-29T07:18:22.000Z","What We've Learned Updated: Original issue was with empty hostlist - host list appeared empty due to one of the custom jobs created by Alex Buchta performing clean up operation for hostlists, Alex Buchta advised Vinay that this is an issue with job schedule and customer should have adjusted that.
+
+Customer advised that issue still not resolved and showed troubled hostlist ""AC - DC"". We've reviewed the hostlist you AD - DC and a lot of hosts were missing data and were in either ""in queue"" or  ""in progress"" state, after refreshing all of the hosts it seems like query started populating the data. 
+
+Customer took few days to test and advised that issue is still not resolved, pointing out following:
+
+""Below is the host count based on region & OU structure, it should match to the various host query output however its not matching.
+APAC 150
+APAC-Singapore 2
+Applications 39
+Domain Controllers 110
+EMEA 118
+EMEA-London 1
+EMEA-NHBR 16
+In Azure 953
+INFR 7
+LTAM 23
+NTAM 16
+NTAM-Raleigh 1
+NTAM-Washington 6""
+
+On meeting with customer to address last issue we're tried to launch troubled hostlist query manually to see if it's picking up any data, hostlist query failed to launch due to permissions issue.","","","","0054u000007p4sbAAA","2024-10-29T07:18:22.000Z"
+"0D5Qk00000PcJKJKA3","500Qk00000CG4s2IAD","TextPost","0054u000007p4sbAAA","2024-10-29T08:01:55.000Z","What We've Learned Updated: What We've Learned Updated: Original issue was with empty hostlist - host list appeared empty due to one of the custom jobs created by Alex Buchta performing clean up operation for hostlists, Alex Buchta advised Vinay that this is an issue with job schedule and customer should have adjusted that.
+
+Customer advised that issue still not resolved and showed troubled hostlist ""AC - DC"". We've reviewed the hostlist you AD - DC and a lot of hosts were missing data and were in either ""in queue"" or ""in progress"" state, after refreshing all of the hosts it seems like query started populating the data.
+
+Customer took few days to test and advised that issue is still not resolved, pointing out following:
+
+""Below is the host count based on region & OU structure, it should match to the various host query output however its not matching.
+APAC 150
+APAC-Singapore 2
+Applications 39
+Domain Controllers 110
+EMEA 118
+EMEA-London 1
+EMEA-NHBR 16
+In Azure 953
+INFR 7
+LTAM 23
+NTAM 16
+NTAM-Raleigh 1
+NTAM-Washington 6""
+
+On meeting with customer to address last issue we're tried to launch troubled hostlist query manually to see if it's picking up any data, hostlist query failed to launch due to permissions issue.","","","","0054u000007p4sbAAA","2024-10-29T08:01:55.000Z"
+"0D5Qk00000PcbplKAB","500Qk00000CG4s2IAD","TextPost","0054u000007p4sbAAA","2024-10-29T08:02:33.000Z","Next Steps Updated: The error when accessing host list is appearing inconsistently. Vinay is to confirm the timing for when this occurs.
+
+This may be related to the host list tables being updated by custom SQL and the SA/NEA console has not updated/refreshed correctly.","","","","0054u000007p4sbAAA","2024-10-29T08:02:33.000Z"
+"0D5Qk00000PdwFYKAZ","500Qk00000CG4s2IAD","TextPost","0054u000006goPuAAI","2024-10-29T15:43:54.000Z","<p>This may be an ongoing defect - @Damir Akhmatshin​ please verify the behaviour as this can potentially be escalated to R&amp;D if the core behaviour is not providing accurate host count.</p>","","","","0054u000006goPuAAI","2024-10-29T15:43:54.000Z"
+"0D5Qk00000Q1QZZKA3","500Qk00000CG4s2IAD","TextPost","0054u000007p4sbAAA","2024-11-04T09:53:15.000Z","What We've Learned Updated: What We've Learned Updated: Original issue was with empty hostlist - host list appeared empty due to one of the custom jobs created by Alex Buchta performing clean up operation for hostlists, Alex Buchta advised Vinay that this is an issue with job schedule and customer should have adjusted that.
+
+Customer advised that issue still not resolved and showed troubled hostlist ""AC - DC"". We've reviewed the hostlist you AD - DC and a lot of hosts were missing data and were in either ""in queue"" or ""in progress"" state, after refreshing all of the hosts it seems like query started populating the data.
+
+Customer took few days to test and advised that issue is still not resolved, pointing out following:
+
+""Below is the host count based on region & OU structure, it should match to the various host query output however its not matching.
+APAC 150
+APAC-Singapore 2
+Applications 39
+Domain Controllers 110
+EMEA 118
+EMEA-London 1
+EMEA-NHBR 16
+In Azure 953
+INFR 7
+LTAM 23
+NTAM 16
+NTAM-Raleigh 1
+NTAM-Washington 6""
+
+On meeting with customer to address last issue we're tried to launch troubled hostlist query manually to see if it's picking up any data, hostlist query failed to launch due to permissions issue.
+
+
+Customer is running full ADI scans, aside of custom attributes warnings, ADI job finishes fine.
+
+On meeting we've reviewed troubled hostlists:
+1. GRM_AD_APPLICATIONS hostlist is working as intended, Vinay was comparing incorrect OU to hostlist query results, we've compared host count to AD host count for target OU, it matches.
+
+2. GRM_AD_AZURE - doesn't have hosts, on attempt to run query manually - insufficient permissions error - Vinay will speak to infra team to resolve this.
+
+3. GRM_AD_EMEA - correct number of hosts, but no details for collected hosts, disabled clean up job and requested to run query manually, waiting for results.
+
+So far the only issue left that might be on our side is hostlist that collects hostnames and count, but doesn't collect details - example - GRM_AD_EMEA hostlist, will clarify and escalate if this is still an issue after manual scan.","","","","0054u000007p4sbAAA","2024-11-04T09:53:15.000Z"
+"0D5Qk00000Q0yLuKAJ","500Qk00000CG4s2IAD","TextPost","0054u000007p4sbAAA","2024-11-04T09:54:15.000Z","Next Steps Updated: The error when accessing host list is appearing inconsistently. Vinay is to confirm the timing for when this occurs.
+
+This may be related to the host list tables being updated by custom SQL and the SA/NEA console has not updated/refreshed correctly.
+
+Disabled clean up job and requested to run query manually, waiting for results.
+
+So far the only issue left that might be on our side is hostlist that collects hostnames and count, but doesn't collect details - example - GRM_AD_EMEA hostlist, will clarify and escalate if this is still an issue after manual scan.","","","","0054u000007p4sbAAA","2024-11-04T09:54:15.000Z"
+"0D5Qk00000Sf0mWKAR","500Qk00000CG4s2IAD","TextPost","0050g000006QqyEAAS","2024-12-10T17:50:42.000Z","<p>1)Is the ADI scan job targeting all of these Host Discovery Queries (ex: &quot;GRM_AD_EMEA&quot;) as a host list? (can you get a screenshot of the Host List Assignment under &quot;.Active Directory Inventory-&gt;Settings-&gt;Host List Assignment&quot;)</p><p> </p><p>2)Are you running these Host Discovery Queries as a scheduled task regularly?</p><p> </p><p>3)It sounds like the Host Count and Names showed up correctly for the GRM_AD_Azure host discovery query after you navigated to &quot;Edit Query&gt;Active Directory&quot; and selected Azure OU and run query again. Did you try the same thing for GRM_AD_EMEA?</p><p> </p><p>4)Can you get screenshots of the following settings from the customer&#39;s console:</p><p>Settings-&gt;Host Discovery</p><p> </p><p> </p><p>Host Discovery Wizard-&gt;Edit Query</p><p><img src=""sfdc://069Qk00000I9Bl3IAF"" alt=""undefined (1)""></img> </p><p>5)It looks like ZURAPP01111 may not be getting scanned properly by ADI because of the missing values for the host in the GRM_AD_EMEA Host Discovery Query, re-running the query like you did with GRM_AD_Azure may fix those values for the host and allow you to then re-scan and see it in ADInventory_ComputersView. Is that host not showing up the only real impact here beyond just missing values for the host? Are other aspects of their scans or reports breaking? If not then I&#39;d ask if we could lower the priority on this one. Let me know. </p>","","","","0050g000006QqyEAAS","2024-12-10T17:50:42.000Z"
+"0D5Qk00000UnKqvKAF","500Qk00000CG4s2IAD","TextPost","0054u000007p4sbAAA","2025-01-14T08:38:55.000Z","<p>Hi @Brandon West, have you had a meeting with Vinay regarding this issue? If you&#39;ve met with him, is there anything from this meeting worth communicating to devs?</p>","","","","0054u000007p4sbAAA","2025-01-14T08:38:55.000Z"

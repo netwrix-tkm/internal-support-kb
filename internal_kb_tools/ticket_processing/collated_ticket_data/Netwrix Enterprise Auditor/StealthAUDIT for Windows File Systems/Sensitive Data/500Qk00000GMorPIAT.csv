@@ -1,0 +1,24 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GMorPIAT","00422386","Support Ticket","IEHP - SDD Scan Stops and Subsequent Jobs Do Not Start","Customer: IEHP
+
+Hello Support Team,
+
+We have an interesting issue going on where the SDD job runs and seems to be going smoothly then it will stop the job with 0s duration and not continue the rest of the jobs in the job queue (the next job should be the bulkimport). The only thing I'm seeing in the applet logs is below. I have seen similar issue at another customer site when SQL scan jobs were failing as well. Not sure if you/your team has seen this and I have not seen any mention in change logs of NEA yet.
+
+Error: ""2024-09-26 23:19:59.4911|ERROR|  9|<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA.Applet.Host' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA.Applet.Host</a>.Program|Timed out waiting for command, exiting process""
+
+The scheduled task also stops a little before/after with exit code 0, which makes sense as to why the next jobs do not trigger because the task exited already and did not kick off the rest of the jobs. It seems to be killing the job queuing executable(?). 
+
+
+Verions:
+Server,Software,Version
+ConsoleServer,Netwrix Enterprise Auditor V11.6,11.6.0.72
+ConsoleServer,Netwrix Access Information Center,11.6.0.13
+ConsoleServer,Netwrix Activity Monitor Agent 64-bit,7.0.3099
+ConsoleServer,Netwrix Activity Monitor,7.0.3099
+ConsoleServer,Netwrix Sensitive Data Discovery Add-On V11.6,11.6.0.11
+ProxyServer,Netwrix Enterprise Auditor File System Scanning Proxy,11.6.0.21
+ProxyServer,Netwrix Sensitive Data Discovery Add-On V11.6,11.6.0.11
+
+Thank you,
+Justin","","","","Dev believes this to be a bug that was squashed in a newer version of NEA. Customer will upgrade (may take a few weeks) and then re-open the ticket if the issue persists.","Product defect","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Windows File Systems","Sensitive Data","11.6","","3.9","Closed - Resolved","Inland Empire Health Plan","Justin Cahill","2024-09-27T21:28:50.000Z","2024-10-01T19:20:32.000Z"

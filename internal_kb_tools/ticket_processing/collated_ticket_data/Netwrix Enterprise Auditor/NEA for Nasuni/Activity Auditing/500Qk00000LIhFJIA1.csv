@@ -1,0 +1,64 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LIhFJIA1","00434220","Support Ticket","no data for a couple Nasuni's","I am not getting data for 3-4 Nasuni's","N/A","3/10/25
+
+Update from customer below:
+
+Scotty,
+
+ The lvl 3 scan finally completed and now I am running the lvl6 deep scan.
+-------------------------------------------------------3/7/25
+
+Investigated the FSAA System Scan again and the scan was still running for 574 hours at a 12 level scan depth. In order to verify if there were any major issues with host that could cause the scan to take longer we attempted to run a 0 level scan. This generated non-factor access errors below that would not cause performance issues with the scan.
+
+HOST  SA_HOST  JobRunTimeKey  MSG_TYPE  TableName  MESSAGE  TaskName  SequenceID  MessageTimestamp
+NYNFILER102  NPNETWRIXSMP101  3/7/2025 9:11:00 AM  ERROR  Access  Error enumerating security descriptor for \NYNFILER102ftp$ while Instantiate file path security descriptor Error:  67 Unable to retrieve DACL : The network name cannot be found      3/7/2025 9:23:40 AM
+NYNFILER102  NPNETWRIXSMP101  3/7/2025 9:11:00 AM  ERROR  Access  Error enumerating TFolderEnumerator:  Unable to perform folder scan for \NYNFILER102ftp$ Error code(67): The network name cannot be found      3/7/2025 9:23:54 AM
+NYNFILER102  NPNETWRIXSMP101  3/7/2025 9:11:00 AM  ERROR  Access  Error expanding folder \NYNFILER102ftp$  Unable to perform folder scan for \NYNFILER102ftp$ Error code(67): The network name cannot be found      3/7/2025 9:23:54 AM
+
+We also verified the thread count for the job and threads were set to 15 with only 11 Nasuni hosts. Additionally, only one Nasuni host was causing long run times for the FSAA system scan. 
+
+Once the FSAA System scan was complete at a 0 level we were successfully able to run a Bulk Import. This indicated that this may not be a performance issue with the scan but a volume issue. 
+
+We then increased the scan depth starting with 3 and will continue to take an incremental approach while a review of how far deep we should be scanning for files takes place.
+-------------------------------------------------
+US Customer. -10 UTC
+-------------------------------------------------------
+
+Today we:
+
+Discovered that the FSAC System Scan for Nasuni hosts list was only targeting an individual host instead of the Nasuni host list built by the discovery job. 
+
+Removed the individual host and configured the job to use the Nasuni host list. Once this setting was changed we then ran the activity group from the scheduled tasks.
+----------------------------------------------------------
+
+Customer is currently running the FSAA system scan job to build out the file structure for a Nasuni filer within the AIC. 
+
+FSAA job has been running for 9 hours and POC will monitor and provide an update if the job does not complete.","3/7/25
+
+Our next steps are:
+
+You will:
+
+Provide an update on the progress and results of the FSAA system scan as well as the Bulk Import. 
+
+Provide an update of how far our target goal of scan depth should be.
+---------------------------------------------------
+Our next steps are:
+
+You will:
+
+Monitor the FSAC System Scan and Bulk Import for any errors. 
+
+Verify that updated data from the new Nasuni hosts have been successfully imported and is displayed within the AIC.","Symptom
+
+no data for a couple Nasuni's
+
+I am not getting data for 3-4 Nasuni's
+
+Cause
+
+Targeted an individual host instead of the Nasuni host list.
+
+Resolution
+
+Targeted the Nasuni host list and was able to successfully get a 0 level and 3 level depth scan as well as a Bulk Import.","Guidance","Scottie Taylor","Unexpected Behavior","Netwrix Enterprise Auditor","NEA for Nasuni","Activity Auditing","11.6","","40.7","Closed - Resolved","The Doctors Company","Chad Fontanini","2025-01-31T05:40:41.000Z","2025-03-12T22:34:24.000Z"

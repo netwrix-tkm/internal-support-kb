@@ -1,0 +1,69 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DUE1FIAX","00415933","Support Ticket","Issues with importing groups","We are having issues with importing this group: NA-MEASAppServers-G. It is not in the AIC (1), and when importing, it pulls in with green status (2), but it throws an error when processing the import (3). I attached the logs, where it throws an error:
+2024-06-27 07:56:46 -- Error  -- client 164.103.107.16  Message: Violation of UNIQUE KEY constraint 'UQ_SA_AIC_Resources'. Cannot insert duplicate key in object 'dbo.SA_AIC_Resources'. The duplicate key value is (NAIPAPERNA-MEASAppServers-G).
+
+Do you have any ideas for what it causing the error? Or should we open a ticket for Netwrix to review?","","","","Current version of Stealth application(s) running in the Environment:
+
+Netwrix Enterprise Auditor (NEA) formally StealthAUDIT (SA)                                                                11.5.0.272
+Netwrix Access Information Center (AIC) formally StealthAUDIT Access Information Center (AIC)      115.0.136
+
+Found that the Groups in question (NA-MEASAppServers-G , etc) were listed as IsDeleted used the following to update the SQL tables.
+
+UPDATE [SA_ADInventory_Principals] Set [IsDeleted]  = 0
+WHERE ID = 194019 OR ID = 163088 OR ID = 177012 OR ID = 187014
+
+Post matching them in the [SA_ADInventory_GroupsView] table via the [PrincipalId]
+Kicked of a new ADI differential scan, post confirming that the Group was in the correct OU via  DistinguishedName attribute.
+
+Corrected the Drop AD job  ADIreset a schedule was created to be able to run manually 4 pm on Friday.
+Then Re-run the ADI job group to repopulate.
+The Drop job will be kicked off on Friday then the import check for Monday morning.
+
+
+The following were noted during the call to have issues within the AIC
+2 groups that were having the 404 Error and are now NOT having the issue:
+NAIPAPER1F9-Identicard-G
+NAIPAPER02A-SAPCD-G
+
+2 groups that are currently still having the 404 Error and ARE having the issue:
+NAIPAPER00F-GROOMSGAMBLE-G
+NAIPAPER027-Design Backups -G
+
+Example NAIPAPERNA-All_RSAdminsPCs-G          <<< all computer accounts    No issues
+NAIPAPERNA-MEASAppServers-G - still having import issues   <<< all computer accounts
+
+3B5-Finished Products Training Records-D - previously in Resource Owners with 404 error, removed, and unable to re-import
+
+Thank You for your time.
+SELECT PrincipalId
+,SamAccountName
+,NTAccount
+,DistinguishedName
+,GroupScope   
+,GroupTarget
+,IsDeleted
+FROM SA_ADInventory_GroupsView
+WHERE SamAccountName = 'Group-Name'
+
+
+--THEN 
+--  ID in the SA_ADInventory_Principals is the same for the PrincipalId via SA_ADInventory_GroupsView
+UPDATE [SA_ADInventory_Principals] Set [IsDeleted]  = 0
+WHERE ID = PrincipalId# OR ID = PrincipalId# -- OR ID = 177012 OR ID = 187014  -- ect
+
+Recreated the error within the AIC UI listed the group in question as a duplicate again
+
+gci ""C:inetpubwwwrootStealthAUDIT Compliance*.log"" -Recurse |Select-String NA-MEASAppServers-G 
+
+Listed the object as a duplicate in the SA_AIC_Resources table.
+We found the Object with
+SELECT TOP (1000) [ID]
+      ,[Type]
+      ,[Value]
+  FROM [SA_AIC_Resources]
+  WHERE [Value] LIKE '%NA-MEASAppServers-G%'
+
+DELETE FROM [SA_AIC_Resources]
+WHERE ID = 49222  -- This matched the value from the last query
+ 
+Admin was then able to import the needed Owner via CSV","Data validation / interpretation","Dusty Grayson","","Netwrix Enterprise Auditor","Access Information Center","Database","11.5","272","28.2","Closed - Resolved","International Paper Company","Mark Holley","2024-07-24T13:28:59.000Z","2024-08-21T19:13:14.000Z"

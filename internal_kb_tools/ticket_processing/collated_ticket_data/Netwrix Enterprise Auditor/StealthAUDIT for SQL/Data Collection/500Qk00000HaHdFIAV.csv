@@ -1,0 +1,28 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HaHdFIAV","00425299","Support Ticket","A0185-APP2750-S: Error on SQL Scan","When performing the SQL scan on production hosts we are receiving the following error messages: Please advise if this is an informational message or an actual error message and if we should stop the scan which is currently in progress.
+
+Error CollectEffectiveRoleMembership(): SA_SQLServer_EffectiveRoleMembership, Sql Server Error: <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+Operation cancelled by user. ---> System.ComponentModel.Win32Exception (0x80004005): The wait operation timed out
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at <a href='https://System.Data' target='_blank'>System.Data</a>.SqlClient.SqlCommand.ExecuteNonQuery()
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.SQLServer.ServerDataCollection.EffectiveRoleMembershipCollector.ClearOldData(IDbConnection dbConnection, IDbTransaction transaction, Int32 sqlCommandTimeout)
+   at <a href='https://Stealthbits.StealthAUDIT.DataCollectors.SQL' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.SQL</a>.SQLServer.ServerDataCollection.EffectiveRoleMembershipCollector.CollectEffectiveRoleMembership(IDbConnection db, String context, Int32 sqlCommandTimeout)
+ClientConnectionId:03177ddb-291e-45eb-92d8-42de4eb07274
+Error Number:-2,State:0,Class:11","1. change Settings > Storage - Execution Timeout to 60 minutes
+2. change SQL_PermissionsScan - Properties - general - execution timeout to 9999 minutes
+3. run job against a database large enough to require more than 60minutes to collect
+4. note execution timeout error","This is preventing a POC from closing.
+
+Reviewed the SQL timeouts as set in the Job Properties and Settings > Storage to 9999 minutes.
+
+Settings > Storage was set to 60 minutes which is equal to the run time of most errored tasks. Job was set to 9999 minutes.
+
+-----
+
+That this customer SYSTEMATICALLY ignores basic instructions and requirements
+Need to check everything from the SQL side as well as what hostlists and settings are used","Receive results from current running scan - started 30-Oct","Most errors were warning about lacking access to system db's which the client doesn't want to monitor or grant access to","Data validation / interpretation","Ilya Kotov","","Netwrix Enterprise Auditor","StealthAUDIT for SQL","Data Collection","11.6","","48.8","Closed - Resolved","Allstate Insurance Company","Stealth Audit","2024-10-28T19:17:39.000Z","2024-12-16T14:20:29.000Z"

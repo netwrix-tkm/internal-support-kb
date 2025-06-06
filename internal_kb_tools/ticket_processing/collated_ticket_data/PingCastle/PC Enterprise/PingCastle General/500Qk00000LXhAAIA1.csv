@@ -1,0 +1,33 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LXhAAIA1","00434825","Support Ticket","Client license is not automatically replaced at start","We are running PingCastle Enterprise, and had a Trial license for testing.
+
+We've replaced the license on the server without any issues, but I was on the impression that the client will also get the correct license via API call.
+
+-------------------
+Free Edition of PingCastle 3.3.0 - Not for commercial use
+Starting the task: Retrieve Settings via API
+[10:14:41] API Login OK
+[10:14:41] OK
+[10:14:41] A new license has been retrieved from the API. Using it.
+[10:14:41] Enterprise for Würth IT GmbH
+Task Retrieve Settings via API completed
+-------------------
+
+This does not work if an expired license in in the <a href='https://PingCastle.exe' target='_blank'>PingCastle.exe</a>.config file.
+Then you just get the following error message:
+-----------
+The program is unsupported since: 2025-02-06 00:00:00Z)
+-----------
+
+Should the program not first check for the API to see if there is a new license?
+Just removing the line, will also confuse some people, as it starts with
+----------
+Free Edition of PingCastle 3.3.0 - Not for commercial use
+----------
+
+Is there a better way solve this issue, than replacing the license in all config files?","Running PingCastle Enterprise with a Trial license.
+Replaced the license on the server successfully.
+Expected the client to retrieve the correct license via API call.
+Retrieved new license via API, but still displayed ""Free Edition"" after replacement.
+If an expired license is in the PingCastle.exe.config file, the error message ""The program is unsupported since: 2025-02-06 00:00:00Z"" appears.","after discussing with joe, it might be a bug within the application","6/2 testing API call to check if license is assigned automatically
+7/2 informing client about result","Fix will be applied to PingCastle version 3.4","API/Automation Issue","Rejaul Uddin","Unexpected Behavior","PingCastle","PC Enterprise","PingCastle General","3.3","","83.9","Closed - Resolved","Würth IT GmbH","Corvin Schmid","2025-02-06T09:27:46.000Z","2025-05-01T07:35:15.000Z"

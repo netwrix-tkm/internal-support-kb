@@ -1,0 +1,340 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000C9yvhIAB","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Account ACV has been changed to 47620.67333333333370.","0054u000006gpoAAAQ","2025-03-05T23:58:50.000Z","2025-03-05T23:58:50.000Z","false","false"
+"00aQk00000C9xRmIAJ","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Account ACV has been changed to 23810.33666666666685.","0054u000006gpoAAAQ","2025-03-05T23:58:52.000Z","2025-03-05T23:58:52.000Z","false","false"
+"00aQk00000CElD3IAL","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-10T14:56:15.000Z","2025-03-10T14:56:15.000Z","false","false"
+"00aQk00000CElD5IAL","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Sanjay Meghani:
+
+@Michael Burrofato @Helen Randall @WaitingOnEngineer
+
+The ID column is an identity column in the SA_AIC_Resources table so is it possible that it got removed from the ID column when the customer restored the table?
+
+Can the customer run the following query, please?
+
+
+--- CODE ---
+SELECT
+  name, 
+ is_identity 
+FROM sys.columns
+WHERE
+ object_id = OBJECT_ID('dbo.SA_AIC_Resources')  AND
+ name = 'ID'
+
+--- CODE ---
+
+If the is_identity column is 0 then you can make the ID column identity by following these steps:
+
+	 - 	Right click on the ID column:
+	 - 	Select Modify
+	 - 	Select the ID column if it's not selected in the right top panel
+	 - 	Then, in the bottom panel, go to the ""Identity Specification"" section and select yes to the ""Is Identity"" property.
+
+Uploaded a couple of screenshots(Identity Column.zip).
+
+[DevOps CommentId:11760067]","0054u000006gtWUAAY","2025-03-10T14:56:16.000Z","2025-03-10T14:56:16.000Z","false","false"
+"00aQk00000CFHKzIAP","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-03-10T19:48:15.000Z","2025-03-10T19:48:15.000Z","false","false"
+"00aQk00000CGxbWIAT","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Made the change as it was 0.
+
+AIC still failing on reviews. Appears to be the same message. New zip uploaded with logs.","0054u000006gpoAAAQ","2025-03-11T21:35:10.000Z","2025-03-11T21:35:10.000Z","false","false"
+"00aQk00000CGtzKIAT","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000006gpoAAAQ","2025-03-11T21:35:19.000Z","2025-03-11T21:35:19.000Z","false","false"
+"00aQk00000CHzcsIAD","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Uploaded an image from the customer Image (5)   
+It shows that SSMS didn't save the change that the customer attempted. They just got around to closing those tabs today and saw the message.
+Do we have a way around that message? I will do some testing in my lab.","0054u000006gpoAAAQ","2025-03-12T17:05:33.000Z","2025-03-12T17:05:33.000Z","false","false"
+"00aQk00000CL7FiIAL","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-14T21:48:03.000Z","2025-03-14T21:48:03.000Z","false","false"
+"00aQk00000CL7FmIAL","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: --- CODE ---
+SELECT
+  fk.name,  
+  OBJECT_NAME(fc.parent_object_id) AS tableName,
+  c.name AS fkColumn,
+  OBJECT_NAME(fc.referenced_object_id) AS referenceTable,
+  rc.name AS referenceColumn,
+  fk.delete_referential_action_desc AS deleteCascade
+FROM sys.foreign_keys AS fk
+JOIN sys.foreign_key_columns fc on
+  fc.constraint_object_id = fk.object_id
+JOIN sys.columns c on
+  c.object_id = fc.parent_object_id and
+  c.column_id = fc.parent_column_id
+JOIN sys.columns rc on
+  rc.object_id = fc.referenced_object_id and
+  rc.column_id = fc.referenced_column_id
+WHERE
+    OBJECT_NAME(fc.referenced_object_id) = 'SA_AIC_Resources'
+--- CODE ---
+
+[DevOps CommentId:11787920][2/2]","0054u000006gtWUAAY","2025-03-14T21:48:04.000Z","2025-03-14T21:48:04.000Z","false","false"
+"00aQk00000CL7FlIAL","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Sanjay Meghani:
+
+@Chris Brooks @Michael Burrofato @Helen Randall @WaitingOnEngineer
+
+The following script drops the FK keys that reference to SA_AIC_Resources, turns ON identity on the ID column, and adds the FK keys back.
+
+It might take time if the SA_AIC_Resources table is big in the customer environment.
+
+
+--- CODE ---
+-- Drop FK references to SA_AIC_Resources
+ALTER TABLE [dbo].[SA_AIC_ResourceAccessGroups]
+DROP CONSTRAINT [FK_SA_AIC_ResourceAccessGroups_ResourceID]
+GO
+
+ALTER TABLE [dbo].[SA_AIC_ResourceAccessRequests]
+DROP CONSTRAINT [FK_SA_AIC_ResourceAccessRequests_ResourceID]
+GO
+
+ALTER TABLE [dbo].[SA_AIC_ResourceOptions]
+DROP CONSTRAINT [FK_SA_AIC_ResourceOptions_ResourceID]
+GO
+
+ALTER TABLE [dbo].[SA_AIC_ResourceOwners]
+DROP CONSTRAINT [FK_SA_AIC_ResourceOwners_ResourceID]
+GO
+
+ALTER TABLE [dbo].[SA_AIC_ResourceReviewResponses]
+DROP CONSTRAINT [FK_SA_AIC_ResourceReviewResponses_ResourceID]
+GO
+
+--Create a table with an identity column
+CREATE TABLE [dbo].[SA_AIC_Resources_V1](
+    [ID] [int] IDENTITY(1,1) NOT NULL,
+    [Type] [smallint] NOT NULL,
+    [Value] [nvarchar](450) NOT NULL
+)
+GO
+
+--Turn ON identity insert, insert data from the actual table, and turn OFF identity insert
+SET IDENTITY_INSERT [dbo].[SA_AIC_Resources_V1] ON
+
+INSERT INTO [dbo].[SA_AIC_Resources_V1]
+(ID, Type, Value)
+SELECT
+  ID,
+  Type,
+  Value
+FROM [dbo].[SA_AIC_Resources]
+
+SET IDENTITY_INSERT [dbo].[SA_AIC_Resources_V1] OFF
+GO
+
+--Drop the original table
+DROP TABLE [dbo].[SA_AIC_Resources]
+GO
+
+-- Rename
+Exec sp_rename 'SA_AIC_Resources_V1' ,'SA_AIC_Resources'
+GO
+
+--Add Primary and Unique key
+ALTER TABLE [dbo].[SA_AIC_Resources]
+ADD
+  CONSTRAINT [PK_SA_AIC_Resources] PRIMARY KEY CLUSTERED ([ID] ASC),
+  CONSTRAINT [UQ_SA_AIC_Resources] UNIQUE ([Value] ASC)
+GO
+
+--Add Foreign keys
+ALTER TABLE [dbo].[SA_AIC_ResourceAccessRequests]
+  ADD CONSTRAINT [FK_SA_AIC_ResourceAccessRequests_ResourceID] FOREIGN KEY([ResourceID])
+  REFERENCES [dbo].[SA_AIC_Resources] ([ID]) ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[SA_AIC_ResourceOwners]
+  ADD CONSTRAINT [FK_SA_AIC_ResourceOwners_ResourceID] FOREIGN KEY([ResourceID])
+  REFERENCES [dbo].[SA_AIC_Resources] ([ID]) ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[SA_AIC_ResourceOptions]
+  ADD CONSTRAINT [FK_SA_AIC_ResourceOptions_ResourceID] FOREIGN KEY([ResourceID])
+  REFERENCES [dbo].[SA_AIC_Resources] ([ID]) ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[SA_AIC_ResourceAccessGroups]
+  ADD CONSTRAINT [FK_SA_AIC_ResourceAccessGroups_ResourceID] FOREIGN KEY([ResourceID])
+  REFERENCES [dbo].[SA_AIC_Resources] ([ID]) ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[SA_AIC_ResourceReviewResponses]
+  ADD CONSTRAINT [FK_SA_AIC_ResourceReviewResponses_ResourceID] FOREIGN KEY (ResourceID)
+  REFERENCES SA_AIC_Resources(ID) ON DELETE CASCADE
+GO
+
+--- CODE ---
+
+You can verify that the ID column is the identity column by running this SQL query:
+
+--- CODE ---
+SELECT
+  name,
+ is_identity
+FROM sys.columns
+WHERE
+ object_id = OBJECT_ID('dbo.SA_AIC_Resources')  AND
+ name = 'ID'
+
+--- CODE ---
+
+This SQL query shows you all the FK references on SA_AIC_Resources table. Make sure it returns 5 rows (uploaded a screenshot ""FKs references on AIC resources.png"" to SharePoint)
+
+[DevOps CommentId:11787920][1/2]","0054u000006gtWUAAY","2025-03-14T21:48:04.000Z","2025-03-14T21:48:04.000Z","false","false"
+"00aQk00000CLABxIAP","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-03-14T21:59:06.000Z","2025-03-14T21:59:06.000Z","false","false"
+"00aQk00000CVUz0IAH","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: The suggested SQL was run and the same issue re-occurred. New logs have been uploaded to the SP.","0054u000007MiY9AAK","2025-03-24T15:56:28.000Z","2025-03-24T15:56:28.000Z","false","false"
+"00aQk00000CVV5RIAX","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2025-03-24T15:56:59.000Z","2025-03-24T15:56:59.000Z","false","false"
+"00aQk00000CYQAsIAP","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Hey team- any update on this?","0054u000007MiY9AAK","2025-03-26T15:55:48.000Z","2025-03-26T15:55:48.000Z","false","false"
+"00aQk00000Ca3dCIAR","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Michael Burrofato:
+
+@Sanjay Meghani @Chris Brooks Dev team has pulled this on and is investigating latest artifacts @Salesforce
+
+[DevOps CommentId:11855751]","0054u000006gtWUAAY","2025-03-27T16:52:50.000Z","2025-03-27T16:52:50.000Z","false","false"
+"00aQk00000CbdGQIAZ","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-03-28T19:55:07.000Z","2025-03-28T19:55:07.000Z","false","false"
+"00aQk00000CbdGSIAZ","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Sanjay Meghani:
+
+@Michael Burrofato @Chris Brooks @WaitingOnEngineer
+
+
+The original error the customer encountered with the ""SA_AIC_Resources"" table has been resolved. However, they are now experiencing the same error with a different table, ""SA_AIC_ResourceReviews"". I'm uncertain about how the customer restored their tables, but it seems the AIC tables are missing identity columns. I suspect that after addressing the issue with ""SA_AIC_ResourceReviews"", the same error might occur with other tables.
+
+Could you please run the following SQL query and share the results with me?
+
+
+
+--- CODE ---
+
+
+SELECT
+
+ t.name AS tableName,
+ c.name AS columnName,
+ is_identity
+FROM sys.columns c
+JOIN sys.tables t ON
+  t.object_id = c.object_id
+WHERE
+ t.name like 'SA_AIC%' AND
+ is_identity = 1
+ORDER BY t.name
+
+
+--- CODE ---
+
+The query returns the AIC tables that has identity column and it should return 14 tables on the ""ID"" column
+
+	 - 	SA_AIC_AuditEvents
+	 - 	SA_AIC_FlexibleActivityEvents
+	 - 	SA_AIC_FlexibleHosts
+	 - 	SA_AIC_FlexibleLocalGroupMembership
+	 - 	SA_AIC_FlexiblePermissions
+	 - 	SA_AIC_FlexibleResources
+	 - 	SA_AIC_FlexibleSddMatches
+	 - 	SA_AIC_FlexibleSddMatchHits
+	 - 	SA_AIC_FlexibleSddMatchSubjectProfiles
+	 - 	SA_AIC_GroupMemberChanges
+	 - 	SA_AIC_ResourceAccessRequests
+	 - 	SA_AIC_ResourceReviewResponses
+	 - 	SA_AIC_ResourceReviews
+	 - 	SA_AIC_Resources
+
+[DevOps CommentId:11861303]","0054u000006gtWUAAY","2025-03-28T19:55:07.000Z","2025-03-28T19:55:07.000Z","false","false"
+"00aQk00000Cbk3NIAR","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2025-03-28T20:34:41.000Z","2025-03-28T20:34:41.000Z","false","false"
+"00aQk00000CblAkIAJ","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Only 2 tables were returned by the provided query
+https://nwxcorp.sharepoint.com/:i:/r/sites/CustomerSupportFiles/Data/00437825/List_of_AIC_Tables.png?csf=1&web=1&e=bdvXZg","0050g000006QqyEAAS","2025-03-28T20:47:12.000Z","2025-03-28T20:47:12.000Z","false","false"
+"00aQk00000CbkpmIAB","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0050g000006QqyEAAS","2025-03-28T20:47:21.000Z","2025-03-28T20:47:21.000Z","false","false"
+"00aQk00000CdgAAIAZ","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Michael Burrofato:
+
+@Salesforce Dev team is reviewing latest artifacts.
+
+[DevOps CommentId:11867101]","0054u000006gtWUAAY","2025-03-31T13:54:15.000Z","2025-03-31T13:54:15.000Z","false","false"
+"00aQk00000Ce8b4IAB","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Sanjay Meghani:
+
+@Michael Burrofato @Chris Brooks @Salesforce
+
+12 AIC tables are missing an identity column. We have to perform the same steps that we did for the SA_AIC_Resources for those AIC tables to add the identity column back.
+
+
+	 - 	Drop FK references if any
+	 - 	Create a table with an identity column
+	 - 	Turn ON identity insert
+	 - 	Insert data from the original table
+	 - 	Turn OFF identity insert
+	 - 	Drop the original table
+	 - 	Rename the table
+	 - 	Add FK references if any
+
+I will provide the SQL queries. 
+
+Does the Engineer think that this is the only problem with the customer's database?
+
+[DevOps CommentId:11869444]","0054u000006gtWUAAY","2025-03-31T18:24:55.000Z","2025-03-31T18:24:55.000Z","false","false"
+"00aQk00000Ce6atIAB","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Much appreciated Sanjay, I'll pass those along once received.
+I don't believe the Database itself has issues.
+however due to deleting tables while trying to purge legacy data along with upgrading. I believe the order of our operations caused these weird mismatches while trying to restore AIC data.","0054u000006gpoAAAQ","2025-03-31T18:57:13.000Z","2025-03-31T18:57:13.000Z","false","false"
+"00aQk00000CfQhCIAV","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Hey team- any update on this?","0054u000007MiY9AAK","2025-04-01T16:56:20.000Z","2025-04-01T16:56:20.000Z","false","false"
+"00aQk00000CgPHeIAN","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Michael Burrofato:
+
+@Salesforce Dev team is actively engaged on this one. Hoping to provide queries this week. Will update when available.
+
+[DevOps CommentId:11879559]","0054u000006gtWUAAY","2025-04-02T12:18:40.000Z","2025-04-02T12:18:40.000Z","false","false"
+"00aQk00000CidWcIAJ","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Sanjay Meghani:
+
+@Michael Burrofato @Salesforce
+
+The SQL script should be ready before the end of this week
+
+[DevOps CommentId:11888555]","0054u000006gtWUAAY","2025-04-03T21:36:33.000Z","2025-04-03T21:36:33.000Z","false","false"
+"00aQk00000CjrKcIAJ","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-04T20:24:57.000Z","2025-04-04T20:24:57.000Z","false","false"
+"00aQk00000CjrKeIAJ","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Sanjay Meghani:
+
+@Michael Burrofato @WaitingOnEngineer
+
+I uploaded the SQL script ""AIC Add Identity Column.sql"" that adds the identity columns to the AIC tables. The script executes the following steps for each table, so if the table is large, it might take a long time to finish. 
+
+	 - 	Drop FK references if any
+	 - 	Create a table with an identity column
+	 - 	Turn ON identity insert
+	 - 	Insert data from the original table
+	 - 	Turn OFF identity insert
+	 - 	Drop the original table
+	 - 	Rename the table
+	 - 	Add constraints or indexes
+	 - 	Add FK references if any
+
+Please take a backup of your DB before you run the attached script.
+
+Once it executes successfully, run the following query to make sure that the identity column is added to the necessary AIC tables.
+
+
+--- CODE ---SELECT
+
+ t.name AS tableName,
+ c.name AS columnName,
+ is_identity
+FROM sys.columns c
+JOIN sys.tables t ON
+  t.object_id = c.object_id
+WHERE
+ t.name like 'SA_AIC%' AND
+ is_identity = 1
+ORDER BY t.name
+
+--- CODE ---
+
+[DevOps CommentId:11894042]","0054u000006gtWUAAY","2025-04-04T20:24:58.000Z","2025-04-04T20:24:58.000Z","false","false"
+"00aQk00000CjteAIAR","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000006gpoAAAQ","2025-04-04T21:36:02.000Z","2025-04-04T21:36:02.000Z","false","false"
+"00aQk00000CqHvWIAV","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the new comment has been added: Officially confirmed Reviews and the rest of the AIC still cooperating after the last scripts. Closing ticket.","0054u000006gpoAAAQ","2025-04-10T14:32:55.000Z","2025-04-10T14:32:55.000Z","false","false"
+"00aQk00000CqJ7hIAF","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000006gpoAAAQ","2025-04-10T14:46:56.000Z","2025-04-10T14:46:56.000Z","false","false"
+"00aQk00000CqJ7jIAF","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Account ACV has been changed to 47620.67333333333370.","0054u000006gpoAAAQ","2025-04-10T14:47:00.000Z","2025-04-10T14:47:00.000Z","false","false"
+"00aQk00000CqJAvIAN","500Qk00000MajTTIAZ","On Escalation Ticket # 00437878 the Following Fields have been updated: 
+Account ACV has been changed to 23810.33666666666685.","0054u000006gtWUAAY","2025-04-10T14:47:13.000Z","2025-04-10T14:47:13.000Z","false","false"

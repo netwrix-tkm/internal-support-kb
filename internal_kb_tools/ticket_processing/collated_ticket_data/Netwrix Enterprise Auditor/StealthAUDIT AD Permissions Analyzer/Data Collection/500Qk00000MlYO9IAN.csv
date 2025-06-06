@@ -1,0 +1,65 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000MlYO9IAN","00438291","Support Ticket","Need some account details","we need some Details of the accounts(like who owns it, what it is used for, what the recent activity in it) already we got some results but need more information about this accounts.","","The client would like to get information on 3 user accounts in their environment with Enterprise Auditor.
+What they are used for.
+Who uses them.
+When they were last used.","For meeting: in my initial mail, I sent him reports and search about the user attributes and activities. Not sure what additional information they want, but it is possible they need a report for another monitoring plan (like FS activity as well). PLease make sure to understand the client we cannot generate a report for everthing in only one place.","+++++
+2025_0313: MEETING with Orix
++++++
+
++++++
+1) All 3 accounts showed up on a Weak Password Report
+2) All 3 accounts were created in June or Sep of 2017 - nearly 8 years ago
+3) One or more of the accounts belong to the Group = ""Proofpoint Archive Search Users""
++++++
+4) The DESCRIPTION = ""T2 Test"" for all 3 accounts
+
+5) One or more of the accounts belongs to ""OU=BFIM Service Accounts, OU = Boston Financial, OU=ORIX USA""
+
++++++
+SAMAccountName for the 3 accounts
++++++
+ivansvc.test - ivansvc.test@BFIM.US - 6/6/2017 = whenCreated
+ostprintjob.test - ostprintjob.test@ocm.orixusa.corp - 9/6/2017 = whenCreated
+sitevisitsvc.test - sitevisitsvc.test@ocm.orixusa.corp - 9/6/2017 = whenCreated
++++++
+@ocm.orixusa.corp
++++++
+
++++++
+Account - OCMivansvc.test
+SamAccountName - ivansvc.testOU=Test,OU=Boston,OU=Boston Financial
+Display Name - Ivan Svc T2 Test
+WhenCreated - 6/6/2017 8:04:16 AM
+LastLogon - NULL
++++++
+
+6) UserAccountControl for these accounts 
+66048
+514
+
+7) We found as much information as NEA has on these accounts here:
+
+NEA > .Active Directory Inventory > 1-AD SCan > Results > ADInventory_UsersView
+
+OR by running a SQL select against the database:
+
+select * from StealthAudit.dbo.SA_ADInventory_UsersView;
+
+OR 
+
+select sauv.WhenCreated, sauv.WhenChanged, sauv.AccountExpires
+, sauv.NTAccount, sauv.LastLogonTimestamp
+, sauv.PwdLastSetDate, sauv.ACCOUNTDISABLE, sauv.LOCKOUT 
+, sauv.Description, sauv.DistinguishedName, sauv.ENCRYPTED_TEXT_PWD_ALLOWED
+, sauv.* 
+from StealthAudit.dbo.SA_ADInventory_UsersView sauv
+where sauv.SamAccountName like '%ivan%';
+
+8) We found the most information on these 3 accounts in Active Directory (User and Groups or???) at Orix.
+
+9) If you have an IAM/IAG (Identify Access Management/Identity Access Governance) product you may be able to find information on these 3 accounts (or Users) in archived data (7 years or greater). 
+
+10) We searched:
+NEA
+NTP v7.4.0.164
+NAM","Guidance","Mike Candon","Question","Netwrix Enterprise Auditor","StealthAUDIT AD Permissions Analyzer","Data Collection","10.0 and older","","9.1","Closed - Resolved","ORIX","Vaigunth S V","2025-03-10T17:34:44.000Z","2025-03-19T18:50:42.000Z"

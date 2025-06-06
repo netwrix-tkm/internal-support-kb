@@ -1,0 +1,16 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000BqLVMIA3","00411975","Support Ticket","Share Activity Issues","When II go to use the StealthAudit web console (AIC), I have attempted to look at activity for folders on our file share, however it always seems to return zero results even if I can find a record, I anticipated in the dbo.SA_FSAC_ActivityEventsView view in SQL. 
+
+In order to resolve all of these issues I would like to schedule time to share screens.
+
+If there is any additional information I can gather in the meantime, please let me know.
+
+Thanks,
+Frank","","","","[Issue]
+Customer is not seeing all the activity data from the Activity Monitor in the AIC despite successful collections and imports.
+
+[Root Cause]
+Customer migrated NetApp data from the old NAS to a new NetApp with the same name as before causing issues with pathing and pre-existing data in the database.
+
+[Resolution]
+We reconfigured permissions on the new NetApp using CIFS Method 2 Credential Configuration. Then we renamed the old NetApp data in the NEA database to show the host as ""OLD_HCDATASTORE.HC.HOWARDCOUNTYMD.GOV"". Now when the FSAA scan runs and imports, the new permissions will line up with the correct host. Then we scheduled a job to drop the data of the old server in 60 days.","Incorrect configuration: Netwrix product","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for NetApp","Configuration","11.5","","56.3","Closed - Resolved","Howard County, MD","Frank Salah","2024-06-14T13:31:50.000Z","2024-08-09T21:24:46.000Z"

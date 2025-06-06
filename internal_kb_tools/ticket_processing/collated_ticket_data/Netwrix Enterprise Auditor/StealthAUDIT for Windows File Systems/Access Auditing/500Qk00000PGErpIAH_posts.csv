@@ -1,0 +1,25 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000eGTAJKA4","500Qk00000PGErpIAH","TextPost","0054u000008ARZjAAO","2025-05-16T18:57:38.000Z","Description: working with paul pitas to try and get self signed certs working for fsaa scans. opening this ticket per his request","","","","0054u000008ARZjAAO","2025-05-16T18:57:38.000Z"
+"0D5Qk00000exAciKAE","500Qk00000PGErpIAH","TextPost","005Qk000004methIAA","2025-05-21T15:50:49.000Z","Steps to Reproduce Updated: Step 1: Export the CA's root certificate and any required intermediate CA certificates to .cer files.  
+Step 2: Import the exported certificates into the FSAA Certificate Authority store on the NEA console and each proxy.  
+Step 3: On the NEA console, create a client Certificate Signing Request (CSR) using the FSAACertificateManager.exe tool, ensuring the CN matches the fully qualified domain name (FQDN) of the NEA console.  
+Step 4: Sign the NEA console's CSR with the desired CA to create a signed client certificate, and copy the signed certificate to the NEA console.  
+Step 5: Import the signed client certificate into the certificate store on the NEA console using the FSAACertificateManager.exe tool.  
+Step 6: On each proxy, create a server CSR using the FSAACertificateManager.exe tool, ensuring the CN matches the FQDN of the proxy host.  
+Step 7: Sign the proxy's CSR with the desired CA to create a signed server certificate, and copy the signed certificate to the proxy.  
+Step 8: Import the signed server certificate into the FSAA managed certificate store on the proxy using the FSAACertificateManager.exe tool.  
+Step 9: Remove all generated files (e.g., PFX, CER, and Key files) from their output destinations.  
+Step 10: Update FSAA queries to use the Manual certificate exchange option in the FSAA job configuration UI under Applet Settings.  
+
+(Requested by user 0050g000006QqyE)","","","","005Qk000004methIAA","2025-05-21T15:50:49.000Z"
+"0D5Qk00000exEZaKAM","500Qk00000PGErpIAH","TextPost","005Qk000004methIAA","2025-05-21T15:50:52.000Z","What We've Learned Updated: - The issue was caused by an incorrect configuration where the certificate was stored in the general Certificate Authority store instead of the FSAA Certificate Authority store, as required by the FSAA setup process.
+- The absence of the certificate in the FSAA Certificate Authority store prevented the FSAA scans from functioning correctly.
+- The resolution involved manually exporting the correct certificate from the Certificate Authority, importing it into the FSAA Certificate Authority store, and ensuring all steps were performed using the appropriate user accounts for the NEA console and proxy scanner service.
+- The use of the FSAACertificateManager.exe tool was critical to maintaining consistency with the documented process and avoiding unforeseen behavior.
+- The documentation for the manual certificate distribution process was followed to resolve the issue, and no additional updates to the documentation were deemed necessary.
+- It remains unclear why the initial configuration error occurred, but the resolution steps have been documented to prevent recurrence.
+
+(Requested by user 0050g000006QqyE)","","","","005Qk000004methIAA","2025-05-21T15:50:52.000Z"
+"0D5Qk00000ex3hnKAA","500Qk00000PGErpIAH","TextPost","005Qk000004methIAA","2025-05-21T15:50:55.000Z","Next Steps Updated: No next steps documented.
+
+(Requested by user 0050g000006QqyE)","","","","005Qk000004methIAA","2025-05-21T15:50:55.000Z"

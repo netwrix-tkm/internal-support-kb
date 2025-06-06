@@ -1,0 +1,15 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000OL6r1IAD","00442831","Support Ticket","Access issue  - Access Analyzer 11.6","Need help troubleshooting access to the AIC, likely a certificate issue that needs to be updated.  
+Access Analyzer version 11.6","Attempt to access AIC using the desktop link.
+Server does not respond to the request.","--------
+04/24/2025
+--------
+The customer changed the server to use HTTPS and port 481, the link on the desktop was using default http:81
+It was also noticed that upon trying to access the login, it was failing to resolve the netbios name of the domain and the service doesn't appear to be getting responses from the SQL server.","Customer is going to reboot the server during off hours to see if this helps the service start again correctly and get responses from SQL.","Issue:
+AIC login not working and database errors shown.
+
+Cause:
+The link on the desktop was using the default location but the port and protocol were changed to HTTPS on port 481. The database error shown was caused by a large database migration task that was going over the 30 minute timeout.
+
+Resolution:
+Manually migrated the larger database tables to allow the migration to complete and the AIC to work properly.","External Patch/Update Impact","Ian Ranstrom","Error","Netwrix Enterprise Auditor","Access Information Center","Database","11.6","","12.8","Closed - Resolved","International Motors, LLC","Holly Smith","2025-04-22T20:36:15.000Z","2025-05-05T15:27:17.000Z"

@@ -1,0 +1,51 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009Wo7mIAC","500Qk00000GbIEUIA3","Today we:
+
+Identified a pathing issue with the Netwrix Activity Monitor agents and the monitored host's output file path.
+
+We tested and verified that there were two output paths listed on the hosts. One path is listed for activity on the NAM agent and one path is managed by SI. 
+
+Running activity in the NAM console and not returning any results confirmed the idea that SI is intercepting the events and not feeding it into the NAM agents.
+
+We then decided to remove the current monitored hosts to refresh the default path and monitor new activity events. Performing this option then allowed us to perform an FSAC system scan with the NEA console and return more recent activity results in the NEA console as it should properly work.
+
+After performing the FSAC system scan in the NEA console we then verified that the SI agents were still monitoring recent activity by reviewing the recent events tab within the SI console under the file system monitoring policies for each monitored host. It was confirmed that the SI agent is still picking up file system activity and indexing it into the SI database. 
+
+Our next steps are:
+
+You will:
+
+Replace the current file paths for each non-functioning monitored host and replace it to refresh the default pathing for activity. 
+
+Allow the FSAC system scan to run from the scheduled tasks on all hosts in each proxy host list. Then allow the FSAC Bulk Import to successfully run.
+
+Once the above steps have been completed successfully please provide an update if you experience any errors when running the scans.","0054u000007MdqrAAC","2024-10-07T19:10:40.000Z","2024-10-07T19:10:40.000Z","false","false"
+"00aQk000009hWp4IAE","500Qk00000GbIEUIA3","Today we:
+
+We added an additional file output to collect data from the default file paths for the updated NAM agents so that you're able to collect recent file system activity during an FSAC system scan.
+
+After adding the additional file outputs we were successfully able to collect data from the activity monitor agents into the NEA console. 
+
+We were also able to identify the location of the file system activity that has been logged into the SQL database. The event data is indexed in the SA_FS_ActivityEventsView table. We then ran the below query to identify older event data in SQL. 
+
+SELECT *
+FROM dbo.SA_FSAC_ActivityEventsView
+WHERE AccessTime BETWEEN '2024-01-01' AND '2024-12-31'
+ORDER BY AccessTime ASC
+
+This is a temporary workaround until we can resolve the issue with NEA not identifying the older data that's been collected in the T2 location for the agents. 
+
+Our next steps are:
+
+You will:
+
+Allow the FSAC System scan and Bulk Import jobs to run successfully so that you can collect the most recent event activity. 
+
+This issue has been brought to the attention of our SME and will provide the information we have collected at a meeting with the development team scheduled on Thursday. Once we have more information we will provide an update and a follow-up meeting link. 
+
+Additionally, to address the ini file issue. I was able to resolve this in my lab by verifying that the monitored host needs to match what NEA is seeing the host as. If the host in NEA is in FQDN format then the monitored host needs to match. If its NetBios then the monitored hosts need to match. Also, this can be modified in the ini file itself. I have provided a screenshot of this location below:
+
+NAM Agent Host Name
+
+NAM Agent Host Name2
+NAM Agent Host Name3","0054u000007MdqrAAC","2024-10-16T20:55:23.000Z","2024-10-16T20:55:23.000Z","false","false"

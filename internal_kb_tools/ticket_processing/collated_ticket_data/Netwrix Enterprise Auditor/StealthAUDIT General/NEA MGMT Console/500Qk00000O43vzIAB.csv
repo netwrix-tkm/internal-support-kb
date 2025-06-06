@@ -1,0 +1,44 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000O43vzIAB","00442050","Support Ticket","Software Directory Space being filled up","Our install directory is being filled up and disk space being utilized by files named *_Extractor_*. What are these files and can they be deleted?","","--------------
+22.04.2025 
+Artem Naskal 
+
+Customer reported that SDDs Extractor log files are occupying around 90 GB each. 
+As a result their End Customer`s space on the NAA server gets filled up pretty quickly. 
+
+I asked them to clarify with end customer the size of the scanned environment to see if it is expected for us to produce such big log files. 
+
+Also - Log files can be safely deleted to free up some space. 
+
+In the mean time, I asked in SWAT for a way to control retention for SDD log files:
+https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1745331602521?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1745331602521&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=NAA%20DAG&createdTime=1745331602521
+
+-----------------
+25.04.2025 
+Artem Naskal 
+
+Was on a meeting with customer today. 
+We confirmed that the biggest Extractor log file was created by File System SDD job. 
+Job is scanning a single file server. 
+
+Results of SDD for this server display these numbers:
+Folder Count: 371709
+File Count: 1 934 177
+Item Count: 2 305 942
+
+SDD criteria are the following:
+https://nwxcorp.lightning.force.com/lightning/r/ContentDocument/069Qk00000NZWEHIA5/view
+
+We lowered logging level from Debug to Warning. I asked customer to restart File System solution and let me know if they see Extractor files reach the same size (around 90 gb).
+
+In the mean time, need to clarify if it is expected to see Extractor files of such size with this File Server + SDD criteria settings.","Customer will reply back with results of FileSystem SDD scan after lowering log level to Warning.","Install directory for the Netwrix Access Analyzer was filling up with '_Extractor_' log files.
+After performing a check on the Access Analyzer settings it was found that these logs were a debug level logging of the Sensitive Data Discovery job that was scanning a large File Server.
+
+We disabled Debug logging by changing logging level to ""Warning"".
+This decreased the size of the log files.
+
+It was also suggested using ""History"" job tab to keep in check the number of log files kept by the job:
+
+""History"" tab in the properties of the Jobs that use Sensitive Data Discovery.
+There are log retention parameters that control how many log files to keep. By lowering the number of logs you can also keep the volume consumption to a minimum.
+To get to these settings Right-Click needed job > select ""Properties"" > then navigate to the ""History"" tab.","Incorrect configuration: Netwrix product","Artem Naskal","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","NEA MGMT Console","11.6","11.6.0.132","21.1","Closed - Resolved","MANCOSA","ziyaad Rasool","2025-04-15T07:19:33.000Z","2025-05-06T09:00:22.000Z"

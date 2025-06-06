@@ -1,0 +1,25 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000CqPDAIA3","00414522","Support Ticket","Need some help scanning for Attribute Changes","We have several user, group and Computer attributes we want to scan for changes for.
+I added that attributes into the ""Custom Attributes"" in the ""User and Group Inventory Details"" query, set the scan to Full scan and scanned successfully.
+
+I Then did a manual change to one of the custom attributes and re-scanned.  But I don't see the custom attributes on the report.  I set the scan back to differential, made a change again and rescanned, still didn't show up on the reports.  The attributes are in the ExcentedAttributesPivotView
+
+I don't get any errors but there are a few warnings in the stats logs  
+
+The following custom attributes were requested but not set in domain 1 (these are not the custom attributes I added)
+msDS-AllowedToActOnBehalfOfOtherIdentity for the User object class.  
+PrimaryGroupID for the Group object class. 
+AdminCount for the Computer object class
+msDS-AllowedToActOnBehalfOfOtherIdentity for the Computer object class
+msDS-AllowedToDelegateTofor the Computer object class
+
+I feel like I'm missing something super simple.
+
+Thanks!","","","","**Issue**
+Customer is looking to track changes on their extended AD attributes. The attributes do show up in the ADI ExtendedAttributesPivotView table.
+
+**Root Cause**
+Typically we see this is caused by either the ADI Scan not collecting changes, or the 2-AD_Changes job not running
+
+**Resolution**
+When customer was going through settings again to write up where it was going wrong, he discovered he was seeing the data again. He's not sure if he forgot to re-enable change collection after running a full ADI or if he was skipping the 2-AD_Changes job, but either way, he was able to find the data he was looking for on the 2-AD_Changes > Attribute Changes report","Incorrect configuration: Netwrix product","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Data Collection","11.6","","0.9","Closed - Resolved","National Board of Medical Examiners","Bob Langer","2024-07-09T16:55:22.000Z","2024-07-10T15:29:37.000Z"

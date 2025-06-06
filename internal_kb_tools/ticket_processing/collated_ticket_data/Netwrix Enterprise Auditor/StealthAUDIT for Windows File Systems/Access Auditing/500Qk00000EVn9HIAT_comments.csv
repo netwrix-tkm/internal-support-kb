@@ -1,0 +1,221 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008ZCXxIAO","500Qk00000EVn9HIAT","The customer is from the US","0054u000007MeUDAA0","2024-08-16T13:21:18.000Z","2024-08-16T13:21:18.000Z","false","false"
+"00aQk000008ZLmaIAG","500Qk00000EVn9HIAT","High value customer- discuss environment with Will Laverly if anything crazy comes up","0054u000007MiY9AAK","2024-08-16T15:47:10.000Z","2024-08-16T15:47:10.000Z","false","false"
+"00aQk000008ZRn7IAG","500Qk00000EVn9HIAT","Include Scott Webber and get temp of customer and how everything is going in the environment/mini healthcheck","0054u000007MiY9AAK","2024-08-16T15:51:40.000Z","2024-08-16T15:51:40.000Z","false","false"
+"00aQk000008jrJiIAI","500Qk00000EVn9HIAT","[Meeting Notes 8/26/24]
+**Current Issue**
+NEA v11.6.0.65
+FSAA Proxy v11.6.0.16 (local system)
+SDD v11.6.0.9
+
+**Troubleshooting Completed during Meeting**
+- 0.Collection SWR ALL (FSAA) - There is no row at position 0.
+--- This is happening on more than 50% of servers being scanned, the other half are completing successfully
+--- This looks to be caused by a certificate failure
+----- Removed all LocalSystem (proxy) and MHD-SR-Stealthbits (NEA Console) user certificates 
+- Recommendation to upgrade FSAA Proxy & SDD (and NEA, but customer is currently in a change freeze)
+- Enabled partial import for FSAA
+- Ran test scan against 1 host - HUGVAPPVYNMS002
+
+**Logs/Screenshots Collected**
+
+**Next Steps**","0054u000007MiY9AAK","2024-08-26T15:04:53.000Z","2024-08-26T15:04:53.000Z","false","false"
+"00aQk000008kSr7IAE","500Qk00000EVn9HIAT","[Tiger Team]
+**Problem Statement/Business Impact**
+FSAA and SDD Proxy scans have more than half the hosts failing with ""There is no row at position 0."" and ""Unable to start proxy scan"" due to a failed certificate exchange. 
+
+**Desired Outcome**
+Successful scans for all FSAA hosts
+
+**Steps to Reproduce**
+Run the FSAA/Permissions group for the erroring servers from the Schedule 
+
+**Troubleshooting Completed/Notes**
+- Removed certs from LocalSystem using PSExec on Proxy server
+- Removed certs from NEA service account on NEA console server
+- Currently running the following:
+--- NEA v11.6.0.65
+--- FSAA Proxy v11.6.0.16 (local system)
+------ Advised to upgrade
+--- SDD v11.6.0.9
+------ Advised to upgrade
+- Some hosts are successful
+
+**Logs Uploaded**
+- Log with all hosts (1-FSAA System Scans321_Log)
+- Log with single host (1-FSAA System Scans321_Log (SWR_082624)","0054u000007MiY9AAK","2024-08-26T20:31:56.000Z","2024-08-26T20:31:56.000Z","false","false"
+"00aQk000009J1cjIAC","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Account ACV has been changed to 4349165.3933333333236.","0054u000007MiY9AAK","2024-09-25T14:16:50.000Z","2024-09-25T14:16:50.000Z","false","false"
+"00aQk000009J1eLIAS","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Account ACV has been changed to 2174582.6966666666618.","0054u000007MiY9AAK","2024-09-25T14:16:52.000Z","2024-09-25T14:16:52.000Z","false","false"
+"00aQk000009JNRzIAO","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Michael Burrofato:
+
+@Salesforce It looks like according to the job log that they are attempting to use automatic certificate exchange. However, a domain trust is required in order to use that option, and according to the error being thrown it looks like that is missing.
+
+If no domian trust is present, then manual certificate exchange must be used. Steps to setup manual exchange are documented here:
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Admin/DataCollector/FSAA/ManualCertificate.htm
+
+[DevOps CommentId:10977340]","0054u000006gtWUAAY","2024-09-25T17:45:01.000Z","2024-09-25T17:45:01.000Z","false","false"
+"00aQk000009JNRxIAO","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-25T17:45:01.000Z","2024-09-25T17:45:01.000Z","false","false"
+"00aQk000009JMqsIAG","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-09-25T17:54:07.000Z","2024-09-25T17:54:07.000Z","false","false"
+"00aQk000009JOUTIA4","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-09-25T17:54:21.000Z","2024-09-25T17:54:21.000Z","false","false"
+"00aQk000009JQ6UIAW","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: @dev 
+All the servers (file system, proxy, and NEA host) have a domain trust/are in the same domain","0054u000007MiY9AAK","2024-09-25T18:12:38.000Z","2024-09-25T18:12:38.000Z","false","false"
+"00aQk000009JZkrIAG","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-09-25T19:44:57.000Z","2024-09-25T19:44:57.000Z","false","false"
+"00aQk000009Ja5pIAC","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Priority has been changed to Critical.","0054u000007MiY9AAK","2024-09-25T19:47:47.000Z","2024-09-25T19:47:47.000Z","false","false"
+"00aQk000009JaIkIAK","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Bump priority to P1 because customer is unable to collect FS data","0054u000007MiY9AAK","2024-09-25T19:49:33.000Z","2024-09-25T19:49:33.000Z","false","false"
+"00aQk000009JcyrIAC","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Escalation Reason has been changed to Data Collection.","0054u000007MiY9AAK","2024-09-25T20:25:50.000Z","2024-09-25T20:25:50.000Z","false","false"
+"00aQk000009QC3ZIAW","500Qk00000EVn9HIAT","have we attempted manual certificate exchange?","0050g000006QqyEAAS","2024-10-01T19:05:09.000Z","2024-10-01T19:05:09.000Z","false","false"
+"00aQk000009Q8EUIA0","500Qk00000EVn9HIAT","Haven't attempted Manual Cert yet, but automatic should work because all systems are within the same domain","0054u000007MiY9AAK","2024-10-01T19:21:59.000Z","2024-10-01T19:21:59.000Z","false","false"
+"00aQk000009R3B8IAK","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: adding Swat conv:  https://teams.microsoft.com/l/message/19:bfc03607c1094e528b56f819d6ec30cf@thread.tacv2/1725904206945?tenantId=097499ff-179d-4959-ab02-86d364125bfc&groupId=72f83b71-3180-482b-b588-9595342c5a50&parentMessageId=1725904206945&teamName=SWAT%20Teams%3A%20Product%20Discussions%2C%20PM%20Q%26A%2C%20Feedback&channelName=StealthAUDIT%20DAG&createdTime=1725904206945","0054u000006goLGAAY","2024-10-02T13:37:26.000Z","2024-10-02T13:37:26.000Z","false","false"
+"00aQk000009RBn2IAG","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Ethan Israel:
+
+@Salesforce @Helen Randall - this was pulled onto the dev sprint today for investigation
+
+[DevOps CommentId:11006404]","0054u000006gtWUAAY","2024-10-02T15:13:11.000Z","2024-10-02T15:13:11.000Z","false","false"
+"00aQk000009RBn0IAG","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-02T15:13:11.000Z","2024-10-02T15:13:11.000Z","false","false"
+"00aQk000009TakTIAS","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Account ACV has been changed to 2170484.7466666666613.","0054u000006gtWUAAY","2024-10-04T09:48:27.000Z","2024-10-04T09:48:27.000Z","false","false"
+"00aQk000009TakVIAS","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Helen Randall:
+
+ @Salesforce this one should be looked at next week.
+
+[DevOps CommentId:11015268]","0054u000006gtWUAAY","2024-10-04T09:48:28.000Z","2024-10-04T09:48:28.000Z","false","false"
+"00aQk000009XOXqIAO","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Helen Randall:
+
+@Salesforce this one is being investigated now.
+
+[DevOps CommentId:11026553]","0054u000006gtWUAAY","2024-10-08T09:13:00.000Z","2024-10-08T09:13:00.000Z","false","false"
+"00aQk000009XtIIIA0","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-10-08T15:54:42.000Z","2024-10-08T15:54:42.000Z","false","false"
+"00aQk000009YOPJIA4","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-10-08T21:17:51.000Z","2024-10-08T21:17:51.000Z","false","false"
+"00aQk000009b3PyIAI","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-10T20:18:12.000Z","2024-10-10T20:18:12.000Z","false","false"
+"00aQk000009b3Q0IAI","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Adam DeSapio:
+
+@Salesforce 
+
+The secure stream errors from the AppletServer logs are normal and expected because the proxy is running as LocalSystem.
+
+The job is attempting to use credentials in the connection profile, failing, and falling back to LocalSystem and succeeding.
+This can be seen in the job logs.
+
+In the 8/13 job logs, there are errors ""Unable to start scan ..."" which have details above them - when starting the scan for 3 hosts, the https handshake took too long, so the scan failed for these hosts. This is probably due to the network conditions at the time because these do not recur in the 9/19 job logs.
+
+For the remaining 119 hosts, there are fatal errors reading the T2s.
+Can we get the T2s from the proxy for the host ""HUGVAPPLRSMS001"" so we can see why this is happening?
+
+[DevOps CommentId:11044754]","0054u000006gtWUAAY","2024-10-10T20:18:13.000Z","2024-10-10T20:18:13.000Z","false","false"
+"00aQk000009bAKzIAM","500Qk00000EVn9HIAT","UNABLE TO RESPOND/CHANGE STATUS ON TICKET. | SalesForce and B. West are aware.
+
+I've reached out to Scott Webber to update the customer on next steps.","0054u000007MiY9AAK","2024-10-10T21:39:52.000Z","2024-10-11T13:49:11.000Z","false","false"
+"00aQk000009cC2zIAE","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-10-11T18:23:52.000Z","2024-10-11T18:23:52.000Z","false","false"
+"00aQk000009fcYnIAI","500Qk00000EVn9HIAT","#EAM --- Dusty 
+
+Customers last comments: Confirmed that all Servers are in the same domain.
+
+R&D Added: 10/10/2024 Adam DeSapio: The secure stream errors from the AppletServer logs are normal and expected because the proxy is running as LocalSystem...
+
+CSM Scott Webber added:  10/8/2024 The current sprint in Dev is scheduled to be completed on Monday, October 14th.
+
+Current Status:  Awaiting Client
+
+----","00570000003KXurAAG","2024-10-15T14:50:21.000Z","2024-10-15T14:50:21.000Z","false","false"
+"00aQk000009ftL7IAI","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0050g000006QqyEAAS","2024-10-15T17:27:20.000Z","2024-10-15T17:27:20.000Z","false","false"
+"00aQk000009fpnmIAA","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0050g000006QqyEAAS","2024-10-15T17:28:58.000Z","2024-10-15T17:28:58.000Z","false","false"
+"00aQk000009iQbCIAU","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: T2s attached in sharepoint","0054u000007MiY9AAK","2024-10-17T15:07:38.000Z","2024-10-17T15:07:38.000Z","false","false"
+"00aQk000009iWlOIAU","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-10-17T15:07:52.000Z","2024-10-17T15:07:52.000Z","false","false"
+"00aQk000009nj5FIAQ","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-22T15:26:56.000Z","2024-10-22T15:26:56.000Z","false","false"
+"00aQk000009nj5HIAQ","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Michael Burrofato:
+
+@Salesforce This is actively being investigated by the development team.
+
+[DevOps CommentId:11096608]","0054u000006gtWUAAY","2024-10-22T15:26:57.000Z","2024-10-22T15:26:57.000Z","false","false"
+"00aQk000009njd7IAA","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-10-22T15:34:35.000Z","2024-10-22T15:34:35.000Z","false","false"
+"00aQk000009qZHRIA2","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-24T16:34:09.000Z","2024-10-24T16:34:09.000Z","false","false"
+"00aQk000009qZHTIA2","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Adam DeSapio:
+
+@Salesforce
+
+Identified an issue affecting proxy mode scans. Working on a fix.
+
+
+The 8/2 applet log provided has this error message ""Failed to connect to \HUGVAPPLRSMS001IPC$: The specified network name is no longer available""
+Was able to reproduce by disabling the ""Server"" service. This service should be running on target hosts in order for scans to succeed.
+This appears to have lead to the current issue reading the proxies T2s that we will get a fix for
+
+[DevOps CommentId:11110021]","0054u000006gtWUAAY","2024-10-24T16:34:10.000Z","2024-10-24T16:34:10.000Z","false","false"
+"00aQk000009qcSDIAY","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-10-24T17:10:58.000Z","2024-10-24T17:10:58.000Z","false","false"
+"00aQk000009tvF0IAI","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-10-28T14:47:06.000Z","2024-10-28T14:47:06.000Z","false","false"
+"00aQk000009w6W5IAI","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Account ACV has been changed to 2170484.7466666666566.","0054u000006gtWUAAY","2024-10-29T22:44:32.000Z","2024-10-29T22:44:32.000Z","false","false"
+"00aQk000009yDwTIAU","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-10-31T16:24:50.000Z","2024-10-31T16:24:50.000Z","false","false"
+"00aQk000009yDwVIAU","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Michael Burrofato:
+
+@Salesforce @Chris Brooks @Ethan Israel A fix has been made and will be available in the next CU. A hotfix has also been submitted. Expect a link shortly.
+
+[DevOps CommentId:11151472]","0054u000006gtWUAAY","2024-10-31T16:24:51.000Z","2024-10-31T16:24:51.000Z","false","false"
+"00aQk000009yG6NIAU","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Hotfix available in this KB article: https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk0000008tLuIAI/view","0054u000006goGXAAY","2024-10-31T17:16:52.000Z","2024-10-31T17:16:52.000Z","false","false"
+"00aQk000009yYo1IAE","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-10-31T20:14:23.000Z","2024-10-31T20:14:23.000Z","false","false"
+"00aQk00000A5lmwIAB","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Is the hotfix provided (11.6.0.057) to address the issue of ""Unable to Establish a Secure Stream"" we're seeing when attempting to scan a domain joined proxy?","0054u000007MiY9AAK","2024-11-07T15:20:27.000Z","2024-11-07T15:20:27.000Z","false","false"
+"00aQk00000A5loXIAR","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007MiY9AAK","2024-11-07T15:20:35.000Z","2024-11-07T15:20:35.000Z","false","false"
+"00aQk00000A5pLtIAJ","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2024-11-07T15:59:27.000Z","2024-11-07T15:59:27.000Z","false","false"
+"00aQk00000A5pLvIAJ","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the new comment has been added: Ethan Israel:
+
+@Salesforce @Helen Randall - Hey Tay, 
+
+The ""Unable to
+Establish a Secure Stream"" error is normal and expected because the proxy
+is running as LocalSystem. The job is attempting to use credentials in the
+connection profile, failing, and falling back to LocalSystem and succeeding.
+
+ 
+
+However, when dev
+investigated the logs they found an """"Failed to connect to \HUGVAPPLRSMS001IPC$: The specified
+network name is no longer available"". To connect to the IPC$ share on the
+target host the ""Server"" service has to be running, dev reproduced
+that error by turning off that service, but there could be other
+misconfigurations that lead to ""The specified network name is no longer
+available"".
+
+ 
+
+When that error was
+encountered it left the T2s in a bad state, so on the next scan the remote T2
+check failed. The remote T2 check was fixed with HF 11.6.0.057 so that should
+no longer fail on the next scan after applying the HF. However, if the """"Failed
+to connect to \HUGVAPPLRSMS001IPC$:
+The specified network name is no longer available"" error re-occurs then
+that would suggest an environmental issue and you should confirm that the
+""Server"" service is running on the target host, and troubleshoot
+connectivity to that IPC$ share.
+
+[DevOps CommentId:11186663]","0054u000006gtWUAAY","2024-11-07T15:59:28.000Z","2024-11-07T15:59:28.000Z","false","false"
+"00aQk00000A5kdyIAB","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-11-07T16:18:00.000Z","2024-11-07T16:18:00.000Z","false","false"
+"00aQk00000AaXJ3IAN","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007MiY9AAK","2024-12-05T16:09:19.000Z","2024-12-05T16:09:19.000Z","false","false"
+"00aQk00000ChsPdIAJ","500Qk00000EVn9HIAT","On Escalation Ticket # 00422068 the Following Fields have been updated: 
+Account ACV has been changed to 2439075.119999999995.","0054u000006gtWUAAY","2025-04-03T13:23:01.000Z","2025-04-03T13:23:01.000Z","false","false"

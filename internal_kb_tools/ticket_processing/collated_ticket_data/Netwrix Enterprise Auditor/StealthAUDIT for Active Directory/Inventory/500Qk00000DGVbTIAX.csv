@@ -1,0 +1,12 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000DGVbTIAX","00415453","Support Ticket","structure of this table has been changed with the update","One of the tables we use to generate User Member Audit 1 and User Member Audit2 is SA_ADInventory_ExtendedAttributesPivotView. The structure of this table has been changed with the update. We had a column named physicalDeliveryOfficeName for location which is now missing. Without this column generating the report results in an error.","","","","[Issue]
+The customer's SA_ADInventory_ExtendedAttributesPivotView would fail to create
+
+[Root Cause]
+Malformed or incorrectly formatted data in the attribute when collected
+
+[Resolution]
+Created a sqlscripting analysis task on the ADI1_AD-Scan that runs after data collection:
+UPDATE [dbo].[SA_ADInventory_ExtendedAttributes]
+SET [value] = SUBSTRING([Value],0,Len([Value])-1)
+WHERE [value] like '%'+char(10)+char(0)","Incorrect configuration: target server software","Tay Caliguiri","","Netwrix Enterprise Auditor","StealthAUDIT for Active Directory","Inventory","","","74.9","Closed - Resolved","EagleBank","Esayas Gonfa","2024-07-18T20:58:15.000Z","2024-10-01T19:17:27.000Z"

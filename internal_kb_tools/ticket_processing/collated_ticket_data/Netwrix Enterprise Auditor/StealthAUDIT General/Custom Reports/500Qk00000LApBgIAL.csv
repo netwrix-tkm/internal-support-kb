@@ -1,0 +1,36 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LApBgIAL","00433878","Support Ticket","NEA - Password Audit - CDSA Presentation does not show password information","CDSA Presentation does not show password information","1) In NEA, navigate to 'NEA' > Jobs > 'Active Directory' > 'AD weekly reports' > 2.Users > AD_WeakPasswords
+
+2) AD_WeakPasswords > right-click and select Properties > Connection tab > 'Select one of the following user defined profiles' > <Here change the selection to nothing selected> IF you wish to try to reproduce this issue.","+++++
+2025_0204 Meeting: What we observed in this meeting which confirmed the screenshot that was attached to this case (emailed by the customer)
++++++
+Symptom or issue/error: NEA > Jobs > Active Directory > AD weekly reports > 2.Users > AD_WeakPasswords > Status > Messages > Job connection profile is not available
+
++++++
+1) .Active Directory Inventory Job > ""1-AD_Scan"" - Is this job running successfully?
+
+2) ""Active Directory"" > 2.Users > AD_WeakPasswords job - Is this job running successfully?","+++++
+2025_0130 Meeting invite sent: 
++++++
+I sent a meeting invite to the customer in order to investigate this issue in the customer environment and confirm what we believe to be the issue based upon the attached screenshots.","+++++
+2025_0205 @ 11:01:16 AM EST
++++++
+Symptom or issue/error: NEA > Jobs > Active Directory > AD weekly reports > 2.Users > AD_WeakPasswords > Status > Messages > Job connection profile is not available
++++++
+
++++++
+Solution or fix:
++++++
+1) AD_WeakPasswrods > right-click and select Properties > Connection tab > 'Select one of the following user defined profiles' > <nothing was selected>
+
+2) We selected 'SBServiceAccount' from the drop-down
+
+3) Now the AD_WeakPasswords processed 21K+ AD accounts as it should.
+
+4) Next you ran the CDSA Report and all of the Weak Passwords queries were executing and we spot-checked the Results > 'AD_WeakPasswords_Details' and observed that they were now populated.
+
+5) We ensured that no other jobs were running (CDSA Job may lock tables) and then we ran the CDSA Job Group.  Once the CDSA Job Group completed (under 7 minutes to complete) we observed in the the slide #9, titled as 'CONDITION: Weak Passwords' was populated with data.
+
++++++
+CDSA - 'Credential and Data Security Assessment'
++++++","Incorrect configuration: Netwrix product","Mike Candon","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT General","Custom Reports","11.5","","8.0","Closed - Resolved","Prince George's County, Maryland","William Addis","2025-01-28T17:17:08.000Z","2025-02-05T16:12:29.000Z"

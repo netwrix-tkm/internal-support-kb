@@ -1,0 +1,22 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009dpboIAA","500Qk00000FZeMxIAL","It seems they have an issue with a few of their computers Last Logon Dates (Actually, LastLogonTimestamp from the DC Scanned – shown here: https://github.com/netwrix/pingcastle/blob/master/Healthcheck/Healthcheck.cs#L466 ) being set in the future.
+This skews the finding as it is doing the following calculation  (PasswordLastSet + 45 days) < Last Logon, as shown here: https://github.com/netwrix/pingcastle/blob/502535913aa774c9be6cd24fdcabc894436f005b/Healthcheck/Rules/HeatlcheckRuleStaledPwdLastSet45.cs#L26 .
+
+You can verify the LastLogonTimestamp dates by either:
+
+Using Active Directory Users and Computers
+Enabling advanced features
+Navigating to the OU of the affected Computer
+Opening the properties of said computer
+selecting Attribute Editor tab
+browsing to the lastlogondate / lastlogontimestamp to investigate
+Using PowerShell with the Active Directory Module and running the following (Replacing the SAMaccountName for each computer affected)
+Get-ADComputer -Filter { SAMAccountName -eq “MTYAPS0166$” } -properties *  | Select Name, LastLogonDate, @{ Name = ""LastLogonTimestamp""; Expression = { [datetime]::FromFileTime($_.LastLogonTimestamp) } }, PasswordLastSet
+
+
+
+The specific check mentioned will have the advised solution for when a password is actually not been changed. This is an active directory/windows bug that is causing the LastLogonTimestamp to be in the future so there is no specific vulnerability here. That being said here are some steps which may help:
+
+-Check the time on the server itself, there was a bug in windows that can set dates to the future which then may translate to the LastLogonTimestamp being updated. https://arstechnica.com/security/2023/08/windows-feature-that-resets-system-clocks-based-on-random-data-is-wreaking-havoc/
+
+-Clear the lastLogonTimestamp/LastLogon for the affected system or set it to an older value and then login (or maybe restart) the affected system to try and get it to update to a newer value","0054u000007Mdn4AAC","2024-10-14T10:33:28.000Z","2024-10-14T10:33:28.000Z","false","false"

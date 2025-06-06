@@ -1,0 +1,57 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000LV5qXIAT","00434733","Support Ticket","NEA - Switching active scanning nodes on Dell Isilon using the EMC Isilon plugin","1) We are going to switch our active Isilon node and i need help to understand how we switch which node is being scanned by the EMC Isilon plugin.  
+2) I also have a question on what the effect would be if we just scanned the passive node instead of the active node.  What the difference in data is, etc.","","+++++
+2025_0212: Meeting with Jason and Corey
++++++
+
+1) Do we have any customers who are just scanning backup nodes (a 'passive node' that may be one day behind in data). The customer is asking if they can capture the activity data of a synched node - a passive node and not an active node. And they are switching from the active node to the passive node.
+
+2) How does NEA handle a new URL switching from Westfield to Akron but it will be the same data? It is technically a new array but the same data. How does NEA handle that transition as their Akron data center has always had the same data as Westfield (but passive versus active) Currently Isilon does not scan the passive node right now at all.
+
+The passive node is a day behind in terms of replication. It will be a new URL but all of the same data.
+
+3) They scan once a week to capture all file activities.
+
++++++
+Current data center configuration: 
++++++
+Westfield, OH - Active Data Center - will be deactivated
+Akron, OH - Passive Data Center -
+
++++++
+Switching to or migrating to:
++++++
+Akron, OH - will become the new Active Data Center 
+Pittsburgh, PA - will become the new Passive Data Center
+
+3-13 Determined and tested in my lab best course of action.
+3-14 retested and confirmed this will work. Updated customer.
+3-19
+Implemented with customer.
+All should be good with new agent getting results. 
+Going to run scans to verify all data stays in place.","+++++
+a) Westfield Environment will be deprecated by mid-March.
+
+
+b) How does Epsilon handle scanning a passive secondary node?
+
+3 components:
+1) Permissions
+2) Activity
+3) Sensitive data
++++++
+
++++++
+Customer meeting scheduled with Tier 2
++++++
+
+1) Our Tier 2 TSE would like to review your environment.
+
+2) As long as the node name is the same we could keep things going (when switching from one data center to the new one) but if you migrate and rename (or re-point to a new URL?), it will be treated as a new server and there isn't a reasonable way to migrate our data from one name to the new name.   We could retain the old data then drop it when the new name has enough data.
+
+3-14 Plan of action created. Emailed first steps to customer. Most likely will meet next week to discuss further.
+
+3-19 waiting on scans to complete to review","Closing this.
+
+What we did was Rename the server in the FSAA hosts table
+Reconfigured hosts lists as well as NAM config to the new agent.","Guidance","Nicholas Zimmer","Question","Netwrix Enterprise Auditor","StealthAUDIT for EMC","Configuration","11.6","","64.1","Closed - Resolved","Westfield Insurance Companies (Ohio Farmers)","Jason Gray","2025-02-05T15:05:04.000Z","2025-04-10T16:23:10.000Z"

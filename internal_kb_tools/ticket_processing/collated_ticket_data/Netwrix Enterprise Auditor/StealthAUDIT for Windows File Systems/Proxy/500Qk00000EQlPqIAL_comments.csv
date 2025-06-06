@@ -1,0 +1,37 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000008WvY1IAK","500Qk00000EQlPqIAL","Make sure to add Taylor Van Orden!","0054u000007MiY9AAK","2024-08-14T18:57:03.000Z","2024-08-14T18:57:03.000Z","false","false"
+"00aQk000008gge9IAA","500Qk00000EQlPqIAL","Reviewed the logs that were provided by the customer and there seem to be some outdated FSAA proxies in the customer's environment. This may be contributing to the error ""Session ID# went away"". I suggest verifying the versions of the proxies and performing any updates via the Update proxy job or manually updating them.","0054u000007MdqrAAC","2024-08-22T20:07:33.000Z","2024-08-22T20:07:33.000Z","false","false"
+"00aQk000008hru5IAA","500Qk00000EQlPqIAL","I explained to the customer that the logs reveal that some of those proxies are outdated, which could be part of the issue.
+The customer said he ran a job to update all proxies. I looked at the job, and it shows that it was run successfully in July. He only ran it once.
+
+When we logged in to the proxy server, it showed the 9.0 version
+I advised the customer to upgrade it manually and run the scan to verify if that proxy shows up in the message with the same error.
+
+The customer could not download the proxy from our site because the company blocked the download.
+I downloaded the proxy and attached it to the chat for him to download. 
+He was still not able to download the attached file from the chat
+
+The customer expressed his intention to have someone else download the proxy for him. He plans to test it and will inform us of the outcome, mainly if the proxy appears in the list as an error. This proactive approach demonstrates his commitment to resolving the issue.","0054u000007osjSAAQ","2024-08-23T18:33:29.000Z","2024-08-23T18:33:29.000Z","false","false"
+"00aQk000008kSHdIAM","500Qk00000EQlPqIAL","Issue
+
+FSAA Scan Errors
+
+After upgrading to 11.5 we are seeing a ton of these errors
+
+<a href='https://Stealthbits.StealthAUDIT.DataCollectors.FSAA' target='_blank'>Stealthbits.StealthAUDIT.DataCollectors.FSAA</a>.FSAAException: Session 1261 went away at <a
+
+Cause
+
+Discovered that some of the FSAA proxies were running an older version.
+
+Discovered that too many simultaneous connections to proxy hosts.
+
+These two variables were discovered as the root causes of this issue.
+
+Resolution
+
+Performed an upgrade to all FSAA proxy hosts to the latest 11.5 proxy. 
+
+Performed a test FSAA system scan of only one of the affected hosts and was successful in scanning that host. 
+
+Suggested tweaking the performance settings for the FSAA system scan job by lowering the thread count if this error resurfaces.","0054u000007MdqrAAC","2024-08-26T20:25:44.000Z","2024-08-26T20:25:44.000Z","false","false"

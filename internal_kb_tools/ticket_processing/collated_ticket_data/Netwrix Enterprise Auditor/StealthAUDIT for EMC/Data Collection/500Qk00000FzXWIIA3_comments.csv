@@ -1,0 +1,89 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000009COUPIA4","500Qk00000FzXWIIA3","* How many hosts are they scanning? 
+* What is the SEEK > right-click properties > Performance Threads set to?
+
+* I believe they currently have the SEEK query setting set:
+Number of SDD Processes: 6
+
+* The doc below mentions:
+""NOTE: If running Sensitive Data Discovery (SDD) scans, it will be necessary to increase the minimum amount of RAM. Each thread requires a minimum of 2 additional GB of RAM per host. By default, SDD scans are configured to run two concurrent threads. For example, if the job is configured to scan 8 hosts at a time with two concurrent SDD threads, then an extra 32 GB of RAM are required (8x2x2=32).""
+
+https://helpcenter.netwrix.com/bundle/EnterpriseAuditor_11.6/page/Content/EnterpriseAuditor/Requirements/Solutions/FileSystem.htm","0054u000007MiY9AAK","2024-09-19T16:36:00.000Z","2024-09-19T16:36:00.000Z","false","false"
+"00aQk000009QAMjIAO","500Qk00000FzXWIIA3","based on the customer's screenshots they are scanning 4 concurrent threads (but only 1 host so only 1) x 6 SDD threads  = 1x6x2GB = 12GB RAM required","0050g000006QqyEAAS","2024-10-01T18:49:33.000Z","2024-10-01T18:51:03.000Z","false","false"
+"00aQk000009Xfs2IAC","500Qk00000FzXWIIA3","Client added AV exclusions but started getting error
+
+meeting was on October 1st
+note from meeting:
+
+Were getting the below error on the SEEK System Scan
+
+""Error during processing:  Could not load file or assembly 'System.Data.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)""
+
+Updated the Netwrix Sensitive Data Discovery Add-on to v11.6.0.13 --this did not fix our error
+
+Found where the System.Data.SQLite.dll v1.0.117.0 was in the %SAInstallDir%FSAA folder and replaced the 3 outdated System.Data.SQLite.dll v0.0.96 files with it --this fixed our SEEK error
+
+Ran into a new issue where we were unable to run the SEEK group from the Schedules node
+
+added the svc_stealthbits account to the Settings > Schedule node to be used for Scheduled Tasks
+
+ recreated the SEEK group scheduled task and were then able to see the task successfully kick off","0054u000007oss5AAA","2024-10-08T14:30:56.000Z","2024-10-08T14:30:56.000Z","false","false"
+"00aQk000009XlCfIAK","500Qk00000FzXWIIA3","waiting on client to tell us how the scan went
+need to send follow-up email","0054u000007oss5AAA","2024-10-08T14:31:22.000Z","2024-10-08T14:31:22.000Z","false","false"
+"00aQk000009YILVIA4","500Qk00000FzXWIIA3","still failing to complete SEEK scan
+still throwing ""out of memory"" errors after 2 days
+
+client said, ""I backed off the thread count some and have started the scan again (yesterday). I may add more memory again to the server depending on how it goes this time.""","0054u000007oss5AAA","2024-10-08T19:52:17.000Z","2024-10-08T19:52:17.000Z","false","false"
+"00aQk000009nuDZIAY","500Qk00000FzXWIIA3","#EAM --- Brandon
+https://nwxcorp.lightning.force.com/lightning/r/Case/500Qk00000GWDiVIAX/view
+
+[Issue]
+SEEK System Scan Error: Error during processing: Could not load file or assembly 'System.Data.SQLite, Version=1.0.117.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+
+[Resolution]
+We searched the %SAInstallDir%FSAA for the assembly specified in the error (System.Data.SQLite v1.0.117.0) and replaced any outdated versions of that file with it","0050g000006QqyEAAS","2024-10-22T17:21:11.000Z","2024-10-22T17:21:53.000Z","false","false"
+"00aQk000009o1erIAA","500Qk00000FzXWIIA3","https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk0000006fq5IAA/view","0050g000006QqyEAAS","2024-10-22T18:38:40.000Z","2024-10-22T18:38:40.000Z","false","false"
+"00aQk000009oConIAE","500Qk00000FzXWIIA3","Is this the same issue as 391962?","0050g000006QqyEAAS","2024-10-22T20:29:35.000Z","2024-10-22T20:29:35.000Z","false","false"
+"00aQk000009pZGIIA2","500Qk00000FzXWIIA3","might be the hyper visor running out of RAM
+
+need to ask the client to have a look at that","0054u000007oss5AAA","2024-10-23T20:26:33.000Z","2024-10-23T20:26:33.000Z","false","false"
+"00aQk000009qBa7IAE","500Qk00000FzXWIIA3","client responded to say that he checked with his System Admin and that ""hypervisor is not running low memory (that host is only using 40% of 2TB RAM with 100% allocation to vm guests – plenty of headroom there).""","0054u000007oss5AAA","2024-10-24T13:12:33.000Z","2024-10-24T13:12:33.000Z","false","false"
+"00aQk000009qEXxIAM","500Qk00000FzXWIIA3","In response to Brandon's reference to ticket 391962:
+
+He is scanning a single Isilon host in local mode, that ticket was a problem with the proxy servers connection","0054u000007oss5AAA","2024-10-24T13:20:22.000Z","2024-10-24T13:20:22.000Z","false","false"
+"00aQk000009qJJ8IAM","500Qk00000FzXWIIA3","Have the customer set that job to debug, run it, then export the whole job (right-click job, export) and add in to the ticket. Nick has a similar ticket in escalation but without the logs I can't confirm if it's the same problem","0054u000007MiY9AAK","2024-10-24T14:44:52.000Z","2024-10-24T14:44:52.000Z","false","false"
+"00aQk00000A1nddIAB","500Qk00000FzXWIIA3","On Escalation Ticket # 00425927 the Following Fields have been updated: 
+Account ACV has been changed to 766626.8625641025722.
+Priority has been changed to High.","0054u000007MiY9AAK","2024-11-04T16:32:11.000Z","2024-11-04T16:32:11.000Z","false","false"
+"00aQk00000A1mmQIAR","500Qk00000FzXWIIA3","On Escalation Ticket # 00425927 the Following Fields have been updated: 
+Account ACV has been changed to 383313.4312820512861.","0054u000007MiY9AAK","2024-11-04T16:32:13.000Z","2024-11-04T16:32:13.000Z","false","false"
+"00aQk00000AD7VmIAL","500Qk00000FzXWIIA3","On Escalation Ticket # 00425927 the new comment has been added: Michael Burrofato:
+
+@Salesforce @Ethan Israel @Chris Brooks This ticket has been pulled onto our sprint and is being investigated
+
+[DevOps CommentId:11211353]","0054u000006gtWUAAY","2024-11-13T15:45:16.000Z","2024-11-13T15:45:16.000Z","false","false"
+"00aQk00000AD7XOIA1","500Qk00000FzXWIIA3","On Escalation Ticket # 00425927 the new comment has been added: Michael Burrofato:
+
+@Salesforce @Ethan Israel @Chris Brooks This ticket has been pulled onto our sprint and is being investigated
+
+[DevOps CommentId:11211353]","0054u000006gtWUAAY","2024-11-13T15:45:18.000Z","2024-11-13T15:45:18.000Z","false","false"
+"00aQk00000ATXJ0IAP","500Qk00000FzXWIIA3","On Escalation Ticket # 00425927 the new comment has been added: Helen Randall:
+
+@Salesforce the fix for this is being worked on currently. 
+
+[DevOps CommentId:11289780]","0054u000006gtWUAAY","2024-11-28T11:06:57.000Z","2024-11-28T11:06:57.000Z","false","false"
+"00aQk00000AYshnIAD","500Qk00000FzXWIIA3","On Escalation Ticket # 00425927 the new comment has been added: Michael Burrofato:
+
+@Salesforce @Chris Brooks @Ethan Israel @Adam DeSapio  A fix has been made and will be available in Friday's CU. Hotfixes have been submitted to be posted. 2 fixes have been made; 1 in the FSAA module and 1 in SDD. Due to licensing restrictions, we have to separate these into 2 separate hotfix links.
+
+Please apply both hotfixes when links are available.
+
+[DevOps CommentId:11334980]","0054u000006gtWUAAY","2024-12-04T12:24:07.000Z","2024-12-04T12:24:07.000Z","false","false"
+"00aQk00000AZDFzIAP","500Qk00000FzXWIIA3","On Escalation Ticket # 00425927 the new comment has been added: Hotfix now available.  Please note that two separate files need to be downloaded and applied:
+
+https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk000000BRo5IAG/view
+https://nwxcorp.lightning.force.com/lightning/r/General__kav/ka0Qk000000BRrJIAW/view","0054u000006goGXAAY","2024-12-04T17:10:16.000Z","2024-12-04T17:10:16.000Z","false","false"
+"00aQk00000AhTSPIA3","500Qk00000FzXWIIA3","On Escalation Ticket # 00425927 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2024-12-11T20:25:53.000Z","2024-12-11T20:25:53.000Z","false","false"
+"00aQk00000B5o2fIAB","500Qk00000FzXWIIA3","On Escalation Ticket # 00425927 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007MiY9AAK","2025-01-06T21:33:44.000Z","2025-01-06T21:33:44.000Z","false","false"

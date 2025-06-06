@@ -1,0 +1,63 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PY46PKAT","500Qk00000DpDgTIAV","TextPost","0054u000007p4sbAAA","2024-10-28T10:04:00.000Z","Steps to Reproduce Updated: Couldn't reproduce","","","","0054u000007p4sbAAA","2024-10-28T10:04:00.000Z"
+"0D5Qk00000PY8QLKA1","500Qk00000DpDgTIAV","TextPost","0054u000007p4sbAAA","2024-10-28T10:06:49.000Z","What We've Learned Updated: The Storage Account is via Windows auth. We were able to log into the SA console via the Service account post terminating the running jobs then was able to clean up the orphaned lock (*.lck) files under the Jobs folder.
+
+After that console launched, but the issue reoccurs after some time","","","","0054u000007p4sbAAA","2024-10-28T10:06:49.000Z"
+"0D5Qk00000PXiG6KAL","500Qk00000DpDgTIAV","TextPost","0054u000007p4sbAAA","2024-10-28T10:07:15.000Z","Next Steps Updated: Sent instructions provided by R&D, waiting for customer's feedback","","","","0054u000007p4sbAAA","2024-10-28T10:07:15.000Z"
+"0D5Qk00000PgpIHKAZ","500Qk00000DpDgTIAV","TextPost","0054u000007p4sbAAA","2024-10-30T07:03:38.000Z","What We've Learned Updated: The Storage Account is via Windows auth. We were able to log into the SA console via the Service account post terminating the running jobs then was able to clean up the orphaned lock (*.lck) files under the Jobs folder.
+
+Hi Sukanya, thank you for your time on call today, on meeting we've stopped all running jobs and ended every single StealthAudit process using task manager, then we ran this script:
+
+# Specify the path to the folder you want to scan
+$folderPath = ""%sainstalldir%""
+
+# Recursively find all files with the .lck extension
+$lckFiles = Get-ChildItem -Path $folderPath -Recurse -Filter *.lck
+
+# Check if any files were found
+if ($lckFiles.Count -eq 0) {
+    Write-Host ""No files with the .lck extension found.""
+} else {
+    Write-Host ""The following files with the .lck extension were found:""
+    $lckFiles | ForEach-Object { Write-Host $_.FullName }
+
+    # Ask the user if they want to delete the files
+    $response = Read-Host ""Do you want to delete these files? (y/n)""
+    
+    if ($response -eq 'y') {
+        # Delete the found files
+        $lckFiles | Remove-Item -Force
+        Write-Host ""Files successfully deleted.""
+    } else {
+        Write-Host ""Deletion cancelled by the user.""
+    }
+}
+
+To remove any orphanated .lck files.
+
+After running the script we've checked with DBA team on any aborted/hung jobs in tempdb, DBA team confirmed that no jobs were found.
+
+We've launched Netwrix Enterprise Auditor console without any issues.
+
+After that console launched, but the issue reoccurs after some time","","","","0054u000007p4sbAAA","2024-10-30T07:03:38.000Z"
+"0D5Qk00000Q4NmdKAF","500Qk00000DpDgTIAV","TextPost","00570000003KXurAAG","2024-11-04T19:57:59.000Z","<p><b>#EAM</b> --- Dusty</p><p><b>Current Status:</b>                    T2 Support</p><p> <b>Current Tier:</b>                       T2 Support</p><p><b>Contact last comment:</b>        Review the logs and share the next action plan. Ensure to reply to all recipients included in the email thread. <b>10/30</b></p><p><b>T2 Damir:</b>                             Escalated to R&amp;D Sent instructions provided by R&amp;D, waiting for customer&#39;s feedback  <b>10/30</b></p><p><b>R&amp;D Michael Burrofato:</b>   Development is actively reviewing. <b>11/04</b></p>","","","","00570000003KXurAAG","2024-11-11T22:10:04.000Z"
+"0D5Qk00000QddKcKAJ","500Qk00000DpDgTIAV","TextPost","0054u000007MiY9AAK","2024-11-11T22:10:38.000Z","<p><b>#EAM</b>​ <b>﻿</b>​ --- Tay</p><p><b>Current Status:</b> T2 Support</p><p><b>Current Tier:</b> T2 Support</p><p><b>Customer Last comment: </b>Please share the findings from the logs and let us know the next action plan to resolve the issue. (11/8/24)</p><p><b>Update</b>: [<i>From R&amp;D</i>] Hey Damir, could you please go back to the customer and ask that they turn off usage statistics and see if this stops the issue occurring. Thanks! (11/11/24) </p>","","","","0054u000007MiY9AAK","2024-11-11T22:10:38.000Z"
+"0D5Qk00000QyAZ9KAN","500Qk00000DpDgTIAV","TextPost","0050g000006QqyEAAS","2024-11-15T17:59:44.000Z","Next Steps Updated: The customer has disabled the ""Usage Statistics"" setting within NEA. Customer to report any change in behavior when launching console.","","","","0050g000006QqyEAAS","2024-11-15T17:59:44.000Z"
+"0D5Qk00000RoJEYKA3","500Qk00000DpDgTIAV","TextPost","0054u000007MiY9AAK","2024-11-26T19:18:40.000Z","<p>#EAM​  -- T. Caliguiri</p><p><b>Current Status: </b>T2 Support</p><p><b>Last Update: </b>TSE received guidance from R&amp;D to move .proc files from %SAInstallDir%SPSQLScriptsUsageStatistics (and store somewhere else on safe keeping). If this does not resolve the issue, a prodump when the issue occurs will be necessary.</p><p> </p><p><b>Additional Info/Follow Up:</b> </p>","","","","0054u000007MiY9AAK","2024-11-26T19:18:40.000Z"
+"0D5Qk00000SBrH0KAL","500Qk00000DpDgTIAV","TextPost","0054u000007MiY9AAK","2024-12-03T18:58:34.000Z","<p>#EAM -- T. Caliguiri</p><p>Current Status: Awaiting Client</p><p>Last Update: TSE clarified that removing the files specified by dev will not have any impact on their operations, but will confirm if that is the feature causing the number of db sessions to increase/console to be unavailable.</p>","","","","0054u000007MiY9AAK","2024-12-03T18:58:34.000Z"
+"0D5Qk00000TC0CIKA1","500Qk00000DpDgTIAV","TextPost","0050g000006QqyEAAS","2024-12-17T17:20:54.000Z","Steps to Reproduce Updated: Enable usage statistics is high volume environment
+Disable Usage Statistics in NEA Console
+attempt to launch console - hangs on Test SQL Connection
+Note in SSMS running tasks that usage statistics is still running - causing  the Console to not be able to complete the test connection to the database.","","","","0050g000006QqyEAAS","2024-12-17T17:20:54.000Z"
+"0D5Qk00000TCEt0KAH","500Qk00000DpDgTIAV","TextPost","0050g000006QqyEAAS","2024-12-17T17:21:45.000Z","Next Steps Updated: The customer has disabled the ""Usage Statistics"" setting within NEA. Customer to report any change in behavior when launching console.
+
+No Change
+
+Manually remove Usage Statistic control files:
+1. Navigate to C:Program Files (x86)STEALTHbitsStealthAUDITSPSQLScriptsUsageStatistics.
+2. Move all .proc files from this folder (to any backup folder for example).
+3. Launch NEA console
+
+console successfully launches","","","","0050g000006QqyEAAS","2024-12-17T17:21:45.000Z"
+"0D5Qk00000TCdhjKAD","500Qk00000DpDgTIAV","TextPost","0054u000007MiY9AAK","2024-12-17T18:58:19.000Z","<p>#EAM -- BSW</p><p>Current Status: Awaiting R&amp;D</p><p>Last Update: R&amp;D has logged a work item to update control of usage statistics. Seeking to close issue.</p><p> </p><p>Additional Info/Follow Up: R&amp;D is investigating why usage stat queries are causing the console to hang when they are disabled.</p>","","","","0054u000007MiY9AAK","2024-12-17T18:58:19.000Z"
+"0D5Qk00000U7OQqKAN","500Qk00000DpDgTIAV","TextPost","005Qk000001wMM9IAM","2025-01-02T15:23:41.000Z","<p>Hi @Damir Akhmatshin​,</p><p> </p><p>Thank you for flagging this ticket to become a KB. </p><p> </p><p>Would you please turn your Resolution Notes into a KB draft by clicking the <b>New KB Article</b> button at the top?</p><p> </p><p>Thanks!</p><p> </p><p>CC: @Jake Mahon​ @Nicholas Zimmer​ </p>","","","","005Qk000001wMM9IAM","2025-01-02T15:23:41.000Z"

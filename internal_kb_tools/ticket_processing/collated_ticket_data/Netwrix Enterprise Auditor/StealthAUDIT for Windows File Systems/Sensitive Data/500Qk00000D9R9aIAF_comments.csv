@@ -1,0 +1,37 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk000007zbwHIAQ","500Qk00000D9R9aIAF","[Meeting Notes 7/17/24]
+**Current Issue**
+The SEEK scan for DC1 went from taking 3+hrs to 6+ days
+
+**Troubleshooting Completed during Meeting**
+- Adjusted the probable owners from unlimited to 0
+- Verified the FSAA and SEEK jobs weren't stepping on each other
+- Looked through the log and didn't see any errors that were pointing to something wrong other than some miscellaneous access denied errors deep down
+- Adjusted the scoping on the FSAA and SEEK jobs to exclude a folder that no longer wanted to collect on
+- Increased the threads on the SEEK job from 3 to 6
+
+**Logs/Screenshots Collected**
+N/A
+
+**Next Steps**
+We kicked the scans off again at the top level to see if we can eek out any more performance. We briefly discussed potentially splitting the scan from ""By DC"" to ""By Host"" but will revisit that if the scans don't speed up.","0054u000007MiY9AAK","2024-07-17T21:00:29.000Z","2024-07-17T21:00:29.000Z","false","false"
+"00aQk000008Dm0bIAC","500Qk00000D9R9aIAF","most recent scan required being restarted due to Crowdstrike issues. customer to provide update.","0054u000006goFUAAY","2024-07-29T23:05:02.000Z","2024-07-29T23:05:02.000Z","false","false"
+"00aQk000008OowkIAC","500Qk00000D9R9aIAF","[Meeting Notes 8/7/24]
+**Current Issue**
+The SEEK scan for DC1 went from taking 3+hrs to 6+ days. FSAA scan for DC1 also taking 6+ days to complete.
+
+**Troubleshooting Completed during Meeting**
+- DC1 hosts DFS files, so we added the DFS Host List to the FSDFS System Scan job
+- Set the FSAA Bulk Import to allow importation of partial results --this successfully completed on our call
+- Found 2 interesting errors on the SEEK scan, 1 for a broken pipe and the other for ""Could not find prepared statement with handle 1""
+
+**Logs/Screenshots Collected**
+
+**Next Steps**
+Upgrade NEA and SDD to see if that corrects the broken pipe error
+Fixing the FSDFS list should correct the Prepared Statement error","0054u000007MiY9AAK","2024-08-07T18:45:00.000Z","2024-08-07T18:45:34.000Z","false","false"
+"00aQk000009Q6W1IAK","500Qk00000D9R9aIAF","DC1 FSAA SystemScan
+Increased MAXTHREADS from 8 to 12
+Increased MAXFOLDERTHREADS from 4 to 8
+
+Kicked off scans again","0054u000007MiY9AAK","2024-10-01T18:11:50.000Z","2024-10-01T18:11:50.000Z","false","false"

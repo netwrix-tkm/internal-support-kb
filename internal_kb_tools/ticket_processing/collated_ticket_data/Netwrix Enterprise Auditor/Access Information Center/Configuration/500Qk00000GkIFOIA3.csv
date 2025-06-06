@@ -1,0 +1,19 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GkIFOIA3","00423193","Support Ticket","Getting Sorry we are unable to complete this request right now","When adding/removing computers to certain AD Group in AIC, get an error when attempting to commit the change. It says Sorry we are unable to complete this request right now. 
+The groups in question
+APCarbon Black Migration
+EUEU Carbon Black Migration
+USECarbon Black Migration
+USWCarbon Black Migration
+
+I seem to be able to add/remove computers and users to other AD groups. Using the service account credentials, I'm able to perform the changes using Active Directory Users and Computers so I don't know why the <a href='https://aic.log' target='_blank'>aic.log</a> reports Message: Access is denied.","","","","Symptom
+When attempting to add a user to an AD group using AIC, an error is thrown indicating ""the task cannot be performed right now""
+Logs indicate that there is a permissions issue when trying to add a user to a group.
+
+Cause
+The service account being used by AIC does not have sufficient privileges to modify the group in question.
+
+Resolution
+Update permissions on the service account following documentation to ensure that the user has minimum required permissions to make modifications.
+
+https://helpcenter.netwrix.com/bundle/AIC_11.6/page/Content/Access/InformationCenter/Admin/AdditionalConfig/CommitChanges.htm","Incorrect configuration: target server software","Ian Ranstrom","","Netwrix Enterprise Auditor","Access Information Center","Configuration","11.5","","22.8","Closed - Resolved","W. L. Gore & Associates, Inc.","Connie Liang","2024-10-07T20:01:27.000Z","2024-10-30T15:20:38.000Z"

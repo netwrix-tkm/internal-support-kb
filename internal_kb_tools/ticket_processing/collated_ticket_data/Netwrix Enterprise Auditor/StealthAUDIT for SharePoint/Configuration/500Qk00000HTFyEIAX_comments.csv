@@ -1,0 +1,242 @@
+"Id","ParentId","CommentBody","CreatedById","CreatedDate","LastModifiedDate","IsPublished","IsDeleted"
+"00aQk00000BibS9IAJ","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Account ACV has been changed to 66490.61556.","0054u000007p4sbAAA","2025-02-10T13:00:27.000Z","2025-02-10T13:00:27.000Z","false","false"
+"00aQk00000BiaMQIAZ","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Account ACV has been changed to 33245.30778.","0054u000007p4sbAAA","2025-02-10T13:00:29.000Z","2025-02-10T13:00:29.000Z","false","false"
+"00aQk00000BizXiIAJ","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@ The dev team checked all debug logs from January 21st to February 10th.  The product successfully authenticates against https://login.microsoftonline.com (as expected), then successfully verifies that it has all required permissions (as expected). After that it fails to query https://manage.office.com (unexpected). It seems to fail to establish a TLS connection with https://manage.office.com as the error message ""Authentication failed because the remote party has closed the transport stream"" is quite generic and most likely indicates a problem in the TLS connection itself rather than a problem with credentials. 
+
+The customer has the FIPS mode enabled, which may influence TLS. But the QA team has just re-tested SharePoint Online activity with 7.1.0.134 on a server with FIPS and could not reproduce the problem. 
+
+Could the customer try to open the following URL in a browser on the server CFA-AZS-P-NEA?
+
+https://manage.office.com/api/v1.0/071ca16e-d213-461f-9ab1-081b0144c15a/activity/feed/subscriptions/list?PublisherIdentifier=097499ff-179d-4959-ab02-86d364125bfc
+
+If the browser can connect to this endpoint, you should see the following response:
+""{""Message"":""Authorization has been denied for this request.""}""
+
+If instead of seeing that message the browser cannot connect, then can the customer verify that there are no firewalls that might block outgoing connections from CFA-AZS-P-NEA to manage.office.com?
+
+Also, recent NAM 7.1 hotfixes bring several changes for SharePoint Online: the ability to exclude SPO activity from specific accounts and a bug fix that prevents the repeated transfer of the same DLP events, which previously caused excessive downloads from manage.office.com. 
+Although these changes won't resolve the customer's current issue, upgrading is still recommended.
+
+[DevOps CommentId:11624783]","0054u000006gtWUAAY","2025-02-10T17:12:28.000Z","2025-02-10T17:12:28.000Z","false","false"
+"00aQk00000BjzyjIAB","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Hi Paul, https://manage.office.com/api/v1.0/071ca16e-d213-461f-9ab1-081b0144c15a/activity/feed/subscriptions/list?PublisherIdentifier=097499ff-179d-4959-ab02-86d364125bfc
+
+returns
+""{""Message"":""Authorization has been denied for this request.""}""
+
+I've uploaded screenshot to SP.
+
+We've tried to disable FIPS, but I believe they have it managed by GPO since on reboot it's back to enabled, so they cannot disable it without request and since you couldn't reproduce the issue with FIPS enabled I cannot use this as justification.
+
+Can you please advise what else can we check, beside upgrading?
+
+To give some context, they had and issue with both SPAA and SPAC scans. SPAA scans were fixed after we did this:
+
+1) Close all instances of StealthAUDIT (check task manager under processes for all users)
+2) Modify INSTALL_DIRPrivateAssembliesStealthbits.StealthAUDIT.DataCollectors.SPAA.Common.dll.config file, set UseFipsHashing value to ""true""
+3) Launch SA, and run SPAA scan.
+
+So I also think that FIPS might be our issue.","0054u000007p4sbAAA","2025-02-11T11:51:18.000Z","2025-02-11T11:51:18.000Z","false","false"
+"00aQk00000BkQ4QIAV","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@ Thank you for the update and information on SPAA, Damir.  I checked the NEA source code. Unfortunately, this settings, UseFipsHashing, does not affect TLS connections during SPAA scans. It affects only some internal use of hash functions inside of SPAA. 
+
+Is there any chance the customer can do a packet capture on CFA-AZS-P-NEA? Any packet capturing product should work: the standard pktmon.exe, Wireshark, Microsoft Network Monitor. 
+Below is the instruction for pktmon.exe, but it is pretty much the same with other products.
+1. Disable the NHSCFA.SHAREPOINT.COM host in the NAM Console. 
+2. On the CFA-AZS-P-NEA server, open the command prompt as Administrator. 
+3. In the command prompt, start the packet capture with this command: 
+pktmon start --capture --pkt-size 0
+4. In the Console, enable the NHSCFA.SHAREPOINT.COM host.
+5. Wait for the host to report ""Failed to GET IEnumerable"" error. 
+6. Stop the packet capture with:
+pktmon stop
+7. Convert the packet dump to the pcapng format with:
+pktmon etl2pcap PktMon.etl 
+8. Zip the PktMon.pcapng file.
+
+[DevOps CommentId:11632332]","0054u000006gtWUAAY","2025-02-11T16:52:07.000Z","2025-02-11T16:52:07.000Z","false","false"
+"00aQk00000BkQ62IAF","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@ Thank you for the update and information on SPAA, Damir.  I checked the NEA source code. Unfortunately, this settings, UseFipsHashing, does not affect TLS connections during SPAA scans. It affects only some internal use of hash functions inside of SPAA. 
+
+Is there any chance the customer can do a packet capture on CFA-AZS-P-NEA? Any packet capturing product should work: the standard pktmon.exe, Wireshark, Microsoft Network Monitor. 
+Below is the instruction for pktmon.exe, but it is pretty much the same with other products.
+1. Disable the NHSCFA.SHAREPOINT.COM host in the NAM Console. 
+2. On the CFA-AZS-P-NEA server, open the command prompt as Administrator. 
+3. In the command prompt, start the packet capture with this command: 
+pktmon start --capture --pkt-size 0
+4. In the Console, enable the NHSCFA.SHAREPOINT.COM host.
+5. Wait for the host to report ""Failed to GET IEnumerable"" error. 
+6. Stop the packet capture with:
+pktmon stop
+7. Convert the packet dump to the pcapng format with:
+pktmon etl2pcap PktMon.etl 
+8. Zip the PktMon.pcapng file.
+
+[DevOps CommentId:11632332]","0054u000006gtWUAAY","2025-02-11T16:52:08.000Z","2025-02-11T16:52:08.000Z","false","false"
+"00aQk00000BkOCJIA3","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@ The reason we want the customer to do the packet capture is that we think that it seems to be a problem at the TLS connection initiation. So we wanted to look at the TLS handshake sequence, the TLS versions of the client and the server, available algorithms.
+
+[DevOps CommentId:11632343]","0054u000006gtWUAAY","2025-02-11T16:55:14.000Z","2025-02-11T16:55:14.000Z","false","false"
+"00aQk00000BlMRmIAN","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Hi Paul, customer uploaded package capture, please check.","0054u000007p4sbAAA","2025-02-12T08:41:11.000Z","2025-02-12T08:41:11.000Z","false","false"
+"00aQk00000BmJreIAF","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@ Thanks for the packet capture! The TLS handshake fails.
+Several connection attempts to manage.office.com were captured. They all look identical. See Image1_Typical_TCP_stream.png which shows one of such attempts.
+
+1. There are lots of TCP retransmissions and Dup ACK errors. 
+2. After the TCP connection is open, our product sends a TLS ClientHello to establish a TLS connection.
+3. Just 0.6 millisecond later manage.office.com closes the connection by responding [FIN, ACK].
+
+The TCP ClientHello looks good. See Image2_TLS_ClientHello.png. Our product offers TLS 1.2 with a list of ciphers that are all supported according to https://learn.microsoft.com/en-us/azure/frontdoor/end-to-end-tls?pivots=front-door-standard-premium#supported-cipher-suites.
+
+The reason why manage.office.com closes the connection immediately with the FIN flag is unclear. 
+
+Another suspicious thing is the latency of responses. Regardless of the fact that there are tons of retransmissions, manage.office.com responds very quickly - everything happens in less than 1ms. 
+
+For comparison, I attached a screenshot from my machine. See Image3_QAEnvironment.png. On this screenshot, the initial TCP connection takes 22ms, then it takes another 22ms for manage.office.com to respond to the ClientHello.
+
+The fast response times in the customer's environment suggest that it might be a firewall on CFA-AZS-P-NEA or in the customer's network that for some reason blocks the connection. 
+A huge number of TCP retransmissions also indicate some problem with the network. 
+
+Could the customer verify their firewall / network security software? In the meantime we will think of further approaches to troubleshoot this.
+
+[DevOps CommentId:11640247]","0054u000006gtWUAAY","2025-02-12T21:01:32.000Z","2025-02-12T21:01:32.000Z","false","false"
+"00aQk00000C6O2MIAV","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Account ACV has been changed to 32819.28111333333344.","0054u000006gtWUAAY","2025-03-03T14:42:59.000Z","2025-03-03T14:42:59.000Z","false","false"
+"00aQk00000C6O2OIAV","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@ Have we heard anything back from the customer?
+
+[DevOps CommentId:11725257]","0054u000006gtWUAAY","2025-03-03T14:43:01.000Z","2025-03-03T14:43:01.000Z","false","false"
+"00aQk00000C7QmsIAF","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Hi Paul, customer went silent for few weeks, came back yesterday and didn't provide their network team feedback, I've asked to consult with them again.","0054u000007p4sbAAA","2025-03-04T06:10:58.000Z","2025-03-04T06:10:58.000Z","false","false"
+"00aQk00000CdZJyIAN","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@Salesforce Have we heard anything back from the customer?
+
+[DevOps CommentId:11866351]","0054u000006gtWUAAY","2025-03-31T12:35:01.000Z","2025-03-31T12:35:01.000Z","false","false"
+"00aQk00000CdeLGIAZ","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Customer is waiting on his account manager to provide new license, I will update you once he responds.","0054u000007p4sbAAA","2025-03-31T13:32:21.000Z","2025-03-31T13:32:21.000Z","false","false"
+"00aQk00000CfONeIAN","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007MiY9AAK","2025-04-01T16:38:09.000Z","2025-04-01T16:38:09.000Z","false","false"
+"00aQk00000Cn7mEIAR","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-04-08T11:45:11.000Z","2025-04-08T11:45:11.000Z","false","false"
+"00aQk00000Cn6N9IAJ","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Hi Paul, customer is rejecting any suggestions that issues are with SSL handshake and was asking about publisher identifier that is mentioned in text of the message, suspecting that it might be blocked.
+
+I've googled up here that it's a tenant GUID - https://learn.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-reference
+
+Is the description in that article something I can provide to a customer? Or is it different in our case?
+
+I would like to ask customer to work with his infrastructure team and MS team if needed. Since it looks like TLS issue still.","0054u000007p4sbAAA","2025-04-08T11:54:03.000Z","2025-04-08T11:54:03.000Z","false","false"
+"00aQk00000Cn8IWIAZ","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Since we had a hotfix recently related to SPO, I've advised customer to upgrade, but it looks like it broke SPO scans for him. He uploaded logs from NEA, I will go through them, maybe I will find something useful for you.","0054u000007p4sbAAA","2025-04-08T11:55:38.000Z","2025-04-08T11:55:38.000Z","false","false"
+"00aQk00000CnCHGIA3","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@ We can definitely share that article about PublisherIdentifier, which is required to overcome the API rate limiting imposed by Microsoft Office API. We can confirm that there's nothing wrong with the PublisherIdentifier value the product uses. 
+
+Speaking of the rate limiting or throttling. If the PublisherIdentifier was not present in our requests or it was invalid/blocked, then Microsoft would impose a lower rate limit on our product. Even if that happened, the product would be able to respect the reduced limit and query data at lower rate. 
+
+I checked the new log files. The situation is still the same. My previous analysis is still valid. 
+If the customer's network team cannot find the cause, we can try to replicate the issue in a PowerShell script.
+
+[DevOps CommentId:11905244]","0054u000006gtWUAAY","2025-04-08T12:58:03.000Z","2025-04-08T12:58:03.000Z","false","false"
+"00aQk00000CqLO3IAN","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@ We had a call with the customer. We asked the customer to execute a PowerShell snippet that mimics what NAM is doing. 
+```
+$tenantId = ""1111111-1111-1111-1111-111111111111""
+Add-Type -AssemblyName System.Web  
+Add-Type -AssemblyName System.Net.Http  
+$installPath = Get-ItemPropertyValue -Path ""HKLM:SOFTWARENetwrix Activity Monitor Agent 64-bit"" -Name InstallLocation  
+$agentVersion = Get-ItemPropertyValue -Path ""HKLM:SOFTWARENetwrix Activity Monitor Agent 64-bit"" -Name Version  
+cd ""$installPathnet472""  
+$httpHandler = [System.Net.Http.HttpClientHandler]::new()  
+$client = [System.Net.Http.HttpClient]::new($httpHandler)  
+$client.Timeout = [System.TimeSpan]::FromSeconds(180)  
+$client.DefaultRequestHeaders.Add(""User-Agent"", ""ISV|Netwrix|Activity Monitor|$agentVersion"")  
+$request = [System.Net.Http.HttpRequestMessage]::new([System.Net.Http.HttpMethod]::Get, ""[https://manage.office.com/api/v1.0/$tenantId/activity/feed/subscriptions/list?PublisherIdentifier=097499ff-179d-4959-ab02-86d364125bfc"")](https://manage.office.com/api/v1.0/071ca16e-d213-461f-9ab1-081b0144c15a/activity/feed/subscriptions/list?PublisherIdentifier=097499ff-179d-4959-ab02-86d364125bfc%22) ""https://manage.office.com/api/v1.0/071ca16e-d213-461f-9ab1-081b0144c15a/activity/feed/subscriptions/list?publisheridentifier=097499ff-179d-4959-ab02-86d364125bfc%22)"")  
+$request.Headers.Authorization = [System.Net.Http.Headers.AuthenticationHeaderValue]::new(""Bearer"", ""abc"")  
+$request.Headers.Accept.Add([System.Net.Http.Headers.MediaTypeWithQualityHeaderValue]::new(""application/json""))  
+$client.SendAsync($request).Result
+```
+
+If the script can connect to manage.office.com, the script should result with the 401 Unauthorized error. On the other hand, if the script, like NAM agent, cannot connect to manage.office.com, it should fail with some other connection error. 
+
+I hoped that the script would fail to connect and we would reproduce the problem in PowerShell. Unfortunately, the script managed to connect (401 Unauthorized). So, both the browser and powershell can connect, but not NAM. 
+
+I still think that it must be some firewall/security product that blocks the connection. NAM uses exactly the same piece of code to connect to login.microsoftonline.com, graph.microsoft.com and manage.office.com. The former two work, but the latter fails. It fails with a FIN packet that arrives incredibly quickly (less than 1ms). 
+
+We asked the customer to do two things:
+1. Verify their firewall to see if there are any signs of blocked connections.
+2. Try to deploy an agent to another server/workstation and configure SharePoint Online monitoring there to see if the problem is reproducible.
+
+[DevOps CommentId:11919242]","0054u000006gtWUAAY","2025-04-10T15:16:01.000Z","2025-04-10T15:16:01.000Z","false","false"
+"00aQk00000CqMokIAF","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: Paul Shmakov:
+
+@ We had a call with the customer. We asked the customer to execute a PowerShell snippet that mimics what NAM is doing. 
+```
+$tenantId = ""1111111-1111-1111-1111-111111111111""
+Add-Type -AssemblyName System.Web  
+Add-Type -AssemblyName System.Net.Http  
+$installPath = Get-ItemPropertyValue -Path ""HKLM:SOFTWARENetwrix Activity Monitor Agent 64-bit"" -Name InstallLocation  
+$agentVersion = Get-ItemPropertyValue -Path ""HKLM:SOFTWARENetwrix Activity Monitor Agent 64-bit"" -Name Version  
+cd ""$installPathnet472""  
+$httpHandler = [System.Net.Http.HttpClientHandler]::new()  
+$client = [System.Net.Http.HttpClient]::new($httpHandler)  
+$client.Timeout = [System.TimeSpan]::FromSeconds(180)  
+$client.DefaultRequestHeaders.Add(""User-Agent"", ""ISV|Netwrix|Activity Monitor|$agentVersion"")  
+$request = [System.Net.Http.HttpRequestMessage]::new([System.Net.Http.HttpMethod]::Get, ""[https://manage.office.com/api/v1.0/$tenantId/activity/feed/subscriptions/list?PublisherIdentifier=097499ff-179d-4959-ab02-86d364125bfc"")](https://manage.office.com/api/v1.0/071ca16e-d213-461f-9ab1-081b0144c15a/activity/feed/subscriptions/list?PublisherIdentifier=097499ff-179d-4959-ab02-86d364125bfc%22) ""https://manage.office.com/api/v1.0/071ca16e-d213-461f-9ab1-081b0144c15a/activity/feed/subscriptions/list?publisheridentifier=097499ff-179d-4959-ab02-86d364125bfc%22)"")  
+$request.Headers.Authorization = [System.Net.Http.Headers.AuthenticationHeaderValue]::new(""Bearer"", ""abc"")  
+$request.Headers.Accept.Add([System.Net.Http.Headers.MediaTypeWithQualityHeaderValue]::new(""application/json""))  
+$client.SendAsync($request).Result
+```
+
+If the script can connect to manage.office.com, the script should result with the 401 Unauthorized error. On the other hand, if the script, like NAM agent, cannot connect to manage.office.com, it should fail with some other connection error. 
+
+I hoped that the script would fail to connect and we would reproduce the problem in PowerShell. Unfortunately, the script managed to connect (401 Unauthorized). So, both the browser and powershell can connect, but not NAM. 
+
+I still think that it must be some firewall/security product that blocks the connection. NAM uses exactly the same piece of code to connect to login.microsoftonline.com, graph.microsoft.com and manage.office.com. The former two work, but the latter fails. It fails with a FIN packet that arrives incredibly quickly (less than 1ms). 
+
+We asked the customer to do two things:
+1. Verify their firewall to see if there are any signs of blocked connections.
+2. Try to deploy an agent to another server/workstation and configure SharePoint Online monitoring there to see if the problem is reproducible.
+
+[DevOps CommentId:11919242]","0054u000006gtWUAAY","2025-04-10T15:16:04.000Z","2025-04-10T15:16:04.000Z","false","false"
+"00aQk00000CzMhRIAV","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-18T05:02:20.000Z","2025-04-18T05:02:20.000Z","false","false"
+"00aQk00000CzMhTIAV","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Waiting For Customer' since 2025-04-10 15:15 UTC and the last detected comment from support was 2025-04-08 11:55 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11949657]","0054u000006gtWUAAY","2025-04-18T05:02:20.000Z","2025-04-18T05:02:20.000Z","false","false"
+"00aQk00000D04k5IAB","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0050g000006QqyEAAS","2025-04-18T18:41:28.000Z","2025-04-18T18:41:28.000Z","false","false"
+"00aQk00000D9WZ5IAN","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Status has been changed to Awaiting Escalating Engineer.","0054u000006gtWUAAY","2025-04-28T05:02:12.000Z","2025-04-28T05:02:12.000Z","false","false"
+"00aQk00000D9WZ7IAN","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: -- DevOps Automation Assistant --
+
+This escalation has been in the status 'Waiting For Customer' since 2025-04-10 15:15 UTC and the last detected comment from support was 2025-04-08 11:55 UTC.
+
+If this escalation has been resolved with the customer, please add a comment so this can be closed in Azure DevOps.
+
+@WaitingOnEngineer
+
+[DevOps CommentId:11979530]","0054u000006gtWUAAY","2025-04-28T05:02:13.000Z","2025-04-28T05:02:13.000Z","false","false"
+"00aQk00000D9pztIAB","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Status has been changed to Awaiting Client.","0054u000007p4sbAAA","2025-04-28T11:25:30.000Z","2025-04-28T11:25:30.000Z","false","false"
+"00aQk00000D9q4kIAB","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the new comment has been added: After allowing access to SP the issue with collecting events is resolved, closing support ticket. Thanks for your help.","0054u000007p4sbAAA","2025-04-28T11:26:32.000Z","2025-04-28T11:26:32.000Z","false","false"
+"00aQk00000D9q6LIAR","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Status has been changed to Awaiting R&D.","0054u000007p4sbAAA","2025-04-28T11:26:40.000Z","2025-04-28T11:26:40.000Z","false","false"
+"00aQk00000D9o1LIAR","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Status has been changed to Closed - Resolved.","0054u000007p4sbAAA","2025-04-28T11:29:32.000Z","2025-04-28T11:29:32.000Z","false","false"
+"00aQk00000D9o1NIAR","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Account ACV has been changed to 65638.56222666666688.","0054u000007p4sbAAA","2025-04-28T11:29:35.000Z","2025-04-28T11:29:35.000Z","false","false"
+"00aQk00000D9lMoIAJ","500Qk00000HTFyEIAX","On Escalation Ticket # 00435252 the Following Fields have been updated: 
+Account ACV has been changed to 32819.28111333333344.","0054u000006gtWUAAY","2025-04-28T11:29:49.000Z","2025-04-28T11:29:49.000Z","false","false"

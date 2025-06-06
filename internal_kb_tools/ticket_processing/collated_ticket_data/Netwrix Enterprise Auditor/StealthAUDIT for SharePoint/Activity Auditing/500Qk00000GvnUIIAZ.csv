@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000GvnUIIAZ","00423720","Support Ticket","PCB - SPO Teams Channels AIC No Activity","Customer: Post Consumer Brands/Post Holdings
+
+Hello Support,
+
+After upgrading to NEA 11.6.0.112 and then clearing tier1/2 DBs for SharePoint then running fresh SPAA and SPAC jobs we are not seeing activity within Teams Channels for users. Within the DB it appears the resourceid on that activity is NULL. Which makes sense as to why it does not show within AIC.
+
+Name                                          Version    InstallDate
+----                                          -------    -----------
+Netwrix Access Information Center             11.6.0.25  20241004   
+Netwrix Activity Monitor                      7.0.3175   20241004   
+Netwrix Activity Monitor Agent 64-bit         7.0.3175   20241004   
+Netwrix Enterprise Auditor V11.6              11.6.0.112 20241004   
+Netwrix Sensitive Data Discovery Add-On V11.6 11.6.0.13  20241004
+
+Thank you,
+Justin","Upgrade NEA to 11.6.0.112
+Remove all tables and SQLlite dbs related to sharepoint
+Scan and import SP permissions and activity
+Note resourceid of activity records is null","Issues like this often occur when a customer has conducted an SPAC scan that gathered activity involving SP resources that haven’t yet been scanned with SPAA or SPSEEK. If they are reviewing this activity in the AIC immediately after importing the SPAC scan data, it could explain why the ResourceIds are null. Running an SPAA or SPSEEK scan with those resources included and then importing the results should resolve the issue.
+
+Let me know if you continue to se the NULLs after running SPAA/SPSEEK.
+
+""I opened this case after multiple SPAA/SPEEK runs, this is still a problem.""","Verify the following with customer:
+* Are the following event IDs present in SA_SPAC_ActivityEventsView: 3992693, 8400059, 12642013
+* Is the SPAA/SPSEEK scan scoped to include the paths of SPAC?","Partner has done several updates and data drops and is no longer seeing the issue. We're not sure what resolved it, but ok to close. Will reopen if the issue returns.","Root Cause Unknown","Tay Caliguiri","Unexpected Behavior","Netwrix Enterprise Auditor","StealthAUDIT for SharePoint","Activity Auditing","11.6","","221.1","Closed - Resolved","Post Holdings, Inc.","Justin Cahill","2024-10-11T17:48:05.000Z","2025-05-20T20:10:40.000Z"

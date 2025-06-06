@@ -1,0 +1,39 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000RviA2KAJ","500Qk00000ItG6iIAF","TextPost","0054u000008ARZjAAO","2024-11-28T14:19:19.000Z","Description: Hey there, there are two vulnerabilities showing on our StealthAUDIT server with a CVSS score of 9.8 on Windows Defender (CVE-2020-1938 and CVE-2019-0232)
+
+The .jar file that's flagged up is: 
+c:program files (x86)stealthbitsstealthauditactionssurveytomcatbin<a href='https://tomcat-juli.jar' target='_blank'>tomcat-juli.jar</a>
+
+We are already running version 11.6, is this .jar file still use by Enterprise Auditor or can it be removed?
+
+Many thanks.","","","","0054u000008ARZjAAO","2024-11-28T14:19:19.000Z"
+"0D5Qk00000Rw3KjKAJ","500Qk00000ItG6iIAF","TextPost","005Qk000002b4gDIAQ","2024-11-28T16:23:38.000Z","Next Steps Updated: Customer reported that the following file is flagged as vulnerable:
+ ""c:program files (x86)stealthbitsstealthauditactionssurveytomcatbintomcat-juli.jar"" 
+
+Support will clarify the use case for this file, whether it can be removed or not and what impact that will have on the Enterprise Auditor as a whole.","","","","005Qk000002b4gDIAQ","2024-11-28T16:23:38.000Z"
+"0D5Qk00000SdtXdKAJ","500Qk00000ItG6iIAF","TextPost","005Qk000002b4gDIAQ","2024-12-10T13:47:45.000Z","What We've Learned Updated: I got more information from customer. 
+They said that vulnerabilities that got flagged up for ""tomcat-juli.jar"" file are the following:
+CVE-2019-0232L  - Apache Tomcat: Important: Remote Code Execution on Windows (CVE-2019-0232)
+CVE-2020-1938 - Apache Tomcat: High: AJP Request Injection and potential Remote Code Execution (CVE-2020-1938)
+ 
+Both of these vulnerabilities are mentioned in here:
+https://helpcenter.netwrix.com/bundle/z-kb-articles-salesforce/page/kA04u0000000I0wCAE.html
+ 
+This one - CVE-2019-0232L  - Apache Tomcat: Important: Remote Code Execution on Windows (CVE-2019-0232), is not a threat to customer as per description from the article above says:
+""We don't ship with any CGI components configured in web.xml, additionally we don't use CGI in any capacity""
+ 
+However, the second one has this description:
+""AJP can be manually disabled via the in conf/server.xml. See details in the related YT ticket, SMPC-9278."" 
+ 
+I`ve check the config file of the tomcat webserver that is shipped with NEA - and the ""Connector protocol=""AJP/1.3"" is commented out(means disabled). 
+The Tomcat config file is located here:
+C:Program Files (x86)STEALTHbitsStealthAUDITActionsSurveyTomcatconfserver.xml 
+This connector protocol is commented out and is not used:
+    <Connector protocol=""AJP/1.3""
+               address=""::1""
+               port=""8009""
+               redirectPort=""8443"" />
+
+This means that both vulnerabilities are addressed in the latest NEA versions and customer can keep using the tomcat-juli.jar file.","","","","005Qk000002b4gDIAQ","2024-12-10T13:47:45.000Z"
+"0D5Qk00000Sda29KAB","500Qk00000ItG6iIAF","TextPost","005Qk000002b4gDIAQ","2024-12-10T13:48:31.000Z","Next Steps Updated: Support provided customer with information about vulnerabilities and how they are addressed in NEA. 
+Support is waiting for customers reply with confirmation.","","","","005Qk000002b4gDIAQ","2024-12-10T13:48:31.000Z"

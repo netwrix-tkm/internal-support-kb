@@ -1,0 +1,30 @@
+"Id","ParentId","Type","CreatedById","CreatedDate","Body","Title","LinkUrl","RelatedRecordId","InsertedById","LastModifiedDate"
+"0D5Qk00000PkjRxKAJ","500Qk00000GqfqkIAB","TextPost","00570000003KXurAAG","2024-10-30T21:32:00.000Z","What We've Learned Updated: Symptom:
+FileSystem Activity (FSAC) data within the Netwrix Access Information Center (AIC) is not being updated.
+
+Cause:
+The Network share path for the NAM archives was receiving an access denied error ConfigurationAgent.Grpc.Host.errors, tsv
+However the logs were also not located in the C:Program FilesSTEALTHbitsStealthAUDITFSAC<host-name>_log_.tsv
+
+Resolution:
+We corrected the Service account details within NAM as well as granted the needed access to the Share and NTFs path on the NAM/NEA host.
+Disabled the Proxy option for this jobs as the archived evens will be pushed to the NEA host.
+
+Symptom:
+FileSystem FSAA System Scans noted that a bulk import was needed
+Cause:
+Unknown at this time
+Resolution:
+Qued the needed bulk import
+
+Symptom:
+Main FileSystem SEEK scan errored 
+Cause:
+The copied file name and resulting path was longer than Windows natively allows (254) at 259 characters. 
+Resolution:
+Within the Registry the following was enabled 
+""HKLM:SYSTEMCurrentControlSetControlFileSystem"" -Name ""LongPathsEnabled"" -Value 1 
+
+The host PageFile was also limited to only the Largest Drive ( D:) to mitigate the OS mishandling the needed system controlled expansion that would result in failed scan.
+***NOTE*** For these settings to fully take affect the NEA host will need to be Rebooted.","","","","00570000003KXurAAG","2024-10-30T21:32:00.000Z"
+"0D5Qk00000PkgUUKAZ","500Qk00000GqfqkIAB","TextPost","00570000003KXurAAG","2024-10-30T21:32:37.000Z","Next Steps Updated: Awaiting the next scan to confirm settings changes","","","","00570000003KXurAAG","2024-10-30T21:32:37.000Z"

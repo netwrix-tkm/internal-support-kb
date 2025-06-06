@@ -1,0 +1,26 @@
+"Id","CaseNumber","Ticket_Record_Type_Name__c","Subject","Description","DevOps_Steps_to_Reproduce__c","What_We_Know__c","Next_Steps__c","Solution_Comment__c","Issue_Type__c","Ticket_Owner_Name__c","Ticket_Type__c","Platform__c","Collector_Code__c","Feature__c","Product_Version__c","Build_Number__c","Age__c","Status","Account_Name__c","Contact_Name__c","CreatedDate","ClosedDate"
+"500Qk00000HjPtWIAV","00425734","Support Ticket","After upgrading to 11.6.0.112 to fix issue with PF_Entitlements analysis new error is occurring","Observed new error occurring with the AIC Import - PF Entitlements analysis task in the PF_Entitlements job:
+
+""Column, parameter, or variable #5: Cannot find data type dbo.SA_AIC_FlexibleResourceTypesImport.  Must declare the table variable ""@resourcetype"".  Parameter or variable '@resourcetype' has an invalid data type.""","","Unsure if [dbo.SA_AIC_FlexibleResourceTypesImport] is a table, view, stored procedure, or function. We were unable to locate this reference anywhere in the database.
+
+AIC is latest 11.6.0.25 mentioned as required by R&D for the hotfix.
+
+Attempted to reproduce in lab but unsuccessful. I did require setting up the PF_EntitlementScans job in lab as this had not been run previously.
+
+In lab database I also do not see the [dbo.SA_AIC_FlexibleResourceTypesImport] in tables, views, stored procedures, or functions either, though the error does not occur.
+
+Job log unfortunately does not provide any clarification.","Will recommend customer try running the PF_EntitlementScans job then testing if the analysis error persists.","Symptom
+
+After upgrade to 11.6 to include fix for ""AIC Import - PF Entitlements"" analysis task in the ""PF_Entitlements"" job receiving error:
+
+""Column, parameter, or variable #5: Cannot find data type dbo.SA_AIC_FlexibleResourceTypesImport. Must declare the table variable ""@resourcetype"". Parameter or variable '@resourcetype' has an invalid data type.""
+
+Cause
+
+Appears to be related to the ""PF_EntitlementsScan"" job not running before ""PF_Entitlements"" job in order for tables to be properly correlated. This requirement was not mentioned in hotfix notes.
+
+Resolution
+
+Run the ""PF_EntitlementsScan"" job and ensure success before running the updated """"PF_Entitlements"" job.
+
+Unsure if we would see the same error occur after applying just the hotfix since we had to upgrade this customer from 11.5 to 11.6 to get the fix so a new KB article may be helpful here.","Inaccurate documentation","Kurt Gerth","","Netwrix Enterprise Auditor","StealthAUDIT for Exchange","Reports","11.6","0.112","5.0","Closed - Resolved","The Baupost Group","Charlie Davidson","2024-10-31T19:14:27.000Z","2024-11-05T19:15:23.000Z"
